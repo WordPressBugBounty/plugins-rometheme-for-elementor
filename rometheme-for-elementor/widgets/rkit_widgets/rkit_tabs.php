@@ -8,7 +8,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Advanced Tabs';
+        return \RomethemeKit\RkitWidgets::listWidgets()['tabs']['name'];
     }
 
     public function get_icon()
@@ -75,10 +75,10 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'show_icon',
             [
-                'label' => esc_html__('Enable Icon', 'textdomain'),
+                'label' => esc_html__('Enable Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -104,15 +104,15 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'icon_align',
             [
-                'label' => esc_html__('Icon Alignment', 'textdomain'),
+                'label' => esc_html__('Icon Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'ltr' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'rtl' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -140,10 +140,10 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $item->add_control(
             'active_default',
             [
-                'label' => esc_html__('Active Default', 'textdomain'),
+                'label' => esc_html__('Active Default', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
             ]
         );
@@ -151,7 +151,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $item->add_control(
             'icon_tab',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-home',
@@ -195,9 +195,9 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $item->add_control(
             'item_content',
             [
-                'label' => esc_html__('Content', 'textdomain'),
+                'label' => esc_html__('Content', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'placeholder' => esc_html__('Type your description here', 'textdomain'),
+                'placeholder' => esc_html__('Type your description here', 'rometheme-for-elementor'),
                 'condition' => [
                     'content_type' => 'content'
                 ]
@@ -247,7 +247,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrapper_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -259,7 +259,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrapper_margin',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -271,7 +271,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrapper_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -314,7 +314,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -340,7 +340,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_margin',
             [
-                'label' => esc_html__('Icon Margin', 'textdomain'),
+                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -355,7 +355,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -367,7 +367,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_margin',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -379,7 +379,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -419,7 +419,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -437,7 +437,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -482,7 +482,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -500,7 +500,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -545,7 +545,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_bg_options_active',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -563,7 +563,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'title_border_options_active',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -607,7 +607,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_margin',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -619,7 +619,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -631,7 +631,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -651,7 +651,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'content_bg_options',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -669,7 +669,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         $this->add_control(
             'content_border_options',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

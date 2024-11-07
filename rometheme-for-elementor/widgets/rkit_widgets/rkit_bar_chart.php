@@ -8,7 +8,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Bar Chart';
+        return \RomethemeKit\RkitWidgets::listWidgets()['barchart']['name'];
     }
 
     public function get_icon()

@@ -1,30 +1,102 @@
 .rkit-team-card {
     background-color: white;
-    transition: all 0.3s;
+    transition: all 0.5s;
     overflow: hidden;
+    position: relative;
+}
+
+.pointer {
+    --pointer-size : 5px;
+}
+
+.rkit-team-card.pointer::before {
+    content: "";
+    height: var(--pointer-size);
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: blue;
+    position: absolute;
+}
+
+.rkit-team-card.pointer::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: var(--pointer-size);
+    transition: width 0.5s ease;
+    background: #00cea6;
+}
+
+.rkit-team-card:hover.pointer::after {
+    width: 100%;
 }
 
 .rkit-team__detail {
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 2;
+    transition: all 0.5s;
 }
 
 .rkit-team__detail h4 {
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .rkit-team__img {
     display: flex;
     transition: all 1s;
+    overflow: hidden;
 }
 
 .rkit-team__img img {
     width: 100%;
     aspect-ratio: 3/2;
     object-fit: cover;
+    transition: transform 0.5s;
+}
+
+
+.rkit-team__img.move-left img {
+    transform: scale(1.2) translateX(8%);
+}
+
+.rkit-team__img.move-right img {
+    transform: scale(1.2) translateX(-8%);
+}
+
+.rkit-team__img.move-up img {
+    transform: scale(1.2) translateY(8%);
+}
+
+.rkit-team__img.move-down img {
+    transform: scale(1.2) translateY(-8%);
+}
+
+.rkit-team-card:hover .rkit-team__img.move-left img,
+.rkit-team-card:hover .rkit-team__img.move-right img,
+.rkit-team-card:hover .rkit-team__img.move-up img,
+.rkit-team-card:hover .rkit-team__img.move-down img {
+    transform: scale(1.2) translateX(0%);
+}
+
+.rkit-team-card:hover .rkit-team__img.zoom-in img {
+    transform: scale(1.2);
+}
+
+.rkit-team__img.zoom-out img {
+    transform: scale(1.2);
+}
+
+.rkit-team-card:hover .rkit-team__img.zoom-out img {
+    transform: scale(1);
 }
 
 .rkit-team__role {
@@ -83,13 +155,14 @@
 }
 
 .rkit-team__social_item {
-    padding: 0.5rem;
+    padding: 20px;
     aspect-ratio: 1/1;
-    width: 35px;
+    /* width: 35px; */
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--color);
+    transition: all 0.5s;
 }
 
 .rkit-team__social_icon {

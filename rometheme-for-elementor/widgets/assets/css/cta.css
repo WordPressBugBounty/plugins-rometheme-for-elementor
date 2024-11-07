@@ -139,26 +139,26 @@
     font-size: 70px;
 }
 
-.move-left {
+.rkit-cta-img__image.move-left {
     transform: scale(1.2) translateX(8%);
 }
 
-.move-right {
+.rkit-cta-img__image.move-right {
     transform: scale(1.2) translateX(-8%);
 }
 
-.move-up {
+.rkit-cta-img__image.move-up {
     transform: scale(1.2) translateY(8%);
 }
 
-.move-down {
+.rkit-cta-img__image.move-down {
     transform: scale(1.2) translateY(-8%);
 }
 
-.rkit-cta:hover .move-left,
-.rkit-cta:hover .move-right,
-.rkit-cta:hover .move-up,
-.rkit-cta:hover .move-down {
+.rkit-cta:hover .rkit-cta-img__image.move-left,
+.rkit-cta:hover .rkit-cta-img__image.move-right,
+.rkit-cta:hover .rkit-cta-img__image.move-up,
+.rkit-cta:hover .rkit-cta-img__image.move-down {
     transform: scale(1.2) translateX(0%);
 }
 

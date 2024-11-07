@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RomethemeKit For Elementor
  * Description:       RomethemeKit for Elementor Page Builder is the best toolkit solution for Elementor, build Elementor websites faster and easier than ever.
- * Version:           1.5.1
+ * Version:           1.5.2
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
@@ -93,7 +93,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.5.1';
+		return '1.5.2';
 	}
 
 	/**

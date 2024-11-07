@@ -4,11 +4,11 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 {
     public function get_name()
     {
-        return 'rkit-blog-post';
+        return 'rkit-post-grid-post';
     }
     public function get_title()
     {
-        return 'Blog Post';
+        return \RomethemeKit\RkitWidgets::listWidgets()['blogpost']['name'];
     }
     public function get_keywords()
     {
@@ -31,7 +31,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
     }
     public function get_style_depends()
     {
-        return ['rkit-blog-style'];
+        return ['rkit-post-grid-style'];
     }
 
     public function limit_words($phrase, $max_words)
@@ -68,31 +68,16 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Layout', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
-        $this->add_control('layout_style', [
-            'label' => esc_html__('Layout Style', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' =>  [
-                'grid' => esc_html__('Grid', 'rometheme-for-elementor'),
-                'block' => esc_html__('Block', 'rometheme-for-elementor'),
-            ],
-            'default' => 'grid',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-blog' => 'display: {{VALUE}};'
-            ]
-        ]);
 
         $this->add_responsive_control('show-post-row', [
             'label' => esc_html__('Show Post Per Row'),
             'type' => \Elementor\Controls_Manager::NUMBER,
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog' => 'grid-template-columns: repeat({{VALUE}}, 1fr);'
+                '{{WRAPPER}} .rkit-post-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);'
             ],
             'desktop_default' => 3,
             'tablet_default' => 2,
             'mobile_default' => 1,
-            'condition' => [
-                'layout_style' => 'grid'
-            ]
         ]);
 
         $this->add_responsive_control('item-spacing', [
@@ -107,11 +92,8 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ],
             'default' => ['size' => 30, 'unit' => 'px'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog' => 'gap:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid' => 'gap:{{SIZE}}{{UNIT}}'
             ],
-            'condition' => [
-                'layout_style' => ['flex', 'grid']
-            ]
         ]);
 
         $this->add_control('show-featured-image', [
@@ -122,44 +104,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'return_value' => 'yes',
             'default' => 'yes'
         ]);
-
-        $this->add_responsive_control('image-position', [
-            'label' => esc_html__('Image Position', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'column' => 'Top',
-                'row' => 'Left',
-                'row-reverse' => 'Right',
-            ],
-            'default' => 'column',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-blog-card' => 'flex-direction:{{VALUE}};'
-            ],
-            'condition' => [
-                'show-featured-image' => 'yes',
-                'layout_style' => 'grid'
-            ],
-        ]);
-
-        $this->add_responsive_control(
-            'feature_image_align',
-            [
-                'label' => esc_html__('Image Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'options' => [
-                    'row' => esc_html__('Left', 'rometheme-for-elementor'),
-                    'row-reverse' => esc_html__('Right', 'rometheme-for-elementor')
-                ],
-                'default' => 'row',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-card' => 'flex-direction: {{VALUE}};',
-                ],
-                'condition' => [
-                    'layout_style' => 'block'
-                ]
-            ]
-        );
 
         $this->add_responsive_control('img-aspect-ratio', [
             'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
@@ -547,7 +491,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'wrapper_background',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-card',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
             ]
         );
 
@@ -555,7 +499,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'wrapper_boxshadow',
-                'selector' => '{{WRAPPER}} .rkit-blog-card',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
             ]
         );
 
@@ -566,7 +510,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'card_hover_animation',
             [
-                'label' => esc_html__('Hover Animation', 'textdomain'),
+                'label' => esc_html__('Hover Animation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
             ]
         );
@@ -576,7 +520,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'wrapper_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
             ]
         );
 
@@ -584,7 +528,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'wrapper_boxshadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
             ]
         );
 
@@ -606,7 +550,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-card' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-card' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -615,7 +559,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-card' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-card' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -624,7 +568,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-card' => 'Margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-card' => 'Margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -632,7 +576,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'container_border',
-                'selector' => '{{WRAPPER}} .rkit-blog-card',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
             ]
         );
 
@@ -656,7 +600,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'content_background',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
             ]
         );
 
@@ -664,7 +608,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'content_boxshadow',
-                'selector' => '{{WRAPPER}} .rkit-blog-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
             ]
         );
 
@@ -677,7 +621,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'content_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover .rkit-blog-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
             ]
         );
 
@@ -685,7 +629,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'content_boxshadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover .rkit-blog-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
             ]
         );
 
@@ -705,7 +649,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-body' => 'min-height:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-body' => 'min-height:{{SIZE}}{{UNIT}}'
             ]
 
         ]);
@@ -715,7 +659,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-body' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-body' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -724,7 +668,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-body' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-body' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -733,7 +677,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-body' => 'Margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-body' => 'Margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -741,7 +685,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'content_border',
-                'selector' => '{{WRAPPER}} .rkit-blog-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
             ]
         );
         $this->end_controls_section();
@@ -869,7 +813,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'featured_image_filter',
-                'selector' => '{{WRAPPER}} .rkit-blog-card .rkit-blog-img',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card .rkit-post-grid-img',
             ]
         );
 
@@ -881,7 +825,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
                 'name' => 'featured_image_filter_hover',
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover .rkit-blog-img',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-img',
             ]
         );
 
@@ -1162,7 +1106,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .rkit-blog-title',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-title',
             ]
         );
 
@@ -1192,7 +1136,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-title-container' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-post-grid-title-container' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -1204,7 +1148,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-title-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid-title-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1216,7 +1160,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-title-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid-title-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1227,14 +1171,14 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-title' => 'color:{{VALUE}}',
+                '{{WRAPPER}} .rkit-post-grid-title' => 'color:{{VALUE}}',
             ]
         ]);
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-blog-title',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-title',
             ]
         );
         $this->end_controls_tab();
@@ -1243,14 +1187,14 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-title:hover' => 'color:{{VALUE}}',
+                '{{WRAPPER}} .rkit-post-grid-title:hover' => 'color:{{VALUE}}',
             ]
         ]);
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'title_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-blog-title:hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-title:hover',
             ]
         );
         $this->end_controls_tab();
@@ -1263,7 +1207,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'blog_content_typography',
-                'selector' => '{{WRAPPER}} .rkit-blog-paragraph',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-paragraph',
             ]
         );
 
@@ -1293,7 +1237,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-paragraph' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-post-grid-paragraph' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -1302,7 +1246,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-paragraph' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-post-grid-paragraph' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1310,7 +1254,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Hover Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-paragraph:hover' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-post-grid-paragraph:hover' => 'color:{{VALUE}}'
             ]
         ]);
 
@@ -1318,7 +1262,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'paragraph_shadow',
-                'selector' => '{{WRAPPER}} .rkit-blog-paragraph',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-paragraph',
             ]
         );
 
@@ -1329,7 +1273,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-paragraph' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid-paragraph' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1359,7 +1303,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 '%' => ['min' => 0, 'max' => 100],
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-highlight-border::before' => 'height:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-highlight-border::before' => 'height:{{SIZE}}{{UNIT}}'
             ],
             'condition' => [
                 'show_highlight' => 'yes'
@@ -1374,7 +1318,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 '%' => ['min' => 0, 'max' => 100],
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-highlight-border::before' => 'width:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-highlight-border::before' => 'width:{{SIZE}}{{UNIT}}'
             ],
             'condition' => [
                 'show_highlight' => 'yes'
@@ -1390,7 +1334,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 '%' => ['min' => -100, 'max' => 100],
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-highlight-border::before' => 'top:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-highlight-border::before' => 'top:{{SIZE}}{{UNIT}}'
             ],
             'condition' => [
                 'show_highlight' => 'yes'
@@ -1406,7 +1350,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 '%' => ['min' => -100, 'max' => 100],
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-blog-highlight-border::before' => 'left:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid-highlight-border::before' => 'left:{{SIZE}}{{UNIT}}'
             ],
             'condition' => [
                 'show_highlight' => 'yes'
@@ -1424,7 +1368,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'highlight_background_normal',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-highlight-border::before',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-highlight-border::before',
             ]
         );
         $this->end_controls_tab();
@@ -1435,7 +1379,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'highlight_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-blog-card:hover .rkit-blog-highlight-border::before',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-highlight-border::before',
             ]
         );
         $this->add_control(
@@ -1457,7 +1401,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                     'size' => 0,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blog-highlight-border::before' => '-webkit-transition: all {{SIZE}}{{UNIT}}; -o-transition: all {{SIZE}}{{UNIT}}; transition: all {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid-highlight-border::before' => '-webkit-transition: all {{SIZE}}{{UNIT}}; -o-transition: all {{SIZE}}{{UNIT}}; transition: all {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1496,7 +1440,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing    ', 'textdomain'),
+                'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1995,7 +1939,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
     protected function render()
     {
 ?>
-        <div class="rkit-blog">
+        <div class="rkit-post-grid">
             <?php $this->render_raw() ?>
         </div>
         <?php
@@ -2032,7 +1976,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 $post_content = (get_the_excerpt()) ? get_the_excerpt() : get_the_content();
                 $post_title = get_the_title();
         ?>
-                <div class="rkit-blog-card <?php echo esc_attr($hoverAnimation) ?>">
+                <div class="rkit-post-grid-card <?php echo esc_attr($hoverAnimation) ?>">
                     <?php if ('yes' === $settings['show-featured-image']) : ?>
                         <div class="rkit-image-container">
                             <?php
@@ -2049,7 +1993,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             endif;
                             ?>
                             <a class="rkit-image-link" style="overflow: hidden;" href="<?php esc_url(the_permalink()) ?>">
-                                <img class="rkit-blog-img" src="<?php esc_url(the_post_thumbnail_url($settings['thumbnail_size'])) ?>">
+                                <img class="rkit-post-grid-img" src="<?php the_post_thumbnail($settings['thumbnail_size']) ?>">
                             </a>
                             <?php if ('yes' === $settings['show-floating-date']) : ?>
                                 <div class="rkit-float-metawrapper-date">
@@ -2058,7 +2002,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
-                    <div class="rkit-blog-body <?php echo ('yes' === $settings['show_highlight']) ? esc_attr('rkit-blog-highlight-border') : '' ?>">
+                    <div class="rkit-post-grid-body <?php echo ('yes' === $settings['show_highlight']) ? esc_attr('rkit-post-grid-highlight-border') : '' ?>">
                         <?php if ('before_title' === $settings['meta_position']) : ?>
                             <div class="rkit-metadata">
                                 <?php
@@ -2104,8 +2048,8 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             </div>
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-title']) : ?>
-                            <div class="rkit-blog-title-container">
-                                <a class="rkit-blog-title" href="<?php esc_url(the_permalink()) ?>"><?php echo esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
+                            <div class="rkit-post-grid-title-container">
+                                <a class="rkit-post-grid-title" href="<?php esc_url(the_permalink()) ?>"><?php echo esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ('after_title' === $settings['meta_position']) : ?>
@@ -2153,8 +2097,8 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             </div>
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-content']) : ?>
-                            <div class="rkit-blog-content">
-                                <p class="rkit-blog-paragraph"><?php echo esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($post_content) : wp_trim_words(wp_strip_all_tags($post_content), $settings['truncate-content']), 'rometheme-for-elementor') ?>
+                            <div class="rkit-post-grid-content">
+                                <p class="rkit-post-grid-paragraph"><?php echo esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($post_content) : wp_trim_words(wp_strip_all_tags($post_content), $settings['truncate-content']), 'rometheme-for-elementor') ?>
                                 </p>
                             </div>
                         <?php endif; ?>
@@ -2204,7 +2148,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-read-more']) : ?>
                             <div class="rkit-readmore-div">
-                                <a class="rkit-readmore-btn" type="button" href="<?php esc_url(the_permalink()) ?>">
+                                <a class="rkit-readmore-btn" type="button" href="<?php the_permalink() ?>">
                                     <?php if ('before' === $settings['icon_position']) {
                                         \Elementor\Icons_Manager::render_icon($settings['icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore']);
                                     } ?>

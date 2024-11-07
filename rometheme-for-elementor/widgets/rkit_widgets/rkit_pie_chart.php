@@ -8,7 +8,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Pie Chart';
+        return \RomethemeKit\RkitWidgets::listWidgets()['piechart']['name'];
     }
 
     public function get_icon()

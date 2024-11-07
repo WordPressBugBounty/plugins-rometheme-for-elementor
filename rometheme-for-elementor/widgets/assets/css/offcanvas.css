@@ -1,9 +1,15 @@
 .menu-button-rometheme{
     transition: all 0.5;
-    background-color: transparent;
+    background-color: #00cea6;
     padding: 10px;
     display: flex;
     align-items: center;
+    border: none;
+}
+
+.rkit-offcanvas-icon {
+    color: black;
+    fill: black;
 }
 
 li.submenu-item {
@@ -35,6 +41,16 @@ div.menu-offcanvas {
     z-index: 9999;
     display: flex;
     align-items: center;
+    border: none;
+    background: transparent;
+    color: black;
+    fill: black;
+}
+
+.rkit-offcanvas-close:hover {
+    background: transparent;
+    color: black;
+    fill: black;
 }
 
 a.menu-button {
@@ -55,6 +71,7 @@ a.menu-button {
     top: 0;
     height: 100%;
     z-index: 999;
+    visibility: hidden;
 }
 
 .overlay-rometheme {
@@ -64,106 +81,53 @@ a.menu-button {
     width: 100%;
     height: 100vh;
     z-index: 998;
-
+    transition: all 0.7s ease-in-out;
+    /* opacity: 0; */
 }
 
 .menu-offcanvas-rometheme {
     z-index: 9999;
     background-color: white;
     width: 75%;
+    height: 100vh;
+    transition: all 0.7s ease-in-out;
+    /* opacity: 0; */
 }
 
 .rkit-btn-container{
     display: flex;
 }
 
-#nav-menu>li>ul {
-    list-style-type: none;
-    padding: 1rem;
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 2s ease-in;
+.rkit-offcanvas-header {
+    width: 100%;
 }
 
-#nav-menu>li {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-}
 
-#nav-menu>li:hover ul {
-    display: block;
-    position: absolute;
+.rkit-offcanvas.offcanvas-show .offcanvas-navmenu-rometheme {
     visibility: visible;
-    opacity: 1;
 }
 
-#nav-menu>li:hover .dropdown-content {
-    opacity: 1;
-    margin-top: 0;
+.rkit-offcanvas.left .offcanvas-navmenu-rometheme {
+    left: 0;
 }
 
-
-
-
-@keyframes fade_in {
-    from {
-        opacity: 0;
-        margin-top: 20px;
-    }
-
-    to {
-        opacity: 1;
-        margin-top: 0;
-    }
+.rkit-offcanvas.right .offcanvas-navmenu-rometheme {
+    right: 0;
+    justify-content: end;
 }
 
-@media only screen and (max-width: 600px) {
-    div.header {
-        display: none;
-    }
+.rkit-offcanvas.left .menu-offcanvas-rometheme , .rkit-offcanvas.left .overlay-rometheme {
+    transform: translateX(-100%);
+}
 
-    div.mobile-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.rkit-offcanvas.right .menu-offcanvas-rometheme , .rkit-offcanvas.right .overlay-rometheme {
+    transform: translateX(100%);
+}
 
-    nav.off-canvas {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: -150%;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.328);
-        transition: 1s ease-in-out;
-        z-index: 999;
-    }
-
-    div.menu-offcanvas {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        width: 75%;
-        height: 100vh;
-        left: 0;
-        top: 0;
-        color: black;
-        gap: .5rem;
-        padding: 1rem;
-    }
-
-    div.menu-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    div.menu-items {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-    }
+.rkit-offcanvas.offcanvas-show.right .menu-offcanvas-rometheme,
+.rkit-offcanvas.offcanvas-show.left .menu-offcanvas-rometheme,
+.rkit-offcanvas.offcanvas-show.right .overlay-rometheme,
+.rkit-offcanvas.offcanvas-show.left .overlay-rometheme {
+    transform: translateX(0);
+    /* opacity: 1;   */
 }

@@ -9,11 +9,12 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return 'Header Info';
+        return \RomethemeKit\RkitWidgets::listWidgets()['headerinfo']['name'];
     }
     public function get_icon()
     {
-        return 'rkit-widget-icon rtmicon rtmicon-header-info';
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['headerinfo']['icon'];
+        return $icon;
     }
     public function get_categories()
     {

@@ -8,7 +8,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Call To Action';
+        return \RomethemeKit\RkitWidgets::listWidgets()['cta']['name'];
     }
     public function get_keywords()
     {
@@ -241,10 +241,10 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'btn_fullwidth',
             [
-                'label' => esc_html__('Fullwidth ?', 'textdomain'),
+                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('no', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('no', 'rometheme-for-elementor'),
                 'return_value' => 'fullwidth',
                 'default' => '',
             ]
@@ -253,10 +253,10 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'add_btn_icon',
             [
-                'label' => esc_html__('Add Icon', 'textdomain'),
+                'label' => esc_html__('Add Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'textdomain'),
-                'label_off' => esc_html__('Hide', 'textdomain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -265,15 +265,15 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'icon_position',
             [
-                'label' => esc_html__('Icon Position', 'textdomain'),
+                'label' => esc_html__('Icon Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row-reverse' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'row' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -291,7 +291,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'icon',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-arrow-right',
@@ -959,7 +959,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             'icon_size',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'range' => [
                     'px' => [
@@ -980,7 +980,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             'icon_spacing',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'range' => [
                     'px' => [
@@ -1119,7 +1119,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'ribbon_distance',
             [
-                'label' => esc_html__('Distance', 'textdomain'),
+                'label' => esc_html__('Distance', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -1188,7 +1188,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_opacity',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -1226,7 +1226,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_opacity_hover',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

@@ -8,7 +8,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Line Chart';
+        return \RomethemeKit\RkitWidgets::listWidgets()['linechart']['name'];
     }
 
     public function get_icon()
@@ -97,10 +97,10 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         $this->add_control(
 			'fill_bg',
 			[
-				'label' => esc_html__( 'Fill Background ?', 'textdomain' ),
+				'label' => esc_html__( 'Fill Background ?', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'textdomain' ),
-				'label_off' => esc_html__( 'No', 'textdomain' ),
+				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
+				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]

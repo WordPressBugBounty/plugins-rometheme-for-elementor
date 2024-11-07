@@ -8,12 +8,12 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Testimonial Carousel';
+        return \RomethemeKit\RkitWidgets::listWidgets()['testimonialcarousel']['name'];
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['testimonialcarousel']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['testimonialcarousel']['icon'];
         return $icon;
     }
     public function get_categories()
@@ -66,7 +66,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'label' => esc_html__('Quote Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-blockquote',
+                    'value' => 'rtmicon rtmicon-quote',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -170,6 +170,56 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        $this->start_controls_section('rating_settings' , [
+            'label' => esc_html('Rating'),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT
+        ]);
+
+        $this->add_control(
+            'show_rating',
+            [
+                'label' => esc_html__('Show Rating ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'custom_icon_rating',
+            [
+                'label' => esc_html__('Custom Rating Icon', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+                'condition' => [
+                    'show_rating' => 'yes'
+                ]
+            ]
+        );
+
+
+        $this->add_control(
+            'rating_icon',
+            [
+                'label' => esc_html__('Rating Icon', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
+                'condition' => [
+                    'custom_icon_rating' => 'yes'
+                ]
+            ]
+        );
+
+        $this->end_controls_section();
+
         $this->start_controls_section('navigation_settings', [
             'label' => esc_html('Navigation'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
@@ -220,18 +270,6 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('setttings_section', ['label' => esc_html('Settings'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
-
-        $this->add_control(
-            'show_rating',
-            [
-                'label' => esc_html__('Show Rating ?', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
 
         $this->add_responsive_control(
             'spacebetween',
@@ -347,46 +385,46 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('wrapper_style' , [
+        $this->start_controls_section('wrapper_style', [
             'label' => esc_html('Wrapper'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
         $this->add_responsive_control(
-			'wrapper_padding',
-			[
-				'label' => esc_html__( 'Padding', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'desktop_default' => [
-					'top' => 0,
-					'right' => 1,
-					'bottom' => 0,
-					'left' => 1,
-					'unit' => 'em',
-					'isLinked' => false,
-				],
+            'wrapper_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'desktop_default' => [
+                    'top' => 0,
+                    'right' => 1,
+                    'bottom' => 0,
+                    'left' => 1,
+                    'unit' => 'em',
+                    'isLinked' => false,
+                ],
                 'tablet_default' => [
-					'top' => 0,
-					'right' => 0,
-					'bottom' => 0,
-					'left' => 0,
-					'unit' => 'em',
-					'isLinked' => false,
-				],
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'em',
+                    'isLinked' => false,
+                ],
                 'mobile_default' => [
-					'top' => 0,
-					'right' => 0,
-					'bottom' => 0,
-					'left' => 0,
-					'unit' => 'em',
-					'isLinked' => false,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-testimonial-carousel' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'em',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-carousel' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -417,13 +455,13 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                     '{{WRAPPER}} .rkit-testimonial-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'default' => [
-					'top' => 0,
-					'right' => 0,
-					'bottom' => 0,
-					'left' => 0,
-					'unit' => 'px',
-					'isLinked' => true,
-				],
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
             ]
         );
 
@@ -1032,30 +1070,6 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'rating_margin',
-            [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .testimonial-rating' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'rating_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .testimonial-rating' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'rating_icon_size',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -1073,16 +1087,71 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .testimonial-rating' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-testimonial-rate_icon' => 'font-size: {{SIZE}}{{UNIT}}; width:{{SIZE}}{{UNIT}}; height:{{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'rating_icon_spacing',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px',  'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .testimonial-rating' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'rating_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .testimonial-rating' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'rating_margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .testimonial-rating' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control('rating_color', [
-            'label' => esc_html('Color'),
+            'label' => esc_html('Rated Color'),
             'type' =>  \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .testimonial-rating' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .rated .rkit-testimonial-rate_icon' => 'color:{{VALUE}} ; fill : {{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('unrating_color', [
+            'label' => esc_html('Unrated Color'),
+            'type' =>  \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .unrated .rkit-testimonial-rate_icon' => 'color:{{VALUE}} ; fill : {{VALUE}}'
             ]
         ]);
 
@@ -1118,7 +1187,26 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pagination-bullet' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-testimonial-pagination' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_spacing',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-pagination' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1131,18 +1219,6 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dot_margin',
-            [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-pagination-bullet' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1435,8 +1511,8 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('arrow_style' , [
-            'label' => esc_html('Arrow') , 
+        $this->start_controls_section('arrow_style', [
+            'label' => esc_html('Arrow'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
                 'show_navigation' => 'yes'
@@ -1444,82 +1520,82 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-			'nav_icon_size',
-			[
-				'label' => esc_html__( 'Icon Size', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-testimonial-navigation' => 'font-size: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'nav_icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-navigation' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
         $this->add_responsive_control(
-			'nav_margin_next',
-			[
-				'label' => esc_html__( 'Margin Next Button', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .testimonial-next-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'nav_margin_next',
+            [
+                'label' => esc_html__('Margin Next Button', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .testimonial-next-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
-			'nav_margin_prev',
-			[
-				'label' => esc_html__( 'Margin Previous Button', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .testimonial-prev-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'nav_margin_prev',
+            [
+                'label' => esc_html__('Margin Previous Button', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .testimonial-prev-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
-			'nav_padding',
-			[
-				'label' => esc_html__( 'Padding', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-testimonial-navigation' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'nav_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-navigation' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
-			'nav_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-testimonial-navigation' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'nav_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-navigation' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->start_controls_tabs('nav_tabs');
 
-        $this->start_controls_tab('nav_tab_normal' , ['label' => esc_html('Normal')]);
+        $this->start_controls_tab('nav_tab_normal', ['label' => esc_html('Normal')]);
 
-        $this->add_control('nav_icon_color_normal' , [
+        $this->add_control('nav_icon_color_normal', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -1528,53 +1604,53 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'nav_box_shadow_normal',
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
-			]
-		);
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'nav_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
+            ]
+        );
 
         $this->add_control(
-			'nav_bg_options_normal',
-			[
-				'label' => esc_html__( 'Background', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'nav_bg_options_normal',
+            [
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'nav_background_normal',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'nav_background_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
+            ]
+        );
 
         $this->add_control(
-			'nav_border_options_normal',
-			[
-				'label' => esc_html__( 'Background', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'nav_border_options_normal',
+            [
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'nav_border_normal',
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
-			]
-		);
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'nav_border_normal',
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation',
+            ]
+        );
 
         $this->end_controls_tab();
 
-        $this->start_controls_tab('nav_tab_hover' , ['label' => esc_html('Hover')]);
+        $this->start_controls_tab('nav_tab_hover', ['label' => esc_html('Hover')]);
 
-        $this->add_control('nav_icon_color_hover' , [
+        $this->add_control('nav_icon_color_hover', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -1583,54 +1659,53 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'nav_box_shadow_hover',
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
-			]
-		);
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'nav_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
+            ]
+        );
 
         $this->add_control(
-			'nav_bg_options_hover',
-			[
-				'label' => esc_html__( 'Background', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'nav_bg_options_hover',
+            [
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'nav_background_hover',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'nav_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
+            ]
+        );
 
         $this->add_control(
-			'nav_border_options_hover',
-			[
-				'label' => esc_html__( 'Background', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'nav_border_options_hover',
+            [
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'nav_border_hover',
-				'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
-			]
-		);
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'nav_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
 
         $this->end_controls_section();
-
     }
 
     protected function render()
@@ -1669,7 +1744,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             <div class="testimonial-container">
                 <?php if ($settings['show_navigation'] === 'yes') : ?>
                     <div class="testimonial-prev-wrapper">
-                        <div class="rkit-testimonial-navigation swiper-button-prev">
+                        <div class="rkit-testimonial-navigation rkit-testimonial-button-prev">
                             <?php \Elementor\Icons_Manager::render_icon($settings['prev_icon'], ['aria-hidden' => 'true', 'class' => 'navigation-icon']); ?>
                         </div>
                     </div>
@@ -1702,7 +1777,19 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
                                                 <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                    <a><i class="rkit-testimonial-rate_icon <?php echo ($i <= $list['testimonial_rating']) ? 'fas fa-star' : 'far fa-star' ?>"></i></a>
+                                                    <a class="<?php echo ($i <= $list['testimonial_rating']) ? 'rated' : 'unrated' ?>">
+                                                        <?php
+                                                        if ($settings['custom_icon_rating'] === 'yes') :
+                                                            \Elementor\Icons_Manager::render_icon($settings['rating_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        else :
+                                                            $icon = [
+                                                                'value' => 'fas fa-star',
+                                                                'library' => 'fa-solid',
+                                                            ];
+                                                            \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        endif;
+                                                        ?>
+                                                    </a>
                                                 <?php endfor; ?>
                                             </div>
                                         <?php endif; ?>
@@ -1734,7 +1821,19 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
                                                 <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                    <a><i class="rkit-testimonial-rate_icon <?php echo ($i <= $list['testimonial_rating']) ? 'fas fa-star' : 'far fa-star' ?>"></i></a>
+                                                    <a class="<?php echo ($i <= $list['testimonial_rating']) ? 'rated' : 'unrated' ?>">
+                                                        <?php
+                                                        if ($settings['custom_icon_rating'] === 'yes') :
+                                                            \Elementor\Icons_Manager::render_icon($settings['rating_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        else :
+                                                            $icon = [
+                                                                'value' => 'fas fa-star',
+                                                                'library' => 'fa-solid',
+                                                            ];
+                                                            \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        endif;
+                                                        ?>
+                                                    </a>
                                                 <?php endfor; ?>
                                             </div>
                                         <?php endif; ?>
@@ -1766,7 +1865,19 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
                                                 <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                    <a><i class="rkit-testimonial-rate_icon <?php echo ($i <= $list['testimonial_rating']) ? 'fas fa-star' : 'far fa-star' ?>"></i></a>
+                                                    <a class="<?php echo ($i <= $list['testimonial_rating']) ? 'rated' : 'unrated' ?>">
+                                                        <?php
+                                                        if ($settings['custom_icon_rating'] === 'yes') :
+                                                            \Elementor\Icons_Manager::render_icon($settings['rating_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        else :
+                                                            $icon = [
+                                                                'value' => 'fas fa-star',
+                                                                'library' => 'fa-solid',
+                                                            ];
+                                                            \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        endif;
+                                                        ?>
+                                                    </a>
                                                 <?php endfor; ?>
                                             </div>
                                         <?php endif; ?>
@@ -1797,7 +1908,19 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                                             <?php if ($settings['show_rating'] === 'yes') : ?>
                                                 <div class="testimonial-rating">
                                                     <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                        <a><i class="rkit-testimonial-rate_icon <?php echo ($i <= $list['testimonial_rating']) ? 'fas fa-star' : 'far fa-star' ?>"></i></a>
+                                                        <a class="<?php echo ($i <= $list['testimonial_rating']) ? 'rated' : 'unrated' ?>">
+                                                            <?php
+                                                            if ($settings['custom_icon_rating'] === 'yes') :
+                                                                \Elementor\Icons_Manager::render_icon($settings['rating_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                            else :
+                                                                $icon = [
+                                                                    'value' => 'fas fa-star',
+                                                                    'library' => 'fa-solid',
+                                                                ];
+                                                                \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                            endif;
+                                                            ?>
+                                                        </a>
                                                     <?php endfor; ?>
                                                 </div>
                                             <?php endif; ?>
@@ -1816,7 +1939,19 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
                                                 <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                                    <a><i class="rkit-testimonial-rate_icon <?php echo ($i <= $list['testimonial_rating']) ? 'fas fa-star' : 'far fa-star' ?>"></i></a>
+                                                    <a class="<?php echo ($i <= $list['testimonial_rating']) ? 'rated' : 'unrated' ?>">
+                                                        <?php
+                                                        if ($settings['custom_icon_rating'] === 'yes') :
+                                                            \Elementor\Icons_Manager::render_icon($settings['rating_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        else :
+                                                            $icon = [
+                                                                'value' => 'fas fa-star',
+                                                                'library' => 'fa-solid',
+                                                            ];
+                                                            \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true', 'class' => 'rkit-testimonial-rate_icon']);
+                                                        endif;
+                                                        ?>
+                                                    </a>
                                                 <?php endfor; ?>
                                             </div>
                                         <?php endif; ?>
@@ -1836,16 +1971,14 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 </div>
                 <?php if ($settings['show_navigation'] === 'yes') : ?>
                     <div class="testimonial-next-wrapper">
-                        <div class="rkit-testimonial-navigation swiper-button-next">
+                        <div class="rkit-testimonial-navigation rkit-testimonial-button-next">
                             <?php \Elementor\Icons_Manager::render_icon($settings['next_icon'], ['aria-hidden' => 'true', 'class' => 'navigation-icon']); ?>
                         </div>
                     </div>
                 <?php endif; ?>
+                <!-- Add pagination -->
+                <div class="rkit-testimonial-pagination"></div>
             </div>
-            <?php if($settings['show_dots'] === 'yes') :?>
-            <!-- Add pagination -->
-            <div class="rkit-testimonial-pagination"></div>
-            <?php endif; ?>
         </div>
 <?php
     }

@@ -4,7 +4,7 @@ Tags: addons, widget, elementor, header footer, extension
 Requires at least: 6.1
 Tested up to: 6.4.3
 Requires PHP: 7.0
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,7 +21,10 @@ FEATURES
 - Icon pack. 100+ icons ready to use to make your site more beautiful.
 
 WHAT IS NEW ?
-• New Countdown Widget and Pricing Widget
+• New Widget: Image Comparison
+• New Widget: Post List
+• New Widget Advanced Heading
+• New RTM Icon Pack (Regular & Thin)
 • Restructured user interface for improved usability and navigation
 • Enhanced color schemes to provide a fresher look and feel
 
@@ -90,10 +93,26 @@ Please make sure the WP Memory Limit on your site has set to 128 MB or greater. 
 Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on admin dashboard.
 
 == Changelog ==
+
+Version 1.5.2
+New Widget: Image Comparison
+New Widget: Post List
+New Widget Advanced Heading
+New Widget: Post Block
+New RTM Icon Pack (Regular & Thin)
+Update Navmenu Widget
+Update Header Offcanvas Widget
+Update Team Widget
+Update Text Marquee Widget
+Update Blog Post -> Rename to Post Grid
+Update Card Slider -> Rename to Card Carousel
+Bug Fix: Multiple Animated Heading Widgets on the Same Page
+Bug Fix: Multiple Testimonial Carousel Widgets on the Same Page
+
+
 Version 1.5.1
-* Widgets Bug Fixed
+* Bug Fixed 
 * Update Header Info Widget
-* Update Social Share
 
 Version 1.5.0
 * New: Improve the user experience by updating the visual interface.

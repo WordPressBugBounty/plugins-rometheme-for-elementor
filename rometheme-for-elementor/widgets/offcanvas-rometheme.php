@@ -11,12 +11,13 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Header Offcanvas';
+        return \RomethemeKit\RkitWidgets::listWidgets()['offcanvas']['name'];
     }
 
     public function get_icon()
     {
-        return 'rkit-widget-icon rtmicon rtmicon-header-offcanvas';
+        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['offcanvas']['icon'];
+        return $icon;
     }
     public function get_categories()
     {
@@ -75,7 +76,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
         $this->add_control('menu-select', [
             'label' => esc_html__('Select Template', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => $this->get_elementor_template()
+            'options' => $this->get_elementor_template(),
         ]);
 
         $this->add_control(
@@ -106,15 +107,15 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
                 'options' => [
                     'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-order-start',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-order-end',
                     ],
                 ],
                 'default' => 'start',
@@ -140,7 +141,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
                 'size' => 20
             ],
             'selectors' => [
-                '{{WRAPPER}} .menu-button-rometheme' => 'font-size : {{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .menu-button-rometheme .rkit-offcanvas-icon' => 'font-size : {{SIZE}}{{UNIT}}; width:{{SIZE}}{{UNIT}} ; height: {{SIZE}}{{UNIT}} '
             ]
         ]);
 
@@ -163,6 +164,26 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->start_controls_tabs('menu-tabs');
+        $this->start_controls_tab('menu-tab-normal', ['label' => esc_html__('Normal',  'rometheme-for-elementor')]);
+        
+        $this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'button-background',
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .menu-button-rometheme',
+			]
+		);
+
+        $this->add_control('icon-color', [
+            'label' => esc_html__('Icon Color',  'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .menu-button-rometheme .rkit-offcanvas-icon' => 'color: {{VALUE}} ; fill : {{VALUE}}'
+            ]
+        ]);
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -171,39 +192,36 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-        $this->start_controls_tabs('menu-tabs');
-        $this->start_controls_tab('menu-tab-normal', ['label' => esc_html__('Normal',  'rometheme-for-elementor')]);
-        $this->add_control('button-background', [
-            'label' => esc_html__('Menu Button Background', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .menu-button-rometheme' => 'background-color: {{VALUE}}'
-            ],
-        ]);
-        $this->add_control('icon-color', [
-            'label' => esc_html__('Icon Color',  'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .menu-button-rometheme' => 'color: {{VALUE}}'
-            ]
-        ]);
         $this->end_controls_tab();
 
         $this->start_controls_tab('menu-tab-hover', ['label' => esc_html__('Hover',  'rometheme-for-elementor')]);
-        $this->add_control('button-hover-background', [
-            'label' => esc_html__('Menu Button Background',  'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .menu-button-rometheme:hover' => 'background-color: {{VALUE}}'
-            ],
-        ]);
+
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'button-hover-background',
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .menu-button-rometheme:hover',
+			]
+		);
+
         $this->add_control('icon-hover-color', [
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .menu-button-rometheme:hover' => 'color: {{VALUE}}'
+                '{{WRAPPER}} .menu-button-rometheme:hover .rkit-offcanvas-icon' => 'color: {{VALUE}} ;  fill : {{VALUE}}'
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'menu-border-hover',
+                'selector' => '{{WRAPPER}} .menu-button-rometheme:hover',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
@@ -275,7 +293,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
         $this->add_control('close-icon', [
             'label' => esc_html__('Icon', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::ICONS,
-            'default' => ['value' => 'rtmicon rtmicon-times', 'library' => 'rtmicons'],
+            'default' => ['value' => 'rtmicon rtmicon-xmark', 'library' => 'rtmicons'],
         ]);
 
         $this->add_control('closeIcon-size', [
@@ -288,11 +306,11 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
                 'rem' => ['min' => 0, 'max' => 50],
             ],
             'default' => [
-                'size' => 15,
+                'size' => 23,
                 'unit' => 'px',
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-offcanvas-close' => 'font-size : {{SIZE}}{{UNIT}};'
+                '{{WRAPPER}} .rkit-offcanvas-close .offcanvas-close-icon' => 'font-size : {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}} ; height:{{SIZE}}{{UNIT}}'
             ]
         ]);
 
@@ -319,13 +337,6 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
-            'default' => [
-                'top' => 1,
-                'right' => 1,
-                'bottom' => 1,
-                'left' => 1,
-                'unit' => 'rem',
-            ],
             'selectors' => [
                 '{{WRAPPER}} .rkit-offcanvas-close' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
             ]
@@ -339,7 +350,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#000000',
             'selectors' => [
-                '{{WRAPPER}} .rkit-offcanvas-close' => 'color: {{VALUE}} ;'
+                '{{WRAPPER}} .rkit-offcanvas-close .offcanvas-close-icon' => 'color: {{VALUE}} ; fill : {{VALUE}}'
             ],
         ]);
 
@@ -365,7 +376,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-offcanvas-close:hover' => 'color: {{VALUE}} ;'
+                '{{WRAPPER}} .rkit-offcanvas-close:hover .offcanvas-close-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}'
             ],
         ]);
 
@@ -394,26 +405,30 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
+        $tmpId = (get_post_status($settings['menu-select']) === 'published') ? $settings['menu-select'] : null ;
 ?>
 
-        <div class="rkit-btn-container">
-            <button onclick="show_offcanvas(<?php echo esc_attr($this->get_id_int()); ?>);" class="menu-button-rometheme"><?php \Elementor\Icons_Manager::render_icon($settings['icon-select'], ['aria-hidden' => 'true']) ?></button>
-        </div>
-        <div id="offcanvas<?php echo esc_attr($this->get_id_int()); ?>" data-offcanvas-position="<?php echo esc_attr__($settings['offcanvas-position'], 'rometheme-for-elementor') ?>" class="offcanvas-navmenu-rometheme" style="<?php echo esc_attr($settings['offcanvas-position']); ?> : -150% ; flex-direction : <?php echo esc_attr(($settings['offcanvas-position'] === 'right') ? 'row-reverse' : 'row'); ?> ">
-            <div class="menu-offcanvas-rometheme" style="height: 100vh; ">
-                <div class="rkit-offcanvas-header" style="width: 100%;">
-                    <button onclick="show_offcanvas(<?php echo esc_attr($this->get_id_int()); ?>)" class="rkit-offcanvas-close"><?php \Elementor\Icons_Manager::render_icon($settings['close-icon'], ['aria-hidden' => 'true']) ?></button>
-                </div>
-                <div class="rkit-offcanvas-body">
-                    <?php
-                    $template = get_post($settings['menu-select']);
-                    if (!empty($template)) {
-                        echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($settings['menu-select']);
-                    }
-                    ?>
-                </div>
+        <div class="rkit-offcanvas <?php echo esc_attr__($settings['offcanvas-position'], 'rometheme-for-elementor') ?>">
+            <div class="rkit-btn-container">
+                <button class="menu-button-rometheme"><?php \Elementor\Icons_Manager::render_icon($settings['icon-select'], ['aria-hidden' => 'true' , 'class' => 'rkit-offcanvas-icon']) ?></button>
             </div>
-            <div class="overlay-rometheme" onclick="show_offcanvas(<?php echo esc_attr($this->get_id_int()); ?>);">
+            <div class="offcanvas-navmenu-rometheme">
+                <div class="menu-offcanvas-rometheme">
+                    <div class="rkit-offcanvas-header">
+                        <button class="rkit-offcanvas-close"><?php \Elementor\Icons_Manager::render_icon($settings['close-icon'], ['aria-hidden' => 'true' , 'class' => 'offcanvas-close-icon']) ?></button>
+                    </div>
+                    <div class="rkit-offcanvas-body">
+                        <?php
+                        $template = get_post($settings['menu-select']);
+                        if (!empty($template)) {
+                            echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($settings['menu-select']);
+                        }
+                        ?>                        
+                    </div>
+                </div>
+                <div class="overlay-rometheme">
+                </div>
             </div>
         </div>
 <?php

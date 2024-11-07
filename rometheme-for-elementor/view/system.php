@@ -250,11 +250,11 @@ $active_plugins = get_option('active_plugins');
                 <div class="d-flex flex-column gap-3">
                     <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1">
                         <?php if (class_exists('RomethemePro\RproLicense')) : if(RomethemePro\RproLicense::get_subs_status() == 'active') : ?>
-                            <h5>Now you are using license <?php echo esc_html(\RomethemePro\RproLicense::get_product_name()) ?></h5>
+                            <h4>Now you are using license <?php echo esc_html(\RomethemePro\RproLicense::get_product_name()) ?></h4>
                             <div class="rtm-divider"></div>
                             <div class="spacer-2"></div>
                         <?php endif; endif; ?>
-                            <h5>Upgrade Now !</h5>
+                            <h4>Upgrade Now !</h4>
                             <p class="text">Unlock more features and a longer usage period and can be used on unlimited websites.</p>
                             <div>
                                 <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill">Upgrade Now</a>

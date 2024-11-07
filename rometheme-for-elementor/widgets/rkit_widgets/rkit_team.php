@@ -8,7 +8,7 @@ class Rkit_Team extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Team';
+        return \RomethemeKit\RkitWidgets::listWidgets()['team']['name'];
     }
     public function get_keywords()
     {
@@ -53,6 +53,18 @@ class Rkit_Team extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
+			'pointer_effect',
+			[
+				'label' => esc_html__( 'Pointer Effect', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
+				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
+				'return_value' => 'pointer',
+				'default' => 'pointer',
+			]
+		);
+
+        $this->add_control(
             'member_image',
             [
                 'label' => esc_html__('Choose Member    Image', 'rometheme-for-elementor'),
@@ -86,7 +98,7 @@ class Rkit_Team extends \Elementor\Widget_Base
         $this->add_control(
             'member_position',
             [
-                'label' => esc_html__('Member Position', 'rometheme-for-elementor'),
+                'label' => esc_html__('Job Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Developer', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type member position here', 'rometheme-for-elementor'),
@@ -96,7 +108,7 @@ class Rkit_Team extends \Elementor\Widget_Base
         $this->add_control(
             'member_description',
             [
-                'label' => esc_html__('Member Description', 'rometheme-for-elementor'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 10,
                 'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'rometheme-for-elementor'),
@@ -186,9 +198,287 @@ class Rkit_Team extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('box_style', [
-            'label' => esc_html('Style'),
-            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+
+        $this->start_controls_section('wrapper_style', [
+            'label' => esc_html('Wrappper'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE
+        ]);
+
+        $this->add_control(
+			'pointer_size',
+			[
+				'label' => esc_html__( 'Pointer Size', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px',  'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 2,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-team-card.pointer' => '--pointer-size: {{SIZE}}{{UNIT}};',
+				],
+                'condition' => [
+                    'pointer_effect' => 'pointer'
+                ]
+			]
+		);
+
+        $this->add_responsive_control(
+            'box_padding',
+            [
+                'label' => esc_html__('Box Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'card_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'card_border',
+                'selector' => '{{WRAPPER}} .rkit-team-card',
+            ]
+        );
+
+
+        $this->start_controls_tabs('box_tabs');
+
+        $this->start_controls_tab('box_tab_normal', ['label' => esc_html('Normal')]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_normal',
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .rkit-team-card',
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-team-card',
+            ]
+        );
+
+        $this->add_control(
+			'pointer_options_normal',
+			[
+				'label' => esc_html__( 'Pointer', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+                'condition' => [
+                    'pointer_effect' => 'pointer'
+                ]
+			]
+		);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'pointer_background_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-team-card.pointer::before',
+                'condition' => [
+                    'pointer_effect' => 'pointer'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('box_tab_hover', ['label' => esc_html('Hover')]);
+
+        $this->add_control(
+            'overlay_bg_options',
+            [
+                'label' => esc_html__('Overlay', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'select_style' => 'overlay'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_overlay',
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .rkit-team__overlay .rkit-team__detail',
+                'condition' => [
+                    'select_style' => 'overlay'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_hover',
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .rkit-team-card:hover',
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-team-card:hover',
+            ]
+        );
+
+        $this->add_control(
+			'pointer_options_hover',
+			[
+				'label' => esc_html__( 'Pointer', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+                'condition' => [
+                    'pointer_effect' => 'pointer'
+                ]
+			]
+		);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'pointer_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-team-card.pointer::after',
+                'condition' => [
+                    'pointer_effect' => 'pointer'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+
+        $this->start_controls_section('image_style', [
+            'label' => esc_html('Member Image'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE
+        ]);
+
+        $this->add_control('image_hover_effect' , [
+            'label' => esc_html('Hover Effect'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                '' => esc_html('None'),
+                'zoom-in' => esc_html('Zoom In'),
+                'zoom-out' => esc_html('Zoom Out'),
+                'move-left' => esc_html('Move Left'),
+                'move-right' => esc_html('Move Right'),
+                'move-up' => esc_html('Move Up'),
+                'move-down' => esc_html('Move Down'),
+            ],
+            'default' => 'zoom-in'
+        ]);
+
+
+        $this->add_responsive_control('profile_image_ratio', [
+            'label' => esc_html('Member Image Ratio'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'auto' => esc_html('Auto'),
+                '1/1' => esc_html('1/1'),
+                '3/2' => esc_html('3/2'),
+                '5/4' => esc_html('5/4'),
+                '16/9' => esc_html('16/9'),
+                '9/16' => esc_html('9/16'),
+                '4/5' => esc_html('4/5'),
+                '2/3' => esc_html('2/3'),
+            ],
+            'default' => 'auto',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team__img img' => 'aspect-ratio:{{VALUE}}'
+            ],
+            'condition' => [
+                'select_style!' => 'centered'
+            ]
+        ]);
+
+        $this->add_responsive_control(
+            'profile_image_width',
+            [
+                'label' => esc_html__('Image Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 50,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__centered .rkit-team__img' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style' => 'centered'
+                ]
+            ]
+        );
+
+        $this->add_control(
+			'image_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem' ],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-team__img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('content_style', [
+            'label' => esc_html('Content'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
         $this->add_responsive_control(
@@ -221,84 +511,31 @@ class Rkit_Team extends \Elementor\Widget_Base
                 ]
             ]
         );
-        $this->add_control(
-            'card_border_radius',
+
+        $this->add_responsive_control(
+            'content_padding',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Content Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-team-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-team__detail' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_responsive_control('profile_image_ratio', [
-            'label' => esc_html('Member Image Ratio'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                '1/1' => esc_html('1/1'),
-                '3/2' => esc_html('3/2'),
-                '5/4' => esc_html('5/4'),
-                '16/9' => esc_html('16/9'),
-                '9/16' => esc_html('9/16'),
-                '4/5' => esc_html('4/5'),
-                '2/3' => esc_html('2/3'),
-            ],
-            'default' => '3/2',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team__img img' => 'aspect-ratio:{{VALUE}}'
-            ],
-            'condition' => [
-                'select_style!' => 'centered'
-            ]
-        ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'card_border',
-                'selector' => '{{WRAPPER}} .rkit-team-card',
             ]
         );
 
         $this->add_responsive_control(
-            'profile_image_width',
+            'content_margin',
             [
-                'label' => esc_html__('Image Width', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Content Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => '%',
-                    'size' => 50,
-                ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-team__centered .rkit-team__img' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-team__detail' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
-                    'select_style' => 'centered'
+                    'select_style!' => 'overlay'
                 ]
-            ]
-        );
-
-
-        $this->add_control(
-            'name_content_option',
-            [
-                'label' => esc_html__('Name', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
             ]
         );
 
@@ -316,6 +553,17 @@ class Rkit_Team extends \Elementor\Widget_Base
             'default' => 'h4'
         ]);
 
+        $this->add_control(
+            'content_tab_hr',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->start_controls_tabs('content_tabs');
+
+        $this->start_controls_tab('name_tabs', ['label' => esc_html('Name')]);
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -324,15 +572,32 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_control(
-            'role_content_option',
+        $this->add_responsive_control(
+            'name_spacing',
             [
-                'label' => esc_html__('Member Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__name' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('role_tabs', ['label' => esc_html('Job Title')]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -342,17 +607,37 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'description_content_option',
+        $this->add_responsive_control(
+            'role_spacing',
             [
-                'label' => esc_html__('Description', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'member_description!' => ''
-                ]
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__role' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('description_tabs', [
+            'label' => esc_html('Description'),
+            'condition' => [
+                'member_description!' => ''
+            ]
+        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -365,12 +650,162 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'socmed_content_option',
+        $this->add_responsive_control(
+            'description_spacing',
             [
-                'label' => esc_html__('Social Media', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__description' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'member_description!' => ''
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_control(
+            'content_tab_close_hr',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->start_controls_tabs('content_color_tabs');
+
+        $this->start_controls_tab('content_tab_normal', ['label' => esc_html('Normal')]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'content_background_normal',
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .rkit-team__detail',
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_control('name_color_normal', [
+            'label' => esc_html('Name Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team__name' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('role_color_normal', [
+            'label' => esc_html('Member Position Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team__role' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('description_color_normal', [
+            'label' => esc_html('Description Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team__description' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'member_description!' => ''
+            ]
+        ]);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('content_tab_hover', ['label' => esc_html('Hover')]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'content_background_hover',
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .rkit-team-card:hover .rkit-team__detail',
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_control('name_color_hover', [
+            'label' => esc_html('Name Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__name' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('role_color_hover', [
+            'label' => esc_html('Member Position Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__role' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('description_color_hover', [
+            'label' => esc_html('Description Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__description' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'member_description!' => ''
+            ]
+        ]);
+
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('social_media_style', [
+            'label' => esc_html('Social Media'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE
+        ]);
+
+        $this->add_responsive_control(
+            'socmed_spacing',
+            [
+                'label' => esc_html__('Social Media Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__social' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -398,29 +833,6 @@ class Rkit_Team extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'social_width',
-            [
-                'label' => esc_html__('Width', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 200,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__social_item' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
             'socmed_margin',
             [
                 'label' => esc_html__('Margin', 'rometheme-for-elementor'),
@@ -428,6 +840,18 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-team__social' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'socmed_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__social_item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -520,13 +944,6 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->end_controls_section();
-
-        $this->start_controls_section('color_style', [
-            'label' => esc_html('Color'),
-            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-        ]);
-
         $this->add_control('socmed_color_select', [
             'label' => esc_html('Social Media Color'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -537,89 +954,11 @@ class Rkit_Team extends \Elementor\Widget_Base
             'default' => 'official'
         ]);
 
-        $this->start_controls_tabs('box_tabs');
+        $this->start_controls_tabs('social_media_tabs', ['condition' => ['socmed_color_select' => 'custom']]);
 
-        $this->start_controls_tab('box_tab_normal', ['label' => esc_html('Normal')]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_normal',
-                'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team-card',
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-team-card',
-            ]
-        );
-
-        $this->add_control('name_color_normal', [
-            'label' => esc_html('Name Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team__name' => 'color:{{VALUE}}'
-            ]
+        $this->start_controls_tab('socmed_tab_normal', [
+            'label' => esc_html('Normal')
         ]);
-
-        $this->add_control('role_color_normal', [
-            'label' => esc_html('Member Position Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team__role' => 'color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_control('description_color_normal', [
-            'label' => esc_html('Description Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team__description' => 'color:{{VALUE}}'
-            ],
-            'condition' => [
-                'member_description!' => ''
-            ]
-        ]);
-
-        $this->add_control(
-            'content_options_normal',
-            [
-                'label' => esc_html__('Content', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'content_background_normal',
-                'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team__detail',
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'social_options_normal',
-            [
-                'label' => esc_html__('Social Media', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'socmed_color_select' => 'custom'
-                ]
-            ]
-        );
 
         $this->add_control('social_color_normal', [
             'label' => esc_html('Color'),
@@ -677,122 +1016,7 @@ class Rkit_Team extends \Elementor\Widget_Base
 
         $this->end_controls_tab();
 
-        $this->start_controls_tab('box_tab_hover', ['label' => esc_html('Hover')]);
-
-        $this->add_control(
-            'overlay_bg_options',
-            [
-                'label' => esc_html__('Overlay', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'select_style' => 'overlay'
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_overlay',
-                'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team__overlay .rkit-team__detail',
-                'condition' => [
-                    'select_style' => 'overlay'
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_hover',
-                'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team-card:hover',
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-team-card:hover',
-            ]
-        );
-
-        $this->add_control('name_color_hover', [
-            'label' => esc_html('Name Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__name' => 'color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_control('role_color_hover', [
-            'label' => esc_html('Member Position Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__role' => 'color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_control('description_color_hover', [
-            'label' => esc_html('Description Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__description' => 'color:{{VALUE}}'
-            ],
-            'condition' => [
-                'member_description!' => ''
-            ]
-        ]);
-
-        $this->add_control('social_icon_color_hover', [
-            'label' => esc_html('Social Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-team-card:hover .rkit-team__social_item' => 'color:{{VALUE}}'
-            ],
-            'condition' => [
-                'select_style!' => 'social_on_hover'
-            ]
-        ]);
-
-        $this->add_control(
-            'content_options_hover',
-            [
-                'label' => esc_html__('Content', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'content_background_hover',
-                'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team-card:hover .rkit-team__detail',
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'social_options_hover',
-            [
-                'label' => esc_html__('Social Media', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'socmed_color_select' => 'custom'
-                ]
-            ]
-        );
+        $this->start_controls_tab('socmed_tab_hover', ['label' => esc_html('Hover')]);
 
         $this->add_control('social_color_hover', [
             'label' => esc_html('Color'),
@@ -853,162 +1077,6 @@ class Rkit_Team extends \Elementor\Widget_Base
         $this->end_controls_tabs();
 
         $this->end_controls_section();
-
-        $this->start_controls_section('spacing_style', [
-            'label' => esc_html('Spacing'),
-            'tab' => \Elementor\Controls_Manager::TAB_STYLE
-        ]);
-
-        $this->add_responsive_control(
-            'box_padding',
-            [
-                'label' => esc_html__('Box Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'content_padding',
-            [
-                'label' => esc_html__('Content Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__detail' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'content_margin',
-            [
-                'label' => esc_html__('Content Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__detail' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style!' => 'overlay'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'social_margin',
-            [
-                'label' => esc_html__('Social Margin', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__social ' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'name_spacing',
-            [
-                'label' => esc_html__('Name Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__name' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'role_spacing',
-            [
-                'label' => esc_html__('Member Position Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__role' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'description_spacing',
-            [
-                'label' => esc_html__('Description Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__description' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'member_description!' => ''
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'socmed_spacing',
-            [
-                'label' => esc_html__('Social Media Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-team__social' => 'gap: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
     }
     protected function render()
     {
@@ -1040,8 +1108,8 @@ class Rkit_Team extends \Elementor\Widget_Base
 
 ?>
         <div class="rkit-team rkit-team__<?php echo ($settings['select_style'] != 'social_on_hover') ? esc_attr($settings['select_style']) : esc_attr($settings['select_style'] . '_' . $settings['social_media_position']) ?>">
-            <div class="rkit-team-card">
-                <div class="rkit-team__img">
+            <div class="rkit-team-card <?php echo esc_attr($settings['pointer_effect']) ?>">
+                <div class="rkit-team__img <?php echo esc_attr($settings['image_hover_effect']) ?>">
                     <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'member_image'); ?>
                 </div>
                 <div class="rkit-team__detail">

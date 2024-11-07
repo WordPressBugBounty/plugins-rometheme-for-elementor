@@ -9,7 +9,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return 'Blockquote';
+        return \RomethemeKit\RkitWidgets::listWidgets()['blockquote']['name'];
     }
     public function get_icon()
     {
@@ -91,7 +91,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
                 'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-blockquote',
+                    'value' => 'rtmicon rtmicon-quote',
                     'library' => 'rtmicons',
                 ],
             ]
@@ -117,7 +117,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'blockquote_border_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'selectors' => [
@@ -220,19 +220,19 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         $this->add_control(
 			'icon_align',
 			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
+						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
@@ -340,7 +340,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'author_gap',
 			[
-				'label' => esc_html__( 'Author Gap', 'textdomain' ),
+				'label' => esc_html__( 'Author Gap', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'range' => [

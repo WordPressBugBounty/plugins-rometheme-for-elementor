@@ -6,6 +6,7 @@ use Custom_Template_Control;
 use RomeTheme;
 use Rometheme\HeaderFooter\HeaderFooter;
 use RomethemeKit\Autoloader;
+use RomethemePro;
 
 class Plugin
 {
@@ -29,7 +30,8 @@ class Plugin
         wp_enqueue_style('navmenu-rkit-style', \RomeTheme::widget_url() . 'assets/css/rkit-navmenu.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-search-style', \RomeTheme::widget_url() . 'assets/css/search.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-sitelogo-style', \RomeTheme::widget_url() . 'assets/css/site_logo.css', '', \RomeTheme::rt_version());
-        wp_enqueue_style('rkit-blog-style', \RomeTheme::widget_url() . 'assets/css/rkit-blog-post.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-post-grid-style', \RomeTheme::widget_url() . 'assets/css/rkit-blog-post.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-post-block-style', \RomeTheme::widget_url() . 'assets/css/rkit-post-block.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-cta-style', \RomeTheme::widget_url() . 'assets/css/cta.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-blockquote', \RomeTheme::widget_url() . 'assets/css/blockquote.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-social-share', \RomeTheme::widget_url() . 'assets/css/social_share.css', '', \RomeTheme::rt_version());
@@ -44,16 +46,16 @@ class Plugin
         wp_enqueue_style('rkit-progress-style', \RomeTheme::widget_url() . 'assets/css/progress-bar.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('counter-style', \RomeTheme::widget_url() . 'assets/css/counter.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('countdown-style', \RomeTheme::widget_url() . 'assets/css/countdown.css', '', \RomeTheme::rt_version());
-        wp_enqueue_style('pricelist-style', \RomeTheme::widget_url() . 'assets/css/pricelist.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-pricelist-style', \RomeTheme::widget_url() . 'assets/css/pricelist.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('advanced_heading-style', \RomeTheme::widget_url() . 'assets/css/advanced_heading.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('image_comparison-style', \RomeTheme::widget_url() . 'assets/css/image_comparison.css', '', \RomeTheme::rt_version());
-        wp_enqueue_style('rkit-clientlogo-style', \RomeTheme::widget_url() . 'assets/css/client_carousel.css', '', \RomeTheme::rt_version());
-        wp_enqueue_style('rkit-postlist-style', \RomeTheme::widget_url() . 'assets/css/postlist.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('postlist-style', \RomeTheme::widget_url() . 'assets/css/postlist.css', '', \RomeTheme::rt_version());
     }
 
     public static function register_widget_scripts()
     {
-        wp_enqueue_script('rkit-offcanvas-script', \RomeTheme::widget_url() . 'assets/js/offcanvas.js');
-        wp_enqueue_script('rkit-navmenu-script', \RomeTheme::widget_url() . 'assets/js/navmenu.js');
+        wp_enqueue_script('rkit-offcanvas-script', \RomeTheme::widget_url() . 'assets/js/offcanvas.js' ,  ['jquery'], \RomeTheme::rt_version(), true );
+        wp_enqueue_script('rkit-navmenu-script', \RomeTheme::widget_url() . 'assets/js/navmenu.js',  ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('navmenu-rkit-script', \RomeTheme::widget_url() . 'assets/js/rkit-navmenu.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('social-share-script', \RomeTheme::widget_url() . 'assets/js/social_share.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('running-text-script', \RomeTheme::widget_url() . 'assets/js/running_text.js', ['jquery'], \RomeTheme::rt_version(), true);
@@ -70,8 +72,7 @@ class Plugin
         wp_enqueue_script('progress-script', \RomeTheme::widget_url() . 'assets/js/progress.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('rkit-counter-script', \RomeTheme::widget_url() . 'assets/js/counter.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('rkit-countdown-script', \RomeTheme::widget_url() . 'assets/js/countdown.js', ['jquery'], \RomeTheme::rt_version(), true);
-        wp_enqueue_script('rkit-image_comparison-script', \RomeTheme::widget_url() . 'assets/js/image_comparison.js', ['jquery'], \RomeTheme::rt_version(), true);
-        wp_enqueue_script('clientlogo-script', \RomeTheme::widget_url() . 'assets/js/client_carousel.js', ['jquery'], \RomeTheme::rt_version(), true);
+        wp_enqueue_script('rkit-image-comparison-script', \RomeTheme::widget_url() . 'assets/js/image_comparison.js', ['jquery'], \RomeTheme::rt_version(), true);
     }
 
     public static function  add_elementor_widget_categories($elements_manager)
@@ -191,15 +192,27 @@ class Plugin
     public static function register_icon_pack_to_elementor($font)
     {
         unset($font['rtmicons']);
+        unset($font['rtmicons-thin']);
         $font_new['rtmicons'] = array(
             'name'          => 'rtmicons',
-            'label'         => esc_html__('RomethemeKit Icon Pack', 'rometheme-for-elementor'),
-            'url'           => \RomeTheme::plugin_url() . 'assets/css/rtmicons.css',
+            'label'         => esc_html__('RomethemeKit - Regular', 'rometheme-for-elementor'),
+            'url'           => \RomeTheme::plugin_url() . 'assets/css/rtmicon-regular.css',
             'prefix'        => 'rtmicon-',
             'displayPrefix' => 'rtmicon',
             'labelIcon'     => 'rtmicon rtmicon-romethemekit',
             'ver'           => \RomeTheme::rt_version(),
-            'fetchJson'     => \RomeTheme::plugin_url() . 'assets/js/selection.json',
+            'fetchJson'     => \RomeTheme::plugin_url() . 'assets/js/rtmicon.json',
+            'native'        => true,
+        );
+        $font_new['rtmicons-thin'] = array(
+            'name'          => 'rtmicons-thin',
+            'label'         => esc_html__('RomethemeKit - Thin', 'rometheme-for-elementor'),
+            'url'           => \RomeTheme::plugin_url() . 'assets/css/rtmicon-thin.css',
+            'prefix'        => 'rtmicon-',
+            'displayPrefix' => 'rtmicon-thin',
+            'labelIcon'     => 'rtmicon-thin rtmicon-romethemekit',
+            'ver'           => \RomeTheme::rt_version(),
+            'fetchJson'     => \RomeTheme::plugin_url() . 'assets/js/rtmicon-thin.json',
             'native'        => true,
         );
         return array_merge($font, $font_new);
@@ -210,4 +223,17 @@ class Plugin
         wp_enqueue_style('elementor-icons-rtmicon', \RomeTheme::plugin_url() . 'assets/css/rtmicons.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-widget-style', \RomeTheme::plugin_url() . 'assets/css/rkit.css', '', \RomeTheme::rt_version());
     }
+
+    public static function isProActive(){
+        if (class_exists('RomethemePro')) {
+            if(RomethemePro\RproLicense::get_subs_status() === 'active') {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }

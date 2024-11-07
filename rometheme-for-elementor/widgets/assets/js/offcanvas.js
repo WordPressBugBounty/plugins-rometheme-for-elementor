@@ -1,18 +1,25 @@
+jQuery(window).on("elementor/frontend/init", function () {
+  elementorFrontend.hooks.addAction(
+    "frontend/element_ready/rtm-offcanvas.default",
+    function ($scope, $) {
+      const $btn = $scope.find(".menu-button-rometheme");
+      const $closeBtn = $scope.find(".rkit-offcanvas-close");
+      const $overlay = $scope.find(".overlay-rometheme");
 
-function show_offcanvas(id) {
-    const offcanvas = document.getElementById('offcanvas' + id);
-    var position = offcanvas.dataset.offcanvasPosition;
-    const display = getComputedStyle(offcanvas).getPropertyValue(position);
-    if (offcanvas.style.getPropertyValue('display') === 'none' ) {
-        offcanvas.style.display ='flex';
+      $btn.click(function (e) {
+        e.preventDefault();
+        $(this).closest(".rkit-offcanvas").addClass("offcanvas-show");
+      });
+
+      $closeBtn.click(function (e) {
+        e.preventDefault();
+        $(this).closest(".rkit-offcanvas").removeClass("offcanvas-show");
+      });
+
+      $overlay.click(function (e) {
+        e.preventDefault();
+        $(this).closest(".rkit-offcanvas").removeClass("offcanvas-show");
+      });
     }
-    if (parseInt(display) < 0) {
-        offcanvas.style.setProperty(position, '0');
-        offcanvas.style.opacity = 1 ;
-        offcanvas.style.transition = '1s';
-    } else {
-        offcanvas.style.setProperty(position, '-150%');
-        offcanvas.transition = '1s';
-        offcanvas.style.opacity = 0 ;
-    }
-}
+  );
+});

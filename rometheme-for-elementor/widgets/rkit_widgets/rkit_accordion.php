@@ -8,8 +8,8 @@ class Rkit_Accordion extends \Elementor\Widget_Base
     }
 
     public function get_title()
-    {
-        return 'Accordion';
+    {  
+        return \RomethemeKit\RkitWidgets::listWidgets()['accordion']['name'];
     }
 
     public function get_icon()
@@ -57,10 +57,10 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $list->add_control(
             'open_default',
             [
-                'label' => esc_html__('Default Open ?', 'textdomain'),
+                'label' => esc_html__('Default Open ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
             ]
         );
@@ -68,9 +68,9 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $list->add_control(
             'item_description',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'placeholder' => esc_html__('Type your description here', 'textdomain'),
+                'placeholder' => esc_html__('Type your description here', 'rometheme-for-elementor'),
             ]
         );
 
@@ -106,10 +106,10 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'show_loop_count',
             [
-                'label' => esc_html__('Show Loop Count ?', 'textdomain'),
+                'label' => esc_html__('Show Loop Count ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -142,15 +142,15 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_position',
             [
-                'label' => esc_html__('Icon Position', 'textdomain'),
+                'label' => esc_html__('Icon Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row-reverse' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'row' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -165,7 +165,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_close',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-down',
@@ -177,7 +177,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_open',
             [
-                'label' => esc_html__('Icon Active', 'textdomain'),
+                'label' => esc_html__('Icon Active', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-up',
@@ -194,24 +194,23 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-            'accordion_margin',
-            [
-                'label' => esc_html__('Margin', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-accordion-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'border_accordion',
-                'selector' => '{{WRAPPER}} .rkit-accordion-item',
-            ]
-        );
+			'accordion_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-accordion' => 'gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
         $this->end_controls_section();
 
@@ -223,19 +222,19 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
 			'title_text_align',
 			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
+						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -250,7 +249,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -274,7 +273,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_radius_close',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -337,7 +336,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_radius_open',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -395,6 +394,69 @@ class Rkit_Accordion extends \Elementor\Widget_Base
 
         $this->end_controls_tab();
 
+        $this->start_controls_tab('title_tab_hover', ['label' => esc_html('Hover')]);
+
+        $this->add_responsive_control(
+            'title_radius_hover',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-accordion-header:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control('text_color_hover', [
+            'label' => esc_html('Text Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-accordion-header:hover .rkit-accordion__title' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'accordion_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover',
+            ]
+        );
+
+        $this->add_control(
+            'acc_bg_hr_hover',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'acc_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover',
+            ]
+        );
+
+        $this->add_control(
+            'acc_border_hr_hover',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'acc_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+
         $this->end_controls_tabs();
 
         $this->end_controls_section();
@@ -407,7 +469,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_size',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -422,7 +484,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-accordion__icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-accordion__icon .icon_open , .rkit-accordion__icon .icon_close' => 'font-size: {{SIZE}}{{UNIT}}; width:{{SIZE}}{{UNIT}} ; height:{{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -430,7 +492,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_box_width',
             [
-                'label' => esc_html__('Box Width', 'textdomain'),
+                'label' => esc_html__('Box Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -453,7 +515,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_box_height',
             [
-                'label' => esc_html__('Box height', 'textdomain'),
+                'label' => esc_html__('Box height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -476,7 +538,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_box_margin',
             [
-                'label' => esc_html__('Box Margin', 'textdomain'),
+                'label' => esc_html__('Box Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -488,7 +550,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'icon_box_radius',
             [
-                'label' => esc_html__('Box Radius', 'textdomain'),
+                'label' => esc_html__('Box Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -505,7 +567,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-accordion__icon' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-accordion__icon .icon_close , .rkit-accordion__icon .icon_open' => 'color:{{VALUE}} ; fill:{{VALUE}}'
             ]
         ]);
 
@@ -556,7 +618,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-accordion-item.open .rkit-accordion__icon' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-accordion-item.open .rkit-accordion__icon .icon_open , .rkit-accordion-item.open .rkit-accordion__icon .icon_close' => 'color:{{VALUE}} ; fill:{{VALUE}}'
             ]
         ]);
 
@@ -601,6 +663,57 @@ class Rkit_Accordion extends \Elementor\Widget_Base
 
         $this->end_controls_tab();
 
+        $this->start_controls_tab('icon_tab_hover', ['label' => esc_html('Hover')]);
+
+        $this->add_control('icon_color_hover', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-accordion-header:hover .rkit-accordion__icon .icon_close , .rkit-accordion-header:hover .rkit-accordion__icon .icon_open' => 'color:{{VALUE}} ; fill:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'icon_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover .rkit-accordion__icon',
+            ]
+        );
+
+        $this->add_control(
+            'icon_bg_hr_hover',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'icon_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover .rkit-accordion__icon',
+            ]
+        );
+
+        $this->add_control(
+            'icon_border_hr_hover',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'icon_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-accordion-header:hover .rkit-accordion__icon',
+            ]
+        );
+
+        $this->end_controls_tab();
+
         $this->end_controls_tabs();
 
         $this->end_controls_section();
@@ -613,23 +726,23 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_control(
             'content_text_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justify', 'textdomain'),
+                        'title' => esc_html__('Justify', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
@@ -652,7 +765,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -664,7 +777,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [

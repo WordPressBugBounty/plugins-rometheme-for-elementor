@@ -12,7 +12,7 @@ require RomeTheme::plugin_dir() . 'view/header.php';
                     <span class="accent-color">Build the Future</span>
                     <div class="d-flex flex-row gap-3 align-items-center ">
                         <h1 class="text-white text-nowrap m-0">
-                            Themebuilder
+                            Theme Builder
                         </h1>
                         <div class="rtm-divider rounded-pill"></div>
                     </div>
@@ -41,10 +41,10 @@ require RomeTheme::plugin_dir() . 'view/header.php';
                 <button class="nav-link" id="tab-singlepost-tab" data-bs-toggle="pill" data-bs-target="#tab-singlepost" type="button" role="tab" aria-controls="tab-singlepost" aria-selected="false">Single Post</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-errorpage-tab" data-bs-toggle="pill" data-bs-target="#tab-errorpage" type="button" role="tab" aria-controls="tab-errorpage" aria-selected="false">404 Page</button>
+                <button class="nav-link" id="tab-archivepage-tab" data-bs-toggle="pill" data-bs-target="#tab-archivepage" type="button" role="tab" aria-controls="tab-archivepage" aria-selected="false">Archive</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-archivepage-tab" data-bs-toggle="pill" data-bs-target="#tab-archivepage" type="button" role="tab" aria-controls="tab-archivepage" aria-selected="false">Archive</button>
+                <button class="nav-link" id="tab-errorpage-tab" data-bs-toggle="pill" data-bs-target="#tab-errorpage" type="button" role="tab" aria-controls="tab-errorpage" aria-selected="false">404 Page</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="tab-formpage-tab" data-bs-toggle="pill" data-bs-target="#tab-formpage" type="button" role="tab" aria-controls="tab-formpage" aria-selected="false">Form</button>

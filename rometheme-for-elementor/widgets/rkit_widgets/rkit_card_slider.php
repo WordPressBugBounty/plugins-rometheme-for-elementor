@@ -8,7 +8,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Card Slider';
+        return \RomethemeKit\RkitWidgets::listWidgets()['cardslider']['name'];
     }
     public function get_icon()
     {
@@ -70,7 +70,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'h6' => esc_html('H6'),
                 'span' => esc_html('SPAN')
             ],
-            'default' => 'h3'
+            'default' => 'h4'
         ]);
 
         $this->add_control('subheading_position', [
@@ -88,10 +88,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $card_list->add_control(
             'initial_slide',
             [
-                'label' => esc_html__('Initial Slide ?', 'textdomain'),
+                'label' => esc_html__('Initial Slide ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'textdomain'),
-                'label_off' => esc_html__('Hide', 'textdomain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
             ]
         );
@@ -99,35 +99,35 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $card_list->add_control(
             'card_title',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your title here', 'textdomain'),
+                'placeholder' => esc_html__('Type your title here', 'rometheme-for-elementor'),
             ]
         );
 
         $card_list->add_control(
             'card_sub_title',
             [
-                'label' => esc_html__('Sub Heading', 'textdomain'),
+                'label' => esc_html__('Sub Heading', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your title here', 'textdomain'),
+                'placeholder' => esc_html__('Type your title here', 'rometheme-for-elementor'),
             ]
         );
 
         $card_list->add_control(
             'card_description',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 10,
-                'placeholder' => esc_html__('Type your description here', 'textdomain'),
+                'placeholder' => esc_html__('Type your description here', 'rometheme-for-elementor'),
             ]
         );
 
         $card_list->add_control(
             'image',
             [
-                'label' => esc_html__('Choose Image', 'textdomain'),
+                'label' => esc_html__('Choose Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -138,7 +138,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $card_list->add_control(
             'card_link',
             [
-                'label' => esc_html__('Link', 'textdomain'),
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
                 'options' => ['url', 'is_external', 'nofollow'],
                 'label_block' => true,
@@ -148,38 +148,38 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'list',
             [
-                'label' => esc_html__('Repeater List', 'textdomain'),
+                'label' => esc_html__('Repeater List', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $card_list->get_controls(),
                 'default' => [
                     [
-                        'card_title' => esc_html__('Title #1', 'textdomain'),
+                        'card_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'textdomain'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
                     ],
                     [
-                        'card_title' => esc_html__('Title #2', 'textdomain'),
+                        'card_title' => esc_html__('Title #2', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'textdomain'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
                     ],
                     [
-                        'card_title' => esc_html__('Title #3', 'textdomain'),
+                        'card_title' => esc_html__('Title #3', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'textdomain'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
                     ],
                     [
-                        'card_title' => esc_html__('Title #4', 'textdomain'),
+                        'card_title' => esc_html__('Title #4', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'textdomain'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -199,10 +199,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'show_button',
             [
-                'label' => esc_html__('Show Button ?', 'textdomain'),
+                'label' => esc_html__('Show Button ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -221,7 +221,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'button_icon',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-arrow-right',
@@ -259,10 +259,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'show_navigation',
             [
-                'label' => esc_html__('Show Navigation', 'textdomain'),
+                'label' => esc_html__('Show Navigation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -271,7 +271,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'next_icon',
             [
-                'label' => esc_html__('Next Icon', 'textdomain'),
+                'label' => esc_html__('Next Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-right',
@@ -286,7 +286,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'previous_icon',
             [
-                'label' => esc_html__('Previous Icon', 'textdomain'),
+                'label' => esc_html__('Previous Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-left',
@@ -308,7 +308,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'spacebetween',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -341,10 +341,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'autoplay',
             [
-                'label' => esc_html__('Autoplay', 'textdomain'),
+                'label' => esc_html__('Autoplay', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -363,10 +363,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'show_dots',
             [
-                'label' => esc_html__('Show Dots', 'textdomain'),
+                'label' => esc_html__('Show Dots', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -388,10 +388,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'pause_on_hover',
             [
-                'label' => esc_html__('Pause On Hover', 'textdomain'),
+                'label' => esc_html__('Pause On Hover', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -400,10 +400,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'loop',
             [
-                'label' => esc_html__('Loop', 'textdomain'),
+                'label' => esc_html__('Loop', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -420,7 +420,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrapper_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -439,7 +439,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -451,7 +451,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -471,7 +471,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_bg_options',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -489,7 +489,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_border_options',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -506,7 +506,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_image_options',
             [
-                'label' => esc_html__('Card Image', 'textdomain'),
+                'label' => esc_html__('Card Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -518,7 +518,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_image_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -537,7 +537,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_body_margin',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -552,7 +552,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_body_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -591,7 +591,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_title_options',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -600,19 +600,19 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_text_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -695,7 +695,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_subtitle_options',
             [
-                'label' => esc_html__('Sub Heading', 'textdomain'),
+                'label' => esc_html__('Sub Heading', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -720,7 +720,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'card_description_options',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -729,23 +729,23 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'descriptionn_text_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'textdomain'),
+                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
@@ -804,7 +804,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'button_width',
             [
-                'label' => esc_html__('Width', 'textdomain'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -831,19 +831,19 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -861,7 +861,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -873,7 +873,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -913,7 +913,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -931,7 +931,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'btn_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -976,7 +976,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -994,7 +994,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'btn_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1025,19 +1025,19 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_alignment',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -1052,7 +1052,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1075,7 +1075,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1087,7 +1087,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_margin',
             [
-                'label' => esc_html__('Dot Wrapper Margin', 'textdomain'),
+                'label' => esc_html__('Dot Wrapper Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1103,7 +1103,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_normal',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1135,7 +1135,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1153,7 +1153,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1174,7 +1174,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_hover',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1206,7 +1206,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1224,7 +1224,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1245,7 +1245,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_active',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1277,7 +1277,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_active',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1295,7 +1295,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_active',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1326,7 +1326,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'nav_width',
             [
-                'label' => esc_html__('Width', 'textdomain'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1349,7 +1349,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'nav_height',
             [
-                'label' => esc_html__('Height', 'textdomain'),
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1372,7 +1372,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'nav_icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1395,7 +1395,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1407,7 +1407,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_margin_options',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1416,7 +1416,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_margin_prev',
             [
-                'label' => esc_html__('Margin Previous', 'textdomain'),
+                'label' => esc_html__('Margin Previous', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1428,7 +1428,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_margin_next',
             [
-                'label' => esc_html__('Margin Next', 'textdomain'),
+                'label' => esc_html__('Margin Next', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1462,7 +1462,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1480,7 +1480,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1519,7 +1519,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1537,7 +1537,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

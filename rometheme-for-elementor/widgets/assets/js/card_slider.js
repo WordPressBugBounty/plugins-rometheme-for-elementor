@@ -4,7 +4,7 @@ jQuery(window).on('elementor/frontend/init', function () {
     const slider = $scope.find('.rkit-card-slider');
     var config = slider.data('config');
 
-    console.log(config.initial_slide);
+    // console.log(config.initial_slide);
 
     var conf = {
       rtl: config.rtl,
@@ -36,7 +36,7 @@ jQuery(window).on('elementor/frontend/init', function () {
       navigation: {
         enabled: config.arrows,
         nextEl: '.rkit-swiper-button-next',
-        prevEl: '.rkit-swiper-button-prev',
+        prevEl: '.rkit-swiper-button-prev'
       }
     }
 

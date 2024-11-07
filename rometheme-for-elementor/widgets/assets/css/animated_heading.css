@@ -1,12 +1,6 @@
 @keyframes blink-caret {
-
-  from,
   to {
-    border-color: transparent;
-  }
-
-  50% {
-    border-color: #000000;
+    opacity: 0;
   }
 }
 
@@ -17,7 +11,6 @@
 
 .rkit-animated-heading {
   position: relative;
-  
 }
 
 .text-writing {
@@ -25,12 +18,10 @@
 }
 
 .text-writing::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background-color: #000000;
-  animation: blink-caret 1s infinite;
+  content: "|";
+  display: inline-block;
+  vertical-align: top;
+  animation: blink-caret 600ms infinite alternate;
 }
 
 .rkit-animated-heading p {
@@ -38,7 +29,6 @@
 }
 
 @keyframes typing-cursor {
-
   from,
   to {
     border-color: transparent;
@@ -135,7 +125,6 @@
   animation: slideUp_Out 0.5s;
 }
 
-
 @keyframes slideUp_In {
   0% {
     transform: translateY(15px);
@@ -194,7 +183,6 @@
   }
 }
 
-
 @keyframes handdrawn {
   0% {
     stroke-dashoffset: 1500;
@@ -236,7 +224,7 @@
   overflow: visible;
 }
 
-.rkit-highlighted.in_front svg{
+.rkit-highlighted.in_front svg {
   z-index: 2 !important;
 }
 
@@ -253,7 +241,8 @@
   display: inline-flex;
 }
 
-.text-drop-in, .text-drop-out {
+.text-drop-in,
+.text-drop-out {
   overflow: hidden;
   display: inline-flex;
 }

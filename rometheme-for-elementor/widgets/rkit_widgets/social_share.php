@@ -9,7 +9,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return 'Social Share';
+        return \RomethemeKit\RkitWidgets::listWidgets()['socialshare']['name'];
     }
 
     public function get_icon()
@@ -82,7 +82,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $ss->add_control(
             'social_icon',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
             ]
         );
@@ -129,7 +129,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         ]);
 
         $ss->add_control('label_social', [
-            'label' => esc_html__('Label', 'textdomain'),
+            'label' => esc_html__('Label', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
         ]);
 
@@ -177,15 +177,15 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'social_direction',
             [
-                'label' => esc_html__('Direction', 'textdomain'),
+                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row' => [
-                        'title' => esc_html__('Horizontal', 'textdomain'),
+                        'title' => esc_html__('Horizontal', 'rometheme-for-elementor'),
                         'icon' => 'eicon-arrow-right',
                     ],
                     'column' => [
-                        'title' => esc_html__('Vertical', 'textdomain'),
+                        'title' => esc_html__('Vertical', 'rometheme-for-elementor'),
                         'icon' => 'eicon-arrow-down',
                     ],
                 ],
@@ -200,10 +200,10 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_control(
             'social_fullwidth',
             [
-                'label' => esc_html__('Fullwidth ?', 'textdomain'),
+                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'fullwidth',
                 'default' => '',
                 'condition' => [
@@ -215,19 +215,19 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'social_alignment',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -245,19 +245,19 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'social_alignment_column',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -276,7 +276,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'social_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -299,7 +299,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border_size',
             [
-                'label' => esc_html__('Border Size', 'textdomain'),
+                'label' => esc_html__('Border Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -321,7 +321,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'pointer_size',
             [
-                'label' => esc_html__('Pointer Size', 'textdomain'),
+                'label' => esc_html__('Pointer Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -343,7 +343,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border-radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -356,7 +356,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'social_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -368,7 +368,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_control(
             'icon_options',
             [
-                'label' => esc_html__('Icon ', 'textdomain'),
+                'label' => esc_html__('Icon ', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -380,7 +380,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -395,7 +395,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
                     ],
                 ],
                 'default' => [
-                    'size' => 18,
+                    'size' => 10,
                     'unit' => 'px'
                 ],
                 'selectors' => [
@@ -410,7 +410,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [

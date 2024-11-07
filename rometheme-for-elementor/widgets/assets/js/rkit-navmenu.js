@@ -1,75 +1,179 @@
-window.onresize = resize;
-window.onload = resize;
+jQuery(window).on("elementor/frontend/init", function () {
+  elementorFrontend.hooks.addAction(
+    "frontend/element_ready/rtm-navmenu.default",
+    function ($scope, $) {
+      $.fn.isOutOfViewport = function () {
+        var element = $(this)[0];
+        var rect = element.getBoundingClientRect();
 
-function resize() {
-    jQuery(document).ready(($) => {
-        var nav_container = $('.rkit-navmenu-container');
-        var elementorsection = nav_container.closest('.elementor');
-        var responsive_navmenu = nav_container.find('.rkit-responsive-menu');
-        if (responsive_navmenu.hasClass('rkit-navmenu-fullwidth')) {
-            var section_width = elementorsection.width();
-            $(".rkit-navmenu-fullwidth").css("width", section_width + "px");
-            var left = -1 * (Math.round(nav_container.offset().left));
-            $(".rkit-navmenu-fullwidth").css("left", left + "px");
+        return (
+          rect.top < 0 ||
+          rect.left < 0 ||
+          rect.bottom > $(window).height() ||
+          rect.right > $(window).width()
+        );
+      };
+
+      function setPos() {
+        $scope
+          .find(".rkit-submenu-item .rkit-navmenu-dropdown")
+          .each(function () {
+            const $this = $(this);
+            if ($this.isOutOfViewport()) {
+              $this.css({
+                left: "auto",
+                right: "100%",
+              });
+            } else  {
+              $this.css({
+                right: "auto",
+                left: "100%",
+              });
+            }
+          });
+      }
+
+      setPos();
+
+      const $container = $scope.find(".rkit-navmenu-container");
+      let responsive = $container.data("responsive");
+      let widthResponsive = responsive == "tablet" ? 1024 : 768;
+
+      $screenWidth = jQuery(window).width();
+
+      function setElHeight() {
+        let d = 3;
+
+        $scope.find(".rkit-navmenu-dropdown").each(function () {
+          var scrollHeight = $(this).prop("scrollHeight"); // Dapatkan scrollHeight dari elemen ini
+          $(this).css("--height", scrollHeight * d + "px"); // Set CSS custom property dengan nilai scrollHeight
+        });
+
+        $scope.find(".rkit-responsive-menu").each(function () {
+          var scrollHeight = $(this).prop("scrollHeight"); // Dapatkan scrollHeight dari elemen ini
+          $(this).css("--height", scrollHeight * d + "px"); // Set CSS custom property dengan nilai scrollHeight
+        });
+      }
+
+      setElHeight();
+
+      function fullwidth() {
+        var nav_container = $scope.find(".rkit-navmenu-container");
+        var elementorsection = $scope.closest(".elementor");
+        var responsive_navmenu = nav_container.find(".rkit-responsive-menu");
+        if (responsive_navmenu.hasClass("rkit-navmenu-fullwidth")) {
+          var section_width = elementorsection.width();
+          $(".rkit-navmenu-fullwidth").css("width", section_width + "px");
+          var left = -1 * Math.round(nav_container.offset().left);
+          $(".rkit-navmenu-fullwidth").css("left", left + "px");
         }
-    });
+      }
 
-}
+      if ($screenWidth <= widthResponsive) {
+        fullwidth();
+        $scope
+          .find(".rkit-dropdown-hover > a > .rkit-submenu-icon")
+          .click(function (e) {
+            e.preventDefault();
+          });
+      }
 
-function open_dropdown(cls, id_key, responsive, cls_open) {
-    const el = document.getElementById(cls + id_key);
-    var data_dropdown = el.getAttribute('data-dropdown');
-    const dropdown = document.getElementById(data_dropdown);
-    dropdown.classList.toggle(cls_open + responsive);
-
-    resize();
-
-    if (cls == 'rkit-hamburger-') {
-
-        if (dropdown.classList.contains('rkit-responsive-open-' + responsive)) {
-            hamburger_icon(id_key, true);
+      jQuery(window).on("resize", function () {
+        setElHeight();
+        setPos();
+        $screenWidth = jQuery(window).width();
+        if ($screenWidth <= widthResponsive) {
+          fullwidth();
+          $scope
+            .find(".rkit-dropdown-hover > a > .rkit-submenu-icon")
+            .click(function (e) {
+              e.preventDefault();
+            });
         } else {
-            hamburger_icon(id_key, false);
+          var nav_container = $scope.find(".rkit-navmenu-container");
+          var responsive_navmenu = nav_container.find(".rkit-responsive-menu");
+          if (responsive_navmenu.hasClass("rkit-navmenu-fullwidth")) {
+            $scope.find(".rkit-navmenu-fullwidth").removeAttr("style");
+          }
         }
+      });
+
+      $scope.find(".rkit-btn-hamburger").click(function (e) {
+        e.preventDefault();
+        $siblings = $(this).parent().siblings();
+        $siblings.toggleClass("rkit-menu-show");
+
+        $(this).toggleClass("rkit-hamburger-show");
+      });
+
+      $scope
+        .find(".rkit-menu-item.rkit-dropdown-click > a")
+        .click(function (e) {
+          e.preventDefault();
+
+          // Toggle dropdown hanya untuk item yang diklik
+          const parentMenuItem = $(this).parent();
+
+          // Tutup dropdown lain yang sedang terbuka
+          $scope
+            .find(".rkit-menu-item.rkit-dropdown-show")
+            .not(parentMenuItem)
+            .removeClass("rkit-dropdown-show");
+
+          if (
+            parentMenuItem
+              .find(".rkit-dropdown-click")
+              .hasClass("rkit-dropdown-show")
+          ) {
+            parentMenuItem
+              .find(".rkit-dropdown-click")
+              .removeClass("rkit-dropdown-show");
+          }
+
+          // Toggle dropdown untuk menu yang diklik
+          parentMenuItem.toggleClass("rkit-dropdown-show");
+        });
+
+      $scope
+        .find(".rkit-submenu-item.rkit-dropdown-click > a")
+        .click(function (e) {
+          e.preventDefault();
+
+          // Toggle dropdown hanya untuk item yang diklik
+          const parentMenuItem = $(this).parent();
+          parentMenuItem.toggleClass("rkit-dropdown-show");
+
+          if (
+            parentMenuItem
+              .find(".rkit-dropdown-click")
+              .hasClass("rkit-dropdown-show")
+          ) {
+            parentMenuItem
+              .find(".rkit-dropdown-click")
+              .removeClass("rkit-dropdown-show");
+          }
+
+          parentMenuItem.siblings().removeClass("rkit-dropdown-show");
+        });
+
+      jQuery(document).on("click", function (e) {
+        if (!$scope.is(e.target) && $scope.has(e.target).length === 0) {
+          if (
+            $scope.find(".rkit-dropdown-click").hasClass("rkit-dropdown-show")
+          ) {
+            $scope
+              .find(".rkit-dropdown-click")
+              .removeClass("rkit-dropdown-show");
+          }
+
+          if ($scope.find(".rkit-responsive-menu").hasClass("rkit-menu-show")) {
+            $scope.find(".rkit-responsive-menu").removeClass("rkit-menu-show");
+            $scope
+              .find(".rkit-btn-hamburger")
+              .removeClass("rkit-hamburger-show");
+          }
+        }
+      });
     }
-}
-
-function dropdown_click() {
-    jQuery(($) => {
-        if ($(this).closest('.rkit-menu').parent().hasClass("rkit-dropdown-open")) {
-            $(this).closest('.rkit-menu').parent().removeClass("rkit-dropdown-open");
-        } else {
-            $(".rkit-dropdown").removeClass("rkit-dropdown-open");
-            $(this).closest('.rkit-menu').parent().addClass("rkit-dropdown-open");
-        }
-    });
-}
-
-function submenu_click() {
-    jQuery(($) => {
-        if ($(this).closest('.rkit-submenu').parent().hasClass("rkit-submenu-open")) {
-            $(this).closest('.rkit-submenu').parent().removeClass("rkit-submenu-open");
-        } else {
-            $(".rkit-dropdown").removeClass("rkit-submenu-open");
-            $(this).closest('.rkit-submenu').parent().addClass("rkit-submenu-open");
-        }
-    });
-}
-
-
-
-function hamburger_icon(id_key, bool) {
-    const icon_close = document.getElementById('rkit-icon-close' + id_key);
-    const icon_open = document.getElementById('rkit-icon-open' + id_key);
-    if (bool) {
-        icon_open.style.display = 'none';
-        icon_open.style.animation = 'rotate_in 0.5s'
-        icon_close.style.display = 'block';
-        icon_close.style.animation = 'rotate_out 0.5s'
-    } else {
-        icon_open.style.display = 'block';
-        icon_open.style.animation = 'rotate_out 0.5s'
-        icon_close.style.display = 'none';
-        icon_close.style.animation = 'rotate_in 0.5s'
-    }
-}
+  );
+});

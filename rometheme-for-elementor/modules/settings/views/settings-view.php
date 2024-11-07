@@ -77,7 +77,7 @@ $globalSettings = new WP_Query($args);
                                 <span class="rounded-pill <?php echo esc_attr(\RomethemePro\RproLicense::get_subs_status()) ?>"><?php echo esc_html(ucwords(\RomethemePro\RproLicense::get_subs_status())) ?></span>
                                 <div class="rtm-divider rounded-pill"></div>
                                 <div>
-                                    <a href="" class="btn btn-gradient-accent rounded-pill text-nowrap">My Account</a>
+                                    <a href="https://rometheme.net/my-account/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">My Account</a>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -109,10 +109,6 @@ $globalSettings = new WP_Query($args);
                                         <tr>
                                             <td>Product</td>
                                             <td><?php echo esc_html(\RomethemePro\RproLicense::get_product_name()) ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Next Payment</td>
-                                            <td><?php echo esc_html(\RomethemePro\RproLicense::get_next_payment()) ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

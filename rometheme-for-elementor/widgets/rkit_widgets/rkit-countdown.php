@@ -9,12 +9,13 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return 'CountDown';
+        return \RomethemeKit\RkitWidgets::listWidgets()['countdown']['name'];
     }
 
     public function get_icon()
     {
-        return 'rkit-widget-icon eicon-countdown';
+        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['countdown']['icon'];
+        return $icon;
     }
 
     public function get_categories()
@@ -170,7 +171,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_options',
             [
-                'label' => esc_html__('Label', 'textdomain'),
+                'label' => esc_html__('Label', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -192,11 +193,11 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_position',
             [
-                'label' => esc_html__('Label Potition', 'textdomain'),
+                'label' => esc_html__('Label Potition', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'row' => esc_html__('Center', 'textdomain'),
-                    'column'  => esc_html__('Bottom', 'textdomain'),
+                    'row' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'column'  => esc_html__('Bottom', 'rometheme-for-elementor'),
                 ],
                 'condition' => [
                     'show_label' => 'yes',
@@ -328,7 +329,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_section_time_back',
             [
-                'label' => esc_html__('BOX', 'rometheme-for-elementor'),
+                'label' => esc_html__('Box', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -447,7 +448,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssa',
             [
-                'label' => esc_html__('Background Time', 'textdomain'),
+                'label' => esc_html__('Background Time', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -465,7 +466,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssssa',
             [
-                'label' => esc_html__('Container Time', 'textdomain'),
+                'label' => esc_html__('Container Time', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -542,7 +543,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_margin',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -592,33 +593,34 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-
+   
         $this->add_control(
-            'expired_background_color',
+            'divider_title',
             [
-                'label' => esc_html__('Body Background Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .expired-time-section' => 'background-color: {{VALUE}}',
-                ],
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'expired_typography',
-                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .expired-title  ',
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+        $this->add_control(
+            'title_expired_color',
             [
-                'name' => 'des_expired_typography',
-                'label' => esc_html__('Description Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .expired-description  ',
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .expired-title ' => 'color: {{VALUE}};',
+                ],
             ]
         );
 
@@ -644,6 +646,58 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 'default' => 'center',
                 'selectors' => [
                     '{{WRAPPER}} .expired-title' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        
+        $this->add_control(
+            'expired_title_padding',
+            [
+                'label' => esc_html__('Tittle Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => 15,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 3,
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .expired-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        
+        $this->add_control(
+            'divider_desc',
+            [
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'des_expired_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .expired-description  ',
+            ]
+        );
+
+        $this->add_control(
+            'descrip_expired_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .expired-description ' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -675,29 +729,9 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-            'expired_title_padding',
-            [
-                'label' => esc_html__('Tittle Padding', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => 15,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 3,
-                    'unit' => 'px',
-                    'isLinked' => false,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .expired-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
             'expired_description_padding',
             [
-                'label' => esc_html__('Description Padding', 'textdomain'),
+                'label' => esc_html__('Description Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -710,6 +744,26 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .expired-description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'divider_background',
+            [
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'expired_background_color',
+            [
+                'label' => esc_html__('Body Background Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .expired-time-section' => 'background-color: {{VALUE}}',
                 ],
             ]
         );

@@ -1,6 +1,7 @@
 .rkit-accordion {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 .rkit-accordion-header {
     padding: 10px;
@@ -11,14 +12,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center ;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.rkit-accordion-header:hover {
+    z-index: 2;
 }
 
 .rkit-accordion-item.open .rkit-accordion__title{
     color: rgb(1, 57, 242);
-}
-
-.rkit-accordion-item {
-    margin: 1px 1px 1px 1px;
 }
 
 .rkit-accordion-content {
@@ -34,12 +37,14 @@
     align-items: center;
     justify-content: center;
     margin: 0px 20px 0px 20px;
+    transition: all 0.5s;
 }
 
 .rkit-accordion__title{
     width:100%;
     text-align: left;
     padding: 0px 0px 0px 20px;
+    transition: all 0.5s;
 }
 
 .rkit-accordion__content{

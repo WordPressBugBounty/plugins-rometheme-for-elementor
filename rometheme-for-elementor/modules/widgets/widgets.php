@@ -17,15 +17,15 @@ class RkitWidgets
         add_action('elementor/widgets/register', [$this, 'register_widget']);
         // add_action('elementor/widgets/register', [$this, 'register_widget_pro']);
         add_action('admin_enqueue_scripts', [$this, 'register_style']);
-        // add_action('elementor/editor/before_enqueue_scripts', [$this, 'pro_js']);
+        add_action('elementor/editor/before_enqueue_scripts', [$this, 'pro_js']);
         add_action('wp_ajax_save_options', [$this, 'save_options']);
+        add_action('wp_ajax_save_options_pro', [$this, 'save_options_pro']);
         add_action('wp_ajax_reset_widgets', [$this, 'reset_widgets']);
     }
 
     private function update_widget_option()
     {
         $options = get_option('rkit-widget-options');
-        $optionsPro = get_option('rkit-widget-pro-options');
         $jsonWidgets = $this->listWidgets();
 
         if ($options == false) {
@@ -44,7 +44,8 @@ class RkitWidgets
         }
     }
 
-    public function reset_widgets() {
+    public function reset_widgets()
+    {
         $jsonWidgets = $this->listWidgets();
         delete_option('rkit-widget-options');
         update_option('rkit-widget-options', $this->listWidgets());
@@ -105,19 +106,22 @@ class RkitWidgets
     function register_style()
     {
 
+        $nonce = wp_create_nonce('widget-options-nonce');
         $screen = get_current_screen();
         if ($screen->id == 'romethemekit_page_rkit-widgets') {
             wp_enqueue_style('style', RomeTheme::module_url() . 'HeaderFooter/assets/css/style.css');
             wp_enqueue_script('widgetViewScript', RomeTheme::module_url() . 'widgets/assets/js/widget.js', ['jquery'], RomeTheme::rt_version());
             wp_localize_script('widgetViewScript', 'rometheme_ajax_url', array(
-                'ajax_url' => admin_url('admin-ajax.php')
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => $nonce,
+                'isProActive' => \RomethemePlugin\Plugin::isProActive()
             ));
         }
     }
 
     function pro_js()
     {
-        $list_widgets_pro = get_option('rkit-widget-pro-options');
+        $list_widgets_pro = $this->listWidgetPro();
 
         if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
             wp_enqueue_script('rtmprojs', RomeTheme::module_url() . 'widgets/assets/js/rtmwp.js', ['jquery'], RomeTheme::rt_version());
@@ -133,7 +137,14 @@ class RkitWidgets
         $data = $_POST;
         $options = get_option('rkit-widget-options');
 
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {
+            wp_send_json_error('Invalid nonce.');
+            wp_die();
+        }
+
+
         unset($data['action']);
+        unset($data['nonce']);
 
         foreach ($data as $key => $value) {
             $options[$key]['status'] = ($value == "true") ? true : false;
@@ -148,6 +159,19 @@ class RkitWidgets
         }
     }
 
+    function save_options_pro() {
+        $data = $_POST;
+
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {
+            wp_send_json_error('Invalid nonce.');
+            wp_die();
+        }
+        unset($data['action']);
+        unset($data['nonce']);
+
+        \RomethemePro\Widget::save_options($data);
+    }
+
     function is_pro()
     {
         if (class_exists('RomethemePro')) {
@@ -160,7 +184,32 @@ class RkitWidgets
     public static function listWidgets()
     {
         $widgetsFileJson = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/widgets.json');
+
         $widgets = json_decode($widgetsFileJson, true);
+
+        uasort($widgets, function ($a, $b) {
+            if ($a['category'] === $b['category']) {
+                return strcasecmp($a['name'], $b['name']);
+            }
+            return strcasecmp($a['category'], $b['category']);
+        });
+
+        return $widgets;
+    }
+
+    public static function listWidgetPro()
+    {
+        $widgetsFileJson = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/rtmwp.json');
+
+        $widgets = json_decode($widgetsFileJson, true);
+
+        uasort($widgets, function ($a, $b) {
+            if ($a['category'] === $b['category']) {
+                return strcasecmp($a['name'], $b['name']);
+            }
+            return strcasecmp($a['category'], $b['category']);
+        });
+
         return $widgets;
     }
 }

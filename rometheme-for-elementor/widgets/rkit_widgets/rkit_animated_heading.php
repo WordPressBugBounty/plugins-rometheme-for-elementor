@@ -8,7 +8,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Animated Heading';
+        return \RomethemeKit\RkitWidgets::listWidgets()['animatedheading']['name'];
     }
 
     public function get_icon()
@@ -216,10 +216,10 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         $this->add_control(
 			'bring_to_front',
 			[
-				'label' => esc_html__( 'Bring to Front', 'textdomain' ),
+				'label' => esc_html__( 'Bring to Front', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'textdomain' ),
-				'label_off' => esc_html__( 'No', 'textdomain' ),
+				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
+				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -259,7 +259,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         $this->add_control(
 			'animation_options',
 			[
-				'label' => esc_html__( 'Animated Text', 'textdomain' ),
+				'label' => esc_html__( 'Animated Text', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			]

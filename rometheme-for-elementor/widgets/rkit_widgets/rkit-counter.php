@@ -8,7 +8,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Counter';
+        return \RomethemeKit\RkitWidgets::listWidgets()['counter']['name'];
     }
     public function get_keywords()
     {
@@ -198,7 +198,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'title_spacing',
 			[
-				'label' => esc_html__( 'Title Spacing', 'textdomain' ),
+				'label' => esc_html__( 'Title Spacing', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
@@ -265,7 +265,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'suffix_spacing',
 			[
-				'label' => esc_html__( 'Suffix Spacing', 'textdomain' ),
+				'label' => esc_html__( 'Suffix Spacing', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [

@@ -1,0 +1,101 @@
+.rkit-advanced-heading p {
+  position: relative;
+}
+
+.rkit-advanced-heading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.rkit-advanced-heading p {
+  margin-bottom: 0;
+}
+
+.combined-text {
+  border-radius: 5px;
+  gap: 10px;
+  justify-content: center;
+}
+
+.rkit-trp-text {
+  font-weight: bold;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rkit-trp-text .headline_text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: #00cea6;
+  /* background-image: linear-gradient(186deg, #fba2fb 0%, #00cbb9 100%); */
+  z-index: 1;
+}
+
+.std-text {
+  background-color: black;
+}
+
+.bg-headline {
+  background-color: transparent;
+  display: inline-flex;
+}
+
+.bg-std {
+  background-color: transparent;
+  display: inline-flex;
+}
+
+/* Style untuk semua heading */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial, sans-serif;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+/* Style untuk h1 */
+h1.rkit-advanced-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Style untuk h2 */
+h2.rkit-advanced-heading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Style untuk h3 */
+h3.rkit-advanced-heading {
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+/* Style untuk h4 */
+h4.rkit-advanced-heading {
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+/* Style untuk h5 */
+h5.rkit-advanced-heading {
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+
+/* Style untuk h6 */
+h6.rkit-advanced-heading {
+  font-size: 1rem;
+  font-weight: lighter;
+  text-transform: uppercase;
+}

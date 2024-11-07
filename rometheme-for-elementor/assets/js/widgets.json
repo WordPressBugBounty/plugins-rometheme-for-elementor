@@ -40,7 +40,7 @@
     "type": "free"
   },
   "blogpost": {
-    "name": "Blog Post",
+    "name": "Post Grid",
     "icon": "rtmicon rtmicon-blog",
     "class_name": "Blog_Post_Rkit",
     "category": "rkit",
@@ -65,7 +65,7 @@
   },
   "socialshare": {
     "name": "Social Share",
-    "icon": "rtmicon rtmicon-social-share",
+    "icon": "rtmicon rtmicon-social-share-2",
     "class_name": "Rkit_SocialShare",
     "category": "rkit",
     "status": true,
@@ -96,7 +96,7 @@
     "type": "free"
   },
   "cardslider": {
-    "name": "Card Slider",
+    "name": "Card Carousel",
     "icon": "rtmicon rtmicon-card-slider",
     "class_name": "Rkit_CardSlider",
     "category": "rkit",
@@ -129,7 +129,7 @@
   },
   "piechart": {
     "name": "Pie Chart",
-    "icon": "rtmicon rtmicon-pie-chart",
+    "icon": "rtmicon rtmicon-pie-chart-2",
     "class_name": "Rkit_PieChart",
     "category": "rkit",
     "status": true,
@@ -137,7 +137,7 @@
   },
   "testimonialcarousel": {
     "name": "Testimonial Carousel",
-    "icon": "rtmicon rtmicon-testimonial-carousel",
+    "icon": "rtmicon rtmicon-testimonial-carousel-2",
     "class_name": "Rkit_TestimonialCarousel",
     "category": "rkit",
     "status": true,
@@ -168,8 +168,8 @@
     "type": "free"
   },
   "pricelist": {
-    "name": "Price Table",
-    "icon": "eicon-price-table",
+    "name": "Pricing Table",
+    "icon": "rtmicon rtmicon-price-table",
     "class_name": "Rkit_Pricelist",
     "category": "rkit",
     "status": true,
@@ -177,8 +177,40 @@
   },
   "countdown": {
     "name": "Countdown",
-    "icon": "eicon-countdown",
+    "icon": "rtmicon rtmicon-countdown",
     "class_name": "Rkit_Countdown",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "rkitpostblock" : {
+    "name": "Post Block",
+    "icon": "rtmicon rtmicon-image-info" ,
+    "class_name": "RkitPostBlock",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "imagecomparison" : {
+    "name" : "Image Comparison",
+    "icon": "rtmicon rtmicon-image-comparison",
+    "class_name": "Rkit_Imagecomparison",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "postlist" : {
+    "name" : "Post List",
+    "icon": "rtmicon rtmicon-post-list",
+    "class_name": "Rkit_Postlist",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "advancedheading" : {
+    "name" : "Advanced Heading",
+    "icon": "rtmicon rtmicon-advanced-heading",
+    "class_name": "Rkit_advanced_heading",
     "category": "rkit",
     "status": true,
     "type": "free"

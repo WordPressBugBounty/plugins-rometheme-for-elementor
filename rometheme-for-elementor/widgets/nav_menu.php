@@ -8,7 +8,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return 'Nav Menu';
+        return \RomethemeKit\RkitWidgets::listWidgets()['navmenu']['name'];
     }
     public function get_categories()
     {
@@ -16,7 +16,8 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
     }
     public function get_icon()
     {
-        return 'rkit-widget-icon rtmicon rtmicon-nav-menu';
+        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['navmenu']['icon'];
+        return $icon;
     }
     public function get_keywords()
     {
@@ -51,44 +52,64 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
 
     function wp_get_menu_array($current_menu)
     {
-
+        // Mengambil item menu dari ID menu yang diberikan
         $array_menu = wp_get_nav_menu_items($current_menu);
         $menu = array();
+
+        // Buat array lookup untuk menyimpan semua menu item
+        $item_lookup = array();
+
+        // Pertama, buat struktur untuk top-level menu
         foreach ($array_menu as $m) {
+            $item_lookup[$m->ID] = $m;
             if (empty($m->menu_item_parent)) {
-                $menu[$m->ID] = array();
-                $menu[$m->ID]['ID']      =   $m->ID;
-                $menu[$m->ID]['title']       =   $m->title;
-                $menu[$m->ID]['url']         =   $m->url;
-                $menu[$m->ID]['children']    =   array();
+                // Jika tidak memiliki parent (top-level menu)
+                $menu[$m->ID] = array(
+                    'ID' => $m->ID,
+                    'title' => $m->title,
+                    'url' => $m->url,
+                    'children' => array()
+                );
             }
         }
 
-        $submenu = array();
-        $subcategory = array();
-        foreach ($menu as $me) {
-            foreach ($array_menu as $m) {
-                if ($me['ID'] == $m->menu_item_parent) {
-                    $submenu[$m->ID] = array();
-                    $submenu[$m->ID]['ID']       =   $m->ID;
-                    $submenu[$m->ID]['title']    =   $m->title;
-                    $submenu[$m->ID]['url']      =   $m->url;
-                    $submenu[$m->ID]['children'] = array();
-                    $menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-                }
-            }
-        }
-
-        foreach ($menu as $me) {
-            if (!count($me['children']) == 0) {
-                foreach ($me['children'] as $child) {
-                    foreach ($array_menu as $m) {
-                        if ($child['ID'] == $m->menu_item_parent) {
-                            $subcategory[$m->ID] = array();
-                            $subcategory[$m->ID]['ID']       =   $m->ID;
-                            $subcategory[$m->ID]['title']    =   $m->title;
-                            $subcategory[$m->ID]['url']      =   $m->url;
-                            $menu[$me['ID']]['children'][$child['ID']]['children'][$m->ID] = $subcategory[$m->ID];
+        // Lalu, tambahkan submenu dan subkategori ke menu induk (level 1, 2, dan 3)
+        foreach ($array_menu as $m) {
+            if (!empty($m->menu_item_parent)) {
+                // Jika item ini memiliki parent
+                if (isset($menu[$m->menu_item_parent])) {
+                    // Submenu level 1
+                    $menu[$m->menu_item_parent]['children'][$m->ID] = array(
+                        'ID' => $m->ID,
+                        'title' => $m->title,
+                        'url' => $m->url,
+                        'children' => array()
+                    );
+                } else {
+                    // Proses untuk submenu level 2 dan level 3
+                    foreach ($menu as &$top_level_menu) {
+                        if (isset($top_level_menu['children'][$m->menu_item_parent])) {
+                            // Submenu level 2
+                            $top_level_menu['children'][$m->menu_item_parent]['children'][$m->ID] = array(
+                                'ID' => $m->ID,
+                                'title' => $m->title,
+                                'url' => $m->url,
+                                'children' => array()
+                            );
+                            break;
+                        } else {
+                            // Submenu level 3
+                            foreach ($top_level_menu['children'] as &$sub_menu) {
+                                if (isset($sub_menu['children'][$m->menu_item_parent])) {
+                                    $sub_menu['children'][$m->menu_item_parent]['children'][$m->ID] = array(
+                                        'ID' => $m->ID,
+                                        'title' => $m->title,
+                                        'url' => $m->url,
+                                        'children' => array()
+                                    );
+                                    break 2;
+                                }
+                            }
                         }
                     }
                 }
@@ -98,6 +119,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         return $menu;
     }
 
+
     function check_active_menu($menu_item, $class = '')
     {
         $actual_link = esc_url((isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -105,6 +127,13 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             return $class . '-active';
         }
         return '';
+    }
+
+    function hasChildren($menu)
+    {
+        $c = count($menu);
+
+        return ($c == 0) ? false  : true;
     }
 
     protected function register_controls()
@@ -119,23 +148,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => $this->get_menus(),
             'description' => sprintf(esc_html__('Go to the %sMenus screen%s to manage your menus.', 'rometheme-for-elementor'), '<a href="' . esc_url(admin_url('nav-menus.php')) . '">', '</a>'),
-        ]);
-
-        $this->add_responsive_control('menu-position', [
-            'label' => esc_html__('Menu Position'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'start' => esc_html__('Left', 'rometheme-for-elementor'),
-                'center' => esc_html__('Center', 'rometheme-for-elementor'),
-                'end' => esc_html__('Right', 'romethemekitplugin'),
-                'space-between' => esc_html__('Justified', 'rometheme-for-elementor'),
-            ],
-            'default' => 'start',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-navmenu' => 'justify-content : {{VALUE}};',
-                '{{WRAPPER}} .rkit-menu' => 'justify-content : {{VALUE}};',
-                '{{WRAPPER}} .rkit-submenu' => 'text-align: {{VALUE}};'
-            ]
+            'default' => array_keys($this->get_menus())[0],
         ]);
 
         $this->add_control('submenu-open', [
@@ -146,7 +159,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'click' => esc_html__('Click', 'rometheme-for-elementor'),
             ],
             'default' => 'hover',
-            'description' => esc_html__('This setting for open the submenu in desktop and has no effect on the mobile view ,If you choose "Click", the menu will not link to the menu page.')
+            // 'description' => esc_html__('This setting for open the submenu in desktop and has no effect on the mobile view ,If you choose "Click", the menu will not link to the menu page.')
         ]);
 
         $this->add_control('pointer_select', [
@@ -170,8 +183,8 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'range' => [
                 'px' => [
                     'min' => 0,
-                    'max' => 1000,
-                    'step' => 5,
+                    'max' => 50,
+                    'step' => 1,
                 ],
                 '%' => [
                     'min' => 0,
@@ -179,12 +192,27 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
             ],
             'selectors' => [
-                '{{WRAPPER}} .pointer-underline::after' => 'border-width: 0px 0px {{SIZE}}{{UNIT}} 0px;',
-                '{{WRAPPER}} .pointer-overline::after' => 'border-width: {{SIZE}}{{UNIT}} 0px 0px 0px;',
-                '{{WRAPPER}} .pointer-doubleline::after' => 'border-width: {{SIZE}}{{UNIT}} 0px {{SIZE}}{{UNIT}} 0px;',
-                '{{WRAPPER}} .pointer-framed::after' => 'border-width: {{SIZE}}{{UNIT}}',
+                '{{WRAPPER}} .pointer-underline, {{WRAPPER}} .pointer-overline, {{WRAPPER}} .pointer-doubleline, {{WRAPPER}} .pointer-framed ' => '--pointer-width: {{SIZE}}{{UNIT}};',
 
             ],
+            'condition' => [
+                'pointer_select!' => ['', 'pointer-bg'],
+            ]
+        ]);
+
+        $this->add_control('pointer-color', [
+            'label' => esc_html('Pointer Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .pointer-underline,
+                    {{WRAPPER}} .pointer-overline,
+                    {{WRAPPER}} .pointer-doubleline,
+                    {{WRAPPER}} .pointer-framed,
+                    {{WRAPPER}} .pointer-bg' => '--pointer-color:{{VALUE}}'
+            ],
+            'condition' => [
+                'pointer_select!' => ['']
+            ]
         ]);
 
         $this->add_control(
@@ -224,15 +252,17 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     ],
                 ],
                 'tablet_default' => [
-                    'size' => 25, 'unit' => 'px'
+                    'size' => 25,
+                    'unit' => 'px'
                 ],
                 'mobile_default' => [
-                    'size' => 15, 'unit' => 'px'
+                    'size' => 15,
+                    'unit' => 'px'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-responsive-menu' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-responsive-menu' => '--menu-distance: {{SIZE}}{{UNIT}};',
                 ],
-                'description' => "This is for responsive menu distance and it doesn't have any effect in desktop mode."
+                'description' => "This is for responsive menu distance and it doesn't have any effect in desktop mode.",
             ]
         );
 
@@ -268,7 +298,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-responsive-tablet' => '{{VALUE}}:0px;',
+                    '{{WRAPPER}} .rkit-responsive-tablet , {{WRAPPER}} .rkit-responsive-mobile' => '{{VALUE}}:0px;',
                 ],
                 'condition' => [
                     'full_width!' => 'yes'
@@ -346,7 +376,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu-icon' => 'padding-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-nav-link ' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -438,9 +468,36 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'menu_typography',
-                'selector' => '{{WRAPPER}} .rkit-menu'
+                'selector' => '{{WRAPPER}} .rkit-menu-item .rkit-nav-link'
             ]
         );
+
+        $this->add_responsive_control('menu-position', [
+            'label' => esc_html__('Menu Position'),
+            'type' => \Elementor\Controls_Manager::CHOOSE,
+            'options' => [
+                'start' => [
+                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-justify-start-h',
+                ],
+                'center' => [
+                    'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-justify-center-h',
+                ],
+                'end' => [
+                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-justify-end-h',
+                ],
+                'space-between' => [
+                    'title' => esc_html__('Justified', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-justify-space-between-h',
+                ],
+            ],
+            'default' => 'start',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-navmenu .rkit-menu-container , .rkit-menu-item > .rkit-nav-link' => 'justify-content : {{VALUE}};',
+            ]
+        ]);
 
         $this->add_responsive_control(
             'menu_horizontal_padding',
@@ -461,10 +518,10 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 25,
+                    'size' => 24,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-menu' => 'padding-inline: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-menu-item > .rkit-nav-link' => 'padding-inline: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -488,10 +545,10 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 15,
+                    'size' => 12,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-menu' => 'padding-block: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-menu-item  > .rkit-nav-link' => 'padding-block: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -518,7 +575,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     'unit' => 'px'
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-navmenu' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-menu-container' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -528,7 +585,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                '{{WRAPPER}} .rkit-menu-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
             ],
         ]);
 
@@ -542,7 +599,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-menu-text' => 'color: {{VALUE}}',
+                '{{WRAPPER}} .rkit-menu-item > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
 
@@ -551,7 +608,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             [
                 'name' => 'item-background',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-menu',
+                'selector' => '{{WRAPPER}} .rkit-menu-item',
                 'fields_options' => [
                     'color' => [
                         'responsive' => true,
@@ -570,7 +627,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'item-border',
-                'selector' => '{{WRAPPER}} .rkit-menu',
+                'selector' => '{{WRAPPER}} .rkit-menu-item',
             ]
         );
 
@@ -584,16 +641,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-menu-text:hover' => 'color: {{VALUE}}',
-            ],
-        ]);
-
-        $this->add_control('pointer_hover_color', [
-            'label' => esc_html__('Pointer Color', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .pointer-underline::after , .pointer-overline::after , .pointer-doubleline::after , .pointer-framed::after ' => 'border-color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-menu:has(.pointer-bg):hover' => 'background-color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-menu-item:hover > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
 
@@ -602,7 +650,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             [
                 'name' => 'item-background-hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-menu:hover',
+                'selector' => '{{WRAPPER}} .rkit-menu-item:hover',
                 'fields_options' => [
                     'color' => [
                         'responsive' => true,
@@ -614,35 +662,14 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                         'responsive' => true,
                     ],
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'responsive_options_hover',
-            [
-                'label' => esc_html__('Responsive Dropdown', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'responsive-background-hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-responsive-menu .rkit-menu:hover',
-                'fields_options' => [
-                    'color' => [
-                        'responsive' => true,
-                    ],
-                    'color_b' => [
-                        'responsive' => true,
-                    ],
-                    'background' => [
-                        'responsive' => true,
-                    ],
-                ],
+                'name' => 'item-border-hover',
+                'selector' => '{{WRAPPER}} .rkit-menu-item:hover',
             ]
         );
 
@@ -654,16 +681,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-menu-text-active' => 'color: {{VALUE}}',
-            ],
-        ]);
-
-        $this->add_control('pointer_active_color', [
-            'label' => esc_html__('Pointer Color', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-menu-active .pointer-underline::after , .rkit-menu-active .pointer-overline::after , .rkit-menu-active .pointer-doubleline::after , .rkit-menu-active .pointer-framed::after ' => 'border-color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-menu-active:has(.pointer-bg)' => 'background-color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-menu-item.rkit-menu-active > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
 
@@ -672,7 +690,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             [
                 'name' => 'item-background-active',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-menu-active',
+                'selector' => '{{WRAPPER}} .rkit-menu-item.rkit-menu-active',
                 'fields_options' => [
                     'color' => [
                         'responsive' => true,
@@ -684,38 +702,16 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                         'responsive' => true,
                     ],
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'responsive_options_active',
-            [
-                'label' => esc_html__('Responsive Dropdown', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'responsive-background-active',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-responsive-menu .rkit-menu-active',
-                'fields_options' => [
-                    'color' => [
-                        'responsive' => true,
-                    ],
-                    'color_b' => [
-                        'responsive' => true,
-                    ],
-                    'background' => [
-                        'responsive' => true,
-                    ],
-                ],
+                'name' => 'item-border-active',
+                'selector' => '{{WRAPPER}} .rkit-menu-item.rkit-menu-active',
             ]
         );
-
 
         $this->end_controls_tab();
 
@@ -733,7 +729,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'submenu_typography',
-                'selector' => '{{WRAPPER}} .rkit-submenu'
+                'selector' => '{{WRAPPER}} .rkit-submenu-item .rkit-nav-link'
             ]
         );
 
@@ -742,7 +738,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'submenu-border',
-                'selector' => '{{WRAPPER}} .rkit-dropdown-submenu',
+                'selector' => '{{WRAPPER}} .rkit-submenu-item',
             ]
         );
 
@@ -750,7 +746,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-dropdown-submenu',
+                'selector' => '{{WRAPPER}} .rkit-submenu-item',
             ]
         );
 
@@ -776,7 +772,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     'size' => 35,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu' => 'padding-inline: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-submenu-item  > .rkit-nav-link' => 'padding-inline: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -803,7 +799,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu' => 'padding-block: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'padding-block: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -826,7 +822,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-dropdown-submenu' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-navmenu-dropdown' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -845,7 +841,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu-icon' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .rkit-submenu-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}',
                 ],
             ]
         );
@@ -864,7 +860,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'unit' => 'rem'
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-submenu-icon' => 'font-size:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-submenu-icon' => 'font-size:{{SIZE}}{{UNIT}} ; width:{{SIZE}}{{UNIT}};height:{{SIZE}}{{UNIT}};'
             ]
         ]);
 
@@ -882,24 +878,28 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-justify-start-h',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-justify-center-h',
                     ],
-                    'right' => [
+                    'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-justify-end-h',
+                    ],
+                    'space-between' => [
+                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-space-between-h',
                     ],
                 ],
-                'default' => 'left',
+                'default' => 'start',
                 'toggle' => true,
                 'description' => esc_html__('The alignment settings will only affect the responsive mode and will not have any effect on the desktop mode.', 'rometheme-for-elementor'),
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );
@@ -910,9 +910,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-dropdown-submenu .rkit-submenu-item:first-child' => 'border-top-left-radius:{{TOP}}{{UNIT}} ; border-top-right-radius: {{RIGHT}}{{UNIT}} ',
-                '{{WRAPPER}} .rkit-dropdown-submenu .rkit-submenu-item:last-child' => 'border-bottom-left-radius:{{BOTTOM}}{{UNIT}} ; border-bottom-right-radius: {{LEFT}}{{UNIT}} ',
-                '{{WRAPPER}} .rkit-dropdown-submenu' => 'border-radius:calc( {{TOP}}{{UNIT}}  + 1% ) calc({{RIGHT}}{{UNIT}} + 1% ) calc({{BOTTOM}}{{UNIT}} + 1%) calc({{LEFT}}{{UNIT}} + 1%);'
+                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:first-child' => 'border-top-left-radius:{{TOP}}{{UNIT}} ; border-top-right-radius: {{RIGHT}}{{UNIT}} ',
+                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:last-child' => 'border-bottom-left-radius:{{BOTTOM}}{{UNIT}} ; border-bottom-right-radius: {{LEFT}}{{UNIT}} ',
+                '{{WRAPPER}} .rkit-navmenu-dropdown' => 'border-radius:calc( {{TOP}}{{UNIT}}  + 1% ) calc({{RIGHT}}{{UNIT}} + 1% ) calc({{BOTTOM}}{{UNIT}} + 1%) calc({{LEFT}}{{UNIT}} + 1%);'
             ],
         ]);
 
@@ -930,44 +930,54 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control('submenu-textcolor', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
             'selectors' => [
-                '{{WRAPPER}} .rkit-submenu-text' => 'color:{{VALUE}}',
+                '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'color:{{VALUE}}',
             ]
         ]);
 
         $this->add_responsive_control('submenu-bgcolor', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#ffffff',
             'selectors' => [
                 '{{WRAPPER}} .rkit-submenu-item' => 'background-color:{{VALUE}}',
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'submenu_border_normal',
+                'selector' => '{{WRAPPER}} .rkit-submenu-item',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('submenu_bg_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
         $this->add_responsive_control('submenu-textcolor-   ', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#ffffff',
             'selectors' => [
-                '{{WRAPPER}} .rkit-submenu-text:hover' => 'color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-submenu:hover > .rkit-item-submenu > .rkit-submenu-text' => 'color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-submenu:hover > .rkit-item-submenu > .rkit-submenu-icon' => 'color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-item-submenu:hover  .rkit-submenu-text' => 'color:{{VALUE}}',
-                '{{WRAPPER}} .rkit-item-submenu:hover  .rkit-submenu-icon' => 'color:{{VALUE}}',
+                '{{WRAPPER}} .rkit-submenu-item:hover > .rkit-nav-link' => 'color:{{VALUE}}',
             ]
         ]);
 
         $this->add_responsive_control('submenu-bgcolor-hover', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-submenu-item:hover' => 'background-color:{{VALUE}}',
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'submenu_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-submenu-item:hover',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('submenu_bg_active', ['label' => esc_html__('Active', 'rometheme-for-elementor')]);
@@ -975,7 +985,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-submenu-text-active' => 'color:{{VALUE}}',
+                '{{WRAPPER}} .rkit-submenu-item.rkit-submenu-active > .rkit-nav-link' => 'color:{{VALUE}}',
             ]
         ]);
 
@@ -1084,7 +1094,6 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control('btn-hamburger-bg', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#00000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-btn-hamburger' => 'background-color:{{VALUE}}'
             ]
@@ -1145,148 +1154,79 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
+        $menu_slug = $settings['menu-select'];
+        $menu = wp_get_nav_menu_object($menu_slug);
+        $current_menu = $menu->slug;
+        $menu_parent = $this->wp_get_menu_array($current_menu);
+        $id = $this->get_id_int();
+        $drClass = 'rkit-dropdown-' . $settings['submenu-open'];
+        // $sbDrClass = 'rkit-subdropdown-' . $settings['submenu-open'];
 ?>
-        <div class="rkit-navmenu-container">
-            <div id="rkit-hamburger-<?php echo esc_attr($this->get_id_int()) ?>" data-dropdown="rkit-dropdown-<?php echo esc_attr($this->get_id_int()) ?>" class="rkit-hamburger-<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
-                <button class="rkit-btn-hamburger" onclick="open_dropdown('rkit-hamburger-' , <?php echo esc_attr($this->get_id_int()) ?> , '<?php echo esc_attr($settings['responsive-breakpoint']) ?>' , 'rkit-responsive-open-' )">
-                    <div>
-                        <?php \Elementor\Icons_Manager::render_icon($settings['icon-open'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-open', 'id' => 'rkit-icon-open' . $this->get_id_int()]); ?>
-                        <?php \Elementor\Icons_Manager::render_icon($settings['icon-close'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-close', 'id' => 'rkit-icon-close' . $this->get_id_int(), 'style' => 'display:none']); ?>
-                    </div>
-                </button>
+        <div class="rkit-navmenu-container" data-responsive="<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
+            <div class="rkit-hamburger rkit-hamburger-<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
+                <a class="rkit-btn-hamburger">
+                    <?php \Elementor\Icons_Manager::render_icon($settings['icon-open'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-open', 'id' => 'rkit-icon-open' . $this->get_id_int()]); ?>
+                    <?php \Elementor\Icons_Manager::render_icon($settings['icon-close'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-close', 'id' => 'rkit-icon-close' . $this->get_id_int()]); ?>
+
+                </a>
             </div>
-            <div id="rkit-dropdown-<?php echo esc_attr($this->get_id_int()) ?>" class="rkit-navmenu rkit-responsive-menu rkit-responsive-<?php echo esc_attr($settings['responsive-breakpoint']) ?>  <?php echo ($settings['full_width'] === 'yes') ? esc_attr('rkit-navmenu-fullwidth') : '' ?>">
-                <?php
-                $this->render_responsive_navmenu($settings);
-                ?>
-            </div>
-            <div class="rkit-navmenu rkit-navmenu-<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
-                <?php
-                $this->render_raw($settings);
-                ?>
+            <div class="rkit-navmenu rkit-responsive-menu rkit-responsive-<?php echo esc_attr($settings['responsive-breakpoint']) ?>  <?php echo ($settings['full_width'] === 'yes') ? esc_attr('rkit-navmenu-fullwidth') : '' ?>">
+                <ul class="rkit-menu-container">
+                    <?php
+                    foreach ($menu_parent as $mn) : ?>
+                        <li class="rkit-menu-item <?php echo esc_attr($this->check_active_menu($mn, 'rkit-menu')) ?> <?php echo ($this->hasChildren($mn['children'])) ? esc_attr($drClass) : '' ?> <?php echo esc_attr($settings['pointer_select']) ?>">
+                            <a class="rkit-nav-link" href="<?php echo esc_url($mn['url']) ?>">
+                                <?php echo esc_html($mn['title']) ?>
+                                <?php if ($this->hasChildren($mn['children'])) :
+                                    \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
+                                endif;
+                                ?>
+                            </a>
+                            <?php if ($this->hasChildren($mn['children'])) : ?>
+                                <ul class="rkit-navmenu-dropdown">
+                                    <?php foreach ($mn['children'] as $m) : ?>
+                                        <li class="rkit-submenu-item <?php echo esc_attr($this->check_active_menu($m, 'rkit-submenu')) ?> <?php echo ($this->hasChildren($m['children'])) ? esc_attr($drClass) : '' ?>">
+                                            <a href="<?php echo esc_url($m['url']) ?>" class="rkit-nav-link">
+                                                <?php echo esc_html($m['title']) ?>
+                                                <?php if ($this->hasChildren($m['children'])) :
+                                                    \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
+                                                endif;
+                                                ?>
+                                            </a>
+                                            <?php if ($this->hasChildren($m['children'])) : ?>
+                                                <ul class="rkit-navmenu-dropdown">
+                                                    <?php foreach ($m['children'] as $sm) : ?>
+                                                        <li class="rkit-submenu-item <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?> <?php echo ($this->hasChildren($sm['children'])) ? esc_attr($drClass) : '' ?>">
+                                                            <a href="<?php echo esc_url($sm['url']) ?>" class="rkit-nav-link">
+                                                                <?php echo esc_html($sm['title']) ?>
+                                                                <?php if ($this->hasChildren($sm['children'])) :
+                                                                    \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
+                                                                endif;
+                                                                ?>
+                                                            </a>
+                                                            <?php if ($this->hasChildren($sm['children'])) : ?>
+                                                                <ul class="rkit-navmenu-dropdown">
+                                                                    <?php foreach ($sm['children'] as $ms) : ?>
+                                                                        <li class="rkit-submenu-item">
+                                                                            <a href="<?php echo esc_url($ms['url']) ?>" class="rkit-nav-link"><?php echo esc_html($ms['title']) ?></a>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
+                                                            <?php endif; ?>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
-        <?php
-    }
-    protected function render_raw($settings)
-    {
-        $menu_slug = $settings['menu-select'];
-        $menu = wp_get_nav_menu_object($menu_slug);
-        $current_menu = $menu->slug;
-        $menu_parent = $this->wp_get_menu_array($current_menu);
-        $id = $this->get_id_int();
-
-        if (count($menu_parent) != 0) {
-            foreach ($menu_parent as $key => $m) {
-                if (count($m['children']) == 0) : ?>
-                    <div class="rkit-menu <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu')) ?>">
-                        <a class="rkit-menu-text <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu-text')) ?> <?php echo esc_attr($settings['pointer_select']) ?>" href="<?php echo esc_url($m['url']) ?>"><?php echo esc_html__($m['title'], 'rometheme-for-elementor') ?></a>
-                    </div>
-                <?php else : ?>
-                    <div class="rkit-dropdown">
-                        <div class="rkit-menu <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu')) ?>" <?php if ($settings['submenu-open'] == 'hover') : ?><?php else : ?> onclick="dropdown_click.call(this)" <?php endif; ?>>
-                            <a class="rkit-menu-text <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu-text')) ?> <?php echo esc_attr($settings['pointer_select']) ?>" <?php if ($settings['submenu-open'] == 'hover') : ?> href="<?php echo esc_url($m['url']) ?>" <?php else : ?> <?php endif; ?>>
-                                <?php echo esc_html__($m['title'], 'rometheme-for-elementor') ?>
-                            </a>
-                            <?php \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']); ?>
-                        </div>
-                        <div class="rkit-dropdown-submenu rkit-dropdown-<?php echo esc_attr($settings['submenu-open'] . '-' . $settings['responsive-breakpoint']) ?>">
-                            <?php
-                            foreach ($m['children'] as $key => $sm) {
-                                if (count($sm['children']) == 0) : ?>
-                                    <div class="rkit-submenu rkit-item-submenu rkit-submenu-item <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?>">
-                                        <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu-text')) ?>" href="<?php echo esc_url($sm['url']) ?>"><?php echo esc_html__($sm['title'], 'rometheme-for-elementor') ?></a>
-                                    </div>
-                                <?php else : ?>
-                                    <div class="rkit-p-relative rkit-dropdown rkit-dropdown-unres rkit-submenu rkit-submenu-item">
-                                        <div class="rkit-item-submenu <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?>" <?php if ($settings['submenu-open'] == 'hover') : ?> <?php else : ?> onclick="submenu_click.call(this)" <?php endif; ?>>
-                                            <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu-text')) ?>" <?php if ($settings['submenu-open'] == 'hover') : ?> href="<?php echo esc_url($sm['url']) ?>" <?php else : ?><?php endif; ?>>
-                                                <?php echo esc_html__($sm['title'], 'rometheme-for-elementor') ?></a>
-                                            <div class="rkit-submenu-icon">
-                                                <?php \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true']); ?>
-                                            </div>
-                                        </div>
-                                        <div class="left-100 rkit-dropdown-submenu rkit-submenu-<?php echo esc_attr($settings['submenu-open']) . '-' . esc_attr($settings['responsive-breakpoint']) ?>">
-                                            <?php
-                                            foreach ($sm['children'] as $key => $smc) {
-                                            ?>
-                                                <div class="rkit-submenu rkit-item-submenu rkit-submenu-item <?php echo esc_attr($this->check_active_menu($smc, 'rkit-submenu')) ?>">
-                                                    <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($smc, 'rkit-submenu-text')) ?>" href="<?php echo esc_url($smc['url']) ?>"><?php echo esc_html__($smc['title'], 'rometheme-for-elementor') ?></a>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                            <?php endif;
-                            }
-                            ?>
-                        </div>
-                    </div>
-                <?php endif;
-            }
-        }
-    }
-
-    protected function render_responsive_navmenu($settings)
-    {
-        $menu_slug = $settings['menu-select'];
-        $menu = wp_get_nav_menu_object($menu_slug);
-        $current_menu = $menu->slug;
-        $menu_parent = $this->wp_get_menu_array($current_menu);
-        $id = $this->get_id_int();
-
-        if (count($menu_parent) != 0) {
-            foreach ($menu_parent as $key => $m) {
-                if (count($m['children']) == 0) : ?>
-                    <div class="rkit-menu <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu')) ?>">
-                        <a class="rkit-menu-text <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu-text')) ?>" href="<?php echo esc_url($m['url']) ?>"><?php echo esc_html__($m['title'], 'rometheme-for-elementor') ?></a>
-                    </div>
-                <?php else : ?>
-                    <div class="rkit-dropdown">
-                        <div class="rkit-menu <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu')) ?>">
-                            <a class="rkit-menu-text <?php echo esc_attr($this->check_active_menu($m, 'rkit-menu-text')) ?>" href="<?php echo esc_url($m['url']) ?>">
-                                <?php echo esc_html__($m['title'], 'rometheme-for-elementor') ?>
-                            </a>
-                            <div onclick="dropdown_click.call(this)">
-                                <?php \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']); ?>
-                            </div>
-                        </div>
-                        <div class="rkit-dropdown-submenu rkit-dropdown-click-<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
-                            <?php
-                            foreach ($m['children'] as $key => $sm) {
-                                if (count($sm['children']) == 0) : ?>
-                                    <div class="rkit-submenu rkit-item-submenu rkit-submenu-item <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?>">
-                                        <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu-text')) ?>" href="<?php echo esc_url($sm['url']) ?>"><?php echo esc_html__($sm['title'], 'rometheme-for-elementor') ?></a>
-                                    </div>
-                                <?php else : ?>
-                                    <div class="rkit-dropdown">
-                                        <div class="rkit-p-relative rkit-item-submenu rkit-submenu-item rkit-submenu <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?>">
-                                            <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu-text')) ?>" href="<?php echo esc_url($sm['url']) ?>">
-                                                <?php echo esc_html__($sm['title'], 'rometheme-for-elementor') ?></a>
-                                            <div class="rkit-submenu-icon" onclick="submenu_click.call(this)">
-                                                <?php \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true']); ?>
-                                            </div>
-                                        </div>
-                                        <div class="rkit-dropdown-submenu rkit-submenu-click-<?php echo esc_attr($settings['responsive-breakpoint']) ?>">
-                                            <?php
-                                            foreach ($sm['children'] as $key => $smc) {
-                                            ?>
-                                                <div class="rkit-submenu rkit-item-submenu rkit-submenu-item <?php echo esc_attr($this->check_active_menu($smc, 'rkit-submenu')) ?>">
-                                                    <a class="rkit-submenu-text <?php echo esc_attr($this->check_active_menu($smc, 'rkit-submenu-text')) ?>" href="<?php echo esc_url($smc['url']) ?>"><?php echo esc_html__($smc['title'], 'rometheme-for-elementor') ?></a>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                            <?php endif;
-                            }
-                            ?>
-                        </div>
-                    </div>
-<?php endif;
-            }
-        }
+<?php
     }
 }

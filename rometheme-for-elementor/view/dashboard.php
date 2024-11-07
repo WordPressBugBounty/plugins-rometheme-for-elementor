@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                     <div class="d-flex flex-row align-items-center gap-4">
-                        <a href="https://rometheme.net/pricing/" target="_blank"  class="btn btn-gradient-accent rounded-pill text-nowrap">Upgrade Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                        <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Upgrade Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
                         <p class="text m-0">Learn More & Get a lifetime license and unlimited sites</p>
                     </div>
                 </div>
@@ -68,6 +68,16 @@
                         </a>
                     </div>
                 </div>
+                <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1">
+                    <span class="rtm-text-font accent-color">Cheers for use RomethemeKit.</span>
+                    <h4>Another one, Rate us on
+                        Wordpress too !</h4>
+                    <div class="rtm-divider rounded-pill" style="width: 80%;"></div>
+                    <p>Our product development is greatly impacted by your highest rating.</p>
+                    <div class="d-flex flex-row align-items-center gap-4">
+                        <a href="https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Rate Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col">
@@ -84,18 +94,22 @@
                     </div>
                     <div class="d-flex flex-column text-white">
                         <div class="d-flex flex-row align-items-center gap-3">
-                            <h4 class="m-0">August 28, 2024</h4>
+                            <h4 class="m-0">November 11, 2024</h4>
                             <span class="rtm-version py-0">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
                         </div>
                         <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                            <li>New: Improve the user experience by updating the visual interface.</li>
-                            <li>New: Adding Countdown and Pricing Widget.</li>
-                            <li>Fix : Bug Fixed in Blog Post Widget </li>
-                            <li>Fix : Bug Fixed in Blockquote Widget</li>
-                            <li>Fix : Bug Fixed in Social Share Widget</li>
+                            <li>New: Post Block Widget.</li>
+                            <li>New: Image Comparison Widget.</li>
+                            <li>New: Post List Widget.</li>
+                            <li>New: Advanced Heading Widget.</li>
+                            <li>New: Rometheme Icon Regular Pack.</li>
+                            <li>New: Rometheme Icon Thin Pack.</li>
+                            <li>Fix : Bug Fixed in Nav Menu Widget </li>
+                            <li>Fix : Bug Fixed in Header Offcanvas Widget</li>
+                            <li>Fix : Bug Fixed in Text Marquee</li>
                             <li>Fix : Bug Fixed in Team Widget</li>
-                            <li>Fix : Bug Fixed in Accordion Widget</li>
-                            <li>Fix : Bug Fixed in Counter Widget</li>
+                            <li>Fix : Bug Fixed in Animated Heading</li>
+                            <li>Fix : Bug Fixed in Testimonial Carousel</li>
                         </ul>
                         <div>
                             <a href="https://wordpress.org/plugins/rometheme-for-elementor/#developers" target="__blank" class="btn btn-gradient-accent rounded-pill">Full Changelog<i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
