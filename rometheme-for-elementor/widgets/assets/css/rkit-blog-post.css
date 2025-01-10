@@ -29,7 +29,7 @@
 
 .rkit-image-container {
     position: relative;
-}
+} 
 
 .rkit-post-grid-img {
     transition: all 0.5s;
@@ -41,6 +41,7 @@
 
 .rkit-post-grid-card:hover .rkit-post-grid-img {
     transform: scale(1.1);
+    overflow:   hidden ;
 }
 
 .rkit-metadata,

@@ -46,6 +46,9 @@ class RkitWidgets
 
     public function reset_widgets()
     {
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
         $jsonWidgets = $this->listWidgets();
         delete_option('rkit-widget-options');
         update_option('rkit-widget-options', $this->listWidgets());
@@ -142,6 +145,9 @@ class RkitWidgets
             wp_die();
         }
 
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
 
         unset($data['action']);
         unset($data['nonce']);
@@ -159,7 +165,11 @@ class RkitWidgets
         }
     }
 
-    function save_options_pro() {
+    function save_options_pro()
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
         $data = $_POST;
 
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {

@@ -22,5 +22,13 @@
     "category": "rkit_pro",
     "status": true,
     "type": "pro"
+  },
+  "pricelist": {
+    "name": "Pricing List",
+    "icon": "eicon-price-list",
+    "class_name": "",
+    "category": "rkit",
+    "status": true,
+    "type": "pro"
   }
 }

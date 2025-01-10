@@ -2,14 +2,13 @@
 
 /**
  * Plugin Name:       RomethemeKit For Elementor
- * Description:       RomethemeKit for Elementor Page Builder is the best toolkit solution for Elementor, build Elementor websites faster and easier than ever.
- * Version:           1.5.2
+ * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
+ * Version:           1.5.3
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
  * 
- * Romethemekit For Elementor is Addons for Elementor Page Builder.
- * it Included 250+ Template Kit, Header Footer Builder and Widget ready to use.
+ * The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
  */
 
 define("ROMETHEME_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
@@ -23,6 +22,8 @@ class RomeTheme
 		add_action('admin_menu', [$this, 'rometheme_add_menu']);
 		add_action('rometheme/plugins_loaded', array($this, 'init'), 100);
 		do_action('rometheme/plugins_loaded');
+		add_filter('plugin_row_meta', [$this, 'row_meta_link'] , 10, 4);
+		add_filter('plugin_action_links', [$this, 'action_links'] , 10, 2);
 	}
 
 	public function isCompatible()
@@ -43,12 +44,14 @@ class RomeTheme
 			require_once self::module_dir() . 'layout-libs/init.php';
 			require_once self::module_dir() . 'widgets/widgets.php';
 			require_once self::module_dir() . 'settings/settings.php';
+			require_once self::module_dir() . 'template/template.php';
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
 			\RomethemePlugin\Plugin::register_autoloader();
 			\RomethemePlugin\Plugin::load_header_footer();
 			\Rkit\Modules\Libs\Init::instance();
 			new \RomeTheme\RtmSettings();
+			new \RomethemeKit\Template();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);
@@ -66,6 +69,25 @@ class RomeTheme
 			add_action('rkit_notices', [$this, 'rkit_notice']);
 			do_action('rkit_notices');
 		}
+	}
+
+	function row_meta_link($links, $plugin_file_name, $plugin_data, $status)
+	{
+		if (strpos($plugin_file_name, basename(__FILE__))) {
+			// you can still use array_unshift() to add links at the beginning
+			$links[] = '<a target="_blank" href="https://support.rometheme.net/docs/romethemekit/">Docs</a>';
+			$links[] = '<a target="_blank" href="https://www.youtube.com/@Rometheme_Studio">Video Tutorials</a>';
+		}
+
+		return $links;
+	}
+
+	function action_links($plugin_actions, $plugin_file) {
+		if (strpos($plugin_file, basename(__FILE__))) {
+			$plugin_actions['go_premium'] = sprintf('<a target="_blank" style="font-weight:700; color : #00cea6" href="%s">Upgrade To Pro</a>' , 'https://rometheme.net/pricing/');
+		}
+
+		return $plugin_actions;
 	}
 
 	static function pluginbasename()
@@ -93,7 +115,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.5.2';
+		return '1.5.3';
 	}
 
 	/**
@@ -218,7 +240,17 @@ class RomeTheme
 			'themebuilder',
 			[$this, 'themebuilder_call'],
 			2
-		);	
+		);
+
+		add_submenu_page(
+			'romethemekit',
+			esc_html('Templates'),
+			esc_html('Templates'),
+			'manage_options',
+			'rtmkit-templates',
+			[$this, 'templates_call'],
+			3
+		);
 
 		add_submenu_page(
 			'romethemekit',
@@ -227,9 +259,9 @@ class RomeTheme
 			'manage_options',
 			'rkit-system-status',
 			[$this, 'submenu_system_info'],
-			3
+			4
 		);
-		
+
 		add_submenu_page(
 			'romethemekit',
 			esc_html('Settings'),
@@ -237,8 +269,8 @@ class RomeTheme
 			'manage_options',
 			'rtm-settings',
 			[$this, 'settings_call'],
-			4
-		);	
+			5
+		);
 	}
 
 	function romethemekit_cal()
@@ -249,6 +281,11 @@ class RomeTheme
 	function themebuilder_call()
 	{
 		require RomeTheme::module_dir() . 'themebuilder/views/themebuilder.php';
+	}
+
+	function templates_call()
+	{
+		require RomeTheme::module_dir() . 'template/views/templates.php';
 	}
 
 	function settings_call()

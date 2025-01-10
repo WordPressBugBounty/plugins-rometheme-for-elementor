@@ -1,7 +1,7 @@
 .menu-button-rometheme{
     transition: all 0.5;
     background-color: #00cea6;
-    padding: 10px;
+    padding: 12px;
     display: flex;
     align-items: center;
     border: none;
@@ -92,6 +92,7 @@ a.menu-button {
     height: 100vh;
     transition: all 0.7s ease-in-out;
     /* opacity: 0; */
+    overflow: auto;
 }
 
 .rkit-btn-container{
@@ -107,27 +108,27 @@ a.menu-button {
     visibility: visible;
 }
 
-.rkit-offcanvas.left .offcanvas-navmenu-rometheme {
+.rkit-offcanvas.offcanvas-left .offcanvas-navmenu-rometheme {
     left: 0;
 }
 
-.rkit-offcanvas.right .offcanvas-navmenu-rometheme {
+.rkit-offcanvas.offcanvas-right .offcanvas-navmenu-rometheme {
     right: 0;
     justify-content: end;
 }
 
-.rkit-offcanvas.left .menu-offcanvas-rometheme , .rkit-offcanvas.left .overlay-rometheme {
+.rkit-offcanvas.offcanvas-left .menu-offcanvas-rometheme , .rkit-offcanvas.offcanvas-left .overlay-rometheme {
     transform: translateX(-100%);
 }
 
-.rkit-offcanvas.right .menu-offcanvas-rometheme , .rkit-offcanvas.right .overlay-rometheme {
+.rkit-offcanvas.offcanvas-right .menu-offcanvas-rometheme , .rkit-offcanvas.offcanvas-right .overlay-rometheme {
     transform: translateX(100%);
 }
 
-.rkit-offcanvas.offcanvas-show.right .menu-offcanvas-rometheme,
-.rkit-offcanvas.offcanvas-show.left .menu-offcanvas-rometheme,
-.rkit-offcanvas.offcanvas-show.right .overlay-rometheme,
-.rkit-offcanvas.offcanvas-show.left .overlay-rometheme {
+.rkit-offcanvas.offcanvas-show.offcanvas-right .menu-offcanvas-rometheme,
+.rkit-offcanvas.offcanvas-show.offcanvas-left .menu-offcanvas-rometheme,
+.rkit-offcanvas.offcanvas-show.offcanvas-right .overlay-rometheme,
+.rkit-offcanvas.offcanvas-show.offcanvas-left .overlay-rometheme {
     transform: translateX(0);
     /* opacity: 1;   */
 }

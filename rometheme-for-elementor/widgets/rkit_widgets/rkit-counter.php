@@ -22,7 +22,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-counter-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-counter-widget/';
     }
     public function get_categories()
     {

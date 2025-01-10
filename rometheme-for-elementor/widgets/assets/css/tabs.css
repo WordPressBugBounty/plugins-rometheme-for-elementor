@@ -18,6 +18,7 @@
 .rkit-tab-nav{
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .rkit-tab-container.horizontal .rkit-tab-nav {
@@ -29,17 +30,32 @@
 }
 
 .rkit-tab-btn-item {
-    width: 100%;
+    width: auto;
     background-color: gray;
     text-align: center;
     cursor: pointer;
     padding: 1rem;
-    flex: auto;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .rkit-tab-btn-item.active {
     background-color: rgb(32, 32, 32);
     color: white;
+}
+
+.rkit-tab-btn-item.active .tab-title-icon {
+    color: white;
+    fill: white;
+}
+
+.tab-title-icon {
+    font-size: 18px;
+    width: 18px;
+    display: flex;
 }
 
 .rkit-tab-content {

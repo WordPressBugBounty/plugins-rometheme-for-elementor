@@ -9,18 +9,17 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return \RomethemeKit\RkitWidgets::listWidgets()['sitelogo']['name'];
+        return 'Site Logo';
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['sitelogo']['icon'];
-        return $icon;
+        return 'rkit-widget-icon rtmicon rtmicon-site-logo';
     }
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-site-logo-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-site-logo-widget-ezd_ampersand-favicon-logo/';
     }
 
 
@@ -84,10 +83,10 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'show_caption',
 			[
-				'label' => esc_html__( 'Show Caption', 'rometheme-for-elementor' ),
+				'label' => esc_html__( 'Show Caption', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'rometheme-for-elementor' ),
+				'label_on' => esc_html__( 'Show', 'textdomain' ),
+				'label_off' => esc_html__( 'Hide', 'textdomain' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -164,19 +163,19 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'caption_align',
 			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
+						'title' => esc_html__( 'Left', 'textdomain' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
+						'title' => esc_html__( 'Center', 'textdomain' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
+						'title' => esc_html__( 'Right', 'textdomain' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],

@@ -1,22 +1,24 @@
 <?php
-class Rkit_Pricelist extends \Elementor\Widget_Base
+class Rkit_pricelist extends \Elementor\Widget_Base
 {
 
     public function get_name()
     {
-        return 'rkit-pricelist';
+        return 'rkit-pricelisttable';
     }
 
     public function get_title()
     {
-        return \RomethemeKit\RkitWidgets::listWidgets()['pricelist']['name'];
+        return \RomethemeKit\RkitWidgets::listWidgets()['pricetable']['name'];
+        
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['pricelist']['icon'];
+        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['pricetable']['icon'];
         return $icon;
     }
+
 
     public function get_categories()
     {
@@ -25,16 +27,16 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
     public function get_style_depends()
     {
-        return ['rkit-pricelist-style'];
+        return ['rkit-pricelisttable-style'];
     }
     public function get_keywords() 
     {
-        return ['pricelist', 'time', 'rometheme'];
+        return ['pricelisttable', 'time', 'rometheme'];
     }
 
     public function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/pricing-table/';
     }
     protected function register_controls()
     {
@@ -54,14 +56,14 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'card_title',
             [
                 'label' => esc_html__('Title', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'placeholder' => esc_html__('Type your title here', 'rometheme-for-elementor'),
                 'default' => 'Basic',
 
             ]
         );
 
-        $this->add_control('html_tag_pricelist', [
+        $this->add_control('html_tag_pricelisttable', [
             'label' => esc_html('Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
@@ -235,7 +237,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'description_item',
             [
                 'label' => esc_html__('Description Item', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'placeholder' => esc_html__('Type your description item here', 'rometheme-for-elementor'),
             ]
         );
@@ -297,7 +299,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
-                'default' => 'no',
+                'default' => 'yes',
             ]
         );
 
@@ -308,7 +310,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'label_block' => true,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-check',
+                    'value' => 'rtmicon rtmicon-shopping-cart',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -360,21 +362,11 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control(
-            'button_size_switch',
-            [
-                'label' => esc_html__('Full Size Button', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'no' => esc_html__('Default', 'rometheme-for-elementor'),
-                'yes' => esc_html__('Full', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-
-            ]
-        );
+       
 
 
         $this->add_control(
-            'card_link',
+            'card_link_pt',
             [
                 'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
@@ -449,7 +441,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_infob_new', [
-            'label' => esc_html__('Additional Info'),
+            'label' => esc_html__('Footer'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -483,8 +475,8 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'container_box_shadow',
                 'label' => __('Container Box Shadow', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-container',
-              'description' => esc_html__('Put 0 for no box shadow ', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-container',
+              'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
             ]
         );
 
@@ -493,7 +485,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'con_border',
                 'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-container',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-container',
             ]
         );
 
@@ -512,7 +504,8 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     'isLinked' => false,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    // '{{WRAPPER}} .rkit-pricelisttable-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -520,7 +513,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         $this->add_control(
             'con_radius',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -532,7 +525,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -544,8 +537,8 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'name' => 'cont_backgroud',
                 'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-inner-price, {{WRAPPER}} .rkit-pricelist-item-title-section'
-                // 'selector' => '{{WRAPPER}} .rkit-pricelist-item-description, {{WRAPPER}} .rkit-pricelist-item-price-section, {{WRAPPER}} .rkit-pricelist-item-footer, {{WRAPPER}} .rkit-pricelist-item-button ',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-container'
+                // 'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-description, {{WRAPPER}} .rkit-pricelisttable-item-price-section, {{WRAPPER}} .rkit-pricelisttable-item-footer, {{WRAPPER}} .rkit-pricelisttable-item-button ',
 
             ]
         );
@@ -565,11 +558,11 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'title_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-title',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-title',
 
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'title_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -589,20 +582,20 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-title' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-title' => 'text-align: {{VALUE}};',
                 ],
                 'default' => 'center',
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'Header_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-title-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-title-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -625,7 +618,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-title-section' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-title-section' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -637,7 +630,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -649,7 +642,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'name' => 'header_backgroud',
                 'label' => esc_html__('Header Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-title-section',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-title-section',
 
             ]
         );
@@ -670,7 +663,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sub-heading' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sub-heading' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -680,12 +673,12 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'subheading_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-sub-heading',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-sub-heading',
 
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'subheading_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -705,7 +698,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sub-heading' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sub-heading' => 'text-align: {{VALUE}};',
                 ],
                 'default' => 'center',
             ]
@@ -720,44 +713,49 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
+        $this->add_responsive_control(
+            'saleprice_vertical',
+            [
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .sale-price-container-inline ' => 'align-self: {{VALUE}};',
+                ], 
+                'condition' => [ 
+                    'currency_potition' => 'row'
+                ],
+            ]
+        );
+    
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'sale_price_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-sale-price',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-sale-price',
 
             ]
         );
-        $this->add_control(
-            'sale_price_align',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .sale-price-container' => 'justify-content: {{VALUE}};',
-                ],
-                'condition' => [
-                    'currency_potition' => 'top',
-                ],
-                'default' => 'center',
-            ]
-        );
+         
 
         $this->add_control(
             'sale_price_color',
@@ -765,7 +763,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Text  Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sale-price' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sale-price' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -804,13 +802,41 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
         ]);
 
+        $this->add_responsive_control(
+            'currency_vertical',
+            [
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'default' => 'flex-start',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-currency' => 'align-self: {{VALUE}};',
+                ], 
+            ]
+        );
+    
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'currency_typography',
                 'label' => esc_html__('Currency Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-currency',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-currency',
                 'default' => [
                     'font_family' => 'verdana',
                     'font_size' => '30px',
@@ -827,7 +853,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Text Currency Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-currency' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-currency' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -850,7 +876,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'price_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-price',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-price',
                 'default' => [
                     'font_family' => 'verdana',
                     'font_size' => '41px',
@@ -865,7 +891,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-price' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-price' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -877,7 +903,65 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'name' => 'price_backgroud',
                 'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-price-section',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-price-section',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'price_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .price-container' => 'align-items: {{VALUE}};',
+                ],
+                'condition' => [
+                    'currency_potition' => 'column', 
+                ],
+                'default' => 'center',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'price_align_all',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .price-container' => 'justify-content: {{VALUE}};',
+                ], 
+                'condition' => [
+                    'currency_potition' => 'row', 
+                ],
+                'default' => 'center',
             ]
         );
 
@@ -888,7 +972,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-price ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-price-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -928,12 +1012,41 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
         //style section sub title
 
+        $this->add_responsive_control(
+            'period_vertical',
+            [
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'default' => 'flex-end',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .period-option' => 'align-self: {{VALUE}};',
+                ], 
+            ]
+        );
+    
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'sub_title_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-sub-title , {{WRAPPER}} .rkit-pricelist-item-sub-title-center',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-sub-title , {{WRAPPER}} .rkit-pricelisttable-item-sub-title-center',
 
             ]
         );
@@ -944,12 +1057,12 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sub-title , {{WRAPPER}} .rkit-pricelist-item-sub-title-center' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sub-title , {{WRAPPER}} .rkit-pricelisttable-item-sub-title-center' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'sub_title_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -969,7 +1082,10 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sub-title , {{WRAPPER}} .rkit-pricelist-item-sub-title-center' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sub-title' => 'text-align: {{VALUE}};',
+                ],
+                'condition' => [ 
+                    'period_potition' => 'bottom',
                 ],
                 'default' => 'center',
             ]
@@ -982,7 +1098,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-sub-title , {{WRAPPER}} .rkit-pricelist-item-sub-title-center' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-sub-title , {{WRAPPER}} .rkit-pricelisttable-item-sub-title-center' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -995,13 +1111,15 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
+
+
         $this->add_control(
             'description_color',
             [
                 'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1014,7 +1132,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'name' => 'feat_backgroud',
                 'label' => esc_html__('Feature Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-description ',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-description ',
 
             ]
         );
@@ -1023,44 +1141,49 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'default' => [
-                    'font_family' => 'amiko',
-                    'font_size' => '16px',
-                    'font_weight' => '500',
-                    'text_transform' => 'cappitalize',
-                    'line_height' => '37px',
-                    'letter_spacing' => '-0.1px',
-                    'word_spacing' => '2px',
-                ],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-description',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'), 
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-description',
 
             ]
         );
 
-        $this->add_control(
-            'description_align',
+        $this->add_responsive_control(
+            'description_content_position',
             [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Content Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'selectors' => [ 
-                    '{{WRAPPER}} .divider_desc' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-item-list-desc' => 'justify-content: {{VALUE}}; text-align: {{VALUE}};',
+                ], 
+            ]
+        );
+
+      
+
+        $this->add_responsive_control(
+            'feature_desc_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-list-desc' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-                'default' => 'center',
             ]
         );
 
@@ -1081,8 +1204,12 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-description' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-description' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1096,14 +1223,44 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
+        $this->add_responsive_control(
+            'feature_icon_vertical',
+            [
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'default' => 'flex-start',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .icon-list-feature-pt ' => 'align-self: {{VALUE}};',
+                ],  
+                'description' => esc_html__('This function if your text more than 1 row', 'text-domain'),
+            ]
+        );
+
         $this->add_control(
             'icon_color_feature',
             [
-                'label' => esc_html__('Desc icon Color', 'rometheme-for-elementor'),
+                'label' => esc_html__('icon Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#FF00C6',
+                'default' => '#000000FF',
                 'selectors' => [
-                    '{{WRAPPER}} .icon-list-feature' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .icon-list-feature-pt' => 'color: {{VALUE}};',
                 ],
                 
             ]
@@ -1126,7 +1283,11 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .divider_desc ' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-item-list-desc ' => 'gap: {{SIZE}}{{UNIT}};',
+                ],   
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
                 ],
             ]
         );
@@ -1149,7 +1310,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .icon-list-feature ' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .icon-list-feature-pt ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1160,6 +1321,26 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Divider', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'divider_padding',
+            [
+                'label' => esc_html__('Padding', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%','em','rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -1191,7 +1372,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'item_spacings',
             [
-                'label' => esc_html__('Divider Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('List Gap', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1205,12 +1386,44 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .divider_desc' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
+
+        
+        $this->add_responsive_control(
+            'divider-size',
+            [
+                'label' => esc_html__('Divider Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .divider_desc ' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'border_bottom_color',
@@ -1244,84 +1457,76 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-button .rkit-pricelist-item-button-full , {{WRAPPER}} .button-element-price',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-button .rkit-pricelisttable-item-button-full , {{WRAPPER}} .button-element-price-table',
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'button_border',
-                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .button-element-price',
-            ]
-        );
-
-        $this->add_control(
-            'button_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => 5,
-                    'right' => 5,
-                    'bottom' => 5,
-                    'left' => 5,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-button, {{WRAPPER}}.rkit-pricelist-item-button-full, {{WRAPPER}} .button-element-price ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+      
         $this->add_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Section Padding', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
+                'size_units' => ['px', '%','em','rem'],
                 'default' => [
-                    'top' => 16,
-                    'right' => 32,
-                    'bottom' => 16,
-                    'left' => 32,
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
                     'unit' => 'px',
                     'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-button, {{WRAPPER}} .rkit-pricelist-item-button-full' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-
         $this->add_control(
+            'button_margin',
+            [
+                'label' => esc_html__('Margin', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%','em','rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-button, {{WRAPPER}} .rkit-pricelisttable-item-button-full' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
             'button_align',
             [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                    'start' => [
+                        'title' => esc_html__('Left', 'textdomain'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Center', 'textdomain'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                    'end' => [
+                        'title' => esc_html__('Right', 'textdomain'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-button' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-button' => 'justify-content: {{VALUE}};',
                 ],
                 'default' => 'center',
             ]
@@ -1329,7 +1534,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         $this->add_control(
             'more_options_icon_button_back',
             [
-                'label' => esc_html__('Button Container Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Button Container Background', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1340,10 +1545,61 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
             [
                 'name' => 'button_backgroud',
-                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Button Background', 'textdomain'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-button, {{WRAPPER}} .rkit-pricelist-item-button-full',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-button, {{WRAPPER}} .rkit-pricelisttable-item-button-full',
 
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button-size-pt',
+            [
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 50,
+                    'unit' => '%',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .button-element-price-table' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+      
+        $this->add_responsive_control(
+            'button_spacing',
+            [
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 500,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-button .button-element-price-table' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -1356,15 +1612,44 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-pricelist-item-button, {{WRAPPER}} .rkit-pricelist-item-button-full, {{WRAPPER}} a' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-pricelisttable-item-button, {{WRAPPER}} .rkit-pricelisttable-item-button-full, {{WRAPPER}} a' => 'color : {{VALUE}}'
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_normal',
+                'label' => esc_html__('Border Button', 'textdomain'),
+                'selector' => '  {{WRAPPER}} .button-element-price-table',
+            ]
+        );
+
+        $this->add_control(
+            'button_border_radius_normal',
+            [
+                'label' => esc_html__('Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%','em','rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .button-element-price-table ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_control('button_icon_color_normal', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .icon-list-button' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .icon-list-button-pt' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1372,14 +1657,14 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'btn_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .button-element-price, {{WRAPPER}} a',
+                'selector' => '{{WRAPPER}} .button-element-price-table, {{WRAPPER}} a',
             ]
         );
 
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Button Background', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1390,7 +1675,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'btn_background_normal',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .button-element-price, {{WRAPPER}} a',
+                'selector' => '{{WRAPPER}} .button-element-price-table, {{WRAPPER}} a',
                 'default' => '#FF00C6',
             ]
         );
@@ -1399,11 +1684,40 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
 
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_hover',
+                'label' => esc_html__('Border Button', 'textdomain'),
+                'selector' => '  {{WRAPPER}} .button-element-price-table:hover',
+            ]
+        );
+
+        $this->add_control(
+            'button_border_radius_hover',
+            [
+                'label' => esc_html__('Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%','em','rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .button-element-price-table:hover ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
         $this->add_control('button_text_color_hover', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-pricelist-item-button a:hover' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-pricelisttable-item-button a:hover' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1411,7 +1725,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} a:hover .icon-list-button ' => 'color : {{VALUE}}'
+                '{{WRAPPER}} a:hover .icon-list-button-pt ' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1419,14 +1733,14 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'btn_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-button a:hover',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-button a:hover',
             ]
         );
 
         $this->add_control(
             'btn_bg_options_hover',
             [
-                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Button Background', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1437,7 +1751,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'btn_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-button a:hover',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-button a:hover',
             ]
         );
 
@@ -1452,8 +1766,97 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
 
 
-        // style for footer
-        $this->start_controls_section('footer_style_section', [
+      
+        //wkwkwkw
+        $this->start_controls_section(
+            'ribbon_style_section',
+            [
+                'label' => __(' Ribbon Style', 'plugin-name'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'ribbon_typography',
+                'label' => __('Typography', 'plugin-name'),
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner',
+            ]
+        );
+
+        $this->add_control(
+            'ribbon_text_color',
+            [
+                'label' => __('Text Color', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'more_options_descmoocc',
+            [
+                'label' => esc_html__('Background Ribbon', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ribbon_distance',
+            [
+                'label' => esc_html__('Distance', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                        'step' => 2,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner' => 'margin-top: {{SIZE}}{{UNIT}}; transform: translateY(-50%) translateX(-50%) translateX({{SIZE}}{{UNIT}}) rotate(-45deg);',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+
+            [
+                'name' => 'ribbom_backgroud',
+                'label' => esc_html__('Ribbon Background', 'rometheme-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'ribbon_border',
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'ribbon_box_shadow',
+                'label' => __('Box Shadow', 'plugin-name'),
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner',
+            ]
+        );
+
+        $this->end_controls_section();
+
+          // style for footer
+          $this->start_controls_section('footer_style_section', [
             'label' => esc_html__('Footer', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
@@ -1464,7 +1867,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             [
                 'name' => 'footer_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-footer',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-footer',
                 'default' => [
                     'font_family' => 'verdana',
                     'font_size' => '12px',
@@ -1474,7 +1877,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'footer_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -1494,7 +1897,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-footer' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-footer' => 'text-align: {{VALUE}};',
                 ],
                 'default' => 'center',
             ]
@@ -1507,7 +1910,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-footer' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-footer' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1519,7 +1922,7 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-item-footer ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-item-footer ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1532,109 +1935,22 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                 'name' => 'footer_backgroud',
                 'label' => esc_html__('Footer Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-item-footer ',
+                'selector' => '{{WRAPPER}} .rkit-pricelisttable-item-footer ',
 
             ]
         );
         $this->end_controls_section();
 
-        //wkwkwkw
-        $this->start_controls_section(
-            'ribbon_style_section',
-            [
-                'label' => __(' Ribbon Style', 'plugin-name'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'ribbon_typography',
-                'label' => __('Typography', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
-            ]
-        );
-
-        $this->add_control(
-            'ribbon_text_color',
-            [
-                'label' => __('Text Color', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-ribbon__inner' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'more_options_descmoocc',
-            [
-                'label' => esc_html__('Background Ribbon', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'ribbon_distance',
-            [
-                'label' => esc_html__('Distance', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                        'step' => 2,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelist-ribbon__inner' => 'margin-top: {{SIZE}}{{UNIT}}; transform: translateY(-50%) translateX(-50%) translateX({{SIZE}}{{UNIT}}) rotate(-45deg);',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-
-            [
-                'name' => 'ribbom_backgroud',
-                'label' => esc_html__('Ribbon Background', 'rometheme-for-elementor'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'ribbon_border',
-                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'ribbon_box_shadow',
-                'label' => __('Box Shadow', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
-            ]
-        );
-
-        $this->end_controls_section();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
         $decodedString = $settings['currency_icon'];
-        $item_link = (!empty($settings['card_link']['url']) ? esc_url($settings['card_link']['url']) : '#');
-        $badge_classes = 'rkit-pricelist-item'; 
+        $item_link = (!empty($settings['card_link_pt']['url']) ? esc_url($settings['card_link_pt']['url']) : '#');
+        $badge_classes = 'rkit-pricelisttable-item'; 
 
-        switch ($settings['html_tag_pricelist']) {
+        switch ($settings['html_tag_pricelisttable']) {
             case 'h1':
                 $html_tages = 'h1';
                 break;
@@ -1671,53 +1987,53 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
         }
 
 ?>
-        <div class="rkit-pricelist-container"> 
+        <div class="rkit-pricelisttable-container"> 
             <div class="<?php echo esc_attr($badge_classes) ?>">
                 <?php if ($settings['enable_badge'] === 'yes') { ?>
-                    <div class="rkit-pricelist-ribbon rkit-pricelist-ribbon__<?php echo esc_html($settings['ribbon_position']); ?>">
-                        <div class="rkit-pricelist-ribbon__inner">
+                    <div class="rkit-pricelisttable-ribbon rkit-pricelisttable-ribbon__<?php echo esc_html($settings['ribbon_position']); ?>">
+                        <div class="rkit-pricelisttable-ribbon__inner">
                             <?php echo esc_html($settings['badge_text']) ?>
                         </div>
                     </div>
 
                 <?php } ?>
-                <div class="rkit-pricelist-item-inner">
-                    <div class="rkit-pricelist-item-title-section">
+                <div class="rkit-pricelisttable-item-inner">
+                    <div class="rkit-pricelisttable-item-title-section">
                         <?php if (!empty($settings['card_title'])) { ?>
-                            <<?php echo esc_html($html_tages); ?> class="rkit-pricelist-item-title"><?php echo esc_html($settings['card_title']) ?> </<?php echo esc_html($html_tages); ?>>
-                            <span class="rkit-pricelist-item-sub-heading"><?php echo esc_html($settings['card_subheading']) ?></span>
+                            <<?php echo esc_html($html_tages); ?> class="rkit-pricelisttable-item-title"><?php echo esc_html($settings['card_title']) ?> </<?php echo esc_html($html_tages); ?>>
+                            <span class="rkit-pricelisttable-item-sub-heading"><?php echo esc_html($settings['card_subheading']) ?></span>
                         <?php  } ?>
                     </div>
-                    <div class="rkit-pricelist-item-inner-price">
-                        <div class="rkit-pricelist-item-price-section">
+                    <div class="rkit-pricelisttable-item-inner-price">
+                        <div class="rkit-pricelisttable-item-price-section">
                             <?php if (!empty($settings['card_price'])) {  ?>
                                 <div class="price-container">
                                     <?php if ($settings['show_sale_price'] == 'yes') {  ?>
                                         <div class="sale-price-container-inline">
                                             <?php if ($decodedString != 'costum') { ?>
-                                                <p class="rkit-pricelist-item-sale-price"><?php echo esc_html($decodedString) ?></p>
+                                                <p class="rkit-pricelisttable-item-sale-price"><?php echo esc_html($decodedString) ?></p>
                                             <?php } else { ?>
-                                                <p class="rkit-pricelist-item-sale-price"><?php echo esc_html($settings['costum_currency']) ?></p>
+                                                <p class="rkit-pricelisttable-item-sale-price"><?php echo esc_html($settings['costum_currency']) ?></p>
                                             <?php } ?>
-                                            <p class="rkit-pricelist-item-sale-price"><?php echo esc_html($settings['card_price_sale']) ?></p>
+                                            <p class="rkit-pricelisttable-item-sale-price"><?php echo esc_html($settings['card_price_sale']) ?></p>
                                         </div>
                                     <?php } ?>
 
                                     <div class="sale-price-container-inline period-opsi">
                                         <?php if ($decodedString != 'costum') { ?>
                                             <div class="currency-option">
-                                                <p class="rkit-pricelist-item-currency"><?php echo esc_html($decodedString) ?></p>
+                                                <p class="rkit-pricelisttable-item-currency"><?php echo esc_html($decodedString) ?></p>
                                             <?php } else { ?>
-                                                <p class="rkit-pricelist-item-currency"><?php echo esc_html($settings['costum_currency']) ?></p>
+                                                <p class="rkit-pricelisttable-item-currency"><?php echo esc_html($settings['costum_currency']) ?></p>
                                             <?php } ?>
 
-                                            <p class="rkit-pricelist-item-price"><?php echo esc_html($settings['card_price']) ?></p>
+                                            <p class="rkit-pricelisttable-item-price"><?php echo esc_html($settings['card_price']) ?></p>
                                             </div>
                                             <?php
                                             if ($settings['period_potition'] == 'center') {
                                                 if (!empty($settings['card_sub_title'])) { ?>
                                                     <div class="period-option">
-                                                        <p class="rkit-pricelist-item-sub-title-center"><?php echo esc_html($settings['card_sub_title']) ?></p>
+                                                        <p class="rkit-pricelisttable-item-sub-title-center"><?php echo esc_html($settings['card_sub_title']) ?></p>
                                                     </div>
                                             <?php   }
                                             }  ?>
@@ -1727,23 +2043,23 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
 
                             <?php if ($settings['period_potition'] == 'bottom') {
                                 if (!empty($settings['card_sub_title'])) { ?>
-                                    <div class="rkit-pricelist-item-sub-title"><?php echo esc_html($settings['card_sub_title']) ?></div>
+                                    <div class="rkit-pricelisttable-item-sub-title"><?php echo esc_html($settings['card_sub_title']) ?></div>
                             <?php   }
                             }
                             ?>
                         </div>
                         <?php if ($settings['button_position'] == 'top') {
                             if (!empty($settings['button_text'])) {  ?>
-                                <div class="rkit-pricelist-item-button <?php echo esc_html($class_button) ?>">
+                                <div class="rkit-pricelisttable-item-button <?php echo esc_html($class_button) ?>">
                                     <?php if ($settings['button_icon_position'] == "before") { ?>
-                                        <a href="<?php $item_link ?>" class=" button-element-price">
-                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button"]); ?>
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
+                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                             <?php echo esc_html($settings['button_text']) ?>
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php $item_link ?>" class=" button-element-price">
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
                                             <?php echo esc_html($settings['button_text']) ?>
-                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button"]); ?>
+                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                         </a>
                                     <?php } ?>
                                 </div>
@@ -1751,32 +2067,36 @@ class Rkit_Pricelist extends \Elementor\Widget_Base
                             }
                         } ?>
                         <?php if (!empty($settings['description_list'])) { ?>
-                            <ul class="rkit-pricelist-item-description no-icon-hidden">
+                            <ul class="rkit-pricelisttable-item-description no-icon-hidden">
                                 <?php foreach ($settings['description_list'] as $desc_item) { ?>
-                                    <li class="divider_desc <?php echo esc_html($divider_show) ?>"> <?php \Elementor\Icons_Manager::render_icon($desc_item['description_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-feature"]) ?> <?php echo  esc_html($desc_item['description_item']) ?></li>
+                                <div class="rkit-item-list-desc">  <?php \Elementor\Icons_Manager::render_icon($desc_item['description_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-feature-pt"]) ?> 
+                                         <?php echo  esc_html($desc_item['description_item']) ?>
+                                </div> 
+                                <li class="divider_desc <?php echo esc_html($divider_show) ?>"> </li>  
+                                    <!-- cek -->
                                 <?php   } ?>
                             </ul>
                         <?php } ?>
                         <?php if ($settings['button_position'] == 'bottom') {
                             if (!empty($settings['button_text'])) {  ?>
-                                <div class="rkit-pricelist-item-button <?php echo esc_html($class_button) ?>">
+                                <div class="rkit-pricelisttable-item-button <?php echo esc_html($class_button) ?>">
                                     <?php if ($settings['button_icon_position'] == "before") { ?>
-                                        <a href="<?php $item_link ?>" class=" button-element-price">
-                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button"]); ?>
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
+                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                             <?php echo esc_html($settings['button_text']) ?>
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php $item_link ?>" class=" button-element-price">
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
                                             <?php echo esc_html($settings['button_text']) ?>
-                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button"]); ?>
+                                            <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                         </a>
                                     <?php } ?>
                                 </div>
                             <?php  }
                         }
                         if (!empty($settings['card_footer'])) { ?>
-                            <div class="rkit-pricelist-item-footer">
-                                <p class="rkit-pricelist-item-footer"><?php echo esc_html($settings['card_footer']) ?></p>
+                            <div class="rkit-pricelisttable-item-footer">
+                                <span class="rkit-pricelisttable-item-footer"><?php echo esc_html($settings['card_footer']) ?></span>
                             </div>
                         <?php     } ?>
 

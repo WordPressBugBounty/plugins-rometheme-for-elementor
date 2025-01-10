@@ -13,13 +13,13 @@ class Rkit_PieChart extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        return 'rkit-widget-icon rtmicon rtmicon-pie-chart';
+        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['piechart']['icon'];
+        return $icon;
     }
 
     function get_custom_help_url()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['piechart']['icon'];
-        return $icon;
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-pie-chart-widget/';
     }
 
     public function get_categories()
@@ -156,6 +156,17 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             'label' => esc_html('Chart'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
+        $this->add_control(
+			'custom_panel_notice',
+			[
+				'type' => \Elementor\Controls_Manager::NOTICE,
+				'notice_type' => 'warning',
+				'dismissible' => true,
+				'heading' => esc_html__( 'Global Color Not Working', 'rometheme-for-elementor' ),
+				'content' => esc_html__( 'Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain' ),
+			]
+		);
 
         $this->add_control('border_radius', [
             'label' => esc_html('Border Radius'),

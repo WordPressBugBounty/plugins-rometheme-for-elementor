@@ -13,7 +13,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['linechart']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['linechart']['icon'];
         return $icon;
     }
 
@@ -24,7 +24,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-line-chart-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-line-chart-widget/';
     }
 
     public function get_script_depends()
@@ -95,18 +95,29 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'fill_bg',
-			[
-				'label' => esc_html__( 'Fill Background ?', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'custom_panel_notice',
+            [
+                'type' => \Elementor\Controls_Manager::NOTICE,
+                'notice_type' => 'warning',
+                'dismissible' => true,
+                'heading' => esc_html__('Global Color Not Working', 'rometheme-for-elementor'),
+                'content' => esc_html__('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain'),
+            ]
+        );
 
-        $this->add_control('fill_bg_color' , [
+        $this->add_control(
+            'fill_bg',
+            [
+                'label' => esc_html__('Fill Background ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control('fill_bg_color', [
             'label' => esc_html('Background Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => 'rgba(75, 192, 192 , 0.1)',
@@ -123,7 +134,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('point_style' , [
+        $this->add_control('point_style', [
             'label' => esc_html('Point Style'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
@@ -387,27 +398,27 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'grid_x_options',
-			[
-				'label' => esc_html__( 'Grid X', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'grid_x_options',
+            [
+                'label' => esc_html__('Grid X', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_control(
-			'show_grid_x',
-			[
-				'label' => esc_html__( 'Show Grid X', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'show_grid_x',
+            [
+                'label' => esc_html__('Show Grid X', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
-        $this->add_control('grid_x_color' , [
+        $this->add_control('grid_x_color', [
             'label' => esc_html('Grid X Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',
@@ -417,27 +428,27 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'grid_y_options',
-			[
-				'label' => esc_html__( 'Grid Y', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'grid_y_options',
+            [
+                'label' => esc_html__('Grid Y', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_control(
-			'show_grid_y',
-			[
-				'label' => esc_html__( 'Show Grid Y', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'show_grid_y',
+            [
+                'label' => esc_html__('Show Grid Y', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
-        $this->add_control('grid_y_color' , [
+        $this->add_control('grid_y_color', [
             'label' => esc_html('Grid X Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',
@@ -567,10 +578,10 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             'hoverBorderWidth' => $settings['border_width_hover']['size'],
             'pointRadius' => !empty($settings['point_size_normal']['size']) ? $settings['point_size_normal']['size'] : 3,
             'pointHoverRadius' => !empty($settings['point_size_hover']['size']) ? $settings['point_size_hover']['size'] : 4,
-            'pointStyle' => $settings['point_style'] ,
-            'tension' => !empty($settings['tension']['size']) ? floatval( $settings['tension']['size'] / 100 ) : 0.1 ,
-            'fill' => ($settings['fill_bg'] === 'yes') ? true : false ,
-            'backgroundColor' => $settings['fill_bg_color'] ,
+            'pointStyle' => $settings['point_style'],
+            'tension' => !empty($settings['tension']['size']) ? floatval($settings['tension']['size'] / 100) : 0.1,
+            'fill' => ($settings['fill_bg'] === 'yes') ? true : false,
+            'backgroundColor' => $settings['fill_bg_color'],
             'showLine' => true
         ];
 

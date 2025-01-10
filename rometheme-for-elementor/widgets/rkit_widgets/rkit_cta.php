@@ -26,7 +26,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-call-to-action-widget/s';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-call-to-action-widget/';
     }
 
     public function get_style_depends()
@@ -356,6 +356,38 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
+        $this->start_controls_tabs('box_tabs' , ['condition' => [
+            'select_skin' => 'classic'
+        ]]);
+
+        $this->start_controls_tab('box_tab_normal' , ['label' => esc_html("Normal")]);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'box_background_normal',
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .rkit-cta',
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('box_tab_hover' , ['label' => esc_html("Hover")]);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'box_background_hover',
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .rkit-cta:hover',
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->add_control(
             'align_hr',
             [
@@ -500,6 +532,15 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_responsive_control('box_radius', [
+            'label' => esc_html('Border Radius'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'rem', 'em'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-cta' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+            ]
+        ]);
+
         $this->add_control(
             'img_options',
             [
@@ -508,6 +549,18 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
+        $this->add_responsive_control('image_radius', [
+            'label' => esc_html('Border Radius'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'rem', 'em'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-cta-img__wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+            ],
+            'condition' => [
+                'select_skin' => 'classic',
+            ]
+        ]);
 
         $this->add_responsive_control('image_width', [
             'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -791,17 +844,6 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->start_controls_tabs('colors_tab');
 
         $this->start_controls_tab('colors_tab_normal', ['label' => esc_html('Normal')]);
-        $this->add_control('content_bg_normal', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#fff',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-cta-container-classic .rkit-cta-content__wrapper' => 'background-color:{{VALUE}}'
-            ],
-            'condition' => [
-                'select_skin' => 'classic'
-            ]
-        ]);
 
         $this->add_control('title_color_normal', [
             'label' => esc_html('Title Color'),
@@ -824,16 +866,6 @@ class CTA_Rkit extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('colors_tab_hover', ['label' => esc_html('Hover')]);
-        $this->add_control('content_bg_hover', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-cta-container-classic:hover .rkit-cta-content__wrapper' => 'background-color:{{VALUE}}'
-            ],
-            'condition' => [
-                'select_skin' => 'classic'
-            ]
-        ]);
 
         $this->add_control('title_color_hover', [
             'label' => esc_html('Title Color'),

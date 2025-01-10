@@ -167,7 +167,16 @@
     "status": true,
     "type": "free"
   },
-  "pricelist": {
+  "rkitpostblock": {
+    "name": "Post Block",
+    "icon": "rtmicon rtmicon-image-info",
+    "class_name": "RkitPostBlock",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+
+  "pricetable": {
     "name": "Pricing Table",
     "icon": "rtmicon rtmicon-price-table",
     "class_name": "Rkit_Pricelist",
@@ -175,6 +184,7 @@
     "status": true,
     "type": "free"
   },
+
   "countdown": {
     "name": "Countdown",
     "icon": "rtmicon rtmicon-countdown",
@@ -183,34 +193,67 @@
     "status": true,
     "type": "free"
   },
-  "rkitpostblock" : {
-    "name": "Post Block",
-    "icon": "rtmicon rtmicon-image-info" ,
-    "class_name": "RkitPostBlock",
-    "category": "rkit",
-    "status": true,
-    "type": "free"
-  },
-  "imagecomparison" : {
-    "name" : "Image Comparison",
+
+  "imagecomparison": {
+    "name": "Image Comparison",
     "icon": "rtmicon rtmicon-image-comparison",
     "class_name": "Rkit_Imagecomparison",
     "category": "rkit",
     "status": true,
     "type": "free"
   },
-  "postlist" : {
-    "name" : "Post List",
+  "postlist": {
+    "name": "Post List",
     "icon": "rtmicon rtmicon-post-list",
     "class_name": "Rkit_Postlist",
     "category": "rkit",
     "status": true,
     "type": "free"
   },
-  "advancedheading" : {
-    "name" : "Advanced Heading",
+  "advancedheading": {
+    "name": "Advanced Heading",
     "icon": "rtmicon rtmicon-advanced-heading",
     "class_name": "Rkit_advanced_heading",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "imagebox": {
+    "name": "Image Box",
+    "icon": "eicon-image-box",
+    "class_name": "Rkit_image_box",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "imageaccordion": {
+    "name": "Image Accordion",
+    "icon": "eicon-accordion",
+    "class_name": "Rkit_image_accordion",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "image_gallery": {
+    "name": "Image Gallery",
+    "icon": "eicon-gallery-masonry",
+    "class_name": "Rkit_image_gallery",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "dualbutton": {
+    "name": "Dual Button",
+    "icon": "eicon-dual-button",
+    "class_name": "Rkit_dual_button",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+  "home_slider": {
+    "name": "Hero Slider",
+    "icon": "eicon-slider-album",
+    "class_name": "Rkit_home_slider",
     "category": "rkit",
     "status": true,
     "type": "free"

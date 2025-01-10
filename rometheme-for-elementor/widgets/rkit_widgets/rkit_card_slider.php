@@ -28,7 +28,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-card-slider-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-card-slider-widget/';
     }
 
     public function get_style_depends()
@@ -102,7 +102,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'placeholder' => esc_html__('Type your title here', 'rometheme-for-elementor'),
-            ]
+            ] 
         );
 
         $card_list->add_control(
@@ -155,7 +155,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -163,7 +163,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #2', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -171,7 +171,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #3', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -179,7 +179,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #4', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]

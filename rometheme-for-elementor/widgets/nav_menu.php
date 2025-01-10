@@ -8,7 +8,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
     }
     public function get_title()
     {
-        return \RomethemeKit\RkitWidgets::listWidgets()['navmenu']['name'];
+        return 'Nav Menu';
     }
     public function get_categories()
     {
@@ -16,8 +16,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
     }
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['navmenu']['icon'];
-        return $icon;
+        return 'rkit-widget-icon rtmicon rtmicon-nav-menu';
     }
     public function get_keywords()
     {
@@ -26,7 +25,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-add-nav-menu-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-nav-menu-widget/';
     }
 
     public function get_style_depends()
@@ -200,21 +199,6 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('pointer-color', [
-            'label' => esc_html('Pointer Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .pointer-underline,
-                    {{WRAPPER}} .pointer-overline,
-                    {{WRAPPER}} .pointer-doubleline,
-                    {{WRAPPER}} .pointer-framed,
-                    {{WRAPPER}} .pointer-bg' => '--pointer-color:{{VALUE}}'
-            ],
-            'condition' => [
-                'pointer_select!' => ['']
-            ]
-        ]);
-
         $this->add_control(
             'mobile_options',
             [
@@ -252,11 +236,11 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     ],
                 ],
                 'tablet_default' => [
-                    'size' => 25,
+                    'size' => 0,
                     'unit' => 'px'
                 ],
                 'mobile_default' => [
-                    'size' => 15,
+                    'size' => 0,
                     'unit' => 'px'
                 ],
                 'selectors' => [
@@ -415,7 +399,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Hamburger Icon Close', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-times',
+                    'value' => 'rtmicon rtmicon-xmark',
                     'library' => 'rtmicons',
                 ],
             ]
@@ -446,12 +430,16 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'fields_options' => [
                     'color' => [
                         'responsive' => true,
+                        'desktop_default' => '#ffffff00',
+                        'tablet_default' => '#eeeeee',
+                        'meobile_default' => '#eeeeee',
                     ],
                     'color_b' => [
                         'responsive' => true,
                     ],
                     'background' => [
                         'responsive' => true,
+                        'default' => 'classic'
                     ],
                 ],
             ]
@@ -477,19 +465,19 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [
-                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Left', 'textdomain'),
                     'icon' => 'eicon-justify-start-h',
                 ],
                 'center' => [
-                    'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Center', 'textdomain'),
                     'icon' => 'eicon-justify-center-h',
                 ],
                 'end' => [
-                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Right', 'textdomain'),
                     'icon' => 'eicon-justify-end-h',
                 ],
                 'space-between' => [
-                    'title' => esc_html__('Justified', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Justified', 'textdomain'),
                     'icon' => 'eicon-justify-space-between-h',
                 ],
             ],
@@ -545,7 +533,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 12,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-menu-item  > .rkit-nav-link' => 'padding-block: {{SIZE}}{{UNIT}};',
@@ -796,7 +784,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 10,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'padding-block: {{SIZE}}{{UNIT}};',
@@ -872,32 +860,32 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'submenu_text_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Left', 'textdomain'),
                         'icon' => 'eicon-justify-start-h',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Center', 'textdomain'),
                         'icon' => 'eicon-justify-center-h',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Right', 'textdomain'),
                         'icon' => 'eicon-justify-end-h',
                     ],
                     'space-between' => [
-                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Justified', 'textdomain'),
                         'icon' => 'eicon-justify-space-between-h',
                     ],
                 ],
                 'default' => 'start',
                 'toggle' => true,
-                'description' => esc_html__('The alignment settings will only affect the responsive mode and will not have any effect on the desktop mode.', 'rometheme-for-elementor'),
+                // 'description' => esc_html__('`The alignment settings will only affect the responsive mode and will not have any effect on the desktop mode.`', 'rometheme-for-elementor'),
                 'selectors' => [
                     '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'justify-content: {{VALUE}};',
                 ],
@@ -1023,7 +1011,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [
-                    'title' => esc_html__('Start', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
                     'icon' => 'eicon-text-align-left',
                 ],
                 'center' => [
@@ -1031,10 +1019,11 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                     'icon' => 'eicon-text-align-center',
                 ],
                 'end' => [
-                    'title' => esc_html__('End', 'rometheme-for-elementor'),
+                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
                     'icon' => 'eicon-text-align-right',
                 ],
             ],
+            'default' => 'end',
             'toggle' => true,
             'selectors' => [
                 '{{WRAPPER}} .rkit-hamburger-tablet' => 'justify-content: {{VALUE}}',

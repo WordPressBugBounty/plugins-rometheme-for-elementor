@@ -22,7 +22,7 @@ $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget
         <div class="row row-cols-xl-2 row-cols-1 rtm-text-font py-5">
             <div class="col col-xl-7">
                 <div class="d-flex flex-column gap-4 px-4">
-                    <span class="accent-color">Rometheme Widgets</span>
+                    <span class="accent-color">RomethemeKit Widgets</span>
                     <h1 class="text-white m-0" style="max-width: 32rem">
                         For A Better Experience,
                         Turn Off And On The Widgets

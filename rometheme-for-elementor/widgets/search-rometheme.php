@@ -11,13 +11,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return \RomethemeKit\RkitWidgets::listWidgets()['search']['name'];
+        return 'Search';
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['search']['icon'];
-        return $icon;
+        return 'rkit-widget-icon rtmicon rtmicon-search';
     }
 
     public function get_categories()
@@ -27,7 +26,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-search-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-search-widget/';
     }
 
     public function get_style_depends()
@@ -50,19 +49,19 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
             'search_text',
             [
-                'label' => esc_html__('Sumbit Text', 'rometheme-for-elementor'),
+                'label' => esc_html__('Sumbit Text', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Search', 'rometheme-for-elementor'),
+                'default' => esc_html__('Search', 'textdomain'),
             ]
         );
 
         $this->add_control(
             'show_icon',
             [
-                'label' => esc_html__('Submit Icon', 'rometheme-for-elementor'),
+                'label' => esc_html__('Submit Icon', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'label_on' => esc_html__('Show', 'textdomain'),
+                'label_off' => esc_html__('Hide', 'textdomain'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -103,10 +102,10 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
             'autocomplete',
             [
-                'label' => esc_html__('Autocomplete', 'rometheme-for-elementor'),
+                'label' => esc_html__('Autocomplete', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'label_on' => esc_html__('Show', 'textdomain'),
+                'label_off' => esc_html__('Hide', 'textdomain'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -158,7 +157,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'input_spacing',
 			[
-				'label' => esc_html__( 'Gap between input and button', 'rometheme-for-elementor' ),
+				'label' => esc_html__( 'Gap between input and button', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [
@@ -276,15 +275,15 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'icon_position',
 			[
-				'label' => esc_html__( 'Icon Position', 'rometheme-for-elementor' ),
+				'label' => esc_html__( 'Icon Position', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'row' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
+						'title' => esc_html__( 'Left', 'textdomain' ),
 						'icon' => 'eicon-h-align-left',
 					],
 					'row-reverse' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
+						'title' => esc_html__( 'Right', 'textdomain' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
@@ -302,7 +301,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('Icon Spacing', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -330,7 +329,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'search_icon_size',
             [
-                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Icon Size', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [

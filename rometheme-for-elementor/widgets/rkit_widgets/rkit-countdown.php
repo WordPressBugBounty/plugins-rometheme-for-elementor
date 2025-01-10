@@ -10,6 +10,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
     public function get_title()
     {
         return \RomethemeKit\RkitWidgets::listWidgets()['countdown']['name'];
+        
     }
 
     public function get_icon()
@@ -30,7 +31,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
     public function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
     }
 
     public function get_style_depends()
@@ -41,8 +42,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return ['countdown-script'];
-    }
-
+    } 
     public function get_next_date()
     {
         $nextDate = date('Y-m-d H:i:s', strtotime('+30 days'));
@@ -171,7 +171,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_options',
             [
-                'label' => esc_html__('Label', 'rometheme-for-elementor'),
+                'label' => esc_html__('Label', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -193,11 +193,11 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_position',
             [
-                'label' => esc_html__('Label Potition', 'rometheme-for-elementor'),
+                'label' => esc_html__('Label Potition', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'row' => esc_html__('Center', 'rometheme-for-elementor'),
-                    'column'  => esc_html__('Bottom', 'rometheme-for-elementor'),
+                    'row' => esc_html__('Center', 'textdomain'),
+                    'column'  => esc_html__('Bottom', 'textdomain'),
                 ],
                 'condition' => [
                     'show_label' => 'yes',
@@ -448,7 +448,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssa',
             [
-                'label' => esc_html__('Background Time', 'rometheme-for-elementor'),
+                'label' => esc_html__('Background Time', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -466,7 +466,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssssa',
             [
-                'label' => esc_html__('Container Time', 'rometheme-for-elementor'),
+                'label' => esc_html__('Container Time', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -486,6 +486,24 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
 
         $this->add_responsive_control(
+            'item_gap',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 600,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .countdown_contain' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'item_width',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -502,7 +520,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
             ]
         );
-
+        
 
         $this->end_controls_section();
 
@@ -543,7 +561,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_margin',
             [
-                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('Spacing', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -654,7 +672,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'expired_title_padding',
             [
-                'label' => esc_html__('Tittle Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Tittle Padding', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -731,7 +749,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'expired_description_padding',
             [
-                'label' => esc_html__('Description Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Description Padding', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [

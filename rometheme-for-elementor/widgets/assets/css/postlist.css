@@ -18,14 +18,23 @@
     justify-content: center;   */
 }
 
-.rkit-item-thumbnail img {
+.rkit-item-thumbnail img { 
     max-height: 100%;  
-    width: auto;  
+    width: 125px;  
 }
   .rkit-item-content {
     flex-grow: 1; /* Konten memenuhi sisa ruang */
   }
-  
+
+  .rkit-content-reverse{
+    justify-items : end;
+  }
+
+  .rkit-content-normal{
+    justify-items : start;
+  }
+
+
   .rkit-title-postlist {
     font-size: 18px;
     font-weight: bold;
@@ -116,9 +125,9 @@ a.rkit-readmore-postlist-btn:hover {
 
   /* Default styles (untuk layar desktop dan tablet) sudah diatur seperti sebelumnya */
 
-@media (max-width: 768px) { 
+@media (max-width: 926px) { 
     .rkit-item-postlist {
-      flex-direction: column !important;  
+      flex-direction: column;  
       align-items: center; 
       text-align: center;  
     }

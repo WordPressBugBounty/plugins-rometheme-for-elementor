@@ -48,6 +48,9 @@ $page = $_GET['page'];
                 <a href="<?php echo esc_url(admin_url('admin.php?page=themebuilder')) ?>" class="nav-link <?php echo ($page == 'themebuilder') ? esc_attr('active') : '' ?>">Theme Builder</a>
             </li>
             <li class="nav-item m-0">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates')) ?>" class="nav-link <?php echo ($page == 'rtmkit-templates') ? esc_attr('active') : '' ?>">Templates</a>
+            </li>
+            <li class="nav-item m-0">
                 <a href="<?php echo esc_url(admin_url('admin.php?page=rkit-system-status')) ?>" class="nav-link <?php echo ($page == 'rkit-system-status') ? esc_attr('active') : '' ?>">System Status</a>
             </li>
             <li class="nav-item m-0">

@@ -24,7 +24,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/hot-to-use-customize-bar-chart-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-bar-chart-widget/';
     }
 
     public function get_script_depends()
@@ -95,6 +95,17 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
+			'custom_panel_notice',
+			[
+				'type' => \Elementor\Controls_Manager::NOTICE,
+				'notice_type' => 'warning',
+				'dismissible' => true,
+				'heading' => esc_html__( 'Global Color Not Working', 'rometheme-for-elementor' ),
+				'content' => esc_html__( 'Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain' ),
+			]
+		);
+
+        $this->add_control(
             'bar_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -111,6 +122,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         $this->add_control('bar_bg_normal', [
             'label' => esc_html('Background'),
             'type' => \Elementor\Controls_Manager::COLOR,
+            'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
             'default' => 'rgba(75, 192, 192, 0.2)'
         ]);
 
@@ -125,6 +137,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         $this->add_control('bar_border_normal', [
             'label' => esc_html('Border Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
+            'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
             'default' => 'rgba(75, 192, 192, 1)'
         ]);
 
@@ -136,6 +149,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
 
         $this->add_control('bar_bg_hover', [
             'label' => esc_html('Background'),
+            'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => 'rgba(75, 192, 192, 1)'
         ]);
@@ -151,6 +165,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         $this->add_control('bar_border_hover', [
             'label' => esc_html('Border Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
+            'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
             'default' => 'rgba(75, 192, 192, 1)'
         ]);
 
@@ -197,6 +212,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         $this->add_control('scale_x_color', [
             'label'  => esc_html('Font Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
+            'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
             'default' => '#000000',
             'condition' => [
                 'show_scale_x' => 'yes'

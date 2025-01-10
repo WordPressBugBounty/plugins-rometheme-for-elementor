@@ -224,6 +224,10 @@
   overflow: visible;
 }
 
+.rkit-animated-heading__text {
+  color: #00cea6;
+}
+
 .rkit-highlighted.in_front svg {
   z-index: 2 !important;
 }

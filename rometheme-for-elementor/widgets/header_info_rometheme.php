@@ -9,12 +9,11 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return \RomethemeKit\RkitWidgets::listWidgets()['headerinfo']['name'];
+        return 'Header Info';
     }
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['headerinfo']['icon'];
-        return $icon;
+        return 'rkit-widget-icon rtmicon rtmicon-header-info';
     }
     public function get_categories()
     {
@@ -26,7 +25,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
     }
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-add-header-info-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-header-info-widget/';
     }
     public function get_style_depends()
     {
@@ -70,8 +69,8 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
                 'label_block'   => true,
                 'type'          => \Elementor\Controls_Manager::ICONS,
                 'default'       => [
-                    'value'         => 'rtmicon rtmicon-location',
-                    'library'       => 'fa-solid',
+                    'value'         => 'rtmicon rtmicon-pin-map-location',
+                    'library'       => 'rtmicons-regular',
                 ],
 
             ]

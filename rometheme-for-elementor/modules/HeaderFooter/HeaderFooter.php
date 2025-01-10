@@ -2,9 +2,6 @@
 
 namespace Rometheme\HeaderFooter;
 
-use RomeTheme;
-use WP_Query;
-
 class HeaderFooter
 {
 
@@ -14,6 +11,7 @@ class HeaderFooter
     function __construct()
     {
         add_action('init', [$this, 'rometheme_header_post_type']);
+        add_action('rest_api_init' , [$this , 'cpt_rest_init']);
         add_action('admin_footer', [$this, 'menu_ui']);
         $this->dir = dirname(__FILE__) . '/';
         $this->url = \RomeTheme::module_url() . 'HeaderFooter/';
@@ -65,6 +63,7 @@ class HeaderFooter
             'exclude_from_search' => true,
             'capability_type'     => 'page',
             'hierarchical'        => false,
+            'show_in_rest' => true,
             'supports'            => array('title', 'thumbnail', 'elementor'),
         );
         register_post_type('rometheme_template', $args);
@@ -269,7 +268,6 @@ class HeaderFooter
         ob_start();
         locate_template($templates, true);
         ob_get_clean();
-       
     }
 
     public function override_footer_template()
@@ -290,7 +288,6 @@ class HeaderFooter
         foreach ($headers as $header) {
             $header_id = $header->ID;
             $condition = get_post_meta($header_id, 'rometheme_template_condition', true);
-
             if ($this->rtm_location_template($condition)) {
                 $header_html = '<header id="masthead" itemscope="itemscope" itemtype="https://schema.org/WPHeader">%s</header>';
                 echo sprintf($header_html, $this->get_header_content($header_id));
@@ -303,7 +300,7 @@ class HeaderFooter
         $footers = $this->get_footer_template();
         foreach ($footers as $footer) {
             $footer_id = $footer->ID;
-            $condition = get_post_meta($footer_id, 'rometheme_template_condition');
+            $condition = get_post_meta($footer_id, 'rometheme_template_condition', true);
             if ($this->rtm_location_template($condition)) {
                 $footer_html = '<footer itemscope="itemscope" itemtype="https://schema.org/WPFooter">%s</footer>';
                 echo sprintf($footer_html, $this->get_footer_content($footer_id));
@@ -398,5 +395,21 @@ class HeaderFooter
         } else {
             return true;
         }
+    }
+
+    public function cpt_rest_init()
+    {
+        // Nama CPT, ganti dengan slug CPT Anda
+        $cpt_slug = 'rometheme_template';
+
+        // Tambahkan post meta ke dalam respons REST API untuk CPT
+        register_rest_field($cpt_slug, 'metadata', [
+            'get_callback' => function ($object) {
+                // Ambil semua meta terkait post ini
+                return get_post_meta($object['id']);
+            },
+            'update_callback' => null, // Opsional: bisa ditambahkan jika ingin mengubah meta
+            'schema' => null,
+        ]);
     }
 }

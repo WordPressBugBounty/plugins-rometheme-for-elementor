@@ -22,7 +22,7 @@ class Rkit_Team extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-add-customize-team-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-team-widget/';
     }
 
     public function get_style_depends()
@@ -53,16 +53,16 @@ class Rkit_Team extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'pointer_effect',
-			[
-				'label' => esc_html__( 'Pointer Effect', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'pointer',
-				'default' => 'pointer',
-			]
-		);
+            'pointer_effect',
+            [
+                'label' => esc_html__('Pointer Effect', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'pointer',
+                'default' => 'pointer',
+            ]
+        );
 
         $this->add_control(
             'member_image',
@@ -152,14 +152,14 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $socmed->add_control(
-            'social_label',
-            [
-                'label' => esc_html__('Label', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your label here', 'rometheme-for-elementor'),
-            ]
-        );
+        // $socmed->add_control(
+        //     'social_label',
+        //     [
+        //         'label' => esc_html__('Label', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::TEXT,
+        //         'placeholder' => esc_html__('Type your label here', 'rometheme-for-elementor'),
+        //     ]
+        // );
 
         $socmed->add_control(
             'social_link',
@@ -205,26 +205,26 @@ class Rkit_Team extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'pointer_size',
-			[
-				'label' => esc_html__( 'Pointer Size', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px',  'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 2,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-team-card.pointer' => '--pointer-size: {{SIZE}}{{UNIT}};',
-				],
+            'pointer_size',
+            [
+                'label' => esc_html__('Pointer Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px',  'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 2,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team-card.pointer' => '--pointer-size: {{SIZE}}{{UNIT}};',
+                ],
                 'condition' => [
                     'pointer_effect' => 'pointer'
                 ]
-			]
-		);
+            ]
+        );
 
         $this->add_responsive_control(
             'box_padding',
@@ -287,16 +287,16 @@ class Rkit_Team extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'pointer_options_normal',
-			[
-				'label' => esc_html__( 'Pointer', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
+            'pointer_options_normal',
+            [
+                'label' => esc_html__('Pointer', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
                 'condition' => [
                     'pointer_effect' => 'pointer'
                 ]
-			]
-		);
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -304,6 +304,14 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'name' => 'pointer_background_normal',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-team-card.pointer::before',
+                'fields_options' => [
+                    'color' => [
+                        'default' => '#00cea6'
+                    ],
+                    'background' => [
+                        'default' => 'classic'
+                    ]
+                ],
                 'condition' => [
                     'pointer_effect' => 'pointer'
                 ]
@@ -359,16 +367,16 @@ class Rkit_Team extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'pointer_options_hover',
-			[
-				'label' => esc_html__( 'Pointer', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
+            'pointer_options_hover',
+            [
+                'label' => esc_html__('Pointer', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
                 'condition' => [
                     'pointer_effect' => 'pointer'
                 ]
-			]
-		);
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -376,6 +384,14 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'name' => 'pointer_background_hover',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-team-card.pointer::after',
+                'fields_options' => [
+                    'color' => [
+                        'default' => '#F0ABFC'
+                    ],
+                    'background' => [
+                        'default' => 'classic'
+                    ]
+                ],
                 'condition' => [
                     'pointer_effect' => 'pointer'
                 ]
@@ -394,7 +410,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control('image_hover_effect' , [
+        $this->add_control('image_hover_effect', [
             'label' => esc_html('Hover Effect'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
@@ -463,16 +479,16 @@ class Rkit_Team extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'image_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem' ],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-team__img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'image_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 

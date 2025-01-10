@@ -12,6 +12,10 @@
     margin : 0px 0px 20px 0px;
 }
 
+.rkit-blockquote__icon {
+    color: #00cea6;
+}
+
 .blockquote-top .rkit-quote-icon{
     display: flex;  
     align-items: center;
@@ -38,7 +42,7 @@
 
 .blockquote-absolute .rkit-quote-icon {
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     left : 0;
     right: 0;
     top: 0;

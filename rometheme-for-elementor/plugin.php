@@ -1,5 +1,4 @@
 <?php
-
 namespace RomethemePlugin;
 
 use Custom_Template_Control;
@@ -49,7 +48,18 @@ class Plugin
         wp_enqueue_style('rkit-pricelist-style', \RomeTheme::widget_url() . 'assets/css/pricelist.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('advanced_heading-style', \RomeTheme::widget_url() . 'assets/css/advanced_heading.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('image_comparison-style', \RomeTheme::widget_url() . 'assets/css/image_comparison.css', '', \RomeTheme::rt_version());
-        wp_enqueue_style('postlist-style', \RomeTheme::widget_url() . 'assets/css/postlist.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-client_carousel-style', \RomeTheme::widget_url() . 'assets/css/client_carousel.css', '', \RomeTheme::rt_version());
+         wp_enqueue_style('postlist-style', \RomeTheme::widget_url() . 'assets/css/postlist.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('pricebox-style', \RomeTheme::widget_url() . 'assets/css/pricingbox.css', '', \RomeTheme::rt_version());
+        // wp_enqueue_style('post_carousel-style', \RomeTheme::widget_url() . 'assets/css/post_carousel.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('advanced_heading-style', \RomeTheme::widget_url() . 'assets/css/advanced_heading.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-image_box-style', \RomeTheme::widget_url() . 'assets/css/image_box.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-image_accordion-style', \RomeTheme::widget_url() . 'assets/css/image_accordion.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-dual_button-style', \RomeTheme::widget_url() . 'assets/css/dual_button.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('price_list-style', \RomeTheme::widget_url() . 'assets/css/price_list.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-image_gallery-style', \RomeTheme::widget_url() . 'assets/css/image_gallery.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-home-slider-style', \RomeTheme::widget_url() . 'assets/css/home_slider.css', '', \RomeTheme::rt_version());
+    
     }
 
     public static function register_widget_scripts()
@@ -73,6 +83,13 @@ class Plugin
         wp_enqueue_script('rkit-counter-script', \RomeTheme::widget_url() . 'assets/js/counter.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('rkit-countdown-script', \RomeTheme::widget_url() . 'assets/js/countdown.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('rkit-image-comparison-script', \RomeTheme::widget_url() . 'assets/js/image_comparison.js', ['jquery'], \RomeTheme::rt_version(), true);
+        wp_enqueue_script('clientlogo-script', \RomeTheme::widget_url() . 'assets/js/client_carousel.js', ['jquery'], \RomeTheme::rt_version(), true);
+        wp_enqueue_script('rkit-image_comparison-script', \RomeTheme::widget_url() . 'assets/js/image_comparison.js', ['jquery'], \RomeTheme::rt_version(), true);
+        // wp_enqueue_script('rkit-post_carousel-script', \RomeTheme::widget_url() . 'assets/js/post_carousel.js', ['jquery'], \RomeTheme::rt_version(),true);
+        wp_enqueue_script('rkit-image_accordion-script', \RomeTheme::widget_url() . 'assets/js/image_accordion.js', ['jquery'], \RomeTheme::rt_version(),true);
+        wp_enqueue_script('rkit-image_gallery-script', \RomeTheme::widget_url() . 'assets/js/image_gallery.js', ['jquery'], \RomeTheme::rt_version(),true);
+        wp_enqueue_script('rkit-image_gallery_masonry-script', \RomeTheme::widget_url() . 'assets/js/masonry.pkgd.min.js', ['jquery'], \RomeTheme::rt_version(),true);
+        wp_enqueue_script('rkit-image_gallery_masonry_loaded-script', \RomeTheme::widget_url() . 'assets/js/imagesloaded.pkgd.min.js', ['jquery'], \RomeTheme::rt_version(),true);
     }
 
     public static function  add_elementor_widget_categories($elements_manager)

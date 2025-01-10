@@ -1,6 +1,8 @@
 .rkit-cta {
     overflow: hidden;
     position: relative;
+    background: white;
+    transition: all 0.5s;
 }
 
 .rkit-cta-container-classic {
@@ -100,10 +102,6 @@
     display: flex;
     flex-direction: column;
     padding : 30px;
-}
-
-.rkit-cta-container-classic .rkit-cta-content__wrapper {
-    background-color: white;
 }
 
 .rkit-cta .rkit-cta-title {

@@ -21,12 +21,12 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-blog-post-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-grid-widget/';
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['blogpost']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['blogpost']['icon'];
         return $icon;
     }
     public function get_style_depends()
@@ -164,7 +164,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->add_control('truncate-content', [
             'label' => esc_html__('Crop Content By Word', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::NUMBER,
-            'default' => 25,
+            'default' => 15,
             'condition' => [
                 'show-content' => 'yes'
             ]
@@ -188,7 +188,8 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 
         $this->add_control('post-count', [
             'label' => esc_html__('Post Count', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::NUMBER
+            'type' => \Elementor\Controls_Manager::NUMBER,
+            'default' => 3
         ]);
 
         $this->add_control('select-post', [
@@ -325,7 +326,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'label' => esc_html__('Author', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-user-circle',
+                    'value' => 'rtmicon rtmicon-circle-user',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -506,7 +507,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('wrapper_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
-        
         $this->add_control(
             'card_hover_animation',
             [
@@ -667,6 +667,30 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'label' => esc_html__('Content Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
+            'default' => [
+                'top' => 30,
+                'right' => 30,
+                'bottom' => 30,
+                'left' => 30,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
+            'tablet_default' => [
+                'top' => 30,
+                'right' => 30,
+                'bottom' => 30,
+                'left' => 30,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
+            'mobile_default' => [
+                'top' => 20,
+                'right' => 20,
+                'bottom' => 20,
+                'left' => 20,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
             'selectors' => [
                 '{{WRAPPER}} .rkit-post-grid-body' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
@@ -1998,7 +2022,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             <?php if ('yes' === $settings['show-floating-date']) : ?>
                                 <div class="rkit-float-metawrapper-date">
                                     <span><?php echo '<strong>' . get_the_date('d') . '</strong>' . get_the_date('M'); ?></span>
-                                </div>
+                                </div>   
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>

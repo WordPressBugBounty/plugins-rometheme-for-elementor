@@ -1,60 +1,99 @@
 === RomethemeKit For Elementor ===
 Contributors: dickoandrean
 Tags: addons, widget, elementor, header footer, extension
-Requires at least: 6.1
-Tested up to: 6.4.3
-Requires PHP: 7.0
-Stable tag: 1.5.2
+Requires at least: 6.6
+Tested up to: 6.7.1
+Requires PHP: 7.4
+Stable tag: 1.5.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-RomethemeKit for Elementor Page Builder is the best toolkit solution for Elementor, build Elementor websites faster and easier than ever.
+The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
 
 == Description ==
-RomethemeKit for Elementor Page Builder is the best toolkit solution for Elementor, It includes a Header and Footer layout builder and also comes with 25+ Elementor addons, 100+ Elementor Templates KIT (Growing Each Week),  and premade widget blocks for Elementor websites. With RomethemeKit, build Elementor websites faster and easier than ever! New Elementor widgets and features will be uploaded and improved regularly.
+Revolutionize your website-building process with 58+ highly customizable addons, 50+ premade templates, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
 
+### Useful Links
+[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
-FEATURES
-- Header and Footer Builder. Create a Header or Footer template for the entire site or with specific conditions.
-- Widgets Control option. Enable and disable individual Elementor adding to make your page load faster and smoother. You can deactivate unnecessary widgets to keep the site lite.
-- System status check. Diagnostic tool to ensure that your WordPress environment meets the requirements for running Elementor smoothly.
-- Icon pack. 100+ icons ready to use to make your site more beautiful.
+### (NEW) Pre-made Template Kits
+Explore our expanding library of template kits, available in both the free and PRO versions of RomethemeKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
 
-WHAT IS NEW ?
-• New Widget: Image Comparison
-• New Widget: Post List
-• New Widget Advanced Heading
-• New RTM Icon Pack (Regular & Thin)
-• Restructured user interface for improved usability and navigation
-• Enhanced color schemes to provide a fresher look and feel
+### Widgets Control: 
+Enable or disable individual Elementor addons to optimize page load speed and site performance.
 
-40+ FREE CUSTOM WIDGETS
-Header Addons:
-• Header Offcanvas – Header Offcanvas allows the user to display sidebar content like the demo and registration when the specific button is triggered.
-• Search – Search is a simple search widget that provides interactive search fields on your webpage for your users. You can get a simple search, and modal options also.
-• Site Logo – Display your logo.
-• Header Info – Display business or contact info.
-• Nav Menu – Create a dropdown navigation menu. Allow your users to navigate to another page.
+### Theme Builder:
+Easily create and modify the entire layout of your website, giving you total control over its look and feel.
 
-Other Addons:
-• Blog Post – Display a list of your posts on the page.
-• Call To Action – Bring an image, button, content, and other features under one box with the call to action widget.
-• Blockquote – Important quotes or testimonials within an eye-catching quotation box.
-• Social Share – Add a social button and share your post to social media when the button is clicked.
-• Team – Show off your team members with names, positions, bios, pictures, and social media links.
-• Text Marquee – Horizontal scrolling text on your website for dynamic content presentation.
-• Animated Heading – add animation in the heading of your content.
-• Card Slider – Display two or more pieces of content in a carousel format.
-• Accordion – Add collapsable content. Suitable for FAQ content.
-• Testimonial Carousel – Showcase customer reviews & increase credibility.
-• Advanced Tabs – Display information neatly in nested tabs
-• Progress Bar – Highlight your skill stats with the help of Animated progress bars.
-• Counter – An impressive widget that allows you to show important facts on your website.
+### Form Builder:
+Integrates with RomethemeForm to effortlessly create advanced forms using the drag-and-drop form builder, making it ideal for designing various types of forms without the need for coding.
 
-Premium Custom Widget:
-• Bar Chart – Show a graphical representation of data pie charts to see the analytics side of your workflow.
-• Line Chart – Show a graphical representation of data line charts to see the analytics side of your workflow.
-• Pie and Doughnut Chart – Show a graphical representation of data pie and doughnut charts to see the analytics side of your workflow.
+### System Status Check:
+A diagnostic tool to ensure your WordPress environment meets the requirements for running Elementor smoothly.
+
+### Icon Pack: 
+Access a collection of over 1500 icons to enhance your site's design.
+
+### Widgets & Addons Included:
+
+### Header Addons :
+*   Header Offcanvas (FREE): Add an offcanvas header that displays sidebar content, such as demo and registration forms, triggered by a specific button.
+*   Search (FREE): Provide an interactive search widget for your webpage with options for simple search fields or modal-style functionality.
+*   Site Logo (FREE): Showcase your website’s logo with ease.
+*   Header Info (FREE): Display essential business or contact information in the header.
+*   Nav Menu (FREE): Build a dropdown navigation menu to enable seamless user navigation across your website.
+
+### Content Addons :
+*	Blockquote( FREE): Stylishly display quoted text with customizable designs.
+*	Call to Action (FREE): Create engaging buttons or sections to drive user action.
+*	Countdown (FREE): Add a countdown timer for events or promotions.
+*	Counter (FREE): Showcase numeric stats with animated counters.
+*	Image Box (FREE): Combine images and text in an elegant layout.
+*	Dual Button (FREE): Add two buttons side by side for versatile actions.
+*	Carousel Card (FREE): Display card-style content in a responsive carousel.
+*	Slider (FREE): Create dynamic image or content sliders for hero image.
+*	Pricing Table (FREE): Create detailed, visually appealing pricing tables.
+*	Pricing Image Box (PRO): Highlight pricing plans with images and descriptions.
+*	Pricing List (PRO): Display pricing options in a simple, list-based layout.
+*	Progress Bar (FREE): Visually represent progress or achievements.
+*	Team Box (FREE): Introduce your team with profile cards.
+*	Testimonials Carousel (FREE): Display customer testimonials in a rotating carousel.
+*	Social Share (FREE): Add share buttons for easy social media sharing.
+*	Tabs (FREE): Organize content into responsive, clickable tabs.
+*	Accordion (FREE): Display collapsible sections for structured content.
+*	RForm (FREE): Allows you to create simple yet effective forms with ease.
+
+### Chart Addons :
+*	Chart Line (FREE): Visualize data trends with line charts.
+*	Chart Pie & Doughnut (FREE): Create pie and doughnut charts to represent proportions.
+*	Chart Bar (FREE): Showcase data with customizable bar charts.
+
+### Post Addons :
+*	Post Grid (FREE): Display posts in a clean, grid-based layout.
+*	Post Block (FREE): Highlight posts in a block-style design.
+*	Post List (FREE): List posts in a minimal, straightforward format.
+*	Post Carousel (PRO): Showcase posts in an interactive, rotating carousel.
+
+### Heading Addons :
+*	Animated Text (FREE): Create engaging text animations to grab user attention.
+*	Text Marquee (FREE): Add a scrolling text effect for announcements or highlights.
+*	Advanced Heading (FREE): Design customizable headings with unique styles and effects.
+
+### Image & Media Addons :
+*	Image Comparison (FREE): Showcase before-and-after images with an interactive slider.
+*	Image Gallery (FREE): Organize and display images in a customizable gallery.
+*	Image Accordion (FREE): Add interactive accordion-style image layouts.
+*	Image Client Logo Carousel (PRO): Showcase client or partner logos in a carousel.
+
+### Support & Documentation
+Documentation: Start here to explore detailed guides on how to use widgets, features, or troubleshoot common issues.
+Video Tutorials: Access a growing playlist of step-by-step video tutorials covering various widgets and features. New tutorials are added regularly.
+Facebook Community: Join our Facebook group to ask questions, share insights, and get assistance from other Premium Addons users.
+Support : Need direct help? We’re happy to assist Free users with issues that may require access credentials.
+
+Unlock even more features with our [PRO version](https://rometheme.net/pricing/).
+
+Enjoying RomethhemeKit? Show your support by leaving us a rating on WordPress! 😊
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
@@ -63,8 +102,13 @@ Premium Custom Widget:
 4. (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
 
 ==Screenshots==
-1. Welcome Page
-2. Header Footer Page
+1. Dashboard
+2. Widgets
+3. Template
+4. Settings
+5. Icon Packs
+6. Line Chart Widget
+7. Bar Chart Widget
 
 == Frequently Asked Questions ==
 
@@ -92,14 +136,29 @@ Please make sure the WP Memory Limit on your site has set to 128 MB or greater. 
 
 Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on admin dashboard.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
+
 == Changelog ==
+Version 1.5.3
+New : Template Library
+New Widget : Hero Slider
+New Widget : Image Box
+New Widget : Dual Button
+New Widget : Image Gallery Masonry
+Update Widget : Pricing Image Box
+Update Widget : Post Carousel
+Update Widget : Client Carousel
+Update Widget : Testimonial Carousel
+Update Widget : Nav Menu
+Security Update
 
 Version 1.5.2
 New Widget: Image Comparison
 New Widget: Post List
 New Widget Advanced Heading
 New Widget: Post Block
-New RTM Icon Pack (Regular & Thin)
 Update Navmenu Widget
 Update Header Offcanvas Widget
 Update Team Widget

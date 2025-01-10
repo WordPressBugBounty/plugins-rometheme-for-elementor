@@ -45,7 +45,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.5s;
-  border-radius: 10px;
+  border-radius: 5px;
   --swiper-navigation-size: 44px;
   --swiper-navigation-top-offset: 50%;
   --swiper-navigation-sides-offset: 10px;
@@ -131,7 +131,7 @@
   padding: 1rem;
   color: white;
   transition: all 0.5s;
-  border-radius: 10   px;
+  border-radius: 5px;
 }
 
 .rkit-card .card-button {

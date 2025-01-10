@@ -24,7 +24,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-user-customize-advanced-tabs-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-advanced-tabs-widget/';
     }
 
     public function get_script_depends()
@@ -89,12 +89,12 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'label' => esc_html('Icon Position'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
-                'block' => esc_html('Stacked'),
-                'inline-block' => esc_html('Inline'),
+                'column' => esc_html('Stacked'),
+                'row' => esc_html('Inline'),
             ],
-            'default' => 'inline-block',
+            'default' => 'row',
             'selectors' => [
-                '{{WRAPPER}} .tab-title-icon' => 'display:{{VALUE}}'
+                '{{WRAPPER}} .rkit-tab-btn-item' => 'flex-direction:{{VALUE}}'
             ],
             'condition' => [
                 'show_icon' => 'yes'
@@ -123,7 +123,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                 ],
                 'condition' => [
                     'show_icon' => 'yes',
-                    'icon_position' => 'inline-block'
+                    'icon_position' => 'row'
                 ]
             ]
         );
@@ -329,7 +329,33 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .tab-title-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .tab-title-icon' => 'font-size: {{SIZE}}{{UNIT}}; width:{{SIZE}}{{UNIT}}',
+                ],
+                'condition' => [
+                    'show_icon' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-btn-item' => 'gap: {{SIZE}}{{UNIT}};'
                 ],
                 'condition' => [
                     'show_icon' => 'yes'
@@ -404,7 +430,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-tab-btn-item .tab-title-icon' => 'color:{{VALUE}};'
+                '{{WRAPPER}} .rkit-tab-btn-item .tab-title-icon' => 'color:{{VALUE}}; fill:{{VALUE}}'
             ]
         ]);
 
@@ -467,7 +493,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-tab-btn-item:hover .tab-title-icon' => 'color:{{VALUE}};'
+                '{{WRAPPER}} .rkit-tab-btn-item:hover .tab-title-icon' => 'color:{{VALUE}};fill:{{VALUE}}'
             ]
         ]);
 
@@ -530,7 +556,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-tab-btn-item.active .tab-title-icon' => 'color:{{VALUE}};'
+                '{{WRAPPER}} .rkit-tab-btn-item.active .tab-title-icon' => 'color:{{VALUE}};fill:{{VALUE}}'
             ]
         ]);
 

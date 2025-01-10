@@ -13,7 +13,7 @@
 }
 
 .rkit-navmenu {
-  background: rgb(244, 244, 244);
+  background: rgba(255, 255, 255, 0);
 }
 
 .rkit-nav-link {
@@ -26,12 +26,12 @@
 }
 
 .rkit-menu-item:hover {
-  background-color: gray;
+  /* background-color: gray; */
   color: black;
 }
 
 .rkit-submenu-item {
-  background-color: white;
+  background-color: #eeeeee;
   color: #000;
 }
 

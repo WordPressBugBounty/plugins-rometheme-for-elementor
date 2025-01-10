@@ -28,7 +28,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-testimonial-carousel-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-testimonial-carousel-widget/';
     }
 
     protected function register_controls()
@@ -515,6 +515,23 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'card_background_st_5',
+                'types' => ['classic', 'gradient',],
+                'selector' => '{{WRAPPER}} .testimonial_body', 
+                'condition' => [
+                    'layout_style' => 'style_5'
+                ],
+                'description' => esc_html__('Use the slide below the color options to adjust the opacity', 'text-domain'),
+              
+
+            ]
+        );
+
+        
 
         $this->add_control(
             'card_border_option',
@@ -1977,7 +1994,9 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                     </div>
                 <?php endif; ?>
                 <!-- Add pagination -->
-                <div class="rkit-testimonial-pagination"></div>
+                <?php if ($settings['show_dots'] === 'yes') : ?>
+                    <div class="rkit-testimonial-pagination"></div>
+                <?php endif; ?>
             </div>
         </div>
 <?php

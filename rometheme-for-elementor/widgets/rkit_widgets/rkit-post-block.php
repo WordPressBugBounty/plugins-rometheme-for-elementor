@@ -21,12 +21,12 @@ class RkitPostBlock extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://rometheme.net/docs/how-to-use-customize-blog-post-widget/';
+        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-block-widget/';
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['rkitpostblock']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['rkitpostblock']['icon'];
         return $icon;
     }
     public function get_style_depends()
@@ -143,7 +143,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
             ],
-            'default' => '16/9',
+            'desktop_default' => '16/9',
+            'tablet_default' => '1/1',
+            'mobile_default' => '1/1',
             'selectors' => [
                 '{{WRAPPER}} .rkit-image-link' => 'aspect-ratio:{{VALUE}}'
             ]
@@ -215,7 +217,8 @@ class RkitPostBlock extends \Elementor\Widget_Base
 
         $this->add_control('post-count', [
             'label' => esc_html__('Post Count', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::NUMBER
+            'type' => \Elementor\Controls_Manager::NUMBER,
+            'default' => 3
         ]);
 
         $this->add_control('select-post', [
@@ -293,7 +296,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
             'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
             'label_off' => esc_html__('No', 'rometheme-for-elementor'),
             'return_value' => 'yes',
-            'default' => 'yes'
+            'default' => ''
         ]);
 
         $this->add_control('show-floating-categories', [
@@ -302,7 +305,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
             'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
             'label_off' => esc_html__('No', 'rometheme-for-elementor'),
             'return_value' => 'yes',
-            'default' => 'no'
+            'default' => 'yes'
         ]);
 
 
@@ -352,7 +355,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'label' => esc_html__('Author', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-user-circle',
+                    'value' => 'rtmicon rtmicon-circle-user',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -506,7 +509,6 @@ class RkitPostBlock extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('wrapper_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
-        
         $this->add_control(
             'card_hover_animation',
             [
@@ -667,6 +669,30 @@ class RkitPostBlock extends \Elementor\Widget_Base
             'label' => esc_html__('Content Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
+            'default' => [
+                'top' => 30,
+                'right' => 30,
+                'bottom' => 30,
+                'left' => 30,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
+            'tablet_default' => [
+                'top' => 30,
+                'right' => 30,
+                'bottom' => 30,
+                'left' => 30,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
+            'mobile_default' => [
+                'top' => 20,
+                'right' => 20,
+                'bottom' => 20,
+                'left' => 20,
+                'unit' => 'px',
+                'isLinked' => true
+            ],
             'selectors' => [
                 '{{WRAPPER}} .rkit-post-block-body' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]

@@ -19,8 +19,8 @@
                         </ul>
                     </div>
                     <div class="d-flex flex-row align-items-center gap-4">
-                        <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Upgrade Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
-                        <p class="text m-0">Learn More & Get a lifetime license and unlimited sites</p>
+                        <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Get RomethemeKit PRO <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                        <p class="text m-0">Unlock exclusive PRO Addons for Elementor and take your website design to the next level with features you won’t find anywhere else.</p>
                     </div>
                 </div>
             </div>
@@ -94,22 +94,22 @@
                     </div>
                     <div class="d-flex flex-column text-white">
                         <div class="d-flex flex-row align-items-center gap-3">
-                            <h4 class="m-0">November 11, 2024</h4>
+                            <h4 class="m-0">January 10, 2025</h4>
                             <span class="rtm-version py-0">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
                         </div>
                         <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                            <li>New: Post Block Widget.</li>
-                            <li>New: Image Comparison Widget.</li>
-                            <li>New: Post List Widget.</li>
-                            <li>New: Advanced Heading Widget.</li>
-                            <li>New: Rometheme Icon Regular Pack.</li>
-                            <li>New: Rometheme Icon Thin Pack.</li>
-                            <li>Fix : Bug Fixed in Nav Menu Widget </li>
-                            <li>Fix : Bug Fixed in Header Offcanvas Widget</li>
-                            <li>Fix : Bug Fixed in Text Marquee</li>
-                            <li>Fix : Bug Fixed in Team Widget</li>
-                            <li>Fix : Bug Fixed in Animated Heading</li>
-                            <li>Fix : Bug Fixed in Testimonial Carousel</li>
+                            <li>New : Template Library</li>
+                            <li>New Widget : Hero Slider</li>
+                            <li>New Widget : Image Box</li>
+                            <li>New Widget : Dual Button</li>
+                            <li>New Widget : Image Gallery Masonry</li>
+                            <li>Update Widget : Pricing Image Box</li>
+                            <li>Update Widget : Post Carousel</li>
+                            <li>Update Widget : client Carousel</li>
+                            <li>Update Widget : Testimonial Carousel</li>
+                            <li>Update Widget : Nav Menu</li>
+                            <li>Update Widget : Pricing Table</li>
+                            <li>Security Update</li>
                         </ul>
                         <div>
                             <a href="https://wordpress.org/plugins/rometheme-for-elementor/#developers" target="__blank" class="btn btn-gradient-accent rounded-pill">Full Changelog<i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>

@@ -280,7 +280,7 @@
 .rkit-testimonial-navigation.rkit-testimonial-button-next,
 .rkit-testimonial-navigation.rkit-testimonial-button-prev {
   background-color: #00cea6;
-  background-image: none !important;
+  background-image: none;
   position: relative;
   top: auto;
   left: auto;
