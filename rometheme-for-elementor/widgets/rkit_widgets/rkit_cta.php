@@ -65,6 +65,8 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 ],
             ],
             'toggle' => true,
+            'default' => 'row',
+            'mobile_default' => 'column',
             'selectors' => [
                 '{{WRAPPER}} .rkit-cta' => 'flex-direction:{{VALUE}}'
             ],
@@ -356,33 +358,33 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->start_controls_tabs('box_tabs' , ['condition' => [
+        $this->start_controls_tabs('box_tabs', ['condition' => [
             'select_skin' => 'classic'
         ]]);
 
-        $this->start_controls_tab('box_tab_normal' , ['label' => esc_html("Normal")]);
+        $this->start_controls_tab('box_tab_normal', ['label' => esc_html("Normal")]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'box_background_normal',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-cta',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'box_background_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-cta',
+            ]
+        );
 
         $this->end_controls_tab();
 
-        $this->start_controls_tab('box_tab_hover' , ['label' => esc_html("Hover")]);
+        $this->start_controls_tab('box_tab_hover', ['label' => esc_html("Hover")]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'box_background_hover',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-cta:hover',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'box_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-cta:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -395,7 +397,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_align_column',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -427,7 +429,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_align_row',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -462,7 +464,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_vertical_align_column',
             [
                 'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
@@ -492,7 +494,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_vertical_align_row
             ',
             [
@@ -1105,8 +1107,8 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-cta-button:hover .rkit-cta-button__icon' => 'color:{{VALUE}}'
             ],
             'condition' => [
-                    'add_btn_icon' => 'yes'
-                ]
+                'add_btn_icon' => 'yes'
+            ]
         ]);
 
         $this->add_group_control(
@@ -1183,6 +1185,18 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+			'ribbon_padding',
+			[
+				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-cta-ribbon__inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->end_controls_section();
 
         $this->start_controls_section('hover_style', [
@@ -1243,6 +1257,21 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'box_border_normal',
+                'selector' => '{{WRAPPER}} .rkit-cta',
+                'label' => esc_html__('Box Border', 'textdomain'),
+                'fields_options' => [
+                    'border' => [
+                        'label' => esc_html__('Box Border Type', 'textdomain'),
+                        // 'default' => 'solid',
+                    ]
+                ]
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('hover_effect_tab_hover', ['label' => esc_html('Hover')]);
@@ -1278,6 +1307,21 @@ class CTA_Rkit extends \Elementor\Widget_Base
             [
                 'name' => 'custom_css_filters_hover',
                 'selector' => '{{WRAPPER}} .rkit-cta:hover .rkit-cta-img__image',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'box_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-cta:hover',
+                'label' => esc_html__('Box Border', 'textdomain'),
+                'fields_options' => [
+                    'border' => [
+                        'label' => esc_html__('Box Border Type', 'textdomain'),
+                        // 'default' => 'solid',
+                    ]
+                ]
             ]
         );
 

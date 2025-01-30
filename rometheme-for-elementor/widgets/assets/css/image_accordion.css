@@ -1,3 +1,10 @@
+.container-image-accordion{
+  display : flex;
+  width : auto;
+  overflow : hidden;
+  position : relative;
+}
+
 .gallery-wrap {
   display: flex;
   flex-direction: row;
@@ -77,7 +84,7 @@
   align-self: center;
   align-items: center;
   margin-top: 30px;
-  width : 30%;
+  width : auto;
   background-color:  #000000;
   color :  #ffffff;
   max-width: none;

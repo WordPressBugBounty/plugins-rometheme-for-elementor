@@ -54,11 +54,14 @@
 .card-image {
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
 }
 
 .rkit-card .card-image img {
   width: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .rkit-cardslider-bullet {
@@ -143,11 +146,11 @@
   transition: color 0.5s;
 }
 
-.rkit-card.overlay {
+.rkit-card.rkit-cc-overlay {
   position: relative;
 }
 
-.rkit-card.overlay .card-body {
+.rkit-card.rkit-cc-overlay .card-body {
   opacity: 0;
   transform: scaleY(0);
   transform-origin: bottom;
@@ -162,11 +165,11 @@
 
 
 
-.rkit-card.overlay .card-button {
+.rkit-card.rkit-cc-overlay .card-button {
   justify-content: center;
 }
 
-.rkit-card.overlay:hover .card-body {
+.rkit-card.rkit-cc-overlay:hover .card-body {
   opacity: 1;
   transform: scaleY(1);
 }

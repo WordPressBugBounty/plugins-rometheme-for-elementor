@@ -221,7 +221,8 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         }
 	 
         
-        ?> 
+        ?>  
+
 <div class="rkit-gallery-masonry-container">
     <div class="rkit-gallery-masonry">
         
@@ -233,7 +234,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             <img src="<?php echo esc_attr( $image['url'] ); ?>" 
                 class="gallery_image <?php echo esc_html($hover_animation_ig_class); ?>" 
                 alt="<?php echo !empty($image['alt']) ? esc_attr($image['alt']) : 'Gallery Image'; ?>" 
-                loading="lazy">
+                loading="lazy"></img>
         </div>
     <?php endforeach; ?>
     

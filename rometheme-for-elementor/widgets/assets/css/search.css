@@ -5,10 +5,15 @@
     align-items: center;
     border: none;
     gap: 0.5rem;
+    border-radius: 0px;
+    color: #f1f1f1;
 }
 
 .rkit-search .rkit-search-button:hover {
     background-color: #009678;
+    border: none;
+    border-radius: 0px;
+    color: #f1f1f1;
 }
 
 .rkit-search .rkit-search-input {
@@ -17,6 +22,10 @@
     border: none;
     border-radius: 0px;
     background: #f1f1f1;
+}
+
+.rkit-search .rkit-search-button:focus {
+    border: none;
 }
 
 .rkit-search .rkit-search-input:focus {

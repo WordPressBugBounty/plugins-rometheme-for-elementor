@@ -217,7 +217,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
 			'icon_align',
 			[
 				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
@@ -243,6 +243,36 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
 				],
                 'condition' => [
                     'select_layout!' => 'inline'
+                ]
+			]
+		);
+
+        $this->add_control(
+			'icon_position',
+			[
+				'label' => esc_html__( 'Position', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'start' => [
+						'title' => esc_html__( 'Top', 'rometheme-for-elementor' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
+						'icon' => 'eicon-h-align-center',
+					],
+					'end' => [
+						'title' => esc_html__( 'Bottom', 'rometheme-for-elementor' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'left',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .rkit-quote-icon' => 'align-items: {{VALUE}};',
+				],
+                'condition' => [
+                    'select_layout' => 'absolute'
                 ]
 			]
 		);
@@ -278,7 +308,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-quote-icon' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .rkit-quote-icon .rkit-blockquote__icon' => 'color:{{VALUE}}'
             ]
         ]);
         

@@ -12,7 +12,7 @@
                         <div class="rtm-divider rounded-pill"></div>
                     </div>
                     <p class="text">
-                        Make the best experience when using RomethemeKit by learning and seeing how to use it,
+                        A Template Kit is a collection of pre-designed templates that help you create a full website for a specific industry. It includes all the pages, parts, settings, and content that you'd expect in a fully functional website.
                     </p>
                 </div>
             </div>
@@ -32,17 +32,31 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane px-5 py-3 fade show active" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab" tabindex="0">
             <div class="d-flex flex-row justify-content-between">
-                <div class="col-6">
+                <div class="col-4">
+                    <div class="position-relative template-category-container">
+                        <input id="template-category" name="search" type="text" class="form-control py-1" readonly value="<?php echo (isset($_GET['category'])) ? esc_attr(ucwords(str_replace('-', ' ', $_GET['category']))) : 'All Categories' ?>">
+                        <div id="template-category-list" class="glass-effect">
+                            <div class="row row-cols-2">
+                                <div class="col mb-2">
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates')) ?>" class="template-category-item">All Categories</a>
+                                </div>
+                                <?php foreach (\RomethemeKit\Template::get_template_category()['rtm_templatekit_category'] as $category) : ?>
+                                    <div class="col mb-2">
+                                        <a href="<?php echo esc_url(admin_url("admin.php?page=rtmkit-templates&category=$category")) ?>" class="template-category-item"><?php echo esc_html(ucwords(str_replace('-', ' ', $category))) ?></a>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
                     <form action="<?php echo esc_url(admin_url('admin.php?')) ?>">
                         <div class="input-group mb-3">
                             <input type="text" name="page" value="rtmkit-templates" hidden>
-                            <input id="template-search" name="search" type="text" class="form-control rounded-start" placeholder="Search">
+                            <input id="template-search" name="search" type="text" class="form-control rounded-start" placeholder="Search All Template Kits...">
                             <button class="btn btn-gradient-accent border-0 rounded-end" type="submit" id="button-addon2"><i class="rtmicon rtmicon-search"></i></button>
                         </div>
                     </form>
-                </div>
-                <div>
-
                 </div>
             </div>
             <div class="row row-cols-3" id="template-container">

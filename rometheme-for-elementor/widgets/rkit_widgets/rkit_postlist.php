@@ -1048,6 +1048,26 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         ]
     );
 
+    $this->add_control(
+        'more_options_category',
+        [
+            'label' => esc_html__( 'Category', 'rometheme-for-elementor' ),
+            'type' => \Elementor\Controls_Manager::HEADING,
+            'separator' => 'before',
+        ]
+    );  
+
+    $this->add_control(
+        'category_color',
+        [
+            'label' => esc_html__('Color', 'textdomain'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .cat_postlist a ' => 'color: {{VALUE}};',
+            ],
+        ]
+    );
+
         $this->end_controls_section();
         
           //style section content post
@@ -1168,6 +1188,32 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ],
             'selectors' => [
                 '{{WRAPPER}} a.rkit-readmore-postlist-btn' => 'gap: {{SIZE}}{{UNIT}};',
+            ],
+            'condition' => [
+                'show_icon_readmore' => 'yes'
+            ]
+        ]
+    );
+
+    $this->add_responsive_control(
+        'icon_button_size',
+        [
+            'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'range' => [
+              'px' => [
+                    'min' => 0,
+                    'max' => 2000,
+                    'step' => 2,
+                ],
+            ], 
+            'default' => [
+                'size' => 20,
+                'unit' => 'px',
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
             ],
             'condition' => [
                 'show_icon_readmore' => 'yes'
@@ -1385,7 +1431,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             <?php } ?>
                 <div class="widget-content popular-posts">
             <?php 
-            while ( $query->have_posts() ) {
+            while ( $query->have_posts() ) { 
                 $query->the_post();
                 $title_trunscate_postlist = get_the_title(); 
                 $content_descripsonription =  (get_the_excerpt()) ? get_the_excerpt() : get_the_content();
@@ -1447,9 +1493,9 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                                                     break;
                                                 case 'category':
                                                 ?>
-                                                    <div class="rkit-metadata-item-postlist">
+                                                    <div class="rkit-metadata-item-postlist ">
                                                         <?php \Elementor\Icons_Manager::render_icon($settings['category-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
-                                                        <?php the_category(' | ') ?>
+                                                       <span class="cat_postlist"> <?php the_category(' | ') ?></span>
                                                     </div>
                                                 <?php
                                                     break;

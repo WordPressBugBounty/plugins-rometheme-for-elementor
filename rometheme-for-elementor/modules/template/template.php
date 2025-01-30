@@ -11,7 +11,7 @@ class Template
     public $cs;
     public function __construct()
     {
-        $this->url = 'https://api.rometheme.pro/wp-json/public/template_lib';
+        $this->url = 'https://api.rometheme.pro';
         $this->ck = 'ck_p2ke51ckfmb42kefnw67krk93wwjawj6';
         $this->cs = 'cs_djg1rrp51rn6hvj5ck76x75u99ec8e19';
         add_action('wp_ajax_fetch_lib', [$this, 'fetch_lib']);
@@ -25,6 +25,8 @@ class Template
         add_action('wp_ajax_get_installed_template', [$this, 'get_installed_template']);
         add_action('wp_ajax_get_template_content', [$this, 'get_template_content']);
         add_action('wp_ajax_install_requirements', [$this, 'install_requirements']);
+        add_action('wp_ajax_template_category', [$this, 'template_category']);
+        add_action('wp_ajax_get_installed_templates', [$this, 'get_installed_templates']);
     }
 
     public function init_template_dir()
@@ -46,7 +48,7 @@ class Template
     public function fetch_lib()
     {
 
-        if (!isset($_POST['wpnonce']) || wp_verify_nonce('rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -57,7 +59,7 @@ class Template
             'Accept: application/json'
         ];
         // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
@@ -76,6 +78,13 @@ class Template
                     return stripos($item['name'], $search) !== false ||
                         stripos($item['category'], $search) !== false ||
                         stripos($item['type'], $search) !== false;
+                });
+            }
+
+            if (isset($_POST['category']) || !empty($_POST['category'])) {
+                $category = $_POST['category'];
+                $response = array_filter($response, function ($item) use ($category) {
+                    return stripos($item['category'], $category) !== false;
                 });
             }
 
@@ -100,6 +109,7 @@ class Template
                     'type' => $v['type'],
                     'preview_url' => $v['preview_url'],
                     'image_preview' => $v['image_preview'],
+                    'downloads' => $v['downloads'],
                     'has_installed' => $this->has_installed(wp_hash($v['id'])),
                     'installed' => ($this->has_installed(wp_hash($v['id']))) ? wp_hash($v['id']) : null
                 ];
@@ -139,7 +149,7 @@ class Template
             wp_die();
         }
 
-        if (!isset($_POST['wpnonce']) || wp_verify_nonce('rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -151,7 +161,7 @@ class Template
             'Accept: application/json'
         ];
         // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '?id=' . $id);
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib?id=' . $id);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
@@ -167,6 +177,8 @@ class Template
             wp_send_json_error('Error:' . curl_error($ch));
         }
         curl_close($ch);
+
+        $this->update_download($id);
         $this->template_extract($url, $response['id']);
     }
 
@@ -248,7 +260,7 @@ class Template
 
             set_transient($transient_id, ['progress' => 75, 'message' => 'Importing Template...'], 60);
             $history = get_option('rtm_import_template_' . $template, []);
-            $history[str_replace(' ', '_', $result[0]['title'])] = $imported_template_id;
+            $history[str_replace(' ', '_', html_entity_decode($result[0]['title']))] = $imported_template_id;
             update_option('rtm_import_template_' . $template, $history);
             $result[0]['edit_url'] = admin_url('post.php?post=' . $imported_template_id . '&action=elementor');
             $result[0]['delete_url'] = get_delete_post_link($imported_template_id);
@@ -293,7 +305,34 @@ class Template
         $data = [
             "imported" => $imported,
             "manifest" => $manifest,
+            "description" => $this->get_template_description($this->get_installed_template_id($hashId))
         ];
+        wp_send_json_success($data);
+    }
+
+    public function get_installed_templates()
+    {
+        $templates = get_option('rtm_template_installed', []);
+        $upload_dir = wp_upload_dir();
+        $rtmTemplateDir = $upload_dir['basedir'] . '/rometheme_template';
+        $data = [];
+
+        foreach ($templates as $template => $v) {
+            $id = $v['template_id'];
+            $manifest = json_decode(file_get_contents($rtmTemplateDir . '/' . $template . '/manifest.json'));
+            foreach ($manifest->templates as $i => $v) {
+                if (stripos($v->name, 'home') !== false) {
+                    $preview = $v->preview_url;
+                }
+            }
+            $data[$template] = [
+                'id' => $id,
+                'name' => $manifest->title,
+                'image_preview_url' =>  \RomethemeKit\Template::get_template_image_preview_url($id),
+                'preview_url' => $preview
+            ];
+        }
+
         wp_send_json_success($data);
     }
 
@@ -348,6 +387,26 @@ class Template
         }
     }
 
+    function update_download($id)
+    {
+
+        $ch = curl_init();
+        // Header untuk meminta respons JSON
+        $headers = [
+            'Accept: application/json'
+        ];
+        // Atur opsi cURL
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/updld?id=' . $id);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        // Eksekusi permintaan
+        $response = json_decode(curl_exec($ch), true);
+    }
+
     function has_installed($hashId)
     {
         $option = get_option('rtm_template_installed');
@@ -384,7 +443,7 @@ class Template
 
     public function get_template_content()
     {
-        if (!isset($_POST['wpnonce']) || wp_verify_nonce('rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -406,7 +465,7 @@ class Template
             'Accept: application/json'
         ];
         // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '?id=' . $id);
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib?id=' . $id);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
@@ -424,13 +483,54 @@ class Template
         return $response['description'];
     }
 
+    public static function get_template_category()
+    {
+        $f = new self();
+        return $f->_get_template_category();
+    }
+
+    public function _get_template_category()
+    {
+        $ch = curl_init();
+        // Header untuk meminta respons JSON
+        $headers = [
+            'Accept: application/json'
+        ];
+        // Atur opsi cURL
+        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib_cat');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        // Eksekusi permintaan
+        $response = json_decode(curl_exec($ch), true);
+
+        return $response;
+    }
+
+    public function template_category()
+    {
+        if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
+            wp_send_json_error('Access Denied');
+            wp_die();
+        }
+
+        $cat = $this->get_template_category();
+        if ($cat) {
+            wp_send_json_success($cat);
+        } else {
+            wp_send_json_error();
+        }
+    }
+
     public function delete_template()
     {
         if (!current_user_can('manage_options')) {
             wp_die();
         }
 
-        if (!isset($_POST['wpnonce']) || wp_verify_nonce('rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -463,7 +563,7 @@ class Template
             wp_die();
         }
 
-        if (!isset($_POST['wpnonce']) || wp_verify_nonce('rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -499,6 +599,10 @@ class Template
 
     public function install_requirements()
     {
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
+
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         include_once ABSPATH . 'wp-admin/includes/file.php';
         include_once ABSPATH . 'wp-admin/includes/misc.php';

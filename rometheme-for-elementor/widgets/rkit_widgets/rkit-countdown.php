@@ -349,8 +349,9 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Title Style', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => ['title!' => '',]
-
+                'condition' => [
+                    'show_title' => 'yes',
+                ],
 
             ]
         );
@@ -412,6 +413,19 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_responsive_control(
+            'item_margin_title',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .countdown-title-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
 
         $this->end_controls_section();
 

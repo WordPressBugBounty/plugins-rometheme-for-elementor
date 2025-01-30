@@ -117,7 +117,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
                         'icon' => 'eicon-order-end',
                     ],
                 ],
-                'default' => 'start',
+                'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-btn-container' => 'justify-content: {{VALUE}};',
@@ -292,11 +292,12 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
                 'rem' => ['min' => 0, 'max' => 50],
             ],
             'default' => [
-                'size' => 15,
+                'size' => 48,
                 'unit' => 'px',
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-offcanvas-close .offcanvas-close-icon' => 'font-size : {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}} ; height:{{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-offcanvas-close .offcanvas-close-icon' => 'font-size : {{SIZE}}{{UNIT}};' ,
+                '{{WRAPPER}} .rkit-offcanvas-close svg.offcanvas-close-icon' => 'width: {{SIZE}}{{UNIT}} ; height:{{SIZE}}{{UNIT}}'
             ]
         ]);
 
@@ -313,6 +314,10 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
+            'default' => [
+                'size' => '0',
+                'unit' => 'px'
+            ],
             'selectors' => [
                 '{{WRAPPER}} .rkit-offcanvas-close' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
             ]
@@ -341,7 +346,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
         $this->add_control('icon-color-close', [
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
+            'default' => '#ffffff',
             'selectors' => [
                 '{{WRAPPER}} .rkit-offcanvas-close .offcanvas-close-icon' => 'color: {{VALUE}} ; fill : {{VALUE}}'
             ],
@@ -350,7 +355,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
         $this->add_control('close-background', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#ffffff',
+            // 'default' => '#ffffff',
             'selectors' => [
                 '{{WRAPPER}} .rkit-offcanvas-close' => 'background-color : {{VALUE}};'
             ]

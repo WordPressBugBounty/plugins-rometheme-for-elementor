@@ -53,7 +53,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'default' => esc_html('Default'),
-                'overlay' => esc_html('Overlay')
+                'rkit-cc-overlay' => esc_html('Overlay')
             ],
             'default' => 'default'
         ]);
@@ -134,6 +134,17 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $card_list->add_group_control(
+			\Elementor\Group_Control_Image_Size::get_type(),
+			[
+				'name' => 'thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
+				'exclude' => [ 'custom' ],
+				'include' => [],
+				'default' => 'large',
+			]
+		);
+
 
         $card_list->add_control(
             'card_link',
@@ -522,10 +533,28 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-card .card-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+        $this->add_responsive_control('card_image_ratio' , [
+            'label' => esc_html('Image Ratio'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                '1/1' => esc_html('1 / 1'),
+                '3/2' => esc_html('3 / 2'),
+                '5/4' => esc_html('5 / 4'),
+                '16/9' => esc_html('16 / 9'),
+                '2/3' => esc_html('2 / 3'),
+                '4/5' => esc_html('4 / 5'),
+                '9/16' => esc_html('9 / 16'),
+            ],
+            'default' => '3/2',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-card .card-image img' => 'aspect-ratio : {{VALUE}}'
+            ]
+        ]);
 
         $this->end_controls_section();
 
@@ -632,6 +661,29 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+			'card_title_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-title' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->start_controls_tabs('card_title_tabs');
 
         $this->start_controls_tab('title_tab_normal', ['label' => esc_html('Normal')]);
@@ -717,6 +769,29 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_responsive_control(
+			'card_subheading_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-subheading' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
         $this->add_control(
             'card_description_options',
             [
@@ -772,6 +847,29 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-card .card-description' => 'color:{{VALUE}}'
             ]
         ]);
+
+        $this->add_responsive_control(
+			'card_description_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-description' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
 
         $this->end_controls_section();
 
@@ -882,6 +980,76 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+			'card_button_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-button' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_responsive_control(
+			'card_button_icon_spacing',
+			[
+				'label' => esc_html__( 'Icon Spacing', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-button a' => 'gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_responsive_control(
+			'card_button_icon_size',
+			[
+				'label' => esc_html__( 'Icon Size', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .rkit-card .card-button a svg.button-icon' => 'width: {{SIZE}}{{UNIT}}; height:{{SIZE}}{{UNIT}}',
+				],
+			]
+		);
+
         $this->start_controls_tabs('button_tab');
 
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
@@ -898,7 +1066,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'color : {{VALUE}} ; fill : {{VALUE}}'
             ]
         ]);
 
@@ -961,7 +1129,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-card .card-button a:hover .button-icon' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-card .card-button a:hover .button-icon' => 'color : {{VALUE}} ; fill: {{VALUE}}'
             ]
         ]);
 

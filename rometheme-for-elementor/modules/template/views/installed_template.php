@@ -8,7 +8,7 @@ $imported = get_option('rtm_import_template_' . $hashId, []);
 $manifest = json_decode(file_get_contents($rtmTemplateDir . '/' . $hashId . '/manifest.json'));
 $id = \RomethemeKit\Template::get_installed_template_id($hashId);
 $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_plugins);
-echo count($missing_plugin);
+
 ?>
 
 
@@ -27,7 +27,11 @@ echo count($missing_plugin);
             </div>
             <div class="col col-lg-4 d-flex align-items-center justify-content-end">
                 <button type="button" class="btn btn-gradient-accent" data-bs-toggle="modal" data-bs-target="#description_modal">
-                    <i class="fas fa-exclamation"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                    </svg>
+                    Attention
                 </button>
             </div>
         </div>
@@ -43,10 +47,11 @@ echo count($missing_plugin);
         <?php endif ?>
     </div>
 </div>
-<div class="rtm-bg-gradient-1 rounded-3 me-3 p-4">
+<div class="rtm-container rtm-bg-gradient-1 rounded-3 me-3 p-4">
     <div class="row row-cols-3" id="template-container">
         <?php foreach ($manifest->templates as $t) :
             $imgurl = $upload_dir['baseurl'] . '/rometheme_template/' . $hashId . '/' . $t->screenshot;
+        // echo $imported['Header_–_Block'];
         ?>
             <div class="col mb-3">
                 <div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border">
@@ -82,7 +87,7 @@ echo count($missing_plugin);
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content rtm-bg-gradient-1">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Description</h1>
+                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">ATTENTION</h1>
                 <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fas fa-xmark"></i>
                 </button>

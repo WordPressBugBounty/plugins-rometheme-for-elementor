@@ -283,6 +283,10 @@
   box-shadow: -10px 16px 14px rgba(0, 0, 0, 0.5);
 }
 
+.rkit-go-pro-btn {
+  margin-right: 1rem;
+}
+
 .r-category-btn:hover {
   --x: 90%;
   color: white;
@@ -533,6 +537,18 @@
 .page-item:last-child {
   border-radius: 0px 10px 10px 0px;
   overflow: hidden;
+}
+
+.attention-description ol>li {
+  list-style: number;
+}
+
+.attention-description ol {
+  padding-left: 30px;
+}
+
+.attention-description {
+  font-size: 16px;
 }
 
 @keyframes spinner-bulqg1 {

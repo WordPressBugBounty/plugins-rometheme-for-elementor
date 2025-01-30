@@ -4,7 +4,7 @@ Tags: addons, widget, elementor, header footer, extension
 Requires at least: 6.6
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, 
 Revolutionize your website-building process with 58+ highly customizable addons, 50+ premade templates, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
 
 ### Useful Links
-[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
+[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review] (https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
 ### (NEW) Pre-made Template Kits
 Explore our expanding library of template kits, available in both the free and PRO versions of RomethemeKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
@@ -32,7 +32,7 @@ Integrates with RomethemeForm to effortlessly create advanced forms using the dr
 A diagnostic tool to ensure your WordPress environment meets the requirements for running Elementor smoothly.
 
 ### Icon Pack: 
-Access a collection of over 1500 icons to enhance your site's design.
+Access a collection of over 100 icons to enhance your site's design.
 
 ### Widgets & Addons Included:
 
@@ -141,6 +141,16 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.5.4
+New Widget: Woo Product Grid
+Update Widget : hero slider
+Update Widget : image accordion
+Update Widget : Call To Action
+Update Widget : Advanced Tabs
+Update Widget : Blockquote
+Update Widget : Post Block
+Security Update
+
 Version 1.5.3
 New : Template Library
 New Widget : Hero Slider

@@ -470,7 +470,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
 
              
 <div class="con-wrap rkit-s-image" >
-        <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['potition_slider']) ?>"  data-show-icon="<?php echo esc_html($settings['show_icon']); ?>"
+        <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['position_slider']) ?>"  data-show-icon="<?php echo esc_html($settings['show_icon']); ?>"
         >
            
         <div class="img-comp-img rkit-s-image"   
@@ -481,7 +481,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 </div>
             </div>  
             
-            <div class="img-comp-img img-divider-<?php echo esc_html($settings['potition_slider']); ?>  img-comp-overlay rkit-s-image"  >
+            <div class="img-comp-img img-divider-<?php echo esc_html($settings['position_slider']); ?>  img-comp-overlay rkit-s-image"  >
             <img src="<?php echo esc_url($image_before['url']); ?>"  class="filter-before rkit-s-image" >
                 <div class="caption-<?php echo  esc_html($settings['caption_potition_before']) ?>-left caption-img-comp">
                     <?php echo  esc_html($settings['before_caption']); ?>

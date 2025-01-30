@@ -46,6 +46,11 @@ class RkitWidgets
 
     public function reset_widgets()
     {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {
+            wp_send_json_error('Invalid nonce.');
+            wp_die();
+        }
+
         if (!current_user_can('manage_options')) {
             wp_die();
         }
@@ -76,7 +81,13 @@ class RkitWidgets
 
         foreach ($widget_lists as $widget) {
             if ($widget['status'] and $widget['type'] == 'free') {
-                $widgets_manager->register(new $widget['class_name']());
+                if ($widget['category'] === 'woocommerce') {
+                    if (class_exists('WooCommerce')) {
+                        $widgets_manager->register(new $widget['class_name']());
+                    }
+                } else {
+                    $widgets_manager->register(new $widget['class_name']());
+                }
             }
         }
     }

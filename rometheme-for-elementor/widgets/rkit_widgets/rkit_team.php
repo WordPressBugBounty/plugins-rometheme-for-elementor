@@ -60,7 +60,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'pointer',
-                'default' => 'pointer',
+                'default' => '',
             ]
         );
 
@@ -339,7 +339,29 @@ class Rkit_Team extends \Elementor\Widget_Base
             [
                 'name' => 'background_overlay',
                 'types' => ['classic', 'gradient', 'video'],
-                'selector' => '{{WRAPPER}} .rkit-team__overlay .rkit-team__detail',
+                'selector' => '{{WRAPPER}} .rkit-team__overlay .rkit-team__detail::after',
+                'condition' => [
+                    'select_style' => 'overlay'
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'overlay_opacity',
+            [
+                'label' => esc_html__('Opacity', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                // 'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => 0.1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__overlay .rkit-team__detail::after' => 'opacity: {{SIZE}};',
+                ],
                 'condition' => [
                     'select_style' => 'overlay'
                 ],
@@ -503,7 +525,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -511,7 +533,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
@@ -519,7 +541,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-team__detail' => 'text-align: {{VALUE}}; justify-content:{{VALUE}}',
+                    '{{WRAPPER}} .rkit-team__detail' => 'text-align: {{VALUE}}; align-items:{{VALUE}}',
                     '{{WRAPPER}} .rkit-team__social' => 'justify-content:{{VALUE}}',
                 ],
                 'condition' => [

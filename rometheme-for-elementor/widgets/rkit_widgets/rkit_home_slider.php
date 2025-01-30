@@ -71,11 +71,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
-
-
         $home_slider_list = new \Elementor\Repeater();
-
 
         $home_slider_list->add_control(
             'image',
@@ -641,6 +637,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'content_padding',
             [
@@ -707,7 +704,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'options' => [
                     '' => esc_html__('Default', 'textdomain'),
                     'hs-animation-1-subtitle' => esc_html__('Word Staggered', 'textdomain'),
-                    'hs-animation-2-subtitle' => esc_html__('TypeWriter', 'textdomain'),
+                    // 'hs-animation-2-subtitle' => esc_html__( 'TypeWriter', 'textdomain' ), 
                 ],
             ]
         );
@@ -898,7 +895,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'options' => [
                     '' => esc_html__('Default', 'textdomain'),
                     'hs-animation-1-title' => esc_html__('Word Staggered', 'textdomain'),
-                    'hs-animation-2-title' => esc_html__('TypeWriter', 'textdomain'),
+                    // 'hs-animation-2-title' => esc_html__( 'TypeWriter', 'textdomain' ), 
                 ],
             ]
         );
@@ -1008,7 +1005,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'options' => [
                     '' => esc_html__('Default', 'textdomain'),
                     'hs-animation-1-desc' => esc_html__('Word Staggered', 'textdomain'),
-                    'hs-animation-2-desc' => esc_html__('TypeWriter', 'textdomain'),
                 ],
             ]
         );
@@ -1048,6 +1044,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-description',
             ]
         );
+
+
 
         $this->add_responsive_control(
             'maxwidthdesc',
@@ -1148,6 +1146,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+
 
         $this->add_responsive_control(
             'icon_spacing',
@@ -1955,8 +1955,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                                             <span class="hs-sub-title hs-mw <?php echo esc_attr($settings['subtitle_animation']); ?>">
                                                 <?php echo esc_html($li['home_slider_sub_title']);   ?> </span>
                                             <span class="icon-subtitle-hs"> <?php \Elementor\Icons_Manager::render_icon($li['subtitle_icon'], ['aria-hidden' => 'true', 'class' => "icon-subtitle-hs"]); ?> </span>
-
-
                                         </div>
                                         <span class="hs-title hs-mw <?php echo $settings['title_animation'] ?>"><?php echo esc_html($li['home_slider_title']); ?></span>
                                         <span class="hs-description hs-mw <?php echo $settings['description_animation'] ?> "><?php echo esc_html($li['home_slider_description']); ?></span>

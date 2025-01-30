@@ -303,6 +303,33 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
+        $this->add_responsive_control(
+			'tab_title_align',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'textdomain' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'textdomain' ),
+						'icon' => 'eicon-h-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'textdomain' ),
+						'icon' => 'eicon-h-align-right',
+					],
+				],
+				'default' => 'center',
+				'toggle' => true,
+				'selectors' => [
+					'{{WRAPPER}} .rkit-tab-btn-item' => 'justify-content: {{VALUE}};',
+				],
+			]
+		);
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -455,7 +482,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'title_background_normal',
-                'types' => ['classic', 'gradient', 'video'],
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item',
             ]
         );
@@ -518,7 +545,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'title_background_hover',
-                'types' => ['classic', 'gradient', 'video'],
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item:hover',
             ]
         );
@@ -581,7 +608,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'title_background_active',
-                'types' => ['classic', 'gradient', 'video'],
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item.active',
             ]
         );
@@ -687,7 +714,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'content_background',
-                'types' => ['classic', 'gradient', 'video'],
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-tab-content-container',
             ]
         );

@@ -58,11 +58,13 @@
  
  
 .rkit-image_box__detail {
+    height: 100%;
     width: 100%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap : 15px;
+    justify-content: center;
     overflow: hidden;
 }
 

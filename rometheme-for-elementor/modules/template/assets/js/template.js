@@ -15,6 +15,10 @@ jQuery(document).ready(function ($) {
       $("#template-search").val(params.get("search"));
     }
 
+    if (params.has("category")) {
+      data.category = params.get("category");
+    }
+
     if (params.has("paged")) {
       data.paged = params.get("paged");
     }
@@ -25,7 +29,7 @@ jQuery(document).ready(function ($) {
       success: function (res) {
         if (res.success) {
           let dataTemplate = res.data.data_template;
-          // console.log(dataTemplate);
+          console.log(dataTemplate);
 
           const TemplateContainer = $("#template-container");
           if (dataTemplate.length != 0) {
@@ -42,7 +46,7 @@ jQuery(document).ready(function ($) {
                 `<div class="p-3 d-flex flex-column gap-3"></div>`
               );
               let $title = $(
-                `<div class="d-block"><h5 class="text-truncate text-white m-0">${v.name}</h5><span class="text-capitalize text-light">${v.category}</span></div>`
+                `<div class="d-block"><h5 class="text-truncate text-white m-0">${v.name}</h5></div>`
               );
 
               let btnContainer = $('<div class="d-flex flex-row gap-2"></div>');
@@ -94,8 +98,11 @@ jQuery(document).ready(function ($) {
                 `<a target="_blank" href="${v.preview_url}" class="btn fw-light w-100 border-white text-white rounded-2" data-template="${v.id}"><i class="far fa-eye me-2"></i>Preview</button>`
               );
 
+              let totalDownloads = $(`<button class="btn btn-outline-accent" data-tooltips="Total Download"><i class="fas fa-download"></i>${v.downloads}</button>`);
+
               btnContainer.append(btnInstall);
               btnContainer.append(btnPreview);
+              btnContainer.append(totalDownloads);
 
               $cardBody.append($title);
               // $cardBody.append(``);
@@ -171,7 +178,7 @@ jQuery(document).ready(function ($) {
     $.ajax({
       type: "POST",
       url: rometheme_ajax.ajax_url,
-      timeout: 20000,
+      // timeout: 20000,
       data: {
         action: "download_template",
         template: id,
@@ -231,6 +238,8 @@ jQuery(document).ready(function ($) {
       },
       success: function (res) {
         if (res.success) {
+          console.log(res.data);
+          
           $this.html("Import Complete!");
           let $link = $(
             `<a href="${res.data.edit_url}" class="fw-light btn w-100 btn-gradient-accent rounded-2 text-nowrap"><i class="far fa-eye me-2"></i>View Template</a>`

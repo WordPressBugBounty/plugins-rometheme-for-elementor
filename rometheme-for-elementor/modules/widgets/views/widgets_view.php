@@ -9,7 +9,11 @@ $headeroptions = array_filter($options, function ($value) {
     return $value['category'] == 'header';
 });
 $rkitoptions = array_filter($options, function ($value) {
-    return $value['category'] == 'rkit';
+    if(class_exists('WooCommerce')) {
+        return $value['category'] == 'rkit' || $value['category'] == 'woocommerce'  ;
+    } else {
+        return $value['category'] == 'rkit';
+    }
 });
 
 $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget-pro-options') : \RomethemeKit\RkitWidgets::listWidgetPro();
@@ -33,8 +37,8 @@ $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget
                         Make the best experience when using RomethemeKit by learning and seeing how to use it, activating the necessary widgets, and turning off widgets for faster website performance.
                     </p>
                     <div class="d-flex flex-row align-items-center gap-4">
-                        <a href="https://rometheme.net/widget-library/" target="_blank" class="btn btn-gradient-accent rounded-pill">About Widget <i class="rtmicon rtmicon-arrow-up-right mt-2"></i></a>
-                        <a href="https://rometheme.net/docs/" target="_blank" class="btn link-accent">Watch Documentation <i class="rtmicon rtmicon-arrow-up-right mt-2"></i></a>
+                        <a href="https://rometheme.net/widget-library/" target="_blank" class="btn btn-gradient-accent rounded-pill gap-3">About Widget <i class="rtmicon rtmicon-arrow-up-right "></i></a>
+                        <a href="https://support.rometheme.net/" target="_blank" class="btn link-accent gap-3">Watch Documentation <i class="rtmicon rtmicon-arrow-up-right "></i></a>
 
                     </div>
                 </div>

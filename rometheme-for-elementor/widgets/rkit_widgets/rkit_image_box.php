@@ -59,7 +59,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
     
             [
-                'name' => 'cont_backgroud',
+                'name' => 'cont_backgroud_overlay',
                 'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}}  .bg_overlay ',
@@ -115,7 +115,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-image_box-card' => 'flex-direction: {{VALUE}};',
-                    '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: center;',
+                    // '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: center;',
                 ],
                 'condition' => [
                     'select_style' => 'default', 
@@ -124,7 +124,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'content_position',
+            'desc_content_position',
             [
                 'label' => esc_html__('Content Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -146,6 +146,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
                     '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: {{VALUE}};',
                 ],
                 'default' => 'center',
+
                 'condition' => [
                     'imagebox_direction' => 'row'
                 ]
@@ -302,41 +303,55 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'icon_position',
-            [
-                'label' => esc_html__('Icon Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-middle',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: {{VALUE}};',
-                ],
-                'default' => 'center',
-                'condition' => [
-                    'imagebox_direction' => 'row'
-                ]
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'icon_position',
+        //     [
+        //         'label' => esc_html__('Icon Position', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::CHOOSE,
+        //         'options' => [
+        //             'start' => [
+        //                 'title' => esc_html__('Top', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-v-align-top',
+        //             ],
+        //             'center' => [
+        //                 'title' => esc_html__('Center', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-v-align-middle',
+        //             ],
+        //             'end' => [
+        //                 'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-v-align-bottom',
+        //             ],
+        //         ],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: {{VALUE}};',
+        //         ],
+        //         'default' => 'center',
+        //         'condition' => [
+        //             'imagebox_direction' => 'row'
+        //         ]
+        //     ]
+        // );
 
 
         $this->end_controls_section();
     
 
-    $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
+    $this->start_controls_section('read-more-content',
+     ['label' => esc_html__('Read More Button'), 
+     'tab' => \Elementor\Controls_Manager::TAB_CONTENT
+    ]);
 
+    $this->add_control(
+        'imagebox_show_button_readmore',
+        [
+            'label' => esc_html__('Show Button', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+            'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+            'return_value' => 'yes',
+            'default' => 'yes', 
+        ]
+    );
     
     $this->add_responsive_control('button_position', [
         'label' => esc_html__('Button Position', 'rometheme-for-elementor'),
@@ -352,6 +367,9 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 ],
             ],
         'default' => 'top',  
+        'condition' => [
+            'imagebox_show_button_readmore' => 'yes'
+        ]
     ]);
 
  
@@ -376,6 +394,9 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::URL,
             'options' => ['url', 'is_external', 'nofollow'],
             'label_block' => true,
+            'condition' => [
+                'imagebox_show_button_readmore' => 'yes'
+            ] 
         ]
     );
     $this->add_control(
@@ -387,6 +408,9 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'label_off' => esc_html__('No', 'rometheme-for-elementor'),
             'return_value' => 'yes',
             'default' => 'yes', 
+            'condition' => [
+                'imagebox_show_button_readmore' => 'yes'
+            ] 
         ]
     );
  
@@ -401,6 +425,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ],
             'condition' => [
                 'imagebox_show_icon_readmore' => 'yes',
+                'imagebox_show_button_readmore' => 'yes'
             ]
         ]
     );
@@ -453,7 +478,8 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-readmore-imagebox-div' => 'justify-content: {{VALUE}};',
             ],
             'condition' => [
-                'button_position' => 'bottom'
+                'button_position' => 'bottom',
+                'imagebox_show_button_readmore' => 'yes'
             ]
         ]
     );
@@ -520,7 +546,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         \Elementor\Group_Control_Background::get_type(),
 
         [
-            'name' => 'cont_backgroud',
+            'name' => 'cont_backgroud_wrapper',
             'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
             'types' => ['classic', 'gradient'],
             'selector' => '{{WRAPPER}} .rkit-image_box-card'
@@ -558,7 +584,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%','em','rem'], 
             'selectors' => [
-                '{{WRAPPER}}  .rkit-image_box__img img  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}}  .rkit-image_box__img  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
         ]
     );
@@ -571,7 +597,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%','em','rem'], 
             'selectors' => [
-                '{{WRAPPER}} .rkit-image_box__img img, {{WRAPPER}} .rkit-image_box__overlay' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .rkit-image_box__img, {{WRAPPER}}  .rkit-image_box__img img, {{WRAPPER}} .rkit-image_box__overlay' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ],
         ]
     );
@@ -615,7 +641,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
     $this->add_responsive_control(
         'default_align',
         [
-            'label' => esc_html__('Title Alignment default overlay', 'rometheme-for-elementor'),
+            'label' => esc_html__('Title Alignment', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [
@@ -639,7 +665,17 @@ class Rkit_image_box extends \Elementor\Widget_Base
         ]
     );
 
-    
+    $this->add_responsive_control(
+        'margin_title',
+        [
+            'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'], 
+            'selectors' => [
+                '{{WRAPPER}} .rkit-image_box__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]
+    );
 
 // desc
 
@@ -1398,8 +1434,11 @@ $this->add_control(
                             <?php
                                 \Elementor\Icons_Manager::render_icon($settings['icon_container'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-top']);
                             ?>
-                        </div>       
-                        <?php if($settings['button_position'] == 'top') : ?>
+                        </div>    
+                           
+                        <?php
+                        if ($settings['imagebox_show_button_readmore'] == 'yes') :
+                        if($settings['button_position'] == 'top') : ?>
                             <div class="right"> 
                                 <a  <?php  $this->print_render_attribute_string('ib_link_') ?> class="rkit-button-top" type="button" >
                                     <?php
@@ -1407,13 +1446,18 @@ $this->add_control(
                                     ?>
                                 </a>
                             </div>
-                        <?php endif; ?>
+                        <?php 
+                            endif;
+                            endif; 
+                        ?>
                 
                     </div>
-                        <<?php echo $name_tag ?> class="rkit-image_box__title"><?php echo esc_html($settings['imagebox_title']) ?></<?php echo $name_tag ?>> 
+                        <<?php echo $name_tag ?> class="rkit-image_box__title"><?php echo esc_html($settings['imagebox_title']) ?></<?php echo esc_html($name_tag  ) ?>> 
                     <div class ="image-box-item-desc <?php echo esc_html($wrapper_desc ) ?> ">   
                         <span class="rkit-image_box__description"><?php echo esc_html($settings['imagebox_description']) ?></span>
-                        <?php if($settings['button_position'] == 'bottom') : ?>
+                        <?php 
+                        if ($settings['imagebox_show_button_readmore'] == 'yes') :
+                        if($settings['button_position'] == 'bottom') : ?>
                             <div class="rkit-readmore-imagebox-div">
                                         <a  <?php $this->print_render_attribute_string('ib_link_') ?> class="rkit-readmore-imagebox-btn" type="button" >
                                             <?php
@@ -1422,7 +1466,7 @@ $this->add_control(
                                             <?php echo esc_html__($settings['imagebox_readmore_text'], 'rometheme-for-elementor') ?>
                                         </a>
                             </div>
-                        <?php endif; ?>
+                        <?php endif; endif; ?>
                     </div>
                     </div>
                 </div>

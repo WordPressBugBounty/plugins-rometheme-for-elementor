@@ -451,7 +451,9 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .dual-button-inner-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dual-button-inner-wrapper ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .left_button, {{WRAPPER}} .dual-left' => 'border-radius: {{TOP}}{{UNIT}} 0{{UNIT}} 0{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .right_button, {{WRAPPER}} .dual-right' => 'border-radius: 0{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} 0{{UNIT}};'
                 ],
             ]
         );
@@ -475,6 +477,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 ],
             ]
         ); 
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -502,8 +505,51 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 ]
             );
 
-            
+            $this->add_responsive_control(
+                'button_border_radius_left',
+                [
+                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => ['px', '%', 'em', 'rem'],
+                    'default' => [
+                        'top' => 30,
+                        'right' => 0,
+                        'bottom' => 0,
+                        'left' => 30,
+                        'unit' => 'px',
+                        'isLinked' => true,
+                    ],
+                    'selectors' => [ 
+                        '{{WRAPPER}} .left_button, {{WRAPPER}} .dual-left' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                    'condition' => [
+                        'layout_db' => 'row'
+                    ],
+                ]
+            );
 
+            $this->add_responsive_control(
+                'button_border_radius_left_vertical',
+                [
+                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => ['px', '%', 'em', 'rem'],
+                    'default' => [
+                        'top' => 30,
+                        'right' => 30,
+                        'bottom' => 30,
+                        'left' => 30,
+                        'unit' => 'px',
+                        'isLinked' => true,
+                    ],
+                    'selectors' => [ 
+                        '{{WRAPPER}} .left_button, {{WRAPPER}} .dual-left' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                    'condition' => [
+                        'layout_db' => 'column'
+                    ],
+                ]
+            );
           
             $this->add_responsive_control(
                 'button_padding',
@@ -551,6 +597,14 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 ]
             );
            
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name' => 'button_border_left',
+                    'label' => esc_html__('Border Button', 'textdomain'),
+                    'selector' => '  {{WRAPPER}} .left_button',
+                ]
+            );
 
           
         // /wkwkwkw
@@ -574,15 +628,30 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'left_db_icon_size',
             [
-                'name' => 'button_border',
-                'label' => esc_html__('Border Button', 'textdomain'),
-                'selector' => '  {{WRAPPER}} .dual-left',
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-icon-left-button ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
+
+ 
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -631,12 +700,26 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'left_db_icon_size_hover',
             [
-                'name' => 'button_border_hover',
-                'label' => esc_html__('Border Button', 'textdomain'),
-                'selector' => '{{WRAPPER}} .dual-left:hover ',
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} a:hover .rkit-icon-left-button ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -690,7 +773,52 @@ class Rkit_dual_button extends \Elementor\Widget_Base
 
             
 
-           
+            $this->add_responsive_control(
+                'button_border_radius_right',
+                [
+                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => ['px', '%', 'em', 'rem'],
+                    'default' => [
+                        'top' => 0,
+                        'right' => 30,
+                        'bottom' => 30,
+                        'left' => 0,
+                        'unit' => 'px',
+                        'isLinked' => true,
+                    ],
+                    'selectors' => [  
+                        '{{WRAPPER}} .right_button, {{WRAPPER}} .dual-right' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                    ],
+                    'condition' => [
+                        'layout_db' => 'row'
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'button_border_radius_right_vertical',
+                [
+                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                    'size_units' => ['px', '%', 'em', 'rem'],
+                    'default' => [
+                        'top' => 30,
+                        'right' => 30,
+                        'bottom' => 30,
+                        'left' => 30,
+                        'unit' => 'px',
+                        'isLinked' => true,
+                    ],
+                    'selectors' => [  
+                        '{{WRAPPER}} .right_button, {{WRAPPER}} .dual-right' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                    ],
+                    'condition' => [
+                        'layout_db' => 'column'
+                    ],
+                ]
+            );
+          
             $this->add_responsive_control(
                 'button_padding_right',
                 [
@@ -737,6 +865,16 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 ]
             ); 
 
+                       
+            $this->add_group_control(
+                \Elementor\Group_Control_Border::get_type(),
+                [
+                    'name' => 'button_border_right',
+                    'label' => esc_html__('Border Button', 'textdomain'),
+                    'selector' => '  {{WRAPPER}} .right_button',
+                ]
+            );
+
           
         // /wkwkwkw
         $this->start_controls_tabs('button_tab_right');
@@ -759,13 +897,26 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'right_db_icon_size',
             [
-                'name' => 'button_border_right',
-                'label' => esc_html__('Border Button', 'textdomain'),
-                'selector' => '  {{WRAPPER}} .dual-right',
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-icon-right-button ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -815,13 +966,27 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 '{{WRAPPER}} a:hover .rkit-icon-right-button ' => 'color : {{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+ 
+        $this->add_responsive_control(
+            'right_db_icon_size_hover',
             [
-                'name' => 'button_border_hover_right',
-                'label' => esc_html__('Border Button', 'textdomain'),
-                'selector' => '{{WRAPPER}} .dual-right:hover ',
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} a:hover     .rkit-icon-right-button ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 

@@ -257,5 +257,13 @@
     "category": "rkit",
     "status": true,
     "type": "free"
+  },
+  "woo_product_grid": {
+    "name": "Product Grid",
+    "icon": "eicon-products",
+    "class_name": "Rkit_woo_product_grid",
+    "category": "woocommerce",
+    "status": true,
+    "type": "free"
   }
 }

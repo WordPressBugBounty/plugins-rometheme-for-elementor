@@ -35,7 +35,10 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
     {
         return ['rkit-advanced_heading-style'];
     }
-
+    protected function is_dynamic_content(): bool
+    {
+        return false;
+    }
     protected function register_controls()
     {
         $this->start_controls_section('content_section', ['label' => esc_html('Content'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
@@ -51,6 +54,9 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
             ]
         );
+
+
+
 
         $this->add_control(
             'hr_link',
@@ -146,10 +152,14 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        // stylee ========================================================================================
+
         $this->start_controls_section('Container', [
             'label' => esc_html('Container'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -194,8 +204,14 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
 
+
+
+
+
+        // style headline text
         $this->start_controls_section('headline_text_style', [
             'label' => esc_html('Headline'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
@@ -298,10 +314,12 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        // style wrap headline text
         $this->start_controls_section('wrap_headline_text_style', [
             'label' => esc_html('Headline Standart'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -382,7 +400,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                         </span>";
             },
             $string
-
         );
 
         if (!empty($settings['_link']['url'])) {
@@ -413,12 +430,14 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 break;
         }
 ?>
-        <a <?php echo esc_attr($this->get_render_attribute_string('_link')) ?>>
-            <<?php echo $html_tag?> class="rkit-advanced-heading">
+        <a <?php $this->print_render_attribute_string('_link') ?>>
+            <<?php echo $html_tag ?> class="rkit-advanced-heading">
 
                 <span class="std-text rkit-trp-text"> <?php echo $newString; ?> </span>
+
             </<?php echo $html_tag ?>>
         </a>
+
 
 <?php
     }

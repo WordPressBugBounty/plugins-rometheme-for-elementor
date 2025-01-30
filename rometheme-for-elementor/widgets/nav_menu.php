@@ -172,7 +172,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'pointer-framed' => esc_html__('Framed', 'rometheme-for-elementor'),
                 'pointer-bg' => esc_html__('Background', 'rometheme-for-elementor'),
             ],
-            'default' => 'pointer-underline',
+            'default' => '',
         ]);
 
         $this->add_control('pointer_width', [
@@ -357,7 +357,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 10,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-nav-link ' => 'gap: {{SIZE}}{{UNIT}};',
@@ -577,6 +577,17 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ],
         ]);
 
+        $this->add_control('pointer_color', [
+            'label' => esc_html('Pointer Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-menu-item' => '--pointer-color : {{VALUE}}'
+            ],
+            'condition' => [
+                'pointer_select!' => ''
+            ]
+        ]);
+
         $this->start_controls_tabs('menu-style-tab');
 
         $this->start_controls_tab('menu-normal', [
@@ -718,15 +729,6 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             [
                 'name' => 'submenu_typography',
                 'selector' => '{{WRAPPER}} .rkit-submenu-item .rkit-nav-link'
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'submenu-border',
-                'selector' => '{{WRAPPER}} .rkit-submenu-item',
             ]
         );
 

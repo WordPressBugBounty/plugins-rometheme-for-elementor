@@ -94,21 +94,17 @@
                     </div>
                     <div class="d-flex flex-column text-white">
                         <div class="d-flex flex-row align-items-center gap-3">
-                            <h4 class="m-0">January 10, 2025</h4>
+                            <h4 class="m-0">January 30, 2025</h4>
                             <span class="rtm-version py-0">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
                         </div>
                         <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                            <li>New : Template Library</li>
-                            <li>New Widget : Hero Slider</li>
-                            <li>New Widget : Image Box</li>
-                            <li>New Widget : Dual Button</li>
-                            <li>New Widget : Image Gallery Masonry</li>
-                            <li>Update Widget : Pricing Image Box</li>
-                            <li>Update Widget : Post Carousel</li>
-                            <li>Update Widget : client Carousel</li>
-                            <li>Update Widget : Testimonial Carousel</li>
-                            <li>Update Widget : Nav Menu</li>
-                            <li>Update Widget : Pricing Table</li>
+                            <li>New Widget : Woo Product Grid</li>
+                            <li>Update Widget : Pricing Hero Slider</li>
+                            <li>Update Widget : Image Accordion</li>
+                            <li>Update Widget : Call To Action</li>
+                            <li>Update Widget : Advanced Tabs</li>
+                            <li>Update Widget : Blockquote</li>
+                            <li>Update Widget : Post Block</li>
                             <li>Security Update</li>
                         </ul>
                         <div>

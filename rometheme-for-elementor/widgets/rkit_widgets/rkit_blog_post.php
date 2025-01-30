@@ -1462,6 +1462,32 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
+            'readmore_icon_size',
+            [
+                'label' => esc_html__('Icon Size    ', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} a.rkit-readmore-btn .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; , width : {{SIZE}}{{UNIT}} ; height : {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_icon_readmore' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
             'icon_spacing',
             [
                 'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
@@ -2017,7 +2043,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                             endif;
                             ?>
                             <a class="rkit-image-link" style="overflow: hidden;" href="<?php esc_url(the_permalink()) ?>">
-                                <img class="rkit-post-grid-img" src="<?php the_post_thumbnail($settings['thumbnail_size']) ?>">
+                                <?php the_post_thumbnail($settings['thumbnail_size'] , ['class' => 'rkit-post-grid-img' ]) ?>
                             </a>
                             <?php if ('yes' === $settings['show-floating-date']) : ?>
                                 <div class="rkit-float-metawrapper-date">
@@ -2037,7 +2063,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                                 ?>
                                                 <div class="rkit-metadata-item">
                                                     <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon']); ?>
-                                                    <?php esc_html__(the_author_posts_link(), 'rometheme-for-elementor') ?>
+                                                    <?php the_author_posts_link() ?>
                                                 </div>
                                             <?php
                                                 break;
@@ -2073,7 +2099,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-title']) : ?>
                             <div class="rkit-post-grid-title-container">
-                                <a class="rkit-post-grid-title" href="<?php esc_url(the_permalink()) ?>"><?php echo esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
+                                <a class="rkit-post-grid-title" href="<?php the_permalink() ?>"><?php echo esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ('after_title' === $settings['meta_position']) : ?>

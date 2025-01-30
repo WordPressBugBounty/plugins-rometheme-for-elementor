@@ -59,6 +59,7 @@ class Plugin
         wp_enqueue_style('price_list-style', \RomeTheme::widget_url() . 'assets/css/price_list.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-image_gallery-style', \RomeTheme::widget_url() . 'assets/css/image_gallery.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-home-slider-style', \RomeTheme::widget_url() . 'assets/css/home_slider.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-woo_product_grid-style', \RomeTheme::widget_url() . 'assets/css/woo_product_grid.css', '', \RomeTheme::rt_version());
     
     }
 
@@ -90,6 +91,7 @@ class Plugin
         wp_enqueue_script('rkit-image_gallery-script', \RomeTheme::widget_url() . 'assets/js/image_gallery.js', ['jquery'], \RomeTheme::rt_version(),true);
         wp_enqueue_script('rkit-image_gallery_masonry-script', \RomeTheme::widget_url() . 'assets/js/masonry.pkgd.min.js', ['jquery'], \RomeTheme::rt_version(),true);
         wp_enqueue_script('rkit-image_gallery_masonry_loaded-script', \RomeTheme::widget_url() . 'assets/js/imagesloaded.pkgd.min.js', ['jquery'], \RomeTheme::rt_version(),true);
+        wp_enqueue_script('rkit-home-slider-script', \RomeTheme::widget_url() . 'assets/js/home_slider.js', ['jquery'], \RomeTheme::rt_version(),true);
     }
 
     public static function  add_elementor_widget_categories($elements_manager)

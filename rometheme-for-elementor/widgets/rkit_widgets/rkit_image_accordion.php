@@ -339,7 +339,7 @@ $this->start_controls_section('container_style', [
                 ],
             ],
             'selectors' => [
-                '{{WRAPPER}} .item-click.active .item-text' => 'opacity: {{SIZE}};',
+                '{{WRAPPER}}  .background-item-text' => 'opacity: {{SIZE}};',
             ],
             'condition' => [
                 'hover_mode' => '-click'
@@ -707,7 +707,7 @@ $this->start_controls_section('container_style', [
 
   
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'textdomain'),
@@ -718,7 +718,7 @@ $this->start_controls_section('container_style', [
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'button_padding',
             [
                 'label' => esc_html__('Padding', 'textdomain'),
@@ -757,7 +757,7 @@ $this->start_controls_section('container_style', [
         );
 
         $this->add_responsive_control(
-            'icon_spacing',
+            'button_spacing',
             [
                 'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -787,12 +787,76 @@ $this->start_controls_section('container_style', [
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-image-accordion-item-button, {{WRAPPER}} .rkit-button-element-image-accordion' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
+                ], 
+                 'condition' => [
+                    'direction' => 'row'
+                ]
             ]
         );
 
-        
+        $this->add_responsive_control(
+            'button_spacing_column',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'desktop_default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-image-accordion-item-button, {{WRAPPER}} .rkit-button-element-image-accordion' => 'margin-top: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'direction' => 'column'
+                ]
+            ]
+
+        );
+
+        $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ], 
+                'selectors' => [
+                    ' {{WRAPPER}} .button-element-image-accordion' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
     
+
     // /wkwkwkw
     $this->start_controls_tabs('button_tab');
 
@@ -1002,7 +1066,6 @@ protected function render()
   </div>
 
 </div>
- </div>
 
  
 

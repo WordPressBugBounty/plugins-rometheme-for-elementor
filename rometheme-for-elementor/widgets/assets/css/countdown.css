@@ -14,11 +14,15 @@
     
 }
 
+.countdown-title-wrapper{
+    margin-bottom : -20px;
+}
+
 .rkit-countdown-widget .countdown-title {
     color: var(--title-color, #000);
-    font-size: 2em;
-    margin-bottom: 20px;
+    /* font-size: 2em;m */
 }
+ 
 
 .countdown_contain {
     display: flex;    

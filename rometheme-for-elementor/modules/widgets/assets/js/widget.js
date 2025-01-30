@@ -59,15 +59,17 @@ jQuery(document).ready(function ($) {
 
   resetBtn.click(function (e) {
     e.preventDefault();
+    resetBtn.html("Resetting");
+    resetBtn.prop("disabled", false);
+    var nonce = rometheme_ajax_url.nonce;
     $.ajax({
       method: "POST",
       url: rometheme_ajax_url.ajax_url,
       data: {
         action: "reset_widgets",
+        nonce : nonce
       },
       success: function (res) {
-        resetBtn.html("Resetting");
-        resetBtn.prop("disabled", false);
         window.location.reload();
       },
     });

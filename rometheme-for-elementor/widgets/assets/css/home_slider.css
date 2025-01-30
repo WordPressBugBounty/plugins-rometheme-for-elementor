@@ -91,6 +91,7 @@
   left: 0;
   padding: 10%;  
   background-color: transparent;
+  z-index: 0;  
 }
  
 .hs-content-background{
@@ -107,11 +108,13 @@
   left: 0;
   padding: 10%; 
   background-color: #000000; 
+  z-index: 0;  
 }
 
 .icon-subtitle-hs{
   display: flex;
   align-self: center;
+  z-index: 3;  
 }
 
 .hs-subtitle-section{
@@ -120,12 +123,13 @@
   color: #ffffff; 
   gap : 10px;
   width: fit-content;
+  z-index: 3;  
 }
 .hs-sub-title{
   font-size: 18px;
   font-weight: bold;
   color: #ffffff;  
-  z-index: 2;  
+  z-index: 3;  
   /* text-align: center; */
   align-self: center;
   width: 100%;
@@ -138,7 +142,7 @@
   font-size: 40px;
   font-weight: bold;
   color: #ffffff;  
-  z-index: 2;  
+  z-index: 3;    
   /* text-align: center; */
   display: block; 
   text-wrap: auto; 
@@ -147,7 +151,7 @@
 .hs-description {
   font-size: 20px;
   color: #ffffff;   
-  z-index: 2;  
+  z-index: 3;  
   display: block;
   text-wrap: auto;  
 }
@@ -201,54 +205,66 @@
 
 .hs-animation-2-subtitle {
   display: inline-block;
-  overflow: hidden;  
-  white-space: nowrap;  
-  border-right: 2px solid #ffffff;  
+  overflow: hidden;       
   animation: typewritersubtitle 4s steps(30) 1s forwards, blink 0.7s ;
+  white-space: nowrap;
 }
 
 .hs-animation-2-title {
   display: inline-block;
-  overflow: hidden;  
-  white-space: nowrap;  
-  border-right: 2px solid #ffffff;  
+  overflow: hidden;      
   animation: typewritertitle 4s steps(30) 1s forwards, blinks 0.7s ;
+  white-space: wrap;
 }
 
 .hs-animation-2-desc {
-  display: inline-block;
-  overflow: hidden;  
-  white-space: nowrap;  
-  border-right: 2px solid #ffffff;  
+  display: inline-block; 
+  overflow: hidden;      
   animation: typewriterdesc 4s steps(30) 1s forwards, blinkz 0.7s ;
+  white-space: wrap;
 }
-
 @keyframes typewritersubtitle {
-  from {
-    width: 0;
+  0% {
+    width: 30%;
+    opacity: 0;
   }
-  to {
-    width: 100%;  
+  50% {
+    opacity: 1;
+  } 
+  100% {
+    width: 50%;
+    opacity: 1;
   }
 }
 
 @keyframes typewritertitle {
-  from {
-    width: 0;
+  0% {
+    width: 30%;
+    opacity: 0;
   }
-  to {
-    width: 100%;  
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: 50%;
+    opacity: 1;
   }
 }
 
 @keyframes typewriterdesc {
-  from {
-    width: 0;
+  0% {
+    width: 30%;
+    opacity: 0;
   }
-  to {
-    width: 100%;  
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: 50%;
+    opacity: 1;
   }
 }
+
  
 @keyframes blink {
   from {

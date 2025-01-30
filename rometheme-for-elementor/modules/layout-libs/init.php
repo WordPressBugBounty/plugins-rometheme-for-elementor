@@ -64,6 +64,12 @@ class Init
     }
 
     public function fetch_layout_lib() {
+
+        if (!isset($_GET['wpnonce']) || !wp_verify_nonce( $_GET['wpnonce'] , 'rtm_template_nonce')) {
+            wp_send_json_error('Access Denied');
+            wp_die();
+        }
+
         $url = "https://api.rometheme.pro/wp-json/public/get_layout_api/";
         $ck = 'ck_p2ke51ckfmb42kefnw67krk93wwjawj6';
         $cs = 'cs_djg1rrp51rn6hvj5ck76x75u99ec8e19';

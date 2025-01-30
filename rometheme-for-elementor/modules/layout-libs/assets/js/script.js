@@ -80,7 +80,13 @@ jQuery(window).on("elementor:init", () => {
         '" height="25"></img></div>'
     );
     modalHeader.append(
-      '<div class="elementor-templates-modal__header__items-area"><div class="elementor-templates-modal__header__close elementor-templates-modal__header__close--normal elementor-templates-modal__header__item"><button class="rkit-close-modal"><i class="eicon-close"></i></button></div></div>'
+      `<div class="elementor-templates-modal__header__items-area">
+      <div class="elementor-templates-modal__header__close elementor-templates-modal__header__close--normal elementor-templates-modal__header__item">
+      <button class="rkit-close-modal"><i class="eicon-close"></i></button>
+      </div>
+      <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-2 rkit-go-pro-btn">Go To Pro <i class="eicon-upgrade-crown"></i></a>
+      </div>
+      `
     );
     elmodalHeader.append(modalHeader);
 
@@ -100,7 +106,7 @@ jQuery(window).on("elementor:init", () => {
     );
 
     var r_f = jQuery(
-      '<div style="width:100%; padding:1rem ; padding-block: 6rem ; text-align:center ; font-size:medium;"><h4 style="font-size:x-large">Stay tuned!</h4>More incredible templates are on the way.</div>'
+      '<div style="width:100%; padding:1rem ; padding-block: 6rem ; text-align:center ; font-size:medium;"></div>'
     );
 
     jQuery(".rkit-modal").css({ opacity: 0 }).show();
@@ -109,7 +115,7 @@ jQuery(window).on("elementor:init", () => {
     jQuery.ajax({
       url: rkit_libs.ajax_url,
       type: "GET",
-      data : {action : "fetch_layout_lib"},
+      data: { action: "fetch_layout_lib", wpnonce: rkit_libs.template_nonce },
       dataType: "json",
       beforeSend: function () {
         modalContent.append(loading);
@@ -153,14 +159,38 @@ jQuery(window).on("elementor:init", () => {
           render_template_body(param);
         });
 
+        const installed_template_tab = jQuery(
+          '<div class="elementor-component-tab elementor-template-library-menu-item" data-tab="installed-template">INSTALLED TEMPLATES</div>'
+        );
+
+        installed_template_tab.on("click", function (event) {
+          if (!jQuery(event.currentTarget).hasClass("elementor-active")) {
+            jQuery(
+              "#elementor-template-library-header-menu .elementor-template-library-menu-item"
+            )
+              .not(event.currentTarget)
+              .removeClass("elementor-active");
+            jQuery(event.currentTarget).addClass("elementor-active");
+          }
+          rkit_template_library.empty();
+          let param = {
+            action: "get_installed_templates",
+            wpnonce: rkit_libs.template_nonce,
+          };
+
+          render_installed_template(param);
+        });
+
+        e.append(installed_template_tab);
         e.append(template_tab);
 
         for (let key in type) {
+          let name = key == "block" ? "wireframes" : key + "s";
           var header_item = jQuery(
             '<div class="elementor-component-tab elementor-template-library-menu-item" data-tab="' +
               key +
               '">' +
-              key.toUpperCase() +
+              name.toUpperCase() +
               "</div>"
           );
 
@@ -215,18 +245,18 @@ jQuery(window).on("elementor:init", () => {
         var search = jQuery(
           '<input class="r-search" type="text" placeholder="Search">'
         );
-        var slc = jQuery('<div class="r-select-container"></div>');
-        var lcat = jQuery('<div class="r-list-page-category"></div>');
-        var select = jQuery(
-          '<input type="text" class="r-select-cat" data-value="all" value="All" readonly>'
+        let slc = jQuery('<div class="r-select-container"></div>');
+        let lcat = jQuery('<div class="r-list-page-category"></div>');
+        let select = jQuery(
+          '<input type="text" class="r-select-cat" data-value="all" value="All Categories" readonly>'
         );
-        var all = jQuery(
-          '<div class="r-page-category" data-value="all">All</div>'
+        let all = jQuery(
+          '<div class="r-page-category" data-value="all">All Categories</div>'
         );
         all.click((event) => {
           r_t_l.empty();
           render_list(template);
-          select.val("All");
+          select.val("All Categories");
           select.data("value", "all");
         });
         lcat.append(all);
@@ -415,14 +445,96 @@ jQuery(window).on("elementor:init", () => {
     }
 
     function render_template_body(params) {
-      const load = jQuery(
-        '<div id="rkit-loading" class="rkit-loading"><div class="spinner"></div></div>'
+      const templateHeader = jQuery(
+        `<div id="template-header" class="r-header-page"></div>`
+      );
+      const searchInput = jQuery(
+        `<input class="r-search" type="text" placeholder="Search All Template Kits...">`
       );
       const TemplateContainer = jQuery(
         `<div id="template-container" class="row-cols-3"></div>`
       );
-      TemplateContainer.append(load);
-      rkit_template_library.append(TemplateContainer);
+      searchInput.on("change", function (e) {
+        e.preventDefault();
+        params.search = jQuery(this).val();
+        // console.log(params);
+        render_template_data(params);
+      });
+
+      let slc = jQuery('<div class="r-select-container"></div>');
+      let lcat = jQuery('<div class="r-list-page-category"></div>');
+      let select = jQuery(
+        '<input type="text" class="r-select-cat" data-value="all" value="All Categories" readonly>'
+      );
+      let all = jQuery(
+        '<div class="r-page-category" data-value="all">All Categories</div>'
+      );
+
+      all.on("click", function (e) {
+        params.category = "";
+        render_template_data(params);
+        select.val("All Categories");
+      });
+      lcat.append(all);
+      jQuery.ajax({
+        type: "POST",
+        data: {
+          action: "template_category",
+          wpnonce: rkit_libs.template_nonce,
+        },
+        url: rkit_libs.ajax_url,
+        success: function (res) {
+          if (res.success) {
+            jQuery.each(res.data.rtm_templatekit_category, (i, v) => {
+              let title = v
+                .toLowerCase()
+                .replace(/\b[a-z]/g, function (letter) {
+                  return letter.toUpperCase();
+                });
+              let cat = jQuery(
+                `<div class="r-page-category" data-value="${v}">${title.replace(
+                  "-",
+                  " "
+                )}</div>`
+              );
+              cat.on("click", function (e) {
+                params.category = v;
+                render_template_data(params);
+                select.val(title.replace("-", " "));
+              });
+              lcat.append(cat);
+            });
+          }
+        },
+      });
+      slc.append(select);
+      slc.append(lcat);
+      templateHeader.append(slc);
+      templateHeader.append(searchInput);
+      rkit_template_library.append(templateHeader);
+      // rkit_template_library.append(TemplateContainer);
+      render_template_data(params);
+    }
+
+    function render_template_data(params) {
+      const load = jQuery(
+        '<div id="rkit-loading" class="rkit-loading"><div class="spinner"></div></div>'
+      );
+
+      let TemplateContainer = null;
+
+      if (jQuery("#template-container").length) {
+        TemplateContainer = jQuery("#template-container");
+        TemplateContainer.empty();
+        TemplateContainer.append(load);
+      } else {
+        TemplateContainer = jQuery(
+          `<div id="template-container" class="row-cols-3"></div>`
+        );
+        TemplateContainer.empty();
+        TemplateContainer.append(load);
+        rkit_template_library.append(TemplateContainer);
+      }
       jQuery.ajax({
         type: "POST",
         url: rkit_libs.ajax_url,
@@ -444,7 +556,7 @@ jQuery(window).on("elementor:init", () => {
                 `<div class="p-3 d-flex flex-column gap-3"></div>`
               );
               let $title = jQuery(
-                `<div class="d-block"><h6 class="text-truncate text-white m-0">${v.name}</h6><span class="text-capitalize text-light">${v.category}</span></div>`
+                `<div class="d-block"><h3 class="text-truncate text-white m-0">${v.name}</h3></div>`
               );
 
               let btnContainer = jQuery(
@@ -457,7 +569,7 @@ jQuery(window).on("elementor:init", () => {
                     btnInstall = jQuery(
                       `<button 
                       class="fw-light btn w-100 btn-gradient-accent rounded-2">
-                      <i class="fas fa-plus me-2"></i>View Kit</button>`
+                      <i class="rtmicon rtmicon-plus me-2"></i>View Kit</button>`
                     );
                     btnInstall.on("click", function (e) {
                       e.preventDefault();
@@ -466,10 +578,7 @@ jQuery(window).on("elementor:init", () => {
                   } else {
                     btnInstall = jQuery(
                       `<button class="fw-light btn w-100 btn-gradient-accent rounded-2 ">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-</svg>
+                      <i class="rtmicon rtmicon-plus"></i>
                       Install</button>`
                     );
 
@@ -513,10 +622,7 @@ jQuery(window).on("elementor:init", () => {
                   });
                 } else {
                   btnInstall = jQuery(
-                    `<button class="fw-light btn w-100 btn-gradient-accent rounded-2 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-                      </svg>
+                    `<button class="fw-light btn w-100 btn-gradient-accent rounded-2 "><i class="rtmicon rtmicon-plus"></i>
                     Install</button>`
                   );
 
@@ -545,9 +651,12 @@ jQuery(window).on("elementor:init", () => {
                         </svg>
                 Preview</button>`
               );
-
+              let totalDownloads = jQuery(
+                `<button class="btn btn-outline-accent rounded-2" data-tooltips="Total Download"><i class="rtmicon rtmicon-download"></i>${v.downloads}</button>`
+              );
               btnContainer.append(btnInstall);
               btnContainer.append(btnPreview);
+              btnContainer.append(totalDownloads);
 
               $cardBody.append($title);
               // $cardBody.append(``);
@@ -594,12 +703,14 @@ jQuery(window).on("elementor:init", () => {
 
               for (let i = 1; i <= res.data.pagination.total_pages; i++) {
                 const activeClass =
-                  i === res.data.pagination.current_page ? "elementor-active" : "";
+                  i === res.data.pagination.current_page
+                    ? "elementor-active"
+                    : "";
 
-                pgNumber = jQuery(`<li class="page-item glass-effect ${activeClass}"></li>`);
-                pgBtn = jQuery(
-                  `<button class="page-btn">${i}</button>`
+                pgNumber = jQuery(
+                  `<li class="page-item glass-effect ${activeClass}"></li>`
                 );
+                pgBtn = jQuery(`<button class="page-btn">${i}</button>`);
                 pgBtn.on("click", function (e) {
                   rkit_template_library.empty();
                   let param = {
@@ -637,19 +748,104 @@ jQuery(window).on("elementor:init", () => {
               pagination.append(next);
               rkit_template_library.append(pagination);
             }
+          } else {
+            TemplateContainer.empty();
+            TemplateContainer.append(
+              `<div style="text-align:center ; width : 100%"><h1>Sorry, Template Not Found.<h1></div>`
+            );
           }
         },
       });
     }
 
+    function render_installed_template(params) {
+      const TemplateContainer = jQuery(
+        `<div id="template-container" class="row-cols-3"></div>`
+      );
+      const load = jQuery(
+        '<div id="rkit-loading" class="rkit-loading"><div class="spinner"></div></div>'
+      );
+
+      jQuery.ajax({
+        type: "POST",
+        url: rkit_libs.ajax_url,
+        data: params,
+        beforeSend: function () {
+          TemplateContainer.empty();
+          TemplateContainer.append(load);
+          rkit_template_library.append(TemplateContainer);
+        },
+        success: function (res) {
+          if (res.success) {
+            let data = res.data;
+            if (data.length != 0) {
+              jQuery.each(data, (i, v) => {
+                let $col = jQuery('<div class="col"></div>');
+                let $card = jQuery(
+                  '<div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border"></div>'
+                );
+                let $previewImg = jQuery(
+                  `<img class="img-fluid" src=${v.image_preview_url}>`
+                );
+                let $cardBody = jQuery(
+                  `<div class="p-3 d-flex flex-column gap-3"></div>`
+                );
+                let $title = jQuery(
+                  `<div class="d-block"><h3 class="text-truncate text-white m-0">${v.name}</h3></div>`
+                );
+                let btnContainer = jQuery(
+                  '<div class="d-flex flex-row gap-2"></div>'
+                );
+                btnInstall = jQuery(
+                  `<button 
+                  class="fw-light btn w-100 btn-gradient-accent rounded-2">
+                  <i class="rtmicon rtmicon-plus me-2"></i>View Kit</button>`
+                );
+                btnInstall.on("click", function (e) {
+                  e.preventDefault();
+                  render_view_template(i);
+                });
+
+                let btnPreview = jQuery(
+                  `<a target="_blank" href="${v.preview_url}" class="btn fw-light w-100 border-white text-white rounded-2" data-template="${v.id}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                          </svg>
+                  Preview</button>`
+                );
+
+                btnContainer.append(btnInstall);
+                btnContainer.append(btnPreview);
+                // btnContainer.append(totalDownloads);
+
+                $cardBody.append($title);
+                // $cardBody.append(``);
+                $cardBody.append(btnContainer);
+                $card.append($previewImg);
+                $card.append($cardBody);
+                $col.append($card);
+                TemplateContainer.append($col);
+              });
+            }
+          }
+        },
+        complete: function () {
+          load.remove();
+        },
+      });
+    }
+
     function render_view_template(template) {
+      const templateHeader = jQuery(
+        `<div id="template-header" class="r-header-page"></div>`
+      );
       const TemplateContainer = jQuery("#template-container");
       const load = jQuery(
         '<div id="rkit-loading" class="rkit-loading"><div class="spinner"></div></div>'
       );
       let templateHashId = template;
-      TemplateContainer.empty();
-      TemplateContainer.append(load);
+
       jQuery.ajax({
         type: "POST",
         url: rkit_libs.ajax_url,
@@ -658,13 +854,34 @@ jQuery(window).on("elementor:init", () => {
           template: template,
           wpnonce: rkit_libs.template_nonce,
         },
+        beforeSend: function () {
+          TemplateContainer.empty();
+          rkit_template_library.empty();
+          TemplateContainer.append(load);
+          rkit_template_library.append(TemplateContainer);
+        },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
 
           if (res.success) {
             TemplateContainer.empty();
             let template = res.data.manifest.templates;
             let pathUrl = res.data.manifest.path_url;
+
+            const title = jQuery(`<h1>${res.data.manifest.title}</h1>`);
+
+            let $attentionBtn =
+              jQuery(`<button class="fw-light btn btn-gradient-accent rounded-2 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+            </svg>Attention</button>`);
+
+            $attentionBtn.on("click", function (e) {
+              show_template_description(res.data.description);
+            });
+
+            templateHeader.append(title);
+            templateHeader.append($attentionBtn);
             jQuery.each(template, function (i, v) {
               if (v.metadata.template_type != "global-styles") {
                 let $col = jQuery('<div class="col"></div>');
@@ -678,7 +895,7 @@ jQuery(window).on("elementor:init", () => {
                   `<div class="p-3 d-flex flex-column gap-3"></div>`
                 );
                 let $title = jQuery(
-                  `<div class="d-block"><h6 class="text-truncate text-white m-0">${v.name}</h6></div>`
+                  `<div class="d-block"><h3 class="text-truncate text-white m-0">${v.name}</h3></div>`
                 );
 
                 let btnContainer = jQuery(
@@ -693,10 +910,7 @@ jQuery(window).on("elementor:init", () => {
                 );
 
                 btnInstall = jQuery(
-                  `<button class="fw-light btn w-100 btn-gradient-accent rounded-2 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-</svg>Install</button>`
+                  `<button class="fw-light btn w-100 btn-gradient-accent rounded-2 "><i class="rtmicon rtmicon-plus"></i>Install</button>`
                 );
 
                 let keyName = v.name;
@@ -784,6 +998,11 @@ jQuery(window).on("elementor:init", () => {
             });
           }
         },
+        complete: () => {
+          load.remove();
+          rkit_template_library.append(templateHeader);
+          rkit_template_library.append(TemplateContainer);
+        },
       });
     }
 
@@ -800,6 +1019,54 @@ jQuery(window).on("elementor:init", () => {
     });
   }
 });
+
+function show_template_description(description) {
+  let modal = jQuery(
+    `<div class="r-preview-modal-overlay elementor-templates-modal"></div>`
+  );
+
+  // Add modal container
+  var modalContainer = jQuery(
+    '<div class="dialog-widget-content dialog-lightbox-widget-content rkit-modal-dialog" style="width: 50% ; height: 80%"></div>'
+  );
+  // modalOverlay.append(modalContainer);
+
+  // Add modal content
+  var modalContent = jQuery(
+    `<div class="dialog-message dialog-lightbox-message"></div>`
+  );
+
+  let $description = jQuery(`<div class="attention-description">${description}</div>`);
+
+  modalContent.append($description);
+
+  var elmodalHeader = jQuery(
+    '<div class="dialog-header dialog-lightbox-header"></div>'
+  );
+  var modalHeader = jQuery(
+    '<div class="elementor-templates-modal__header rkit-modal-header"></div>'
+  );
+  modalHeader.append(
+    '<div class="elementor-templates-modal__header__logo-area rkit-logo-container"><h3>Attention</h3></div>'
+  );
+
+  let modalClose = jQuery(`<button class="rkit-close-modal" style="padding : 20px"><i class="eicon-close"></i></button>`);
+  modalClose.on('click' , function(){
+    close_preview();
+  });
+  
+  modalHeader.append(modalClose);
+  elmodalHeader.append(modalHeader);
+  modalContainer.append(elmodalHeader);
+  modalContainer.append(modalContent);
+
+  modal.append(modalContainer);
+  
+  jQuery("body").append(modal);
+  jQuery(".r-preview-modal-overlay").animate({ opacity: 1 }, 200, function () {
+    jQuery(this).show();
+  });
+}
 
 function show_preview(src, id, title) {
   var preview_modal = jQuery('<div class="r-preview-modal-overlay"></div>');
@@ -860,7 +1127,11 @@ function import_template(id) {
     $.ajax({
       url: rkit_libs.ajax_url,
       type: "GET",
-      data : {action : "fetch_layout_lib" , id : id},
+      data: {
+        action: "fetch_layout_lib",
+        id: id,
+        wpnonce: rkit_libs.template_nonce,
+      },
       dataType: "json",
       success: (response) => {
         data = JSON.parse(JSON.stringify(response));
