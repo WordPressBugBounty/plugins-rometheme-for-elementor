@@ -7,16 +7,16 @@
     "status": true,
     "type": "pro"
   },
-  "postcarousel" : {
-    "name" : "Post Carousel",
+  "postcarousel": {
+    "name": "Post Carousel",
     "icon": "rtmicon rtmicon-post-carousel",
     "class_name": "",
     "category": "rkit_pro",
     "status": true,
     "type": "pro"
   },
-  "pricingbox" : {
-    "name" : "Pricing Image Box",
+  "pricingbox": {
+    "name": "Pricing Image Box",
     "icon": "rtmicon rtmicon-pricing-image-box",
     "class_name": "",
     "category": "rkit_pro",
@@ -25,7 +25,23 @@
   },
   "pricelist": {
     "name": "Pricing List",
-    "icon": "eicon-price-list",
+    "icon": "rtmicon rtmicon-price-list",
+    "class_name": "",
+    "category": "rkit",
+    "status": true,
+    "type": "pro"
+  },
+  "advancedtoggle": {
+    "name": "Advanced Toggle",
+    "icon": "rtmicon rtmicon-advanced-toggle",
+    "class_name": "",
+    "category": "rkit",
+    "status": true,
+    "type": "pro"
+  },
+  "interactivelinks": {
+    "name": "Interactive Links",
+    "icon": "rtmicon rtmicon-interactive-link",
     "class_name": "",
     "category": "rkit",
     "status": true,

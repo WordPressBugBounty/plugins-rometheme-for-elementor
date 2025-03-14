@@ -231,6 +231,8 @@
 .rkit-highlighted.in_front svg {
   z-index: 2 !important;
 }
+ 
+
 
 .highlighted_in svg {
   animation: handdrawn 1s forwards;

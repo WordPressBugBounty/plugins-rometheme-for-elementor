@@ -60,7 +60,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'pointer',
-                'default' => '',
+                'default' => 'pointer',
             ]
         );
 

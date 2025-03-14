@@ -603,6 +603,11 @@ class Template
             wp_die();
         }
 
+        if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
+            wp_send_json_error('Access Denied');
+            wp_die();
+        }
+
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         include_once ABSPATH . 'wp-admin/includes/file.php';
         include_once ABSPATH . 'wp-admin/includes/misc.php';

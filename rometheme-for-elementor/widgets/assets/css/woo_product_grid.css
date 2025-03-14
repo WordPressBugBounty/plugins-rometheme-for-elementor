@@ -1,6 +1,6 @@
 /* Minimalist design option css */
 .rkit-product-grid-wpg {
-    display: grid;
+    display : grid;
     grid-template-columns: repeat(3, 1fr);
     flex-direction: row; 
     gap: 5px;
@@ -8,8 +8,6 @@
     justify-content: center;
   }
 
-
-  
   
   .rkit-product-card-wpg {
     background-color: #ffffff;
@@ -186,8 +184,9 @@
 /* profesional design css layout 2 */
  
 .rkit-product-grid-wpg-pro{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display : grid;
+    grid-template-columns: repeat(3, 1fr);
+  flex-direction: row; 
   gap: 5px; 
   background-color: transparent;
   justify-content: center;
@@ -208,7 +207,7 @@
   width: -webkit-fill-available;
 } 
 
-.rkit-product-image-wpg-pro {
+.rkit-product-image-wpg-pro { 
   position: relative;
   overflow: hidden; 
   border-radius: 20px 20px 20px 20px;
@@ -222,7 +221,7 @@
   border-radius: 20px 20px 20px 20px;
 }
 
-.rkit-product-image-wpg-pro:hover::after {
+ .rkit-product-image-wpg-pro:hover::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -233,8 +232,11 @@
   opacity : 0.3;
   transition: width 0.6s ease;
   z-index : 1;
-}
+} 
  
+ 
+
+
 /* content */
 
 .rkit-product-details-wpg-pro {
@@ -306,8 +308,8 @@
 }
 
 .rkit-addcart-wrap-button-wpg-pro {
-  position: relative;
-  display: inline-block;  
+  display: flex;
+  position: relative; 
 }
 
 /* Gradient border wrapper */
@@ -317,8 +319,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border-radius: 15px; 
-  /* background-image: linear-gradient(30deg, #00cea6, #535353); */
+  border-radius: 15px;  
   background-image: linear-gradient(30deg, var(--gradient-color-one), var(--gradient-color-two));
   /* background-color: #D0D1D5; */
   background-size: 500%;  
@@ -401,8 +402,9 @@ position: relative;
 
 
 .rkit-product-grid-wpg-prem {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display : grid;
+    grid-template-columns: repeat(3, 1fr);
+  /* flex-direction: row; */
   gap: 16px;  
   justify-content: center;
   
@@ -423,18 +425,20 @@ position: relative;
 }
 
  
-.rkit-product-image-wpg-prem {
-  position: relative; 
-  background-color: transparent;  
+.rkit-product-image-wpg-prem { 
+  position: relative;
+  overflow: hidden; 
+  border-radius: 20px 20px 20px 20px;
 }
 
 .rkit-product-image-wpg-prem img {
-  width: 100%;  
-  height: auto;  
-  display: block;  
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  margin: 0 auto;  
+  transition: transform 0.3s ease; 
+  border-radius: 20px 20px 20px 20px;
 }
+
 .rkit-product-image-wpg-prem:hover::after {
   content: '';
   position: absolute;
@@ -449,15 +453,16 @@ position: relative;
 }
  
 .rkit-product-ribbon-wpg-prem {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: #00CEA6;  
-  color: white;
+  background-color: #00CEA6;
+  /* background: linear-gradient(305deg, #393131 0%, #00CEA6 100%); */
+  margin-top: 0px;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;  
+  color: #fff;
+  padding: 5px 15px;
   font-size: 12px;
   font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 20px;
+  z-index: 10;
 
 }
 
@@ -471,7 +476,8 @@ position: relative;
   position: relative;
   z-index: 1;
   transition: transform 0.6s ease-in-out;
-  height : min-content;
+  /* height : 100%; */
+  max-height: min-content;
   gap: 10px;
   /* transform: translateY(60%);  */
 }
@@ -537,6 +543,7 @@ position: relative;
   
 .rkit-product-hov-wpg-prem{
   display: flex;
+  gap : 10px;
   flex-direction: row;
   width: 100%;
   /* padding-top: 10px; */
@@ -547,20 +554,25 @@ position: relative;
   max-height : min-content;
   overflow : hidden;
   visibility: hidden;
-   transform: translateY(-80%); 
+   /* transform: translateY(-80%);  */
   transition: max-height 0.5s ease, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 } 
 
 .rkit-product-card-wpg-prem:hover .rkit-product-details-wpg-prem {
   transform: translateY(-70%);
+  max-height : min-content;
 }
 
 .rkit-product-card-wpg-prem:hover .rkit-product-hov-wpg-prem {
   opacity: 1;
-  height : fit-content;
+  /* height : fit-content; */
   max-height : min-content;
   visibility: visible;
-  transform: translateY(-100%); 
+  transform: translateY(-70%); 
+}
+
+.rkit-product-card-wpg-prem:hover{ 
+  max-height : min-content;
 }
  
  
@@ -578,7 +590,7 @@ position: relative;
 .rkit-addcart-wrap-button-wpg-prem {
     display: flex;
   flex: 0 0 40%;
-  align-items: end;
+  align-items: center;
   width: 100%;
   margin: 0 auto;  
   align-content: center;
@@ -604,7 +616,7 @@ position: relative;
 
 
 .rkit-product-desc-wpg-prem{  
-  padding : 0px 8px 0px 0px;
+  padding : 0px 0px 0px 0px;
   display: flex;
   flex: 0 0 60%;
   overflow: hidden;

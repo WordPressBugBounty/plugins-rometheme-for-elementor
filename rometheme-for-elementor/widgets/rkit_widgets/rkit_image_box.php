@@ -114,8 +114,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'default' => 'column',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-image_box-card' => 'flex-direction: {{VALUE}};',
-                    // '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: center;',
+                    '{{WRAPPER}} .rkit-image_box-card' => 'flex-direction: {{VALUE}};', 
                 ],
                 'condition' => [
                     'select_style' => 'default', 
@@ -303,35 +302,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        // $this->add_responsive_control(
-        //     'icon_position',
-        //     [
-        //         'label' => esc_html__('Icon Position', 'rometheme-for-elementor'),
-        //         'type' => \Elementor\Controls_Manager::CHOOSE,
-        //         'options' => [
-        //             'start' => [
-        //                 'title' => esc_html__('Top', 'rometheme-for-elementor'),
-        //                 'icon' => 'eicon-v-align-top',
-        //             ],
-        //             'center' => [
-        //                 'title' => esc_html__('Center', 'rometheme-for-elementor'),
-        //                 'icon' => 'eicon-v-align-middle',
-        //             ],
-        //             'end' => [
-        //                 'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
-        //                 'icon' => 'eicon-v-align-bottom',
-        //             ],
-        //         ],
-        //         'selectors' => [
-        //             '{{WRAPPER}} .rkit-image_box__detail' => 'justify-content: {{VALUE}};',
-        //         ],
-        //         'default' => 'center',
-        //         'condition' => [
-        //             'imagebox_direction' => 'row'
-        //         ]
-        //     ]
-        // );
-
 
         $this->end_controls_section();
     
@@ -371,9 +341,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'imagebox_show_button_readmore' => 'yes'
         ]
     ]);
-
- 
-
 
     $this->add_control(
         'imagebox_readmore_text',
@@ -486,7 +453,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
 
     $this->end_controls_section();
 
-    // style =================================================================================================================================
+    // style 
 
     $this->start_controls_section('Container_style_section', [
         'label' => esc_html__('Container', 'rometheme-for-elementor'),
@@ -550,8 +517,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
             'types' => ['classic', 'gradient'],
             'selector' => '{{WRAPPER}} .rkit-image_box-card'
-            // 'selector' => '{{WRAPPER}} .rkit-pricelist-item-description, {{WRAPPER}} .rkit-pricelist-item-price-section, {{WRAPPER}} .rkit-pricelist-item-footer, {{WRAPPER}} .rkit-pricelist-item-button ',
-
         ]
     );
 
@@ -602,8 +567,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
         ]
     );
  
- 
-
     $this->add_group_control(
         \Elementor\Group_Control_Css_Filter::get_type(),
         [
@@ -678,7 +641,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
     );
 
 // desc
-
 $this->add_control(
     'divider_desc',
     [
@@ -730,10 +692,6 @@ $this->add_control(
         ]
     );
 
-   
-
-  
-
     $this->add_responsive_control(
         'desc_content_spacing',
         [
@@ -757,7 +715,6 @@ $this->add_control(
             ],
         ]
     );
-
 
     $this->add_responsive_control(
         'desc_con_paddingdet',
@@ -790,9 +747,6 @@ $this->add_control(
         ]
     );
 
-
-    
-
     // float container
     $this->add_group_control(
         \Elementor\Group_Control_Background::get_type(),
@@ -809,8 +763,7 @@ $this->add_control(
                     ],
             'condition' => [
                     'select_style' => 'float-card', 
-                ]
-             
+                ]      
         ]
     );
 
@@ -879,8 +832,6 @@ $this->add_control(
                 ]
         ]
     );
-
-
 
     $this->add_control(
         'deffloating_card',
@@ -963,9 +914,7 @@ $this->add_control(
         ]
     );
 
-
     // icon
-
     $this->add_control(
         'divider_icon',
         [
@@ -1432,7 +1381,7 @@ $this->add_control(
                     <div class="rkit-container-top">
                         <div class="left"> 
                             <?php
-                                \Elementor\Icons_Manager::render_icon($settings['icon_container'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-top']);
+                                   \Elementor\Icons_Manager::render_icon($settings['icon_container'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-top']);
                             ?>
                         </div>    
                            

@@ -1003,53 +1003,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
 			]
 		);
 
-        $this->add_responsive_control(
-			'card_button_icon_spacing',
-			[
-				'label' => esc_html__( 'Icon Spacing', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-card .card-button a' => 'gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-        $this->add_responsive_control(
-			'card_button_icon_size',
-			[
-				'label' => esc_html__( 'Icon Size', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem'],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .rkit-card .card-button a svg.button-icon' => 'width: {{SIZE}}{{UNIT}}; height:{{SIZE}}{{UNIT}}',
-				],
-			]
-		);
-
         $this->start_controls_tabs('button_tab');
 
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
@@ -1066,7 +1019,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'color : {{VALUE}} ; fill : {{VALUE}}'
+                '{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1129,7 +1082,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-card .card-button a:hover .button-icon' => 'color : {{VALUE}} ; fill: {{VALUE}}'
+                '{{WRAPPER}} .rkit-card .card-button a:hover .button-icon' => 'color : {{VALUE}}'
             ]
         ]);
 
@@ -1736,10 +1689,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'arrows'            => ($settings['show_navigation'] === 'yes') ? true : false,
             'dots'                => ($settings['show_dots'] === 'yes') ? true : false,
             'initial_slide' => $initialSlide,
-            'autoplay'            => ($settings['autoplay'] === 'yes') ? [
-                'pauseOnMouseEnter' => $pauseOnHover,
-            ] : false,
-            'speed'                => $settings['speed'],
+            'autoplay'            => ($settings['autoplay'] === 'yes') ? true : false,
+            'pauseOnHover' => $pauseOnHover,
+            'speed'                => ($settings['speed']) ? $settings['speed']:1000,
             'slidesPerGroup'    => !empty($settings['slide_to_scroll']) ? (int) $settings['slide_to_scroll'] : 1,
             'slidesPerView'        => !empty((int) $settings['slide_to_show']) ? (int) $settings['slide_to_show'] : 1,
             'loop'                => ($settings['loop'] === 'yes') ? true : false,

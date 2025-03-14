@@ -52,6 +52,25 @@
   fill: black;
 }
 
+.image-running img{
+  display: block;
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.image-running { 
+  display : flex;
+width: 100px;
+height: 100px;
+overflow: hidden;
+opacity : 1;
+  align-items : center;
+}
+
+
+
 @keyframes marquee {
   from {
     transform: translateX(0%);

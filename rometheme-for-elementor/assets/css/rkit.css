@@ -721,10 +721,10 @@ table.rtm-table tr {
   color: white;
 }
 
-.pagination .page-btn:hover{
-    background-color: #2b2c31;
-    border-color: #808080;
-  }
+.pagination .page-btn:hover {
+  background-color: #2b2c31;
+  border-color: #808080;
+}
 
 .page-item.active .page-btn {
   border-left: 0;
@@ -789,7 +789,7 @@ table.rtm-table tr {
   color: #006854;
 }
 
-button[data-tooltips]{
+button[data-tooltips] {
   position: relative;
 }
 
@@ -823,10 +823,34 @@ button[data-tooltips]::after {
   transition: transform 0.5s;
 }
 
-button[data-tooltips]:hover::before , 
+button[data-tooltips]:hover::before,
 button[data-tooltips]:hover::after {
   display: block;
   color: #000;
   transform: translateY(0px);
   visibility: visible;
+}
+
+.elementor-element.e-flex.rtmkit-blur-effect-enabled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  backdrop-filter: blur(5px);
+  /* opacity: 0.5; */
+}
+
+.elementor-widget.rtmkit-blur-effect-enabled > .elementor-widget-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  backdrop-filter: blur(5px);
+  border-radius: inherit;
 }

@@ -122,7 +122,7 @@ jQuery(window).on("elementor/frontend/init", function () {
           var txt = $("<p>" + data[0] + "</p>");
           textElement.append(txt);
           textElement.addClass("highlighted_in");
-          var index = 0;
+          var index = 1;
 
           function animation() {
             setTimeout(function () {

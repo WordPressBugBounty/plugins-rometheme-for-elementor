@@ -772,6 +772,24 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         ]
     ]);
 
+    $this->add_responsive_control('object_fit', [
+        'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+        'type' => \Elementor\Controls_Manager::SELECT,
+        'options' => [
+            'none' => esc_html__('None', 'rometheme-for-elementor'),
+            'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+            'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+            'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+            'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+
+        ],  
+        'selectors' => [
+            '{{WRAPPER}} .rkit-item-thumbnail img ' => 'object-fit:{{VALUE}}'
+        ],
+        'default' => 'cover',
+        
+    ]);
+
     $this->add_responsive_control(
         'image_width',
         [

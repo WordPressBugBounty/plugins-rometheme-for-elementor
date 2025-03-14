@@ -31,7 +31,7 @@
 
 .rkit-tab-btn-item {
   width: auto;
-  background-color: #e6e6e6;
+  background-color: gray;
   text-align: center;
   cursor: pointer;
   padding: 1rem;
@@ -42,22 +42,10 @@
   gap: 10px;
 }
 
-.rkit-tab-btn-item:hover {
-  background-color: #00cea6;
-  color: white;
-}
-
-.rkit-tab-btn-item:hover .tab-title-icon {
-  color: white;
-  fill: white;
-}
-
 .rkit-tab-btn-item.active {
-  background-color: #00cea6;
+  background-color: rgb(32, 32, 32);
   color: white;
 }
-
-
 
 .rkit-tab-btn-item.active .tab-title-icon {
   color: white;
@@ -87,7 +75,6 @@
 .rkit-tab-content-container {
   flex: 1;
   padding: 20px;
-  max-width: 100%;
 }
 
 @media only screen and (max-width: 767px) {

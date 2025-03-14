@@ -19,8 +19,8 @@
                         </ul>
                     </div>
                     <div class="d-flex flex-row align-items-center gap-4">
-                        <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Get RomethemeKit PRO <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
-                        <p class="text m-0">Unlock exclusive PRO Addons for Elementor and take your website design to the next level with features you won’t find anywhere else.</p>
+                        <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Upgrade Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                        <p class="text m-0">Learn More & Get a lifetime license and unlimited sites</p>
                     </div>
                 </div>
             </div>
@@ -94,18 +94,18 @@
                     </div>
                     <div class="d-flex flex-column text-white">
                         <div class="d-flex flex-row align-items-center gap-3">
-                            <h4 class="m-0">January 30, 2025</h4>
+                            <h4 class="m-0">Maret 14, 2025</h4>
                             <span class="rtm-version py-0">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
                         </div>
                         <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                            <li>New Widget : Woo Product Grid</li>
-                            <li>Update Widget : Pricing Hero Slider</li>
-                            <li>Update Widget : Image Accordion</li>
-                            <li>Update Widget : Call To Action</li>
-                            <li>Update Widget : Advanced Tabs</li>
-                            <li>Update Widget : Blockquote</li>
-                            <li>Update Widget : Post Block</li>
-                            <li>Security Update</li>
+                            <li>New Extension : Glassmorphism Effect</li>
+                            <li>New Widget : Back to Top</li>
+                            <li>New Widget : Client Grid</li>
+                            <li>Fix : Bug Fixed in Text Marquee Widget</li>
+                            <li>Fix : Bug Fixed in Post List Widget</li>
+                            <li>Fix : Bug Fixed in Product Grid Widget</li>
+                            <li>Fix : Bug Fixed in Pricing Table Widget</li>
+                            <li>Fix : Bug Fixed in Hero Slider Widget</li>
                         </ul>
                         <div>
                             <a href="https://wordpress.org/plugins/rometheme-for-elementor/#developers" target="__blank" class="btn btn-gradient-accent rounded-pill">Full Changelog<i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>

@@ -220,7 +220,7 @@
   },
   "imagebox": {
     "name": "Image Box",
-    "icon": "eicon-image-box",
+    "icon": "rtmicon rtmicon-image-box",
     "class_name": "Rkit_image_box",
     "category": "rkit",
     "status": true,
@@ -228,7 +228,7 @@
   },
   "imageaccordion": {
     "name": "Image Accordion",
-    "icon": "eicon-accordion",
+    "icon": "rtmicon rtmicon-image-accordion",
     "class_name": "Rkit_image_accordion",
     "category": "rkit",
     "status": true,
@@ -236,7 +236,7 @@
   },
   "image_gallery": {
     "name": "Image Gallery",
-    "icon": "eicon-gallery-masonry",
+    "icon": "rtmicon rtmicon-image-gallery",
     "class_name": "Rkit_image_gallery",
     "category": "rkit",
     "status": true,
@@ -244,7 +244,7 @@
   },
   "dualbutton": {
     "name": "Dual Button",
-    "icon": "eicon-dual-button",
+    "icon": "rtmicon rtmicon-dual-button",
     "class_name": "Rkit_dual_button",
     "category": "rkit",
     "status": true,
@@ -252,7 +252,7 @@
   },
   "home_slider": {
     "name": "Hero Slider",
-    "icon": "eicon-slider-album",
+    "icon": "rtmicon rtmicon-full-screen-slider",
     "class_name": "Rkit_home_slider",
     "category": "rkit",
     "status": true,
@@ -263,6 +263,24 @@
     "icon": "eicon-products",
     "class_name": "Rkit_woo_product_grid",
     "category": "woocommerce",
+    "status": true,
+    "type": "free"
+  },
+
+  "client_grid": {
+    "name": "Client Grid",
+    "icon": "rtmicon rtmicon-client-carousel",
+    "class_name": "Rkit_Clientgrid",
+    "category": "rkit",
+    "status": true,
+    "type": "free"
+  },
+
+  "backtotop": {
+    "name": "Back To Top",
+    "icon": "rtmicon rtmicon-back-to-top-button",
+    "class_name": "RkitBackToTop",
+    "category": "rkit",
     "status": true,
     "type": "free"
   }

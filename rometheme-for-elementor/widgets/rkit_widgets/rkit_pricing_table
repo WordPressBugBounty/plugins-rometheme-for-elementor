@@ -1878,7 +1878,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
                         }
                         if (!empty($settings['card_footer'])) { ?>
                             <div class="rkit-pricelist-item-footer">
-                                <p class="rkit-pricelist-item-footer"><?php echo esc_html($settings['card_footer']) ?></p>
+                                <span class="rkit-pricelist-item-footer-span"><?php echo esc_html($settings['card_footer']) ?></span>
                             </div>
                         <?php     } ?>
 

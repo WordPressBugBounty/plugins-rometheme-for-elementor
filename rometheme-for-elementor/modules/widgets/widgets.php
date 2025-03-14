@@ -21,6 +21,7 @@ class RkitWidgets
         add_action('wp_ajax_save_options', [$this, 'save_options']);
         add_action('wp_ajax_save_options_pro', [$this, 'save_options_pro']);
         add_action('wp_ajax_reset_widgets', [$this, 'reset_widgets']);
+        add_action('wp_ajax_reset_widgets_pro', [$this, 'reset_widgets_pro']);
     }
 
     private function update_widget_option()
@@ -57,6 +58,21 @@ class RkitWidgets
         $jsonWidgets = $this->listWidgets();
         delete_option('rkit-widget-options');
         update_option('rkit-widget-options', $this->listWidgets());
+    }
+
+    public function reset_widgets_pro()
+    {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {
+            wp_send_json_error('Invalid nonce.');
+            wp_die();
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
+        $jsonWidgetsPro = \RomethemePro\Widget::listWidgetPro();
+        delete_option('rkit-widget-pro-options');
+        update_option('rkit-widget-pro-options', $jsonWidgetsPro);
     }
 
     public static function register_widget($widgets_manager)

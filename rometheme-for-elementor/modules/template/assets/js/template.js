@@ -355,6 +355,7 @@ jQuery(document).ready(function ($) {
         $.post(rometheme_ajax.ajax_url, {
           action: "install_requirements",
           plugin: datamiss[index].file,
+          wpnonce: rometheme_ajax.nonce
         })
           .done(function (res) {
           })

@@ -38,20 +38,19 @@ jQuery(document).ready(function ($) {
         // btn.html('Save Changes');
         // btn.prop('disabled', false);
         if (rometheme_ajax_url.isProActive) {
-            $.ajax({
-                method: "POST",
-                url: rometheme_ajax_url.ajax_url,
-                data: dataPro,
-                success: function (res) {
-                  // btn.html('Save Changes');
-                  // btn.prop('disabled', false);
-                  window.location.reload();
-                // console.log(res);
-                
-                },
-              });
+          $.ajax({
+            method: "POST",
+            url: rometheme_ajax_url.ajax_url,
+            data: dataPro,
+            success: function (res) {
+              // btn.html('Save Changes');
+              // btn.prop('disabled', false);
+              window.location.reload();
+              // console.log(res);
+            },
+          });
         } else {
-            window.location.reload();
+          window.location.reload();
         }
       },
     });
@@ -67,10 +66,27 @@ jQuery(document).ready(function ($) {
       url: rometheme_ajax_url.ajax_url,
       data: {
         action: "reset_widgets",
-        nonce : nonce
+        nonce: nonce,
       },
       success: function (res) {
-        window.location.reload();
+        if (rometheme_ajax_url.isProActive) {
+          $.ajax({
+            method: "POST",
+            url: rometheme_ajax_url.ajax_url,
+            data: {
+              action: "reset_widgets_pro",
+              nonce: nonce,
+            },
+            success: function (res) {
+              // btn.html('Save Changes');
+              // btn.prop('disabled', false);
+              window.location.reload();
+              // console.log(res);
+            },
+          });
+        } else {
+          window.location.reload();
+        }
       },
     });
   });

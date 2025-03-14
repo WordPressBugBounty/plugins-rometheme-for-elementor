@@ -468,8 +468,8 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $image_after = $settings['image_after'];   
         ?>    
 
-             
-<div class="con-wrap rkit-s-image" >
+             <!--  -->
+<div class="con-wrap rkit-s-image" > 
         <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['position_slider']) ?>"  data-show-icon="<?php echo esc_html($settings['show_icon']); ?>"
         >
            

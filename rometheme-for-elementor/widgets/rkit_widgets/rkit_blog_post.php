@@ -125,7 +125,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Image_Size::get_type(),
             [
-                'name' => 'thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
+                'name' => 'thumbnail', 
                 'exclude' => ['custom'],
                 'include' => [],
                 'default' => 'large',
@@ -202,7 +202,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ],
             'default' => 'recent',
         ]);
-
+ 
         $this->add_control('selected-post', [
             'label' => esc_html__('Search and Select', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT2,

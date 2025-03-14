@@ -13,7 +13,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['barchart']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['barchart']['icon'];
         return $icon;
     }
 
@@ -30,6 +30,11 @@ class Rkit_BarChart extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return ['bar_chart-script'];
+    }
+
+    public function get_style_depends()
+    {
+        return ['rkit-barchart-style'];
     }
 
     protected function register_controls()
@@ -95,15 +100,15 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'custom_panel_notice',
-			[
-				'type' => \Elementor\Controls_Manager::NOTICE,
-				'notice_type' => 'warning',
-				'dismissible' => true,
-				'heading' => esc_html__( 'Global Color Not Working', 'rometheme-for-elementor' ),
-				'content' => esc_html__( 'Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain' ),
-			]
-		);
+            'custom_panel_notice',
+            [
+                'type' => \Elementor\Controls_Manager::NOTICE,
+                'notice_type' => 'warning',
+                'dismissible' => true,
+                'heading' => esc_html__('Global Color Not Working', 'rometheme-for-elementor'),
+                'content' => esc_html__('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain'),
+            ]
+        );
 
         $this->add_control(
             'bar_radius',
@@ -348,27 +353,27 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'grid_x_options',
-			[
-				'label' => esc_html__( 'Grid X', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'grid_x_options',
+            [
+                'label' => esc_html__('Grid X', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_control(
-			'show_grid_x',
-			[
-				'label' => esc_html__( 'Show Grid X', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'show_grid_x',
+            [
+                'label' => esc_html__('Show Grid X', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
-        $this->add_control('grid_x_color' , [
+        $this->add_control('grid_x_color', [
             'label' => esc_html('Grid X Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',
@@ -378,27 +383,27 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'grid_y_options',
-			[
-				'label' => esc_html__( 'Grid Y', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'grid_y_options',
+            [
+                'label' => esc_html__('Grid Y', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_control(
-			'show_grid_y',
-			[
-				'label' => esc_html__( 'Show Grid Y', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'show_grid_y',
+            [
+                'label' => esc_html__('Show Grid Y', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
-        $this->add_control('grid_y_color' , [
+        $this->add_control('grid_y_color', [
             'label' => esc_html('Grid X Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',

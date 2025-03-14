@@ -32,6 +32,11 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         return ['line_chart-script'];
     }
 
+    public function get_style_depends()
+    {
+        return ['rkit-linechart-style'];
+    }
+
     protected function register_controls()
     {
         $this->start_controls_section('content_section', [

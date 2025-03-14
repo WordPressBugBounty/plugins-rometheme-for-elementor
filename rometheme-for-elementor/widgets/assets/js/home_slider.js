@@ -54,6 +54,10 @@ jQuery(window).on('elementor/frontend/init', function () {
     let container = $scope.find('.rkit-swiper-hs');
       const swiper = new Swiper(container[0], dataConfig);
 
+console.log(swiper);
+
+
+
     swiper.on('slideChangeTransitionStart', function () { 
       $('.image-cover-hsl').removeClass('animate-zoom-out');
        

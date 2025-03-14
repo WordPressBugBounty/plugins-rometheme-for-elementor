@@ -3,10 +3,11 @@
 /**
  * Plugin Name:       RomethemeKit For Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           1.5.4
+ * Version:           1.5.5
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
+ * Requires Plugins:  elementor
  * 
  * The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
  */
@@ -45,6 +46,7 @@ class RomeTheme
 			require_once self::module_dir() . 'widgets/widgets.php';
 			require_once self::module_dir() . 'settings/settings.php';
 			require_once self::module_dir() . 'template/template.php';
+			require_once self::module_dir() . 'extensions/blur_effects.php';
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
 			\RomethemePlugin\Plugin::register_autoloader();
@@ -52,6 +54,7 @@ class RomeTheme
 			\Rkit\Modules\Libs\Init::instance();
 			new \RomeTheme\RtmSettings();
 			new \RomethemeKit\Template();
+			new \RomethemeKit\BlurEffects();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);

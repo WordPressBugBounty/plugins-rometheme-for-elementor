@@ -40,7 +40,7 @@ jQuery(window).on('elementor/frontend/init', function () {
   
             const screenWidth = $(window).width(); 
               // $scope akan merujuk pada container widget yang spesifik
-              var container = $scope.find('.elementor-widget-container');
+              var container = $scope.find('.rkit-s-image');
               var containerWidth = container.width(); 
             if ($scope.originalWidth && $scope.originalHeight) {
                 const aspectRatio = $scope.originalWidth / $scope.originalHeight;

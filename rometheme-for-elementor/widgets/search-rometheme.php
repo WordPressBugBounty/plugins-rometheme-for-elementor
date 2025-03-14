@@ -104,7 +104,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Autocomplete', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'description' => esc_html('The autocomplete feature enables the browser to match patterns against a list of values that are locally kept with the browser and provides the relevant value when the input is programmatically tagged.'),
                 'label_on' => esc_html__('Show', 'textdomain'),
                 'label_off' => esc_html__('Hide', 'textdomain'),
                 'return_value' => 'yes',
@@ -379,7 +378,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control('searchtext-color', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-            // 'default' => '#000000',
+            'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button' => 'color : {{VALUE}}',
             ],
@@ -391,7 +390,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control('searchicon-color', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
-            // 'default' => '#000000',
+            'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button .rkit-search-icon  ' => 'color : {{VALUE}}',
             ],
@@ -417,7 +416,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control('searchtext-color-hover', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-            // 'default' => '#000000',
+            'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button:hover' => 'color : {{VALUE}}',
             ],
@@ -429,7 +428,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_control('searchicon-color-hover', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
-            // 'default' => '#000000',
+            'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button:hover .rkit-search-icon' => 'color : {{VALUE}}',
             ],

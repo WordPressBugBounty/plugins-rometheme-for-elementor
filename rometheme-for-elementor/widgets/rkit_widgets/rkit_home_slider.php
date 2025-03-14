@@ -6,10 +6,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         return 'rkit-home-slider';
     }
 
+
     public function get_title()
     {
         return \RomethemeKit\RkitWidgets::listWidgets()['home_slider']['name'];
     }
+
 
     public function get_icon()
     {
@@ -18,30 +20,37 @@ class Rkit_home_slider extends \Elementor\Widget_Base
     }
 
 
+
+
     public function get_keywords()
     {
         return ['rometheme', 'slider', 'home_slider'];
     }
+
 
     function get_custom_help_url()
     {
         return 'https://support.rometheme.net/docs/romethemekit/widgets/';
     }
 
+
     public function get_categories()
     {
         return ['romethemekit_widgets'];
     }
+
 
     public function get_style_depends()
     {
         return ['rkit-home-slider-style'];
     }
 
+
     public function get_script_depends()
     {
         return ['rkit-home-slider-script'];
     }
+
 
     protected function register_controls()
     {
@@ -49,6 +58,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             'label' => esc_html('Content'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
+
 
         $this->add_control(
             'slide_style',
@@ -63,6 +73,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Image_Size::get_type(),
             [
@@ -71,7 +82,11 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $home_slider_list = new \Elementor\Repeater();
+
+
+
 
         $home_slider_list->add_control(
             'image',
@@ -84,6 +99,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $home_slider_list->add_control(
             'home_slider_sub_title',
             [
@@ -92,6 +108,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => esc_html__('Your Sub Title', 'textdomain'),
             ]
         );
+
 
         // icon subtitle
         $home_slider_list->add_control(
@@ -105,6 +122,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
+
 
         $home_slider_list->add_control(
             'subtitle_icon',
@@ -123,8 +141,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-
-
         $home_slider_list->add_control(
             'home_slider_title',
             [
@@ -133,6 +149,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'placeholder' => esc_html__('Your Title', 'textdomain'),
             ]
         );
+
 
         $home_slider_list->add_control(
             'home_slider_description',
@@ -144,6 +161,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $home_slider_list->add_control(
             'hs_link',
             [
@@ -153,6 +172,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'label_block' => true,
             ]
         );
+
 
         $this->add_control(
             'hs_list',
@@ -167,6 +187,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'hs_link' => [
                             'url' => "#"
                         ]
+
 
                     ],
                     [
@@ -195,12 +216,15 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('navigation_settings', [
             'label' => esc_html('Navigation'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
+
 
         $this->add_control(
             'show_navigation',
@@ -213,6 +237,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
+
 
         $this->add_control(
             'next_icon',
@@ -229,6 +254,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'previous_icon',
             [
@@ -244,7 +270,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('content_button_new', [
             'label' => esc_html__('Button'),
@@ -271,6 +299,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'show_button_icon',
             [
@@ -282,6 +311,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
+
 
         $this->add_control(
             'button_icon',
@@ -298,6 +328,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ]
             ]
         );
+
 
         $this->add_control(
             'button_icon_position',
@@ -322,6 +353,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'button_text',
             [
@@ -332,13 +364,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-
         $this->end_controls_section();
+
 
         $this->start_controls_section('setting_section', [
             'label' => esc_html('Settings'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
+
 
         $this->add_control(
             'autoplay',
@@ -352,6 +385,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('speed', [
             'label' => esc_html('Speed'),
             'type' => \Elementor\Controls_Manager::NUMBER,
@@ -361,6 +395,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'autoplay' => 'yes'
             ]
         ]);
+
 
         $this->add_control(
             'show_dots',
@@ -375,6 +410,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_control(
             'pause_on_hover',
             [
@@ -386,6 +423,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => 'no',
             ]
         );
+
 
         $this->add_control(
             'loop',
@@ -400,13 +438,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
         $this->end_controls_section();
 
-        // style section ================================================================================================
 
-        //container style
         $this->start_controls_section('Container_style_section', [
             'label' => esc_html__('Container', 'textdomain'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
 
         $this->add_control(
             'Header_padding',
@@ -428,6 +465,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -438,6 +476,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'background_container',
             [
@@ -446,6 +485,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -456,13 +496,38 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
+
 
         //image style
         $this->start_controls_section('image_style', [
             'label' => esc_html('Image'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
+
+
+
+        $this->add_responsive_control('object_fit', [
+            'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'none' => esc_html__('None', 'rometheme-for-elementor'),
+                'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+                'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+                'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+                'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+
+
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .image-container-hsl img ' => 'object-fit:{{VALUE}}'
+            ],
+        ]);
+
+
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -471,8 +536,11 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'label' => esc_html__('Border  ', 'textdomain'),
                 'selector' => '{{WRAPPER}} .image-container-hsl , {{WRAPPER}} .image-cover-hsl'
 
+
             ]
         );
+
+
 
 
         $this->add_responsive_control(
@@ -502,6 +570,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'imageheight',
             [
@@ -521,13 +590,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'vh',
-                    'size' => 90,
+                    'size' => 100,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .image-container-hsl' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .image-container-hsl, {{WRAPPER}} .rkit-hs-client' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_control(
             'border_radius',
@@ -550,13 +620,17 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->end_controls_section();
+
 
         //content style
         $this->start_controls_section('content_style_section', [
             'label' => esc_html__('Content', 'textdomdomain: ain'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
 
         $this->add_responsive_control(
             'content_align_horizontal',
@@ -584,6 +658,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'content_align_vertical',
             [
@@ -609,6 +684,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'gap',
@@ -645,11 +721,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .hs-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -659,6 +737,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-content-background',
             ]
         );
+
 
         $this->add_responsive_control(
             'backgroun_opacity',
@@ -674,7 +753,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => '%',
-                    'size' => 40,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .hs-content-background' => 'opacity: {{SIZE}}{{UNIT}};',
@@ -682,6 +761,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
         $this->end_controls_section();
+
+
+
 
 
 
@@ -695,6 +777,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_control(
             'subtitle_animation',
             [
@@ -704,10 +788,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'options' => [
                     '' => esc_html__('Default', 'textdomain'),
                     'hs-animation-1-subtitle' => esc_html__('Word Staggered', 'textdomain'),
-                    // 'hs-animation-2-subtitle' => esc_html__( 'TypeWriter', 'textdomain' ), 
                 ],
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -717,6 +801,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-sub-title',
             ]
         );
+
 
         $this->add_control(
             'subtitle_color_external',
@@ -729,6 +814,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
             [
@@ -736,6 +822,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-subtitle-section ',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
@@ -745,6 +832,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'subtitle_padding',
             [
@@ -752,11 +840,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .hs-subtitle-section ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_control(
             'subtitle_radius',
@@ -765,11 +855,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .hs-subtitle-section ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -778,8 +870,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'label' => esc_html__('Border', 'textdomain'),
                 'selector' => '{{WRAPPER}} .hs-subtitle-section ',
 
+
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -789,6 +883,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-subtitle-section ',
             ]
         );
+
+
+
 
         $this->add_responsive_control(
             'subtitle_icon_position',
@@ -838,6 +935,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('subtitle_icon_color', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -846,6 +944,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .icon-subtitle-hs' => 'color : {{VALUE}}'
             ]
         ]);
+
+
 
 
         $this->add_responsive_control(
@@ -875,7 +975,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
+
 
         // title style
         $this->start_controls_section(
@@ -886,6 +988,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'title_animation',
             [
@@ -895,10 +998,11 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'options' => [
                     '' => esc_html__('Default', 'textdomain'),
                     'hs-animation-1-title' => esc_html__('Word Staggered', 'textdomain'),
-                    // 'hs-animation-2-title' => esc_html__( 'TypeWriter', 'textdomain' ), 
                 ],
             ]
         );
+
+
 
 
         $this->add_group_control(
@@ -909,6 +1013,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-title',
             ]
         );
+
 
         $this->add_control(
             'title_color_external',
@@ -921,6 +1026,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
             [
@@ -928,6 +1034,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-title ',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
@@ -937,6 +1044,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'title_padding',
             [
@@ -944,11 +1052,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .hs-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+
 
 
         $this->add_responsive_control(
@@ -987,6 +1098,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
         $this->end_controls_section();
 
+
         // description style
         $this->start_controls_section(
             'style_section_desc',
@@ -995,6 +1107,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
+
 
         $this->add_control(
             'description_animation',
@@ -1009,6 +1122,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -1017,6 +1131,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-description',
             ]
         );
+
 
         $this->add_control(
             'desc_color_external',
@@ -1029,6 +1144,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
             [
@@ -1037,6 +1153,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
@@ -1044,6 +1161,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-description',
             ]
         );
+
+
+
 
 
 
@@ -1082,6 +1202,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'desc_padding',
             [
@@ -1089,12 +1210,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .hs-description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
         $this->end_controls_section();
+
 
         // Style Section for Button
         $this->start_controls_section('button_style_section', [
@@ -1105,6 +1228,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -1113,6 +1237,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-homeslider-item-button, {{WRAPPER}}.rkit-button-element-homeslider',
             ]
         );
+
+
+
 
 
 
@@ -1149,6 +1276,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
 
+
+
+
         $this->add_responsive_control(
             'icon_spacing',
             [
@@ -1175,6 +1305,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+
 
 
         $this->add_responsive_control(
@@ -1205,10 +1337,11 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-        // /wkwkwkw
         $this->start_controls_tabs('button_tab');
 
+
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -1219,6 +1352,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('button_text_color_normal', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1226,6 +1360,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .button-element-homeslider,  {{WRAPPER}} a' => 'color : {{VALUE}}'
             ]
         ]);
+
 
         $this->add_control('button_icon_color_normal', [
             'label' => esc_html('Icon Color'),
@@ -1235,6 +1370,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1242,6 +1378,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-button-element-homeslider, {{WRAPPER}} a',
             ]
         );
+
 
         $this->add_control(
             'btn_bg_options_normal',
@@ -1251,6 +1388,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1262,9 +1400,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -1275,6 +1416,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('button_text_color_hover', [
             'label' => esc_html__('Text Color (Hover)', 'textdomain'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1282,6 +1424,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .button-element-homeslider:hover,  {{WRAPPER}} a:hover' => 'color : {{VALUE}}'
             ],
         ]);
+
 
         $this->add_control('button_icon_color_hover', [
             'label' => esc_html__('Icon Color (Hover)', 'textdomain'),
@@ -1291,6 +1434,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ],
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1298,6 +1442,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-button-element-homeslider:hover, {{WRAPPER}} a:hover',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1310,11 +1455,17 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
 
+
+
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
+
         $this->end_controls_section();
+
 
         //dot style
         $this->start_controls_section('dot_style', [
@@ -1324,6 +1475,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'show_dots' => 'yes'
             ]
         ]);
+
 
         $this->add_responsive_control(
             'dot_position_vertical',
@@ -1355,11 +1507,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                     ],
                 ],
 
+
                 'selectors' => [
                     '{{WRAPPER}} .swiper-bullet-cont' => 'top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'dot_position_horizontal',
@@ -1396,6 +1550,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'dot_spacing',
             [
@@ -1419,6 +1574,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'dot_radius',
             [
@@ -1430,6 +1586,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'dot_margin',
@@ -1443,9 +1600,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->start_controls_tabs('dot_tabs');
 
+
         $this->start_controls_tab('dot_tab_normal', ['label' => esc_html('Normal')]);
+
 
         $this->add_responsive_control(
             'dot_size_normal',
@@ -1471,6 +1631,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_control(
             'dot_bg_options_normal',
             [
@@ -1479,6 +1641,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1489,6 +1652,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'dot_border_options_normal',
             [
@@ -1498,6 +1662,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1506,9 +1671,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
+
 
         $this->add_responsive_control(
             'dot_size_hover',
@@ -1535,6 +1703,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
 
+
+
+
         $this->add_control(
             'dot_bg_options_hover',
             [
@@ -1543,6 +1714,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1553,6 +1725,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'dot_border_options_hover',
             [
@@ -1562,6 +1735,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1570,9 +1744,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('active')]);
+
 
         $this->add_responsive_control(
             'dot_size_active',
@@ -1599,6 +1776,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
 
+
+
+
         $this->add_control(
             'dot_bg_options_active',
             [
@@ -1607,6 +1787,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1617,6 +1798,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'dot_border_options_active',
             [
@@ -1626,6 +1808,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1634,17 +1817,23 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
+
         $this->end_controls_section();
+
 
         // style navigation
         $this->start_controls_section('navigation_style', [
             'label' => esc_html('Navigation'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
+
 
 
         $this->add_responsive_control(
@@ -1673,6 +1862,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'navigation_align_vertical',
             [
@@ -1699,6 +1889,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'show_navigation_spacing',
             [
@@ -1710,6 +1901,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
+
+
 
 
         $this->add_responsive_control(
@@ -1739,6 +1932,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_responsive_control(
             'nav_icon_size',
             [
@@ -1762,6 +1957,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'navigation_radius',
             [
@@ -1773,6 +1969,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'navigation_padding',
@@ -1786,11 +1983,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->start_controls_tabs('nav_tabs');
+
 
         $this->start_controls_tab('nav_tab_normal', [
             'label' => esc_html('Normal')
         ]);
+
 
         $this->add_control('icon_color_normal', [
             'label' => esc_html('Icon Color'),
@@ -1800,6 +2000,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1807,6 +2008,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-swiper-hs-button-prev , {{WRAPPER}} .rkit-swiper-hs-button-next',
             ]
         );
+
 
         $this->add_control(
             'nav_bg_options_normal',
@@ -1817,6 +2019,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1825,6 +2028,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-swiper-hs-button-prev , {{WRAPPER}} .rkit-swiper-hs-button-next',
             ]
         );
+
 
         $this->add_control(
             'nav_border_options_normal',
@@ -1835,6 +2039,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1843,11 +2048,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->start_controls_tab('nav_tab_hover', [
             'label' => esc_html('Hover')
         ]);
+
 
         $this->add_control('icon_color_hover', [
             'label' => esc_html('Icon Color'),
@@ -1857,6 +2065,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1864,6 +2073,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-swiper-hs-button-prev:hover , {{WRAPPER}} .rkit-swiper-hs-button-next:hover',
             ]
         );
+
 
         $this->add_control(
             'nav_bg_options_hover',
@@ -1874,6 +2084,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1882,6 +2093,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-swiper-hs-button-prev:hover , {{WRAPPER}} .rkit-swiper-hs-button-next:hover',
             ]
         );
+
 
         $this->add_control(
             'nav_border_options_hover',
@@ -1892,6 +2104,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1900,12 +2113,16 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
+
         $this->end_controls_section();
     }
+
 
     protected function render()
     {
@@ -1913,19 +2130,22 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $pauseOnHover = ($settings['pause_on_hover'] === 'yes') ? true : false;
 
 
+
+
         $config = [
             'rtl'                => is_rtl(),
             'arrows'            => ($settings['show_navigation'] === 'yes') ? true : false,
             'dots'                => ($settings['show_dots'] === 'yes') ? true : false,
-            'autoplay'            => ($settings['autoplay'] === 'yes') ? [
-                'pauseOnMouseEnter' => $pauseOnHover,
-            ] : false,
-            'speed'                => $settings['speed'],
+            'pauseOnHover'        => $pauseOnHover,
+            'autoplay'            => ($settings['autoplay'] === 'yes') ? true : false,            
+            'speed'                => ($settings['speed']) ? $settings['speed']:1000,
             'slidesPerGroup'    =>   1,
             'slidesPerView'        =>   1,
             'loop'                => ($settings['loop'] === 'yes') ? true : false,
-            'slideStyle' => $settings['slide_style']
+            'slideStyle' => $settings['slide_style'],
         ];
+
+
 
 
 ?>
@@ -1935,6 +2155,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <?php
+
 
                     foreach ($settings['hs_list'] as $li) :
                         if (!empty($li['hs_link']['url'])) {
@@ -1955,9 +2176,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                                             <span class="hs-sub-title hs-mw <?php echo esc_attr($settings['subtitle_animation']); ?>">
                                                 <?php echo esc_html($li['home_slider_sub_title']);   ?> </span>
                                             <span class="icon-subtitle-hs"> <?php \Elementor\Icons_Manager::render_icon($li['subtitle_icon'], ['aria-hidden' => 'true', 'class' => "icon-subtitle-hs"]); ?> </span>
+
+
+
+
                                         </div>
-                                        <span class="hs-title hs-mw <?php echo $settings['title_animation'] ?>"><?php echo esc_html($li['home_slider_title']); ?></span>
-                                        <span class="hs-description hs-mw <?php echo $settings['description_animation'] ?> "><?php echo esc_html($li['home_slider_description']); ?></span>
+                                        <span class="hs-title hs-mw <?php echo esc_attr($settings['title_animation']) ?>"><?php echo esc_html($li['home_slider_title']); ?></span>
+                                        <span class="hs-description hs-mw <?php echo esc_attr($settings['description_animation']) ?> "><?php echo esc_html($li['home_slider_description']); ?></span>
                                         <?php if (($settings['show_button']) == 'yes') {  ?>
                                             <div class="rkit-homeslider-item-button">
                                                 <?php if ($settings['button_icon_position'] == "before") { ?>
@@ -1975,11 +2200,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                                             </div>
                                         <?php
 
+
                                         } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
 
                     <?php endforeach; ?>
                 </div>
@@ -1997,5 +2224,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 <?php
     }
 }
+
 
 ?>

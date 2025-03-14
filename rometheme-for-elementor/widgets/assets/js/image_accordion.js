@@ -1,5 +1,5 @@
 jQuery(window).on('elementor/frontend/init', function () {
-    elementorFrontend.hooks.addAction('frontend/element_ready/rkit_image_accordion.default', function ($scope, $) {
+    elementorFrontend.hooks.addAction('frontend/element_ready/rkit_Textual_showcase.default', function ($scope, $) {
 
         const accl = $scope.find('.item-ia-click');
 

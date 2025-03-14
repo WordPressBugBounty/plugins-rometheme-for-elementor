@@ -87,6 +87,9 @@
     font-size: 12px;
     padding : 10px 10px 10px 10px;
 }
+.rkit-pricelist-item-footer-span{
+    padding : 0px;
+}
 
 
 .rkit-pricelisttable-item-subheading {

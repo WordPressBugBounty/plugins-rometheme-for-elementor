@@ -109,7 +109,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
             'rkit_headerinfo_group',
             [
-                'label' => esc_html__('Info', 'rometheme-for-elementor'),
+                'label' => esc_html__('Header Info', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $headerinfogroup->get_controls(),
                 'default' => [
@@ -136,7 +136,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'start' => [
+                    'left' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -144,7 +144,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'end' => [
+                    'right' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
@@ -152,7 +152,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
                 'default' => 'left',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-headerinfo' => 'justify-content: {{VALUE}}; align-items : {{VALUE}}',
+                    '{{WRAPPER}} .rkit-headerinfo' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );
@@ -179,7 +179,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_responsive_control('headerinfo-row-gap', [
-            'label' => esc_html__('Info Row Spacing', 'rometheme-for-elementor'),
+            'label' => esc_html__('Item Row Spacing', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
             'range' => [
@@ -199,7 +199,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_responsive_control('headerinfo-column-gap', [
-            'label' => esc_html__('Info Column Spacing', 'rometheme-for-elementor'),
+            'label' => esc_html__('Item Column Spacing', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
             'range' => [
@@ -337,7 +337,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('icon_tab_hover', [
-            'label' => esc_html('Hover')
+            'label' => esc_html('Normal')
         ]);
 
         $this->add_control('icon-headerinfo-color_hover', [
