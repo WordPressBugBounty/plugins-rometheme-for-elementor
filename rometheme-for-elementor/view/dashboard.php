@@ -94,7 +94,7 @@
                     </div>
                     <div class="d-flex flex-column text-white">
                         <div class="d-flex flex-row align-items-center gap-3">
-                            <h4 class="m-0">Maret 14, 2025</h4>
+                            <h4 class="m-0">Maret 15 , 2025</h4>
                             <span class="rtm-version py-0">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
                         </div>
                         <ul class="list text-white ms-4 py-3" style="font-size:14px">

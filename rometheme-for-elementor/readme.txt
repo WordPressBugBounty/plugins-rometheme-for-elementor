@@ -4,7 +4,7 @@ Tags: addons, widget, elementor, header footer, extension
 Requires at least: 6.6
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -141,6 +141,9 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.5.6
+Bug Fixed in Export Import TemplateKit
+
 Version 1.5.5
 New Extension : Glassmorphism Effect
 New Widget : Back to Top
