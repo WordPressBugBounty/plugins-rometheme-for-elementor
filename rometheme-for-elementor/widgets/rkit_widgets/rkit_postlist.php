@@ -141,7 +141,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_category_box',
             [
-                'label' => esc_html__('Show Category box', 'text-domain'),
+                'label' => esc_html__('Show Category', 'text-domain'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Show', 'text-domain'),
                 'label_off' => esc_html__('Hide', 'text-domain'),
@@ -1066,25 +1066,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         ]
     );
 
-    $this->add_control(
-        'more_options_category',
-        [
-            'label' => esc_html__( 'Category', 'rometheme-for-elementor' ),
-            'type' => \Elementor\Controls_Manager::HEADING,
-            'separator' => 'before',
-        ]
-    );  
 
-    $this->add_control(
-        'category_color',
-        [
-            'label' => esc_html__('Color', 'textdomain'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .cat_postlist a ' => 'color: {{VALUE}};',
-            ],
-        ]
-    );
 
         $this->end_controls_section();
         
@@ -1160,6 +1142,80 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
     $this->end_controls_section();
     
+      
+          //style section category post
+          $this->start_controls_section('category_post_section', [
+            'label' => esc_html__('Category', 'textdomain'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'show_category_box' => 'yes'
+            ],
+           
+        ]);
+       
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'category_post_typography',
+                'label' => esc_html__('Typography', 'textdomain'),
+                'selector' => '{{WRAPPER}} .category_post',
+               
+            ]
+        );
+
+        $this->add_responsive_control(
+            'category_post_align',
+            [
+                'label' => esc_html__('Alignment', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Left', 'textdomain'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'textdomain'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Right', 'textdomain'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .category_post'=> 'justify-content: {{VALUE}};',
+                ],
+                'default' => 'start',
+            ]
+        );
+
+        $this->add_control(
+            'category_post',
+            [
+                'label' => esc_html__('Color', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .category_post' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+                'categoru_post_padding',
+            [
+                'label' => esc_html__('Padding', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' =>['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .category_post' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+    $this->end_controls_section();
+    
+
 
     //button style
     $this->start_controls_section('button_style', ['label' => esc_html__('Button', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
@@ -1472,7 +1528,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
           
             ?> 
-                <li class="<?php echo esc_html($divider_on) ?>">  
+                <li class="<?php echo esc_attr($divider_on) ?>">  
                         <div class="rkit-item-postlist">
                         <?php if($settings['show_image_content'] == 'yes') { ?>
                         <div class="rkit-item-thumbnail">

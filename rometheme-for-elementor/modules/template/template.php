@@ -88,17 +88,30 @@ class Template
                 });
             }
 
+            $free = [];
+            $pro = [];
+
+            foreach ($response as $k => $v) {
+                if ($v['type'] === 'free') {
+                    $free[$k] = $v;
+                } else {
+                    $pro[$k] = $v;
+                }
+            }
+
+            $sortData = array_merge($free , $pro);
+
             // Pagination parameters
             $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1; // Default halaman 1
             $per_page = 12; // Jumlah item per halaman
 
             // Hitung total halaman
-            $total_items = count($response);
+            $total_items = count($sortData);
             $total_pages = ceil($total_items / $per_page);
 
             // Filter data untuk halaman saat ini
             $offset = ($paged - 1) * $per_page;
-            $paged_data = array_slice($response, $offset, $per_page);
+            $paged_data = array_slice($sortData, $offset, $per_page);
             $data = [];
 
             foreach ($paged_data as $k => $v) {
@@ -134,7 +147,7 @@ class Template
     {
         $screen = get_current_screen();
         $nonce = wp_create_nonce('rtm_template_nonce');
-        if ($screen->id == 'romethemekit_page_rtmkit-templates') {
+        if ($screen->id == 'romethemekit_page_rtmkit-templates' || $screen->id == 'rtmkit_page_rtmkit-templates') {
             wp_enqueue_script('template-scripts', \Rometheme::module_url() . 'template/assets/js/template.js');
             wp_localize_script('template-scripts', 'rometheme_ajax', [
                 'ajax_url' => admin_url('admin-ajax.php'),

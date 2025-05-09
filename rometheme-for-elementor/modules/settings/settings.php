@@ -13,7 +13,7 @@ class RtmSettings
     public static function register_scripts()
     {
         $nonce = wp_create_nonce('rometheme_settings_nonce');
-        if (get_current_screen()->id === 'romethemekit_page_rtm-settings') {
+        if (get_current_screen()->id === 'romethemekit_page_rtm-settings' || get_current_screen()->id === 'rtmkkit_page_rtm-settings') {
             wp_enqueue_script('settings.js', \RomeTheme::module_url() . 'settings/assets/js/scripts.js', [], \RomeTheme::rt_version());
             wp_localize_script('settings.js', 'rtm_settings', [
                 'ajax_url' => admin_url('admin-ajax.php'),

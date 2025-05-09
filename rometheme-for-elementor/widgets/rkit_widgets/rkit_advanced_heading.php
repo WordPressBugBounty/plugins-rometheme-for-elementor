@@ -49,7 +49,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'label' => esc_html__('Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 10,
-                'default' => esc_html__('Rometheme Studio {{Widget Plugin}}', 'rometheme-for-elementor'),
+                'default' => esc_html__('Rometheme Studio {{RTMkit}} Widget {{Plugin}}', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
                 'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
             ]
@@ -171,7 +171,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'name' => 'container_box_shadow_ah',
                 'label' => __('Container Box Shadow', 'plugin-name'),
                 'selector' => '{{WRAPPER}} .rkit-advanced-heading',
-                'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
+                'description' => esc_html__('Put 0 for no box shadow ', 'rometheme-for-elementor'),
             ]
         );
 
@@ -190,7 +190,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'cont_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -202,13 +202,10 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-
-        // style headline text
         $this->start_controls_section('headline_text_style', [
             'label' => esc_html('Headline'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
-
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -249,7 +246,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'head_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -308,7 +305,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
 
         // style wrap headline text
         $this->start_controls_section('wrap_headline_text_style', [
-            'label' => esc_html('Headline Standart'),
+            'label' => esc_html('Headline Standard'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
@@ -421,11 +418,9 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 break;
         }
 ?>
-        <a <?php echo $this->get_render_attribute_string('_link') ?>>
+        <a <?php $this->print_render_attribute_string('_link') ?>>
             <<?php echo $html_tag ?> class="rkit-advanced-heading">
-
                 <span class="std-text rkit-trp-text"> <?php echo $newString; ?> </span>
-
             </<?php echo $html_tag ?>>
         </a>
 

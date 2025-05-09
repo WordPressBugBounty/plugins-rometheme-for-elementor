@@ -197,6 +197,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
                     'row' => esc_html__('Center', 'textdomain'),
+                    'column-reverse'  => esc_html__('Top', 'textdomain'),
                     'column'  => esc_html__('Bottom', 'textdomain'),
                 ],
                 'condition' => [
@@ -407,7 +408,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
+                'size_units' =>['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-title-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -419,7 +420,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
+                'size_units' =>['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-title-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -472,7 +473,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Background time Color', 'rometheme-for-elementor'),
                 'name' => 'background_time',
-                'types' => ['classic', 'gradient'],
+                'types' => ['classic', 'gradient'], 
                 'selector' => '{{WRAPPER}} .countdown-section',
             ]
         );
@@ -491,12 +492,25 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px'],
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+        $this->add_responsive_control(
+            'item_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
 
 
         $this->add_responsive_control(
@@ -602,10 +616,10 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 10,
+                    'size' => 0,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .countdown-label' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .countdown-section' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -688,7 +702,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Tittle Padding', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
                     'top' => 15,
                     'right' => 0,
@@ -765,7 +779,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Description Padding', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
                     'top' => 15,
                     'right' => 0,

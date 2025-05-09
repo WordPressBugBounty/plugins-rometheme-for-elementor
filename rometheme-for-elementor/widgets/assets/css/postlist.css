@@ -120,7 +120,9 @@ a.rkit-readmore-postlist-btn:hover {
   list-style: none; 
 }
 
-
+.category_post{
+  display: flex;
+}
 
 
   /* Default styles (untuk layar desktop dan tablet) sudah diatur seperti sebelumnya */

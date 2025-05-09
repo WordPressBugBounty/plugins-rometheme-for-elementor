@@ -278,6 +278,18 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
 		);
 
         $this->add_responsive_control(
+            'icon_margin',
+            [
+                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-quote-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'icon_size',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -351,18 +363,6 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-blockquote' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'icon_margin',
-            [
-                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-quote-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );

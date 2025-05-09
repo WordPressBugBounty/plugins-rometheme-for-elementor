@@ -9,14 +9,16 @@ $headeroptions = array_filter($options, function ($value) {
     return $value['category'] == 'header';
 });
 $rkitoptions = array_filter($options, function ($value) {
-    if(class_exists('WooCommerce')) {
-        return $value['category'] == 'rkit' || $value['category'] == 'woocommerce'  ;
+    if (class_exists('WooCommerce')) {
+        return $value['category'] == 'rkit' || $value['category'] == 'woocommerce';
     } else {
         return $value['category'] == 'rkit';
     }
 });
 
 $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget-pro-options') : \RomethemeKit\RkitWidgets::listWidgetPro();
+
+$postOptions = \RomethemeKit\RkitWidgets::listWidgetPostPro();
 
 ?>
 
@@ -134,7 +136,59 @@ $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget
                     <div class="row row-cols-xxl-4 row-cols-xl-3">
                         <?php foreach ($optionsPro as $h_opt => $value) : ?>
                             <div class="col m-0 p-2">
-                                <div class="card rounded-3 bg-gradient-1 w-100 m-0 p-3 rtm-border">
+                                <?php if (\RomethemePlugin\Plugin::isProActive()) : ?>
+                                    <div class="card rounded-3 bg-gradient-1 w-100 m-0 p-3 rtm-border">
+                                        <div class="d-flex flex-row align-items-center justify-content-between">
+                                            <div class="col-8">
+                                                <div class="d-flex flex-row align-items-center gap-3 text-white">
+                                                    <i class="accent-color <?php echo esc_attr($value['icon']) ?>" style="font-size:40px;"></i>
+                                                    <span><?php echo esc_html($value['name']) ?></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="d-flex w-100 justify-content-end">
+                                                    <input name="<?php echo esc_attr($h_opt) ?>" value="false" hidden>
+                                                    <label class="switch">
+                                                        <input name="<?php echo esc_attr($h_opt) ?>" class="switch-input" type="checkbox" value="true" <?php echo ($value['status']) ? 'checked' : ''  ?>>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" class="card rounded-3 bg-gradient-1 w-100 m-0 p-3 rtm-border">
+                                        <div class="d-flex flex-row align-items-center justify-content-between">
+                                            <div class="col-8">
+                                                <div class="d-flex flex-row align-items-center gap-3 text-white">
+                                                    <i class="accent-color <?php echo esc_attr($value['icon']) ?>" style="font-size:40px;"></i>
+                                                    <span><?php echo esc_html($value['name']) ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="d-flex w-100 justify-content-end">
+                                                    <i class="rtmicon rtmicon-lock" style="font-size: 1.3em ; color:#00cea6"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+            </form>
+            <div id="widgets_option_post">
+                <div class="mt-4">
+                    <div class="d-flex w-100 text-white py-3">
+                        <h5>Single & Archive Post</h5>
+                    </div>
+                    <div class="row row-cols-xxl-4 row-cols-xl-3">
+                        <?php foreach ($postOptions as $h_opt => $value) : ?>
+                            <div class="col m-0 p-2">
+                                <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" class="card rounded-3 bg-gradient-1 w-100 m-0 p-3 rtm-border">
                                     <div class="d-flex flex-row align-items-center justify-content-between">
                                         <div class="col-8">
                                             <div class="d-flex flex-row align-items-center gap-3 text-white">
@@ -145,25 +199,17 @@ $optionsPro = (\RomethemePlugin\Plugin::isProActive()) ? get_option('rkit-widget
                                         </div>
                                         <div class="col-4">
                                             <div class="d-flex w-100 justify-content-end">
-                                                <?php if (\RomethemePlugin\Plugin::isProActive()) : ?>
-                                                    <input name="<?php echo esc_attr($h_opt) ?>" value="false" hidden>
-                                                    <label class="switch">
-                                                        <input name="<?php echo esc_attr($h_opt) ?>" class="switch-input" type="checkbox" value="true" <?php echo ($value['status']) ? 'checked' : ''  ?>>
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                <?php else: ?>
-                                                    <i class="rtmicon rtmicon-lock" style="font-size: 1.3em ; color:#00cea6"></i>
-                                                <?php endif ?>
+                                                <i class="rtmicon rtmicon-lock" style="font-size: 1.3em ; color:#00cea6"></i>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>

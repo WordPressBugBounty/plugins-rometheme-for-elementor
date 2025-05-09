@@ -1,8 +1,14 @@
-.rkit-testimonial-card {
+.rkit-testimonial-carousel {
+  overflow: hidden;
+  padding: 10px;
+}
+
+.rkit-testimonial-carousel .rkit-testimonial-card {
   width: 100%;
   height: auto;
   display: flex;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .rkit-pagination-bullet {
@@ -70,7 +76,7 @@
 }
 
 .rkit-testimonial-carousel .testimonial-container {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .rkit-testimonial-wrapper.style_1 .testimonial-client-img {

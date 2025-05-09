@@ -1,5 +1,6 @@
 <?php
 
+
 class Nav_Menu_Rometheme extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -23,20 +24,24 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         return ['nav', 'menu', 'navmenu', 'rometheme'];
     }
 
+
     function get_custom_help_url()
     {
         return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-nav-menu-widget/';
     }
+
 
     public function get_style_depends()
     {
         return ['navmenu-rkit-style'];
     }
 
+
     public function get_script_depends()
     {
         return ['navmenu-rkit-script'];
     }
+
 
     public function get_menus()
     {
@@ -46,8 +51,10 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             $list[$menu->slug] = esc_html__($menu->name, 'rometheme-for-elementor');
         }
 
+
         return $list;
     }
+
 
     function wp_get_menu_array($current_menu)
     {
@@ -55,8 +62,10 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         $array_menu = wp_get_nav_menu_items($current_menu);
         $menu = array();
 
+
         // Buat array lookup untuk menyimpan semua menu item
         $item_lookup = array();
+
 
         // Pertama, buat struktur untuk top-level menu
         foreach ($array_menu as $m) {
@@ -71,6 +80,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 );
             }
         }
+
 
         // Lalu, tambahkan submenu dan subkategori ke menu induk (level 1, 2, dan 3)
         foreach ($array_menu as $m) {
@@ -115,8 +125,11 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             }
         }
 
+
         return $menu;
     }
+
+
 
 
     function check_active_menu($menu_item, $class = '')
@@ -128,12 +141,15 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         return '';
     }
 
+
     function hasChildren($menu)
     {
         $c = count($menu);
 
+
         return ($c == 0) ? false  : true;
     }
+
 
     protected function register_controls()
     {
@@ -142,6 +158,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
+
         $this->add_control('menu-select', [
             'label' => esc_html__('Menu Select', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -149,6 +166,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'description' => sprintf(esc_html__('Go to the %sMenus screen%s to manage your menus.', 'rometheme-for-elementor'), '<a href="' . esc_url(admin_url('nav-menus.php')) . '">', '</a>'),
             'default' => array_keys($this->get_menus())[0],
         ]);
+
 
         $this->add_control('submenu-open', [
             'label' => esc_html__('Dropdown as open'),
@@ -161,6 +179,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             // 'description' => esc_html__('This setting for open the submenu in desktop and has no effect on the mobile view ,If you choose "Click", the menu will not link to the menu page.')
         ]);
 
+
         $this->add_control('pointer_select', [
             'label' => esc_html__('Pointer', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -172,8 +191,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'pointer-framed' => esc_html__('Framed', 'rometheme-for-elementor'),
                 'pointer-bg' => esc_html__('Background', 'rometheme-for-elementor'),
             ],
-            'default' => 'pointer-underline',
+            'default' => '',
         ]);
+
 
         $this->add_control('pointer_width', [
             'label' => esc_html__('Pointer Width', 'rometheme-for-elementor'),
@@ -193,11 +213,13 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'selectors' => [
                 '{{WRAPPER}} .pointer-underline, {{WRAPPER}} .pointer-overline, {{WRAPPER}} .pointer-doubleline, {{WRAPPER}} .pointer-framed ' => '--pointer-width: {{SIZE}}{{UNIT}};',
 
+
             ],
             'condition' => [
                 'pointer_select!' => ['', 'pointer-bg'],
             ]
         ]);
+
 
         $this->add_control(
             'mobile_options',
@@ -208,6 +230,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('responsive-breakpoint', [
             'label' => esc_html__('Responsive Breakpoint'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -217,6 +240,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ],
             'default' => 'tablet',
         ]);
+
 
         $this->add_responsive_control(
             'menu_spacing',
@@ -250,6 +274,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'full_width',
             [
@@ -261,6 +286,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
+
+
+
 
 
 
@@ -289,6 +317,10 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+
+
+
 
 
 
@@ -323,7 +355,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('submenu-content', [
             'label' => esc_html__('Submenu Content', 'rometheme-for-elementor'),
@@ -337,6 +371,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_responsive_control(
             'submenu_icon_spacing',
@@ -357,13 +392,14 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 10,
+                    'size' => 15,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-nav-link ' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
+
 
         $this->add_control(
             'submenu-icon',
@@ -376,6 +412,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->end_controls_section();
         $this->start_controls_section('hamburger-content', [
@@ -406,10 +443,12 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         );
         $this->end_controls_section();
 
+
         $this->start_controls_section('menu-wrapper-style', [
             'label' => esc_html__('Menu Wrapper', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
 
         $this->add_control(
             'bg_options',
@@ -419,6 +458,8 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
+
 
 
         $this->add_group_control(
@@ -445,12 +486,15 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('menu_style', [
             'label' => esc_html__('Menu Style', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -459,6 +503,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-menu-item .rkit-nav-link'
             ]
         );
+
 
         $this->add_responsive_control('menu-position', [
             'label' => esc_html__('Menu Position'),
@@ -487,6 +532,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control(
             'menu_horizontal_padding',
             [
@@ -513,6 +559,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->add_responsive_control(
             'menu_vertical_padding',
@@ -541,6 +588,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'menu_space_between',
             [
@@ -568,6 +616,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control('menu-item-radius', [
             'label' => esc_html__('Item Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -577,19 +626,35 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ],
         ]);
 
+
+        $this->add_control('pointer_color', [
+            'label' => esc_html('Pointer Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-menu-item' => '--pointer-color : {{VALUE}}'
+            ],
+            'condition' => [
+                'pointer_select!' => ''
+            ]
+        ]);
+
+
         $this->start_controls_tabs('menu-style-tab');
+
 
         $this->start_controls_tab('menu-normal', [
             'label' => esc_html__('Normal', 'rometheme-for-elementor')
         ]);
 
-        $this->add_control('text-color', [
+
+        $this->add_responsive_control('text-color', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-menu-item > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -611,6 +676,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -619,19 +685,23 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->start_controls_tab('menu-hover', [
             'label' => esc_html__('Hover', 'rometheme-for-elementor')
         ]);
 
-        $this->add_control('text-hover-color', [
+
+        $this->add_responsive_control('text-hover-color', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-menu-item:hover > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -653,6 +723,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -661,17 +732,21 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->start_controls_tab('menu-active', ['label' => esc_html__('Active', 'rometheme-for-elementor')]);
 
-        $this->add_control('active-text-color', [
+
+        $this->add_responsive_control('active-text-color', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-menu-item.rkit-menu-active > .rkit-nav-link' => 'color: {{VALUE}}',
             ],
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -693,6 +768,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -701,17 +777,23 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
+
         $this->end_controls_section();
+
+
 
 
         $this->start_controls_section('submenu-style-setting', [
             'label' => esc_html__('Submenu Style', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -723,20 +805,13 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'submenu-border',
-                'selector' => '{{WRAPPER}} .rkit-submenu-item',
-            ]
-        );
-
-        $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'box_shadow',
                 'selector' => '{{WRAPPER}} .rkit-submenu-item',
             ]
         );
+
 
         $this->add_responsive_control(
             'submenu_horizontal_padding',
@@ -765,6 +840,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'submenu_vertical_padding',
             [
@@ -792,6 +868,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'submenu_space_between',
             [
@@ -814,6 +891,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 ],
             ]
         );
+
 
         $this->add_control(
             'icon_options',
@@ -852,12 +930,15 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_control(
             'hr',
             [
                 'type' => \Elementor\Controls_Manager::DIVIDER,
             ]
         );
+
+
 
 
         $this->add_responsive_control(
@@ -893,6 +974,8 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_responsive_control('submenu-radius', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -904,6 +987,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ],
         ]);
 
+
         $this->add_control(
             'bg-separator',
             [
@@ -912,6 +996,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->start_controls_tabs('submenu_bg_tabs');
         $this->start_controls_tab('submenu_bg_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -923,6 +1008,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control('submenu-bgcolor', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -930,6 +1016,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-submenu-item' => 'background-color:{{VALUE}}',
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -939,7 +1026,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->start_controls_tab('submenu_bg_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
         $this->add_responsive_control('submenu-textcolor-   ', [
@@ -950,6 +1039,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control('submenu-bgcolor-hover', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -957,6 +1047,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-submenu-item:hover' => 'background-color:{{VALUE}}',
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -966,7 +1057,9 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->start_controls_tab('submenu_bg_active', ['label' => esc_html__('Active', 'rometheme-for-elementor')]);
         $this->add_responsive_control('submenu-textcolor-active', [
@@ -977,6 +1070,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control('submenu-bgcolor-active', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -984,6 +1078,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-submenu-active' => 'background-color:{{VALUE}}',
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -993,17 +1088,24 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
 
+
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('hamburger-style-setting', [
             'label' => esc_html__('Hamburger Style', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
+
 
 
         $this->add_responsive_control('hamburger-position', [
@@ -1032,6 +1134,8 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
+
+
         $this->add_responsive_control('hamburger-icon-padding', [
             'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1048,6 +1152,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ],
         ]);
 
+
         $this->add_responsive_control('hamburger-border-radius', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -1056,6 +1161,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-btn-hamburger' => 'border-radius : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
+
 
         $this->add_responsive_control('hamburger-icon-size', [
             'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -1076,9 +1182,12 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->start_controls_tabs('btn-hamburger');
 
+
         $this->start_controls_tab('btn-hamburger-normal', ['label' => 'Normal']);
+
 
         $this->add_responsive_control('btn-hamburger-bg', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
@@ -1088,6 +1197,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control('btn-hamburger-color', [
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1095,6 +1205,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-btn-hamburger' => 'color:{{VALUE}}'
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -1104,9 +1215,12 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('btn-hamburger-hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
+
 
         $this->add_responsive_control('btn-hamburger-hoverbg', [
             'label' => esc_html__('Background', 'rometheme-for-elementor'),
@@ -1116,6 +1230,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_responsive_control('btn-hamburger-hovercolor', [
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1123,6 +1238,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-btn-hamburger:hover' => 'color:{{VALUE}}'
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -1132,17 +1248,23 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->end_controls_tab();
 
+
         $this->end_controls_tabs();
+
 
         $this->end_controls_section();
     }
 
 
+
+
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
 
         $menu_slug = $settings['menu-select'];
         $menu = wp_get_nav_menu_object($menu_slug);
@@ -1157,6 +1279,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 <a class="rkit-btn-hamburger">
                     <?php \Elementor\Icons_Manager::render_icon($settings['icon-open'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-open', 'id' => 'rkit-icon-open' . $this->get_id_int()]); ?>
                     <?php \Elementor\Icons_Manager::render_icon($settings['icon-close'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-close', 'id' => 'rkit-icon-close' . $this->get_id_int()]); ?>
+
 
                 </a>
             </div>

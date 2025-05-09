@@ -1324,6 +1324,18 @@ class Rkit_pricelist extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'show_divider',
+            [
+                'label' => esc_html__('Show Divider', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'yes' => esc_html__('show', 'rometheme-for-elementor'),
+                'no' => esc_html__('hide', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
         $this->add_responsive_control(
             'divider_padding',
             [
@@ -1340,6 +1352,9 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pricelisttable-item-description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes'
                 ],
             ]
         );
@@ -1363,6 +1378,9 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .divider_desc ' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_divider' => 'yes'
                 ],
             ]
         );
@@ -1393,6 +1411,9 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .divider_desc' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes'
+                ],
             ]
         );
 
@@ -1422,6 +1443,9 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .divider_desc ' => 'width: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes'
+                ],
             ]
         );
 
@@ -1434,20 +1458,13 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .divider_desc' => 'border-color: {{VALUE}};',
                 ],
+                'condition' => [
+                    'show_divider' => 'yes'
+                ],
             ]
         );
 
-        $this->add_control(
-            'show_divider',
-            [
-                'label' => esc_html__('Show Divider', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'yes' => esc_html__('show', 'rometheme-for-elementor'),
-                'no' => esc_html__('hide', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
+   
 
         $this->end_controls_section();
 
@@ -1616,6 +1633,15 @@ class Rkit_pricelist extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_control('button_icon_color_normal', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .icon-list-button-pt' => 'color : {{VALUE}}'
+            ]
+        ]);
+
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1645,14 +1671,7 @@ class Rkit_pricelist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('button_icon_color_normal', [
-            'label' => esc_html('Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .icon-list-button-pt' => 'color : {{VALUE}}'
-            ]
-        ]);
-
+ 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1683,36 +1702,7 @@ class Rkit_pricelist extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'button_border_hover',
-                'label' => esc_html__('Border Button', 'textdomain'),
-                'selector' => '  {{WRAPPER}} .button-element-price-table:hover',
-            ]
-        );
-
-        $this->add_control(
-            'button_border_radius_hover',
-            [
-                'label' => esc_html__('Border Radius', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%','em','rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .button-element-price-table:hover ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        
         $this->add_control('button_text_color_hover', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1728,6 +1718,16 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                 '{{WRAPPER}} a:hover .icon-list-button-pt ' => 'color : {{VALUE}}'
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_hover',
+                'label' => esc_html__('Border Button', 'textdomain'),
+                'selector' => '  {{WRAPPER}} .button-element-price-table:hover',
+            ]
+        );
+       
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -1990,7 +1990,7 @@ class Rkit_pricelist extends \Elementor\Widget_Base
         <div class="rkit-pricelisttable-container"> 
             <div class="<?php echo esc_attr($badge_classes) ?>">
                 <?php if ($settings['enable_badge'] === 'yes') { ?>
-                    <div class="rkit-pricelisttable-ribbon rkit-pricelisttable-ribbon__<?php echo esc_html($settings['ribbon_position']); ?>">
+                    <div class="rkit-pricelisttable-ribbon rkit-pricelisttable-ribbon__<?php echo esc_attr($settings['ribbon_position']); ?>">
                         <div class="rkit-pricelisttable-ribbon__inner">
                             <?php echo esc_html($settings['badge_text']) ?>
                         </div>
@@ -2050,7 +2050,7 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                         </div>
                         <?php if ($settings['button_position'] == 'top') {
                             if (!empty($settings['button_text'])) {  ?>
-                                <div class="rkit-pricelisttable-item-button <?php echo esc_html($class_button) ?>">
+                                <div class="rkit-pricelisttable-item-button <?php echo esc_attr($class_button) ?>">
                                     <?php if ($settings['button_icon_position'] == "before") { ?>
                                         <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
                                             <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
@@ -2072,14 +2072,14 @@ class Rkit_pricelist extends \Elementor\Widget_Base
                                 <div class="rkit-item-list-desc">  <?php \Elementor\Icons_Manager::render_icon($desc_item['description_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-feature-pt"]) ?> 
                                          <?php echo  esc_html($desc_item['description_item']) ?>
                                 </div> 
-                                <li class="divider_desc <?php echo esc_html($divider_show) ?>"> </li>  
+                                <li class="divider_desc <?php echo esc_attr($divider_show) ?>"> </li>  
                                     <!-- cek -->
                                 <?php   } ?>
                             </ul>
                         <?php } ?>
                         <?php if ($settings['button_position'] == 'bottom') {
                             if (!empty($settings['button_text'])) {  ?>
-                                <div class="rkit-pricelisttable-item-button <?php echo esc_html($class_button) ?>">
+                                <div class="rkit-pricelisttable-item-button <?php echo esc_attr($class_button) ?>">
                                     <?php if ($settings['button_icon_position'] == "before") { ?>
                                         <a href="<?php echo esc_url($item_link); ?>" class=" button-element-price-table">
                                             <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>

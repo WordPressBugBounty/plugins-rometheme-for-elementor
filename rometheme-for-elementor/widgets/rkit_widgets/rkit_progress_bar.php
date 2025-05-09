@@ -174,7 +174,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-progress .progress-container' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'align-items: {{VALUE}};',
                 ],
                 'condition' => [
                     'progress_style!' => 'line'
@@ -563,7 +563,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
         <div class="rkit-progress" style="--value:<?php echo esc_attr($settings['percent']['size']) ?> ; --title: '<?php echo esc_attr($settings['progress-title']) ?>' ; --animation-duration:<?php echo esc_attr($settings['animation-duration']['size']) ?>;">
             <?php switch ($settings['progress_style']) {
                 case 'circle': ?>
-                    <div class="progress-container">
+                    <div class="progress-bar-container">
                         <div class="circular-progress">
                             <div class="progress-value <?php echo ($settings['show_percentage'] === 'yes') ? 'percentage-label' : '' ?>"></div>
                         </div>
@@ -571,14 +571,14 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 <?php break;
                 case 'line': ?>
                     <span class="progress-title"><?php echo esc_html($settings['progress-title']) ?></span>
-                    <div class="progress-container">
+                    <div class="progress-bar-container">
                         <div class="progress-bar <?php echo ($settings['show_percentage'] === 'yes') ? 'percentage-label' : '' ?>">
                             <div class="progress-value"></div>
                         </div>
                     </div>
                 <?php break;
                 case 'half': ?>
-                    <div class="progress-container">
+                    <div class="progress-bar-container">
                         <div class="half-circular-progress">
                             <div class="progress-value <?php echo ($settings['show_percentage'] === 'yes') ? 'percentage-label' : '' ?>"></div>
                         </div>

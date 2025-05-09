@@ -83,7 +83,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
         ]);
 
         $item->add_control('item_border_color_normal', [
-            'label' => esc_html('Background'),
+            'label' => esc_html('Border Color'),
             'type' => \Elementor\Controls_Manager::COLOR
         ]);
 
@@ -102,7 +102,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
         ]);
 
         $item->add_control('item_border_color_hover', [
-            'label' => esc_html('Background'),
+            'label' => esc_html('Border Color'),
             'type' => \Elementor\Controls_Manager::COLOR
         ]);
 

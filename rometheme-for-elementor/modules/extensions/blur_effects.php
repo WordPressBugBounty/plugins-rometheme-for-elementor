@@ -16,14 +16,14 @@ class BlurEffects
 	public function add_container_options($container, $args)
 	{
 		$container->start_controls_section('rtmkit_blur_effects_container', [
-			'label' => esc_html('RomethemeKit Glass Effect'),
+			'label' => esc_html('RTMkit Glass Effect'),
 			'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
 		]);
 
 		$container->add_control(
 			'use_blur_effects',
 			[
-				'label' => esc_html__('Enable Blur Effect ?', 'textdomain'),
+				'label' => esc_html__('Enable Glass Effect ?', 'textdomain'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => esc_html__('yes', 'textdomain'),
 				'label_off' => esc_html__('no', 'textdomain'),
@@ -65,7 +65,7 @@ class BlurEffects
 
 	public function add_widget_options($widgets) {
 		$widgets->start_controls_section('rtmkit_blur_effects_container', [
-			'label' => esc_html('RomethemeKit Glass Effect'),
+			'label' => esc_html('RTMkit Glass Effect'),
 			'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
 		]);
 
@@ -100,7 +100,7 @@ class BlurEffects
 					'size' => 20,
 				],
 				'selectors' => [
-					'{{WRAPPER}}.elementor-widget.rtmkit-blur-effect-enabled > .elementor-widget-container::before ' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}}.elementor-widget.rtmkit-blur-effect-enabled > div::before ' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'use_blur_effects' => 'enabled'

@@ -16,7 +16,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
     }
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['counter']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['counter']['icon'];
         return $icon;
     }
 
@@ -51,6 +51,11 @@ class Rkit_Counter extends \Elementor\Widget_Base
             'label' => esc_html('Increment Step'),
             'type' => \Elementor\Controls_Manager::NUMBER,
             'default' => 10
+        ]);
+
+        $this->add_control('number_preffix', [
+            'label' => esc_html('Number Prefix'),
+            'type' => \Elementor\Controls_Manager::TEXT
         ]);
 
         $this->add_control('number_suffix', [
@@ -124,7 +129,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -132,7 +137,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
@@ -141,6 +146,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-counter' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-counter .counter-container' => 'justify-content: {{VALUE}};align-items: {{VALUE}};'
                 ],
             ]
         );
@@ -196,27 +202,27 @@ class Rkit_Counter extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-			'title_spacing',
-			[
-				'label' => esc_html__( 'Title Spacing', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],  
-				'selectors' => [
-					'{{WRAPPER}} .rkit-counter .counter-container' => 'gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'title_spacing',
+            [
+                'label' => esc_html__('Title Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-counter .counter-container' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_control('title_color', [
             'label' => esc_html('Text Color'),
@@ -257,41 +263,92 @@ class Rkit_Counter extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
-                    'number_suffix!' => '' 
+                    'number_suffix!' => ''
                 ]
             ]
         );
 
         $this->add_responsive_control(
-			'suffix_spacing',
-			[
-				'label' => esc_html__( 'Suffix Spacing', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],  
-				'selectors' => [
-					'{{WRAPPER}} .rkit-counter .counter-container .counter' => 'gap: {{SIZE}}{{UNIT}};',
-				],
+            'suffix_spacing',
+            [
+                'label' => esc_html__('Suffix Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-counter .counter-container .counter-suffix' => 'padding-left: {{SIZE}}{{UNIT}};',
+                ],
                 'condition' => [
-                    'number_suffix!' => '' 
+                    'number_suffix!' => ''
                 ]
-			]
-		);
+            ]
+        );
         $this->add_control('suffix_color', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-counter .counter-suffix' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'number_suffix!' => ''
+            ]
+        ]);
+
+        $this->add_control(
+            'preffix_options',
+            [
+                'label' => esc_html__('Prefix', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'number_preffix!' => ''
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'preffix_spacing',
+            [
+                'label' => esc_html__('Prefix Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-counter .counter-container .counter-preffix' => 'padding-right: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'number_preffix!' => ''
+                ]
+            ]
+        );
+        $this->add_control('prefix_color', [
+            'label' => esc_html('Text Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-counter .counter-preffix' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'number_preffix!' => ''
             ]
         ]);
 
@@ -308,6 +365,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
         <div class="rkit-counter" data-start="<?php echo esc_attr($settings['starting_number']) ?>" data-value="<?php echo esc_attr($settings['ending_number']) ?>" data-duration="<?php echo esc_attr($settings['counter_duration']['size']) ?>" data-step="<?php echo esc_attr($settings['increment_step']) ?>" data-separator="<?php echo esc_attr(json_encode($thousand)) ?>">
             <div class="counter-container">
                 <div class="counter">
+                    <span class="counter-preffix"><?php echo esc_html($settings['number_preffix']) ?></span>
                     <span class="count"></span>
                     <span class="counter-suffix"><?php echo esc_html($settings['number_suffix']) ?></span>
                 </div>

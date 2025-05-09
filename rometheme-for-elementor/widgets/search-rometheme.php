@@ -1,6 +1,8 @@
 <?php
 
+
 use Elementor\Conditions;
+
 
 class Search_Rometheme extends \Elementor\Widget_Base
 {
@@ -9,35 +11,42 @@ class Search_Rometheme extends \Elementor\Widget_Base
         return 'rkit-search';
     }
 
+
     public function get_title()
     {
         return 'Search';
     }
+
 
     public function get_icon()
     {
         return 'rkit-widget-icon rtmicon rtmicon-search';
     }
 
+
     public function get_categories()
     {
         return ['romethemekit_header_footer'];
     }
+
 
     function get_custom_help_url()
     {
         return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-search-widget/';
     }
 
+
     public function get_style_depends()
     {
         return ['rkit-search-style'];
     }
 
+
     public function get_keywords()
     {
         return ['search', 'rometheme'];
     }
+
 
     public function register_controls()
     {
@@ -45,6 +54,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Search Setting', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
+
 
         $this->add_control(
             'search_text',
@@ -54,6 +64,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'default' => esc_html__('Search', 'textdomain'),
             ]
         );
+
 
         $this->add_control(
             'show_icon',
@@ -67,6 +78,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('search_icon', [
             'label' => esc_html__('Search Icon', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::ICONS,
@@ -78,6 +90,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'show_icon' => 'yes'
             ]
         ]);
+
 
         $this->add_control('search-position', [
             'label' => esc_html__('Search Button Position', 'rometheme-for-elementor'),
@@ -92,6 +105,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_control('input-placeholder', [
             'label' => esc_html__('Placeholder', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
@@ -99,11 +113,13 @@ class Search_Rometheme extends \Elementor\Widget_Base
             'placeholder' => 'Type your Input Placeholder Here'
         ]);
 
+
         $this->add_control(
             'autocomplete',
             [
                 'label' => esc_html__('Autocomplete', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
+                'description' => esc_html('The autocomplete feature enables the browser to match patterns against a list of values that are locally kept with the browser and provides the relevant value when the input is programmatically tagged.'),
                 'label_on' => esc_html__('Show', 'textdomain'),
                 'label_off' => esc_html__('Hide', 'textdomain'),
                 'return_value' => 'yes',
@@ -112,11 +128,14 @@ class Search_Rometheme extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->end_controls_section();
         $this->start_controls_section('search-style', [
             'label' => esc_html__('Search Field', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -125,6 +144,8 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-search-input',
             ]
         );
+
+
 
 
         $this->add_control('placeholder-color', [
@@ -136,6 +157,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_control('search-borderradius', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -145,6 +167,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ],
         ]);
 
+
         $this->add_responsive_control('searchinput-padding', [
             'label' => esc_html__('Input Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -153,6 +176,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-search-input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
             ]
         ]);
+
 
         $this->add_control(
 			'input_spacing',
@@ -177,10 +201,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
 			]
 		);
 
+
         $this->start_controls_tabs('search-setting');
         $this->start_controls_tab('input-style', [
             'label' => esc_html__('Normal', 'rometheme-for-elementor')
         ]);
+
 
         $this->add_control('input-text-color', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
@@ -189,6 +215,9 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-search-input' => 'color:{{VALUE}}'
             ]
         ]);
+
+
+
 
 
 
@@ -201,6 +230,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -210,14 +240,19 @@ class Search_Rometheme extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_group_control(\Elementor\Group_Control_Border::get_type(), [
             'name' => 'Border',
             'selector' => '{{WRAPPER}} .rkit-search-input',
         ]);
 
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('input-focus', ['label' => 'Focus']);
+
 
         $this->add_control('input-text-color-focus', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
@@ -226,6 +261,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-search-input:focus' => 'color:{{VALUE}}'
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -236,6 +272,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -244,22 +281,29 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_group_control(\Elementor\Group_Control_Border::get_type(), [
             'name' => 'Border_focus',
             'selector' => '{{WRAPPER}} .rkit-search-input:focus',
         ]);
 
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
 
+
+
         $this->end_controls_section();
+
 
         $this->start_controls_section('search-submit-setting', [
             'label' => esc_html__('Submit Button', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -271,6 +315,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 ]
             ]
         );
+
 
         $this->add_control(
 			'icon_position',
@@ -297,6 +342,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 ]
 			]
 		);
+
 
         $this->add_responsive_control(
             'icon_spacing',
@@ -326,6 +372,8 @@ class Search_Rometheme extends \Elementor\Widget_Base
         );
 
 
+
+
         $this->add_responsive_control(
             'search_icon_size',
             [
@@ -352,6 +400,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control('searchicon-padding', [
             'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -360,6 +409,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-search-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
             ]
         ]);
+
 
         $this->add_responsive_control('search-button-radius', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -370,15 +420,19 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->start_controls_tabs('icon-setting-tab');
 
+
         $this->start_controls_tab('icon-tab-normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
+
+
 
 
         $this->add_control('searchtext-color', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-            'default' => '#000000',
+            // 'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button' => 'color : {{VALUE}}',
             ],
@@ -387,10 +441,11 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_control('searchicon-color', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
-            'default' => '#000000',
+            // 'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button .rkit-search-icon  ' => 'color : {{VALUE}}',
             ],
@@ -398,6 +453,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'show_icon' => 'yes'
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -409,14 +465,27 @@ class Search_Rometheme extends \Elementor\Widget_Base
         );
 
 
+        $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'button_border',
+				'selector' => '{{WRAPPER}} .rkit-search-button',
+			]
+		);
+
+
+
+
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('icon-tab-hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
+
 
         $this->add_control('searchtext-color-hover', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-            'default' => '#000000',
+            // 'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button:hover' => 'color : {{VALUE}}',
             ],
@@ -425,10 +494,11 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
+
         $this->add_control('searchicon-color-hover', [
             'type' => \Elementor\Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
-            'default' => '#000000',
+            // 'default' => '#000000',
             'selectors' => [
                 '{{WRAPPER}} .rkit-search-button:hover .rkit-search-icon' => 'color : {{VALUE}}',
             ],
@@ -436,6 +506,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'show_icon' => 'yes'
             ]
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -446,13 +517,27 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'button_border_hover',
+				'selector' => '{{WRAPPER}} .rkit-search-button:hover',
+			]
+		);
+
+
         $this->end_controls_tab();
+
 
         $this->end_controls_tabs();
 
 
+
+
         $this->end_controls_section();
     }
+
 
     protected function render()
     {

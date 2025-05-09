@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name:       RomethemeKit For Elementor
+ * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           1.5.6
+ * Version:           1.6.0
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
- * Requires Plugins:  elementor
+ * Requires Plugins : elementor 
  * 
  * The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
  */
@@ -47,6 +47,10 @@ class RomeTheme
 			require_once self::module_dir() . 'settings/settings.php';
 			require_once self::module_dir() . 'template/template.php';
 			require_once self::module_dir() . 'extensions/blur_effects.php';
+			require_once self::module_dir() . 'extensions/rkit_wrapper_link.php';
+			require_once self::module_dir() . 'extensions/rkit_tool_tips.php';
+			require_once self::module_dir() . 'extensions/rkit_post_duplicator.php'; 
+
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
 			\RomethemePlugin\Plugin::register_autoloader();
@@ -55,6 +59,9 @@ class RomeTheme
 			new \RomeTheme\RtmSettings();
 			new \RomethemeKit\Template();
 			new \RomethemeKit\BlurEffects();
+			new \RomethemeKit\RkitWrapperLink();
+			new \RomethemeKit\RkitToolTips();
+			new \RomethemeKit\RkitDuplicator();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);
@@ -87,7 +94,7 @@ class RomeTheme
 
 	function action_links($plugin_actions, $plugin_file) {
 		if (strpos($plugin_file, basename(__FILE__))) {
-			$plugin_actions['go_premium'] = sprintf('<a target="_blank" style="font-weight:700; color : #00cea6" href="%s">Upgrade To Pro</a>' , 'https://rometheme.net/pricing/');
+			$plugin_actions['go_premium'] = sprintf('<a target="_blank" style="font-weight:700; color : #00cea6" href="%s">Upgrade To Pro</a>' , 'https://rometheme.net/plugins/rtmkit/pricing/');
 		}
 
 		return $plugin_actions;
@@ -118,7 +125,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.5.6';
+		return '1.6.0';
 	}
 
 	/**
@@ -206,7 +213,7 @@ class RomeTheme
 	{
 		add_menu_page(
 			'RomethemeKit Dashboard',
-			'RomethemeKit',
+			'RTMKit',
 			'manage_options',
 			'romethemekit',
 			array($this, 'romethemekit_cal'),
@@ -247,8 +254,8 @@ class RomeTheme
 
 		add_submenu_page(
 			'romethemekit',
-			esc_html('Templates'),
-			esc_html('Templates'),
+			esc_html('Templates Kits'),
+			esc_html('Templates Kits'),
 			'manage_options',
 			'rtmkit-templates',
 			[$this, 'templates_call'],
@@ -317,7 +324,7 @@ class RomeTheme
 			'ajax_url' => admin_url('admin-ajax.php')
 		));
 		$screen = get_current_screen();
-		if (str_contains($screen->id, "romethemekit") ||  $screen->id == 'romethemekit_page_romethemeform-form') {
+		if (str_contains($screen->id, "romethemekit") || str_contains($screen->id, "rtmkit") ||  $screen->id == 'romethemekit_page_romethemeform-form') {
 			wp_enqueue_style('style.css', self::plugin_url() . 'bootstrap/css/bootstrap.css', [], self::rt_version());
 			wp_enqueue_script('bootstrap.js', self::plugin_url() . 'bootstrap/js/bootstrap.min.js', [], self::rt_version(), true);
 			wp_enqueue_style('fontawesome-icons', self::plugin_url() . 'assets/css/fontawesome/fontawesome.css', [], self::rt_version());
@@ -326,7 +333,7 @@ class RomeTheme
 		if (class_exists('RomethemeForm')) {
 			$form_nonce = wp_create_nonce('rform_form_ajax_nonce');
 
-			if ($screen->id == 'romethemekit_page_romethemeform-form') {
+			if ($screen->id == 'romethemekit_page_romethemeform-form' || $screen->id == 'rtmkit_page_romethemeform-form') {
 				wp_enqueue_script('rform-form-js', RomeThemeForm::module_url() . 'form/assets/js/form.js');
 				wp_localize_script('rform-form-js', 'romethemeform_ajax_url', array(
 					'ajax_url' => admin_url('admin-ajax.php'),
@@ -338,7 +345,7 @@ class RomeTheme
 		}
 
 		if (class_exists('RomethemePro')) {
-			if ($screen->id == 'romethemekit_page_rkitpro-license') {
+			if ($screen->id == 'romethemekit_page_rkitpro-license' || $screen->id == 'rtmkit_page_rkitpro-license') {
 				wp_enqueue_style('style.css', self::plugin_url() . 'bootstrap/css/bootstrap.css', [], self::rt_version());
 				wp_enqueue_script('bootstrap.js', self::plugin_url() . 'bootstrap/js/bootstrap.min.js', [], self::rt_version(), true);
 			}
@@ -348,7 +355,7 @@ class RomeTheme
 	function change_admin_footer($footer_text)
 	{
 		$screen = get_current_screen();
-		if ($screen->id == 'toplevel_page_romethemekit') {
+		if ($screen->id == 'toplevel_page_romethemekit' || str_contains($screen->id,'rtmkit')) {
 			$footer_text = 'Thank you for creating with <a href="https://wordpress.org">Wordpress</a>. | Love Using RomethemeKit For Elementor? <a href="https://wordpress.org/plugins/rometheme-for-elementor/#reviews">Rate Us</a> ';
 			return $footer_text;
 		}

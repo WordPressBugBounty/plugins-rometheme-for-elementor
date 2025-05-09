@@ -1,0 +1,82 @@
+{
+  "postauthor": {
+    "name": "Post Author",
+    "icon": "rtmicon rtmicon-post-author",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postcontent": {
+    "name": "Post Content",
+    "icon": "rtmicon rtmicon-post-content",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postcomment": {
+    "name": "Post Comment",
+    "icon": "rtmicon rtmicon-post-comment",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postexcerpt": {
+    "name": "Post Excerpt",
+    "icon": "rtmicon rtmicon-post-excerpt",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postfeaturedimage": {
+    "name": "Featured Image",
+    "icon": "rtmicon rtmicon-featured-image",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postinfo": {
+    "name": "Post Info",
+    "icon": "rtmicon rtmicon-post-info",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "postnavigation": {
+    "name": "Post Navigation",
+    "icon": "rtmicon rtmicon-post-navigation",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "posttitle": {
+    "name": "Post Title",
+    "icon": "rtmicon rtmicon-post-title",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "archivetitle": {
+    "name": "Archieve Title",
+    "icon": "rtmicon rtmicon-post-title",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  },
+  "archivepost": {
+    "name": "Archieve Posts",
+    "icon": "rtmicon rtmicon-post-list",
+    "class_name": "",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro"
+  }
+}

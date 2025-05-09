@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
             $.each(dataTemplate, (i, v) => {
               let $col = $('<div class="col mb-4"></div>');
               let $card = $(
-                '<div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border"></div>'
+                '<div class="d-flex flex-column h-100 rounded-3 glass-effect rtm-border"></div>'
               );
               let $previewImg = $(
                 `<img class="img-fluid" src=${v.image_preview}>`
@@ -98,7 +98,7 @@ jQuery(document).ready(function ($) {
                 `<a target="_blank" href="${v.preview_url}" class="btn fw-light w-100 border-white text-white rounded-2" data-template="${v.id}"><i class="far fa-eye me-2"></i>Preview</button>`
               );
 
-              let totalDownloads = $(`<button class="btn btn-outline-accent" data-tooltips="Total Download"><i class="fas fa-download"></i>${v.downloads}</button>`);
+              let totalDownloads = $(`<button class="btn btn-outline-accent d-flex gap-2" data-tooltips="Total Download"><i class="fas fa-download"></i>${v.downloads}</button>`);
 
               btnContainer.append(btnInstall);
               btnContainer.append(btnPreview);

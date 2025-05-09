@@ -341,6 +341,8 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'selectors' => [
                         '{{WRAPPER}} .img-comp-slider' => ' box-shadow: 0 0 0 2px {{VALUE}};'
                     ],
+                'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
+            
             ]
         );
 
@@ -470,20 +472,20 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
 
              <!--  -->
 <div class="con-wrap rkit-s-image" > 
-        <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['position_slider']) ?>"  data-show-icon="<?php echo esc_html($settings['show_icon']); ?>"
+        <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_attr($settings['position_slider']) ?>"  data-show-icon="<?php echo esc_attr($settings['show_icon']); ?>"
         >
            
         <div class="img-comp-img rkit-s-image"   
             >
             <img src="<?php echo esc_url($image_after['url']); ?>" class="filter-after rkit-s-image" >
-                <div class="caption-<?php echo  esc_html($settings['caption_potition_after']) ?>-right caption-img-comp">
+                <div class="caption-<?php echo  esc_attr($settings['caption_potition_after']) ?>-right caption-img-comp">
                     <?php echo  esc_html($settings['after_caption']); ?>
                 </div>
             </div>  
             
-            <div class="img-comp-img img-divider-<?php echo esc_html($settings['position_slider']); ?>  img-comp-overlay rkit-s-image"  >
+            <div class="img-comp-img img-divider-<?php echo esc_attr($settings['position_slider']); ?>  img-comp-overlay rkit-s-image"  >
             <img src="<?php echo esc_url($image_before['url']); ?>"  class="filter-before rkit-s-image" >
-                <div class="caption-<?php echo  esc_html($settings['caption_potition_before']) ?>-left caption-img-comp">
+                <div class="caption-<?php echo  esc_attr($settings['caption_potition_before']) ?>-left caption-img-comp">
                     <?php echo  esc_html($settings['before_caption']); ?>
                 </div>
             </div>  

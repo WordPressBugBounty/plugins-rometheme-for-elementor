@@ -13,7 +13,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['tabs']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['tabs']['icon'];
         return $icon;
     }
 
@@ -304,31 +304,31 @@ class Rkit_Tabs extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-			'tab_title_align',
-			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
-						'icon' => 'eicon-h-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
-						'icon' => 'eicon-h-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
-						'icon' => 'eicon-h-align-right',
-					],
-				],
-				'default' => 'center',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-tab-btn-item' => 'justify-content: {{VALUE}};',
-				],
-			]
-		);
+            'tab_title_align',
+            [
+                'label' => esc_html__('Alignment', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'textdomain'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'textdomain'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'textdomain'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-btn-item' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -787,21 +787,23 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="rkit-tab-content-container">
-                <?php foreach ($settings['tab_list'] as $key => $tab) : ?>
-                    <div id="tab-<?php echo esc_attr($key) ?>" class="rkit-tab-content <?php echo ($tab['active_default'] === 'yes') ? 'active' : ''; ?>">
-                        <?php
-                        if ($tab['content_type'] == 'content') {
-                            echo $tab['item_content'];
-                        } else {
-                            $template = get_post($tab['item_template']);
-                            if (!empty($template)) {
-                                echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($tab['item_template']);
+            <div class="rkit-tab-content-wrapper">
+                <div class="rkit-tab-content-container">
+                    <?php foreach ($settings['tab_list'] as $key => $tab) : ?>
+                        <div id="tab-<?php echo esc_attr($key) ?>" class="rkit-tab-content <?php echo ($tab['active_default'] === 'yes') ? 'active' : ''; ?>">
+                            <?php
+                            if ($tab['content_type'] == 'content') {
+                                echo $tab['item_content'];
+                            } else {
+                                $template = get_post($tab['item_template']);
+                                if (!empty($template)) {
+                                    echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($tab['item_template']);
+                                }
                             }
-                        }
-                        ?>
-                    </div>
-                <?php endforeach; ?>
+                            ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
 

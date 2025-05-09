@@ -55,47 +55,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'default' => 'def-card'
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-    
-            [
-                'name' => 'cont_backgroud_overlay',
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}}  .bg_overlay ',
-                // 'selector' => '{{WRAPPER}} .rkit-pricelist-item-description, {{WRAPPER}} .rkit-pricelist-item-price-section, {{WRAPPER}} .rkit-pricelist-item-footer, {{WRAPPER}} .rkit-pricelist-item-button ',
-                'condition' => [
-                    'select_style' => 'overlay',
-                ]
-            ]
-        );
-  
-
-        $this->add_control(
-            'background_opacity',
-            [
-                'label' => __('Background Opacity', 'plugin-name'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['%'],
-                'range' => [
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => '%',
-                    'size' => 50,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .bg_overlay' => 'opacity:  {{SIZE}}{{UNIT}}',
-                ],
-                'condition' => [
-                     'select_style' => 'overlay',
-                ]
-            ]
-        );
-
+       
         $this->add_responsive_control(
             'imagebox_direction',
             [
@@ -584,6 +544,64 @@ class Rkit_image_box extends \Elementor\Widget_Base
         'tab' => \Elementor\Controls_Manager::TAB_STYLE,
     ]);
 
+    $this->add_control(
+        'overlay_background',
+        [
+            'label' => esc_html__('Overlay', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::HEADING,
+            'separator' => 'before', 
+        ]
+    );
+
+    $this->add_group_control(
+        \Elementor\Group_Control_Background::get_type(),
+
+        [
+            'name' => 'cont_backgroud_overlay',
+            'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
+            'types' => ['classic', 'gradient'],
+            'selector' => '{{WRAPPER}}  .bg_overlay ',
+            // 'selector' => '{{WRAPPER}} .rkit-pricelist-item-description, {{WRAPPER}} .rkit-pricelist-item-price-section, {{WRAPPER}} .rkit-pricelist-item-footer, {{WRAPPER}} .rkit-pricelist-item-button ',
+            'condition' => [
+                'select_style' => 'overlay',
+            ]
+        ]
+    );
+
+
+    $this->add_control(
+        'background_opacity',
+        [
+            'label' => __('Background Opacity', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['%'],
+            'range' => [
+                '%' => [
+                    'min' => 0,
+                    'max' => 100,
+                ],
+            ],
+            'default' => [
+                'unit' => '%',
+                'size' => 50,
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .bg_overlay' => 'opacity:  {{SIZE}}{{UNIT}}',
+            ],
+            'condition' => [
+                 'select_style' => 'overlay',
+            ]
+        ]
+    );
+
+    $this->add_control(
+        'title_desc',
+        [
+            'label' => esc_html__('Title', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::HEADING,
+            'separator' => 'before', 
+        ]
+    );
     $this->add_group_control(
         \Elementor\Group_Control_Typography::get_type(),
         [
@@ -1366,7 +1384,7 @@ $this->add_control(
         }
  
 ?>
-        <div class="rkit-image_box rkit-image_box__<?php echo esc_html($settings['select_style'])?>  ">
+        <div class="rkit-image_box rkit-image_box__<?php echo esc_attr($settings['select_style'])?>  ">
             
             <div class="rkit-image_box-card">
                     <div class="rkit-image_box__img">
@@ -1375,8 +1393,8 @@ $this->add_control(
       
 
                 
-                <div class="rkit-image_box_det <?php echo esc_html($wrapper_cont ) ?>">
-                    <div class="rkit-image_box__detail <?php echo esc_html($wrapper_box ) ?> <?php echo esc_html($flex ) ?>">
+                <div class="rkit-image_box_det <?php echo esc_attr($wrapper_cont ) ?>">
+                    <div class="rkit-image_box__detail <?php echo esc_attr($wrapper_box ) ?> <?php echo esc_attr($flex ) ?>">
 
                     <div class="rkit-container-top">
                         <div class="left"> 
@@ -1402,7 +1420,7 @@ $this->add_control(
                 
                     </div>
                         <<?php echo $name_tag ?> class="rkit-image_box__title"><?php echo esc_html($settings['imagebox_title']) ?></<?php echo esc_html($name_tag  ) ?>> 
-                    <div class ="image-box-item-desc <?php echo esc_html($wrapper_desc ) ?> ">   
+                    <div class ="image-box-item-desc <?php echo esc_attr($wrapper_desc ) ?> ">   
                         <span class="rkit-image_box__description"><?php echo esc_html($settings['imagebox_description']) ?></span>
                         <?php 
                         if ($settings['imagebox_show_button_readmore'] == 'yes') :

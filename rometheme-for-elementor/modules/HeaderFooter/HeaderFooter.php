@@ -102,7 +102,7 @@ class HeaderFooter
         $nonce = wp_create_nonce('rtm_ajax_nonce');
 
         $screen = get_current_screen();
-        if ($screen->id == 'romethemekit_page_themebuilder' or $screen->id == 'rometheme_template') {
+        if ($screen->id == 'romethemekit_page_themebuilder' or $screen->id == 'rometheme_template' or $screen->id == 'rtmkit_page_themebuilder') {
             wp_enqueue_style('style.css', \RomeTheme::plugin_url() . 'bootstrap/css/bootstrap.css');
             wp_enqueue_script('bootstrap.js', \RomeTheme::plugin_url() . 'bootstrap/js/bootstrap.min.js');
             wp_enqueue_style('style', $this->url . 'assets/css/style.css');

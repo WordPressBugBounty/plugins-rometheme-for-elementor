@@ -88,7 +88,7 @@ class Rkit_Rform
     {
 
         $screen = get_current_screen();
-        if ($screen->id == 'romethemekit_page_rform') {
+        if ($screen->id == 'romethemekit_page_rform' || $screen->id == 'rtmkit_page_rform') {
             wp_enqueue_style('style.css', \RomeTheme::plugin_url() . 'bootstrap/css/bootstrap.css');
             wp_enqueue_script('bootstrap.js', \RomeTheme::plugin_url() . 'bootstrap/js/bootstrap.min.js');
         }

@@ -935,6 +935,8 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+      
+
 
         $this->add_control('subtitle_icon_color', [
             'label' => esc_html('Icon Color'),
@@ -1336,6 +1338,28 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'button_icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 300,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .icon-list-button-hs' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->start_controls_tabs('button_tab');
 
@@ -2188,12 +2212,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                                                 <?php if ($settings['button_icon_position'] == "before") { ?>
                                                     <a <?php $this->print_render_attribute_string('hs_link_' . $li['_id']) ?> class="button-element-homeslider">
                                                         <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-hs"]); ?>
-                                                        <?php echo esc_html($settings['button_text']) ?>
+                                                        <span class="text-button"><?php echo esc_html($settings['button_text']) ?></span>
                                                     </a>
                                                 <?php } else {
                                                 ?>
                                                     <a <?php $this->print_render_attribute_string('hs_link_' . $li['_id']) ?> class="button-element-homeslider">
-                                                        <?php echo esc_html($settings['button_text']) ?>
+                                                    <span class="text-button"><?php echo esc_html($settings['button_text']) ?></span>
                                                         <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-hs"]); ?>
                                                     </a>
                                                 <?php } ?>

@@ -24,6 +24,7 @@
 }
 
 .img-comp-container img{
+  object-fit: cover;
   max-width: none !important;  
 }
   
@@ -141,10 +142,14 @@
     left: 16px;
   }
 
-  .caption-center-left {
+  .caption-center-left { 
     position: absolute;
     top: 50%;
-    left: 16px; 
+    left: 16px;
+    transform: translateY(-50%);
+    /* Tambahan opsional untuk styling */
+    text-align: right;
+    white-space: nowrap;
   }
 /* caption left */
 
@@ -161,10 +166,15 @@
     right: 16px;
   }
 
+
   .caption-center-right {
     position: absolute;
     top: 50%;
-    right: 16px; 
+    right: 16px;
+    transform: translateY(-50%);
+    /* Tambahan opsional untuk styling */
+    text-align: right;
+    white-space: nowrap;
   }
   /* caption right */
   

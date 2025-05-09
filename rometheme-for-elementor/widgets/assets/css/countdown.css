@@ -27,24 +27,24 @@
 .countdown_contain {
     display: flex;    
     flex-wrap: wrap;
+    gap : 20px;
 }
 
 
 .rkit-countdown-widget .countdown-section {
     background-color: var(--section-background, transparent);
-    padding: 15px 10px;
+    padding: 20px 10px;
     border-radius: 5px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
-    margin: 0 5px;
+    align-items: center;  
     text-align: center;  
 }
 
 .rkit-countdown-widget  .countdown-section-row {
     background-color: var(--section-background, transparent);
-    padding: 15px 10px;
+    padding: 20px 10px;
     border-radius: 5px;
     display: flex; 
     justify-content: center;
@@ -56,16 +56,21 @@
 .rkit-countdown-widget .countdown-hours,
 .rkit-countdown-widget .countdown-minutes,
 .rkit-countdown-widget .countdown-seconds {
-    font-size: var(--font-size, 3em);
-    color: #000;
+    font-size: var(--font-size, 7em);
+    color: #000000;
     display: block; 
 }
 
 .rkit-countdown-widget .countdown-label {
     font-size: 1em;
-    color: #00CEA6;
-    display: block; 
-    margin-top: 5px; 
+    color: #00CEA6;  
+    height: 100%; 
+    display: flex; 
+    align-self: center !important;
+    align-items: center;
+}
+.time_sett{
+    line-height: 1;
 }
 
 .hidden {

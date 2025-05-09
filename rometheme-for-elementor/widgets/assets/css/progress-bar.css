@@ -16,7 +16,7 @@
   --secondary-progress-color: #e3efff;
 }
 
-.progress-container{
+.progress-bar-container{
   display: flex;
   width: 100%;
   flex-direction: column;

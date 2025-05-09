@@ -129,7 +129,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
                 'span' => esc_html('Span'),
                 'div' => esc_html('DIV')
             ],
-            'default' => 'h4'
+            'default' => 'span'
         ]);
 
         $this->end_controls_section();

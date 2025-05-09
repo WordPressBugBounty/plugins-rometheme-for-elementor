@@ -1,71 +1,61 @@
 jQuery(window).on('elementor/frontend/init', function () {
     elementorFrontend.hooks.addAction('frontend/element_ready/rkit-imagecomparison.default', function ($scope, $) {
-        let h, w , originalWidth, originalHeight;
+        let h, w;
 
         const imgElement = $scope.find('.img-comp-img img');
-        // Fungsi untuk inisialisasi gambar
-        function initializeImage() {
-            
-            imgElement.each(function () {
-                
-                $scope.originalWidth = $(this).width();
-                $scope.originalHeight = $(this).height();
 
-                if ($scope.originalWidth && $scope.originalHeight) {
-                    updateImageDimensions();
-                } else {
-                    console.error('Original dimensions are not defined yet.');
-                }
-            });
-        }
-
-        imgElement.on('load', function () {
-            setTimeout(initializeImage, 100); // Tambahkan delay 100ms untuk memastikan gambar sudah terload
-        });
-
-        if (imgElement[0].complete) {
-            setTimeout(initializeImage, 100); // Inisialisasi jika gambar sudah terload sebelumnya
-        }
-
-        // Fungsi untuk memperbarui dimensi gambar
         function updateImageDimensions() {
+            const imgCompImgs = $scope.find('.img-comp-img img');
+        
+            if (imgCompImgs.length === 0) return;
+        
+            const naturalWidth = imgCompImgs[0].naturalWidth;
+            const naturalHeight = imgCompImgs[0].naturalHeight;
+        
+            if (!naturalWidth || !naturalHeight) {
+                console.error('Natural dimensions not available.');
+                return;
+            }
+        
+            // CARI ukuran container DI ATAS rkit-s-image
+            const parentContainer = $scope.find('.rkit-s-image').parent();
+        
+            const containerWidth = parentContainer.width();
+            const containerHeight = parentContainer.height();
+        
+            if (containerWidth === 0) {
+                console.warn('Parent container width is zero');
+                return;
+            }
+        
+            let finalWidth = containerWidth;
+            let finalHeight = containerHeight;
+            
+
+            console.log('Start dimensions:', { finalWidth, finalHeight });
+            console.log('Natural dimensions:', { naturalWidth, naturalHeight });
+        
+            // Kalau parent container height 0, hitung pakai aspect ratio
+            if (containerHeight === 0) {
+                const aspectRatio = naturalWidth / naturalHeight;
+
+                finalHeight = finalWidth / aspectRatio;
+            }
+            const aspectRatios = naturalWidth / naturalHeight;
+            // const heightwidth = containerWidth / containerHeight;
+            w = finalWidth;
+            h = finalWidth / aspectRatios;
+        
+            console.log('Update dimensions:', { w, h });
+        
             const conWrap = $scope.find('.con-wrap');
             const imgcomp = $scope.find('.img-comp-img');
-            const imgCompImgs = $scope.find('.img-comp-img img');
-
-            imgCompImgs.each(function () {
-                $scope.originalWidth = $(this).width();
-                $scope.originalHeight = $(this).height();
-            });
-  
-            const screenWidth = $(window).width(); 
-              // $scope akan merujuk pada container widget yang spesifik
-              var container = $scope.find('.rkit-s-image');
-              var containerWidth = container.width(); 
-            if ($scope.originalWidth && $scope.originalHeight) {
-                const aspectRatio = $scope.originalWidth / $scope.originalHeight;
-                  
-                if (screenWidth <= 366) {
-                    $scope.w = containerWidth;
-                } else if (screenWidth > 366 && screenWidth <= 770) {
-                    $scope.w = containerWidth;
-                } else {
-                    $scope.w = containerWidth;
-                }
-  
-                $scope.h = $scope.w / aspectRatio;
-  
-                conWrap.css({ height: $scope.h + 'px', width: $scope.w + 'px' });
-                imgcomp.css({ height: $scope.h + 'px', width: $scope.w + 'px' });
-                imgCompImgs.css({ height: $scope.h + 'px', width: $scope.w + 'px' });
-   
-            }         //   else {
-          //       console.error('Original dimensions are not defined yet sec.');
-          //   }
+        
+            conWrap.css({ height: h + 'px', width: w + 'px' });
+            imgcomp.css({ height: h + 'px', width: w + 'px' });
+            imgCompImgs.css({ height: h + 'px', width: w + 'px' });
         }
-  
-
-        // Fungsi untuk inisialisasi komparasi gambar
+        
         function initComparisons() {
             const container = $scope.find('.img-comp-container');
             const sliderMode = container.data('slider-mode');
@@ -76,19 +66,13 @@ jQuery(window).on('elementor/frontend/init', function () {
                 compareImages($(this));
             });
 
-            // Fungsi untuk membandingkan gambar
             function compareImages($img) {
                 let slider, clicked = 0;
 
-                // Tentukan orientasi slider
                 if (sliderMode === 'vertical') {
-                    let existingSlider = $scope.find('.img-comp-slider.vertical');
-                    $img.css('height', ($scope.h / 2) + "px");
+                    $img.css('height', (h / 2) + "px");
 
-                    if (existingSlider.length) {
-                        existingSlider.remove();
-                    }
-
+                    $scope.find('.img-comp-slider.vertical').remove();
                     slider = $('<div>', { class: 'img-comp-slider vertical' });
 
                     if (showIcon === 'yes') {
@@ -98,17 +82,13 @@ jQuery(window).on('elementor/frontend/init', function () {
 
                     $img.before(slider);
                     slider.css({
-                        top: ($scope.h / 2) - (slider.outerHeight() / 2) + "px",
-                        left: ($scope.w / 2) - (slider.outerWidth() / 2) + "px"
+                        top: (h / 2) - (slider.outerHeight() / 2) + "px",
+                        left: (w / 2) - (slider.outerWidth() / 2) + "px"
                     });
                 } else {
-                    let existingSlider = $scope.find('.img-comp-slider');
-                    $img.css('width', ($scope.w / 2) + "px");
+                    $img.css('width', (w / 2) + "px");
 
-                    if (existingSlider.length) {
-                        existingSlider.remove();
-                    }
-
+                    $scope.find('.img-comp-slider').remove();
                     slider = $('<div>', { class: 'img-comp-slider' });
 
                     if (showIcon === 'yes') {
@@ -118,8 +98,8 @@ jQuery(window).on('elementor/frontend/init', function () {
 
                     $img.before(slider);
                     slider.css({
-                        top: ($scope.h / 2) - (slider.outerHeight() / 2) + "px",
-                        left: ($scope.w / 2) - (slider.outerWidth() / 2) + "px"
+                        top: (h / 2) - (slider.outerHeight() / 2) + "px",
+                        left: (w / 2) - (slider.outerWidth() / 2) + "px"
                     });
                 }
 
@@ -142,7 +122,7 @@ jQuery(window).on('elementor/frontend/init', function () {
 
                     let pos = (sliderMode === 'vertical') ? getCursorPosVertical(e) : getCursorPosHorizontal(e);
 
-                    pos = Math.max(0, Math.min(pos, (sliderMode === 'vertical' ? $scope.h : $scope.w)));
+                    pos = Math.max(0, Math.min(pos, (sliderMode === 'vertical' ? h : w)));
 
                     slide(pos);
                 }
@@ -171,13 +151,28 @@ jQuery(window).on('elementor/frontend/init', function () {
             }
         }
 
-        // Menggunakan ResizeObserver untuk menangani perubahan ukuran elemen
-        new ResizeObserver(() => {
+        function initializeImage() {
             updateImageDimensions();
             initComparisons();
-            
-        }).observe($scope[0]);
+        }
 
-        setTimeout(initComparisons, 100);
+        imgElement.on('load', function () {
+            setTimeout(initializeImage, 100);
+        });
+
+        if (imgElement[0].complete) {
+            setTimeout(initializeImage, 100);
+        }
+
+        // Ini yg baru bro
+        elementorFrontend.on('resize', function () {
+            console.log('Elementor editor resized');
+            setTimeout(initializeImage, 200); // kasih delay kecil biar layout fix dulu
+        });
+
+        // Plus backup pakai ResizeObserver juga (kalau user resize manual di browser)
+        new ResizeObserver(() => {
+            setTimeout(initializeImage, 200);
+        }).observe($scope[0]);
     });
 });

@@ -1006,6 +1006,15 @@ class RkitPostBlock extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control('metadata_spacing', [
+            'label' => esc_html__('Metadata Spacing'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-metadata' => 'gap:{{SIZE}}{{UNIT}}'
+            ]
+        ]);
+
         $this->add_responsive_control('icon_size', [
             'label' => esc_html__('Icon Size'),
             'type' => \Elementor\Controls_Manager::SLIDER,

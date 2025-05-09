@@ -86,15 +86,37 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
                 [
                     'label' => esc_html__( 'Column', 'textdomain' ),
                     'type' => \Elementor\Controls_Manager::NUMBER,
-                    'min' => 1,
+                    'min' => 1, 
                     'max' => 100,
                     'step' => 1,
                     'desktop_default' => 3,
                     'tablet_default' => 3,
                     'mobile_default' => 1,
                     'selectors' => [
-                        '{{WRAPPER}} .rkit-gallery-masonry' => 'column-count: {{value}};',
+                        '{{WRAPPER}} .mansory' => 'column-count: {{value}};',
+                    ],
+                    'condition' => [
+                        'layout_option' => 'mansory', 
+                    ]
                 ]
+            );
+
+            $this->add_responsive_control(
+                'column_grid',
+                [
+                    'label' => __( 'Column', 'rometheme-for-elementor' ),
+                    'type' => \Elementor\Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'max' => 100,
+                    'default' => 3, 
+                    'tablet_default' => 3,  
+                    'mobile_default' => 1, 
+                    'selectors' => [
+                      '{{WRAPPER}} .grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);', 
+                    ],
+                    'condition' => [
+                        'layout_option' => 'grid', 
+                    ]
                 ]
             );
 
@@ -219,12 +241,11 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         }else{
             $lazy = '';
         }
-	 
-        
+	  
         ?>  
 
 <div class="rkit-gallery-masonry-container">
-    <div class="rkit-gallery-masonry">
+    <div class="rkit-gallery-masonry <?php echo esc_attr($settings['layout_option']) ?>">
         
     <?php foreach ( $settings['gallery'] as $image ) : 
         $hover_animation_ig_class = !empty($settings['hover_animation_ig']) ? ' elementor-animation-' . $settings['hover_animation_ig'] : ''; 
@@ -232,7 +253,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         <div class="brick">
         <div class="<?php echo esc_attr( $lazy); ?>"></div>
             <img src="<?php echo esc_attr( $image['url'] ); ?>" 
-                class="gallery_image <?php echo esc_html($hover_animation_ig_class); ?>" 
+                class="gallery_image <?php echo esc_attr($hover_animation_ig_class); ?>" 
                 alt="<?php echo !empty($image['alt']) ? esc_attr($image['alt']) : 'Gallery Image'; ?>" 
                 loading="lazy"></img>
         </div>

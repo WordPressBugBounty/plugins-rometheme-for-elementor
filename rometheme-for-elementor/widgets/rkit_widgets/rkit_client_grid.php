@@ -25,7 +25,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
 
     public function get_keywords()
     {
-        return ['grid', 'client', 'carousel', 'rometheme'];
+        return ['grid', 'client',  'rometheme'];
     }
 
     function get_custom_help_url()
@@ -51,7 +51,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             [
                 'label' => __( 'Column', 'rometheme-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::NUMBER,
-                'default' => 3,
+                // 'default' => 3,
+                'desktop_default' => 4,
+                    'tablet_default' => 2,
+                    'mobile_default' => 1,
                 'selectors' => [
                     ' {{WRAPPER}} .client-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
                 ],
@@ -252,6 +255,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                         'card_title' => esc_html__('Example Title 3', 'textdomain'),
                        
                     ],  
+                    [
+                        'card_title' => esc_html__('Example Title 4', 'textdomain'),
+                       
+                    ],  
                 ],
                 'title_field' => '{{{card_title}}}',
             ]
@@ -350,6 +357,23 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         ]
     );
 
+    $this->add_responsive_control('object_fit', [
+        'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+        'type' => \Elementor\Controls_Manager::SELECT,
+        'options' => [
+            'none' => esc_html__('None', 'rometheme-for-elementor'),
+            'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+            'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+            'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+            'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+
+        ],  
+        'selectors' => [
+            '{{WRAPPER}} .clientslogo-image-full-cg, {{WRAPPER}} .clientslogo-image-full-cg img, {{WRAPPER}} .image-container-cg'  => 'object-fit:{{VALUE}}'
+        ],
+        'default' => 'scale-down',
+    ]);
+
     
     $this->add_control(
         'padding',
@@ -358,9 +382,9 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'default' => [
-                'top' => 40,
+                'top' => 0,
                 'right' => 0,
-                'bottom' => 40,
+                'bottom' => 0,
                 'left' => 0,
                 'unit' => 'px',
                 'isLinked' => true,
@@ -716,6 +740,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         
     ?>
              <!-- main container -->   
+             <div class="client-grid-container">
              <div class="client-grid-wrapper">
                    <?php  
                     foreach ($settings['list'] as $li) : 
@@ -728,7 +753,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                         }
                     ?>
                     
-                        <div class="container-image">
+                        <div class="container-image-cg">
                             <div class="rkit-card-client "> 
                                 <div class="image-container-cg <?php echo esc_attr($settings['hover_style']); ?>">
                                     <div class="clientslogo-image-full-cg image-default">
@@ -757,7 +782,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                                     <?php endif; ?>
                                 </div>
                                 
-                                <?php if($li['show_title'] == 'yes') {?>
+                               
+                              <!--  -->
+                            </div>
+                            <?php if($li['show_title'] == 'yes') {?>
                                 <div class="card-body">
                                     <div class="card-heading">
                                             <a <?php $this->print_render_attribute_string('card_link_' . $li['_id']) ?> > 
@@ -765,11 +793,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                                             </a>
                                     </div>
                                 </div>
-                                <?php } ?> 
-                              
-                            </div>
+                            <?php } ?> 
                         </div>
                     <?php endforeach; ?>
+                    </div>
                     </div>
                
       

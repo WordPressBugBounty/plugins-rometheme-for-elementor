@@ -138,7 +138,7 @@ class RkitWidgets
 
         $nonce = wp_create_nonce('widget-options-nonce');
         $screen = get_current_screen();
-        if ($screen->id == 'romethemekit_page_rkit-widgets') {
+        if ($screen->id == 'romethemekit_page_rkit-widgets' || $screen->id == 'rtmkit_page_rkit-widgets') {
             wp_enqueue_style('style', RomeTheme::module_url() . 'HeaderFooter/assets/css/style.css');
             wp_enqueue_script('widgetViewScript', RomeTheme::module_url() . 'widgets/assets/js/widget.js', ['jquery'], RomeTheme::rt_version());
             wp_localize_script('widgetViewScript', 'rometheme_ajax_url', array(
@@ -246,6 +246,15 @@ class RkitWidgets
             }
             return strcasecmp($a['category'], $b['category']);
         });
+
+        return $widgets;
+    }
+
+    public static function listWidgetPostPro()
+    {
+        $widgetsFileJson = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/post_widget_pro.json');
+
+        $widgets = json_decode($widgetsFileJson, true);
 
         return $widgets;
     }

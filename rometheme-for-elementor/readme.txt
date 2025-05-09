@@ -1,23 +1,25 @@
-=== RomethemeKit For Elementor ===
+=== RTMKit Addons for Elementor ===
 Contributors: dickoandrean 
 Tags: addons, widget, elementor, header footer, extension
 Requires at least: 6.6
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.5.6
+Stable tag: 1.6.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
+All-in-one toolkit for Elementor: advanced addons, theme builder, forms, icons & templates to build stunning sites fast and easy.
 
 == Description ==
-Revolutionize your website-building process with 58+ highly customizable addons, 50+ premade templates, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
+Revolutionize your website-building process with 58+ highly customizable addons, 50+ premade template kits, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Useful Links
 [Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
 ### (NEW) Pre-made Template Kits
-Explore our expanding library of template kits, available in both the free and PRO versions of RomethemeKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
+Explore our expanding library of template kits, available in both the free and PRO versions of RTMKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
 
 ### Widgets Control: 
 Enable or disable individual Elementor addons to optimize page load speed and site performance.
@@ -34,7 +36,12 @@ A diagnostic tool to ensure your WordPress environment meets the requirements fo
 ### Icon Pack: 
 Access a collection of over 100 icons to enhance your site's design.
 
-### Widgets & Addons Included:
+### Widgets & Extension Included:
+
+### Extension 
+* RTM Duplicator: Easily duplicate any Elementor widget, column, or section to speed up your workflow.
+* RTM Tooltips: Add stylish, customizable tooltips to any Elementor element for better UX.
+* RTM Wrapper Link: Make entire sections or columns clickable by wrapping them with a custom link.
 
 ### Header Addons :
 *   Header Offcanvas (FREE): Add an offcanvas header that displays sidebar content, such as demo and registration forms, triggered by a specific button.
@@ -112,7 +119,7 @@ Enjoying RomethhemeKit? Show your support by leaving us a rating on WordPress! �
 
 == Frequently Asked Questions ==
 
-= How to use RomethemeKit for Elementor? =
+= How to use RTMKit Addons for Elementor? =
 
 Login your WordPress dashboard,  From the left menu click the Rometheme icon.
 
@@ -141,6 +148,28 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.6.0
+Added : New extention "RTM Duplicator"
+Added : New extention "RTM Tooltips"
+Added : New extention "RTM Wrapper Link"
+Fixed : Issue on alignment mobile devices in the "Header Info" widget.
+Fixed : Issue on responsive and fullwidth in the "Woo Product list" widget (style 2)
+Fixed : Issue on animation not working in the "Image Accordion" widget
+Fixed : Issue on image not show with 4 colomn in the "Image Gallery" widget 
+Fixed : Issue on responsive view in the "Image Comparison" widget 
+Fixed : Issue on Box Shadow radius in the "Card Carousel" widget 
+Fixed : Issue on Featured Image in the "Post Grid" widget 
+Fixed : Issue on icon missing close in the "Header Offcanvas" widget 
+Fixed : Issue with vertical layout option not displaying view content saved template correctly in the 'Advanced Tabs' widget 
+Improved : Added border style and color options to the button in the "Search" widget
+Improved : Responsive color control options for the tab menu style in the "Nav Menu" widget
+Improved : Added number prefix in the "Counter" widget
+Improved : Added border radius for time style and position in the "Countdown" widget
+Improved : Added width and heigth control for image in the "Image Marquee" widget
+Improved : Added alignment, typo optioins for category in the "Post List" widget
+Improved : Added border color options in the "Pie Chart" widget
+Improved : Added border radius options in the "Header Info" widget
+
 Version 1.5.6
 Bug Fixed in Export Import TemplateKit
 
