@@ -24,16 +24,11 @@ jQuery(window).on('elementor/frontend/init', function () {
             const containerHeight = parentContainer.height();
         
             if (containerWidth === 0) {
-                console.warn('Parent container width is zero');
                 return;
             }
         
             let finalWidth = containerWidth;
             let finalHeight = containerHeight;
-            
-
-            console.log('Start dimensions:', { finalWidth, finalHeight });
-            console.log('Natural dimensions:', { naturalWidth, naturalHeight });
         
             // Kalau parent container height 0, hitung pakai aspect ratio
             if (containerHeight === 0) {
@@ -46,7 +41,7 @@ jQuery(window).on('elementor/frontend/init', function () {
             w = finalWidth;
             h = finalWidth / aspectRatios;
         
-            console.log('Update dimensions:', { w, h });
+            // console.log('Update dimensions:', { w, h });
         
             const conWrap = $scope.find('.con-wrap');
             const imgcomp = $scope.find('.img-comp-img');
@@ -166,7 +161,7 @@ jQuery(window).on('elementor/frontend/init', function () {
 
         // Ini yg baru bro
         elementorFrontend.on('resize', function () {
-            console.log('Elementor editor resized');
+            // console.log('Elementor editor resized');
             setTimeout(initializeImage, 200); // kasih delay kecil biar layout fix dulu
         });
 

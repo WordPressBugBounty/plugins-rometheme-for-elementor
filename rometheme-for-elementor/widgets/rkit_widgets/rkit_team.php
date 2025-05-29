@@ -577,6 +577,29 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'content_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-team__detail' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style!' => 'overlay'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'content_border',
+                'selector' => '{{WRAPPER}} .rkit-team__detail',
+            ]
+        );
+
         $this->add_control('name_tag', [
             'label' => esc_html('Name Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -1192,4 +1215,16 @@ class Rkit_Team extends \Elementor\Widget_Base
 <?php
 
     }
+
+    protected function get_upsale_data(): array {
+		return [
+			'condition' => true,
+			'image' => esc_url( ELEMENTOR_ASSETS_URL . 'images/go-pro.svg' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'textdomain' ),
+			'title' => esc_html__( 'Promotion heading', 'textdomain' ),
+			'description' => esc_html__( 'Get the premium version of the widget and grow your website capabilities.', 'textdomain' ),
+			'upgrade_url' => esc_url( 'https://example.com/upgrade-to-pro/' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'textdomain' ),
+		];
+	}
 }

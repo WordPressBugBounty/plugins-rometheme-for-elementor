@@ -34,7 +34,7 @@ class Init
         wp_enqueue_script('rkit-js', \RomeTheme::plugin_url() . 'assets/js/rkit.js', [], \RomeTheme::rt_version(), true);
         wp_enqueue_script('rkit-library-script', $this->url . 'assets/js/script.js', ['jquery'], \RomeTheme::rt_version());
         wp_localize_script('rkit-library-script', 'rkit_libs', [
-            'logo_url' => \RomeTheme::plugin_url() . '/view/images/rtmkit-logo-white.png',
+            'logo_url' => \RomeTheme::plugin_url() . '/view/images/RTMKitNew.png',
             'ajax_url' => admin_url('admin-ajax.php'),
             'template_nonce' => $template_nonce
         ]);

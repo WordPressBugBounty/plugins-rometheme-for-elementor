@@ -95,31 +95,28 @@ $page = $_GET['page'];
                 Free Version
                 <div class="d-flex flex-row align-items-center gap-2">
                     <span class="rtm-version px-4 py-2 fs-6">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
-                    <h6 class="m-0">May 9, 2025</h6>
+                    <h6 class="m-0">May 29, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                    <li><strong>Added</strong>: New extension "RTM Duplicator"</li>
-                    <li><strong>Added</strong>: New extension "RTM Tooltips"</li>
-                    <li><strong>Added</strong>: New extension "RTM Wrapper Link"</li>
+                    <li><strong>Fixed:</strong> Issue on button global kit style control in the "Setting" dashboard.</li>
+                    <li><strong>Fixed:</strong> Issue on Button can't click save & editing in the "Form" theme builder.</li>
+                    <li><strong>Fixed:</strong> Issue on navigation not working on editing canvas in the "Testimonial Carousel" widget.</li>
+                    <li><strong>Fixed:</strong> Issue on button area click in the "Call to Action" widget.</li>
+                    <li><strong>Improved:</strong> Added optional alignment content in the "Woo Product Grid" widget.</li>
+                    <li><strong>Improved:</strong> Added icon spacing and padding content control in the "Image box" widget.</li>
+                    <li><strong>Improved:</strong> Added optional position for dots in the "Hero Slider" widget.</li>
+                    <li><strong>Improved:</strong> Added Icon color control in the "Image Comparison" widget.</li>
+                    <li><strong>Improved:</strong> Added spacing control in the "Advanced Heading" widget.</li>
+                    <li><strong>Improved:</strong> Added separator or dot optional in the "Countdown" widget.</li>
+                    <li><strong>Improved:</strong> Added other layout style in the "Counter" widget.</li>
+                    <li><strong>Improved:</strong> Added saved templates optional in the "Accordion" widget.</li>
+                    <li><strong>Improved:</strong> Added optional alignment for tabs in the "Advanced Tabs" widget.</li>
+                    <li><strong>Improved:</strong> Added optional lightbox in the "Image Gallery" widget.</li>
+                    <li><strong>Improved:</strong> Added icon submenu color control in the "Nav Menu" widget.</li>
+                    <li><strong>Improved:</strong> Added optional layout position inline and list in the "Search" widget.</li>
+                    <li><strong>Improved:</strong> Added new style "inline" in the "Progress Bar".</li>
+                    <li><strong>Improved:</strong> Added control content for border width, radius, & color in the "Team Widget".</li>
 
-                    <li><strong>Fixed</strong>: Issue on alignment mobile devices in the "Header Info" widget</li>
-                    <li><strong>Fixed</strong>: Issue on responsive and fullwidth in the "Woo Product list" widget (style 2)</li>
-                    <li><strong>Fixed</strong>: Issue on animation not working in the "Image Accordion" widget</li>
-                    <li><strong>Fixed</strong>: Issue on image not show with 4 columns in the "Image Gallery" widget</li>
-                    <li><strong>Fixed</strong>: Issue on responsive view in the "Image Comparison" widget</li>
-                    <li><strong>Fixed</strong>: Issue on Box Shadow radius in the "Card Carousel" widget</li>
-                    <li><strong>Fixed</strong>: Issue on Featured Image in the "Post Grid" widget</li>
-                    <li><strong>Fixed</strong>: Issue on icon missing close in the "Header Offcanvas" widget</li>
-                    <li><strong>Fixed</strong>: Issue with vertical layout option not displaying view content saved template correctly in the "Advanced Tabs" widget</li>
-
-                    <li><strong>Improved</strong>: Added border style and color options to the button in the "Search" widget</li>
-                    <li><strong>Improved</strong>: Responsive color control options for the tab menu style in the "Nav Menu" widget</li>
-                    <li><strong>Improved</strong>: Added number prefix in the "Counter" widget</li>
-                    <li><strong>Improved</strong>: Added border radius for time style and position in the "Countdown" widget</li>
-                    <li><strong>Improved</strong>: Added width and height control for image in the "Image Marquee" widget</li>
-                    <li><strong>Improved</strong>: Added alignment, typography options for category in the "Post List" widget</li>
-                    <li><strong>Improved</strong>: Added border color options in the "Pie Chart" widget</li>
-                    <li><strong>Improved</strong>: Added border radius options in the "Header Info" widget</li>
                 </ul>
             </div>
             <div class="d-flex flex-column text-white">

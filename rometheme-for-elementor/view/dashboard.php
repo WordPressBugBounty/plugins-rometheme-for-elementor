@@ -1,7 +1,7 @@
 <div class="d-flex flex-column gap-3 me-3  mb-3 rtm-container rounded-2 rtm-bg-gradient-3" style="margin-top: -8rem;">
     <div class="px-5 rounded-3">
         <div class="spacer"></div>
-        <div class="row row-cols-xl-2 row-cols-1 rtm-text-font px-4 pt-5">
+        <div class="row row-cols-xl-2 row-cols-1 rtm-text-font px-4 py-5">
             <div class="col col-lg-7">
                 <div class="d-flex flex-column gap-4 pe-lg-5 px-4">
                     <h4 class="text-white m-0">
@@ -20,7 +20,9 @@
                 </div>
             </div>
             <div class="col col-lg-5">
-                <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/homepage.png') ?>" alt="" class="img-fluid">
+                <div class="d-flex justify-content-center">
+                    <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/box-rtmkit.png') ?>" alt="" class="img-fluid w-75">
+                </div>
             </div>
         </div>
     </div>
@@ -80,7 +82,7 @@
                 <div class="d-flex flex-column gap-2">
                     <h4>Social Media Channel</h4>
                     <ul class="rtm-social-container p-0 gap-2 m-0">
-                        <li><a href="https://www.facebook.com/rometheme/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.facebook.com/groups/rometheme/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <li><a href="https://www.instagram.com/rtmkit/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-instagram"></i></a></li>
                         <li><a href="https://twitter.com/rometheme" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-x-twitter"></i></a></li>
                         <li><a href="https://www.youtube.com/channel/UCB1RCmPjzvFyWNN28rtwheQ" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-youtube"></i></a></li>
@@ -113,20 +115,30 @@
 
     </div>
     <div class="d-flex flex-lg-row flex-column gap-3">
-        <div class="col col-lg-4">
-            <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1 h-100">
-                <span class="rtm-text-font accent-color">Cheers for use RomethemeKit.</span>
-                <h4>Another one, Rate us on
-                    Wordpress too !</h4>
-                <div class="rtm-divider rounded-pill" style="width: 80%;"></div>
-                <p>Our product development is greatly impacted by your highest rating.</p>
-                <div class="d-flex flex-row align-items-center gap-4">
-                    <a href="https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Rate RTMKit Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+        <div class="col col-lg-5">
+            <div class="d-flex flex-row align-items-end">
+                <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1 h-100">
+                    <div class="d-flex flex-row align-items-end gap-3">
+                        <div class="d-flex flex-column">
+                            <span class="rtm-text-font accent-color">Cheers for use RTMKit.</span>
+                            <h4>Another one, Rate us on Wordpress too !</h4>
+                        </div>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="rtm-divider rounded-pill" style="width: 80%;"></div>
+                            <p>Our product development is greatly impacted by your highest rating.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center gap-4">
+                        <a href="https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Rate RTMKit Now <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/rate-us.png') ?>" width="400" alt="rate-us" class="img-fluid">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1 h-100">
+            <div class="d-flex flex-column gap-1 rounded-3 text-white rtm-text-font rtm-bg-gradient-1 h-100">
                 <div class="d-flex flex-xl-row flex-column-reverse h-100">
                     <div class="col p-5 pe-0">
                         <div class="d-flex flex-column gap-3">
@@ -139,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-lg-7">
+                    <div class="col col-lg-6">
                         <div class="d-flex align-items-end h-100 pe-5 justify-content-end">
                             <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/cta-template.png') ?>" alt="" class="img-fluid">
                         </div>

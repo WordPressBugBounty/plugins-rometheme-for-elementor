@@ -91,6 +91,24 @@ jQuery(window).on("elementor/frontend/init", function () {
       var $element = $scope;
       var endDate = $element.find("#countdown").data("date");
 
+      //
+      // Struktur ulang & tambahkan separator
+      var $countdown = $element.find("#countdown");
+      var $sections = $countdown.find(".countdown-section");
+
+      $sections.each(function (index) {
+        var $section = $(this);
+        var $number = $section.find(".time_sett");
+        var $label = $section.find(".countdown-label");
+
+        // Bungkus angka di dalam row tersendiri
+        if (!$section.find(".countdown-top-row").length) {
+          $number.wrap('<div class="countdown-top-row"></div>');
+        }
+      });
+
+      //
+
       var existingInterval = $element.data("interval");
       if (existingInterval) {
         clearInterval(existingInterval);

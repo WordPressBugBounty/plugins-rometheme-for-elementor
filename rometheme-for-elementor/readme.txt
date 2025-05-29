@@ -1,24 +1,24 @@
 === RTMKit Addons for Elementor ===
 Contributors: dickoandrean 
 Tags: addons, widget, elementor, header footer, extension
-Requires at least: 6.6
-Tested up to: 6.7.1
+Requires at least: 6.7
+Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 All-in-one toolkit for Elementor: advanced addons, theme builder, forms, icons & templates to build stunning sites fast and easy.
 
 == Description ==
-Revolutionize your website-building process with 58+ highly customizable addons, 50+ premade template kits, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
+Revolutionize your website-building process with 64+ highly customizable addons, 50+ premade template kits, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Useful Links
 [Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
-### (NEW) Pre-made Template Kits
+### Pre-made Template Kits
 Explore our expanding library of template kits, available in both the free and PRO versions of RTMKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
 
 ### Widgets Control: 
@@ -38,7 +38,8 @@ Access a collection of over 100 icons to enhance your site's design.
 
 ### Widgets & Extension Included:
 
-### Extension 
+### (NEW) Extensions
+* RTM Glass Effect : Add a sleek glassmorphism effect to your Elementor elements for a modern, frosted-glass appearance.
 * RTM Duplicator: Easily duplicate any Elementor widget, column, or section to speed up your workflow.
 * RTM Tooltips: Add stylish, customizable tooltips to any Elementor element for better UX.
 * RTM Wrapper Link: Make entire sections or columns clickable by wrapping them with a custom link.
@@ -148,6 +149,26 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.6.1
+Fixed : Issue on button global kit style control in the "Setting" dashboard.
+Fixed : Issue on Button can't click save & editing in the "Form" theme builder.
+Fixed : Issue on navigation not working on editing canvas in the "Testimonial Carousel" widget.
+Fixed : Issue on button area click in the "Call to Action" widget.
+Improved : Added optional alignment content in the "Woo Product Grid" widget
+Improved : Added icon spacing and padding content control in the "Image box" widget
+Improved : Added optional position for dots in the "Hero Slider" widget
+Improved : Added Icon color control in the "Image Comparison" widget
+Improved : Added spacing control in the "Advanced Heading" widget
+Improved : Added separator or dot optional in the "Countdown" widget
+Improved : Added other layout style in the "Counter" widget
+Improved : Added saved templates optional in the "Accordion" widget
+Improved : Added optional alignment for tabs in the "Advanced Tabs" widget
+Improved : Added optional lightbox in the "Image Gallery" widget
+Improved : Added icon submenu color control in the "Nav Menu" widget
+Improved : Added optional layout position inline and list in the "Search" widget
+Improved : Added new style "inline" in the "Progress Bar"
+Improved : Added control content for border width, radius, & color in the "Team Widget"
+
 Version 1.6.0
 Added : New extention "RTM Duplicator"
 Added : New extention "RTM Tooltips"

@@ -358,33 +358,41 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->start_controls_tabs('box_tabs' , ['condition' => [
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'cta_border',
+                'selector' => '{{WRAPPER}} .rkit-cta',
+            ]
+        );
+
+        $this->start_controls_tabs('box_tabs', ['condition' => [
             'select_skin' => 'classic'
         ]]);
 
-        $this->start_controls_tab('box_tab_normal' , ['label' => esc_html("Normal")]);
+        $this->start_controls_tab('box_tab_normal', ['label' => esc_html("Normal")]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'box_background_normal',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-cta',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'box_background_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-cta',
+            ]
+        );
 
         $this->end_controls_tab();
 
-        $this->start_controls_tab('box_tab_hover' , ['label' => esc_html("Hover")]);
+        $this->start_controls_tab('box_tab_hover', ['label' => esc_html("Hover")]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => 'box_background_hover',
-				'types' => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .rkit-cta:hover',
-			]
-		);
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'box_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-cta:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -610,6 +618,17 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 'select_skin' => 'classic',
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'border',
+                'selector' => '{{WRAPPER}} .rkit-cta-container-classic .rkit-cta-img__wrapper',
+                'condition' => [
+                    'select_skin' => 'classic',
+                ]
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -1107,8 +1126,8 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-cta-button:hover .rkit-cta-button__icon' => 'color:{{VALUE}}'
             ],
             'condition' => [
-                    'add_btn_icon' => 'yes'
-                ]
+                'add_btn_icon' => 'yes'
+            ]
         ]);
 
         $this->add_group_control(

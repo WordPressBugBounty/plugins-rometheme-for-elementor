@@ -85,36 +85,37 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-advanced-heading' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-advanced-heading .rkit-trp-text' => 'justify-content: {{VALUE}}'
                 ],
             ]
         );
 
-        $this->add_responsive_control(
-            'content_align',
-            [
-                'label' => esc_html__('Content Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-advanced-heading' => 'justify-content: {{VALUE}};',
-                ],
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'content_align',
+        //     [
+        //         'label' => esc_html__('Content Position', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::CHOOSE,
+        //         'options' => [
+        //             'start' => [
+        //                 'title' => esc_html__('Left', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-text-align-left',
+        //             ],
+        //             'center' => [
+        //                 'title' => esc_html__('Center', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-text-align-center',
+        //             ],
+        //             'end' => [
+        //                 'title' => esc_html__('Right', 'rometheme-for-elementor'),
+        //                 'icon' => 'eicon-text-align-right',
+        //             ],
+        //         ],
+        //         'default' => 'center',
+        //         'toggle' => true,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-advanced-heading' => 'justify-content: {{VALUE}};',
+        //         ],
+        //     ]
+        // );
 
         $this->add_control(
             '_link',
@@ -155,6 +156,32 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         ]);
 
 
+        $this->add_responsive_control(
+            'content_spacing_ah',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 12,
+                    'unit' => 'px'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-trp-text ' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -171,7 +198,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'name' => 'container_box_shadow_ah',
                 'label' => __('Container Box Shadow', 'plugin-name'),
                 'selector' => '{{WRAPPER}} .rkit-advanced-heading',
-                'description' => esc_html__('Put 0 for no box shadow ', 'rometheme-for-elementor'),
+                'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
             ]
         );
 
@@ -190,7 +217,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'cont_radius',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -202,10 +229,13 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+
+        // style headline text
         $this->start_controls_section('headline_text_style', [
             'label' => esc_html('Headline'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -243,10 +273,22 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'headtext_margin',
+            [
+                'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .bg-headline' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'head_radius',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -347,6 +389,18 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'wrap_headtext_margin',
+            [
+                'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .std-text ' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'wrap_textcolorhead',
             [
                 'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
@@ -418,9 +472,12 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 break;
         }
 ?>
-        <a <?php $this->print_render_attribute_string('_link') ?>>
+        <a <?php echo esc_url($this->get_render_attribute_string('_link')); ?>>
+
             <<?php echo $html_tag ?> class="rkit-advanced-heading">
+
                 <span class="std-text rkit-trp-text"> <?php echo $newString; ?> </span>
+
             </<?php echo $html_tag ?>>
         </a>
 

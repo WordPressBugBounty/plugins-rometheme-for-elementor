@@ -42,6 +42,28 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         return ['accordion-script'];
     }
 
+    public function get_elementor_template()
+    {
+        $template = get_posts([
+            'post_type' => 'elementor_library',
+            'posts_per_page' => -1,
+            'meta_query' => [
+                [
+                    'key' => '_elementor_template_type',
+                    'value' => 'kit',
+                    'compare' => '!=',
+                ],
+            ],
+        ]);
+        $list = [];
+        if ($template) {
+            foreach ($template as $template) {
+                $list[intval($template->ID)] = esc_html__($template->post_title, 'rometheme-for-elementor');
+            }
+        }
+        return $list;
+    }
+
     protected function register_controls()
     {
         $this->start_controls_section('accordion', ['label' => esc_html('Accordion'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
@@ -65,14 +87,36 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
+        $list->add_control('description_type', [
+            'label' => esc_html('Description Type'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'description' => esc_html('Description'),
+                'template' => esc_html('Saved Template'),
+            ],
+            'default' => 'description'
+        ]);
+
         $list->add_control(
             'item_description',
             [
                 'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
                 'placeholder' => esc_html__('Type your description here', 'rometheme-for-elementor'),
+                'condition' => [
+                    'description_type' => 'description'
+                ]
             ]
         );
+
+        $list->add_control('item_template',  [
+            'label' => esc_html('Choose Templates'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => $this->get_elementor_template(),
+            'condition' => [
+                'description_type' => 'template'
+            ]
+        ]);
 
         $this->add_control('list_items', [
             'label' => esc_html('Content'),
@@ -194,23 +238,23 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-			'accordion_spacing',
-			[
-				'label' => esc_html__( 'Spacing', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-accordion' => 'gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+            'accordion_spacing',
+            [
+                'label' => esc_html__( 'Spacing', 'rometheme-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px', 'em', 'rem', 'custom' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-accordion' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -220,31 +264,31 @@ class Rkit_Accordion extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'title_text_align',
-			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'left',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-accordion__title' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
+            'title_text_align',
+            [
+                'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-accordion__title' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'title_padding',
@@ -466,7 +510,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_size',
             [
                 'label' => esc_html__('Size', 'rometheme-for-elementor'),
@@ -489,7 +533,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_box_width',
             [
                 'label' => esc_html__('Box Width', 'rometheme-for-elementor'),
@@ -512,7 +556,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_box_height',
             [
                 'label' => esc_html__('Box height', 'rometheme-for-elementor'),
@@ -535,7 +579,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_box_margin',
             [
                 'label' => esc_html__('Box Margin', 'rometheme-for-elementor'),
@@ -547,7 +591,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_box_radius',
             [
                 'label' => esc_html__('Box Radius', 'rometheme-for-elementor'),
@@ -890,7 +934,17 @@ class Rkit_Accordion extends \Elementor\Widget_Base
                     </div>
                     <div class="rkit-accordion-content">
                         <div class="rkit-accordion__content">
-                            <?php echo wp_kses_post($item['item_description'] )?>
+                            <?php
+                            if($item['description_type'] == 'description') {
+                                echo wp_kses_post($item['item_description'] );
+                            } else {
+                                $template = get_post($item['item_template']);
+                                if (!empty($template)) {
+                                    echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($item['item_template']);
+                                }
+                            }
+
+                            ?>
                         </div>
                     </div>
                 </div>

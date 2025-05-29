@@ -5,7 +5,9 @@
     "class_name": "Offcanvas_Rometheme",
     "category": "header",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-header-info-widget-2/",
+    "previewURL" : "https://rometheme.net/widget-header/"
   },
   "search": {
     "name": "Search",
@@ -13,7 +15,9 @@
     "class_name": "Search_Rometheme",
     "category": "header",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-search-widget/",
+    "previewURL" : "https://rometheme.net/widget-header/"
   },
   "sitelogo": {
     "name": "Site Logo",
@@ -21,7 +25,9 @@
     "class_name": "SiteLogo_Rometheme",
     "category": "header",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-site-logo-widget-ezd_ampersand-favicon-logo/",
+    "previewURL" : "https://rometheme.net/widget-header/"
   },
   "headerinfo": {
     "name": "Header Info",
@@ -29,7 +35,9 @@
     "class_name": "HeaderInfo_Rometheme",
     "category": "header",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-header-info-widget/",
+    "previewURL" : "https://rometheme.net/widget-header/"
   },
   "navmenu": {
     "name": "Nav Menu",
@@ -37,7 +45,9 @@
     "class_name": "Nav_Menu_Rometheme",
     "category": "header",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-nav-menu-widget/",
+    "previewURL" : "https://rometheme.net/widget-header/"
   },
   "blogpost": {
     "name": "Post Grid",
@@ -45,7 +55,9 @@
     "class_name": "Blog_Post_Rkit",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-grid-widget/",
+    "previewURL" : "https://rometheme.net/widget-post-block/"
   },
   "cta": {
     "name": "Call To Action",
@@ -53,7 +65,9 @@
     "class_name": "CTA_Rkit",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-call-to-action-widget/",
+    "previewURL" : "https://rometheme.net/widget-call-to-action/"
   },
   "blockquote": {
     "name": "Blockquote",
@@ -61,7 +75,9 @@
     "class_name": "Rkit_BLockQuote",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-blockquote-widget/",
+    "previewURL" : "https://rometheme.net/widget-blockquote/"
   },
   "socialshare": {
     "name": "Social Share",
@@ -69,7 +85,9 @@
     "class_name": "Rkit_SocialShare",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-social-share-widget/",
+    "previewURL" : "https://rometheme.net/widget-social-share/"
   },
   "team": {
     "name": "Team",
@@ -77,7 +95,9 @@
     "class_name": "Rkit_Team",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-team-widget/",
+    "previewURL" : "https://rometheme.net/widget-team-widget/"
   },
   "runningtext": {
     "name": "Text Marquee",
@@ -85,7 +105,9 @@
     "class_name": "Rkit_RunningText",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-text-marquee-widget/",
+    "previewURL" : "https://rometheme.net/widget-text-marquee/"
   },
   "animatedheading": {
     "name": "Animated Heading",
@@ -93,7 +115,9 @@
     "class_name": "Rkit_AnimatedHeading",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-animated-heading-widget/",
+    "previewURL" : "https://rometheme.net/widget-animated-heading-2/"
   },
   "cardslider": {
     "name": "Card Carousel",
@@ -101,7 +125,9 @@
     "class_name": "Rkit_CardSlider",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-card-slider-widget/",
+    "previewURL" : "https://rometheme.net/widget-card-carousel/"
   },
   "accordion": {
     "name": "Accordion",
@@ -109,7 +135,9 @@
     "class_name": "Rkit_Accordion",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-accordion-widget/",
+    "previewURL" : "https://rometheme.net/widget-accordion/"
   },
   "barchart": {
     "name": "Bar Chart",
@@ -117,7 +145,9 @@
     "class_name": "Rkit_BarChart",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-bar-chart-widget/",
+    "previewURL" : "https://rometheme.net/widget-bar-chart/"
   },
   "linechart": {
     "name": "Line Chart",
@@ -125,7 +155,9 @@
     "class_name": "Rkit_LineChart",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-line-chart-widget/",
+    "previewURL" : "https://rometheme.net/widget-line-chart/"
   },
   "piechart": {
     "name": "Pie Chart",
@@ -133,7 +165,9 @@
     "class_name": "Rkit_PieChart",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-pie-chart-widget/",
+    "previewURL" : "https://rometheme.net/widget-pie-donat-chart/"
   },
   "testimonialcarousel": {
     "name": "Testimonial Carousel",
@@ -141,7 +175,9 @@
     "class_name": "Rkit_TestimonialCarousel",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-testimonial-carousel-widget/",
+    "previewURL" : "https://rometheme.net/widget-testimonial-carousel/"
   },
   "tabs": {
     "name": "Advanced Tabs",
@@ -149,7 +185,9 @@
     "class_name": "Rkit_Tabs",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-advanced-tabs-widget/",
+    "previewURL" : "https://rometheme.net/widget-advanced-tabs/"
   },
   "progressbar": {
     "name": "Progress Bar",
@@ -157,7 +195,9 @@
     "class_name": "Rkit_ProgressBar",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-progress-bar-widget/",
+    "previewURL" : "https://rometheme.net/widget-progress-bar/"
   },
   "counter": {
     "name": "Counter",
@@ -165,7 +205,9 @@
     "class_name": "Rkit_Counter",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-counter-widget/",
+    "previewURL" : "https://rometheme.net/widget-counter/"
   },
   "rkitpostblock": {
     "name": "Post Block",
@@ -173,7 +215,9 @@
     "class_name": "RkitPostBlock",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-block-widget/",
+    "previewURL" : "https://rometheme.net/widget-post-block/"
   },
 
   "pricetable": {
@@ -182,7 +226,9 @@
     "class_name": "Rkit_Pricelist",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/pricing-table/",
+    "previewURL" : "https://rometheme.net/widget-pricing-table/"
   },
 
   "countdown": {
@@ -191,7 +237,9 @@
     "class_name": "Rkit_Countdown",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-countdown-widget/",
+    "previewURL" : "https://rometheme.net/widget-countdown-2/"
   },
 
   "imagecomparison": {
@@ -200,7 +248,9 @@
     "class_name": "Rkit_Imagecomparison",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-image-comparison-widget/",
+    "previewURL" : "https://rometheme.net/widget-image-comparison-2/"
   },
   "postlist": {
     "name": "Post List",
@@ -208,7 +258,9 @@
     "class_name": "Rkit_Postlist",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-list-widget/",
+    "previewURL" : "https://rometheme.net/widget-post-list/"
   },
   "advancedheading": {
     "name": "Advanced Heading",
@@ -216,7 +268,9 @@
     "class_name": "Rkit_advanced_heading",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-advanced-heading-widget/",
+    "previewURL" : "https://rometheme.net/widget-advanced-heading/"
   },
   "imagebox": {
     "name": "Image Box",
@@ -224,7 +278,9 @@
     "class_name": "Rkit_image_box",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-image-box-widget/",
+    "previewURL" : "https://rometheme.net/widget-image-box/"
   },
   "imageaccordion": {
     "name": "Image Accordion",
@@ -232,7 +288,9 @@
     "class_name": "Rkit_image_accordion",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-image-accordion-widget/",
+    "previewURL" : "https://rometheme.net/widget-image-accordion/"
   },
   "image_gallery": {
     "name": "Image Gallery",
@@ -240,7 +298,9 @@
     "class_name": "Rkit_image_gallery",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-image-gallery-masonry-widget/",
+    "previewURL" : "https://rometheme.net/widget-image-gallery/"
   },
   "dualbutton": {
     "name": "Dual Button",
@@ -248,7 +308,9 @@
     "class_name": "Rkit_dual_button",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-dual-button-widget/",
+    "previewURL" : "https://rometheme.net/widget-dual-button/"
   },
   "home_slider": {
     "name": "Hero Slider",
@@ -256,7 +318,9 @@
     "class_name": "Rkit_home_slider",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-hero-slider-widget/",
+    "previewURL" : "https://rometheme.net/widget-hero-slider/ "
   },
   "woo_product_grid": {
     "name": "Woo Product Grid",
@@ -264,7 +328,10 @@
     "class_name": "Rkit_woo_product_grid",
     "category": "woocommerce",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-product-grid-widget/",
+    "previewURL" : "https://rometheme.net/widget-woo-product-grid/",
+    "is_new": true
   },
 
   "client_grid": {
@@ -273,7 +340,10 @@
     "class_name": "Rkit_Clientgrid",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-client-grid-widget/",
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "is_new": true
   },
 
   "backtotop": {
@@ -282,6 +352,9 @@
     "class_name": "RkitBackToTop",
     "category": "rkit",
     "status": true,
-    "type": "free"
+    "type": "free",
+    "docsURL" : "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-back-to-top-widget/",
+    "previewURL" : "https://rometheme.net/widget-back-to-top",
+    "is_new": true
   }
 }

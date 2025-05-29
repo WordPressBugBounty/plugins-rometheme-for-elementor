@@ -72,6 +72,45 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'default' => 'horizontal'
         ]);
 
+        $this->add_control('full_width', [
+            'label' => esc_html('Enable Full Width Navigation'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+            'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+            'return_value' => 'yes',
+            'default' => 'yes',
+            'condition' => [
+                'layout' => 'horizontal',
+            ]
+        ]);
+
+        $this->add_control('nav_pos', [
+            'label' => esc_html('Navigation Position'),
+            'type' => \Elementor\Controls_Manager::CHOOSE,
+            'options' => [
+                'flex-start' => [
+                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-h-align-left',
+                ],
+                'center' => [
+                    'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-h-align-center',
+                ],
+                'flex-end' => [
+                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                    'icon' => 'eicon-h-align-right',
+                ],
+            ],
+            'default' => 'flex-start',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-tab-nav' => 'justify-content: {{VALUE}}'
+            ],
+            'condition' => [
+                'full_width!' => 'yes',
+                'layout' => 'horizontal'
+            ]
+        ]);
+
         $this->add_control(
             'show_icon',
             [
@@ -125,6 +164,18 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                     'show_icon' => 'yes',
                     'icon_position' => 'row'
                 ]
+            ]
+        );
+
+        $this->add_control(
+            'bordered_nav',
+            [
+                'label' => esc_html__('Bordered Navigation', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
             ]
         );
 
@@ -742,11 +793,12 @@ class Rkit_Tabs extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $bordered = $settings['bordered_nav'] === 'yes' ? 'bordered': '';
 
 ?>
         <div class="rkit-tab-container <?php echo esc_attr($settings['layout']) ?>">
             <div class="rkit-tab-nav-container">
-                <ul class="rkit-tab-nav">
+                <ul class="rkit-tab-nav <?php echo $bordered?>">
                     <?php foreach ($settings['tab_list'] as $key => $tab) :
                         switch ($tab['title_tag']) {
                             case 'h1':
@@ -775,8 +827,11 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                                 break;
                         }
 
+                        $active_default = $tab['active_default'] === 'yes' ? 'active' : '';
+                        $shrink_tab = $settings['full_width'] === 'yes' ? '' : 'shrink';
+                        $horizontal_lay = $settings['layout'] === 'horizontal' ? $shrink_tab : '';
                     ?>
-                        <li class="rkit-tab-btn-item <?php echo ($tab['active_default'] === 'yes') ? 'active' : ''; ?>" role="tab" data-tab="tab-<?php echo esc_attr($key) ?>">
+                        <li class="rkit-tab-btn-item <?php echo $active_default .' '. $horizontal_lay ?>" role="tab" data-tab="tab-<?php echo esc_attr($key) ?>">
                             <?php if ($settings['show_icon'] === 'yes') {
                                 \Elementor\Icons_Manager::render_icon($tab['icon_tab'], ['aria-hidden' => 'true', 'class' => 'tab-title-icon']);
                             } ?>

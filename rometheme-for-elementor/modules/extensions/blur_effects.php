@@ -42,7 +42,7 @@ class BlurEffects
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 20,
+						'max' => 60,
 						'step' => 1,
 					],
 				],
@@ -51,7 +51,7 @@ class BlurEffects
 					'size' => 20,
 				],
 				'selectors' => [
-					'{{WRAPPER}}.elementor-element.e-flex.rtmkit-blur-effect-enabled::before' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}}.rtmkit-blur-effect-enabled' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'use_blur_effects' => 'enabled'
@@ -91,7 +91,7 @@ class BlurEffects
 				'range' => [
 					'px' => [
 						'min' => 0,
-						'max' => 20,
+						'max' => 60,
 						'step' => 1,
 					],
 				],
@@ -100,7 +100,7 @@ class BlurEffects
 					'size' => 20,
 				],
 				'selectors' => [
-					'{{WRAPPER}}.elementor-widget.rtmkit-blur-effect-enabled > div::before ' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}}.rtmkit-blur-effect-enabled ' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'use_blur_effects' => 'enabled'

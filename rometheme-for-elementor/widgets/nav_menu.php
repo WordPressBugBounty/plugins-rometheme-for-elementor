@@ -425,7 +425,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Hamburger Icon Open', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-grid-rounds',
+                    'value' => 'rtmicon rtmicon-bars',
                     'library' => 'rtmicons',
                 ],
             ]
@@ -436,7 +436,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Hamburger Icon Close', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-xmark',
+                    'value' => 'rtmicon rtmicon-bar-sort-right',
                     'library' => 'rtmicons',
                 ],
             ]
@@ -908,6 +908,16 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-submenu-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_control(
+            'icon_color_hover',
+            [
+                'label' => esc_html__('Icon Color Hover', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-submenu-item:hover .rkit-submenu-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}',
                 ],
             ]
         );

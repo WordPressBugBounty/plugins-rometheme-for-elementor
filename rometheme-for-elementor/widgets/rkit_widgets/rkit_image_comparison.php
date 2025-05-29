@@ -5,16 +5,15 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
     public function get_name()
     {
         return 'rkit-imagecomparison';
-    } 
+    }
     public function get_title()
     {
         return \RomethemeKit\RkitWidgets::listWidgets()['imagecomparison']['name'];
-        
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['imagecomparison']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['imagecomparison']['icon'];
         return $icon;
     }
 
@@ -43,7 +42,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         return ['rkit-image_comparison-script'];
     }
 
-    
+
     protected function register_controls()
     {
         $this->start_controls_section('content_section', [
@@ -62,12 +61,12 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 ],
                 'default' => 'horizontal',
             ]
-            );
+        );
 
         $this->add_control(
             'more_options',
             [
-                'label' => esc_html__( 'Icon', 'textdomain' ),
+                'label' => esc_html__('Icon', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -84,18 +83,18 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'default' => 'yes',
             ]
         );
-   
- 
- 
+
+
+
         $this->add_control(
             'divider_before',
             [
-                'label' => esc_html__( 'Control Before Image', 'textdomain' ),
+                'label' => esc_html__('Control Before Image', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
-        );  
- 
+        );
+
         $this->add_control(
             'show_caption_before',
             [
@@ -148,11 +147,11 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'divider_after',
             [
-                'label' => esc_html__( 'Control After Image', 'textdomain' ),
+                'label' => esc_html__('Control After Image', 'textdomain'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
-        );  
+        );
 
         $this->add_control(
             'show_caption_after',
@@ -203,30 +202,30 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
- 
-        $this->add_group_control(
-			\Elementor\Group_Control_Image_Size::get_type(),
-			[
-				'name' => 'thumbnail_after', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
-				'exclude' => [ 'custom' ],
-				'include' => [],
-				'default' => 'large',
-			]
-		);
 
- 
+        $this->add_group_control(
+            \Elementor\Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail_after', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
+                'exclude' => ['custom'],
+                'include' => [],
+                'default' => 'large',
+            ]
+        );
+
+
         $this->end_controls_section();
 
-    // style section ======================================================================================
+        // style section ======================================================================================
 
-    //style section caption
-    $this->start_controls_section(
+        //style section caption
+        $this->start_controls_section(
             'caption_section',
             [
                 'label' => esc_html__('Caption Style', 'text-domain'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
-    );
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -236,7 +235,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .caption-img-comp',
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
             [
@@ -259,11 +258,11 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'label' => esc_html__('Caption Color', 'text-domain'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                        '{{WRAPPER}} .caption-img-comp' => 'color: {{VALUE}};'
-                    ],
+                    '{{WRAPPER}} .caption-img-comp' => 'color: {{VALUE}};'
+                ],
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -318,20 +317,20 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .caption-img-comp ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ], 
+                ],
             ]
         );
-        
-    $this->end_controls_section();
 
-    //style section caption
-    $this->start_controls_section(
-        'slider_section',
+        $this->end_controls_section();
+
+        //style section caption
+        $this->start_controls_section(
+            'slider_section',
             [
                 'label' => esc_html__('Slider Style', 'text-domain'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
-    );
+        );
 
         $this->add_control(
             'slider_color',
@@ -339,21 +338,33 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'label' => esc_html__('Circle Color', 'text-domain'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                        '{{WRAPPER}} .img-comp-slider' => ' box-shadow: 0 0 0 2px {{VALUE}};'
-                    ],
+                    '{{WRAPPER}} .img-comp-slider' => ' box-shadow: 0 0 0 2px {{VALUE}};'
+                ],
                 'description' => esc_html('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.'),
-            
+
             ]
         );
 
-          
+
         $this->add_control(
             'border_bottom_color',
             [
                 'label' => esc_html__('Line Color', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::COLOR, 
+                'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .img-comp-slider::before, {{WRAPPER}} .img-comp-slider::after' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+
+        $this->add_control(
+            'icon_slider_column',
+            [
+                'label' => esc_html__('Icon Color', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .eicon-caret-left, {{WRAPPER}} .eicon-caret-right' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -376,7 +387,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-       
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
@@ -386,49 +397,49 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-        
-       
-
-       
-    $this->end_controls_section();
 
 
-    //style section Image
-    $this->start_controls_section(
-        'image_section',
+
+
+        $this->end_controls_section();
+
+
+        //style section Image
+        $this->start_controls_section(
+            'image_section',
             [
                 'label' => esc_html__('Image Style', 'text-domain'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
-    );
-
-
-    
-   
-
-    $this->add_control(
-        'border_radius',
-        [
-            'label' => esc_html__('Border Radius', 'textdomain'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%'],
-            'default' => [
-                'top' => 0,
-                'right' => 0,
-                'bottom' => 0,
-                'left' => 0,
-                'unit' => 'px',
-                'isLinked' => false,
-            ],
-            'selectors' => [
-                '{{WRAPPER}} .img-comp-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            ],
-        ]
-    );
+        );
 
 
 
-    $this->start_controls_tabs('image_filter');
+
+
+        $this->add_control(
+            'border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .img-comp-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+
+        $this->start_controls_tabs('image_filter');
 
         $this->start_controls_tab('img_fltr_before', ['label' => esc_html('Before')]);
 
@@ -443,7 +454,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->start_controls_tab('img_fltr_after', ['label' => esc_html('After')]);
- 
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
@@ -453,49 +464,44 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .filter-after',
             ]
         );
-    
+
         $this->end_controls_tab();
         $this->end_controls_tab();
 
- 
 
 
-    $this->end_controls_section();
 
+        $this->end_controls_section();
     }
-    
-    public function render() {
+
+    public function render()
+    {
         $settings = $this->get_settings_for_display();
         $image_before = $settings['image_before'];
-        $image_after = $settings['image_after'];   
-        ?>    
+        $image_after = $settings['image_after'];
+?>
 
-             <!--  -->
-<div class="con-wrap rkit-s-image" > 
-        <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_attr($settings['position_slider']) ?>"  data-show-icon="<?php echo esc_attr($settings['show_icon']); ?>"
-        >
-           
-        <div class="img-comp-img rkit-s-image"   
-            >
-            <img src="<?php echo esc_url($image_after['url']); ?>" class="filter-after rkit-s-image" >
-                <div class="caption-<?php echo  esc_attr($settings['caption_potition_after']) ?>-right caption-img-comp">
-                    <?php echo  esc_html($settings['after_caption']); ?>
+        <!--  -->
+        <div class="con-wrap rkit-s-image">
+            <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['position_slider']) ?>" data-show-icon="<?php echo esc_html($settings['show_icon']); ?>">
+
+                <div class="img-comp-img rkit-s-image">
+                    <img src="<?php echo esc_url($image_after['url']); ?>" class="filter-after rkit-s-image">
+                    <div class="caption-<?php echo  esc_html($settings['caption_potition_after']) ?>-right caption-img-comp">
+                        <?php echo  esc_html($settings['after_caption']); ?>
+                    </div>
                 </div>
-            </div>  
-            
-            <div class="img-comp-img img-divider-<?php echo esc_attr($settings['position_slider']); ?>  img-comp-overlay rkit-s-image"  >
-            <img src="<?php echo esc_url($image_before['url']); ?>"  class="filter-before rkit-s-image" >
-                <div class="caption-<?php echo  esc_attr($settings['caption_potition_before']) ?>-left caption-img-comp">
-                    <?php echo  esc_html($settings['before_caption']); ?>
+
+                <div class="img-comp-img img-divider-<?php echo esc_html($settings['position_slider']); ?>  img-comp-overlay rkit-s-image">
+                    <img src="<?php echo esc_url($image_before['url']); ?>" class="filter-before rkit-s-image">
+                    <div class="caption-<?php echo  esc_html($settings['caption_potition_before']) ?>-left caption-img-comp">
+                        <?php echo  esc_html($settings['before_caption']); ?>
+                    </div>
                 </div>
-            </div>  
 
-        </div>  
-    </div>
+            </div>
+        </div>
 
-       <?php
+<?php
     }
-    
-
 }
-

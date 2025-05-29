@@ -22,12 +22,15 @@ class RkitWidgets
         add_action('wp_ajax_save_options_pro', [$this, 'save_options_pro']);
         add_action('wp_ajax_reset_widgets', [$this, 'reset_widgets']);
         add_action('wp_ajax_reset_widgets_pro', [$this, 'reset_widgets_pro']);
+        add_action('wp_ajax_save_all', [$this, 'save_all']);
     }
 
     private function update_widget_option()
     {
         $options = get_option('rkit-widget-options');
+        $formOptions = get_option('rform-widget-options');
         $jsonWidgets = $this->listWidgets();
+        $formWidgets = $this->listWidgetsForm();
 
         if ($options == false) {
             update_option('rkit-widget-options', $this->listWidgets());
@@ -43,6 +46,10 @@ class RkitWidgets
                 }
             }
         }
+
+        if($formOptions == false ) {
+            update_option('rform-widget-options' , $formWidgets);
+        }
     }
 
     public function reset_widgets()
@@ -56,8 +63,21 @@ class RkitWidgets
             wp_die();
         }
         $jsonWidgets = $this->listWidgets();
+        $extJSON = \RomethemeKit\RTMExtension::get_extension();
+        $formJON = $this->listWidgetsForm();
+
+
         delete_option('rkit-widget-options');
         update_option('rkit-widget-options', $this->listWidgets());
+
+        delete_option('rtm_extensions');
+        update_option('rtm_extensions' , $extJSON);
+
+        if(class_uses('RomeThemeForm')) {
+            delete_option('rform-widget-option');
+            update_option('rform-widget-option' , $formJON);
+        }
+
     }
 
     public function reset_widgets_pro()
@@ -162,6 +182,72 @@ class RkitWidgets
         }
     }
 
+    function save_all()
+    {
+
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'widget-options-nonce')) {
+            wp_send_json_error('Invalid nonce.');
+            wp_die();
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
+
+        $data = $_POST['data'];
+
+        parse_str($data['data'] , $dataGeneral );
+        parse_str($data['dataPro'] , $dataPro );
+        parse_str($data['dataExt'] , $dataExt );
+        parse_str($data['dataForm'] , $dataForm );
+
+        unset($dataGeneral['action']);
+        unset($dataGeneral['nonce']);
+        unset($dataPro['action']);
+        unset($dataPro['nonce']);
+        unset($dataExt['action']);
+        unset($dataExt['nonce']);
+        unset($dataForm['action']);
+        unset($dataForm['nonce']);
+
+        $saveGeneral = $this->save__opt($dataGeneral , 'rkit-widget-options');
+        $saveExt = $this->save__opt($dataExt , 'rtm_extensions');
+        $result = $saveGeneral and $saveExt;
+
+        if(class_exists('RomethemePro')) {
+            $savePro = $this->save__opt($dataPro , 'rkit-widget-pro-options' );
+            $result = $result and $savePro;
+        }
+
+        if(class_exists('RomeThemeForm')) {
+            $saveForm = $this->save__opt($dataForm , 'rform-widget-options');
+            $result = $result and $saveForm;
+        }
+
+        if ($result) {
+            wp_send_json_success('success');
+        } else {
+            wp_send_json_error('errorrr');
+        }
+
+    }
+
+    function save__opt($data , $optName) {
+        $options = get_option($optName);
+
+        foreach ($data as $key => $value) {
+            $options[$key]['status'] = ($value == "true") ? true : false;
+        }
+
+        $update = update_option($optName, $options);
+
+        if ($update) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function save_options()
     {
         $data = $_POST;
@@ -233,6 +319,23 @@ class RkitWidgets
 
         return $widgets;
     }
+
+    public static function listWidgetsForm()
+    {
+        $widgetsFileJson = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/form_widgets.json');
+
+        $widgets = json_decode($widgetsFileJson, true);
+
+        uasort($widgets, function ($a, $b) {
+            if ($a['category'] === $b['category']) {
+                return strcasecmp($a['name'], $b['name']);
+            }
+            return strcasecmp($a['category'], $b['category']);
+        });
+
+        return $widgets;
+    }
+
 
     public static function listWidgetPro()
     {

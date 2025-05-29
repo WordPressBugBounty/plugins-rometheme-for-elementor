@@ -56,7 +56,7 @@ $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_pl
             <div class="col mb-3">
                 <div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border">
                     <div class="overflow-hidden" style="aspect-ratio:3/2;">
-                        <img class="img-fluid" src="<?php echo esc_url($imgurl) ?>">
+                        <img class="img-fluid rounded-top" src="<?php echo esc_url($imgurl) ?>">
                     </div>
                     <div class="p-3 d-flex flex-column gap-3">
                         <div class="d-block">

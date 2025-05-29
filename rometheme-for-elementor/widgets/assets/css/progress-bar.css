@@ -19,7 +19,6 @@
 .progress-bar-container{
   display: flex;
   width: 100%;
-  flex-direction: column;
 }
 
 .rkit-progress-animation,
@@ -30,8 +29,6 @@
   animation-timing-function: linear;
   animation-delay: 500ms;
 }
-
-
 
 .circular-progress {
   position: relative;
@@ -57,17 +54,22 @@
   flex-direction: column-reverse;
 }
 
-.percentage-label::after {
+.percentage-label::after,
+.progress-bar-inline .percentage-label::after {
   counter-reset: percentage var(--progress);
   content: counter(percentage) '%';
+}
+.progress-bar-container .progress-bar-inline .progress-value,
+.progress-bar-inline.percentage-label::after{
+  font-size: 1rem;
 }
 
 .circular-progress .progress-value::before {
   content: var(--title);
 }
 
-
-.progress-bar {
+.progress-bar,
+.progress-bar-inline {
   position: relative;
   width: 100%;
   height: 10px;
@@ -76,7 +78,17 @@
   border-radius: 50px;
 }
 
-.progress-bar .progress-value {
+.progress-bar-inline .progress-value::before {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  content: var(--title);
+}
+
+
+.progress-bar .progress-value,
+.progress-bar-inline .progress-value
+ {
   height: 100%;
   width: calc(var(--progress) * 1%);
   background-color: var(--progress-color);
@@ -84,10 +96,30 @@
   border-radius: 50px;
 }
 
-.progress-bar.percentage-label::after {
+.progress-bar.percentage-label::after
+ {
   display: inline-block;
   position: absolute;
   left: calc(var(--progress) * 1% - 2rem)
+}
+
+.progress-bar-inline.percentage-label::after{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  position: absolute;
+}
+.progress-bar-inline{
+  position: relative;
+}
+
+.progress-bar-inline.percentage-label::after{
+  right:20px ;
+  left: 80%;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
 }
 
 .half-circular-progress {

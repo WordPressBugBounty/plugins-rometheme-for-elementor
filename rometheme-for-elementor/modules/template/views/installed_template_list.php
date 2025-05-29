@@ -19,7 +19,7 @@ $rtmTemplateDir = $upload_dir['basedir'] . '/rometheme_template';
             ?>
                 <div class="col mb-3">
                     <div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border">
-                        <img class="img-fluid" src="<?php echo esc_url(\RomethemeKit\Template::get_template_image_preview_url($v['template_id'])) ?>">
+                        <img class="img-fluid rounded-top" src="<?php echo esc_url(\RomethemeKit\Template::get_template_image_preview_url($v['template_id'])) ?>">
                         <div class="p-3 d-flex flex-column gap-3">
                             <div class="d-block">
                                 <h5 class="text-truncate text-white m-0"><?php echo esc_html($manifest->title) ?></h5>

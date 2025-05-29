@@ -166,7 +166,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -174,7 +174,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #2', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -182,7 +182,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #3', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -190,7 +190,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     [
                         'card_title' => esc_html__('Title #4', 'rometheme-for-elementor'),
                         'card_sub_title' => esc_html('Sub Heading'),
-                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.', 'rometheme-for-elementor'),
+                        'card_description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.', 'rometheme-for-elementor'),
                         'card_link' => [
                             'url' => "#"
                         ]
@@ -330,7 +330,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 30
+                    'size' => 24
                 ]
             ]
         );
@@ -542,6 +542,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Image Ratio'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
+                'auto' => esc_html('auto'),
                 '1/1' => esc_html('1 / 1'),
                 '3/2' => esc_html('3 / 2'),
                 '5/4' => esc_html('5 / 4'),
@@ -550,7 +551,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 '4/5' => esc_html('4 / 5'),
                 '9/16' => esc_html('9 / 16'),
             ],
-            'default' => '3/2',
+            'default' => 'auto',
             'selectors' => [
                 '{{WRAPPER}} .rkit-card .card-image img' => 'aspect-ratio : {{VALUE}}'
             ]
@@ -610,6 +611,10 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                         'max' => 1,
                         'step' => 0.1,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0.7
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-card .card-body::before' => 'opacity: {{SIZE}};',

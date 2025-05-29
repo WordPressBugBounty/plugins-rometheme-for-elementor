@@ -1501,6 +1501,30 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         ]);
 
 
+        $this->add_control(
+            'dots_directions',
+            [
+                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'column' => [
+                        'title' => esc_html__('List', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-space-evenly-v',
+                    ],
+                    'row' => [
+                        'title' => esc_html__('Inline', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-space-evenly-h',
+                    ],
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .swiper-pagination-bullets.swiper-pagination-horizontal' => 'flex-direction: {{VALUE}};',
+                ],
+            ]
+        );
+
+
         $this->add_responsive_control(
             'dot_position_vertical',
             [

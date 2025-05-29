@@ -103,7 +103,7 @@ class Template
 
             // Pagination parameters
             $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1; // Default halaman 1
-            $per_page = 12; // Jumlah item per halaman
+            $per_page = 24; // Jumlah item per halaman
 
             // Hitung total halaman
             $total_items = count($sortData);

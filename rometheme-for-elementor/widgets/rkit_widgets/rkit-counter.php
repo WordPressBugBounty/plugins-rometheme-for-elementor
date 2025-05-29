@@ -268,6 +268,17 @@ class Rkit_Counter extends \Elementor\Widget_Base
             ]
         );
 
+                 $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'suffix_number_typography',
+                'selector' => '{{WRAPPER}} .counter-suffix',
+                  'condition' => [
+                    'number_suffix!' => ''
+                ]
+            ]
+        );
+
         $this->add_responsive_control(
             'suffix_spacing',
             [
@@ -311,6 +322,17 @@ class Rkit_Counter extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
+                    'number_preffix!' => ''
+                ]
+            ]
+        );
+
+           $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'preffix_number_typography',
+                'selector' => '{{WRAPPER}} .counter-preffix',
+                  'condition' => [
                     'number_preffix!' => ''
                 ]
             ]

@@ -5,9 +5,11 @@ namespace RomethemeKit;
 use Elementor\Plugin;
 use RomethemePro;
 
-class RkitToolTips {
+class RkitToolTips
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         // Tambah control tooltip ke widget & container
         add_action('elementor/element/common/_section_style/after_section_end', array($this, 'add_widget_options'), 10);
         add_action('elementor/element/container/section_layout/after_section_end', array($this, 'add_container_options'), 10, 2);
@@ -15,69 +17,72 @@ class RkitToolTips {
         // Tambah tooltip saat render
         // add_action('elementor/frontend/container/before_render', [$this, 'render_container_tooltip']);
         // add_action('elementor/frontend/widget/before_render', [$this, 'render_widget_tooltip']);
-        
+
         // Tambahkan CSS tooltip di frontend & editor
         add_action('elementor/frontend/after_enqueue_styles', [$this, 'enqueue_tooltip_styles']);
         add_action('elementor/editor/after_enqueue_styles', [$this, 'enqueue_tooltip_styles']);
-        
+
         add_action('admin_enqueue_scripts', [$this, 'enqueue_tooltip_styles']);
-
-
     }
 
-    public function enqueue_tooltip_styles() {
+    public function enqueue_tooltip_styles()
+    {
         wp_enqueue_style(
             'rkit-tooltips-style',
-            \RomeTheme::plugin_url() .'assets/css/tooltip.css',[], \RomeTheme::rt_version()
+            \RomeTheme::plugin_url() . 'assets/css/tooltip.css',
+            [],
+            \RomeTheme::rt_version()
         );
-        
     }
-    
 
-    public function add_container_options($container) {
+
+    public function add_container_options($container)
+    {
         $container->start_controls_section('rtmkit_tool_tips_container', [
-            'label' => esc_html__('RTMkit Tooltips'),
+            'label' => esc_html__('RTMKit Tooltip'),
             'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
         ]);
 
         $container->add_control(
-			'rtm_tooltip_text_switch',
-			[
-				'label' => esc_html__('Enable Tooltip ?', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
-				'return_value' => 'enabled',
-				'default' => '',
-				'prefix_class' => 'rtm-tooltip-'
-			]
-		);
+            'rtm_tooltip_text_switch',
+            [
+                'label' => esc_html__('Enable Tooltip ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'enabled',
+                'default' => '',
+                'prefix_class' => 'rtm-tooltip-'
+            ]
+        );
 
 
-    $container->start_controls_tabs(
-			'style_tabs',
-		);
-
-	$container->start_controls_tab(
-			'style_content_tab',
-			[
-				'label' => esc_html__( 'Content', 'textdomain' ),
+        $container->start_controls_tabs(
+            'style_tabs',
+            [
                 'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-			]
-		);
+            ]
+        );
+
+        $container->start_controls_tab(
+            'style_content_tab',
+            [
+                'label' => esc_html__('Content', 'rometheme-for-elementor'),
+            ]
+        );
 
         $container->add_control('rtm_tooltip_text', [
-            'label' => esc_html__('Tooltip Text', 'plugin-text'),
+            'label' => esc_html__('Tooltip Text', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
-            'placeholder' => esc_html__('Input tooltips text', 'plugin-text'),
+            // 'placeholder' => esc_html__('Input tooltips text', 'rometheme-for-elementor'),
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
             'selectors' => [
                 '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'content: "{{VALUE}}"'
             ]
         ]);
 
-      
-        $container->add_control('rkit_x_offset', [
+
+        $container->add_responsive_control('rkit_x_offset', [
             'label' => __('X Offset', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%'],
@@ -91,7 +96,7 @@ class RkitToolTips {
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
         ]);
 
-        $container->add_control('rkit_y_offset', [
+        $container->add_responsive_control('rkit_y_offset', [
             'label' => __('Y Offset', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%'],
@@ -105,36 +110,36 @@ class RkitToolTips {
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
         ]);
 
-	$container->end_controls_tab();
+        $container->end_controls_tab();
 
-		$container->start_controls_tab(
-			'style_style_tab',
-			[
-				'label' => esc_html__( 'Style', 'textdomain' ),
+        $container->start_controls_tab(
+            'style_style_tab',
+            [
+                'label' => esc_html__('Style', 'rometheme-for-elementor'),
                 'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-			]
-		);
+            ]
+        );
 
-        $container->add_control(
+        $container->add_responsive_control(
             'tooltip_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%','em','rem'],
-               
+                'size_units' => ['px', '%', 'em', 'rem'],
+
                 'selectors' => [
                     '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
-        ); 
+        );
 
-        $container->add_control(
+        $container->add_responsive_control(
             'tooltip_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%','em','rem'],
-               
+                'size_units' => ['px', '%', 'em', 'rem'],
+
                 'selectors' => [
                     '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -153,7 +158,7 @@ class RkitToolTips {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'tooltip_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
             ]
         );
@@ -169,7 +174,7 @@ class RkitToolTips {
         $container->add_control(
             'background_tooltip',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -184,59 +189,60 @@ class RkitToolTips {
             ]
         );
 
-    $container->end_controls_tab();
+        $container->end_controls_tab();
 
-	$container->end_controls_tabs();
-    
-    $container->end_controls_section();
+        $container->end_controls_tabs();
+
+        $container->end_controls_section();
     }
 
-    
 
-    public function add_widget_options($widget) {
+
+    public function add_widget_options($widget)
+    {
         $widget->start_controls_section('rtmkit_tool_tips_widget', [
-            'label' => esc_html__('RTMkit Tooltips'),
+            'label' => esc_html__('RTMKit Tooltip'),
             'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
         ]);
 
         $widget->add_control(
-			'rtm_tooltip_text_switch',
-			[
-				'label' => esc_html__('Enable Tooltip ?', 'textdomain'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
-				'return_value' => 'enabled',
-				'default' => '',
-				'prefix_class' => 'rtm-tooltip-'
-			]
-		);
+            'rtm_tooltip_text_switch',
+            [
+                'label' => esc_html__('Enable Tooltip ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'enabled',
+                'default' => '',
+                'prefix_class' => 'rtm-tooltip-'
+            ]
+        );
 
 
-    $widget->start_controls_tabs(
-			'style_tabs',
-		);
+        $widget->start_controls_tabs(
+            'style_tabs', ['condition' => ['rtm_tooltip_text_switch' => 'enabled'],]
+        );
 
-	$widget->start_controls_tab(
-			'style_content_tab',
-			[
-				'label' => esc_html__( 'Content', 'textdomain' ),
-                'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-			]
-		);
+        $widget->start_controls_tab(
+            'style_content_tab',
+            [
+                'label' => esc_html__('Content', 'rometheme-for-elementor'),
+                
+            ]
+        );
 
         $widget->add_control('rtm_tooltip_text', [
-            'label' => esc_html__('Tooltip Text', 'plugin-text'),
+            'label' => esc_html__('Tooltip Text', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
-            'placeholder' => esc_html__('Input tooltips text', 'plugin-text'),
+            // 'placeholder' => esc_html__('Input Tooltips Text', 'rometheme-for-elementor'),
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
             'selectors' => [
                 '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'content: "{{VALUE}}"'
             ]
         ]);
 
-      
-        $widget->add_control('rkit_x_offset', [
+
+        $widget->add_responsive_control('rkit_x_offset', [
             'label' => __('X Offset', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%'],
@@ -250,7 +256,7 @@ class RkitToolTips {
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
         ]);
 
-        $widget->add_control('rkit_y_offset', [
+        $widget->add_responsive_control('rkit_y_offset', [
             'label' => __('Y Offset', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%'],
@@ -264,36 +270,35 @@ class RkitToolTips {
             'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
         ]);
 
-	$widget->end_controls_tab();
+        $widget->end_controls_tab();
 
-		$widget->start_controls_tab(
-			'style_style_tab',
-			[
-				'label' => esc_html__( 'Style', 'textdomain' ),
-                'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-			]
-		);
+        $widget->start_controls_tab(
+            'style_style_tab',
+            [
+                'label' => esc_html__('Style', 'rometheme-for-elementor'),
+            ]
+        );
 
-        $widget->add_control(
+        $widget->add_responsive_control(
             'tooltip_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%','em','rem'],
-               
+                'size_units' => ['px', '%', 'em', 'rem'],
+
                 'selectors' => [
                     '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
-        ); 
+        );
 
-        $widget->add_control(
+        $widget->add_responsive_control(
             'tooltip_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%','em','rem'],
-               
+                'size_units' => ['px', '%', 'em', 'rem'],
+
                 'selectors' => [
                     '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -312,7 +317,7 @@ class RkitToolTips {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'tooltip_box_shadow',
-                'label' => __('widget Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
             ]
         );
@@ -328,7 +333,7 @@ class RkitToolTips {
         $widget->add_control(
             'background_tooltip',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -343,16 +348,10 @@ class RkitToolTips {
             ]
         );
 
-    $widget->end_controls_tab();
+        $widget->end_controls_tab();
 
-	$widget->end_controls_tabs();
-    
-    $widget->end_controls_section();
+        $widget->end_controls_tabs();
+
+        $widget->end_controls_section();
     }
-
-
-    
 }
-    
-    
- 

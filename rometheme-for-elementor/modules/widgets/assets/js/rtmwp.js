@@ -49,7 +49,7 @@ jQuery(window).on("elementor:init", () => {
                     },
                     targetElement: elWrapper,
                     actionButton: {
-                      url: "https://rometheme.net/pricing",
+                      url: "https://rometheme.net/plugins/rtmkit/pricing/",
                       text: "Upgrade Now",
                       classes: ["elementor-button", "go-pro"],
                     },

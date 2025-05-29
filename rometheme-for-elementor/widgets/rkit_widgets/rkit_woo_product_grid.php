@@ -79,11 +79,13 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->add_control('option_style', [
             'label' => esc_html('Style'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                '' => esc_html('Style 1'),
-                '-pro' => esc_html('Style 2')
-            ],
+            'type' => \Elementor\Controls_Manager::HIDDEN,
+            // 'options' => [
+            //     '-pro' => esc_html('Style 1'),
+            //     '' => esc_html('Style 2')
+            //     // '-prem' => esc_html('Style 3'), 
+
+            // ],
             'default' => ''
         ]);
 
@@ -100,6 +102,44 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ],
             'default' => 'h3'
         ]);
+
+        // layout 
+
+        $this->add_responsive_control(
+            'titlle_direction',
+            [
+                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'column' => [
+                        'title' => esc_html__('Column', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-down',
+                    ],
+                    'row' => [
+                        'title' => esc_html__('Row', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-right',
+                    ],
+                    'column-reverse' => [
+                        'title' => esc_html__('Column Reverse', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-up',
+                    ],
+
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-details-wpg-pro, {{WRAPPER}} .rkit-product-details-wpg' => 'flex-direction: {{VALUE}};',
+                ],
+            ]
+        );
+
+
+
+        // layout
+
+
+
+
 
         $this->add_control(
             'show_category',
@@ -157,6 +197,21 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+        // $this->add_control(
+        //     'product_column',
+        //     [
+        //         'label' => __('Column', 'rometheme-for-elementor'),
+        //         'description' => esc_html__('*Setting for desktop Only', 'text-domain'),
+        //         'type' => \Elementor\Controls_Manager::NUMBER,
+        //         'min' => 1,
+        //         'max' => 8, 
+        //         'default' => 3,
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-product-grid-wpg' => 'grid-template-columns: repeat({{VALUE}}, 1fr) !important; ', 
+        //         ], 
+        //     ]
+        // );
+
 
         $this->add_control(
             'product_columna',
@@ -172,6 +227,9 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+
+
 
         $this->add_control(
             'card_spacing',
@@ -266,9 +324,9 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
-                'condition' => [
-                    'option_style' => ['-pro'],
-                ]
+                // 'condition' => [
+                //     'option_style' => ['-pro'],
+                // ]
             ]
         );
 
@@ -294,12 +352,12 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'label_block' => true,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-search',
+                    'value' => 'rtmicon rtmicon-shopping-cart',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
                     'show_button_icon_wgp' => 'yes',
-                    'option_style' => ['-pro'],
+                    // 'option_style' => ['-pro'],
                 ]
             ]
         );
@@ -311,7 +369,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'label_block' => true,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-search',
+                    'value' => 'rtmicon rtmicon-shopping-cart',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -327,20 +385,23 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'before' => [
+                    'row-reverse' => [
                         'title' => esc_html__('Before Text', 'rometheme-for-elementor'),
                         'icon' => 'eicon-order-start',
                     ],
-                    'after' =>  [
+                    'row' =>  [
                         'title' => esc_html__('After Text', 'rometheme-for-elementor'),
                         'icon' => 'eicon-order-end',
                     ],
                 ],
-                'default' => 'after',
+                'default' => 'row-reverse',
                 'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-addcart-button-wpg' => 'flex-direction : {{VALUE}}'
+                ],
                 'condition' => [
                     'show_button_icon_wgp' => 'yes',
-                    'option_style' => ['-pro'],
+                    // 'option_style' => ['-pro'],
                 ]
             ]
         );
@@ -370,33 +431,35 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'button_function',
+            [
+                'label' => esc_html('Button Link'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'view_detail' => esc_html('View Detail'),
+                    'add_to_cart' => esc_html('Add To Cart'),
+                ],
+                'default' => 'add_to_cart'
+            ]
+        );
+
+        $this->add_control(
             'button_text_wgp',
             [
                 'label' => esc_html__('Button Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('View Detail', 'rometheme-for-elementor'),
+                'default' => esc_html__('Add To Cart', 'rometheme-for-elementor'),
             ]
         );
 
         $this->end_controls_section();
 
+        // style --------------------------------------------------------------------------------------------
+
         $this->start_controls_section('Container_style_section', [
             'label' => esc_html__('Container', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
-
-        $this->add_control(
-            'show_container_hover',
-            [
-                'label' => esc_html__('Container Hover', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'yes' => esc_html__('show', 'rometheme-for-elementor'),
-                'no' => esc_html__('hide', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'no',
-
-            ]
-        );
 
         $this->add_control(
             'con_padding',
@@ -463,11 +526,9 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_tab(); // End Normal Tab
 
+        // Hover Tab
         $this->start_controls_tab('container_hover_tab_wpg', [
             'label' => esc_html__('Hover', 'rometheme-for-elementor'),
-            'condition' => [
-                'show_container_hover' => 'yes',
-            ],
         ]);
 
         $this->add_group_control(
@@ -480,9 +541,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 {{WRAPPER}} .rkit-product-card-wpg:hover, 
                 {{WRAPPER}}  .rkit-product-card-wpg-pro:hover, 
                 {{WRAPPER}}  .rkit-product-card-wpg-prem:hover',
-                'condition' => [
-                    'show_container_hover' => 'yes',
-                ],
+
             ]
         );
 
@@ -496,9 +555,6 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 {{WRAPPER}}  .rkit-product-card-wpg-pro:hover, 
                 {{WRAPPER}}  .rkit-product-card-wpg-prem:hover',
 
-                'condition' => [
-                    'show_container_hover' => 'yes',
-                ],
             ]
         );
 
@@ -509,17 +565,19 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'label' => esc_html__('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-product-card-wpg:hover,
              {{WRAPPER}}  .rkit-product-card-wpg-pro:hover,  {{WRAPPER}}  .rkit-product-card-wpg-prem:hover',
-                'condition' => [
-                    'show_container_hover' => 'yes',
-                ],
+
             ]
         );
+
 
         $this->end_controls_tab(); // End Hover Tab
 
         $this->end_controls_tabs(); // End Tabs
 
         $this->end_controls_section();
+
+
+        // image style
 
         $this->start_controls_section('image_style_section_wpg', [
             'label' => esc_html__('Image', 'textdomain'),
@@ -547,10 +605,6 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->start_controls_tabs('image_tab');
-
-        $this->start_controls_tab('image_tab_normal', ['label' => esc_html('Normal')]);
-
         $this->add_control(
             'image_padding',
             [
@@ -572,10 +626,23 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-image-wpg , .rkit-product-image-wpg img, 
+                    '{{WRAPPER}} .rkit-product-image-container ,
+                    {{WRAPPER}} .rkit-product-image-wpg , .rkit-product-image-wpg img, 
                     {{WRAPPER}} .rkit-product-image-wpg-pro, .rkit-product-image-wpg-pro img, 
                     {{WRAPPER}} .rkit-product-image-wpg-prem, .rkit-product-image-wpg-prem img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+            ]
+        );
+
+
+        $this->start_controls_tabs('image_tab');
+
+        $this->start_controls_tab('image_tab_normal', ['label' => esc_html('Normal')]);
+        $this->add_group_control(
+            \Elementor\Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'product_img_filters',
+                'selector' => '{{WRAPPER}} .rkit-product-image-wpg img',
             ]
         );
 
@@ -585,103 +652,19 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'name' => 'image_border',
                 'label' => esc_html__('Border  ', 'textdomain'),
                 'selector' => '
-                {{WRAPPER}} .rkit-product-image-wpg img, 
-                    {{WRAPPER}} .rkit-product-image-wpg-pro img, 
-                    {{WRAPPER}}  .rkit-product-image-wpg-prem img
-                            '
+                {{WRAPPER}} .rkit-product-image-container'
 
             ]
         );
         $this->end_controls_tab();
 
+
         $this->start_controls_tab('image_tab_hover', ['label' => esc_html('Hover')]);
-
-        $this->add_control(
-            'image_padding_hover',
-            [
-                'label' => esc_html__('Padding', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '
-                    {{WRAPPER}} .rkit-product-image-wpg:hover,
-                     {{WRAPPER}} .rkit-product-image-wpg-pro:hover,
-                      {{WRAPPER}} .rkit-product-image-wpg-prem:hover,
-                      
-                    {{WRAPPER}} .rkit-product-image-wpg:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'image_radius_hover',
-            [
-                'label' => esc_html__('Border Radius', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-product-image-wpg:hover img , 
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover img, 
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover img,
-                    {{WRAPPER}} .rkit-product-image-wpg:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover::after '
-                    => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-
-            [
-                'name' => 'image_hover_backgroud_wpg',
-                'label' => esc_html__('Ribbon Background', 'rometheme-for-elementor'),
-                'description' => esc_html__('Recomendation, ', 'text-domain'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '  {{WRAPPER}} .rkit-product-image-wpg:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover::after ',
-                'condition' => [
-                    'option_style' => [''],
-                ]
-            ],
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'label' => esc_html__('Image Filter', 'textdomain'),
-                'name' => 'image_hover_filter',
-                'selector' => '{{WRAPPER}} .rkit-product-image-wpg:hover ,
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover ,
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover ',
-                'condition' => [
-                    'option_style' => ['-pro', '-prem'],
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'image_hover_opacity',
-            [
-                'label' => esc_html__('Opacity', 'textdomain'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['%'],
-                'default' => [
-                    'size' => 40,
-                    'unit' => '%',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-product-image-wpg:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover::after ,
-                    {{WRAPPER}} .rkit-product-image-wpg-prem:hover::after ' => 'opacity: {{SIZE}}%;',
-                ],
-                'condition' => [
-                    'option_style' => ['-pro', '-prem'],
-                ]
+                'name' => 'product_img_filters_hover',
+                'selector' => '{{WRAPPER}} .rkit-product-image-wpg:hover img',
             ]
         );
 
@@ -691,16 +674,15 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'name' => 'image_border_hover',
                 'label' => esc_html__('Border  ', 'textdomain'),
                 'selector' => '
-                {{WRAPPER}} .rkit-product-image-wpg:hover img, 
-                    {{WRAPPER}} .rkit-product-image-wpg-pro:hover img, 
-                    {{WRAPPER}}  .rkit-product-image-wpg-prem:hover img'
-
+                {{WRAPPER}} .rkit-product-image-wpg:hover .rkit-product-image-container'
             ]
         );
         $this->end_controls_tab();
         $this->end_controls_tabs();
         $this->end_controls_section();
 
+        // section content title
+        // title product style
         $this->start_controls_section('title_text_style_wpg', [
             'label' => esc_html__('Title', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -824,6 +806,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->start_controls_tab('title_tab_normal', ['label' => esc_html('Normal')]);
 
+
         $this->add_control(
             'title_color_wpg',
             [
@@ -896,8 +879,10 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_tabs();
 
+
         $this->end_controls_section();
 
+        //section category style
         $this->start_controls_section('category_text_style_wpg', [
             'label' => esc_html__('Category', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -934,6 +919,9 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+
+
+        // price regular
         $this->start_controls_section('price_text_style_wpg', [
             'label' => esc_html__('Price', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -977,6 +965,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+        // sale price
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -999,6 +988,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control(
             'divider_list_title_sale_pricereguler_wpg',
             [
@@ -1008,6 +998,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+        // sale price reguler
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -1032,6 +1023,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        //section rating style
         $this->start_controls_section('rating_text_style_wpg', [
             'label' => esc_html__('Rating', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -1084,6 +1076,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        // Style Section for Button
         $this->start_controls_section('button_style_section', [
             'label' => esc_html__('Button', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -1169,6 +1162,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+        // Kontrol warna kedua
         $this->add_control(
             'gradient_color_two',
             [
@@ -1192,6 +1186,8 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
+
 
         $this->add_responsive_control(
             'button_spacing',
@@ -1234,6 +1230,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+        // /wkwkwkw
         $this->start_controls_tabs('button_tab');
 
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
@@ -1263,6 +1260,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
             ]
         );
+
 
         $this->add_control(
             'button_border_radius_normal',
@@ -1300,6 +1298,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
+
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1387,6 +1386,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_control('button_icon_color_hover', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -1429,6 +1429,8 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+
+
         //ribbon
         $this->start_controls_section(
             'ribbon_style_section_wpg',
@@ -1443,7 +1445,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             [
                 'name' => 'ribbon_typography_wpg',
                 'label' => __('Typography', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-product-ribbon-wpg,{{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem',
+                'selector' => '{{WRAPPER}} .rkit-product-ribbon',
             ]
         );
 
@@ -1453,7 +1455,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'plugin-name'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-product-ribbon' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -1474,7 +1476,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'name' => 'ribbom_backgroud_wpg',
                 'label' => esc_html__('Ribbon Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem',
+                'selector' => '{{WRAPPER}} .rkit-product-ribbon',
             ]
         );
 
@@ -1483,7 +1485,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             [
                 'name' => 'ribbon_border_wpg',
                 'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem',
+                'selector' => '{{WRAPPER}} .rkit-product-ribbon',
             ]
         );
 
@@ -1494,7 +1496,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-product-ribbon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1504,7 +1506,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             [
                 'name' => 'ribbon_box_shadow_wpg',
                 'label' => __('Box Shadow', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem',
+                'selector' => '{{WRAPPER}} .rkit-product-ribbon',
             ]
         );
 
@@ -1527,7 +1529,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'default' => 'right',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => '{{VALUE}}: 0;',
+                    '{{WRAPPER}} .rkit-product-ribbon' => '{{VALUE}}: 0;',
                 ],
             ]
         );
@@ -1547,7 +1549,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'margin-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-product-ribbon' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1566,7 +1568,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'margin-left: {{SIZE}}{{UNIT}}; margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-product-ribbon' => 'margin-left: {{SIZE}}{{UNIT}}; margin-right: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ribbon_position' => 'left',
@@ -1588,7 +1590,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'margin-right: {{SIZE}}{{UNIT}}; margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-product-ribbon' => 'margin-right: {{SIZE}}{{UNIT}}; margin-left: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ribbon_position' => 'right',
@@ -1603,7 +1605,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}}  .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}  .rkit-product-ribbon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1615,10 +1617,13 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}}  .rkit-product-ribbon-wpg, {{WRAPPER}} .rkit-product-ribbon-wpg-pro, {{WRAPPER}} .rkit-product-ribbon-wpg-prem' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}  .rkit-product-ribbon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+
+
 
         $this->end_controls_section();
     }
@@ -1670,10 +1675,13 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                 'terms' => $settings['product_categories'],
             ];
         }
+
         $products = new \WP_Query($args);
+
 ?>
-        <!--  -->
         <div class="rkit-product-grid-wpg<?php echo (!empty($settings['option_style']) ? ' ' . esc_attr('rkit-product-grid-wpg' . $settings['option_style']) : ''); ?>">
+
+
             <?php if ($products->have_posts()) {
                 while ($products->have_posts()) {
                     $products->the_post();
@@ -1682,35 +1690,34 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                     $content_descripsonription_wpc =  $product->get_description();
                     $content_descripson_wpc =  esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($content_descripsonription_wpc) : wp_trim_words(wp_strip_all_tags($content_descripsonription_wpc), $settings['truncate-content']), 'rometheme-for-elementor');
                     $average = $product->get_average_rating();
+                    $btnLink = ($settings['button_function'] == 'add_to_cart') ? wc_get_cart_url() . '?add-to-cart=' . get_the_ID() : get_the_permalink();
             ?>
                     <div class="rkit-product-card-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                        <a href="<?php the_permalink(); ?>">
+                        <!-- <a href="<?php the_permalink(); ?>"> -->
 
-                            <div class="rkit-product-image-wpg<?php echo esc_attr($settings['option_style']); ?>">
-
-                                <?php
-                                if ($settings['show_sale'] == 'yes') {
-                                    if ($product->is_on_sale()) {  ?>
-                                        <div class="rkit-product-ribbon-wpg<?php echo esc_attr($settings['option_style']); ?>">Sale</div>
-                                <?php }
-                                } ?>
+                        <div class="rkit-product-image-wpg<?php echo esc_attr($settings['option_style']); ?>">
+                            <?php
+                            if ($settings['show_sale'] == 'yes') {
+                                if ($product->is_on_sale()) {  ?>
+                                    <div class="rkit-product-ribbon rkit-product-ribbon-wpg<?php echo esc_attr($settings['option_style']); ?>">Sale</div>
+                            <?php }
+                            } ?>
+                            <div class="rkit-product-image-container">
                                 <?php echo woocommerce_get_product_thumbnail(); ?>
-
-                                <?php if ($settings['option_style'] == '') { ?>
-                                    <div class="rkit-addcart-wrap-button-wpg">
-                                        <a class="rkit-addcart-button-wpg" href="<?php esc_url(the_permalink()) ?>">
-                                            <?php if ('before' === $settings['button_icon_position_wgp']) {
-                                                \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
-                                            } ?>
-                                            <span> <?php echo esc_html__($settings['button_text_wgp'], 'rometheme-for-elementor') ?> </span>
-                                            <?php if ('after' === $settings['button_icon_position_wgp']) {
-                                                \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
-                                            } ?>
-                                        </a>
-                                    </div>
-                                <?php } ?>
                             </div>
-                        </a>
+                            <?php if ($settings['option_style'] == '') { ?>
+                                <div class="rkit-addcart-wrap-button-wpg">
+                                    <a class="rkit-addcart-button-wpg" href="<?php echo esc_url($btnLink) ?>">
+
+                                        <span> <?php echo esc_html__($settings['button_text_wgp'], 'rometheme-for-elementor') ?> </span>
+                                        <?php
+                                        \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
+                                        ?>
+                                    </a>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <!-- </a> -->
                         <div class="rkit-product-details-wpg<?php echo esc_attr($settings['option_style']); ?>">
                             <div class="rkit-product-info-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                 <a href="<?php the_permalink(); ?>">
@@ -1814,6 +1821,11 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
                             </div>
                         <?php } ?>
                     </div>
+
+
+
+
+
                 <?php
                 }
                 ?>

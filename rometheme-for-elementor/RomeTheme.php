@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           1.6.0
+ * Version:           1.6.1
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
@@ -46,10 +46,8 @@ class RomeTheme
 			require_once self::module_dir() . 'widgets/widgets.php';
 			require_once self::module_dir() . 'settings/settings.php';
 			require_once self::module_dir() . 'template/template.php';
-			require_once self::module_dir() . 'extensions/blur_effects.php';
-			require_once self::module_dir() . 'extensions/rkit_wrapper_link.php';
-			require_once self::module_dir() . 'extensions/rkit_tool_tips.php';
-			require_once self::module_dir() . 'extensions/rkit_post_duplicator.php'; 
+			require_once self::module_dir() . 'extensions/ext.php';
+			require_once self::module_dir() . 'controls/controls.php';
 
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
@@ -58,10 +56,8 @@ class RomeTheme
 			\Rkit\Modules\Libs\Init::instance();
 			new \RomeTheme\RtmSettings();
 			new \RomethemeKit\Template();
-			new \RomethemeKit\BlurEffects();
-			new \RomethemeKit\RkitWrapperLink();
-			new \RomethemeKit\RkitToolTips();
-			new \RomethemeKit\RkitDuplicator();
+			new \RomethemeKit\RTMExtension();
+			new \RomethemeKit\Controls();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);
@@ -125,7 +121,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.6.0';
+		return '1.6.1';
 	}
 
 	/**
@@ -254,8 +250,8 @@ class RomeTheme
 
 		add_submenu_page(
 			'romethemekit',
-			esc_html('Templates Kits'),
-			esc_html('Templates Kits'),
+			esc_html('Template Kits'),
+			esc_html('Template Kits'),
 			'manage_options',
 			'rtmkit-templates',
 			[$this, 'templates_call'],
@@ -356,7 +352,7 @@ class RomeTheme
 	{
 		$screen = get_current_screen();
 		if ($screen->id == 'toplevel_page_romethemekit' || str_contains($screen->id,'rtmkit')) {
-			$footer_text = 'Thank you for creating with <a href="https://wordpress.org">Wordpress</a>. | Love Using RomethemeKit For Elementor? <a href="https://wordpress.org/plugins/rometheme-for-elementor/#reviews">Rate Us</a> ';
+			$footer_text = 'Thank you for creating with <a href="https://wordpress.org">Wordpress</a>. | Love Using RTMKit For Elementor? <a href="https://wordpress.org/plugins/rometheme-for-elementor/#reviews">Rate Us</a> ';
 			return $footer_text;
 		}
 	}

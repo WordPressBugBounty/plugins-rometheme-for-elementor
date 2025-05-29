@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
                 '<div class="d-flex flex-column h-100 rounded-3 glass-effect rtm-border"></div>'
               );
               let $previewImg = $(
-                `<img class="img-fluid" src=${v.image_preview}>`
+                `<img class="img-fluid rounded-top" src=${v.image_preview}>`
               );
               let $cardBody = $(
                 `<div class="p-3 d-flex flex-column gap-3"></div>`

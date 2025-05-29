@@ -106,21 +106,21 @@ class Plugin
         $elements_manager->add_category(
             'romethemekit_header_footer',
             [
-                'title' => esc_html__('Rometheme Header & Footer', 'rometheme-for-elementor')
+                'title' => esc_html__('RTMKit Header & Footer', 'rometheme-for-elementor')
             ]
         );
 
         $elements_manager->add_category(
             'romethemekit_widgets',
             [
-                'title' => esc_html__('Romethemekit', 'rometheme-for-elementor')
+                'title' => esc_html__('RTMKit General', 'rometheme-for-elementor')
             ]
         );
 
         $elements_manager->add_category(
             'romethemekit_widgets_pro',
             [
-                'title' => esc_html__('Romethemekit Pro', 'rometheme-for-elementor')
+                'title' => esc_html__('RTMKit Pro', 'rometheme-for-elementor')
             ]
         );
     }
@@ -221,7 +221,7 @@ class Plugin
         unset($font['rtmicons-thin']);
         $font_new['rtmicons'] = array(
             'name'          => 'rtmicons',
-            'label'         => esc_html__('RomethemeKit - Regular', 'rometheme-for-elementor'),
+            'label'         => esc_html__('RTM Icon - Regular', 'rometheme-for-elementor'),
             'url'           => \RomeTheme::plugin_url() . 'assets/css/rtmicon-regular.css',
             'prefix'        => 'rtmicon-',
             'displayPrefix' => 'rtmicon',
@@ -232,7 +232,7 @@ class Plugin
         );
         $font_new['rtmicons-thin'] = array(
             'name'          => 'rtmicons-thin',
-            'label'         => esc_html__('RomethemeKit - Thin', 'rometheme-for-elementor'),
+            'label'         => esc_html__('RTM Icon - Thin', 'rometheme-for-elementor'),
             'url'           => \RomeTheme::plugin_url() . 'assets/css/rtmicon-thin.css',
             'prefix'        => 'rtmicon-',
             'displayPrefix' => 'rtmicon-thin',

@@ -5,7 +5,9 @@
     "class_name": "",
     "category": "rkit_pro",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-logo-carousel-widget/",
+    "previewURL": "https://rometheme.net/widget-client-carousel/"
   },
   "postcarousel": {
     "name": "Post Carousel",
@@ -13,7 +15,9 @@
     "class_name": "",
     "category": "rkit_pro",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-post-carousel-widget/",
+    "previewURL": "https://rometheme.net/widget-post-carousel-2/"
   },
   "pricingbox": {
     "name": "Pricing Image Box",
@@ -21,7 +25,9 @@
     "class_name": "",
     "category": "rkit_pro",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-pricing-image-box-widget/",
+    "previewURL": "https://rometheme.net/widget-pricing-image-box/"
   },
   "pricelist": {
     "name": "Pricing List",
@@ -29,7 +35,29 @@
     "class_name": "",
     "category": "rkit",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-pricing-list-widget/",
+    "previewURL": "https://rometheme.net/widget-pricing-list/"
+  },
+  "imagemarquee": {
+    "name": "Image Marquee",
+    "icon": "rtmicon rtmicon-image-marquee",
+    "class_name": "Rkit_Imagemarquee",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-image-marquee-widget/",
+    "previewURL": "https://rometheme.net/widget-image-marquee/"
+  },
+  "textual_showcase": {
+    "name": "Textual Showcase",
+    "icon": "eicon-animation-text",
+    "class_name": "Rkit_Textual_showcase",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-textual-showcase-widget/",
+    "previewURL": "https://rometheme.net/widget-textual-showcase"
   },
   "advancedtoggle": {
     "name": "Advanced Toggle",
@@ -37,7 +65,9 @@
     "class_name": "",
     "category": "rkit",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-advanced-toogle-widget/",
+    "previewURL": "https://rometheme.net/widget-advanced-toggle"
   },
   "interactivelinks": {
     "name": "Interactive Links",
@@ -45,6 +75,8 @@
     "class_name": "",
     "category": "rkit",
     "status": true,
-    "type": "pro"
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-interactive-link-widget/",
+    "previewURL": "https://rometheme.net/widget-interactive-link"
   }
 }

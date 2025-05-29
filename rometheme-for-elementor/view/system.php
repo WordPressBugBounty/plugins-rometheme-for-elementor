@@ -248,18 +248,21 @@ $active_plugins = get_option('active_plugins');
             </div>
             <div class="col col-xl-5">
                 <div class="d-flex flex-column gap-3">
-                    <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1">
-                        <?php if (class_exists('RomethemePro\RproLicense')) : if (RomethemePro\RproLicense::get_subs_status() == 'active') : ?>
-                                <h4>Now you are using license <?php echo esc_html(\RomethemePro\RproLicense::get_product_name()) ?></h4>
-                                <div class="rtm-divider"></div>
-                                <div class="spacer-2"></div>
-                        <?php endif;
-                        endif; ?>
-                        <h4>Upgrade Now !</h4>
-                        <p class="text">Unlock more features and a longer usage period and can be used on unlimited websites.</p>
-                        <div>
-                            <a href="https://rometheme.net/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill">Upgrade Now</a>
+                    <div class="p-5 d-flex flex-column-reverse gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1">
+                        <div class="d-flex flex-column gap-3 text-align-center align-items-center">
+                            <?php if (class_exists('RomethemePro\RproLicense')) : if (RomethemePro\RproLicense::get_subs_status() == 'active') : ?>
+                                    <h4>Now you are using license <?php echo esc_html(\RomethemePro\RproLicense::get_product_name()) ?></h4>
+                                    <div class="rtm-divider"></div>
+                                    <div class="spacer-2"></div>
+                            <?php endif;
+                            endif; ?>
+                            <h4>Upgrade Now !</h4>
+                            <p class="text text-center">Unlock more features and a longer usage period and can be used on unlimited websites.</p>
+                            <div>
+                                <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" class="btn btn-gradient-accent rounded-pill">Upgrade Now</a>
+                            </div>
                         </div>
+                        <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/box-rtmkit.png') ?>" alt="" class="img-fluid">
                     </div>
                     <div class="p-5 d-flex flex-column gap-3 rounded-3 text-white rtm-text-font rtm-bg-gradient-1 h-100">
                         <h4>Let’s Connected with Us !</h4>
@@ -268,7 +271,7 @@ $active_plugins = get_option('active_plugins');
                         <div class="d-flex flex-column gap-2">
                             <h4>Social Media Channel</h4>
                             <ul class="rtm-social-container p-0 gap-2 m-0">
-                                <li><a href="https://www.facebook.com/rometheme/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.facebook.com/groups/rometheme/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-facebook-f"></i></a></li>
                                 <li><a href="https://www.instagram.com/rtmkit/" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-instagram"></i></a></li>
                                 <li><a href="https://twitter.com/rometheme" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-x-twitter"></i></a></li>
                                 <li><a href="https://www.youtube.com/channel/UCB1RCmPjzvFyWNN28rtwheQ" target="_blank" class="social-item rounded-2"><i class="fa-brands fa-youtube"></i></a></li>

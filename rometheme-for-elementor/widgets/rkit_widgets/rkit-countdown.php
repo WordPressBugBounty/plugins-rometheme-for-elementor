@@ -10,12 +10,11 @@ class Rkit_Countdown extends \Elementor\Widget_Base
     public function get_title()
     {
         return \RomethemeKit\RkitWidgets::listWidgets()['countdown']['name'];
-        
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['countdown']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['countdown']['icon'];
         return $icon;
     }
 
@@ -42,7 +41,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return ['countdown-script'];
-    } 
+    }
     public function get_next_date()
     {
         $nextDate = date('Y-m-d H:i:s', strtotime('+30 days'));
@@ -70,6 +69,19 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
 
+            ]
+        );
+
+        $this->add_control(
+            'show_separator',
+            [
+                'label' => esc_html__('Show Separator', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => '-separator',
+                'default' => '-separator',
+                'prefix_class' => 'rkit-countdown'
             ]
         );
 
@@ -408,7 +420,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' =>['px', '%', 'em', 'rem'],
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-title-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -420,7 +432,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' =>['px', '%', 'em', 'rem'],
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-title-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -443,7 +455,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'name' => 'time_expired_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .time_sett ',
+                'selector' => '{{WRAPPER}} .time_sett , .rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before ',
             ]
         );
 
@@ -473,7 +485,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Background time Color', 'rometheme-for-elementor'),
                 'name' => 'background_time',
-                'types' => ['classic', 'gradient'], 
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .countdown-section',
             ]
         );
@@ -548,7 +560,97 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
             ]
         );
-        
+
+        $this->add_control(
+            'separator_options',
+            [
+                'label' => esc_html__('Separator', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'show_separator' => '-separator'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'separator_align',
+            [
+                'label' => esc_html__('Alignment', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'textdomain'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'textdomain'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'align-items: {{VALUE}};',
+                ],
+                'condition' => [
+                    'show_separator' => '-separator'
+                ]
+            ]
+        );
+
+        $this->add_control('separator_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_separator' => '-separator'
+            ]
+        ]);
+
+        $this->add_responsive_control(
+            'separator_size',
+            [
+                'label' => esc_html__('Size', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 500,
+                        'step' => 5,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_separator' => '-separator'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'separator_margin',
+            [
+                'label' => esc_html__('Margin', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'margin:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_separator' => '-separator'
+                ]
+            ]
+        );
+
 
         $this->end_controls_section();
 
@@ -639,7 +741,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-   
+
         $this->add_control(
             'divider_title',
             [
@@ -696,7 +798,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        
+
         $this->add_control(
             'expired_title_padding',
             [
@@ -717,7 +819,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        
+
         $this->add_control(
             'divider_desc',
             [
@@ -824,7 +926,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $title = $settings['title'];
-        $date = (!empty($settings['date']) ) ? $settings['date'] : '';
+        $date = (!empty($settings['date'])) ? $settings['date'] : '';
 
         switch ($settings['html_tag_1']) {
             case 'h1':
@@ -899,27 +1001,35 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
                 <div id="countdown" class="countdown_contain" data-date="<?php echo esc_attr($date); ?>">
                     <?php if ('yes' == $settings['show_days']) : ?>
-                        <div class="countdown-section days-section">
-                            <span class="countdown-days time_sett">00</span>
-                            <span class="countdown-label label_days"><?php echo esc_html__($settings['label_days']); ?></span>
+                        <div class="countdown-section-container">
+                            <div class="countdown-section days-section">
+                                <span class="countdown-days time_sett">00</span>
+                                <span class="countdown-label label_days"><?php echo esc_html__($settings['label_days']); ?></span>
+                            </div>
                         </div>
                     <?php endif; ?>
                     <?php if ('yes' == $settings['show_hours']) : ?>
-                        <div class="countdown-section hours-section">
-                            <span class="countdown-hours time_sett">00</span>
-                            <span class="countdown-label label_hours"><?php echo esc_html__($settings['label_hours']); ?></span>
+                        <div class="countdown-section-container">
+                            <div class="countdown-section hours-section">
+                                <span class="countdown-hours time_sett">00</span>
+                                <span class="countdown-label label_hours"><?php echo esc_html__($settings['label_hours']); ?></span>
+                            </div>
                         </div>
                     <?php endif; ?>
                     <?php if ('yes' == $settings['show_minutes']) : ?>
-                        <div class="countdown-section minutes-section">
-                            <span class="countdown-minutes time_sett">00</span>
-                            <span class="countdown-label label_minutes"><?php echo esc_html__($settings['label_minutes']); ?></span>
+                        <div class="countdown-section-container">
+                            <div class="countdown-section minutes-section">
+                                <span class="countdown-minutes time_sett">00</span>
+                                <span class="countdown-label label_minutes"><?php echo esc_html__($settings['label_minutes']); ?></span>
+                            </div>
                         </div>
                     <?php endif; ?>
                     <?php if ('yes' == $settings['show_seconds']) : ?>
-                        <div class="countdown-section seconds-section">
-                            <span class="countdown-seconds time_sett">01</span>
-                            <span class="countdown-label label_second"><?php echo esc_html__($settings['label_seconds']); ?></span>
+                        <div class="countdown-section-container">
+                            <div class="countdown-section seconds-section">
+                                <span class="countdown-seconds time_sett">01</span>
+                                <span class="countdown-label label_second"><?php echo esc_html__($settings['label_seconds']); ?></span>
+                            </div>
                         </div>
                     <?php endif; ?>
                 </div>

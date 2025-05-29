@@ -55,7 +55,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
-
         $this->add_control(
             'search_text',
             [
@@ -78,7 +77,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control('search_icon', [
             'label' => esc_html__('Search Icon', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::ICONS,
@@ -90,7 +88,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'show_icon' => 'yes'
             ]
         ]);
-
 
         $this->add_control('search-position', [
             'label' => esc_html__('Search Button Position', 'rometheme-for-elementor'),
@@ -105,14 +102,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
-
         $this->add_control('input-placeholder', [
             'label' => esc_html__('Placeholder', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
             'default' => 'Type to start searching...',
             'placeholder' => 'Type your Input Placeholder Here'
         ]);
-
 
         $this->add_control(
             'autocomplete',
@@ -127,15 +122,98 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+        $this->end_controls_section();
 
+        $this->start_controls_section('wrapper', [
+            'label' => esc_html__('Wrapper', 'rometheme-for-elementor'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+        ]);
 
+        $this->add_responsive_control(
+            'direction',
+            [
+                'label' => __('Direction Button', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'row' => [
+                        'title' => __('Right', 'plugin-name'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                    'column' => [
+                        'title' => __('Bottom', 'plugin-name'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                // 'default' => 'row',
+                'devices' => [ 'desktop', 'tablet', 'mobile' ],
+                'desktop_default' =>  'row', 
+                'tablet_default' =>  'row', 
+				'mobile_default' =>  'column', 
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-search ' => 'flex-direction:{{VALUE}} '
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'align_button',
+            [
+                'label' => __('Alignment', 'plugin-name'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __('Left', 'plugin-name'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'plugin-name'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => __('Right', 'plugin-name'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-container-button' => 'width:100%; display:flex; align-items:center; justify-content:{{VALUE}}'
+                ],
+                'condition' => [
+                    'direction' => 'column',
+                    'full_width_button' => ''
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'full_width_button',
+            [
+                'label' => esc_html__('Full Width', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'textdomain'),
+                'label_off' => esc_html__('No', 'textdomain'),
+                'return_value' => 'yes',
+                'devices' => [ 'desktop', 'tablet', 'mobile' ],
+                'desktop_default' =>  'no', 
+                'tablet_default' =>  'no', 
+				'mobile_default' =>  'yes', 
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-search-button' => 'width:100%; display:flex; align-items:center; justify-content:center;',
+                ],
+                'condition' => [
+                    'direction' => 'column'
+                ]
+            ]
+        );
 
         $this->end_controls_section();
+
         $this->start_controls_section('search-style', [
             'label' => esc_html__('Search Field', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
-
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -144,9 +222,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-search-input',
             ]
         );
-
-
-
 
         $this->add_control('placeholder-color', [
             'label' => esc_html__('Placeholder Color', 'rometheme-for-elementor'),
@@ -178,28 +253,41 @@ class Search_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control(
-			'input_spacing',
-			[
-				'label' => esc_html__( 'Gap between input and button', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-search' => 'gap: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_responsive_control(
+            'input_spacing',
+            [
+                'label' => esc_html__('Gap between input and button', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'devices' => [ 'desktop', 'tablet', 'mobile' ],
+                'desktop_default' =>  [
+                    'size'=>0,
+                    'unit'=>'px',
+                ], 
+                'tablet_default' =>[
+                    'size'=>0,
+                    'unit'=>'px'
+                ], 
+				'mobile_default' =>[
+                    'size'=>4,
+                    'unit'=>'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-search' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
         $this->start_controls_tabs('search-setting');
@@ -216,11 +304,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
-
-
-
-
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -230,7 +313,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -239,20 +321,15 @@ class Search_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-
-
-
         $this->add_group_control(\Elementor\Group_Control_Border::get_type(), [
             'name' => 'Border',
             'selector' => '{{WRAPPER}} .rkit-search-input',
         ]);
 
-
         $this->end_controls_tab();
 
 
         $this->start_controls_tab('input-focus', ['label' => 'Focus']);
-
 
         $this->add_control('input-text-color-focus', [
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
@@ -293,9 +370,6 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
         $this->end_controls_tabs();
 
-
-
-
         $this->end_controls_section();
 
 
@@ -318,30 +392,30 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_control(
-			'icon_position',
-			[
-				'label' => esc_html__( 'Icon Position', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'row' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
-						'icon' => 'eicon-h-align-left',
-					],
-					'row-reverse' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
-						'icon' => 'eicon-h-align-right',
-					],
-				],
-				'default' => 'row',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-search-button' => 'flex-direction: {{VALUE}};',
-				],
+            'icon_position',
+            [
+                'label' => esc_html__('Icon Position', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'row' => [
+                        'title' => esc_html__('Left', 'textdomain'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'row-reverse' => [
+                        'title' => esc_html__('Right', 'textdomain'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-search-button' => 'flex-direction: {{VALUE}};',
+                ],
                 'condition' => [
                     'show_icon'  => 'yes'
                 ]
-			]
-		);
+            ]
+        );
 
 
         $this->add_responsive_control(
@@ -466,12 +540,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'button_border',
-				'selector' => '{{WRAPPER}} .rkit-search-button',
-			]
-		);
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border',
+                'selector' => '{{WRAPPER}} .rkit-search-button',
+            ]
+        );
 
 
 
@@ -519,12 +593,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
 
         $this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'button_border_hover',
-				'selector' => '{{WRAPPER}} .rkit-search-button:hover',
-			]
-		);
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-search-button:hover',
+            ]
+        );
 
 
         $this->end_controls_tab();
@@ -547,10 +621,12 @@ class Search_Rometheme extends \Elementor\Widget_Base
         <form action="<?php echo esc_url(get_home_url()) ?>" method="get">
             <div class="rkit-search">
                 <input class="rkit-search-input" type="text" name="s" id="s" autocomplete="<?php echo esc_attr($autocomplete) ?>" placeholder="<?php echo esc_attr__($settings['input-placeholder'], 'rometheme-for-elementor'); ?>">
-                <button class="rkit-search-button" type="submit">
-                    <?php \Elementor\Icons_Manager::render_icon($settings['search_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-search-icon']); ?>
-                    <?php echo esc_html($settings['search_text']) ?>
-                </button>
+                <div class="rkit-container-button">
+                    <button class="rkit-search-button " type="submit">
+                        <?php \Elementor\Icons_Manager::render_icon($settings['search_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-search-icon']); ?>
+                        <?php echo esc_html($settings['search_text']) ?>
+                    </button>
+                </div>
             </div>
         </form>
 <?php
