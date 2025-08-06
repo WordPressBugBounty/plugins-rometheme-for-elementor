@@ -1,43 +1,47 @@
 {
-  "logocarousel": {
-    "name": "Clients Carousel",
-    "icon": "rtmicon rtmicon-client-carousel",
-    "class_name": "",
-    "category": "rkit_pro",
-    "status": true,
-    "type": "pro",
-    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-logo-carousel-widget/",
-    "previewURL": "https://rometheme.net/widget-client-carousel/"
-  },
   "postcarousel": {
     "name": "Post Carousel",
     "icon": "rtmicon rtmicon-post-carousel",
-    "class_name": "",
+    "class_name": "Rkit_Post_Carousel",
     "category": "rkit_pro",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-post-carousel-widget/",
-    "previewURL": "https://rometheme.net/widget-post-carousel-2/"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "post_carousel.css",
+      "js": "post_carousel.js"
+    }
   },
   "pricingbox": {
     "name": "Pricing Image Box",
     "icon": "rtmicon rtmicon-pricing-image-box",
-    "class_name": "",
+    "class_name": "Rkit_Pricebox",
     "category": "rkit_pro",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-pricing-image-box-widget/",
-    "previewURL": "https://rometheme.net/widget-pricing-image-box/"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "pricingbox.css",
+      "js": "pricing-image-box.js"
+    }
   },
   "pricelist": {
     "name": "Pricing List",
     "icon": "rtmicon rtmicon-price-list",
-    "class_name": "",
+    "class_name": "Rkit_Price_List",
     "category": "rkit",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-pricing-list-widget/",
-    "previewURL": "https://rometheme.net/widget-pricing-list/"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/price-list/",
+    "scripts": {
+      "css": "price_list.css",
+      "js": ""
+    }
   },
   "imagemarquee": {
     "name": "Image Marquee",
@@ -47,36 +51,132 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-image-marquee-widget/",
-    "previewURL": "https://rometheme.net/widget-image-marquee/"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/image-marquee/",
+    "scripts": {
+      "css": "image_marquee.css",
+      "js": "image_marquee.js"
+    }
   },
   "textual_showcase": {
     "name": "Textual Showcase",
     "icon": "eicon-animation-text",
-    "class_name": "Rkit_Textual_showcase",
+    "class_name": "Rkit_Textual_Showcase",
     "category": "rkit_pro",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-textual-showcase-widget/",
-    "previewURL": "https://rometheme.net/widget-textual-showcase"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "textual_showcase.css",
+      "js": "textual_showcase.js"
+    }
   },
   "advancedtoggle": {
     "name": "Advanced Toggle",
     "icon": "rtmicon rtmicon-advanced-toggle",
-    "class_name": "",
+    "class_name": "Rkit_Advanced_Toggle",
     "category": "rkit",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-advanced-toogle-widget/",
-    "previewURL": "https://rometheme.net/widget-advanced-toggle"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/advanced-toggle/",
+    "scripts": {
+      "css": "advanced_toggle.css",
+      "js": "advanced_toggle.js"
+    }
   },
   "interactivelinks": {
     "name": "Interactive Links",
     "icon": "rtmicon rtmicon-interactive-link",
-    "class_name": "",
+    "class_name": "Rkit_Interactive_Links",
     "category": "rkit",
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-interactive-link-widget/",
-    "previewURL": "https://rometheme.net/widget-interactive-link"
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "interactive_links.css",
+      "js": "interactive_links.js"
+    }
+  },
+  "animated_circle_button": {
+    "name": "Animated Circle Button",
+    "icon": "rtmicon rtmicon-animated-circle-button",
+    "class_name": "Rkit_Animated_Circle_Button",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/animated-circle-button/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "animated_circle_button.css",
+      "js": ""
+    }
+  },
+  "image_stack": {
+    "name": "Image Stack Info",
+    "icon": "rtmicon rtmicon-image-stack-info",
+    "class_name": "Rkit_Image_Stack",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/image-stack-info-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "image_stack.css",
+      "js": ""
+    }
+  },
+  "rkit_breadcrumb": {
+    "name": "Breadcrumb",
+    "icon": "rtmicon rtmicon-breadcumb",
+    "class_name": "Rkit_Breadcrumb",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/breadcrumb-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "breadcrumbs.css",
+      "js": ""
+    }
+  },
+  "imagehotspot": {
+    "name": "Image Hotspot",
+    "icon": "rtmicon rtmicon-image-hotspot",
+    "class_name": "Rkit_Image_Hotspot",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/image-hotspot-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes": "link official cooming soon",
+    "scripts": {
+      "css": "image_hotspot.css",
+      "js": "image_hotspot.js",
+      "lib": [
+        "popper.min.js",
+        "tippy-bundle.umd.min.js"
+      ]
+    }
+  },
+  "client_carousel": {
+    "name": "Client Carousel",
+    "icon": "rtmicon rtmicon-client-carousel",
+    "class_name": "Rkit_Logocaraosel",
+    "category": "rkit_pro",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-logo-carousel-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/cliend-carousel/",
+    "scripts": {
+      "css": "client_carousel.css",
+      "js": "client_carousel.js"
+    }
   }
 }

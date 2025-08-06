@@ -220,7 +220,7 @@ jQuery(window).on("elementor:init", () => {
       },
       error: function (xhr, status, error) {
         // menangani kesalahan
-        console.log(status);
+        // console.log(status);
       },
       complete: function () {
         jQuery("#rkit-loading").remove();
@@ -1212,7 +1212,7 @@ function download_template(id, callback) {
       wpnonce: rkit_libs.template_nonce,
     },
     success: function (res) {
-      console.log(res.template);
+      // console.log(res.template);
 
       if (res.success) {
         callback(res.data.template);

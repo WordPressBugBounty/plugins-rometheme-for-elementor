@@ -1,3 +1,10 @@
+<?php
+
+$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') and (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
+$has_woocommerce = is_plugin_active( 'woocommerce/woocommerce.php' );
+
+?>
+
 <!-- Modal -->
 <div class="modal fade rtm-text-font" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -27,17 +34,17 @@
                                 <select name="type" class="form-select py-2 select-type" id="inputType">
                                     <option value="header"><?php esc_html_e('Header', 'rometheme-for-elementor') ?></option>
                                     <option value="footer"><?php esc_html_e('Footer', 'rometheme-for-elementor') ?></option>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' )) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="404"><?php esc_html_e('404 Page', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="404" disabled><?php esc_html_e('404 Page (Pro Feature)', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' ) ) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="single_post"><?php esc_html_e('Single Post', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="single_post" disabled><?php esc_html_e('Single Post (Pro Feature)', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' )) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="archive"><?php esc_html_e('Archive', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="archive" disabled><?php esc_html_e('Archive (Pro Feature)', 'rometheme-for-elementor') ?></option>
@@ -111,20 +118,32 @@
                                 <select name="type" class="form-select py-2 select-type" id="inputType">
                                     <option value="header"><?php esc_html_e('Header', 'rometheme-for-elementor') ?></option>
                                     <option value="footer"><?php esc_html_e('Footer', 'rometheme-for-elementor') ?></option>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' )) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="404"><?php esc_html_e('404 Page', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="404" disabled><?php esc_html_e('404 Page (Pro Feature)', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' )) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="single_post"><?php esc_html_e('Single Post', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="single_post" disabled><?php esc_html_e('Single Post (Pro Feature)', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
-                                    <?php if (class_exists('RomethemePro') and (\RomethemePro\RproLicense::get_subs_status() === 'active' )) : ?>
+                                    <?php if ($isLicenseActive) : ?>
                                         <option value="archive"><?php esc_html_e('Archive', 'rometheme-for-elementor') ?></option>
                                     <?php else : ?>
                                         <option value="archive" disabled><?php esc_html_e('Archive (Pro Feature)', 'rometheme-for-elementor') ?></option>
+                                    <?php endif; ?>
+                                     <?php 
+                                    // If pro active license and woocommerce installed
+                                    if ($isLicenseActive && $has_woocommerce) : ?>
+                                        <option value="single_product"><?php esc_html_e('Single Product', 'rometheme-for-elementor') ?></option>
+                                    <?php else : ?>
+                                        <option value="single_product" disabled><?php esc_html_e('Single Product (Pro Feature)', 'rometheme-for-elementor') ?></option>
+                                    <?php endif; ?>
+                                    <?php if ($isLicenseActive && $has_woocommerce) : ?>
+                                        <option value="archive_product"><?php esc_html_e('Archive Product', 'rometheme-for-elementor') ?></option>
+                                    <?php else : ?>
+                                        <option value="archive_product" disabled><?php esc_html_e('Archive Product (Pro Feature)', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
                                 </select>
                             </div>

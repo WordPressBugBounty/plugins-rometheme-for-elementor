@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.rkit-post-block-card{
+    background-color: #F7F7F7;
+}
+
 .rkit-post-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

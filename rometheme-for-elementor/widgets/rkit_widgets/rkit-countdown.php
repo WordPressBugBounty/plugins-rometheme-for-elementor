@@ -183,7 +183,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_options',
             [
-                'label' => esc_html__('Label', 'textdomain'),
+                'label' => esc_html__('Label', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -205,12 +205,12 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_position',
             [
-                'label' => esc_html__('Label Potition', 'textdomain'),
+                'label' => esc_html__('Label Potition', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'row' => esc_html__('Center', 'textdomain'),
-                    'column-reverse'  => esc_html__('Top', 'textdomain'),
-                    'column'  => esc_html__('Bottom', 'textdomain'),
+                    'row' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'column-reverse'  => esc_html__('Top', 'rometheme-for-elementor'),
+                    'column'  => esc_html__('Bottom', 'rometheme-for-elementor'),
                 ],
                 'condition' => [
                     'show_label' => 'yes',
@@ -475,7 +475,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssa',
             [
-                'label' => esc_html__('Background Time', 'textdomain'),
+                'label' => esc_html__('Background Time', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -493,7 +493,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'more_optionsssssssa',
             [
-                'label' => esc_html__('Container Time', 'textdomain'),
+                'label' => esc_html__('Container Time', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -564,7 +564,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'separator_options',
             [
-                'label' => esc_html__('Separator', 'textdomain'),
+                'label' => esc_html__('Separator', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -576,19 +576,19 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'separator_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -617,7 +617,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'separator_size',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'range' => [
@@ -639,7 +639,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'separator_margin',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -691,7 +691,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'label_margin',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -802,7 +802,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'expired_title_padding',
             [
-                'label' => esc_html__('Tittle Padding', 'textdomain'),
+                'label' => esc_html__('Tittle Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -879,7 +879,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'expired_description_padding',
             [
-                'label' => esc_html__('Description Padding', 'textdomain'),
+                'label' => esc_html__('Description Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [

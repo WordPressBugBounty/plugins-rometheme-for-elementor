@@ -83,10 +83,10 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'show_caption',
 			[
-				'label' => esc_html__( 'Show Caption', 'textdomain' ),
+				'label' => esc_html__( 'Show Caption', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'textdomain' ),
-				'label_off' => esc_html__( 'Hide', 'textdomain' ),
+				'label_on' => esc_html__( 'Show', 'rometheme-for-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'rometheme-for-elementor' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -163,19 +163,19 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         $this->add_control(
 			'caption_align',
 			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
+						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],

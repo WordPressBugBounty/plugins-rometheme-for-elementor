@@ -155,34 +155,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-
-        $this->add_responsive_control(
-            'content_spacing_ah',
-            [
-                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'size' => 12,
-                    'unit' => 'px'
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-trp-text ' => 'gap: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -217,7 +189,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'cont_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -288,7 +260,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'head_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [

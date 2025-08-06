@@ -63,11 +63,11 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'slide_style',
             [
-                'label' => esc_html__('Slide Style', 'textdomain'),
+                'label' => esc_html__('Slide Style', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    '' => esc_html__('Slide', 'textdomain'),
-                    'fade' => esc_html__('Fade', 'textdomain'),
+                    '' => esc_html__('Slide', 'rometheme-for-elementor'),
+                    'fade' => esc_html__('Fade', 'rometheme-for-elementor'),
                 ],
                 'default' => '',
             ]
@@ -91,7 +91,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $home_slider_list->add_control(
             'image',
             [
-                'label' => esc_html__('Choose Image', 'textdomain'),
+                'label' => esc_html__('Choose Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -103,9 +103,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $home_slider_list->add_control(
             'home_slider_sub_title',
             [
-                'label' => esc_html__('Sub Title', 'textdomain'),
+                'label' => esc_html__('Sub Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Your Sub Title', 'textdomain'),
+                'default' => esc_html__('Your Sub Title', 'rometheme-for-elementor'),
             ]
         );
 
@@ -144,9 +144,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $home_slider_list->add_control(
             'home_slider_title',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Your Title', 'textdomain'),
+                'placeholder' => esc_html__('Your Title', 'rometheme-for-elementor'),
             ]
         );
 
@@ -154,9 +154,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $home_slider_list->add_control(
             'home_slider_description',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'placeholder' => esc_html__('Description For Your Home Slider.', 'textdomain'),
+                'placeholder' => esc_html__('Description For Your Home Slider.', 'rometheme-for-elementor'),
             ]
         );
 
@@ -166,7 +166,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $home_slider_list->add_control(
             'hs_link',
             [
-                'label' => esc_html__('Link', 'textdomain'),
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
                 'options' => ['url', 'is_external', 'nofollow'],
                 'label_block' => true,
@@ -177,13 +177,13 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'hs_list',
             [
-                'label' => esc_html__('Repeater List', 'textdomain'),
+                'label' => esc_html__('Repeater List', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $home_slider_list->get_controls(),
                 'default' => [
                     [
-                        'home_slider_title' => esc_html__('Slide Title #1', 'textdomain'),
-                        'home_slider_description' => esc_html__('Your slide Description #1', 'textdomain'),
+                        'home_slider_title' => esc_html__('Slide Title #1', 'rometheme-for-elementor'),
+                        'home_slider_description' => esc_html__('Your slide Description #1', 'rometheme-for-elementor'),
                         'hs_link' => [
                             'url' => "#"
                         ]
@@ -191,22 +191,22 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
                     ],
                     [
-                        'home_slider_title' => esc_html__('Slide Title #2', 'textdomain'),
-                        'home_slider_description' => esc_html__('Your slide Description #2', 'textdomain'),
+                        'home_slider_title' => esc_html__('Slide Title #2', 'rometheme-for-elementor'),
+                        'home_slider_description' => esc_html__('Your slide Description #2', 'rometheme-for-elementor'),
                         'hs_link' => [
                             'url' => "#"
                         ]
                     ],
                     [
-                        'home_slider_title' => esc_html__('Slide Title #3', 'textdomain'),
-                        'home_slider_description' => esc_html__('Your slide Description #3', 'textdomain'),
+                        'home_slider_title' => esc_html__('Slide Title #3', 'rometheme-for-elementor'),
+                        'home_slider_description' => esc_html__('Your slide Description #3', 'rometheme-for-elementor'),
                         'hs_link' => [
                             'url' => "#"
                         ]
                     ],
                     [
-                        'home_slider_title' => esc_html__('Slide Title #4', 'textdomain'),
-                        'home_slider_description' => esc_html__('Your slide Description #4', 'textdomain'),
+                        'home_slider_title' => esc_html__('Slide Title #4', 'rometheme-for-elementor'),
+                        'home_slider_description' => esc_html__('Your slide Description #4', 'rometheme-for-elementor'),
                         'hs_link' => [
                             'url' => "#"
                         ]
@@ -229,10 +229,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'show_navigation',
             [
-                'label' => esc_html__('Show Navigation', 'textdomain'),
+                'label' => esc_html__('Show Navigation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -242,7 +242,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'next_icon',
             [
-                'label' => esc_html__('Next Icon', 'textdomain'),
+                'label' => esc_html__('Next Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-right',
@@ -258,7 +258,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'previous_icon',
             [
-                'label' => esc_html__('Previous Icon', 'textdomain'),
+                'label' => esc_html__('Previous Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-chevron-left',
@@ -281,10 +281,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'show_button',
             [
-                'label' => esc_html__('Show Button', 'textdomain'),
+                'label' => esc_html__('Show Button', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -376,10 +376,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'autoplay',
             [
-                'label' => esc_html__('Autoplay', 'textdomain'),
+                'label' => esc_html__('Autoplay', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -400,10 +400,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'show_dots',
             [
-                'label' => esc_html__('Show Dots', 'textdomain'),
+                'label' => esc_html__('Show Dots', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -415,10 +415,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'pause_on_hover',
             [
-                'label' => esc_html__('Pause On Hover', 'textdomain'),
+                'label' => esc_html__('Pause On Hover', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -428,10 +428,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'loop',
             [
-                'label' => esc_html__('Loop', 'textdomain'),
+                'label' => esc_html__('Loop', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -440,7 +440,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
         $this->start_controls_section('Container_style_section', [
-            'label' => esc_html__('Container', 'textdomain'),
+            'label' => esc_html__('Container', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
@@ -448,7 +448,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'Header_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -480,7 +480,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'background_container',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -533,7 +533,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .image-container-hsl , {{WRAPPER}} .image-cover-hsl'
 
 
@@ -546,7 +546,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'imagewidth',
             [
-                'label' => esc_html__('Width', 'textdomain'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['vw', 'px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -574,7 +574,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'imageheight',
             [
-                'label' => esc_html__('Height', 'textdomain'),
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['vh', 'px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -602,7 +602,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'textdomain'),
+                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -689,7 +689,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'gap',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -717,7 +717,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
@@ -742,7 +742,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'backgroun_opacity',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -782,12 +782,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'subtitle_animation',
             [
-                'label' => esc_html__('Animation', 'textdomain'),
+                'label' => esc_html__('Animation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'hs-animation-1-subtitle',
                 'options' => [
-                    '' => esc_html__('Default', 'textdomain'),
-                    'hs-animation-1-subtitle' => esc_html__('Word Staggered', 'textdomain'),
+                    '' => esc_html__('Default', 'rometheme-for-elementor'),
+                    'hs-animation-1-subtitle' => esc_html__('Word Staggered', 'rometheme-for-elementor'),
                 ],
             ]
         );
@@ -836,7 +836,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'subtitle_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
@@ -851,7 +851,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'subtitle_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
@@ -867,7 +867,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'subtitle_borderwidth',
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hs-subtitle-section ',
 
 
@@ -911,7 +911,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'gap_subtitle_icon',
             [
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -994,12 +994,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'title_animation',
             [
-                'label' => esc_html__('Animation', 'textdomain'),
+                'label' => esc_html__('Animation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '',
                 'options' => [
-                    '' => esc_html__('Default', 'textdomain'),
-                    'hs-animation-1-title' => esc_html__('Word Staggered', 'textdomain'),
+                    '' => esc_html__('Default', 'rometheme-for-elementor'),
+                    'hs-animation-1-title' => esc_html__('Word Staggered', 'rometheme-for-elementor'),
                 ],
             ]
         );
@@ -1050,7 +1050,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'title_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
@@ -1067,7 +1067,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'maxwidthtitle',
             [
-                'label' => esc_html__('Max Width', 'textdomain'),
+                'label' => esc_html__('Max Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1114,12 +1114,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'description_animation',
             [
-                'label' => esc_html__('Animation', 'textdomain'),
+                'label' => esc_html__('Animation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '',
                 'options' => [
-                    '' => esc_html__('Default', 'textdomain'),
-                    'hs-animation-1-desc' => esc_html__('Word Staggered', 'textdomain'),
+                    '' => esc_html__('Default', 'rometheme-for-elementor'),
+                    'hs-animation-1-desc' => esc_html__('Word Staggered', 'rometheme-for-elementor'),
                 ],
             ]
         );
@@ -1172,7 +1172,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'maxwidthdesc',
             [
-                'label' => esc_html__('Max Width', 'textdomain'),
+                'label' => esc_html__('Max Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1208,7 +1208,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'desc_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
 
@@ -1248,7 +1248,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'button_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -1267,7 +1267,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1314,7 +1314,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'gap_button_icon',
             [
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1341,7 +1341,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1371,7 +1371,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
-                'label' => esc_html__('Border Button', 'textdomain'),
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                 'selector' => '  {{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider',
             ]
         );
@@ -1407,7 +1407,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1435,14 +1435,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border_hover',
-                'label' => esc_html__('Border Button (Hover)', 'textdomain'),
+                'label' => esc_html__('Border Button (Hover)', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider:hover',
             ]
         );
 
 
         $this->add_control('button_text_color_hover', [
-            'label' => esc_html__('Text Color (Hover)', 'textdomain'),
+            'label' => esc_html__('Text Color (Hover)', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .button-element-homeslider:hover,  {{WRAPPER}} a:hover' => 'color : {{VALUE}}'
@@ -1451,7 +1451,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
         $this->add_control('button_icon_color_hover', [
-            'label' => esc_html__('Icon Color (Hover)', 'textdomain'),
+            'label' => esc_html__('Icon Color (Hover)', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 ' {{WRAPPER}} a:hover .icon-list-button-hs' => 'color : {{VALUE}}'
@@ -1528,7 +1528,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_position_vertical',
             [
-                'label' => esc_html__('Vertical Position', 'textdomain'),
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1566,7 +1566,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_position_horizontal',
             [
-                'label' => esc_html__('Horizontal Position', 'textdomain'),
+                'label' => esc_html__('Horizontal Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1602,7 +1602,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1626,7 +1626,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1639,7 +1639,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_margin',
             [
-                'label' => esc_html__('Dot Wrapper Margin', 'textdomain'),
+                'label' => esc_html__('Dot Wrapper Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1658,7 +1658,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_normal',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1684,7 +1684,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1704,7 +1704,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1729,7 +1729,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_hover',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1757,7 +1757,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1777,7 +1777,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1802,7 +1802,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'dot_size_active',
             [
-                'label' => esc_html__('Size', 'textdomain'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1830,7 +1830,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_bg_options_active',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1850,7 +1850,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'dot_border_options_active',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1941,10 +1941,10 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'show_navigation_spacing',
             [
-                'label' => esc_html__('Manual adjustments Navigation', 'textdomain'),
+                'label' => esc_html__('Manual adjustments Navigation', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -1956,7 +1956,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'nav_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1985,7 +1985,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'nav_icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -2009,7 +2009,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -2022,7 +2022,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -2061,7 +2061,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_bg_options_normal',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -2081,7 +2081,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_border_options_normal',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -2126,7 +2126,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -2146,7 +2146,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_control(
             'nav_border_options_hover',
             [
-                'label' => esc_html__('Border', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

@@ -60,7 +60,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'pointer',
-                'default' => 'pointer',
+                'default' => '',
             ]
         );
 
@@ -349,7 +349,7 @@ class Rkit_Team extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_opacity',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 // 'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
                 'range' => [
@@ -1220,11 +1220,11 @@ class Rkit_Team extends \Elementor\Widget_Base
 		return [
 			'condition' => true,
 			'image' => esc_url( ELEMENTOR_ASSETS_URL . 'images/go-pro.svg' ),
-			'image_alt' => esc_attr__( 'Upgrade', 'textdomain' ),
-			'title' => esc_html__( 'Promotion heading', 'textdomain' ),
-			'description' => esc_html__( 'Get the premium version of the widget and grow your website capabilities.', 'textdomain' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'rometheme-for-elementor' ),
+			'title' => esc_html__( 'Promotion heading', 'rometheme-for-elementor' ),
+			'description' => esc_html__( 'Get the premium version of the widget and grow your website capabilities.', 'rometheme-for-elementor' ),
 			'upgrade_url' => esc_url( 'https://example.com/upgrade-to-pro/' ),
-			'upgrade_text' => esc_html__( 'Upgrade Now', 'textdomain' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'rometheme-for-elementor' ),
 		];
 	}
 }

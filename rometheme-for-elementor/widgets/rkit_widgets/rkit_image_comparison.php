@@ -66,7 +66,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'more_options',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -89,7 +89,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'divider_before',
             [
-                'label' => esc_html__('Control Before Image', 'textdomain'),
+                'label' => esc_html__('Control Before Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -109,9 +109,9 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'before_caption',
             [
-                'label' => esc_html__('Caption', 'textdomain'),
+                'label' => esc_html__('Caption', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your Caption here', 'textdomain'),
+                'placeholder' => esc_html__('Type your Caption here', 'rometheme-for-elementor'),
                 'condition' => [
                     'show_caption_before' => 'yes'
                 ],
@@ -122,12 +122,12 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'caption_potition_before',
             [
-                'label' => esc_html__('Caption position', 'textdomain'),
+                'label' => esc_html__('Caption position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'top' => esc_html__('Top', 'textdomain'),
-                    'center' => esc_html__('Center', 'textdomain'),
-                    'bottom'  => esc_html__('Bottom', 'textdomain'),
+                    'top' => esc_html__('Top', 'rometheme-for-elementor'),
+                    'center' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'bottom'  => esc_html__('Bottom', 'rometheme-for-elementor'),
                 ],
                 'default' => 'bottom',
             ]
@@ -136,7 +136,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'image_before',
             [
-                'label' => esc_html__('Image Before', 'textdomain'),
+                'label' => esc_html__('Image Before', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -147,7 +147,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'divider_after',
             [
-                'label' => esc_html__('Control After Image', 'textdomain'),
+                'label' => esc_html__('Control After Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -167,9 +167,9 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'after_caption',
             [
-                'label' => esc_html__('Caption', 'textdomain'),
+                'label' => esc_html__('Caption', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your Caption here', 'textdomain'),
+                'placeholder' => esc_html__('Type your Caption here', 'rometheme-for-elementor'),
                 'condition' => [
                     'show_caption_after' => 'yes'
                 ],
@@ -180,12 +180,12 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'caption_potition_after',
             [
-                'label' => esc_html__('Caption position', 'textdomain'),
+                'label' => esc_html__('Caption position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'top' => esc_html__('Top', 'textdomain'),
-                    'center' => esc_html__('Center', 'textdomain'),
-                    'bottom'  => esc_html__('Bottom', 'textdomain'),
+                    'top' => esc_html__('Top', 'rometheme-for-elementor'),
+                    'center' => esc_html__('Center', 'rometheme-for-elementor'),
+                    'bottom'  => esc_html__('Bottom', 'rometheme-for-elementor'),
                 ],
                 'default' => 'bottom',
             ]
@@ -194,7 +194,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'image_after',
             [
-                'label' => esc_html__('Image After', 'textdomain'),
+                'label' => esc_html__('Image After', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -304,7 +304,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'desc_con_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -349,7 +349,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'border_bottom_color',
             [
-                'label' => esc_html__('Line Color', 'textdomain'),
+                'label' => esc_html__('Line Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .img-comp-slider::before, {{WRAPPER}} .img-comp-slider::after' => 'background-color: {{VALUE}};',
@@ -361,7 +361,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'icon_slider_column',
             [
-                'label' => esc_html__('Icon Color', 'textdomain'),
+                'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .eicon-caret-left, {{WRAPPER}} .eicon-caret-right' => 'color: {{VALUE}};',
@@ -372,7 +372,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('circle Background', 'textdomain'),
+                'label' => esc_html__('circle Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -420,7 +420,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -446,7 +446,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'label' => esc_html__('Image Filter Before', 'textdomain'),
+                'label' => esc_html__('Image Filter Before', 'rometheme-for-elementor'),
                 'name' => 'custom_css_filters_before',
                 'selector' => '{{WRAPPER}} .filter-before',
             ]
@@ -459,7 +459,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'label' => esc_html__('Image Filter After', 'textdomain'),
+                'label' => esc_html__('Image Filter After', 'rometheme-for-elementor'),
                 'name' => 'custom_css_filters',
                 'selector' => '{{WRAPPER}} .filter-after',
             ]

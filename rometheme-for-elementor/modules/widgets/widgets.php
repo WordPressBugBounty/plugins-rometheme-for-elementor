@@ -297,7 +297,7 @@ class RkitWidgets
 
     function is_pro()
     {
-        if (class_exists('RomethemePro')) {
+        if (class_exists('RTMKitPro\Modules\Licenses\LicenseModule')) {
             return 'true';
         } else {
             return 'false';

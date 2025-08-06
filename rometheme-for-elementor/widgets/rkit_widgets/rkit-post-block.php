@@ -495,6 +495,14 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'name' => 'wrapper_background',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-post-block-card',
+                'fields_options'=>[
+                    'background'=>[
+                        'default'=>'classic'
+                    ],
+                    'color'=>[
+                        'default'=>'#F7F7F7'
+                    ],
+                ]
             ]
         );
 

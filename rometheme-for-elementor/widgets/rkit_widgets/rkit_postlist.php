@@ -207,9 +207,9 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'container_title',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your Title here', 'textdomain'),
+                'placeholder' => esc_html__('Type your Title here', 'rometheme-for-elementor'),
                 'condition' => [
                     'show_title_post_tlist' => 'yes'
                 ],
@@ -565,7 +565,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         \Elementor\Group_Control_Border::get_type(),
         [
             'name' => 'container_border',
-            'label' => esc_html__('Border', 'textdomain'),
+            'label' => esc_html__('Border', 'rometheme-for-elementor'),
             'selector' => '{{WRAPPER}} .rkit-item-postlist  ',
         ]
     );
@@ -573,7 +573,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'container_background',
         [ 
-            'label' => esc_html__( 'Container Background', 'textdomain' ),
+            'label' => esc_html__( 'Container Background', 'rometheme-for-elementor' ),
             'type' => \Elementor\Controls_Manager::HEADING,
             'separator' => 'before',
         ]
@@ -590,7 +590,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'hover_background',
         [ 
-            'label' => esc_html__( 'Hover Background', 'textdomain' ),
+            'label' => esc_html__( 'Hover Background', 'rometheme-for-elementor' ),
             'type' => \Elementor\Controls_Manager::HEADING,
             'separator' => 'before',
         ]
@@ -638,7 +638,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'contaoner_padding',
         [
-            'label' => esc_html__('Padding', 'textdomain'),
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'default' => [
@@ -697,7 +697,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'image_border',
-                    'label' => esc_html__('Border  ', 'textdomain'),
+                    'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                     'selector' => '{{WRAPPER}} .rkit-item-thumbnail img ',
                 ]
             );
@@ -707,7 +707,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'padding',
         [
-            'label' => esc_html__('Padding Image', 'textdomain'),
+            'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'default' => [
@@ -728,7 +728,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'border_radius',
         [
-            'label' => esc_html__('Border Radius Image', 'textdomain'),
+            'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'default' => [
@@ -841,7 +841,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_group_control(
         \Elementor\Group_Control_Css_Filter::get_type(),
         [
-            'label' => esc_html__('Image Filter', 'textdomain'),
+            'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
             'name' => 'image_filters',
             'selector' => '{{WRAPPER}} .rkit-item-thumbnail img ',
         ]
@@ -853,7 +853,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         // title container
         $this->start_controls_section('title_container_section', [
-            'label' => esc_html__('Title Container', 'textdomain'),
+            'label' => esc_html__('Title Container', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
                 'show_title_post_tlist' => 'yes'
@@ -866,7 +866,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_cont_typography',
-                'label' => esc_html__('Typography', 'textdomain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .f-title',
                
             ]
@@ -875,19 +875,19 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_cont_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -901,7 +901,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'title_cont',
             [
-                'label' => esc_html__('Color', 'textdomain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .f-title' => 'color: {{VALUE}};',
@@ -912,7 +912,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'title_cont_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -934,7 +934,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
          //style section title post
          $this->start_controls_section('title_post_section', [
-            'label' => esc_html__('Title Post', 'textdomain'),
+            'label' => esc_html__('Title Post', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
            
         ]);
@@ -944,7 +944,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_post_typography',
-                'label' => esc_html__('Typography', 'textdomain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .title-item',
                
             ]
@@ -953,19 +953,19 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_pots_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -979,7 +979,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'title_post',
             [
-                'label' => esc_html__('Color', 'textdomain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .title-item' => 'color: {{VALUE}};',
@@ -990,7 +990,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'title_posts_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1002,7 +1002,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         
     $this->start_controls_section('date_post_section', [
-        'label' => esc_html__('Meta Data', 'textdomain'),
+        'label' => esc_html__('Meta Data', 'rometheme-for-elementor'),
         'tab' => \Elementor\Controls_Manager::TAB_STYLE,
        
     ]);
@@ -1011,7 +1011,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         \Elementor\Group_Control_Typography::get_type(),
         [
             'name' => 'date_post_typography',
-            'label' => esc_html__('Typography', 'textdomain'),
+            'label' => esc_html__('Typography', 'rometheme-for-elementor'),
             'selector' => '{{WRAPPER}} .rkit-metadata-postlist-row ',
            
         ]
@@ -1020,19 +1020,19 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_responsive_control(
         'date_pots_align',
         [
-            'label' => esc_html__('Alignment', 'textdomain'),
+            'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [
-                    'title' => esc_html__('Left', 'textdomain'),
+                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
                     'icon' => 'eicon-text-align-left',
                 ],
                 'center' => [
-                    'title' => esc_html__('Center', 'textdomain'),
+                    'title' => esc_html__('Center', 'rometheme-for-elementor'),
                     'icon' => 'eicon-text-align-center',
                 ],
                 'end' => [
-                    'title' => esc_html__('Right', 'textdomain'),
+                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
                     'icon' => 'eicon-text-align-right',
                 ],
             ],
@@ -1046,7 +1046,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'date_post',
         [
-            'label' => esc_html__('Color', 'textdomain'),
+            'label' => esc_html__('Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-metadata-item-postlist a,{{WRAPPER}} .rkit-metadata-postlist-row, {{WRAPPER}} .rkit-meta-icon-postlist   ' => 'color: {{VALUE}};',
@@ -1057,7 +1057,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'date_posts_padding',
         [
-            'label' => esc_html__('Padding', 'textdomain'),
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
@@ -1072,7 +1072,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         
           //style section content post
           $this->start_controls_section('content_post_section', [
-            'label' => esc_html__('Content Post', 'textdomain'),
+            'label' => esc_html__('Content Post', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
                 'show_content_post_list' => 'yes'
@@ -1085,7 +1085,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'content_post_typography',
-                'label' => esc_html__('Typography', 'textdomain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .content_descripson',
                
             ]
@@ -1094,19 +1094,19 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_post_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -1120,7 +1120,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'content_post',
             [
-                'label' => esc_html__('Color', 'textdomain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .content_descripson' => 'color: {{VALUE}};',
@@ -1131,7 +1131,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
                 'content_post_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' =>['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1145,7 +1145,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
       
           //style section category post
           $this->start_controls_section('category_post_section', [
-            'label' => esc_html__('Category', 'textdomain'),
+            'label' => esc_html__('Category', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
                 'show_category_box' => 'yes'
@@ -1158,7 +1158,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'category_post_typography',
-                'label' => esc_html__('Typography', 'textdomain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .category_post',
                
             ]
@@ -1167,19 +1167,19 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'category_post_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -1193,7 +1193,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'category_post',
             [
-                'label' => esc_html__('Color', 'textdomain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .category_post' => 'color: {{VALUE}};',
@@ -1204,7 +1204,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->add_control(
                 'categoru_post_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' =>['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1246,7 +1246,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'icon_spacing',
         [
-            'label' => esc_html__( 'Icon Spacing    ', 'textdomain' ),
+            'label' => esc_html__( 'Icon Spacing    ', 'rometheme-for-elementor' ),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
             'range' => [
@@ -1396,7 +1396,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
     $this->add_control(
         'divider_color',
         [
-            'label' => esc_html__('Color', 'textdomain'),
+            'label' => esc_html__('Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .divider_line' => 'border-bottom-color: {{VALUE}};',

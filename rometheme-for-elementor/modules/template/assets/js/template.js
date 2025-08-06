@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
       success: function (res) {
         if (res.success) {
           let dataTemplate = res.data.data_template;
-          console.log(dataTemplate);
+          // console.log(dataTemplate);
 
           const TemplateContainer = $("#template-container");
           if (dataTemplate.length != 0) {
@@ -169,7 +169,7 @@ jQuery(document).ready(function ($) {
             );
           }
         } else {
-          console.log(res);
+          // console.log(res);
         }
       },
     });
@@ -185,7 +185,7 @@ jQuery(document).ready(function ($) {
         wpnonce: rometheme_ajax.nonce,
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         
         if (res.success) {
           window.location.reload();
@@ -238,7 +238,7 @@ jQuery(document).ready(function ($) {
       },
       success: function (res) {
         if (res.success) {
-          console.log(res.data);
+          // console.log(res.data);
           
           $this.html("Import Complete!");
           let $link = $(

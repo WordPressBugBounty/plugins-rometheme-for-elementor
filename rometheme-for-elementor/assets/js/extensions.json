@@ -5,9 +5,10 @@
     "classname": "RkitDuplicator",
     "status": true,
     "type": "extension",
-    "is_new": true,
+    "is_new": false,
     "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/how-to-use-ezd_ampersand-customize-duplicator/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "glasseffect": {
     "name": "RTM Glass Effect",
@@ -15,9 +16,10 @@
     "classname": "BlurEffects",
     "status": true,
     "type": "extension",
-    "is_new": true,
+    "is_new": false,
     "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/how-to-use-ezd_ampersand-customize-glassmorphism/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "tooltip": {
     "name": "RTM Tooltip",
@@ -25,9 +27,10 @@
     "classname": "RkitToolTips",
     "status": true,
     "type": "extension",
-    "is_new": true,
+    "is_new": false,
     "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/how-to-use-ezd_ampersand-customize-rtmkit-tooltips/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "wrapperlink": {
     "name": "RTM Wrapper Link",
@@ -35,8 +38,9 @@
     "classname": "RkitWrapperLink",
     "status": true,
     "type": "extension",
-    "is_new": true,
+    "is_new": false,
     "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/how-to-use-ezd_ampersand-customize-rtmkit-wrapper-link/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   }
 }

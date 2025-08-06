@@ -106,7 +106,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $image_accordion->add_control(
             'image_acc',
             [
-                'label' => esc_html__('Choose Image', 'textdomain'),
+                'label' => esc_html__('Choose Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -117,25 +117,25 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $image_accordion->add_control(
             'image_title',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Image Accordion Title', 'textdomain'),
+                'default' => esc_html__('Image Accordion Title', 'rometheme-for-elementor'),
             ]
         );
 
         $image_accordion->add_control(
             'image_description',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Image Accordion content here!', 'textdomain'),
+                'default' => esc_html__('Image Accordion content here!', 'rometheme-for-elementor'),
             ]
         );
 
         $image_accordion->add_control(
             'ia_card_link',
             [
-                'label' => esc_html__('Link', 'textdomain'),
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
                 'options' => ['url', 'is_external', 'nofollow'],
                 'label_block' => true,
@@ -145,12 +145,12 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'list',
             [
-                'label' => esc_html__('Repeater List', 'textdomain'),
+                'label' => esc_html__('Repeater List', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $image_accordion->get_controls(),
                 'default' => [
                     [
-                        'image_acc' => esc_html__('Image 1', 'textdomain'),
+                        'image_acc' => esc_html__('Image 1', 'rometheme-for-elementor'),
                         'image_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'ia_card_link' => [
                             'url' => "#"
@@ -158,7 +158,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
 
                     ],
                     [
-                        'image_acc' => esc_html__('Image 2', 'textdomain'),
+                        'image_acc' => esc_html__('Image 2', 'rometheme-for-elementor'),
                         'image_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'default_image_open' => 'yes',
                         'ia_card_link' => [
@@ -166,7 +166,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                         ]
                     ],
                     [
-                        'image_acc' => esc_html__('Image 3', 'textdomain'),
+                        'image_acc' => esc_html__('Image 3', 'rometheme-for-elementor'),
                         'image_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'ia_card_link' => [
                             'url' => "#"
@@ -174,7 +174,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
 
                     ],
                     [
-                        'image_acc' => esc_html__('Image 4', 'textdomain'),
+                        'image_acc' => esc_html__('Image 4', 'rometheme-for-elementor'),
                         'image_title' => esc_html__('Title #1', 'rometheme-for-elementor'),
                         'ia_card_link' => [
                             'url' => "#"
@@ -194,10 +194,10 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'show_button',
             [
-                'label' => esc_html__('Show Button', 'textdomain'),
+                'label' => esc_html__('Show Button', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -291,7 +291,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
 
 
         $this->start_controls_section('container_style', [
-            'label' => esc_html__('Container', 'textdomain'),
+            'label' => esc_html__('Container', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
@@ -314,7 +314,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_opacity',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -338,7 +338,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'overlay_opacity_click',
             [
-                'label' => esc_html__('Opacity', 'textdomain'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -360,7 +360,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'height',
             [
-                'label' => esc_html__('Height', 'textdomain'),
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -402,7 +402,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}}  .item-ia-hover, {{WRAPPER}}  .item-ia-click',
 
             ]
@@ -412,7 +412,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'spacebetween',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -436,7 +436,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'textdomain'),
+                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -458,26 +458,26 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
 
         // text style
         $this->start_controls_section('text_style_section', [
-            'label' => esc_html__('Text Style', 'textdomain'),
+            'label' => esc_html__('Text Style', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
         $this->add_control(
             'text_position',
             [
-                'label' => esc_html__('Text Position', 'textdomain'),
+                'label' => esc_html__('Text Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -496,7 +496,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'spacebetween_text_text',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -528,7 +528,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_text_typography',
-                'label' => esc_html__('Title Typography', 'textdomain'),
+                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .text-title-ia',
 
             ]
@@ -537,7 +537,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'title_text_color',
             [
-                'label' => esc_html__('Title Color', 'textdomain'),
+                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .text-title-ia' => 'color: {{VALUE}};',
@@ -548,19 +548,19 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'title_text_align',
             [
-                'label' => esc_html__('Title Alignment', 'textdomain'),
+                'label' => esc_html__('Title Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -574,7 +574,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'title_text_padding',
             [
-                'label' => esc_html__('Title Padding', 'textdomain'),
+                'label' => esc_html__('Title Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -594,7 +594,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'title_text_margin',
             [
-                'label' => esc_html__('Title Margin', 'textdomain'),
+                'label' => esc_html__('Title Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -615,7 +615,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'hrdesc',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIVIDER,
             ]
         );
@@ -625,7 +625,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_text_typography',
-                'label' => esc_html__('Desc Typography', 'textdomain'),
+                'label' => esc_html__('Desc Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .text-description',
 
             ]
@@ -634,7 +634,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'desc_text_color',
             [
-                'label' => esc_html__('Desc Color', 'textdomain'),
+                'label' => esc_html__('Desc Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .text-description' => 'color: {{VALUE}};',
@@ -645,19 +645,19 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'desc_text_align',
             [
-                'label' => esc_html__('Desc Alignment', 'textdomain'),
+                'label' => esc_html__('Desc Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -671,7 +671,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'desc_text_padding',
             [
-                'label' => esc_html__('Desc Padding', 'textdomain'),
+                'label' => esc_html__('Desc Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -691,7 +691,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'desc_text_margin',
             [
-                'label' => esc_html__('Desc Margin', 'textdomain'),
+                'label' => esc_html__('Desc Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'default' => [
@@ -732,7 +732,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' =>  ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -743,7 +743,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -755,19 +755,19 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'button_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -866,7 +866,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
-                'label' => esc_html__('Border Button', 'textdomain'),
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                 'selector' => '  {{WRAPPER}} .button-element-image-accordion',
             ]
         );
@@ -898,7 +898,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -922,7 +922,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border_hover',
-                'label' => esc_html__('Border Button', 'textdomain'),
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                 'selector' => '  {{WRAPPER}} .button-element-image-accordion:hover',
             ]
         );
@@ -955,7 +955,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_hover',
             [
-                'label' => esc_html__('Background', 'textdomain'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

@@ -106,7 +106,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
                 'notice_type' => 'warning',
                 'dismissible' => true,
                 'heading' => esc_html__('Global Color Not Working', 'rometheme-for-elementor'),
-                'content' => esc_html__('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'textdomain'),
+                'content' => esc_html__('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'rometheme-for-elementor'),
             ]
         );
 

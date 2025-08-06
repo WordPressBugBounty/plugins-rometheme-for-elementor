@@ -2,6 +2,9 @@
 <?php
 require RomeTheme::plugin_dir() . 'view/header.php';
 
+$has_pro_license = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage');
+$has_woocommerce = is_plugin_active( 'woocommerce/woocommerce.php' );
+
 $themebuilder = [
     'all' => "All",
     'header' => "Header",
@@ -11,6 +14,13 @@ $themebuilder = [
     '404' => "404 Page",
     'form' => "Form",
 ];
+
+if($has_pro_license && $has_woocommerce) {
+    // cooming soon
+
+    // $themebuilder['single_product'] = 'Single Product';
+    // $themebuilder['archive_product'] = 'Archive Product';
+}
 $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
 ?>
 <div class="d-flex flex-column gap-3 me-3  mb-3 rtm-container rounded-2 rtm-bg-gradient-1 rtm-text-font" style="margin-top: -8rem;">
@@ -88,8 +98,8 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
         <div class="tab-pane fade <?php echo ($pageActive == 'single_post' ) ? esc_attr('show active') : '' ?>" id="tab-singlepost" role="tabpanel" aria-labelledby="tab-singlepost-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RomethemePro')) {
-                    require RomethemePro::module_dir() . '/single/view/single-view.php';
+                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                    require RTMPRO_PLUGIN_DIR . '/views/single-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
                 }
@@ -99,8 +109,8 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
         <div class="tab-pane fade <?php echo ($pageActive == '404' ) ? esc_attr('show active') : '' ?>" id="tab-errorpage" role="tabpanel" aria-labelledby="tab-errorpage-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RomethemePro')) {
-                    require RomethemePro::module_dir() . '/404/views/404-view.php';
+                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                    require RTMPRO_PLUGIN_DIR . '/views/404-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
                 }
@@ -110,8 +120,8 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
         <div class="tab-pane fade <?php echo ($pageActive == 'archive' ) ? esc_attr('show active') : '' ?>" id="tab-archivepage" role="tabpanel" aria-labelledby="tab-archivepage-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RomethemePro')) {
-                    require RomethemePro::module_dir() . '/archive/view/archive-view.php';
+                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                    require RTMPRO_PLUGIN_DIR . 'views/archive-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
                 }
@@ -129,7 +139,6 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
                 ?>
             </div>
         </div>
-
         <div class="tab-pane fade" id="tab-trash" role="tabpanel" aria-labelledby="tab-trash-tab" tabindex="0">
             <div class="p-5">
                 <?php

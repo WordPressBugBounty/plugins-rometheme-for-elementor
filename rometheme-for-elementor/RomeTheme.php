@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           1.6.1
+ * Version:           1.6.2
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
@@ -48,6 +48,7 @@ class RomeTheme
 			require_once self::module_dir() . 'template/template.php';
 			require_once self::module_dir() . 'extensions/ext.php';
 			require_once self::module_dir() . 'controls/controls.php';
+			require_once self::module_dir() . 'updates/updates.php';
 
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
@@ -58,6 +59,7 @@ class RomeTheme
 			new \RomethemeKit\Template();
 			new \RomethemeKit\RTMExtension();
 			new \RomethemeKit\Controls();
+			new \RomethemeKit\Update();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);
@@ -121,7 +123,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.6.1';
+		return '1.6.2';
 	}
 
 	/**
@@ -277,6 +279,16 @@ class RomeTheme
 			[$this, 'settings_call'],
 			5
 		);
+
+		add_submenu_page(
+			'romethemekit',
+			esc_html('Update'),
+			esc_html('Update'),
+			'manage_options',
+			'rtm-update',
+			[$this, 'update_call'],
+			5
+		);
 	}
 
 	function romethemekit_cal()
@@ -303,6 +315,10 @@ class RomeTheme
 	function widgets_call()
 	{
 		require RomeTheme::module_dir() . 'widgets/views/widgets_view.php';
+	}
+
+	function update_call() {
+		require RomeTheme::module_dir() . 'updates/views/update_view.php';
 	}
 
 

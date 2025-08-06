@@ -23,10 +23,10 @@ class BlurEffects
 		$container->add_control(
 			'use_blur_effects',
 			[
-				'label' => esc_html__('Enable Glass Effect ?', 'textdomain'),
+				'label' => esc_html__('Enable Glass Effect ?', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
+				'label_on' => esc_html__('yes', 'rometheme-for-elementor'),
+				'label_off' => esc_html__('no', 'rometheme-for-elementor'),
 				'return_value' => 'enabled',
 				'default' => '',
 				'prefix_class' => 'rtmkit-blur-effect-'
@@ -36,7 +36,7 @@ class BlurEffects
 		$container->add_control(
 			'rtmkit_blur_',
 			[
-				'label' => esc_html__('Blur (px)', 'textdomain'),
+				'label' => esc_html__('Blur (px)', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -72,10 +72,10 @@ class BlurEffects
 		$widgets->add_control(
 			'use_blur_effects',
 			[
-				'label' => esc_html__('Enable Blur Effect ?', 'textdomain'),
+				'label' => esc_html__('Enable Blur Effect ?', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
+				'label_on' => esc_html__('yes', 'rometheme-for-elementor'),
+				'label_off' => esc_html__('no', 'rometheme-for-elementor'),
 				'return_value' => 'enabled',
 				'default' => '',
 				'prefix_class' => 'rtmkit-blur-effect-'
@@ -85,7 +85,7 @@ class BlurEffects
 		$widgets->add_control(
 			'rtmkit_blur_',
 			[
-				'label' => esc_html__('Blur (px)', 'textdomain'),
+				'label' => esc_html__('Blur (px)', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [

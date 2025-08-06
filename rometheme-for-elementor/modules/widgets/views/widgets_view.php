@@ -28,6 +28,8 @@ $extensionsJSON = \RomethemeKit\RTMExtension::get_extension();
 $formOptions = get_option('rform-widget-options');
 $formJson = \RomethemeKit\RkitWidgets::listWidgetsForm();
 
+$isProActivated = \RomethemePlugin\Plugin::isProActive();
+
 
 ?>
 <style>
@@ -303,6 +305,7 @@ $formJson = \RomethemeKit\RkitWidgets::listWidgetsForm();
                     </div>
                     <div class="row row-cols-xxl-3 row-cols-xl-3 m-0 px-2 pb-2">
                         <?php foreach ($extensions as $h_opt => $value) : ?>
+
                             <div class="col m-0 p-2">
                                 <div class="card mw-100 rounded-3 rtm-border bg-gradient-3 w-100 m-0 p-3">
                                     <div class="d-flex flex-row align-items-center justify-content-between">
@@ -310,7 +313,12 @@ $formJson = \RomethemeKit\RkitWidgets::listWidgetsForm();
                                             <div class="d-flex flex-row align-items-center gap-3 text-white">
                                                 <i class="accent-color <?php echo esc_attr($extensionsJSON[$h_opt]['icon']) ?>" style="font-size:40px;"></i>
                                                 <div class="d-flex flex-column">
-                                                    <span><?php echo esc_html($extensionsJSON[$h_opt]['name']) ?><?php echo (isset($extensionsJSON[$h_opt]['is_new']) && $extensionsJSON[$h_opt]['is_new']) ? wp_kses_post('<span class="badge align-text-bottom bg-accent-color ms-2 rounded-pill">New</span>') : '' ?></span>
+                                                    <span><?php echo esc_html($extensionsJSON[$h_opt]['name']) ?>
+                                                        <?php 
+                                                            echo (isset($extensionsJSON[$h_opt]['is_new']) && $extensionsJSON[$h_opt]['is_new']) ? wp_kses_post('<span class="badge align-text-bottom bg-accent-color ms-2 rounded-pill">New</span>') : '';
+                                                            echo (isset($extensionsJSON[$h_opt]['is_pro']) && $extensionsJSON[$h_opt]['is_pro']) ? wp_kses_post('<span class="badge align-text-bottom bg-accent-color ms-2 rounded-pill">Pro</span>') : ''  
+                                                        ?>
+                                                    </span>
                                                     <div class="d-flex link-docs">
                                                         <a href="<?php echo esc_url($extensionsJSON[$h_opt]['docsURL']) ?>" target="_blank" class="">Docs</a>
                                                         <span>&#8226;</span>
@@ -321,11 +329,17 @@ $formJson = \RomethemeKit\RkitWidgets::listWidgetsForm();
                                         </div>
                                         <div class="col-3">
                                             <div class="d-flex w-100 justify-content-end">
-                                                <input name="<?php echo esc_attr($h_opt) ?>" value="false" hidden>
-                                                <label class="switch">
-                                                    <input name="<?php echo esc_attr($h_opt) ?>" class="switch-input" type="checkbox" value="true" <?php echo ($value['status']) ? 'checked' : ''  ?>>
-                                                    <span class="slider round"></span>
-                                                </label>
+                                                <?php if ((isset($extensionsJSON[$h_opt]['is_pro']) && $extensionsJSON[$h_opt]['is_pro'] === true && $isProActivated) || !isset($extensionsJSON[$h_opt]['is_pro'])) : ?>
+                                                    <input name="<?php echo esc_attr($h_opt) ?>" value="false" hidden>
+                                                    <label class="switch">
+                                                        <input name="<?php echo esc_attr($h_opt) ?>" class="switch-input" type="checkbox" value="true" <?php echo ($value['status']) ? 'checked' : '' ?>>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                <?php else: ?>
+                                                    <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" class="d-flex w-100 justify-content-end">
+                                                        <i class="rtmicon rtmicon-lock" style="font-size: 1.3em ; color:#00cea6"></i>
+                                                    </a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

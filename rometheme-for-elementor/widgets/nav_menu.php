@@ -510,19 +510,19 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [
-                    'title' => esc_html__('Left', 'textdomain'),
+                    'title' => esc_html__('Left', 'rometheme-for-elementor'),
                     'icon' => 'eicon-justify-start-h',
                 ],
                 'center' => [
-                    'title' => esc_html__('Center', 'textdomain'),
+                    'title' => esc_html__('Center', 'rometheme-for-elementor'),
                     'icon' => 'eicon-justify-center-h',
                 ],
                 'end' => [
-                    'title' => esc_html__('Right', 'textdomain'),
+                    'title' => esc_html__('Right', 'rometheme-for-elementor'),
                     'icon' => 'eicon-justify-end-h',
                 ],
                 'space-between' => [
-                    'title' => esc_html__('Justified', 'textdomain'),
+                    'title' => esc_html__('Justified', 'rometheme-for-elementor'),
                     'icon' => 'eicon-justify-space-between-h',
                 ],
             ],
@@ -958,19 +958,19 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-justify-start-h',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-justify-center-h',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-justify-end-h',
                     ],
                     'space-between' => [
-                        'title' => esc_html__('Justified', 'textdomain'),
+                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
                         'icon' => 'eicon-justify-space-between-h',
                     ],
                 ],

@@ -1,107 +1,302 @@
 === RTMKit Addons for Elementor ===
 Contributors: dickoandrean 
-Tags: addons, widget, elementor, header footer, extension
+Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.7
 Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 All-in-one toolkit for Elementor: advanced addons, theme builder, forms, icons & templates to build stunning sites fast and easy.
 
 == Description ==
-Revolutionize your website-building process with 64+ highly customizable addons, 50+ premade template kits, and a 1500+ icons pack ready to use. These tools unlock unparalleled flexibility and creativity, allowing you to design sophisticated websites faster and more efficiently—no coding required. Seamlessly integrated with Elementor, our addons elevate your WordPress website, enabling you to craft professional, stunning designs effortlessly.
+Unlock the Full Power of Elementor with RTMKit Addons
+Supercharge your Elementor Page Builder with 75+ powerful and highly customizable widgets and extensions. Instantly access 50+ professionally designed template kits and a ready-to-use icon library with over 1,500 icons, empowering you to build interactive, visually stunning, and performance-optimized WordPress websites—without writing a single line of code.
+
+This all-in-one addon package is designed to replace multiple WordPress plugins, providing the ultimate solution for Elementor users. Whether you're building blogs, online stores, or full business websites, RTMKit equips you with everything you need in one lightweight toolkit, including:
+
+- Blog Builder
+- WooCommerce Store Builder
+- Header & Footer Builder
+- 404 Page Builder
+- and much more!
 
 <iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Useful Links
 [Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
-### Pre-made Template Kits
-Explore our expanding library of template kits, available in both the free and PRO versions of RTMKit. Easily browse, preview, and import your favorite templates directly into Elementor with just a single click.
+### 🚀 Why Choose RTMKit Addons?
+✅ All-in-One Solution – Avoid plugin overload. RTMKit replaces multiple Elementor addons with a single, optimized package.
+✅ Free Elementor Form Builder – Build custom forms easily, no extra plugin needed.
+✅ Trusted by 40,000+ Active Websites – Growing steadily with global users.
+✅ 75+ Advanced Widgets – Add interactive functionality with ease.
+✅ 50+ Ready-Made Template Kits – Covering a wide range of niche business categories.
+✅ 1.500+ Ready-to-use icon library – Pre-made icons for instant visual impact.
+✅ Fully Customizable – Adjust every element, template, and widget to suit your brand.
+✅ Seamless Integrations – Compatible with WooCommerce and essential WordPress tools.
+✅ Lightweight & Fast – Engineered for speed without plugin bloat.
+✅ Top Ratings – Rated 4.8 out of 5 stars on WordPress.org.
+✅ Dedicated Support Team – Get help fast, whenever you need it.
 
-### Widgets Control: 
-Enable or disable individual Elementor addons to optimize page load speed and site performance.
+### 🌟 75+ Free & Premium Elementor Widgets That Simplify and Enhance Your Design Workflow
 
-### Theme Builder:
-Easily create and modify the entire layout of your website, giving you total control over its look and feel.
+### FREE Header Website Builder for Elementor:
+Create dynamic, responsive headers using Elementor—without any coding. With widgets like sticky nav menus, off-canvas panels, logo displays, search bars, and contact info sections, you have everything you need to build modern, professional headers that elevate your brand identity.
 
-### Form Builder:
-Integrates with RomethemeForm to effortlessly create advanced forms using the drag-and-drop form builder, making it ideal for designing various types of forms without the need for coding.
+#### Header Offcanvas (FREE):
+Create a button-triggered offcanvas area—ideal for showing demo links, registration forms, or any sidebar content.
 
-### System Status Check:
-A diagnostic tool to ensure your WordPress environment meets the requirements for running Elementor smoothly.
+#### Search (FREE):
+Add interactive search functionality, including classic and modal-style options, for a smoother user experience.
 
-### Icon Pack: 
-Access a collection of over 100 icons to enhance your site's design.
+#### Site Logo (FREE):
+Easily display your website’s branding and logo.
 
-### Widgets & Extension Included:
+#### Header Info (FREE):
+Showcase key contact details such as address, phone number, or email directly in the header.
 
-### (NEW) Extensions
-* RTM Glass Effect : Add a sleek glassmorphism effect to your Elementor elements for a modern, frosted-glass appearance.
-* RTM Duplicator: Easily duplicate any Elementor widget, column, or section to speed up your workflow.
-* RTM Tooltips: Add stylish, customizable tooltips to any Elementor element for better UX.
-* RTM Wrapper Link: Make entire sections or columns clickable by wrapping them with a custom link.
+#### Nav Menu (FREE):
+Build clean dropdown navigation menus to help users move seamlessly across your site.
 
-### Header Addons :
-*   Header Offcanvas (FREE): Add an offcanvas header that displays sidebar content, such as demo and registration forms, triggered by a specific button.
-*   Search (FREE): Provide an interactive search widget for your webpage with options for simple search fields or modal-style functionality.
-*   Site Logo (FREE): Showcase your website’s logo with ease.
-*   Header Info (FREE): Display essential business or contact information in the header.
-*   Nav Menu (FREE): Build a dropdown navigation menu to enable seamless user navigation across your website.
 
-### Content Addons :
-*	Blockquote( FREE): Stylishly display quoted text with customizable designs.
-*	Call to Action (FREE): Create engaging buttons or sections to drive user action.
-*	Countdown (FREE): Add a countdown timer for events or promotions.
-*	Counter (FREE): Showcase numeric stats with animated counters.
-*	Image Box (FREE): Combine images and text in an elegant layout.
-*	Dual Button (FREE): Add two buttons side by side for versatile actions.
-*	Carousel Card (FREE): Display card-style content in a responsive carousel.
-*	Slider (FREE): Create dynamic image or content sliders for hero image.
-*	Pricing Table (FREE): Create detailed, visually appealing pricing tables.
-*	Pricing Image Box (PRO): Highlight pricing plans with images and descriptions.
-*	Pricing List (PRO): Display pricing options in a simple, list-based layout.
-*	Progress Bar (FREE): Visually represent progress or achievements.
-*	Team Box (FREE): Introduce your team with profile cards.
-*	Testimonials Carousel (FREE): Display customer testimonials in a rotating carousel.
-*	Social Share (FREE): Add share buttons for easy social media sharing.
-*	Tabs (FREE): Organize content into responsive, clickable tabs.
-*	Accordion (FREE): Display collapsible sections for structured content.
-*	RForm (FREE): Allows you to create simple yet effective forms with ease.
+### Single & Archive Post Builder for Elementor:
+Design your blog and archive pages with complete layout flexibility. Use post grids, carousels, block styles, author bios, navigation links, and more—all styled visually inside Elementor. Deliver a seamless content experience that keeps readers engaged across your site
 
-### Chart Addons :
-*	Chart Line (FREE): Visualize data trends with line charts.
-*	Chart Pie & Doughnut (FREE): Create pie and doughnut charts to represent proportions.
-*	Chart Bar (FREE): Showcase data with customizable bar charts.
+#### Archive Title (PRO):
+Display the archive page title dynamically (e.g. category, tag, author, or date archive).
 
-### Post Addons :
-*	Post Grid (FREE): Display posts in a clean, grid-based layout.
-*	Post Block (FREE): Highlight posts in a block-style design.
-*	Post List (FREE): List posts in a minimal, straightforward format.
-*	Post Carousel (PRO): Showcase posts in an interactive, rotating carousel.
+#### Archive Posts (PRO):
+Show posts filtered by archive types like categories, tags, or custom taxonomies with layout control.
 
-### Heading Addons :
-*	Animated Text (FREE): Create engaging text animations to grab user attention.
-*	Text Marquee (FREE): Add a scrolling text effect for announcements or highlights.
-*	Advanced Heading (FREE): Design customizable headings with unique styles and effects.
+#### Post Grid (FREE):
+Present your blog posts in a modern grid-based layout, ideal for blog pages and content hubs.
 
-### Image & Media Addons :
-*	Image Comparison (FREE): Showcase before-and-after images with an interactive slider.
-*	Image Gallery (FREE): Organize and display images in a customizable gallery.
-*	Image Accordion (FREE): Add interactive accordion-style image layouts.
-*	Image Client Logo Carousel (PRO): Showcase client or partner logos in a carousel.
+#### Post Block (FREE):
+Highlight each post in a block-style card, perfect for bold visual presentation.
 
-### Support & Documentation
-Documentation: Start here to explore detailed guides on how to use widgets, features, or troubleshoot common issues.
-Video Tutorials: Access a growing playlist of step-by-step video tutorials covering various widgets and features. New tutorials are added regularly.
-Facebook Community: Join our Facebook group to ask questions, share insights, and get assistance from other Premium Addons users.
-Support : Need direct help? We’re happy to assist Free users with issues that may require access credentials.
+#### Post List (FREE):
+Display posts in a clean, vertical list format—ideal for minimal or editorial designs.
 
-Unlock even more features with our [PRO version](https://rometheme.net/pricing/).
+#### Post Carousel (PRO):
+Add a sleek, interactive carousel to feature posts attractively in limited space.
 
-Enjoying RomethhemeKit? Show your support by leaving us a rating on WordPress! 😊
+Post Author (PRO):
+#### Showcase author details like name, avatar, and bio to add a personal touch to your content.
+
+#### Post Content (PRO):
+Display the main content of the blog post with full styling control.
+
+#### Post Comment (PRO):
+Integrate a comment section to boost engagement and allow reader feedback.
+
+#### Post Excerpt (PRO):
+Show a short preview or summary of the post to encourage clicks.
+
+#### Featured Image (PRO):
+Display the post's featured image with adjustable size and layout options.
+
+#### Post Info (PRO):
+Show meta information like post date, categories, tags, and reading time.
+
+#### Post Navigation (PRO):
+Add previous/next navigation links to help readers move between posts easily.
+
+#### Post Title (PRO):
+Display the post title dynamically, with full control over typography and styling.
+
+### Free Form Builder for Elementor:
+Style contact, feedback, and newsletter forms directly within Elementor. With full control over every form field—including text, radio buttons, checkboxes, and GDPR consent—you can build branded, responsive forms without writing a line of CSS. Optimized for both usability and conversions.
+
+#### Checkbox (FREE):
+Add multi-option fields with custom checkbox styles, spacing, and alignment.
+
+#### Date (FREE):
+Let users select dates using a styled calendar input that fits your design.
+
+#### Email (FREE):
+Collect user email addresses with a fully customizable input field.
+
+#### Number (FREE):
+Use number input fields with validation options and clean layout control.
+
+#### Radio Button (FREE):
+Allow single-option selections with styled radio buttons that match your form aesthetic.
+
+#### Select (FREE):
+Offer dropdown-style input fields with adjustable typography, spacing, and layout.
+
+#### Submit Button (FREE):
+Customize your form’s call-to-action button with hover effects, icons, and typography settings.
+
+#### Telephone (FREE):
+Collect phone numbers with country code formatting and input masking support.
+
+#### Text (FREE):
+Add standard input fields for names, subject lines, or any short-form content.
+
+#### Text Area (FREE):
+Perfect for long-form user input like messages or suggestions—fully stylable.
+
+#### Time (FREE):
+Enable users to choose a time using an intuitive, styled input field.
+
+#### GDPR Consent (FREE):
+Add a required checkbox for privacy policy or terms consent, essential for compliance.
+
+### Creative Widgets:
+#### Animated Circle Button (PRO):
+Create stylish, animated circular buttons with hover effects—perfect for modern call-to-actions or feature highlights.
+
+#### Image Marquee (PRO):
+Display a smooth, continuous horizontal scrolling image strip—great for logos, brand icons, or portfolio previews.
+
+#### Text Marquee (FREE):
+Add continuously scrolling text to grab attention and showcase announcements, headlines, or offers creatively.
+
+#### Textual Showcase (PRO):
+Highlight key information with animated or scroll-revealed text blocks—ideal for service features or quotes.
+
+#### Animated Heading (FREE):
+Make your headlines pop with animated text effects that draw attention and add a dynamic flair to your designs.
+
+#### Interactive Link (PRO):
+Turn any link into a visually interactive element with hover effects, animated borders, and custom reveal styles.
+
+#### Card Carousel (FREE):
+Create a responsive, swipeable card slider to display featured content in a compact, interactive format.
+
+### Content Widgets:
+#### Accordion (FREE):
+Display collapsible sections to organize content such as FAQs or service descriptions, saving space while enhancing readability.
+
+#### Advanced Toggle (PRO):
+Create toggle elements with custom styling, icons, and animations—great for showing/hiding content with advanced control.
+
+#### Advanced Tabs (FREE):
+Organize content into horizontal or vertical tabbed layouts, allowing users to navigate sections without scrolling.
+
+#### Blockquote (FREE):
+Highlight quotes, testimonials, or statements with visually enhanced formatting to draw attention and add credibility.
+
+#### Advanced Heading (FREE):
+Design headings with extended typography and style options to make titles more engaging and on-brand.
+
+#### Video Button (FREE):
+Add a sleek video play button that opens YouTube, Vimeo, or self-hosted videos in a popup or lightbox format.
+
+#### Hero Slider (FREE):
+Build a full-width hero section with image or video sliders, ideal for landing pages, promotions, and homepage intros.
+
+#### Dual Button (FREE):
+Create two side-by-side call-to-action buttons—perfect for offering primary and secondary actions (e.g. "Buy Now" & "Learn More").
+
+#### Back to Top (FREE):
+Add a customizable scroll-to-top button for better user navigation and page usability.
+
+#### Social Share (FREE):
+Enable visitors to easily share your content across major social media platforms using styled, responsive buttons.
+
+#### Team Member (FREE):
+Showcase your team members with photo, name, role, and social links—perfect for About pages or agency sites.
+
+#### Client Grid (FREE):
+Display client logos in a clean grid layout, helping build trust and showcase brand collaborations.
+
+#### Client Carousel (PRO):
+Present client or partner logos in an interactive slider—ideal for showcasing many clients without cluttering the page.
+
+#### Testimonials Carousel (FREE):
+Display rotating customer testimonials with avatar, name, rating, and quote styling to boost social proof.
+
+### Image & Media Widgets:
+#### Image Box (FREE):
+Combine an image with a title, icon, and description in one clean box layout—ideal for showcasing features, services, or products with visuals and text.
+
+#### Image Gallery (FREE):
+Display multiple images in a responsive gallery grid or masonry with lightbox functionality—perfect for portfolios, project showcases, or product displays.
+
+#### Image Stack Info (PRO):
+Create stacked image layers with overlay information that appears on hover—great for storytelling, reviews, service highlights, or visual summaries.
+
+#### Image Accordion (FREE):
+Present multiple images in a horizontal or vertical accordion format where each section expands on hover or click—adds interactive flair to your gallery sections.
+
+#### Image Comparison (FREE):
+Let users compare two images (e.g. before & after) with a draggable slider—perfect for case studies, redesigns, product improvements, or photo edits.
+
+### Marketing Widgets:
+#### Social Icons (FREE):
+Add stylish, customizable icons that link to your social media profiles—perfect for increasing your online presence and user engagement.
+
+#### Call To Action (FREE):
+Create compelling CTAs with headline, description, and button in a visually engaging block—great for lead generation, offers, and promotions.
+
+#### Countdown (FREE):
+Display a real-time countdown timer to create urgency for limited-time offers, sales events, or product launches.
+
+#### Pricing Table (FREE):
+Showcase pricing plans with feature lists, highlight badges, and call-to-action buttons—ideal for SaaS, service packages, or subscription models.
+
+#### Pricing Image Box (PRO):
+Combine single images or image gallery with pricing information and feature descriptions in a modern layout—perfect for product showcases or service tiers with visuals.
+
+#### Pricing List (FREE):
+Create clean, restaurant-style or service-based pricing menus with item names, prices, and optional descriptions—perfect for food menus, service catalogs, and price breakdowns.
+
+#### Woo Product Grid (FREE):
+Display WooCommerce products in a responsive, customizable grid layout—includes image, title, price, and add-to-cart button for a seamless shopping experience.
+
+### Infographics Widgets:
+#### Counter (FREE):
+Display animated number counters to highlight key stats like project counts, user metrics, achievements, or milestones—perfect for homepage highlights or company overviews.
+
+#### Progress Bar (FREE):
+Show progress or completion percentages in a horizontal bar format—ideal for skill levels, project phases, or goal tracking.
+
+#### Pie & Doughnut Chart (FREE):
+Visualize data using animated circular charts to display proportions, percentages, or comparisons in a clean and interactive style.
+
+#### Line Chart (FREE):
+Display data trends over time with smooth line graphs—perfect for performance tracking, sales growth, or analytics dashboards.
+
+#### Bar Chart (FREE):
+Present data using vertical or horizontal bars—great for comparing values across categories, showcasing statistics, or visual reporting.
+
+### Extentions:
+#### Glass Effect (FREE):
+Apply a modern frosted glass or blur effect to any section or element—ideal for stylish overlays, headers, or callout sections.
+
+#### Advanced Sticky (PRO):
+Make any section or widget stay fixed on scroll with advanced controls—perfect for sticky headers, floating call-to-actions, or sidebar menus with offset and behavior settings.
+
+#### Custom Cursor (PRO):
+Replace the default mouse cursor with custom-designed cursors—add interactivity and branding to your website experience.
+
+#### Duplicator (FREE):
+Easily duplicate post or page with a single click—speed up your workflow.
+
+#### Wrapped Link (FREE):
+Turn an entire section, column, widget, or container into a clickable link—enhancing user interaction without relying on individual buttons or text links.
+
+#### Tooltips (FREE):
+Add contextual tooltips to icons, buttons, or any element—great for micro-interactions, explanations, or improving usability.
+
+### 🧭 Need Help Getting Started?
+Check out our [Getting Started Guide and Documentation](https://support.rometheme.net/docs/) for step-by-step tutorials to help you make the most of RTMKit Addons.
+
+### 🙋 Have a Question?
+Visit our [Support Forum on WordPress.org.](https://wordpress.org/support/plugin/rometheme-for-elementor/) Our team is ready to assist you with any issues or questions you might have.
+
+### 🚀 Want to Unlock More Power?
+Explore the [RTMKit PRO version](https://rometheme.net/plugins/rtmkit/pricing/) to access exclusive widgets, advanced features, and premium design tools—all crafted to supercharge your Elementor workflow.
+
+### 🎥 Prefer Visual Learning?
+Watch our [video tutorials and walkthroughs on YouTube](https://www.youtube.com/@Rometheme_Studio) and learn how to build stunning websites with RTMKit.
+
+### ⭐ Found RTMKit Helpful?
+We’d love to hear your thoughts! [Leave us a review on WordPress.org](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post) and help others discover RTMKit Addons.
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.

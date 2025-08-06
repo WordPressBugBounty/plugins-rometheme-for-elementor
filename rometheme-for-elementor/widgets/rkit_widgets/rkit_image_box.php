@@ -162,7 +162,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_control(
             'hover_animation',
             [
-                'label' => esc_html__('Hover Image', 'textdomain'),
+                'label' => esc_html__('Hover Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
                 'default' => 'grow',
             ]
@@ -321,7 +321,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_control(
             'ib_link',
             [
-                'label' => esc_html__('Link', 'textdomain'),
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
                 'options' => ['url', 'is_external', 'nofollow'],
                 'label_block' => true,
@@ -411,7 +411,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'containe_imagebox_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-image_box-card',
                 'condition' => [
                     'select_style!' => 'float-card',
@@ -435,7 +435,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'con_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -468,7 +468,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-image_box__img img ',
                 'condition' => [
                     'select_style' => 'float-card',
@@ -480,7 +480,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding',
             [
-                'label' => esc_html__('Padding Image', 'textdomain'),
+                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -496,7 +496,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'textdomain'),
+                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -508,7 +508,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'label' => esc_html__('Image Filter', 'textdomain'),
+                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
                 'name' => 'image_filters',
                 'selector' => '{{WRAPPER}} .rkit-image_box__img img ',
             ]
@@ -830,7 +830,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'desc_con_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -896,7 +896,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'defdesc_con_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1045,7 +1045,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing    ', 'textdomain'),
+                'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [

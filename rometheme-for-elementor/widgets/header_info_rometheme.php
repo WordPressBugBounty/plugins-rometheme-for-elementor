@@ -236,7 +236,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'text_padding',
 			[
-				'label' => esc_html__( 'Padding', 'textdomain' ),
+				'label' => esc_html__( 'Padding', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'selectors' => [
@@ -248,7 +248,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'text_radius',
 			[
-				'label' => esc_html__( 'Border Radius', 'textdomain' ),
+				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'selectors' => [

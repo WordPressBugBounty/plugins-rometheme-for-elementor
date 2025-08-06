@@ -943,7 +943,6 @@ class Rkit_Accordion extends \Elementor\Widget_Base
                                     echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($item['item_template']);
                                 }
                             }
-
                             ?>
                         </div>
                     </div>

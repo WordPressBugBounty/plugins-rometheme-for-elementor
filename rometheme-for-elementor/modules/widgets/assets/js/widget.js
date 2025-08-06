@@ -66,10 +66,10 @@ jQuery(document).ready(function ($) {
     //             url: rometheme_ajax_url.ajax_url,
     //             data: dataExt,
     //             success: function (res) {
-    //               // btn.html('Save Changes');
-    //               // btn.prop('disabled', false);
+    //                btn.html('Save Changes');
+    //               btn.prop('disabled', false);
     //               window.location.reload();
-    //               // console.log(res);
+    //                console.log(res);
     //             },
     //           });
     //         },
@@ -80,10 +80,10 @@ jQuery(document).ready(function ($) {
     //         url: rometheme_ajax_url.ajax_url,
     //         data: dataExt,
     //         success: function (res) {
-    //           // btn.html('Save Changes');
-    //           // btn.prop('disabled', false);
+    //           btn.html('Save Changes');
+    //           btn.prop('disabled', false);
     //           window.location.reload();
-    //           // console.log(res);
+    //            console.log(res);
     //         },
     //       });
     //     }

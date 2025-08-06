@@ -7,7 +7,9 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
+    
   },
   "postcontent": {
     "name": "Post Content",
@@ -17,7 +19,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "postcomment": {
     "name": "Post Comment",
@@ -27,7 +30,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "postexcerpt": {
     "name": "Post Excerpt",
@@ -37,7 +41,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "postfeaturedimage": {
     "name": "Featured Image",
@@ -47,7 +52,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "postinfo": {
     "name": "Post Info",
@@ -57,7 +63,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "postnavigation": {
     "name": "Post Navigation",
@@ -67,7 +74,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "posttitle": {
     "name": "Post Title",
@@ -77,7 +85,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "archivetitle": {
     "name": "Archieve Title",
@@ -87,7 +96,8 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   },
   "archivepost": {
     "name": "Archieve Posts",
@@ -97,6 +107,7 @@
     "status": true,
     "type": "pro",
     "docsURL" : "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/" ,
-    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/"
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
   }
 }

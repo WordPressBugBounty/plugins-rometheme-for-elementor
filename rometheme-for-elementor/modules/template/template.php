@@ -47,101 +47,101 @@ class Template
 
     public function fetch_lib()
     {
-
         if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
 
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
+        $args = [
+            'headers' => [
+                'Accept' => 'application/json',
+            ],
+            'httpversion' => '1.1',
+            'timeout' => 15,
+            'sslverify' => false, // Ubah ke true di production jika SSL valid
+            'auth' => [$this->ck, $this->cs],
         ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        // Gunakan wp_remote_get untuk mengambil data dari REST API
+        $response = wp_remote_get($this->url . '/wp-json/public/template_lib', $args);
 
-        // Cek untuk error
-        if (curl_errno($ch)) {
-            wp_send_json_error('Error:' . curl_error($ch));
-        } else {
-            if (isset($_POST['search']) || !empty($_POST['search'])) {
-                $search = strtolower(trim($_POST['search'])); // Normalisasi input
-                $response = array_filter($response, function ($item) use ($search) {
-                    return stripos($item['name'], $search) !== false ||
-                        stripos($item['category'], $search) !== false ||
-                        stripos($item['type'], $search) !== false;
-                });
-            }
-
-            if (isset($_POST['category']) || !empty($_POST['category'])) {
-                $category = $_POST['category'];
-                $response = array_filter($response, function ($item) use ($category) {
-                    return stripos($item['category'], $category) !== false;
-                });
-            }
-
-            $free = [];
-            $pro = [];
-
-            foreach ($response as $k => $v) {
-                if ($v['type'] === 'free') {
-                    $free[$k] = $v;
-                } else {
-                    $pro[$k] = $v;
-                }
-            }
-
-            $sortData = array_merge($free , $pro);
-
-            // Pagination parameters
-            $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1; // Default halaman 1
-            $per_page = 24; // Jumlah item per halaman
-
-            // Hitung total halaman
-            $total_items = count($sortData);
-            $total_pages = ceil($total_items / $per_page);
-
-            // Filter data untuk halaman saat ini
-            $offset = ($paged - 1) * $per_page;
-            $paged_data = array_slice($sortData, $offset, $per_page);
-            $data = [];
-
-            foreach ($paged_data as $k => $v) {
-                $data[$k] = [
-                    'id' => $v['id'],
-                    'name' => $v['name'],
-                    'category' => $v['category'],
-                    'type' => $v['type'],
-                    'preview_url' => $v['preview_url'],
-                    'image_preview' => $v['image_preview'],
-                    'downloads' => $v['downloads'],
-                    'has_installed' => $this->has_installed(wp_hash($v['id'])),
-                    'installed' => ($this->has_installed(wp_hash($v['id']))) ? wp_hash($v['id']) : null
-                ];
-                // array_push($data , $datas);
-            }
-
-            // Response
-            wp_send_json_success([
-                'data_template' => $data,
-                'pagination' => [
-                    'current_page' => $paged,
-                    'total_pages' => $total_pages,
-                ],
-                'template_url' => admin_url('admin.php?page=rtmkit-templates')
-            ]);
-
-            curl_close($ch);
+        if (is_wp_error($response)) {
+            wp_send_json_error('Error: ' . $response->get_error_message());
         }
+
+        $body = wp_remote_retrieve_body($response);
+        $templates = json_decode($body, true);
+
+        if (!is_array($templates)) {
+            wp_send_json_error('Invalid response format');
+        }
+
+        // Filtering berdasarkan pencarian
+        if (!empty($_POST['search'])) {
+            $search = strtolower(trim($_POST['search']));
+            $templates = array_filter($templates, function ($item) use ($search) {
+                return stripos($item['name'], $search) !== false ||
+                    stripos($item['category'], $search) !== false ||
+                    stripos($item['type'], $search) !== false;
+            });
+        }
+
+        // Filtering berdasarkan kategori
+        if (!empty($_POST['category'])) {
+            $category = $_POST['category'];
+            $templates = array_filter($templates, function ($item) use ($category) {
+                return stripos($item['category'], $category) !== false;
+            });
+        }
+
+        // Pisahkan free dan pro
+        $free = [];
+        $pro = [];
+        foreach ($templates as $k => $v) {
+            if ($v['type'] === 'free') {
+                $free[$k] = $v;
+            } else {
+                $pro[$k] = $v;
+            }
+        }
+
+        $sortData = array_merge($free, $pro);
+
+        // Pagination
+        $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
+        $per_page = 24;
+        $total_items = count($sortData);
+        $total_pages = ceil($total_items / $per_page);
+        $offset = ($paged - 1) * $per_page;
+        $paged_data = array_slice($sortData, $offset, $per_page);
+
+        // Persiapkan data
+        $data = [];
+        foreach ($paged_data as $k => $v) {
+            $hash_id = wp_hash($v['id']);
+            $data[$k] = [
+                'id' => $v['id'],
+                'name' => $v['name'],
+                'category' => $v['category'],
+                'type' => $v['type'],
+                'preview_url' => $v['preview_url'],
+                'image_preview' => $v['image_preview'],
+                'downloads' => $v['downloads'],
+                'has_installed' => $this->has_installed($hash_id),
+                'installed' => $this->has_installed($hash_id) ? $hash_id : null,
+            ];
+        }
+
+        wp_send_json_success([
+            'data_template' => $data,
+            'pagination' => [
+                'current_page' => $paged,
+                'total_pages' => $total_pages,
+            ],
+            'template_url' => admin_url('admin.php?page=rtmkit-templates')
+        ]);
     }
+
 
     public function register_scripts()
     {
@@ -167,33 +167,37 @@ class Template
             wp_die();
         }
 
-        $id = $_POST['template'];
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
-        ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib?id=' . $id);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
-        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $id = sanitize_text_field($_POST['template']);
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        $url = $this->url . '/wp-json/public/template_lib?id=' . urlencode($id);
 
-        $url = $response['zip_url'];
+        $response = wp_remote_get($url, [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic ' . base64_encode("{$this->ck}:{$this->cs}"),
+            ],
+            'timeout' => 20,
+            'sslverify' => false, // Ubah ke true di environment production
+        ]);
 
-        if (curl_errno($ch)) {
-            wp_send_json_error('Error:' . curl_error($ch));
+        if (is_wp_error($response)) {
+            wp_send_json_error('Error: ' . $response->get_error_message());
         }
-        curl_close($ch);
 
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+
+        if (!isset($data['zip_url'], $data['id'])) {
+            wp_send_json_error('Invalid data received from API.');
+        }
+
+        $zip_url = $data['zip_url'];
+
+        // Update counter dan ekstrak template
         $this->update_download($id);
-        $this->template_extract($url, $response['id']);
+        $this->template_extract($zip_url, $data['id']);
     }
+
 
     public function import_rtm_template()
     {
@@ -402,23 +406,33 @@ class Template
 
     function update_download($id)
     {
+        if (empty($id)) {
+            return;
+        }
 
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
-        ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/updld?id=' . $id);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $url = $this->url . '/wp-json/public/updld?id=' . urlencode($id);
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        $response = wp_remote_post($url, [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic ' . base64_encode("{$this->ck}:{$this->cs}"),
+            ],
+            'timeout' => 15,
+            'sslverify' => false, // Ganti ke true di production jika SSL valid
+        ]);
+
+        if (is_wp_error($response)) {
+            error_log('Download update failed: ' . $response->get_error_message());
+            return;
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $decoded = json_decode($body, true);
+
+        // Jika perlu, bisa ditambahkan logika pemrosesan hasil
+        return $decoded;
     }
+
 
     function has_installed($hashId)
     {
@@ -456,7 +470,7 @@ class Template
 
     public function get_template_content()
     {
-        if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
+        if (!isset($_POST['wpnonce']) ||  ! check_ajax_referer('rtm_template_nonce', 'wpnonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
@@ -472,23 +486,36 @@ class Template
 
     private function _get_template_item_data($id)
     {
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
-        ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib?id=' . $id);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        if (empty($id)) {
+            return null;
+        }
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        $url = $this->url . '/wp-json/public/template_lib?id=' . urlencode($id);
 
-        return $response;
+        $response = wp_remote_get($url, [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic ' . base64_encode("{$this->ck}:{$this->cs}"),
+            ],
+            'timeout' => 15,
+            'sslverify' => false, // Set ke true di environment production
+        ]);
+
+        if (is_wp_error($response)) {
+            error_log('Failed to fetch template item data: ' . $response->get_error_message());
+            return null;
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $decoded = json_decode($body, true);
+
+        if (!is_array($decoded)) {
+            return null;
+        }
+
+        return $decoded;
     }
+
 
     private function _get_template_description($id)
     {
@@ -504,23 +531,32 @@ class Template
 
     public function _get_template_category()
     {
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
-        ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $this->url . '/wp-json/public/template_lib_cat');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$this->ck:$this->cs");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $url = $this->url . '/wp-json/public/template_lib_cat';
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        $response = wp_remote_get($url, [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Basic ' . base64_encode("{$this->ck}:{$this->cs}"),
+            ],
+            'timeout' => 15,
+            'sslverify' => false, // Set ke true di production dengan SSL valid
+        ]);
 
-        return $response;
+        if (is_wp_error($response)) {
+            error_log('Failed to fetch template categories: ' . $response->get_error_message());
+            return null;
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $decoded = json_decode($body, true);
+
+        if (!is_array($decoded)) {
+            return null;
+        }
+
+        return $decoded;
     }
+
 
     public function template_category()
     {

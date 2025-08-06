@@ -477,7 +477,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'con_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -580,7 +580,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         // image style
 
         $this->start_controls_section('image_style_section_wpg', [
-            'label' => esc_html__('Image', 'textdomain'),
+            'label' => esc_html__('Image', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
@@ -608,7 +608,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'image_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -622,7 +622,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'image_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -650,7 +650,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '
                 {{WRAPPER}} .rkit-product-image-container'
 
@@ -672,7 +672,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border_hover',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '
                 {{WRAPPER}} .rkit-product-image-wpg:hover .rkit-product-image-container'
             ]
@@ -1121,19 +1121,19 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_content_align',
             [
-                'label' => esc_html__('Content Alignment', 'textdomain'),
+                'label' => esc_html__('Content Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -1181,7 +1181,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'more_options_icon_button_back',
             [
-                'label' => esc_html__('Button Container Background', 'textdomain'),
+                'label' => esc_html__('Button Container Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1218,7 +1218,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'button_padding',
             [
-                'label' => esc_html__('Section Padding', 'textdomain'),
+                'label' => esc_html__('Section Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -1265,7 +1265,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'button_border_radius_normal',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1293,7 +1293,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1373,7 +1373,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'button_border_radius_hover',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1408,7 +1408,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_hover',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1492,7 +1492,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_control(
             'ribbon_radius_wpg',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -1538,7 +1538,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'ribbon_vertical_distance_wpg',
             [
-                'label' => esc_html__('Vertical Distance', 'textdomain'),
+                'label' => esc_html__('Vertical Distance', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -1557,7 +1557,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'ribbon_horizontal_distance_wpg_left',
             [
-                'label' => esc_html__('Horizontal Distance', 'textdomain'),
+                'label' => esc_html__('Horizontal Distance', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -1579,7 +1579,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'ribbon_horizontal_distance_wpg_right',
             [
-                'label' => esc_html__('Horizontal Distance', 'textdomain'),
+                'label' => esc_html__('Horizontal Distance', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [

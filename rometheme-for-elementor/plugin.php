@@ -34,6 +34,7 @@ class Plugin
         wp_enqueue_style('rkit-cta-style', \RomeTheme::widget_url() . 'assets/css/cta.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-blockquote', \RomeTheme::widget_url() . 'assets/css/blockquote.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-social-share', \RomeTheme::widget_url() . 'assets/css/social_share.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-social-icon', \RomeTheme::widget_url() . 'assets/css/social_icon.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-team-style', \RomeTheme::widget_url() . 'assets/css/rkit_team.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-running_text-style', \RomeTheme::widget_url() . 'assets/css/running_text.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-animated_heading-style', \RomeTheme::widget_url() . 'assets/css/animated_heading.css', '', \RomeTheme::rt_version());
@@ -64,7 +65,8 @@ class Plugin
         wp_enqueue_style('rkit-linechart-style', \RomeTheme::widget_url() . 'assets/css/linechart.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-piechart-style', \RomeTheme::widget_url() . 'assets/css/piechart.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-back-to-top-style', \Rometheme::widget_url() . 'assets/css/back_to_top.css', [], \RomeTheme::rt_version());
-
+        wp_enqueue_style('rkit-video-button-style', \Rometheme::widget_url() . 'assets/css/video_button.css', [], \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-glightbox-style', \Rometheme::widget_url() . 'assets/css/glightbox.min.css', [], \RomeTheme::rt_version());
        
     }
 
@@ -98,7 +100,8 @@ class Plugin
         wp_enqueue_script('rkit-image_gallery_mansonry_loaded-script', \RomeTheme::widget_url() . 'assets/js/imagesloaded.pkgd.min.js', ['jquery'], \RomeTheme::rt_version(),true);
         wp_enqueue_script('rkit-home-slider-script', \RomeTheme::widget_url() . 'assets/js/home_slider.js', ['jquery'], \RomeTheme::rt_version(),true);
         wp_enqueue_script('rkit-back-to-top-script', \RomeTheme::widget_url() . 'assets/js/back_to_top.js', ['jquery'], \RomeTheme::rt_version(), true);
-  
+        wp_enqueue_script('rkit-glightbox-script', \RomeTheme::widget_url() . 'assets/js/glightbox.min.js', ['jquery'], \RomeTheme::rt_version(), true);
+        wp_enqueue_script('rkit-video_button-script', \RomeTheme::widget_url() . 'assets/js/video_button.js', ['jquery'], \RomeTheme::rt_version(), true);
     }
 
     public static function  add_elementor_widget_categories($elements_manager)
@@ -251,8 +254,8 @@ class Plugin
     }
 
     public static function isProActive(){
-        if (class_exists('RomethemePro')) {
-            if(RomethemePro\RproLicense::get_subs_status() === 'active') {
+        if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+            if(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
                 return true;
             } else {
                 return false;

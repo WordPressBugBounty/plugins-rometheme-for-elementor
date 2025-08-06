@@ -81,19 +81,19 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'button_align',
             [
-                'label' => esc_html__(' Alignment', 'textdomain'),
+                'label' => esc_html__(' Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -107,7 +107,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'width',
             [
-                'label' => esc_html__('Button Width', 'textdomain'),
+                'label' => esc_html__('Button Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -198,7 +198,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_left_icon_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -294,7 +294,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_right_icon_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -391,14 +391,14 @@ class Rkit_dual_button extends \Elementor\Widget_Base
 
 
     $this->start_controls_section('general_style', [
-        'label' => esc_html__('General', 'textdomain'),
+        'label' => esc_html__('General', 'rometheme-for-elementor'),
         'tab' => \Elementor\Controls_Manager::TAB_STYLE,
     ]);
 
         $this->add_responsive_control(
             'spacebetween',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -423,7 +423,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'spacebetween_column',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -447,7 +447,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -461,7 +461,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding_button',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%','em','rem'],
                 'default' => [
@@ -508,7 +508,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_border_radius_left',
                 [
-                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -531,7 +531,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_border_radius_left_vertical',
                 [
-                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -554,7 +554,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_padding',
                 [
-                    'label' => esc_html__('Padding', 'textdomain'),
+                    'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -574,19 +574,19 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_align_left_left',
                 [
-                    'label' => esc_html__('Alignment', 'textdomain'),
+                    'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::CHOOSE,
                     'options' => [
                         'start' => [
-                            'title' => esc_html__('Left', 'textdomain'),
+                            'title' => esc_html__('Left', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => esc_html__('Center', 'textdomain'),
+                            'title' => esc_html__('Center', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'end' => [
-                            'title' => esc_html__('Right', 'textdomain'),
+                            'title' => esc_html__('Right', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -601,7 +601,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'button_border_left',
-                    'label' => esc_html__('Border Button', 'textdomain'),
+                    'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                     'selector' => '  {{WRAPPER}} .left_button',
                 ]
             );
@@ -664,7 +664,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -734,7 +734,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_hover',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -776,7 +776,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_border_radius_right',
                 [
-                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -799,7 +799,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_border_radius_right_vertical',
                 [
-                    'label' => esc_html__('Border Radius', 'textdomain'),
+                    'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -822,7 +822,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_responsive_control(
                 'button_padding_right',
                 [
-                    'label' => esc_html__('Padding', 'textdomain'),
+                    'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::DIMENSIONS,
                     'size_units' => ['px', '%', 'em', 'rem'],
                     'default' => [
@@ -842,19 +842,19 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             $this->add_control(
                 'button_align_right_right',
                 [
-                    'label' => esc_html__('Alignment', 'textdomain'),
+                    'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                     'type' => \Elementor\Controls_Manager::CHOOSE,
                     'options' => [
                         'start' => [
-                            'title' => esc_html__('Left', 'textdomain'),
+                            'title' => esc_html__('Left', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => esc_html__('Center', 'textdomain'),
+                            'title' => esc_html__('Center', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'end' => [
-                            'title' => esc_html__('Right', 'textdomain'),
+                            'title' => esc_html__('Right', 'rometheme-for-elementor'),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -870,7 +870,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 \Elementor\Group_Control_Border::get_type(),
                 [
                     'name' => 'button_border_right',
-                    'label' => esc_html__('Border Button', 'textdomain'),
+                    'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                     'selector' => '  {{WRAPPER}} .right_button',
                 ]
             );
@@ -931,7 +931,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_normal_right',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1001,7 +1001,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'btn_bg_options_hover_right',
             [
-                'label' => esc_html__('Button Background', 'textdomain'),
+                'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1043,7 +1043,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                     $this->add_responsive_control(
                         'button_border_radius_middle',
                         [
-                            'label' => esc_html__('Border Radius', 'textdomain'),
+                            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                             'type' => \Elementor\Controls_Manager::DIMENSIONS,
                             'size_units' => ['px', '%', 'em', 'rem'], 
                             'selectors' => [
@@ -1055,7 +1055,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                     $this->add_responsive_control(
                         'middle_width',
                         [
-                            'label' => esc_html__('Width', 'textdomain'),
+                            'label' => esc_html__('Width', 'rometheme-for-elementor'),
                             'type' => \Elementor\Controls_Manager::SLIDER,
                             'range' => [
                                 'px' => [
@@ -1077,7 +1077,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                     $this->add_responsive_control(
                         'middle_width_icon',
                         [
-                            'label' => esc_html__('Icon Size', 'textdomain'),
+                            'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                             'type' => \Elementor\Controls_Manager::SLIDER,
                             'range' => [
                                 'px' => [
@@ -1117,7 +1117,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                         \Elementor\Group_Control_Border::get_type(),
                         [
                             'name' => 'button_border_middle',
-                            'label' => esc_html__('Border Button', 'textdomain'),
+                            'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                             'selector' => '  {{WRAPPER}} .middle',
                         ]
                     );

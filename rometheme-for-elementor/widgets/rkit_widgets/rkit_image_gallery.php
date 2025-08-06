@@ -81,7 +81,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'column',
             [
-                'label' => esc_html__('Column', 'textdomain'),
+                'label' => esc_html__('Column', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 100,
@@ -133,7 +133,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_control(
             'gallery',
             [
-                'label' => esc_html__('Add Images', 'textdomain'),
+                'label' => esc_html__('Add Images', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::GALLERY,
                 'show_label' => false,
                 'default' => [],
@@ -154,7 +154,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_control(
             'hover_animation_ig',
             [
-                'label' => esc_html__('Hover Image', 'textdomain'),
+                'label' => esc_html__('Hover Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
                 'default' => 'grow',
             ]
@@ -163,7 +163,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_control(
             'lightbox',
             [
-                'label' => esc_html__('Lightbox', 'textdomain'),
+                'label' => esc_html__('Lightbox', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
                     'default' => esc_html('Default'),
@@ -187,7 +187,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'gallery_image_border',
-                'label' => esc_html__('Border  ', 'textdomain'),
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .brick',
 
             ]
@@ -196,7 +196,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_control(
             'gallery_image_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -219,7 +219,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'spacebetween',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

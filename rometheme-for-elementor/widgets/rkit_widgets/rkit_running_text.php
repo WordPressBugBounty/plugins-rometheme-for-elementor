@@ -70,19 +70,19 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         $repeater->add_control(
             'item_type',
             [
-                'label' => esc_html__('Item Type', 'textdomain'),
+                'label' => esc_html__('Item Type', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'None' => [
-                        'title' => esc_html__('None', 'textdomain'),
+                        'title' => esc_html__('None', 'rometheme-for-elementor'),
                         'icon' => 'eicon-ban',
                     ],
                     'icon' => [
-                        'title' => esc_html__('Icon', 'textdomain'),
+                        'title' => esc_html__('Icon', 'rometheme-for-elementor'),
                         'icon' => 'eicon-info',
                     ],
                     'image' => [
-                        'title' => esc_html__('Image', 'textdomain'),
+                        'title' => esc_html__('Image', 'rometheme-for-elementor'),
                         'icon' => 'eicon-image',
                     ],
                 ],
@@ -105,7 +105,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         $repeater->add_control(
             'item_image',
             [
-                'label' => esc_html__( 'Choose Image', 'textdomain' ),
+                'label' => esc_html__( 'Choose Image', 'rometheme-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -428,7 +428,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'label' => esc_html__('Image Filter', 'textdomain'),
+                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
                 'name' => 'custom_css_filters_tm',
                 'selector' => '{{WRAPPER}} .image-running img', 
             ]
@@ -505,7 +505,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
     $this->add_control(
         'image_con_radius',
         [
-            'label' => esc_html__('Border Radius', 'textdomain'),
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'default' => [

@@ -4,7 +4,9 @@ $args  = [
     'posts_per_page' => -1
 ];
 
-if (!class_exists('RomethemePro')) {
+$isLicenseActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) ? \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() : false;
+
+if (!$isLicenseActive) {
     $args['meta_query'] = [
         'relation' => 'AND',
         [
@@ -23,27 +25,6 @@ if (!class_exists('RomethemePro')) {
             'compare' => '!='
         ]
     ];
-} else if( class_exists('RomethemePro') ) {
-    if (\RomethemePro\RproLicense::get_subs_status() !== 'active') {
-        $args['meta_query'] = [
-            'relation' => 'AND',
-            [
-                'key' => 'rometheme_template_type',
-                'value' => '404',
-                'compare' => '!='
-            ],
-            [
-                'key' => 'rometheme_template_type',
-                'value' => 'single_post',
-                'compare' => '!='
-            ],
-            [
-                'key' => 'rometheme_template_type',
-                'value' => 'archive',
-                'compare' => '!='
-            ]
-        ];
-    }
 }
 
 

@@ -1,0 +1,26 @@
+{
+  "customcursor": {
+    "name": "RTM Custom Cursor",
+    "icon": "rtmicon rtmicon-duplicator",
+    "classname": "Rkit_Custom_Cursor",
+    "status": true,
+    "is_pro":true,
+    "type": "extension",
+    "is_new": true,
+    "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/rtmkit-custom-cursor/",
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
+  },
+  "stickycontent": {
+    "name": "RTM Sticky Content",
+    "icon": "rtmicon rtmicon-glass-effect",
+    "classname": "Rkit_Sticky_Content",
+    "status": true,
+    "is_pro":true,
+    "type": "extension",
+    "is_new": true,
+    "docsURL": "https://support.rometheme.net/docs/romethemekit/rtm-extensions/rtmkit-advanced-sticky/",
+    "previewURL" : "https://rometheme.net/plugins/rtmkit/elements/",
+    "notes":"link official cooming soon"
+  }
+}

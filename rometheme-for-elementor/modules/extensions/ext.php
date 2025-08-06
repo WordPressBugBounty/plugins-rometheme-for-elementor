@@ -8,23 +8,33 @@ class RTMExtension
     public function __construct()
     {
         $this->update_ext_opt();
-        add_action('wp_ajax_save_extensions' , [$this , 'save_extensions']);
+        add_action('wp_ajax_save_extensions', [$this, 'save_extensions']);
         add_action('rtmkit_register_extension', [$this, 'register_extension']);
         do_action('rtmkit_register_extension');
+        // var_dump($this->get_extension());
     }
 
     public static function get_extension()
     {
-        $extensionsFileJson = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/extensions.json');
+        $extensionsFileJson     = file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/extensions.json');
+        $extensionsProFileJson  = file_exists(\RomeTheme::plugin_dir() . '/assets/js/extensions-pro.json')
+            ? file_get_contents(\RomeTheme::plugin_dir() . '/assets/js/extensions-pro.json')
+            : '{}';
 
-        $extensions = json_decode($extensionsFileJson, true);
+        $extensions    = json_decode($extensionsFileJson, true);
+        $extensionsPro = json_decode($extensionsProFileJson, true);
 
-        uasort($extensions, function ($a, $b) {
+        // Gabungkan dua array tanpa overwrite jika key sama
+        $merged = array_merge($extensions, array_diff_key($extensionsPro, $extensions));
+
+        // Sorting berdasarkan nama
+        uasort($merged, function ($a, $b) {
             return strcasecmp($a['name'], $b['name']);
         });
 
-        return $extensions;
+        return $merged;
     }
+
 
     private function update_ext_opt()
     {
@@ -41,7 +51,6 @@ class RTMExtension
 
         $ext_dir = \Rometheme::module_dir() . 'extensions/';
         $files = scandir($ext_dir);
-
         foreach ($files as $file) {
             if (pathinfo($file, PATHINFO_EXTENSION) === 'php' && $file !== 'ext.php') {
                 require_once $ext_dir . $file;

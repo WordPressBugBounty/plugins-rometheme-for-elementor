@@ -65,10 +65,10 @@ class RkitWrapperLink
         $container->add_control(
 			'rtm_wrapper_link_enabled',
 			[
-				'label' => esc_html__('Enable Wrapper Link ?', 'textdomain'),
+				'label' => esc_html__('Enable Wrapper Link ?', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
+				'label_on' => esc_html__('yes', 'rometheme-for-elementor'),
+				'label_off' => esc_html__('no', 'rometheme-for-elementor'),
 				'return_value' => 'enabled',
 				'default' => '', 
 			]
@@ -108,10 +108,10 @@ class RkitWrapperLink
         $widgets->add_control(
 			'rtm_wrapper_link_enabled',
 			[
-				'label' => esc_html__('Enable Wrapper Link ?', 'textdomain'),
+				'label' => esc_html__('Enable Wrapper Link ?', 'rometheme-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('yes', 'textdomain'),
-				'label_off' => esc_html__('no', 'textdomain'),
+				'label_on' => esc_html__('yes', 'rometheme-for-elementor'),
+				'label_off' => esc_html__('no', 'rometheme-for-elementor'),
 				'return_value' => 'enabled',
 				'default' => '', 
 			]

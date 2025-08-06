@@ -669,7 +669,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_title_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -777,7 +777,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_subheading_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -856,7 +856,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_description_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -988,7 +988,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_button_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1011,7 +1011,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_button_icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1034,7 +1034,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_button_icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [

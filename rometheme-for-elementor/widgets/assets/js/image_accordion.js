@@ -32,14 +32,11 @@ jQuery(window).on("elementor/frontend/init", function () {
   
         acc.on("mouseenter", function () {
           $(this).addClass("active");
-          console.log("masuk kok");
           $scope.find(".item-ia-hover").not($(this)).removeClass("active");
           // Tambahkan animasi ke child
           $(this).find(".text-title-ia").addClass("hs-animation-text-title-ia");
           $(this).find(".text-description").addClass("hs-animation-text");
           $(this).find(".rkit-image-accordion-item-button").addClass("hs-animation-button");
-  
-          console.log("aaa");
         });
         acc.on("mouseleave", function () {
           $(this).removeClass("active");

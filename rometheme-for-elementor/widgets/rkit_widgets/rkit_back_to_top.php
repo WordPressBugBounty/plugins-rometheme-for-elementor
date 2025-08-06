@@ -64,15 +64,15 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_control(
             'choose_style',
             [
-                'label' => esc_html__('Display Type', 'textdomain'),
+                'label' => esc_html__('Display Type', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'text' => [
-                        'title' => esc_html__('Text', 'textdomain'),
+                        'title' => esc_html__('Text', 'rometheme-for-elementor'),
                         'icon' => 'eicon-t-letter-bold',
                     ],
                     'icon' => [
-                        'title' => esc_html__('Icon', 'textdomain'),
+                        'title' => esc_html__('Icon', 'rometheme-for-elementor'),
                         'icon' => 'eicon-star',
                     ],
                 ],
@@ -87,9 +87,9 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_control(
             'backtop_text',
             [
-                'label' => esc_html__('Button Text', 'textdomain'),
+                'label' => esc_html__('Button Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Top', 'textdomain'),
+                'default' => esc_html__('Top', 'rometheme-for-elementor'),
                 'conditions' => [
                     'relation' => 'or',
                     'terms' => [
@@ -111,7 +111,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_control(
             'backtop_icon',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-arrow-up',
@@ -145,10 +145,10 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_control(
             'hide_button_on_scroll',
             [
-                'label' => esc_html__('Hide Button on Scroll', 'textdomain'),
+                'label' => esc_html__('Hide Button on Scroll', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'hide-button-on-scroll',
                 'default' => '',
             ]
@@ -164,19 +164,19 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
 			'button_align',
 			[
-				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'textdomain' ),
+						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
 						'icon' => 'eicon-h-align-right',
 					],
 				],
@@ -214,7 +214,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_size',
             [
-                'label' => esc_html__('Button Size', 'textdomain'),
+                'label' => esc_html__('Button Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -240,7 +240,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_width',
             [
-                'label' => esc_html__('Button Width', 'textdomain'),
+                'label' => esc_html__('Button Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -266,7 +266,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'button_height',
             [
-                'label' => esc_html__('Button Height', 'textdomain'),
+                'label' => esc_html__('Button Height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -292,7 +292,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -342,7 +342,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border-radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
