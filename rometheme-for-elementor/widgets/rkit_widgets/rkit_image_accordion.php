@@ -295,6 +295,31 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
+        $this->add_responsive_control(
+            'container_alignment',
+            [
+                'label' => __('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => __('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => __('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'end' => [
+                        'title' => __('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'selectors' => [
+                    '{{WRAPPER}} .item-ia-hover.active .item-text ' => 'align-items: {{VALUE}};',
+                ],
+            ]
+        );
 
 
         $this->add_group_control(
@@ -431,12 +456,30 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-
+        $this->add_control(
+            'padding_image',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 30,
+                    'right' => 30,
+                    'bottom' => 30,
+                    'left' => 30,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .item-text ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -452,7 +495,6 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 ],
             ]
         );
-
 
         $this->end_controls_section();
 
@@ -795,7 +837,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
-               
+
                 'selectors' => [
                     '{{WRAPPER}} .rkit-image-accordion-item-button, {{WRAPPER}} .rkit-button-element-image-accordion' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
@@ -822,7 +864,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
-               
+
                 'selectors' => [
                     '{{WRAPPER}} .rkit-image-accordion-item-button, {{WRAPPER}} .rkit-button-element-image-accordion' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],

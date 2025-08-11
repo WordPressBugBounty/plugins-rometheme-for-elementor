@@ -107,42 +107,42 @@ $page = $_GET['page'];
                 Free Version
                 <div class="d-flex flex-row align-items-center gap-2">
                     <span class="rtm-version px-4 py-2 fs-6">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
-                    <h6 class="m-0">May 29, 2025</h6>
+                    <h6 class="m-0">August 08, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                    <li><strong>Fixed:</strong> Issue on button global kit style control in the "Setting" dashboard.</li>
-                    <li><strong>Fixed:</strong> Issue on Button can't click save & editing in the "Form" theme builder.</li>
-                    <li><strong>Fixed:</strong> Issue on navigation not working on editing canvas in the "Testimonial Carousel" widget.</li>
-                    <li><strong>Fixed:</strong> Issue on button area click in the "Call to Action" widget.</li>
-                    <li><strong>Improved:</strong> Added optional alignment content in the "Woo Product Grid" widget.</li>
-                    <li><strong>Improved:</strong> Added icon spacing and padding content control in the "Image box" widget.</li>
-                    <li><strong>Improved:</strong> Added optional position for dots in the "Hero Slider" widget.</li>
-                    <li><strong>Improved:</strong> Added Icon color control in the "Image Comparison" widget.</li>
-                    <li><strong>Improved:</strong> Added spacing control in the "Advanced Heading" widget.</li>
-                    <li><strong>Improved:</strong> Added separator or dot optional in the "Countdown" widget.</li>
-                    <li><strong>Improved:</strong> Added other layout style in the "Counter" widget.</li>
-                    <li><strong>Improved:</strong> Added saved templates optional in the "Accordion" widget.</li>
-                    <li><strong>Improved:</strong> Added optional alignment for tabs in the "Advanced Tabs" widget.</li>
-                    <li><strong>Improved:</strong> Added optional lightbox in the "Image Gallery" widget.</li>
-                    <li><strong>Improved:</strong> Added icon submenu color control in the "Nav Menu" widget.</li>
-                    <li><strong>Improved:</strong> Added optional layout position inline and list in the "Search" widget.</li>
-                    <li><strong>Improved:</strong> Added new style "inline" in the "Progress Bar".</li>
-                    <li><strong>Improved:</strong> Added control content for border width, radius, & color in the "Team Widget".</li>
-
+                    <li><strong>Upgrade</strong> to PHP 8.2</li>
+                    <li><strong>New</strong> widget "Video Button"</li>
+                    <li><strong>New</strong> widget "Social Icons"</li>
+                    <li><strong>Fixing</strong> spacing control in the "Advance Heading" widget</li>
+                    <li><strong>Fixing</strong> pointer control in the "Team" widget</li>
+                    <li><strong>Fixing</strong> image size in the "Client Grid" widget</li>
+                    <li><strong>Fixing</strong> bullet point on post blog</li>
+                    <li><strong>Improve</strong> on Pricing Table</li>
+                    <li>Added width control in the "Tooltips" extensions</li>
                 </ul>
             </div>
             <div class="d-flex flex-column text-white">
                 Pro Version
                 <div class="d-flex flex-row align-items-center gap-2">
-                    <span class="rtm-version px-4 py-2 fs-6">V.1.0.2</span>
-                    <h6 class="m-0">March 25, 2025</h6>
+                    <span class="rtm-version px-4 py-2 fs-6">V.1.0.6</span>
+                    <h6 class="m-0">August 08, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
-                    <li><strong>New Widget</strong>: Textual Showcase</li>
-                    <li><strong>New Widget</strong>: Image Marquee</li>
-                    <li><strong>New Widget</strong>: Advanced Toggle</li>
-                    <li><strong>New Widget</strong>: Interactive Link</li>
-                    <li><strong>Improved</strong>: Pricing List</li>
+                    <li><strong>Upgrade</strong> to PHP 8.2</li>
+                    <li><strong>New</strong> widget "Animated Circle Button"</li>
+                    <li><strong>New</strong> widget "Image Stack Info"</li>
+                    <li><strong>New</strong> widget "Image Hotspot"</li>
+                    <li><strong>New</strong> widget "Breadcrumb"</li>
+                    <li><strong>New</strong> extention "Advance Sticky"</li>
+                    <li><strong>New</strong> extention "Custom Cursor"</li>
+                    <li><strong>Fixing</strong> image size and navigation control in the "Client Carousel" widget</li>
+                    <li><strong>Fixing</strong> Alignment control in the "Pricing Image Box" widget</li>
+                    <li><strong>Fixing</strong> Content feature in the "Post Carousel" widget</li>
+                    <li><strong>Fixing</strong> Image width in vertical mode in the "Image Marquee" widget</li>
+                    <li><strong>Fixing</strong> Meta Data layout in the "Post Info" widget</li>
+                    <li><strong>Fixing</strong> Archieve Post missing icon author, spacing meta and control icon size in the "Archieve Post" widget</li>
+                    <li><strong>New</strong> style layout option in the "Advance Toggle" extentions</li>
+                    <li><strong>New</strong> setting alignment in the "Archieve Post" widget</li>
                 </ul>
             </div>
         </div>

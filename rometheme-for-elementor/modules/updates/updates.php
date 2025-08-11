@@ -164,7 +164,7 @@ class Update
 
     static function get_pluginpro_info()
     {
-        if (!class_exists('RTMKitPro\Modules\Licenses\LicenseApi')) {
+        if (!class_exists('RTMKitPro\Modules\Licenses\LicenseApi') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
             return null;
         }
 

@@ -117,6 +117,9 @@ a.rkit-readmore-postlist-btn:hover {
 
 .divider_line:last-child{
   border-bottom: 0px;  
+}
+
+.widget-content.popular-posts li{
   list-style: none; 
 }
 

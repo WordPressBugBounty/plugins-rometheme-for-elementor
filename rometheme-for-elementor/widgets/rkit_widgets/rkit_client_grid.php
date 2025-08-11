@@ -268,7 +268,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'Header_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -318,7 +318,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'image_height',
             [
                 'label' => esc_html__('Image Height', 'rometheme-for-elementor'),
@@ -355,7 +355,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'image_space',
             [
                 'label' => esc_html__('Spacing Image', 'rometheme-for-elementor'),
@@ -396,7 +396,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'padding',
             [
                 'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
@@ -631,7 +631,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'padding_container_text',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),

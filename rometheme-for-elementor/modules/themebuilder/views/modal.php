@@ -1,6 +1,5 @@
 <?php
-
-$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') and (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
+$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
 $has_woocommerce = is_plugin_active( 'woocommerce/woocommerce.php' );
 
 ?>

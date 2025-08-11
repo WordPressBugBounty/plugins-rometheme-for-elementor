@@ -6,20 +6,26 @@ include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 $plugins = [
     'rtmkit' => [
         'file' => 'rometheme-for-elementor/RomeTheme.php',
-        'class' => 'RomeTheme'
+        'class' => 'RomeTheme',
+        'compatible_version' => '1.6.2'
     ],
     'rtmform' => [
         'file' => 'romethemeform/rometheme-form.php',
         'class' => 'RomeThemeForm'
-    ],
-    'rtmkitpro' => [
-        'file' => 'romethemekit-pro/RomeTheme_pro.php',
-        'class' => 'RTMKitPro\Core\Plugin'
     ]
 ];
 
 $rtmkitproInfo = \RomethemeKit\Update::get_pluginpro_info();
 
+$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
+
+if ($isLicenseActive) {
+    $plugins['rtmkitpro'] = [
+        'file' => 'romethemekit-pro/RomeTheme_pro.php',
+        'class' => 'RTMKitPro\Core\Plugin',
+        'compatible_version' => '1.0.5'
+    ];
+}
 // echo (\RomethemeKit\Update::update_is_available()) ? "Update Available" : "no update";
 
 ?>
@@ -64,11 +70,15 @@ $rtmkitproInfo = \RomethemeKit\Update::get_pluginpro_info();
                                         <div class="w-25 h-100 rtm-border rounded bg-black overflow-hidden d-flex align-items-center px-3">
                                             <select name="version" class="form-select bg-black border-0">
                                                 <?php $i = 0;
-                                                unset($pluginInfo->versions->trunk);
-                                                foreach ($pluginInfo->versions as $v => $link) : $i = $i + 1;
-                                                    if ($v != 'trunk') : ?>
-                                                        <option value="<?php echo esc_attr($v) ?>" <?php echo ($v == $pluginData['Version']) ? 'disabled' : '' ?> <?php echo ((count((array) $pluginInfo->versions) - 1) == $i) ? 'selected' : '' ?>><?php echo $v ?></option>
-                                                <?php endif;
+                                                $versions = (array) $pluginInfo->versions;
+                                                unset($versions['trunk']);
+                                                $length = count($versions);
+
+                                                foreach ($versions as $v => $link) : $i++;
+                                                    $compatible = (isset($plugin['compatible_version']) && version_compare($v, $plugin['compatible_version'], '>='));
+                                                ?>
+                                                    <option value="<?php echo esc_attr($v) ?>" <?php echo ($compatible || !isset($plugin['compatible_version'])) ? '' : 'disabled' ?> <?php echo ($length == $i) ? 'selected' : '' ?>><?php echo $v ?> <?php echo ($compatible || !isset($plugin['compatible_version'])) ? '' : '(Not Compatible)' ?></option>
+                                                <?php
                                                 endforeach;  ?>
                                             </select>
                                         </div>

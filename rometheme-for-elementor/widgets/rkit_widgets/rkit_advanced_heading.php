@@ -174,7 +174,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'cont_advanced_padding',
             [
                 'label' => esc_html__('Container Padding', 'rometheme-for-elementor'),
@@ -233,7 +233,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'headtext_padding',
             [
                 'label' => esc_html__('Text head Padding', 'rometheme-for-elementor'),
@@ -245,7 +245,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'headtext_margin',
             [
                 'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),
@@ -360,7 +360,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'wrap_headtext_margin',
             [
                 'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),

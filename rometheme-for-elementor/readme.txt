@@ -3,8 +3,8 @@ Contributors: dickoandrean
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.7
 Tested up to: 6.8.1
-Requires PHP: 7.4
-Stable tag: 1.6.2
+Requires PHP: 8.2
+Stable tag: 1.6.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -344,6 +344,21 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.6.3
+Added the ability to adjust padding responsively in the 'Client Grid' widget.
+Issue showing list discs in posts within the 'Post List' widget.
+
+Version 1.6.2
+Upgrade to PHP 8.2
+New widget "Video Button"
+New widget "Social Icons"
+Issue on spacing control in the "Advance Heading" widget
+Issue on pointer control in the "Team" widget
+Issue on image size in the "Client Grid" widget
+Issue on bullet point on post blog
+Improve on Pricing Table
+Added width control in the "Tooltips" extentions
+
 Version 1.6.1
 Fixed : Issue on button global kit style control in the "Setting" dashboard.
 Fixed : Issue on Button can't click save & editing in the "Form" theme builder.

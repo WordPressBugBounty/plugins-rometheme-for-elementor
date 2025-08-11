@@ -3,7 +3,7 @@
 require RomeTheme::plugin_dir() . 'view/header.php';
 
 $has_pro_license = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage');
-$has_woocommerce = is_plugin_active( 'woocommerce/woocommerce.php' );
+$has_woocommerce = is_plugin_active('woocommerce/woocommerce.php');
 
 $themebuilder = [
     'all' => "All",
@@ -15,13 +15,18 @@ $themebuilder = [
     'form' => "Form",
 ];
 
-if($has_pro_license && $has_woocommerce) {
+if ($has_pro_license && $has_woocommerce) {
     // cooming soon
 
     // $themebuilder['single_product'] = 'Single Product';
     // $themebuilder['archive_product'] = 'Archive Product';
 }
 $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
+
+echo $pageActive;
+
+$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
+
 ?>
 <div class="d-flex flex-column gap-3 me-3  mb-3 rtm-container rounded-2 rtm-bg-gradient-1 rtm-text-font" style="margin-top: -8rem;">
     <div class="px-5 rounded-3 pb-5">
@@ -48,46 +53,50 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
 <div class="rtm-bg-gradient-3 rounded-3 me-3">
     <ul class="nav sub-nav py-3 px-5 justify-content-between rtm-border-bottom" id="pills-tab" role="tablist">
         <ul class="d-flex flex-row align-items-center ">
-            <?php foreach ($themebuilder as $key => $val ) : 
-                if(empty($pageActive)) {
-                    if($key == 'all') {
+            <?php foreach ($themebuilder as $key => $val) :
+                if (empty($pageActive)) {
+                    if ($key == 'all') {
                         $act = "active";
                     } else {
                         $act = "";
                     }
                 } else {
-                    if($key == $pageActive) {
-                        $act = "active" ;
+                    if ($key == $pageActive) {
+                        $act = "active";
                     } else {
                         $act = "";
                     }
                 }
-                ?>
+            ?>
                 <li class="nav-item" role="presentation">
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=themebuilder&themebuilder=' . $key)) ?>" class="nav-link <?php echo esc_attr($act)  ?>" ><?php echo esc_attr($val) ?></a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=themebuilder&themebuilder=' . $key)) ?>" class="nav-link <?php echo esc_attr($act)  ?>"><?php echo esc_attr($val) ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>
         <li class="nav-item" role="presentation">
-            <button class="nav-link invalid-color fw-semibold" id="tab-trash-tab" data-bs-toggle="pill" data-bs-target="#tab-trash" type="button" role="tab" aria-controls="tab-trash" aria-selected="false"><i class="fas fa-trash-can me-1"></i>Trash</button>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=themebuilder&themebuilder=trash')) ?>" class="invalid-color nav-link <?php echo ($pageActive == 'trash') ? esc_attr('active') : '' ?>">
+                <i class="fas fa-trash-can me-1"></i>
+                Trash
+            </a>
+
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade <?php echo (empty($pageActive) || $pageActive == 'all' ) ? esc_attr('show active') : '' ?>" id="tab-all" role="tabpanel" aria-labelledby="tab-all-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo (empty($pageActive) || $pageActive == 'all') ? esc_attr('show active') : '' ?>" id="tab-all" role="tabpanel" aria-labelledby="tab-all-tab" tabindex="0">
             <div class="p-5">
                 <?php
                 require RomeTheme::module_dir() . 'themebuilder/views/all.php';
                 ?>
             </div>
         </div>
-        <div class="tab-pane fade <?php echo ($pageActive == 'header' ) ? esc_attr('show active') : '' ?>" id="tab-header" role="tabpanel" aria-labelledby="tab-header-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'header') ? esc_attr('show active') : '' ?>" id="tab-header" role="tabpanel" aria-labelledby="tab-header-tab" tabindex="0">
             <div class="p-5">
                 <?php
                 require RomeTheme::module_dir() . 'HeaderFooter/views/header.php';
                 ?>
             </div>
         </div>
-        <div class="tab-pane fade <?php echo ($pageActive == 'footer' ) ? esc_attr('show active') : '' ?>" id="tab-footer" role="tabpanel" aria-labelledby="tab-footer-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'footer') ? esc_attr('show active') : '' ?>" id="tab-footer" role="tabpanel" aria-labelledby="tab-footer-tab" tabindex="0">
             <div class="p-5">
                 <?php
                 require RomeTheme::module_dir() . 'HeaderFooter/views/footer.php';
@@ -95,10 +104,10 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
             </div>
 
         </div>
-        <div class="tab-pane fade <?php echo ($pageActive == 'single_post' ) ? esc_attr('show active') : '' ?>" id="tab-singlepost" role="tabpanel" aria-labelledby="tab-singlepost-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'single_post') ? esc_attr('show active') : '' ?>" id="tab-singlepost" role="tabpanel" aria-labelledby="tab-singlepost-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                if ($isLicenseActive) {
                     require RTMPRO_PLUGIN_DIR . '/views/single-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
@@ -106,10 +115,10 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
                 ?>
             </div>
         </div>
-        <div class="tab-pane fade <?php echo ($pageActive == '404' ) ? esc_attr('show active') : '' ?>" id="tab-errorpage" role="tabpanel" aria-labelledby="tab-errorpage-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == '404') ? esc_attr('show active') : '' ?>" id="tab-errorpage" role="tabpanel" aria-labelledby="tab-errorpage-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                if ($isLicenseActive) {
                     require RTMPRO_PLUGIN_DIR . '/views/404-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
@@ -117,10 +126,10 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
                 ?>
             </div>
         </div>
-        <div class="tab-pane fade <?php echo ($pageActive == 'archive' ) ? esc_attr('show active') : '' ?>" id="tab-archivepage" role="tabpanel" aria-labelledby="tab-archivepage-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'archive') ? esc_attr('show active') : '' ?>" id="tab-archivepage" role="tabpanel" aria-labelledby="tab-archivepage-tab" tabindex="0">
             <div class="p-5">
                 <?php
-                if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+                if ($isLicenseActive) {
                     require RTMPRO_PLUGIN_DIR . 'views/archive-view.php';
                 } else {
                     require RomeTheme::module_dir() . 'themebuilder/views/getproversion.php';
@@ -129,7 +138,7 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
             </div>
         </div>
 
-        <div class="tab-pane fade <?php echo ($pageActive == 'form' ) ? esc_attr('show active') : '' ?>" id="tab-formpage" role="tabpanel" aria-labelledby="tab-formpage-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'form') ? esc_attr('show active') : '' ?>" id="tab-formpage" role="tabpanel" aria-labelledby="tab-formpage-tab" tabindex="0">
             <div class="p-5">
                 <?php if (class_exists('RomeThemeForm')) {
                     require RomethemeForm::module_dir() . 'form/views/form-view.php';
@@ -139,7 +148,7 @@ $pageActive = (isset($_GET['themebuilder']) ? $_GET['themebuilder'] : '');
                 ?>
             </div>
         </div>
-        <div class="tab-pane fade" id="tab-trash" role="tabpanel" aria-labelledby="tab-trash-tab" tabindex="0">
+        <div class="tab-pane fade <?php echo ($pageActive == 'trash') ? esc_attr('show active') : '' ?>" id="tab-trash" role="tabpanel" aria-labelledby="tab-trash-tab" tabindex="0">
             <div class="p-5">
                 <?php
                 require RomeTheme::module_dir() . 'themebuilder/views/trash.php';
