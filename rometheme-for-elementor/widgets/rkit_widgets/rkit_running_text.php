@@ -86,7 +86,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                         'icon' => 'eicon-image',
                     ],
                 ],
-               'default' => 'none' ,
+                'default' => 'none',
                 'description' => esc_html__('Choose Image or Icon', 'text-domain'),
             ]
         );
@@ -105,7 +105,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         $repeater->add_control(
             'item_image',
             [
-                'label' => esc_html__( 'Choose Image', 'rometheme-for-elementor' ),
+                'label' => esc_html__('Choose Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -134,7 +134,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             'title_field' => '{{{ text }}}'
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'speed_control',
             [
                 'label' => esc_html__('Speed', 'rometheme-for-elementor'),
@@ -379,7 +379,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         );
 
 
-      
+
 
 
         $this->add_control(
@@ -421,7 +421,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before', 
+                'separator' => 'before',
             ]
         );
 
@@ -430,100 +430,102 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
                 'name' => 'custom_css_filters_tm',
-                'selector' => '{{WRAPPER}} .image-running img', 
+                'selector' => '{{WRAPPER}} .image-running img',
             ]
         );
 
-        
-    $this->add_responsive_control('img-aspect-ratio-tm', [
-        'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::SELECT,
-        'options' => [
-            'auto' => esc_html__('none', 'rometheme-for-elementor'),
-            '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
-            '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
-            '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
-            '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
-            '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
-        ],  
-        'selectors' => [
-            '{{WRAPPER}} .image-running img' => 'aspect-ratio:{{VALUE}}'
-        ],
-        'default' => '1/1', 
-    ]);
+        $this->add_responsive_control('img-aspect-ratio-tm', [
+            'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'auto' => esc_html__('none', 'rometheme-for-elementor'),
+                '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
+                '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
+                '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
+                '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
+                '4/5' => esc_html__('4 : 5', 'rometheme-for-elementor'),
+                '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
+                '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
-    $this->add_responsive_control('object_fit_tm', [
-        'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::SELECT,
-        'options' => [
-            'none' => esc_html__('None', 'rometheme-for-elementor'),
-            'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
-            'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
-            'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
-            'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
-
-        ],  
-        'selectors' => [
-            '{{WRAPPER}} .image-running img' => 'object-fit:{{VALUE}}'
-        ],
-        'default' => 'cover', 
-    ]);
-
-    $this->add_group_control(
-        \Elementor\Group_Control_Box_Shadow::get_type(),
-        [
-            'name' => 'image_running_box_shadow',
-            'label' => esc_html__('Box Shadow', 'rometheme-for-elementor'),
-            'selector' => '{{WRAPPER}} .image-running',
-        ]
-    );
-
-    $this->add_responsive_control(
-        'image_size_tm',
-        [
-            'label' => esc_html__('Size', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-            'range' => [
-                'px' => [
-                    'min' => 0,
-                    'max' => 1000,
-                    'step' => 5,
-                ],
-                '%' => [
-                    'min' => 0,
-                    'max' => 100,
-                ],
             ],
             'selectors' => [
-                '{{WRAPPER}} .image-running' => 'width:{{SIZE}}{{UNIT}}; height:auto;',
-            ], 
-        ]
-    );
+                '{{WRAPPER}} .image-running img' => 'aspect-ratio:{{VALUE}}'
+            ],
+            'default' => '1/1',
+        ]);
 
-    $this->add_control(
-        'image_con_radius',
-        [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'default' => [
-                'top' => 0,
-                'right' => 0,
-                'bottom' => 0,
-                'left' => 0,
-                'unit' => 'px',
-                'isLinked' => true,
+        $this->add_responsive_control('object_fit_tm', [
+            'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'none' => esc_html__('None', 'rometheme-for-elementor'),
+                'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+                'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+                'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+                'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+
             ],
             'selectors' => [
-                '{{WRAPPER}} .image-running img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} .image-running img' => 'object-fit:{{VALUE}}'
             ],
-        ]
-    );
+            'default' => 'cover',
+        ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'image_running_box_shadow',
+                'label' => esc_html__('Box Shadow', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .image-running',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_size_tm',
+            [
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .image-running' => 'width:{{SIZE}}{{UNIT}}; height:auto;',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_con_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .image-running img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
-    $this->add_group_control(
+        $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_container_border',
@@ -531,29 +533,29 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .image-running img',
             ]
         );
-    
 
 
-    $this->add_control(
-        'content_options',
-        [
-            'label' => esc_html__('Settings', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::HEADING,
-            'separator' => 'before', 
-        ]
-    );
 
-    $this->add_responsive_control(
-        'icon_image_spacing',
-        [
-            'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-marquee-item-content' => 'gap: {{SIZE}}{{UNIT}};',
-            ],
-        ]
-    );
+        $this->add_control(
+            'content_options',
+            [
+                'label' => esc_html__('Settings', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_image_spacing',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-marquee-item-content' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -592,28 +594,29 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                     <?php foreach ($settings['item_text']  as $text) : ?>
                         <div class="rkit-marquee-item elementor-repeater-item-<?php echo esc_attr($text['_id']) ?>">
                             <<?php echo esc_attr($html_tag) ?> class="rkit-marquee-item-content">
-                      
+
                                 <?php \Elementor\Icons_Manager::render_icon($text['item_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-running-text__icon']); ?>
-                               
-                                <?php if(!$text['item_image']) : ?>
+
+                                <?php if (!$text['item_image']) : ?>
                                     <div style="width: 0px; height:0px;"> </div>
-                                <?php else :?>
-                                <div class="image-running" >
-                                    <?php
+                                <?php else : ?>
+                                    <div class="image-running">
+                                        <?php
                                         $this->add_render_attribute('item_image', 'src', $text['item_image']['url']);
                                         $this->add_render_attribute('item_image', 'alt', \Elementor\Control_Media::get_image_alt($text['item_image']));
-                attachment:             $this->add_render_attribute('item_image', 'title', \Elementor\Control_Media::get_image_title($text['item_image']));
+                                        attachment:
+                                        $this->add_render_attribute('item_image', 'title', \Elementor\Control_Media::get_image_title($text['item_image']));
                                         echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($text, 'thumbnail', 'item_image');
-                                    ?>
-                                </div>
+                                        ?>
+                                    </div>
                                 <?php endif; ?>
-                               
+
 
                                 <div class="rkit-running-text__text">
                                     <?php echo esc_html($text['text']) ?>
                                 </div>
-                                
-                            </d<?php echo esc_attr($html_tag) ?>>
+
+                                </d<?php echo esc_attr($html_tag) ?>>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -186,7 +186,9 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'options' => [
                 '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
                 '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
+                '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
                 '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
+                '4/5' => esc_html__('4 : 5', 'rometheme-for-elementor'),
                 '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
                 '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
@@ -384,7 +386,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ],
         ]);
 
-    
+
 
         $this->end_controls_section();
 
@@ -548,7 +550,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'background_opacity',
             [
                 'label' => __('Background Opacity', 'rometheme-for-elementor'),
@@ -573,7 +575,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1068,7 +1070,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-            $this->add_responsive_control(
+        $this->add_responsive_control(
             'imagebox_btn_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),

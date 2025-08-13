@@ -87,7 +87,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR
         ]);
 
-        $item->add_control('offset_normal', [
+        $item->add_responsive_control('offset_normal', [
             'label' => esc_html('Offset'),
             'type' => \Elementor\Controls_Manager::SLIDER,
         ]);
@@ -106,7 +106,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR
         ]);
 
-        $item->add_control('offset_hover', [
+        $item->add_responsive_control('offset_hover', [
             'label' => esc_html('Offset'),
             'type' => \Elementor\Controls_Manager::SLIDER,
         ]);
@@ -173,17 +173,17 @@ class Rkit_PieChart extends \Elementor\Widget_Base
 			]
 		);
 
-        $this->add_control('border_radius', [
+        $this->add_responsive_control('border_radius', [
             'label' => esc_html('Border Radius'),
             'type' => \Elementor\Controls_Manager::SLIDER
         ]);
 
-        $this->add_control('spacing', [
+        $this->add_responsive_control('spacing', [
             'label' => esc_html('Spacing'),
             'type' => \Elementor\Controls_Manager::SLIDER
         ]);
 
-        $this->add_control('rotation', [
+        $this->add_responsive_control('rotation', [
             'label' => esc_html('Rotation'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'range' => [
@@ -199,7 +199,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab('pie_tab_normal', [
             'label' => esc_html('Normal')
         ]);
-        $this->add_control(
+        $this->add_responsive_control(
             'border_width_normal',
             [
                 'label' => esc_html__('Border Width', 'rometheme-for-elementor'),
@@ -213,7 +213,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             'label' => esc_html('Hover')
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'border_width_hover',
             [
                 'label' => esc_html__('Border Width', 'rometheme-for-elementor'),
@@ -244,7 +244,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('legend_font_size', [
+        $this->add_responsive_control('legend_font_size', [
             'label'  => esc_html('Font Size'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'condition' => [

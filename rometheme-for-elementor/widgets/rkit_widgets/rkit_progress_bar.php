@@ -59,7 +59,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             'default' => esc_html('Progress'),
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'percent',
             [
                 'label' => esc_html__('Percentage', 'rometheme-for-elementor'),
@@ -108,7 +108,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'animation-duration',
             [
                 'label' => esc_html__('Animation Duration (ms)', 'rometheme-for-elementor'),
@@ -287,7 +287,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'progress_line_height',
             [
                 'label' => esc_html__('Height', 'rometheme-for-elementor'),
@@ -313,7 +313,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'progress_line_height_inline',
             [
                 'label' => esc_html__('Height', 'rometheme-for-elementor'),

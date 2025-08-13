@@ -205,7 +205,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('shape_width' , [
+        $this->add_responsive_control('shape_width' , [
             'label' => esc_html('Width'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'selectors' => [

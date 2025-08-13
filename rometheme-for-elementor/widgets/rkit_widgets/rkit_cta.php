@@ -655,7 +655,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'graphic_element_img_size',
             [
                 'label' => esc_html__('Size', 'rometheme-for-elementor'),
@@ -678,7 +678,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'graphic_element_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -731,7 +731,7 @@ class CTA_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'graphic_element_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),

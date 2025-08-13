@@ -281,7 +281,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'caption_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -301,7 +301,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_con_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -413,11 +413,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-
-
-
-
-        $this->add_control(
+        $this->add_responsive_control(
             'border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),

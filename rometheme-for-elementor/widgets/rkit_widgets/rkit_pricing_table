@@ -498,7 +498,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'con_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -518,7 +518,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'con_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -596,7 +596,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'Header_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -942,7 +942,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'price_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1036,7 +1036,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'sub_title_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1323,7 +1323,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1342,7 +1342,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'button_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1361,7 +1361,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'button_margin',
             [
                 'label' => esc_html__('Margin', 'rometheme-for-elementor'),
@@ -1614,7 +1614,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'footer_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),

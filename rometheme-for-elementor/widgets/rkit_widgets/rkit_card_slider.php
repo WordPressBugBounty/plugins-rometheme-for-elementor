@@ -526,7 +526,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'card_image_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -600,7 +600,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'card_body_opacity',
             [
                 'label' => esc_html__('Opacity'),
@@ -904,7 +904,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_width',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),

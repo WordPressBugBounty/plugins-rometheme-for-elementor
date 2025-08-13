@@ -231,7 +231,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'card_spacing',
             [
                 'label' => esc_html__('Items Spacing', 'rometheme-for-elementor'),
@@ -461,7 +461,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'con_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -474,7 +474,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'con_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -590,7 +590,9 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             'options' => [
                 '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
                 '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
+                '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
                 '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
+                '4/5' => esc_html__('4 : 5', 'rometheme-for-elementor'),
                 '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
                 '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
@@ -605,7 +607,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'image_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -619,7 +621,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'image_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1215,7 +1217,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_padding',
             [
                 'label' => esc_html__('Section Padding', 'rometheme-for-elementor'),
@@ -1262,7 +1264,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_border_radius_normal',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1370,7 +1372,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_border_radius_hover',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1489,7 +1491,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'ribbon_radius_wpg',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1598,7 +1600,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'ribbon_padding_wpg',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1610,7 +1612,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'ribbon_margin_wpg',
             [
                 'label' => esc_html__('Margin', 'rometheme-for-elementor'),

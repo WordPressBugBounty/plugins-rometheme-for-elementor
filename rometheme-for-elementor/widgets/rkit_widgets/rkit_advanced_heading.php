@@ -348,7 +348,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'wrap_headtext_padding',
             [
                 'label' => esc_html__('Text head Padding', 'rometheme-for-elementor'),

@@ -110,7 +110,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'bar_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -131,7 +131,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             'default' => 'rgba(75, 192, 192, 0.2)'
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'border_width_normal',
             [
                 'label' => esc_html__('Border Width', 'rometheme-for-elementor'),
@@ -159,7 +159,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             'default' => 'rgba(75, 192, 192, 1)'
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'border_width_hover',
             [
                 'label' => esc_html__('Border Width', 'rometheme-for-elementor'),
@@ -206,7 +206,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('scale_x_font_size', [
+        $this->add_responsive_control('scale_x_font_size', [
             'label'  => esc_html('Font Size'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'condition' => [
@@ -290,7 +290,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('scale_y_font_size', [
+        $this->add_responsive_control('scale_y_font_size', [
             'label'  => esc_html('Font Size'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'condition' => [
@@ -432,7 +432,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('legend_font_size', [
+        $this->add_responsive_control('legend_font_size', [
             'label'  => esc_html('Font Size'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'condition' => [

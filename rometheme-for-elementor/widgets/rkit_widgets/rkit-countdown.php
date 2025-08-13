@@ -688,7 +688,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'label_margin',
             [
                 'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
@@ -799,7 +799,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'expired_title_padding',
             [
                 'label' => esc_html__('Tittle Padding', 'rometheme-for-elementor'),
@@ -876,7 +876,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'expired_description_padding',
             [
                 'label' => esc_html__('Description Padding', 'rometheme-for-elementor'),

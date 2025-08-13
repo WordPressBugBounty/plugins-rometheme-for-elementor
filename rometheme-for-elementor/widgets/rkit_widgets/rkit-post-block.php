@@ -138,7 +138,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
             'options' => [
                 '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
                 '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
+                '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
                 '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
+                '4/5' => esc_html__('4 : 5', 'rometheme-for-elementor'),
                 '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
                 '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
@@ -495,12 +497,12 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'name' => 'wrapper_background',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-post-block-card',
-                'fields_options'=>[
-                    'background'=>[
-                        'default'=>'classic'
+                'fields_options' => [
+                    'background' => [
+                        'default' => 'classic'
                     ],
-                    'color'=>[
-                        'default'=>'#F7F7F7'
+                    'color' => [
+                        'default' => '#F7F7F7'
                     ],
                 ]
             ]
@@ -1425,7 +1427,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-post-block-card:hover .rkit-post-block-highlight-border::before',
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'rkit_highlight_transition',
             [
                 'label' => esc_html__('Transition', 'rometheme-for-elementor'),
@@ -1508,8 +1510,8 @@ class RkitPostBlock extends \Elementor\Widget_Base
             ]
         ]);
 
-        
-        $this->add_control(
+
+        $this->add_responsive_control(
             'readmore_icon_size',
             [
                 'label' => esc_html__('Icon Size    ', 'rometheme-for-elementor'),
@@ -1535,7 +1537,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'icon_spacing',
             [
                 'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
@@ -2091,7 +2093,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
                             endif;
                             ?>
                             <a class="rkit-image-link" style="overflow: hidden;" href="<?php esc_url(the_permalink()) ?>">
-                                <?php the_post_thumbnail($settings['thumbnail_size'] , ['class' => 'rkit-post-block-img'] ) ?>
+                                <?php the_post_thumbnail($settings['thumbnail_size'], ['class' => 'rkit-post-block-img']) ?>
                             </a>
                             <?php if ('yes' === $settings['show-floating-date']) : ?>
                                 <div class="rkit-float-metawrapper-date">

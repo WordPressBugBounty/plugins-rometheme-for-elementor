@@ -195,7 +195,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control('pointer_width', [
+        $this->add_responsive_control('pointer_width', [
             'label' => esc_html__('Pointer Width', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem', 'custom'],

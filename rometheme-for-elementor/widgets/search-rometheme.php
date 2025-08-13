@@ -233,7 +233,7 @@ class Search_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control('search-borderradius', [
+        $this->add_responsive_control('search-borderradius', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],

@@ -51,7 +51,7 @@ class BlurEffects
 					'size' => 20,
 				],
 				'selectors' => [
-					'{{WRAPPER}}.rtmkit-blur-effect-enabled' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}}.rtmkit-blur-effect-enabled::before' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'use_blur_effects' => 'enabled'
@@ -100,7 +100,7 @@ class BlurEffects
 					'size' => 20,
 				],
 				'selectors' => [
-					'{{WRAPPER}}.rtmkit-blur-effect-enabled ' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}}.rtmkit-blur-effect-enabled::before' => 'backdrop-filter: blur({{SIZE}}{{UNIT}});',
 				],
 				'condition' => [
 					'use_blur_effects' => 'enabled'

@@ -119,7 +119,7 @@ a.rkit-readmore-postlist-btn:hover {
   border-bottom: 0px;  
 }
 
-.widget-content.popular-posts li{
+.rkit-post-list.widget-content.popular-posts li{
   list-style: none; 
 }
 

@@ -473,6 +473,9 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             'label' => esc_html('Background Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#00CEA699',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container' => '--pulse-color:{{VALUE}};',
+            ],
             'condition' => [
                 'show_animation_pulsing' => 'yes'
             ]
@@ -506,13 +509,13 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             'range' => [
                 's' => [
                     'min' => 0,
-                    'max' => 100,
-                    'step' => 1,
+                    'max' => 5,
+                    'step' => 0.5,
                 ],
             ],
             'default' => [
                 'size' => 1.5,
-                'unit' => 'px'
+                'unit' => 's'
             ],
             'condition' => [
                 'show_animation_pulsing' => 'yes'
@@ -537,7 +540,7 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
         }
 
         $pulseWidth = ($settings['width_pulse_animated']['size'] ?? 0) . ($settings['width_pulse_animated']['unit'] ?? 'px');
-        $bgIconColor = $settings['background_color_icon_animated_pulse'];
+        // $bgIconColor = $settings['background_color_icon_animated_pulse'];
         $durationAnimation =  isset($settings['duration_animation']['size']) ? $settings['duration_animation']['size'] . 's' : '1.5s';
         $hoverAnimation = $settings['hover_animation_style'];
         $autoPlay = $settings['auto_play'] === 'yes';
@@ -556,7 +559,7 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
                     </text>
                 </svg>
                 <a class="rkit-animated-icon-container glightbox <?= $showAnimationBackgroundIcon ?>"
-                    style="--pulse-color: <?= $bgIconColor ?>; --pulse-width:<?= $pulseWidth ?>; --duration-pulse:<?= $durationAnimation ?>;"
+                    style="--pulse-width:<?= $pulseWidth ?>; --duration-pulse:<?= $durationAnimation ?>;"
                     href="<?= esc_url($linkButton) ?>"
                     id="video-button"
                     data-type="video"

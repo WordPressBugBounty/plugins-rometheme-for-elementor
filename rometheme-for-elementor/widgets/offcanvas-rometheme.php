@@ -125,7 +125,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('menu-icon-size', [
+        $this->add_responsive_control('menu-icon-size', [
             'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
@@ -145,7 +145,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control('padding-icon', [
+        $this->add_responsive_control('padding-icon', [
             'label' => esc_html__('Padding', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
@@ -154,7 +154,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('border-radius-icon', [
+        $this->add_responsive_control('border-radius-icon', [
             'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
@@ -282,7 +282,7 @@ class Offcanvas_Rometheme extends \Elementor\Widget_Base
             'default' => ['value' => 'rtmicon rtmicon-xmark', 'library' => 'rtmicons'],
         ]);
 
-        $this->add_control('closeIcon-size', [
+        $this->add_responsive_control('closeIcon-size', [
             'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', 'em', 'rem'],

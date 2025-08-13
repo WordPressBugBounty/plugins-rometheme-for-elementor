@@ -1228,7 +1228,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1244,7 +1244,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->start_controls_tab('dot_tab_normal', ['label' => esc_html('Normal')]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_width',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -1267,7 +1267,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_height',
             [
                 'label' => esc_html__('Height', 'rometheme-for-elementor'),
@@ -1338,7 +1338,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_width_hover',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -1361,7 +1361,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_height_hover',
             [
                 'label' => esc_html__('Height', 'rometheme-for-elementor'),
@@ -1432,7 +1432,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('Active')]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_width_active',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -1455,7 +1455,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dot_height_active',
             [
                 'label' => esc_html__('Height', 'rometheme-for-elementor'),

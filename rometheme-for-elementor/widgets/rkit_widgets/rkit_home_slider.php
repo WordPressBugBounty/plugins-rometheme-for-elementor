@@ -445,7 +445,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'Header_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -599,7 +599,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'border_radius',
             [
                 'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
@@ -833,22 +833,19 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'subtitle_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
-
-
                 'selectors' => [
                     '{{WRAPPER}} .hs-subtitle-section ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
-
-        $this->add_control(
+        $this->add_responsive_control(
             'subtitle_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1047,14 +1044,12 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'title_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
-
-
                 'selectors' => [
                     '{{WRAPPER}} .hs-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -1204,8 +1199,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1245,7 +1239,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'button_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -1264,7 +1258,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'button_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),

@@ -316,7 +316,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .item-ia-hover.active .item-text ' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}} .item-ia-hover.active .item-text ' => 'align-items: {{VALUE}}; text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -336,7 +336,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'overlay_opacity',
             [
                 'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
@@ -360,7 +360,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'overlay_opacity_click',
             [
                 'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
@@ -456,7 +456,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'padding_image',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -476,7 +476,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -609,11 +609,10 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .text-title-ia' => 'justify-content: {{VALUE}} !important;',
                 ],
-                'default' => 'center',
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'title_text_padding',
             [
                 'label' => esc_html__('Title Padding', 'rometheme-for-elementor'),
@@ -633,7 +632,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'title_text_margin',
             [
                 'label' => esc_html__('Title Margin', 'rometheme-for-elementor'),
@@ -704,13 +703,14 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .text-description' => 'justify-content: {{VALUE}};',
+                    // '{{WRAPPER}} .text-description' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .text-description' => 'text-align: {{VALUE}};',
                 ],
-                'default' => 'center',
+                // 'default' => 'center',
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_text_padding',
             [
                 'label' => esc_html__('Desc Padding', 'rometheme-for-elementor'),
@@ -730,7 +730,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_text_margin',
             [
                 'label' => esc_html__('Desc Margin', 'rometheme-for-elementor'),

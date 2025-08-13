@@ -204,7 +204,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'pointer_size',
             [
                 'label' => esc_html__('Pointer Size', 'rometheme-for-elementor'),
@@ -241,7 +241,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'card_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -346,7 +346,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'overlay_opacity',
             [
                 'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
@@ -500,7 +500,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'image_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -917,7 +917,7 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'socmed_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),

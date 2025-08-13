@@ -5,21 +5,20 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
     public function get_name()
     {
         return 'rkit_image_gallery';
-    } 
+    }
     public function get_title()
     {
         return \RomethemeKit\RkitWidgets::listWidgets()['image_gallery']['name'];
-        
     }
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['image_gallery']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['image_gallery']['icon'];
         return $icon;
     }
     public function get_keywords()
     {
-        return ['rometheme', 'image', 'box','image-box', 'mansonry', ' image gallery'];
+        return ['rometheme', 'image', 'box', 'image-box', 'mansonry', ' image gallery'];
     }
 
     function get_custom_help_url()
@@ -64,7 +63,9 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             'options' => [
                 '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
                 '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
+                '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
                 '5/4' => esc_html__('5 : 4', 'rometheme-for-elementor'),
+                '4/5' => esc_html__('4 : 5', 'rometheme-for-elementor'),
                 '16/9' => esc_html__('16 : 9', 'rometheme-for-elementor'),
                 '9/16' => esc_html__('9 : 16', 'rometheme-for-elementor'),
 
@@ -193,7 +194,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'gallery_image_radius',
             [
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
@@ -262,7 +263,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
                     <div class="brick">
                         <div class="<?php echo esc_attr($lazy); ?>"></div>
                         <?php if ($settings['lightbox'] === 'default' || $settings['lightbox'] === 'yes') : ?>
-                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="gallery"  href="<?php echo esc_attr($image['url']); ?>">
+                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="gallery" href="<?php echo esc_attr($image['url']); ?>">
                             <?php endif; ?>
                             <img src="<?php echo esc_attr($image['url']); ?>"
                                 class="gallery_image <?php echo esc_attr($hover_animation_ig_class); ?>"
@@ -279,7 +280,3 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
 
 <?php }
 }
-
-
-
-
