@@ -35,7 +35,7 @@ class Rkit_woo_product_grid extends \Elementor\Widget_Base
 
     public function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['woo_product_grid']['docsURL'];
     }
 
     public function rkit_get_product_categories_plain($product, $separator = ', ')

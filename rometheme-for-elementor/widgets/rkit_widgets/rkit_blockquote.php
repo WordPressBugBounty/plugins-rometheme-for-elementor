@@ -13,7 +13,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
     }
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['blockquote']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['blockquote']['icon'];
         return $icon;
     }
     public function get_categories()
@@ -27,7 +27,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-blockquote-widget/';
+        return  \RomethemeKit\RkitWidgets::listWidgets()['blockquote']['docsURL'];
     }
 
     public function get_style_depends()
@@ -68,9 +68,9 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
             'default' => 'span'
         ]);
 
-        $this->add_control('quote_author' , [
+        $this->add_control('quote_author', [
             'label' => esc_html('Author'),
-            'type' => \Elementor\Controls_Manager::TEXT ,
+            'type' => \Elementor\Controls_Manager::TEXT,
             'default' => esc_html('John Doe')
         ]);
 
@@ -115,16 +115,16 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-			'blockquote_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-blockquote' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'blockquote_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-blockquote' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -189,26 +189,26 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         ]);
         $this->end_controls_section();
 
-        $this->start_controls_section('author_style' , [
+        $this->start_controls_section('author_style', [
             'label' => esc_html('Author'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control('author_color' , [
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'author_typography',
+                'selector' => '{{WRAPPER}} .rkit-quote-author',
+            ]
+        );
+
+        $this->add_control('author_color', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-quote-author' => 'color : {{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'author_typography',
-				'selector' => '{{WRAPPER}} .rkit-quote-author',
-			]
-		);
 
         $this->end_controls_section();
 
@@ -218,74 +218,62 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-			'icon_align',
-			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-right',
-					],
-				],
-				'default' => 'left',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-quote-icon' => 'justify-content: {{VALUE}};',
-				],
+            'icon_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-quote-icon' => 'justify-content: {{VALUE}};',
+                ],
                 'condition' => [
                     'select_layout!' => 'inline'
                 ]
-			]
-		);
+            ]
+        );
 
         $this->add_control(
-			'icon_position',
-			[
-				'label' => esc_html__( 'Position', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'start' => [
-						'title' => esc_html__( 'Top', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-v-align-top',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-center',
-					],
-					'end' => [
-						'title' => esc_html__( 'Bottom', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-v-align-bottom',
-					],
-				],
-				'default' => 'left',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-quote-icon' => 'align-items: {{VALUE}};',
-				],
+            'icon_position',
+            [
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-quote-icon' => 'align-items: {{VALUE}};',
+                ],
                 'condition' => [
                     'select_layout' => 'absolute'
                 ]
-			]
-		);
-
-        $this->add_responsive_control(
-            'icon_margin',
-            [
-                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-quote-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -323,7 +311,19 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-quote-icon .rkit-blockquote__icon' => 'color:{{VALUE}}'
             ]
         ]);
-        
+
+
+        $this->add_responsive_control(
+            'icon_margin',
+            [
+                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-quote-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -332,14 +332,25 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_responsive_control(
-            'holder_padding',
+                $this->add_responsive_control(
+            'author_gap',
             [
-                'label' => esc_html__('Holder Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'label' => esc_html__('Author Gap', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 5,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-blockquote' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-quote-author' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -368,28 +379,16 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-			'author_gap',
-			[
-				'label' => esc_html__( 'Author Gap', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 5,
-					],
-				],
-                'default' => [
-					'unit' => 'px',
-					'size' => 20,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-quote-author' => 'margin-top: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
+            'holder_padding',
+            [
+                'label' => esc_html__('Holder Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-blockquote' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -416,7 +415,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
             case 'h6':
                 $text_tag = 'h6';
                 break;
-            case 'span' :
+            case 'span':
                 $text_tag = 'span';
                 break;
             default:
@@ -439,7 +438,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
                     <span class="rkit-quote-author">
                         <?php echo esc_html($settings['quote_author']) ?>
                     </span>
-                    
+
                 <?php
                     break;
                 default:

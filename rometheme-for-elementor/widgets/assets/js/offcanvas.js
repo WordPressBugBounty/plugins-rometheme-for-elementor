@@ -9,16 +9,19 @@ jQuery(window).on("elementor/frontend/init", function () {
       $btn.click(function (e) {
         e.preventDefault();
         $(this).closest(".rkit-offcanvas").addClass("offcanvas-show");
+        $('body').css('overflow', 'hidden');
       });
 
       $closeBtn.click(function (e) {
         e.preventDefault();
         $(this).closest(".rkit-offcanvas").removeClass("offcanvas-show");
+        $('body').css('overflow', '');
       });
 
       $overlay.click(function (e) {
         e.preventDefault();
         $(this).closest(".rkit-offcanvas").removeClass("offcanvas-show");
+        $('body').css('overflow', '');
       });
     }
   );

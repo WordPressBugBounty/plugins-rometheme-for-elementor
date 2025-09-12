@@ -21,7 +21,7 @@ class RkitPostBlock extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-block-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['rkitpostblock']['docsURL'];
     }
 
     public function get_icon()

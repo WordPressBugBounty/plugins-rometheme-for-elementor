@@ -11,7 +11,7 @@ class HeaderFooter
     function __construct()
     {
         add_action('init', [$this, 'rometheme_header_post_type']);
-        add_action('rest_api_init' , [$this , 'cpt_rest_init']);
+        add_action('rest_api_init', [$this, 'cpt_rest_init']);
         add_action('admin_footer', [$this, 'menu_ui']);
         $this->dir = dirname(__FILE__) . '/';
         $this->url = \RomeTheme::module_url() . 'HeaderFooter/';
@@ -251,12 +251,19 @@ class HeaderFooter
     }
     public function get_header_content($header_id)
     {
-        return \Elementor\Plugin::instance()->frontend->get_builder_content($header_id);
+        $is_edit = \Elementor\Plugin::$instance->editor->is_edit_mode();
+
+        return \Elementor\Plugin::instance()->frontend->get_builder_content(
+            $header_id,
+            $is_edit // true kalau edit, false kalau frontend normal
+        );
     }
+
 
     public function get_footer_content($footer_id)
     {
-        return \Elementor\Plugin::instance()->frontend->get_builder_content($footer_id);
+        $is_edit = \Elementor\Plugin::$instance->editor->is_edit_mode();
+        return \Elementor\Plugin::instance()->frontend->get_builder_content($footer_id , $is_edit);
     }
 
     public function override_header_template()
@@ -289,7 +296,7 @@ class HeaderFooter
             $header_id = $header->ID;
             $condition = get_post_meta($header_id, 'rometheme_template_condition', true);
             if ($this->rtm_location_template($condition)) {
-                $header_html = '<header id="masthead" itemscope="itemscope" itemtype="https://schema.org/WPHeader">%s</header>';
+                $header_html = '%s';
                 echo sprintf($header_html, $this->get_header_content($header_id));
             }
         }

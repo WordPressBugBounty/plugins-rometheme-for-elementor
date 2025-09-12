@@ -142,12 +142,12 @@
                 <div class="d-flex flex-xl-row flex-column-reverse h-100">
                     <div class="col p-5 pe-0">
                         <div class="d-flex flex-column gap-3">
-                            <span class="rtm-text-font accent-color">Recommended Elementor Template Kits</span>
-                            <h4>Ready Templates, Launch Websites Like a Pro</h4>
+                            <span class="rtm-text-font accent-color">Elite Designs, One Click Setup</span>
+                            <h4>Exclusive Premium Themes, Built for Wordpress Success</h4>
                             <div class="rtm-divider rounded-pill" style="width: 80%;"></div>
-                            <p class="text-gray">Over 500+ fully customizable, responsive Templates for every part of your Elementor website, made by Elite Author Themeforest, Envato.</p>
+                            <p class="text-gray">Get premium Wordpress themes, complete with RTMKit PRO and effortless one click demo import.</p>
                             <div class="d-flex flex-row align-items-center gap-4">
-                                <a href="https://rometheme.net/elementor-kits/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Browse Elementor Template Kits <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
+                                <a href="https://rometheme.net/wordpress-themes/" target="_blank" class="btn btn-gradient-accent rounded-pill text-nowrap">Browse Wordpress Themes <i class="rtmicon rtmicon-arrow-up-right ms-2"></i></a>
                             </div>
                         </div>
                     </div>

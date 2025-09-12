@@ -28,7 +28,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-card-slider-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['cardslider']['docsURL'];
     }
 
     public function get_style_depends()
@@ -335,20 +335,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('slide_to_show', [
-            'label' => esc_html('Slide To Show'),
-            'type' => \Elementor\Controls_Manager::NUMBER,
-            'min' => 1,
-            'default' => 3
-        ]);
-
-        $this->add_responsive_control('slide_to_scroll', [
-            'label' => esc_html('Slide To Scroll'),
-            'type' => \Elementor\Controls_Manager::NUMBER,
-            'min' => 1,
-            'default' => 1
-        ]);
-
         $this->add_control(
             'autoplay',
             [
@@ -420,6 +406,20 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control('slide_to_show', [
+            'label' => esc_html('Slide To Show'),
+            'type' => \Elementor\Controls_Manager::NUMBER,
+            'min' => 1,
+            'default' => 3
+        ]);
+
+        $this->add_responsive_control('slide_to_scroll', [
+            'label' => esc_html('Slide To Scroll'),
+            'type' => \Elementor\Controls_Manager::NUMBER,
+            'min' => 1,
+            'default' => 1
+        ]);
+
 
         $this->end_controls_section();
 
@@ -446,38 +446,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'label' => esc_html('Card'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
-
-        $this->add_responsive_control(
-            'card_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'card_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'card_box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-card',
-            ]
-        );
 
         $this->add_control(
             'card_bg_options',
@@ -514,6 +482,39 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'card_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_box_shadow',
+                'selector' => '{{WRAPPER}} .rkit-card',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
         $this->add_control(
             'card_image_options',
             [
@@ -523,18 +524,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'condition' => [
                     'select_style' => 'default'
                 ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'card_image_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -557,39 +546,24 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_responsive_control(
+            'card_image_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section('body_style', [
             'label' => esc_html('Body'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
-
-        $this->add_responsive_control(
-            'card_body_margin',
-            [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-body' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style' => 'default'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'card_body_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -619,6 +593,33 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-card .card-body::before' => 'opacity: {{SIZE}};',
                 ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_body_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_body_margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-body' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style' => 'default'
+                ]
             ]
         );
 
@@ -886,51 +887,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .rkit-card .card-button a',
-            ]
-        );
-
-        $this->add_control('button_width_select', [
-            'label' => esc_html('Button Width'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'auto' => esc_html('Auto'),
-                'fullwidth' => esc_html('Full Width'),
-                'custom' => esc_html('Custom')
-            ]
-        ]);
-
-        $this->add_responsive_control(
-            'button_width',
-            [
-                'label' => esc_html__('Width', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-button a' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'button_width_select' => 'custom'
-                ]
-            ]
-        );
-
-
         $this->add_responsive_control(
             'button_align',
             [
@@ -961,27 +917,48 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
-            'button_padding',
+            'button_width',
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
                 ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-button a' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'button_width_select' => 'custom'
+                ]
             ]
         );
 
-        $this->add_responsive_control(
-            'button_radius',
+        $this->add_control('button_width_select', [
+            'label' => esc_html('Button Width'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'auto' => esc_html('Auto'),
+                'fullwidth' => esc_html('Full Width'),
+                'custom' => esc_html('Custom')
+            ]
+        ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-button a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'button_typography',
+                'selector' => '{{WRAPPER}} .rkit-card .card-button a',
             ]
         );
 
@@ -1004,29 +981,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-card .card-button' => 'margin-top: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'card_button_icon_spacing',
-            [
-                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-button a' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1055,6 +1009,53 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'card_button_icon_spacing',
+            [
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-button a' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-button a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-card .card-button a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->start_controls_tabs('button_tab');
 
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
@@ -1074,14 +1075,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-card .card-button a .button-icon' => 'color : {{VALUE}} ; fill : {{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-card .card-button a',
-            ]
-        );
 
         $this->add_control(
             'btn_bg_options_normal',
@@ -1118,6 +1111,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-card .card-button a',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
@@ -1137,14 +1138,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-card .card-button a:hover .button-icon' => 'color : {{VALUE}} ; fill: {{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-card .card-button a:hover',
-            ]
-        );
 
         $this->add_control(
             'btn_bg_options_hover',
@@ -1177,6 +1170,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'btn_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-card .card-button a:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .rkit-card .card-button a:hover',
             ]
         );
@@ -1296,15 +1297,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'dot_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet',
-            ]
-        );
-
         $this->add_control(
             'dot_bg_options_normal',
             [
@@ -1340,6 +1332,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'dot_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
@@ -1364,15 +1364,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover' => 'width: {{SIZE}}{{UNIT}};',
                 ],
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'dot_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover',
             ]
         );
 
@@ -1411,6 +1402,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'dot_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('active')]);
@@ -1435,15 +1434,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
                 ],
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'dot_box_shadow_active',
-                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active',
             ]
         );
 
@@ -1478,6 +1468,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'dot_border_active',
+                'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'dot_box_shadow_active',
                 'selector' => '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active',
             ]
         );
@@ -1624,14 +1622,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'nav_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev , {{WRAPPER}} .rkit-swiper-button-next',
-            ]
-        );
-
         $this->add_control(
             'nav_bg_options_normal',
             [
@@ -1667,6 +1657,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'nav_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev , {{WRAPPER}} .rkit-swiper-button-next',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('nav_tab_hover', [
@@ -1680,14 +1678,6 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover' => 'color:{{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'nav_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover',
-            ]
-        );
 
         $this->add_control(
             'nav_bg_options_hover',
@@ -1720,6 +1710,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'nav_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'nav_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover',
             ]
         );

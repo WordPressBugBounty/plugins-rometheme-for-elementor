@@ -25,7 +25,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-progress-bar-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['progressbar']['docsURL'];
     }
 
     public function get_script_depends()

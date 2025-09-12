@@ -29,7 +29,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-text-marquee-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['runningtext']['docsURL'];
     }
 
     public function get_style_depends()

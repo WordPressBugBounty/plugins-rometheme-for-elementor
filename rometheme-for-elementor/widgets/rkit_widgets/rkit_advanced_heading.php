@@ -43,25 +43,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
     {
         $this->start_controls_section('content_section', ['label' => esc_html('Content'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
 
-        $this->add_control(
-            'text',
-            [
-                'label' => esc_html__('Text', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'rows' => 10,
-                'default' => esc_html__('Rometheme Studio {{RTMkit}} Widget {{Plugin}}', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
-                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
-            ]
-        );
-
-        $this->add_control(
-            'hr_link',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
         $this->add_responsive_control(
             'text_align',
             [
@@ -90,6 +71,55 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control('html_tag', [
+            'label' => esc_html('Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+            ],
+            'default' => 'h1'
+        ]);
+
+        $this->add_control(
+            'text',
+            [
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'rows' => 10,
+                'default' => esc_html__('Rometheme Studio {{RTMkit}} Widget {{Plugin}}', 'rometheme-for-elementor'),
+                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
+                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
+            ]
+        );
+
+        $this->add_control(
+            '_link',
+            [
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
+                'options' => ['url', 'is_external', 'nofollow'],
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                ],
+                'label_block' => true,
+            ]
+        );
+
+        // $this->add_control(
+        //     'hr_link',
+        //     [
+        //         'type' => \Elementor\Controls_Manager::DIVIDER,
+        //     ]
+        // );
+
         // $this->add_responsive_control(
         //     'content_align',
         //     [
@@ -117,36 +147,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         //     ]
         // );
 
-        $this->add_control(
-            '_link',
-            [
-                'label' => esc_html__('Link', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
-                'options' => ['url', 'is_external', 'nofollow'],
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => true,
-                ],
-                'label_block' => true,
-            ]
-        );
-
-        $this->add_control('html_tag', [
-            'label' => esc_html('Tag'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'h1' => esc_html('H1'),
-                'h2' => esc_html('H2'),
-                'h3' => esc_html('H3'),
-                'h4' => esc_html('H4'),
-                'h5' => esc_html('H5'),
-                'h6' => esc_html('H6'),
-            ],
-            'default' => 'h1'
-        ]);
-
         $this->end_controls_section();
 
 
@@ -161,6 +161,18 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'name' => 'cont_advanced',
                 'types' => ['classic', 'gradient',],
                 'selector' => '{{WRAPPER}} .rkit-advanced-heading',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'cont_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-advanced-heading' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -186,19 +198,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'cont_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-advanced-heading' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
         $this->end_controls_section();
 
 
@@ -208,12 +207,34 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
+        $this->add_control(
+            'textcolorhead',
+            [
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'head_typography',
                 'selector' => '{{WRAPPER}} .headline_text',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'headtext_background',
+                'types' => ['classic', 'gradient',],
+                'selector' => '{{WRAPPER}} .headline_text',
+                'fields_options' => [
+                    'background' => [
+                        'label' => esc_html('Text Color')
+                    ]
+                ]
             ]
         );
 
@@ -230,6 +251,41 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             [
                 'name' => 'head_text_shadow',
                 'selector' => '{{WRAPPER}} .headline_text',
+            ]
+        );
+
+        $this->add_control(
+            'bgtextcolorhead',
+            [
+                'label' => esc_html__('Container Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'bg_head',
+                'types' => ['classic', 'gradient',],
+                'selector' => '{{WRAPPER}} .bg-headline',
+                'fields_options' => [
+                    'background' => [
+                        'label' => esc_html('Background Color'),
+                    ]
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'head_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .bg-headline' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -257,64 +313,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'head_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .bg-headline' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'textcolorhead',
-            [
-                'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'headtext_background',
-                'types' => ['classic', 'gradient',],
-                'selector' => '{{WRAPPER}} .headline_text',
-                'fields_options' => [
-                    'background' => [
-                        'label' => esc_html('Text Color')
-                    ]
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'bgtextcolorhead',
-            [
-                'label' => esc_html__('Container Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'bg_head',
-                'types' => ['classic', 'gradient',],
-                'selector' => '{{WRAPPER}} .bg-headline',
-                'fields_options' => [
-                    'background' => [
-                        'label' => esc_html('Background Color'),
-                    ]
-                ]
-            ]
-        );
-
         $this->end_controls_section();
 
         // style wrap headline text
@@ -329,6 +327,20 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             [
                 'name' => 'wrap_head_typography',
                 'selector' => '{{WRAPPER}} .std-text',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'wrap_headtext_background',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .std-text',
+                'fields_options' => [
+                    'background' => [
+                        'label' => esc_html('Text Color')
+                    ]
+                ]
             ]
         );
 
@@ -369,29 +381,6 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .std-text ' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'wrap_textcolorhead',
-            [
-                'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'wrap_headtext_background',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .std-text',
-                'fields_options' => [
-                    'background' => [
-                        'label' => esc_html('Text Color')
-                    ]
-                ]
             ]
         );
 

@@ -25,7 +25,7 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-social-share-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['video_button']['docsURL'];
     }
 
     public function get_categories()
@@ -209,17 +209,17 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'start' => [
+                    'flex-start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
-                    'end' => [
+                    'flex-end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'default' => 'start',
@@ -285,79 +285,31 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->start_controls_tabs(
-            'style_hover_tabs'
-        );
+        // $this->start_controls_tabs(
+        //     'style_hover_tabs'
+        // );
 
-        $this->start_controls_tab(
-            'tab_normal',
-            [
-                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
-            ]
-        );
+        // $this->start_controls_tab(
+        //     'tab_normal',
+        //     [
+        //         'label' => esc_html__('Normal', 'rometheme-for-elementor'),
+        //     ]
+        // );
 
-        $this->add_control('background_button_icon', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-icon-container' => 'background-color:{{VALUE}};',
-            ],
-            'default' => '#00cea6'
-        ]);
+        // $this->end_controls_tab();
 
-        $this->end_controls_tab();
+        // $this->start_controls_tab(
+        //     'tab_hover',
+        //     [
+        //         'label' => esc_html__('Hover', 'rometheme-for-elementor'),
+        //     ]
+        // );
 
-        $this->start_controls_tab(
-            'tab_hover',
-            [
-                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
-            ]
-        );
 
-        $this->add_control('background_button_icon_hover', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-icon-container:hover' => 'background-color:{{VALUE}};',
-            ],
-            'default' => '#00cea6'
-        ]);
 
-        $this->add_control(
-            'hover_animation_style',
-            [
-                'label'   => esc_html__('Hover Animation Style', 'rometheme-for-elementor'),
-                'type'    => \Elementor\Controls_Manager::SELECT,
-                'options' => [
-                    ''              => esc_html__('None', 'rometheme-for-elementor'),
-                    'grow'          => esc_html__('Grow', 'rometheme-for-elementor'),
-                    'shrink'        => esc_html__('Shrink', 'rometheme-for-elementor'),
-                    'pulse'         => esc_html__('Pulse', 'rometheme-for-elementor'),
-                    'wobble'        => esc_html__('Wobble', 'rometheme-for-elementor'),
-                    'skew'          => esc_html__('Skew', 'rometheme-for-elementor'),
-                    'rotate'        => esc_html__('Rotate', 'rometheme-for-elementor'),
-                    'slide-up'      => esc_html__('Slide Up', 'rometheme-for-elementor'),
-                    'slide-down'    => esc_html__('Slide Down', 'rometheme-for-elementor'),
-                    'slide-left'    => esc_html__('Slide Left', 'rometheme-for-elementor'),
-                    'slide-right'   => esc_html__('Slide Right', 'rometheme-for-elementor'),
-                    'bounce'        => esc_html__('Bounce', 'rometheme-for-elementor'),
-                    'flip'          => esc_html__('Flip', 'rometheme-for-elementor'),
-                    'flip-x'        => esc_html__('Flip X', 'rometheme-for-elementor'),
-                    'flip-y'        => esc_html__('Flip Y', 'rometheme-for-elementor'),
-                    'zoom-in'       => esc_html__('Zoom In', 'rometheme-for-elementor'),
-                    'zoom-out'      => esc_html__('Zoom Out', 'rometheme-for-elementor'),
-                    'float'         => esc_html__('Float', 'rometheme-for-elementor'),
-                    'tada'          => esc_html__('Tada', 'rometheme-for-elementor'),
-                    'shake'         => esc_html__('Shake', 'rometheme-for-elementor'),
-                    'rubber-band'   => esc_html__('Rubber Band', 'rometheme-for-elementor'),
-                ],
-                'default' => '',
-            ]
-        );
+        // $this->end_controls_tab();
 
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
+        // $this->end_controls_tabs();
 
         $this->add_control(
             'style_icon_options',
@@ -437,6 +389,16 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             'default' => '#161719'
         ]);
 
+        $this->add_control('background_button_icon', [
+            'label' => esc_html('Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container' => 'background-color:{{VALUE}};',
+            ],
+            'default' => '#00cea6'
+        ]);
+
+
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -445,15 +407,56 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
                 'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
-        
+
         $this->add_control('color_button_hover', [
             'label' => esc_html('Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-animated-icon-container .rkit-vb-icon:hover' => 'color:{{VALUE}};fill:{{VALUE}};',
+                '{{WRAPPER}} .rkit-animated-icon-container:hover .rkit-vb-icon' => 'color:{{VALUE}};fill:{{VALUE}};',
             ],
             'default' => '#161719'
         ]);
+
+        $this->add_control('background_button_icon_hover', [
+            'label' => esc_html('Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container:hover' => 'background-color:{{VALUE}};',
+            ],
+            'default' => '#00cea6'
+        ]);
+
+        $this->add_control(
+            'hover_animation_style',
+            [
+                'label'   => esc_html__('Hover Animation Style', 'rometheme-for-elementor'),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    ''              => esc_html__('None', 'rometheme-for-elementor'),
+                    'grow'          => esc_html__('Grow', 'rometheme-for-elementor'),
+                    'shrink'        => esc_html__('Shrink', 'rometheme-for-elementor'),
+                    'pulse'         => esc_html__('Pulse', 'rometheme-for-elementor'),
+                    'wobble'        => esc_html__('Wobble', 'rometheme-for-elementor'),
+                    'skew'          => esc_html__('Skew', 'rometheme-for-elementor'),
+                    'rotate'        => esc_html__('Rotate', 'rometheme-for-elementor'),
+                    'slide-up'      => esc_html__('Slide Up', 'rometheme-for-elementor'),
+                    'slide-down'    => esc_html__('Slide Down', 'rometheme-for-elementor'),
+                    'slide-left'    => esc_html__('Slide Left', 'rometheme-for-elementor'),
+                    'slide-right'   => esc_html__('Slide Right', 'rometheme-for-elementor'),
+                    'bounce'        => esc_html__('Bounce', 'rometheme-for-elementor'),
+                    'flip'          => esc_html__('Flip', 'rometheme-for-elementor'),
+                    'flip-x'        => esc_html__('Flip X', 'rometheme-for-elementor'),
+                    'flip-y'        => esc_html__('Flip Y', 'rometheme-for-elementor'),
+                    'zoom-in'       => esc_html__('Zoom In', 'rometheme-for-elementor'),
+                    'zoom-out'      => esc_html__('Zoom Out', 'rometheme-for-elementor'),
+                    'float'         => esc_html__('Float', 'rometheme-for-elementor'),
+                    'tada'          => esc_html__('Tada', 'rometheme-for-elementor'),
+                    'shake'         => esc_html__('Shake', 'rometheme-for-elementor'),
+                    'rubber-band'   => esc_html__('Rubber Band', 'rometheme-for-elementor'),
+                ],
+                'default' => '',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -469,29 +472,16 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('background_color_icon_animated_pulse', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#00CEA699',
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-icon-container' => '--pulse-color:{{VALUE}};',
-            ],
-            'condition' => [
-                'show_animation_pulsing' => 'yes'
-            ]
-
-        ]);
-
         $this->add_control('width_pulse_animated', [
             'label' => esc_html__('Width Animated Pulse', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
-            'size_units' => ['px'],
+            'size_units' => ['px', 'em', 'rem'],
             'range' => [
                 'px' => [
                     'min' => 0,
                     'max' => 100,
                     'step' => 1,
-                ],
+                ]
             ],
             'default' => [
                 'size' => 32,
@@ -503,7 +493,7 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
         ]);
 
         $this->add_control('duration_animation', [
-            'label' => esc_html__('Duration Animated Pulse', 'rometheme-for-elementor'),
+            'label' => esc_html__('Duration Animated Pulse (s)', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['s'],
             'range' => [
@@ -521,6 +511,56 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
                 'show_animation_pulsing' => 'yes'
             ]
         ]);
+
+        $this->start_controls_tabs(
+            'style_tabs_effects'
+        );
+
+        $this->start_controls_tab(
+            'style_normal_tab_effects',
+            [
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_control('background_color_icon_animated_pulse', [
+            'label' => esc_html('Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#00CEA699',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container' => '--pulse-color:{{VALUE}};',
+            ],
+            'condition' => [
+                'show_animation_pulsing' => 'yes'
+            ]
+
+        ]);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'style_hover_tab_effects',
+            [
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
+            ]
+        );
+
+         $this->add_control('background_color_icon_animated_pulse_hover', [
+            'label' => esc_html('Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#00CEA699',
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container:hover' => '--pulse-color:{{VALUE}};',
+            ],
+            'condition' => [
+                'show_animation_pulsing' => 'yes'
+            ]
+
+        ]);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }

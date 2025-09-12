@@ -23,7 +23,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['imagebox']['docsURL'];
     }
 
     public function get_categories()

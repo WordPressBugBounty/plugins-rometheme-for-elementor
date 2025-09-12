@@ -19,7 +19,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-pie-chart-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['piechart']['docsURL'];
     }
 
     public function get_categories()

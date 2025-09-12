@@ -23,7 +23,7 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['image_gallery']['docsURL'];
     }
 
     public function get_categories()

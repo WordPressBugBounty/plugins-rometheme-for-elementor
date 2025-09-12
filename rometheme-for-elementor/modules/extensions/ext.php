@@ -60,10 +60,10 @@ class RTMExtension
 
         foreach ($exts as $key => $ext) {
             if ($ext['status']) {
-                $class = '\\RomethemeKit\\' . $ext['classname'];
+                $class = (!isset($ext['is_pro']) || !$ext['is_pro']) ? 'RomethemeKit\\' . $ext['classname'] : 'RTMKitPro\\Extensions\\' . $ext['classname']   ;
                 if (class_exists($class)) {
                     new $class();
-                    error_log("Instantiated class: $class");
+                    // error_log("Instantiated class: $class");
                 } else {
                     error_log("Class not found: $class");
                 }

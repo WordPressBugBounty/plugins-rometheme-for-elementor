@@ -25,7 +25,7 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-social-share-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['socialshare']['docsURL'];
     }
 
     public function get_categories()

@@ -30,7 +30,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
 
     public function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['countdown']['docsURL'];
     }
 
     public function get_style_depends()

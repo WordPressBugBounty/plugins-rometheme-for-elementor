@@ -35,7 +35,7 @@ class Rkit_pricelist extends \Elementor\Widget_Base
 
     public function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/pricing-table/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['pricetable']['docsURL'];
     }
     protected function register_controls()
     {

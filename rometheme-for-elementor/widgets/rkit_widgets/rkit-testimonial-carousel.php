@@ -28,7 +28,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-testimonial-carousel-widget/';
+        return  \RomethemeKit\RkitWidgets::listWidgets()['testimonialcarousel']['docsURL'];
     }
 
     protected function register_controls()

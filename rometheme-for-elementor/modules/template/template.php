@@ -4,6 +4,8 @@ namespace RomethemeKit;
 
 use ZipArchive;
 
+use function ElementorDeps\DI\add;
+
 class Template
 {
     public $url;
@@ -27,6 +29,8 @@ class Template
         add_action('wp_ajax_install_requirements', [$this, 'install_requirements']);
         add_action('wp_ajax_template_category', [$this, 'template_category']);
         add_action('wp_ajax_get_installed_templates', [$this, 'get_installed_templates']);
+        add_action('wp_ajax_rtm_handle_upload_template', [$this, 'rtm_handle_upload_template']);
+        add_action('wp_ajax_fetch_envato_template', [$this, 'fetch_envato_template']);
     }
 
     public function init_template_dir()
@@ -142,6 +146,47 @@ class Template
         ]);
     }
 
+    public function fetch_envato_template()
+    {
+        if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
+            wp_send_json_error('Access Denied');
+            wp_die();
+        }
+
+        $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
+
+        $url = 'https://api.envato.com/v1/discovery/search/search/item?site=themeforest.net&username=rometheme&category=template-kits&sort_by=date&sort_by=date&sort_direction=desc&page_size=24&page=' . $paged;
+
+        if (isset($_POST['search']) && !empty($_POST['search'])) {
+            $url .= '&term=' . sanitize_text_field($_POST['search']);
+        }
+
+        $args = [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer 0Qi0Q396nMlr64ysVwF5lg6yP9RcdWjf',
+            ],
+            'httpversion' => '1.1',
+            'timeout' => 15,
+            'sslverify' => true, // Ubah ke true di production jika SSL valid
+        ];
+
+        // Gunakan wp_remote_get untuk mengambil data dari REST API
+        $response = wp_remote_get($url, $args);
+
+        if (is_wp_error($response)) {
+            wp_send_json_error('Error: ' . $response->get_error_message());
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+
+        if (!is_array($data)) {
+            wp_send_json_error('Invalid response format');
+        }
+
+        wp_send_json_success($data);
+    }
 
     public function register_scripts()
     {
@@ -243,6 +288,8 @@ class Template
         // Akses Template Manager dan lakukan import
         $local_source = \Elementor\Plugin::$instance->templates_manager->get_source('local');
         $temp_template = wp_tempnam('temp_' . $template);
+        // Update progres
+        set_transient($transient_id, ['progress' => 40, 'message' => 'Importing template...'], 60);
         file_put_contents($temp_template, $json_data);
         $result = $local_source->import_template(basename($temp_template), $temp_template);
 
@@ -277,7 +324,11 @@ class Template
 
             set_transient($transient_id, ['progress' => 75, 'message' => 'Importing Template...'], 60);
             $history = get_option('rtm_import_template_' . $template, []);
-            $history[str_replace(' ', '_', html_entity_decode($result[0]['title']))] = $imported_template_id;
+            $key = html_entity_decode($result[0]['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $key = str_replace(["–", "—", "−"], "-", $key);
+            $key = str_replace([' ', '_'], '_', $key);
+            $key = strtolower($key);
+            $history[$key] = $imported_template_id;
             update_option('rtm_import_template_' . $template, $history);
             $result[0]['edit_url'] = admin_url('post.php?post=' . $imported_template_id . '&action=elementor');
             $result[0]['delete_url'] = get_delete_post_link($imported_template_id);
@@ -364,7 +415,7 @@ class Template
         return $manifest->title;
     }
 
-    function template_extract($url, $id)
+    function template_extract($url, $id, $return = false)
     {
         $upload_dir = wp_upload_dir();
         $custom_dir = $upload_dir['basedir'] . '/rometheme_template';
@@ -400,7 +451,11 @@ class Template
 
             update_option('rtm_template_installed', $option); // Simpan kembali ke database
 
-            wp_send_json_success(['message' => 'success extract', 'template' => $hashId]);
+            if ($return) {
+                return true;
+            } else {
+                wp_send_json_success(['message' => 'success extract', 'template' => $hashId]);
+            }
         }
     }
 
@@ -627,7 +682,14 @@ class Template
             }
         }
 
-        if (wp_delete_post($id)) {
+        $post_type = get_post_type($id);
+        $type      = get_post_meta($id, '_elementor_template_type', true);
+
+        if ($post_type === 'elementor_library' && $type === 'kit') {
+            remove_all_actions('before_delete_post');
+        }
+
+        if (wp_delete_post($id, true)) {
             unset($op[$keyTemplate]);
             update_option('rtm_import_template_' . $template, $op);
             wp_send_json_success('success');
@@ -689,5 +751,53 @@ class Template
 
             wp_send_json_success('Plugin installed and activated successfully.');
         }
+    }
+
+    function rtm_handle_upload_template()
+    {
+        check_ajax_referer('rtm_template_nonce', 'nonce');
+
+        if (empty($_FILES['file'])) {
+            wp_send_json_error('Tidak ada file yang diupload.');
+        }
+
+        $file = $_FILES['file'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if ($ext !== 'zip') {
+            wp_send_json_error('Hanya file .zip yang diperbolehkan.');
+        }
+
+        $upload_dir = wp_upload_dir();
+        // path di server
+        $tmpFilePath = $upload_dir['basedir'] . '/rtm_temp_' . wp_unique_filename($upload_dir['basedir'], $file['name']);
+
+        // URL publik
+        $tmpFileUrl  = $upload_dir['baseurl'] . '/' . basename($tmpFilePath);
+
+        if (!move_uploaded_file($file['tmp_name'], $tmpFilePath)) {
+            wp_send_json_error('Gagal menyimpan file sementara.');
+        }
+
+        $res = $this->template_extract($tmpFileUrl, $file['name'], true);
+
+        // setelah selesai hapus file
+        if (file_exists($tmpFilePath)) unlink($tmpFilePath);
+        if ($res) {
+            wp_send_json_success('Template berhasil diupload dan diekstrak.');
+        } else {
+            wp_send_json_error($res);
+        }
+    }
+
+    public static function normalize_dash_key($key)
+    {
+        // Semua variasi dash jadi ASCII "-"
+        $dashes = ["–", "—", "−", "‒", "‐", "-", "﹘", "﹣", "－"];
+        $key = str_replace($dashes, "-", $key);
+
+        // Hapus spasi aneh atau invisible character
+        $key = preg_replace('/\p{Cf}+/u', '', $key);
+
+        return $key;
     }
 }

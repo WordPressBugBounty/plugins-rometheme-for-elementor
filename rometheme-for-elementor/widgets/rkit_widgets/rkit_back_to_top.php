@@ -30,7 +30,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['backtotop']['docsURL'];
     }
 
     public function get_style_depends()
@@ -188,55 +188,6 @@ class RkitBackToTop extends \Elementor\Widget_Base
 			]
 		);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'text_typography',
-                'selector' => '{{WRAPPER}} .back-to-top-text',
-                'conditions' => [
-                    'relation' => 'or',
-                    'terms' => [
-                        [
-                            'name' => 'select_style',
-                            'operator' => '===',
-                            'value' => 'text'
-                        ],
-                        [
-                            'name' => 'choose_style',
-                            'operator' => '===',
-                            'value' => 'text'
-                        ]
-                    ]
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'button_size',
-            [
-                'label' => esc_html__('Button Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-back-to-top-button , {{WRAPPER}} .scroll-progress' => 'width: {{SIZE}}{{UNIT}}; height :{{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style' => 'progress'
-                ]
-            ]
-        );
-
         $this->add_responsive_control(
             'button_width',
             [
@@ -290,6 +241,32 @@ class RkitBackToTop extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
+            'button_size',
+            [
+                'label' => esc_html__('Button Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-back-to-top-button , {{WRAPPER}} .scroll-progress' => 'width: {{SIZE}}{{UNIT}}; height :{{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style' => 'progress'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
             'icon_size',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -322,6 +299,29 @@ class RkitBackToTop extends \Elementor\Widget_Base
                             'name' => 'choose_style',
                             'operator' => '===',
                             'value' => 'icon'
+                        ]
+                    ]
+                ]
+            ]
+        );
+
+          $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'text_typography',
+                'selector' => '{{WRAPPER}} .back-to-top-text',
+                'conditions' => [
+                    'relation' => 'or',
+                    'terms' => [
+                        [
+                            'name' => 'select_style',
+                            'operator' => '===',
+                            'value' => 'text'
+                        ],
+                        [
+                            'name' => 'choose_style',
+                            'operator' => '===',
+                            'value' => 'text'
                         ]
                     ]
                 ]

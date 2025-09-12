@@ -151,7 +151,8 @@ a:focus {
 }
 
 .btn-accent:focus,
-.btn-gradient-accent:focus {
+.btn-gradient-accent:focus,
+.btn-outline-light:focus:not(:hover) {
   color: white !important;
 }
 
@@ -555,15 +556,17 @@ table.rtm-table tr {
   background-color: transparent;
 }
 
-.sub-nav .nav-item .nav-link.active {
+.sub-nav .nav-item .nav-link.active,
+.sub-nav .nav-item .nav-link:hover {
   font-weight: 600;
   border-left: 0;
   border-right: 0;
   border-top: 0;
   border-bottom-width: 2px;
+  border-bottom-style: solid;
   border-image-source: linear-gradient(90deg, #00cea6 0%, #00000000 100%);
   border-image-slice: 1;
-  /* text-shadow: 2px 3px 4px #00cea6; */
+  text-shadow: 2px 3px 4px #00cea6;
 }
 
 .themebuilder-pagination .page-numbers {
@@ -880,6 +883,7 @@ button[data-tooltips]:hover::after {
   border-radius: inherit;
   backdrop-filter: blur(5px);
   border: none;
+  /* z-index: -1; */
   /* opacity: 0.5; */
 }
 
@@ -921,4 +925,39 @@ button[data-tooltips]:hover::after {
 
 .link-docs a:last-child {
   color: gray;
+}
+
+.drop-zone {
+  background-color: #7171714c;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  backdrop-filter: blur(15px);
+  border: 2px dashed #d2d2d2;
+  cursor: pointer;
+  color: white;
+  padding: 20px;
+}
+
+.drop-zone:hover {
+  background-color: #e2e2e26b;
+}
+
+.drop-zone .drop-zone__input {
+  display: none;
+}
+
+.drop-zone .drop-zone__prompt {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.drop-zone.drop-zone--over {
+  background-color: #00cea590;
 }

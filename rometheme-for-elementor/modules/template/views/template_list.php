@@ -1,18 +1,23 @@
+<?php
+$tabs = isset($_GET['tabs']) ? sanitize_text_field($_GET['tabs']) : 'pro-template';
+
+?>
+
 <div class="d-flex flex-column gap-3 me-3  mb-3 rtm-container rounded-2 rtm-bg-gradient-1 rtm-text-font" style="margin-top: -8rem;">
     <div class="px-5 rounded-3 pb-5">
         <div class="spacer"></div>
         <div class="row row-cols-lg-2 row-cols-1 p-4">
             <div class="col col-lg-7">
                 <div class="d-flex flex-column gap-3">
-                    <span class="accent-color">Build the Future</span>
+                    <span class="accent-color">Launch Website in minutes</span>
                     <div class="d-flex flex-row gap-3 align-items-center ">
                         <h1 class="text-white text-nowrap m-0">
-                            Templates
+                            Elementor Template Kits
                         </h1>
                         <div class="rtm-divider rounded-pill"></div>
                     </div>
                     <p class="text">
-                        A Template Kit is a collection of pre-designed templates that help you create a full website for a specific industry. It includes all the pages, parts, settings, and content that you'd expect in a fully functional website.
+                        Download free and premium Wordpress Elementor Template Kits and Blocks. Fully flexible, ready to use, with zero coding required and one click demo import.
                     </p>
                 </div>
             </div>
@@ -21,16 +26,19 @@
     </div>
 </div>
 <div class="rtm-bg-gradient-1 rounded-3 me-3">
-    <ul class="nav sub-nav py-3 px-5 rtm-border-bottom" id="pills-tab" role="tablist">
+    <ul class="nav sub-nav py-3 px-5 rtm-border-bottom" id="pills-tab">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-template-tab" data-bs-toggle="pill" data-bs-target="#pills-template" type="button" role="tab" aria-controls="pills-template" aria-selected="true">Template</button>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates&tabs=pro-template')) ?>" class="nav-link <?php echo ($tabs == 'pro-template') ? 'active' : '' ?>" id="pills-pro-template-tab">Premium Templates</a>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-installed-template-tab" data-bs-toggle="pill" data-bs-target="#pills-installed-template" type="button" role="tab" aria-controls="pills-installed-template" aria-selected="false">Installed Template</button>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates&tabs=free-template')) ?>" class="nav-link <?php echo ($tabs == 'free-template') ? 'active' : '' ?>" id="pills-template-tab">Free Templates</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates&tabs=installed-kits')) ?>" class="nav-link <?php echo ($tabs == 'installed-kits') ? 'active' : '' ?>" id="pills-installed-template-tab">Installed Templates</a>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane px-5 py-3 fade show active" id="pills-template" role="tabpanel" aria-labelledby="pills-template-tab" tabindex="0">
+        <div class="tab-pane px-5 py-3 fade <?php echo ($tabs == 'free-template') ? 'show active' : '' ?>" id="pills-template">
             <div class="d-flex flex-row justify-content-between">
                 <div class="col-4">
                     <div class="position-relative template-category-container">
@@ -68,7 +76,35 @@
             </div>
             <ul id="pagination" class="pagination justify-content-center my-3"></ul>
         </div>
-        <div class="tab-pane fade" id="pills-installed-template" role="tabpanel" aria-labelledby="pills-installed-template-tab" tabindex="0">
+        <div class="tab-pane px-5 py-3 fade <?php echo ($tabs == 'pro-template') ? 'show active' : '' ?>" id="pills-pro-template">
+            <div class="d-flex flex-row justify-content-between mb-5">
+                <div class="col-7">
+                    <div class="d-flex flex-column">
+                        <h5 class="text-white">Premium Template Kits from Themeforest</h5>
+                        <span class="text-white">We now have hundreds of Premium Template Kits that are available to paid, Themeforest Users!</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <form action="<?php echo esc_url(admin_url('admin.php?')) ?>">
+                        <div class="input-group mb-3">
+                            <input type="text" name="page" value="rtmkit-templates" hidden>
+                            <input type="text" name="tabs" value="pro-template" hidden>
+                            <input id="pro-template-search" name="search" type="text" class="form-control rounded-start" placeholder="Search All Template Kits...">
+                            <button class="btn btn-gradient-accent border-0 rounded-end" type="submit" id="button-addon2"><i class="rtmicon rtmicon-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row row-cols-3" id="pro-template-container">
+                <div class="w-100 d-flex justify-content-center align-items-center" id="loader" style="height: 500px;">
+                    <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <ul id="pro-template-pagination" class="pagination justify-content-center my-3"></ul>
+        </div>
+        <div class="tab-pane fade <?php echo ($tabs == 'installed-kits') ? 'show active' : '' ?>" id="pills-installed-template">
             <?php require_once RomeTheme::module_dir() . 'template/views/installed_template_list.php';  ?>
         </div>
     </div>

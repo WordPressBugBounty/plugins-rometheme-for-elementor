@@ -8,7 +8,7 @@ $imported = get_option('rtm_import_template_' . $hashId, []);
 $manifest = json_decode(file_get_contents($rtmTemplateDir . '/' . $hashId . '/manifest.json'));
 $id = \RomethemeKit\Template::get_installed_template_id($hashId);
 $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_plugins);
-
+$description = \RomethemeKit\Template::get_template_description($id);
 ?>
 
 
@@ -26,13 +26,15 @@ $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_pl
 
             </div>
             <div class="col col-lg-4 d-flex align-items-center justify-content-end">
-                <button type="button" class="btn btn-gradient-accent" data-bs-toggle="modal" data-bs-target="#description_modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-                    </svg>
-                    Attention
-                </button>
+                <?php if (!empty($description)) : ?>
+                    <button type="button" class="btn btn-gradient-accent" data-bs-toggle="modal" data-bs-target="#description_modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                        </svg>
+                        Attention
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
         <?php if (count($missing_plugin) > 0) : ?>
@@ -48,10 +50,25 @@ $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_pl
     </div>
 </div>
 <div class="rtm-container rtm-bg-gradient-1 rounded-3 me-3 p-4">
+    <div class="d-flex flex-row justify-content-between mb-4">
+        <div class="d-flex flex-row gap-2 align-items-start">
+            <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit-templates&tabs=installed-kits')) ?>" class="btn btn-outline-light rounded-2"><i class="fas fa-arrow-left me-2"></i>Back to Templates</a>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2">
+            <div class="d-flex flex-row gap-2 align-items-center">
+                <button id="delete-all-installed-templates" class="btn btn-danger fw-light rounded-2 text-nowrap">
+                    <i class="far fa-trash-can me-2"></i>
+                    Delete All Installed Templates
+                </button>
+                <button id="import-full-template" class="btn btn-gradient-accent rounded-2"><i class="fas fa-cloud-arrow-down me-2"></i>Import Full Demo</button>
+            </div>
+        </div>
+    </div>
+    <hr class="border-white" />
     <div class="row row-cols-3" id="template-container">
         <?php foreach ($manifest->templates as $t) :
             $imgurl = $upload_dir['baseurl'] . '/rometheme_template/' . $hashId . '/' . $t->screenshot;
-        // echo $imported['Header_–_Block'];
+            $key = strtolower(str_replace(' ', '_', html_entity_decode(\RomethemeKit\Template::normalize_dash_key($t->name))));
         ?>
             <div class="col mb-3">
                 <div class="d-flex flex-column h-100 rounded-3 overflow-hidden glass-effect rtm-border">
@@ -63,11 +80,11 @@ $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_pl
                             <h5 class="text-truncate text-white m-0"><?php echo esc_html($t->name) ?></h5>
                         </div>
                         <div class="d-flex flex-row gap-2">
-                            <?php if (isset($imported[str_replace(' ', '_', $t->name)])) : ?>
-                                <a href="<?php echo esc_url(admin_url('post.php?post=' . $imported[str_replace(' ', '_', $t->name)] . '&action=elementor')) ?>" class="fw-light btn w-100 btn-gradient-accent rounded-2 text-nowrap">
+                            <?php if (isset($imported[$key])) : ?>
+                                <a href="<?php echo esc_url(admin_url('post.php?post=' . $imported[$key] . '&action=elementor')) ?>" class="fw-light btn w-100 btn-gradient-accent rounded-2 text-nowrap">
                                     <i class="far fa-eye me-2"></i>
                                     View Template</a>
-                                <button class="btn btn-outline-danger fw-light w-100 rounded-2 text-nowrap delete-installed-template" data-template="<?php echo esc_attr($hashId) ?>" data-item-template="<?php echo esc_attr($imported[str_replace(' ', '_', $t->name)]) ?>">
+                                <button class="btn btn-danger fw-light w-100 rounded-2 text-nowrap delete-installed-template" data-template="<?php echo esc_attr($hashId) ?>" data-item-template="<?php echo esc_attr($imported[$key]) ?>">
                                     <i class="far fa-trash-can me-2"></i>
                                     Delete</button>
                             <?php else : ?>
@@ -94,7 +111,7 @@ $missing_plugin = \RomethemeKit\Template::missing_plugins($manifest->required_pl
             </div>
             <div class="modal-body px-4">
                 <?php
-                $description = \RomethemeKit\Template::get_template_description($id);
+
                 echo wp_kses_post($description);
                 ?>
             </div>

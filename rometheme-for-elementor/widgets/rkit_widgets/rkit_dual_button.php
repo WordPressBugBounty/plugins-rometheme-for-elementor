@@ -25,7 +25,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['dualbutton']['docsURL'];
     }
 
     public function get_categories()
@@ -48,36 +48,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
-        $this->add_responsive_control(
-            'layout_db',
-            [
-                'label' => esc_html__('Layout', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'column' => [
-                        'title' => esc_html__('vertical', 'text-domain'),
-                        'icon' => 'eicon-arrow-up',
-                    ],
-                    'row' => [
-                        'title' => esc_html__('Horizontal', 'text-domain'),
-                        'icon' => 'eicon-arrow-right',
-                    ],
-
-                ],
-                'devices' => ['desktop', 'tablet', 'mobile'],
-
-                'default' =>  'row',
-                'tablet_default' =>  'row',
-                'mobile_default' =>  'column',
-                'selectors' => [
-                    '{{WRAPPER}} .dual-button-inner-wrapper' => 'flex-direction: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-
-        $this->add_control(
+         $this->add_control(
             'button_align',
             [
                 'label' => esc_html__(' Alignment', 'rometheme-for-elementor'),
@@ -85,15 +56,15 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'options' => [
                     'flex-start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'flex-end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'selectors' => [
@@ -126,6 +97,33 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+           $this->add_responsive_control(
+            'layout_db',
+            [
+                'label' => esc_html__('Layout', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'column' => [
+                        'title' => esc_html__('vertical', 'text-domain'),
+                        'icon' => 'eicon-arrow-up',
+                    ],
+                    'row' => [
+                        'title' => esc_html__('Horizontal', 'text-domain'),
+                        'icon' => 'eicon-arrow-right',
+                    ],
+
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+
+                'default' =>  'row',
+                'tablet_default' =>  'row',
+                'mobile_default' =>  'column',
+                'selectors' => [
+                    '{{WRAPPER}} .dual-button-inner-wrapper' => 'flex-direction: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
 
@@ -142,6 +140,34 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'rows' => 10,
                 'default' => esc_html__('Rometheme ', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
+            ]
+        );
+
+         $this->add_control(
+            'left_button_link',
+            [
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'options' => ['url', 'is_external', 'nofollow'],
+                'label_block' => true,
+            ]
+        );
+
+         $this->add_responsive_control(
+            'button_left_icon_spacing',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .left_button' => 'gap: {{SIZE}}{{UNIT}};',
+                ]
             ]
         );
 
@@ -194,35 +220,6 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ],
         ]);
 
-        $this->add_responsive_control(
-            'button_left_icon_spacing',
-            [
-                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .left_button' => 'gap: {{SIZE}}{{UNIT}};',
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'left_button_link',
-            [
-                'label' => esc_html__('Link', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'options' => ['url', 'is_external', 'nofollow'],
-                'label_block' => true,
-            ]
-        );
-
-
         $this->end_controls_section();
 
         $this->start_controls_section('button_right', [
@@ -241,6 +238,35 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
             ]
         );
+
+          $this->add_control(
+            'right_button_link',
+            [
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'options' => ['url', 'is_external', 'nofollow'],
+                'label_block' => true,
+            ]
+        );
+
+                $this->add_responsive_control(
+            'button_right_icon_spacing',
+            [
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .right_button' => 'gap: {{SIZE}}{{UNIT}};',
+                ]
+            ]
+        );
+
         $this->add_control(
             'right_button_icon',
             [
@@ -256,7 +282,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
         $this->add_control(
             'right_icon_readmore',
             [
-                'label' => esc_html__('Icon sss', 'rometheme-for-elementor'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-arrow-right',
@@ -289,34 +315,6 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 '{{WRAPPER}} .right_button' => 'flex-direction: {{VALUE}};',
             ],
         ]);
-
-        $this->add_responsive_control(
-            'button_right_icon_spacing',
-            [
-                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .right_button' => 'gap: {{SIZE}}{{UNIT}};',
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'right_button_link',
-            [
-                'label' => esc_html__('Link', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'options' => ['url', 'is_external', 'nofollow'],
-                'label_block' => true,
-            ]
-        );
 
         $this->end_controls_section();
 
@@ -457,6 +455,15 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'container_box_shadow',
+                'label' => __('Box Shadow', 'plugin-name'),
+                'selector' => '{{WRAPPER}} .dual-button-inner-wrapper',
+            ]
+        );
+
         $this->add_responsive_control(
             'padding_button',
             [
@@ -477,16 +484,6 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'container_box_shadow',
-                'label' => __('Box Shadow', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .dual-button-inner-wrapper',
-            ]
-        );
-
         $this->end_controls_section();
 
         // Style Section for Button left
@@ -495,12 +492,47 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_group_control(
+                $this->add_responsive_control(
+            'button_align_left_left',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .left_button' => 'justify-content: {{VALUE}};',
+                ],
+                'default' => 'center',
+            ]
+        );
+
+                $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .left_button',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_left',
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
+                'selector' => '  {{WRAPPER}} .left_button',
             ]
         );
 
@@ -586,43 +618,6 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'button_align_left_left',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .left_button' => 'justify-content: {{VALUE}};',
-                ],
-                'default' => 'center',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'button_border_left',
-                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .left_button',
-            ]
-        );
-
-
-        // /wkwkwkw
         $this->start_controls_tabs('button_tab');
 
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html('Normal')]);
@@ -635,15 +630,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('button_icon_color_normal', [
-            'label' => esc_html('Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-icon-left-button' => 'color : {{VALUE}}'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+           $this->add_responsive_control(
             'left_db_icon_size',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -666,15 +653,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .dual-left, {{WRAPPER}} a',
+        $this->add_control('button_icon_color_normal', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-icon-left-button' => 'color : {{VALUE}}'
             ]
-        );
+        ]);
 
         $this->add_control(
             'btn_bg_options_normal',
@@ -695,6 +680,14 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+                $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .dual-left, {{WRAPPER}} a',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
@@ -707,15 +700,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('button_icon_color_hover', [
-            'label' => esc_html('Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} a:hover .rkit-icon-left-button ' => 'color : {{VALUE}}'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+          $this->add_responsive_control(
             'left_db_icon_size_hover',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -738,13 +723,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .dual-left:hover',
+        $this->add_control('button_icon_color_hover', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} a:hover .rkit-icon-left-button ' => 'color : {{VALUE}}'
             ]
-        );
+        ]);
 
         $this->add_control(
             'btn_bg_options_hover',
@@ -764,6 +749,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+ $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .dual-left:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -777,7 +769,33 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_group_control(
+         $this->add_control(
+            'button_align_right_right',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .right_button' => 'justify-content: {{VALUE}};',
+                ],
+                'default' => 'center',
+            ]
+        );
+
+                $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography_right',
@@ -786,7 +804,14 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_right',
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
+                'selector' => '  {{WRAPPER}} .right_button',
+            ]
+        );
 
         $this->add_responsive_control(
             'button_border_radius_right',
@@ -886,44 +911,6 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'button_align_right_right',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .right_button' => 'justify-content: {{VALUE}};',
-                ],
-                'default' => 'center',
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'button_border_right',
-                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .right_button',
-            ]
-        );
-
-
-        // /wkwkwkw
         $this->start_controls_tabs('button_tab_right');
 
         $this->start_controls_tab('button_tab_normal_right', ['label' => esc_html('Normal')]);
@@ -936,15 +923,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('button_icon_color_normal_right', [
-            'label' => esc_html('Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-icon-right-button' => 'color : {{VALUE}}'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+           $this->add_responsive_control(
             'right_db_icon_size',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -967,13 +946,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_normal_right',
-                'selector' => '{{WRAPPER}} .dual-right, {{WRAPPER}} a',
+        $this->add_control('button_icon_color_normal_right', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-icon-right-button' => 'color : {{VALUE}}'
             ]
-        );
+        ]);
 
         $this->add_control(
             'btn_bg_options_normal_right',
@@ -994,6 +973,14 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+         $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_normal_right',
+                'selector' => '{{WRAPPER}} .dual-right, {{WRAPPER}} a',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('button_tab_hover_right', ['label' => esc_html('Hover')]);
@@ -1006,15 +993,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('button_icon_color_hover_right', [
-            'label' => esc_html('Icon Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} a:hover .rkit-icon-right-button ' => 'color : {{VALUE}}'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+            $this->add_responsive_control(
             'right_db_icon_size_hover',
             [
                 'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
@@ -1037,13 +1016,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'btn_box_shadow_hover_right',
-                'selector' => '{{WRAPPER}} .dual-right:hover',
+        $this->add_control('button_icon_color_hover_right', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} a:hover .rkit-icon-right-button ' => 'color : {{VALUE}}'
             ]
-        );
+        ]);
 
         $this->add_control(
             'btn_bg_options_hover_right',
@@ -1063,6 +1042,13 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+   $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_hover_right',
+                'selector' => '{{WRAPPER}} .dual-right:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1076,30 +1062,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'button_typography_middle',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .middle, {{WRAPPER}} .middle-button ',
-            ]
-        );
-
-
-
-        $this->add_responsive_control(
-            'button_border_radius_middle',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .middle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
+                $this->add_responsive_control(
             'middle_width',
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
@@ -1143,15 +1106,7 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('button_text_color_normal_middle', [
-            'label' => esc_html('Text Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .middle' => 'color : {{VALUE}}'
-            ]
-        ]);
-
-        $this->add_control('button_icon_color_normal_middle', [
+         $this->add_control('button_icon_color_normal_middle', [
             'label' => esc_html('Icon Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -1159,15 +1114,22 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         ]);
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+                $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'button_border_middle',
-                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .middle',
+                'name' => 'button_typography_middle',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .middle, {{WRAPPER}} .middle-button ',
             ]
         );
+
+        $this->add_control('button_text_color_normal_middle', [
+            'label' => esc_html('Text Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .middle' => 'color : {{VALUE}}'
+            ]
+        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -1178,6 +1140,26 @@ class Rkit_dual_button extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border_middle',
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
+                'selector' => '  {{WRAPPER}} .middle',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_border_radius_middle',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .middle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
     }

@@ -29,7 +29,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['client_grid']['docsURL'];
     }
 
     public function get_style_depends()
@@ -80,7 +80,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                     'default' => esc_html__('Default', 'rometheme-for-elementor'),
                     'horizontal' => esc_html__('Horizontal', 'rometheme-for-elementor'),
                     'vertical' => esc_html__('Vertical', 'rometheme-for-elementor'),
-                    'fade_in'  => esc_html__('Overlay', 'rometheme-for-elementor'),
+                    'flip_effect'  => esc_html__('Flip', 'rometheme-for-elementor'),
                 ],
                 'default' => 'default',
                 'description' => esc_html__('Hover function ready to use except at default mode', 'text-domain'),
@@ -268,16 +268,13 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-        $this->add_responsive_control(
-            'Header_padding',
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-
-                'selectors' => [
-                    '{{WRAPPER}} .client-grid-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'background_container_all',
+                'types' => ['classic', 'gradient'],
+                'exclude' => ['image'],
+                'selector' => '{{WRAPPER}} .client-grid-wrapper',
             ]
         );
 
@@ -290,22 +287,16 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'background_container',
+        $this->add_responsive_control(
+            'Header_padding',
             [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_container_all',
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .client-grid-wrapper',
+                'selectors' => [
+                    '{{WRAPPER}} .client-grid-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -346,15 +337,6 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .image-container-cg '
-            ]
-        );
-
         $this->add_responsive_control(
             'image_space',
             [
@@ -378,6 +360,18 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'image_background',
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .clientslogo-image-full-cg',
+                'exclude' => ['image'],
+                'description' => esc_html__('Use For Transparent background & PNG format', 'text-domain'),
+            ]
+        );
+
         $this->add_responsive_control('object_fit', [
             'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -395,25 +389,12 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'default' => 'scale-down',
         ]);
 
-
-        $this->add_responsive_control(
-            'padding',
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .image-container-cg ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .image-container-cg .clientslogo-image-full-cg  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'image_border',
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .image-container-cg '
             ]
         );
 
@@ -437,17 +418,27 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+        $this->add_responsive_control(
+            'padding',
             [
-                'name' => 'image_background',
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .clientslogo-image-full-cg',
-                'exclude' => ['image'],
-                'description' => esc_html__('Use For Transparent background & PNG format', 'text-domain'),
+                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .image-container-cg ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .image-container-cg .clientslogo-image-full-cg  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
+
         $this->end_controls_section();
 
         // title style
@@ -468,43 +459,6 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
             ]
         );
-
-        $this->add_control(
-            'title_color_external',
-            [
-                'label' => esc_html__('Title Color', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .card-title' => 'color: {{VALUE}};'
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'label' => esc_html__('Title Typography', 'text-domain'),
-                'selector' => '{{WRAPPER}} .card-title',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Text_Stroke::get_type(),
-            [
-                'name' => 'title_stroke_normal',
-                'selector' => '{{WRAPPER}} .card-title ',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Text_Shadow::get_type(),
-            [
-                'name' => 'title_shadow_normal',
-                'selector' => '{{WRAPPER}} .card-title',
-            ]
-        );
-
 
         $this->add_responsive_control(
             'title_align',
@@ -532,6 +486,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
             'spacebetween_title',
             [
@@ -554,6 +509,44 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'label' => esc_html__('Title Typography', 'text-domain'),
+                'selector' => '{{WRAPPER}} .card-title',
+            ]
+        );
+
+
+        $this->add_control(
+            'title_color_external',
+            [
+                'label' => esc_html__('Title Color', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .card-title' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Text_Stroke::get_type(),
+            [
+                'name' => 'title_stroke_normal',
+                'selector' => '{{WRAPPER}} .card-title ',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'title_shadow_normal',
+                'selector' => '{{WRAPPER}} .card-title',
+            ]
+        );
+
         $this->end_controls_section();
 
         // Style Section for Hover
@@ -598,16 +591,6 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background',
-                'types' => ['classic', 'gradient'],
-                'exclude' => ['image'],
-                'selector' => '{{WRAPPER}} .hover-content-cg',
-            ]
-        );
-
         $this->add_responsive_control(
             'spacebetween_hover_text',
             [
@@ -628,6 +611,16 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .hover-content-cg' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background',
+                'types' => ['classic', 'gradient'],
+                'exclude' => ['image'],
+                'selector' => '{{WRAPPER}} .hover-content-cg',
             ]
         );
 
@@ -658,29 +651,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIVIDER,
             ]
         );
-
-        // title
-        $this->add_control(
-            'title_hover_color',
-            [
-                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .hover-title-cg' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_hover_typography',
-                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .hover-title-cg',
-
-            ]
-        );
-
+        
         $this->add_control(
             'title_hover_align',
             [
@@ -707,6 +678,27 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
+         $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_hover_typography',
+                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .hover-title-cg',
+
+            ]
+        );
+
+        // title
+        $this->add_control(
+            'title_hover_color',
+            [
+                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .hover-title-cg' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'hover_style_title_divider',
@@ -717,26 +709,6 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         );
 
         // Description
-        $this->add_control(
-            'desc_hover_color',
-            [
-                'label' => esc_html__('Desc Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .hover-description-cg' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'description_hover_typography',
-                'label' => esc_html__('Desc Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .hover-description-cg',
-
-            ]
-        );
-
         $this->add_control(
             'desc_hover_align',
             [
@@ -760,6 +732,27 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                     '{{WRAPPER}} .hover-description-cg' => 'align-self: {{VALUE}}; text-align: {{VALUE}};',
                 ],
                 'default' => 'center',
+            ]
+        );
+
+         $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'description_hover_typography',
+                'label' => esc_html__('Desc Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .hover-description-cg',
+
+            ]
+        );
+        
+        $this->add_control(
+            'desc_hover_color',
+            [
+                'label' => esc_html__('Desc Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .hover-description-cg' => 'color: {{VALUE}};',
+                ],
             ]
         );
 

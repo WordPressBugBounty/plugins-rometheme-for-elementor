@@ -107,8 +107,8 @@ img.image-cover-hover {
   opacity: 1;
 }
 
- .image-container-cg.fade_in .clientslogo-image-full-cg.image-hover-cg,
-.image-container-cg.fade_in .hover-content-cg {
+ .image-container-cg.flip_effect .clientslogo-image-full-cg.image-hover-cg,
+.image-container-cg.flip_effect .hover-content-cg {
   opacity: 0;
   transform: scaleY(0);
   transform-origin: center;
@@ -118,13 +118,13 @@ img.image-cover-hover {
   z-index: 2;
 }
 
-.image-container-cg.fade_in:hover .clientslogo-image-full-cg.image-hover-cg,
-.image-container-cg.fade_in:hover .hover-content-cg {
+.image-container-cg.flip_effect:hover .clientslogo-image-full-cg.image-hover-cg,
+.image-container-cg.flip_effect:hover .hover-content-cg {
   opacity: 1;
   transform: scaleY(1);
 }
 
-.image-container-cg.fade_in .clientslogo-image-full-cg.image-default {
+.image-container-cg.flip_effect .clientslogo-image-full-cg.image-default {
   opacity: 1;
   transform: scaleY(1);
   transition: all 0.5s ease;
@@ -133,7 +133,7 @@ img.image-cover-hover {
   z-index: 1;
 }
 
-.image-container-cg.fade_in:hover .clientslogo-image-full-cg.image-default {
+.image-container-cg.flip_effect:hover .clientslogo-image-full-cg.image-default {
   opacity: 0;
   transform: scaleY(0);
 }

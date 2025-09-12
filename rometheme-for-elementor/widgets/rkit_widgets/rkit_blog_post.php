@@ -21,7 +21,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-grid-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['blogpost']['docsURL'];
     }
 
     public function get_icon()
@@ -105,6 +105,19 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             'default' => 'yes'
         ]);
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
+                'exclude' => ['custom'],
+                'include' => [],
+                'default' => 'large',
+                'condition' => [
+                    'show-featured-image' => 'yes'
+                ],
+            ]
+        );
+
         $this->add_responsive_control('img-aspect-ratio', [
             'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -123,19 +136,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-image-link' => 'aspect-ratio:{{VALUE}}'
             ]
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'thumbnail', // Usage: `{name}_size` and `{name}_custom_dimension`, in this case `thumbnail_size` and `thumbnail_custom_dimension`.
-                'exclude' => ['custom'],
-                'include' => [],
-                'default' => 'large',
-                'condition' => [
-                    'show-featured-image' => 'yes'
-                ],
-            ]
-        );
 
         $this->add_control('show-title', [
             'label' => esc_html__('Show Title', 'rometheme-for-elementor'),
@@ -405,6 +405,33 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
 
         $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
 
+                $this->add_responsive_control(
+            'btn_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-readmore-div' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_control(
             'readmore-text',
             [
@@ -455,95 +482,24 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_responsive_control(
-            'btn_align',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-readmore-div' => 'justify-content: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->end_controls_section();
 
         $this->start_controls_section('wrapper_section', ['label' => esc_html__('Wrapper', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+        
+        // $this->add_control(
+        //     'container_options',
+        //     [
+        //         'label' => esc_html__('Container Setting', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
-        $this->start_controls_tabs('wrapper_tabs');
-
-        $this->start_controls_tab('wrapper_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'wrapper_background',
-                'types' => ['classic', 'gradient'],
+                'name' => 'container_border',
                 'selector' => '{{WRAPPER}} .rkit-post-grid-card',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'wrapper_boxshadow',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->start_controls_tab('wrapper_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
-        $this->add_control(
-            'card_hover_animation',
-            [
-                'label' => esc_html__('Hover Animation', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'wrapper_background_hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'wrapper_boxshadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
-
-        $this->add_control(
-            'container_options',
-            [
-                'label' => esc_html__('Container Setting', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
             ]
         );
 
@@ -574,70 +530,70 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'container_border',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
-            ]
-        );
+        $this->start_controls_tabs('wrapper_tabs');
 
-        $this->end_controls_section();
-
-        $this->start_controls_section('content_wrapper_setting', ['label' => esc_html__('Content Wrapper ', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-        $this->add_control(
-            'content_options',
-            [
-                'label' => esc_html__('Content Setting', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->start_controls_tabs('wrapper_content_tabs');
-
-        $this->start_controls_tab('content_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
+        $this->start_controls_tab('wrapper_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'content_background',
+                'name' => 'wrapper_background',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'content_boxshadow',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
+                'name' => 'wrapper_boxshadow',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card',
             ]
         );
 
         $this->end_controls_tab();
 
-        $this->start_controls_tab('content_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
+        $this->start_controls_tab('wrapper_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'content_background_hover',
+                'name' => 'wrapper_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'content_boxshadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
+                'name' => 'wrapper_boxshadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover',
+            ]
+        );
+
+                $this->add_control(
+            'card_hover_animation',
+            [
+                'label' => esc_html__('Hover Animation', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
             ]
         );
 
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('content_wrapper_setting', ['label' => esc_html__('Content Wrapper ', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+        // $this->add_control(
+        //     'content_options',
+        //     [
+        //         'label' => esc_html__('Content Setting', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_responsive_control('content-min-height', [
             'label' => esc_html__('Min Height', 'rometheme-for-elementor'),
@@ -655,6 +611,14 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
 
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'content_border',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
+            ]
+        );
 
         $this->add_responsive_control('content_border_radius', [
             'label' => esc_html__('Content Border Radius', 'rometheme-for-elementor'),
@@ -707,13 +671,51 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->start_controls_tabs('wrapper_content_tabs');
+
+        $this->start_controls_tab('content_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
         $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'content_border',
+                'name' => 'content_background',
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-post-grid-body',
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'content_boxshadow',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-body',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('content_tab_hover', ['label' => esc_html__('Hover', 'rometheme-for-elementor')]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'content_background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'content_boxshadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-post-grid-body',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->end_controls_section();
 
         $this->start_controls_section('featured_image_setting', ['label' => esc_html__('Featured Image', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
@@ -781,14 +783,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'img_box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-image-link',
-            ]
-        );
-
-        $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'img_border',
@@ -807,6 +801,27 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+          $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'img_box_shadow',
+                'selector' => '{{WRAPPER}} .rkit-image-link',
+            ]
+        );
+
+                $this->add_responsive_control(
+            'img-padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-image-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'img-margin',
             [
@@ -815,18 +830,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-image-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'img-padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-image-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -862,37 +865,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('meta_style', ['label' => esc_html__('Meta Data', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-
-        $this->add_responsive_control(
-            'meta_direction',
-            [
-                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'row' => [
-                        'title' => esc_html__('Row', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-arrow-right',
-                    ],
-                    'column' => [
-                        'title' => esc_html__('Column', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-arrow-down',
-                    ],
-                ],
-                'default' => 'row',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-metadata' => 'flex-direction: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'meta_typography',
-                'selector' => '{{WRAPPER}} .rkit-metadata-item > a , {{WRAPPER}} .rkit-metadata-item > span ',
-            ]
-        );
 
         $this->add_responsive_control(
             'meta_align_row',
@@ -954,44 +926,51 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'meta-margin',
+         $this->add_responsive_control(
+            'meta_direction',
             [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => '0',
-                    'right' => '5',
-                    'bottom' => '0',
-                    'left' => '5',
-                    'unit' => 'px',
-                    'isLinked' => 'false',
+                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'row' => [
+                        'title' => esc_html__('Row', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-right',
+                    ],
+                    'column' => [
+                        'title' => esc_html__('Column', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-down',
+                    ],
                 ],
+                'default' => 'row',
+                'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-metadata-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-metadata' => 'flex-direction: {{VALUE}};',
                 ],
             ]
         );
 
-        $this->add_responsive_control(
-            'meta-padding',
+                $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-metadata-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'meta_typography',
+                'selector' => '{{WRAPPER}} .rkit-metadata-item > a , {{WRAPPER}} .rkit-metadata-item > span ',
             ]
         );
 
-        $this->add_responsive_control('metadata_spacing', [
+          $this->add_responsive_control('metadata_spacing', [
             'label' => esc_html__('Metadata Spacing'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
                 '{{WRAPPER}} .rkit-metadata' => 'gap:{{SIZE}}{{UNIT}}'
+            ]
+        ]);
+
+        $this->add_responsive_control('icon_size', [
+            'label' => esc_html__('Icon Size'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-meta-icon' => 'font-size:{{SIZE}}{{UNIT}}'
             ]
         ]);
 
@@ -1015,13 +994,37 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('icon_size', [
-            'label' => esc_html__('Icon Size'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-meta-icon' => 'font-size:{{SIZE}}{{UNIT}}'
+        $this->add_responsive_control(
+            'meta-padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
-        ]);
+        );
+
+        $this->add_responsive_control(
+            'meta-margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '5',
+                    'bottom' => '0',
+                    'left' => '5',
+                    'unit' => 'px',
+                    'isLinked' => 'false',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->start_controls_tabs('meta-tabs');
         $this->start_controls_tab('meta-tab-normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -1137,13 +1140,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('title_style', ['label' => esc_html__('Title', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-title',
-            ]
-        );
 
         $this->add_responsive_control(
             'title_align',
@@ -1176,15 +1172,11 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'title_margin',
+                $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
             [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-post-grid-title-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'title_typography',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-title',
             ]
         );
 
@@ -1196,6 +1188,18 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-grid-title-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+          $this->add_responsive_control(
+            'title_margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-post-grid-title-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1238,13 +1242,6 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_style', ['label' => esc_html__('Content'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'blog_content_typography',
-                'selector' => '{{WRAPPER}} .rkit-post-grid-paragraph',
-            ]
-        );
 
         $this->add_responsive_control(
             'content_align',
@@ -1274,6 +1271,14 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-grid-paragraph' => 'text-align: {{VALUE}};',
                 ],
+            ]
+        );
+
+                $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'blog_content_typography',
+                'selector' => '{{WRAPPER}} .rkit-post-grid-paragraph',
             ]
         );
 
@@ -1448,31 +1453,8 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('button_style', ['label' => esc_html__('Button', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'readmore_button_typography',
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
-            ]
-        );
-        $this->add_responsive_control('button_padding', [
-            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
-        $this->add_responsive_control('button_border_radius', [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+        
+                $this->add_responsive_control(
             'readmore_icon_size',
             [
                 'label' => esc_html__('Icon Size    ', 'rometheme-for-elementor'),
@@ -1523,6 +1505,32 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'readmore_button_typography',
+                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
+            ]
+        );
+
+         $this->add_responsive_control('button_border_radius', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+            ]
+        ]);
+
+        $this->add_responsive_control('button_padding', [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+            ]
+        ]);
 
         $this->start_controls_tabs('button_tabs');
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -1600,71 +1608,7 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
         $this->start_controls_section('floating_meta_style', ['label' => esc_html__('Floating Date', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE,  'condition' => [
             'show-floating-date' => 'yes'
         ]]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'floating_date_typography',
-                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
-                'condition' => [
-                    'show-floating-date' => 'yes'
-                ]
-
-            ]
-        );
-
-        $this->add_control(
-            'floating_top_bottom_position',
-            [
-                'label' => esc_html__('Top Bottom Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'top' => [
-                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'default' => 'bottom',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-float-metawrapper-date' => '{{VALUE}}: 0px;',
-                ],
-                'condition' => [
-                    'show-floating-date' => 'yes'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'floating_left_right_position',
-            [
-                'label' => esc_html__('Left Right Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'default' => 'right',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-float-metawrapper-date' => '{{VALUE}}: 0px;',
-                ],
-                'condition' => [
-                    'show-floating-date' => 'yes'
-                ]
-            ]
-        );
-
+        
         $this->add_responsive_control(
             'floating-date-width',
             [
@@ -1733,52 +1677,71 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'floating-date-border-radius',
+        $this->add_control(
+            'floating_top_bottom_position',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
+                'label' => esc_html__('Top Bottom Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'top' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'bottom' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                'default' => 'bottom',
+                'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-float-metawrapper-date' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-float-metawrapper-date' => '{{VALUE}}: 0px;',
                 ],
                 'condition' => [
                     'show-floating-date' => 'yes'
                 ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'floating-date-margin',
-            [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 30,
-                    'bottom' => -15,
-                    'left' => 0,
-                    'unit' => 'px',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-float-metawrapper-date' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'show-floating-date' => 'yes'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'floating_date_box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
             ]
         );
 
         $this->add_control(
+            'floating_left_right_position',
+            [
+                'label' => esc_html__('Left Right Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'right',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-float-metawrapper-date' => '{{VALUE}}: 0px;',
+                ],
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+            ]
+        );
+
+         $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'floating_date_typography',
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+
+            ]
+        );
+
+          $this->add_control(
             'floating_date_text_color',
             [
                 'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
@@ -1795,6 +1758,51 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'name' => 'floating_date_background',
                 'types' => ['classic', 'gradient',],
                 'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'floating-date-border-radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-float-metawrapper-date' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'floating_date_box_shadow',
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
+            ]
+        );
+
+         $this->add_responsive_control(
+            'floating-date-margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 30,
+                    'bottom' => -15,
+                    'left' => 0,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-float-metawrapper-date' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
                 'condition' => [
                     'show-floating-date' => 'yes'
                 ]

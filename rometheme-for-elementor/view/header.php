@@ -107,25 +107,21 @@ $page = $_GET['page'];
                 Free Version
                 <div class="d-flex flex-row align-items-center gap-2">
                     <span class="rtm-version px-4 py-2 fs-6">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
-                    <h6 class="m-0">August 08, 2025</h6>
+                    <h6 class="m-0">September 12, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
                     <li><strong>Upgrade</strong> to PHP 8.2</li>
-                    <li><strong>New</strong> widget "Video Button"</li>
-                    <li><strong>New</strong> widget "Social Icons"</li>
-                    <li><strong>Fixing</strong> spacing control in the "Advance Heading" widget</li>
-                    <li><strong>Fixing</strong> pointer control in the "Team" widget</li>
-                    <li><strong>Fixing</strong> image size in the "Client Grid" widget</li>
-                    <li><strong>Fixing</strong> bullet point on post blog</li>
-                    <li><strong>Improve</strong> on Pricing Table</li>
-                    <li>Added width control in the "Tooltips" extensions</li>
+                    <li><strong>New</strong>Premium Template Kits</li>
+                    <li><strong>New</strong>Import Template Kits</li>
+                    <li><strong>Fix</strong>Change name hover effects "overlay" to "flip" widget " Client Grid" widget.</li>
+                    <li><strong>New</strong> Fix Title Alignment, Description Alignment and Button alignment in the " Image Accordion " widget.</li>
                 </ul>
             </div>
             <div class="d-flex flex-column text-white">
                 Pro Version
                 <div class="d-flex flex-row align-items-center gap-2">
-                    <span class="rtm-version px-4 py-2 fs-6">V.1.0.6</span>
-                    <h6 class="m-0">August 08, 2025</h6>
+                    <span class="rtm-version px-4 py-2 fs-6">V.1.0.9</span>
+                    <h6 class="m-0">September 04, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
                     <li><strong>Upgrade</strong> to PHP 8.2</li>

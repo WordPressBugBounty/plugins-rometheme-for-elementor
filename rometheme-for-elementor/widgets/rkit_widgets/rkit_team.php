@@ -22,7 +22,7 @@ class Rkit_Team extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-team-widget/';
+        return  \RomethemeKit\RkitWidgets::listWidgets()['team']['docsURL'];
     }
 
     public function get_style_depends()

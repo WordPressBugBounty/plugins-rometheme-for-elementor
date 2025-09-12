@@ -13,7 +13,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['animatedheading']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['animatedheading']['icon'];
         return $icon;
     }
 
@@ -24,7 +24,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-animated-heading-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['animatedheading']['docsURL'];
     }
 
     public function get_categories()
@@ -45,6 +45,76 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
     protected function register_controls()
     {
         $this->start_controls_section('content_section', ['label' => esc_html('Content'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
+
+        $this->add_responsive_control(
+            'text_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-animated-heading' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control('html_tag', [
+            'label' => esc_html('Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+            ],
+            'default' => 'h1'
+        ]);
+
+        $this->add_control(
+            'text',
+            [
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'rows' => 10,
+                'default' => esc_html__('Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page', 'rometheme-for-elementor'),
+                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
+                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
+            ]
+        );
+
+          $this->add_control(
+            '_link',
+            [
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
+                'options' => ['url', 'is_external', 'nofollow'],
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                    // 'custom_attributes' => '',
+                ],
+                'label_block' => true,
+            ]
+        );
 
         $this->add_control('style_select', [
             'label' => esc_html('Style'),
@@ -94,25 +164,6 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-            'text',
-            [
-                'label' => esc_html__('Text', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'rows' => 10,
-                'default' => esc_html__('Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
-                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
-            ]
-        );
-
-        $this->add_control(
-            'hr',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_control(
             'duration',
             [
                 'label' => esc_html__('Duration (ms)', 'rometheme-for-elementor'),
@@ -122,74 +173,9 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'hr_link',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_responsive_control(
-			'text_align',
-			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'center',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-animated-heading' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
-
-        $this->add_control(
-            '_link',
-            [
-                'label' => esc_html__('Link', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
-                'options' => ['url', 'is_external', 'nofollow'],
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => true,
-                    // 'custom_attributes' => '',
-                ],
-                'label_block' => true,
-            ]
-        );
-
-        $this->add_control('html_tag' , [
-            'label' => esc_html('Tag'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'h1' => esc_html('H1'),
-                'h2' => esc_html('H2'),
-                'h3' => esc_html('H3'),
-                'h4' => esc_html('H4'),
-                'h5' => esc_html('H5'),
-                'h6' => esc_html('H6'),
-            ],
-            'default' => 'h1'
-        ]);
-
         $this->end_controls_section();
 
-        $this->start_controls_section('shape_style' , [
+        $this->start_controls_section('shape_style', [
             'label' => esc_html('Shape'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
@@ -197,15 +183,19 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('shape_color' , [
-            'label' => esc_html('Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke:{{VALUE}}'
+        $this->add_control(
+            'bring_to_front',
+            [
+                'label' => esc_html__('Bring to Front', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
             ]
-        ]);
+        );
 
-        $this->add_responsive_control('shape_width' , [
+        $this->add_responsive_control('shape_width', [
             'label' => esc_html('Width'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'selectors' => [
@@ -213,34 +203,30 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
-			'bring_to_front',
-			[
-				'label' => esc_html__( 'Bring to Front', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'No', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+        $this->add_control('shape_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke:{{VALUE}}'
+            ]
+        ]);
 
         $this->end_controls_section();
 
-        $this->start_controls_section('headline_style' , [
+        $this->start_controls_section('headline_style', [
             'label' => esc_html('Headline'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'headline_typography',
-				'selector' => '{{WRAPPER}} .rkit-animated-heading',
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'headline_typography',
+                'selector' => '{{WRAPPER}} .rkit-animated-heading',
+            ]
+        );
 
-        $this->add_control('headline_color' , [
+        $this->add_control('headline_color', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -249,31 +235,31 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Stroke::get_type(),
-			[
-				'name' => 'headline_text_stroke',
-				'selector' => '{{WRAPPER}} .rkit-animated-heading',
-			]
-		);
+            \Elementor\Group_Control_Text_Stroke::get_type(),
+            [
+                'name' => 'headline_text_stroke',
+                'selector' => '{{WRAPPER}} .rkit-animated-heading',
+            ]
+        );
 
         $this->add_control(
-			'animation_options',
-			[
-				'label' => esc_html__( 'Animated Text', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
+            'animation_options',
+            [
+                'label' => esc_html__('Animated Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'animated_typography',
-				'selector' => '{{WRAPPER}} .rkit-animated-heading__text',
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'animated_typography',
+                'selector' => '{{WRAPPER}} .rkit-animated-heading__text',
+            ]
+        );
 
-        $this->add_control('animated_color' , [
+        $this->add_control('animated_color', [
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -282,16 +268,14 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Stroke::get_type(),
-			[
-				'name' => 'animated_text_stroke',
-				'selector' => '{{WRAPPER}} .rkit-animated-heading__text',
-			]
-		);
-        
+            \Elementor\Group_Control_Text_Stroke::get_type(),
+            [
+                'name' => 'animated_text_stroke',
+                'selector' => '{{WRAPPER}} .rkit-animated-heading__text',
+            ]
+        );
+
         $this->end_controls_section();
-
-
     }
     protected function render()
     {
@@ -337,7 +321,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
                 $innerString = $matches[1];
                 $arrayData = explode(', ', $innerString);
                 $dataAttribute = json_encode($arrayData);
-                $css = ($settings['style_select'] == 'rotating') ? $settings['animation_select'] : ( ($settings['bring_to_front'] === 'yes') ? 'rkit-highlighted in_front' : 'rkit-highlighted' );
+                $css = ($settings['style_select'] == 'rotating') ? $settings['animation_select'] : (($settings['bring_to_front'] === 'yes') ? 'rkit-highlighted in_front' : 'rkit-highlighted');
                 return "<p class='rkit-animated-heading__text " . esc_attr($css) . "' data-type='" . esc_attr($dataAttribute) . "'>" . $svg . "</p>";
             },
             $string
@@ -372,7 +356,7 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
         }
 
 ?>
-        <a <?php echo esc_attr($this->get_render_attribute_string( '_link' )) ?>>
+        <a <?php echo esc_attr($this->get_render_attribute_string('_link')) ?>>
             <<?php echo esc_html($html_tag) ?> class="rkit-animated-heading" data-duration="<?php echo esc_attr($settings['duration']) ?>">
                 <?php
                 echo $newString;

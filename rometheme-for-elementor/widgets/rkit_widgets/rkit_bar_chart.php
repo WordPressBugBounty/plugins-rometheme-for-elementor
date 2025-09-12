@@ -24,7 +24,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-bar-chart-widget/';
+       return \RomethemeKit\RkitWidgets::listWidgets()['barchart']['docsURL'];
     }
 
     public function get_script_depends()

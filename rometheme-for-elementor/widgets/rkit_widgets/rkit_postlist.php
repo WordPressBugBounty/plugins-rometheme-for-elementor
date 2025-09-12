@@ -28,7 +28,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
     function get_custom_help_url()
     {
-        return 'https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-post-list-widget/';
+        return \RomethemeKit\RkitWidgets::listWidgets()['postlist']['docsURL'];
     }
 
     public function get_style_depends()
