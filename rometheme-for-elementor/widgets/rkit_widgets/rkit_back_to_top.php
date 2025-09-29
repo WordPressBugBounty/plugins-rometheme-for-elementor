@@ -99,10 +99,20 @@ class RkitBackToTop extends \Elementor\Widget_Base
                             'value' => 'text'
                         ],
                         [
-                            'name' => 'choose_style',
-                            'operator' => '===',
-                            'value' => 'text'
-                        ]
+                            'relation' => 'and',
+                            'terms'    => [
+                                [
+                                    'name' => 'select_style',
+                                    'operator' => '===',
+                                    'value' => 'progress'
+                                ],
+                                [
+                                    'name'     => 'choose_style',
+                                    'operator' => '===',
+                                    'value'    => 'text',
+                                ],
+                            ],
+                        ],
                     ]
                 ]
             ]
@@ -126,12 +136,22 @@ class RkitBackToTop extends \Elementor\Widget_Base
                             'value' => 'icon'
                         ],
                         [
-                            'name' => 'choose_style',
-                            'operator' => '===',
-                            'value' => 'icon'
-                        ]
+                            'relation' => 'and',
+                            'terms'    => [
+                                [
+                                    'name' => 'select_style',
+                                    'operator' => '===',
+                                    'value' => 'progress'
+                                ],
+                                [
+                                    'name'     => 'choose_style',
+                                    'operator' => '===',
+                                    'value'    => 'icon',
+                                ],
+                            ],
+                        ],
                     ]
-                ]
+                ],
             ]
         );
 
@@ -162,31 +182,31 @@ class RkitBackToTop extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-			'button_align',
-			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-h-align-right',
-					],
-				],
-				'default' => 'left',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-back-to-top-container' => 'justify-content: {{VALUE}};',
-				],
-			]
-		);
+            'button_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-back-to-top-container' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'button_width',
@@ -305,7 +325,7 @@ class RkitBackToTop extends \Elementor\Widget_Base
             ]
         );
 
-          $this->add_group_control(
+        $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',

@@ -419,11 +419,25 @@ class Template
     {
         $upload_dir = wp_upload_dir();
         $custom_dir = $upload_dir['basedir'] . '/rometheme_template';
-        $tempFile = wp_tempnam($url);
+        // $tempFile = wp_tempnam($url);
+
+        $upload_dir = wp_upload_dir();
+        // Direktori aman (bukan langsung ke uploads publik)
+        $base_safe_dir = $upload_dir['basedir'] . '//rometheme_template/';
+        $tmp_dir       = $base_safe_dir . 'tmp/';
+        if (! file_exists($tmp_dir)) {
+            wp_mkdir_p($tmp_dir);
+            // cegah eksekusi file php di folder ini
+            @file_put_contents(
+                $base_safe_dir . '.htaccess',
+                "Options -Indexes\n<FilesMatch \"\\.(php|phtml|phar)$\">\n  Deny from all\n</FilesMatch>\n"
+            );
+        }
 
         $hashId = wp_hash($id);
-        $targetDir = $custom_dir . '/' . $hashId;
+        // $targetDir = $custom_dir . '/' . $hashId;
 
+        $tempFile = $tmp_dir . 'upload_' . $hashId . '.zip';
         $response = wp_remote_get($url, ['timeout' => 300]);
 
         if (is_wp_error($response)) {
@@ -434,29 +448,7 @@ class Template
 
         file_put_contents($tempFile, $fileContent);
 
-        $zip = new ZipArchive();
-        if ($zip->open($tempFile) === TRUE) {
-            wp_mkdir_p($targetDir);
-            $zip->extractTo($targetDir);
-            $zip->close();
-            unlink($tempFile);
-
-            $option = get_option('rtm_template_installed', []); // Default ke array jika tidak ada option
-            if (!is_array($option)) {
-                $option = []; // Pastikan $option adalah array
-            }
-            $option[$hashId] = [
-                'template_id' => $id
-            ];
-
-            update_option('rtm_template_installed', $option); // Simpan kembali ke database
-
-            if ($return) {
-                return true;
-            } else {
-                wp_send_json_success(['message' => 'success extract', 'template' => $hashId]);
-            }
-        }
+        $this->template_extract_secure($tempFile, $id);
     }
 
     function update_download($id)
@@ -758,35 +750,193 @@ class Template
         check_ajax_referer('rtm_template_nonce', 'nonce');
 
         if (empty($_FILES['file'])) {
-            wp_send_json_error('Tidak ada file yang diupload.');
+            wp_send_json_error('No File Uploaded.');
+        }
+
+        if (! current_user_can('manage_options')) {
+            wp_send_json_error(
+                array('message' => 'Insufficient permissions'),
+                403
+            );
         }
 
         $file = $_FILES['file'];
-        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if ($ext !== 'zip') {
-            wp_send_json_error('Hanya file .zip yang diperbolehkan.');
+            wp_send_json_error('Only .zip file allowed.');
+        }
+        $upload_dir = wp_upload_dir();
+        // Direktori aman (bukan langsung ke uploads publik)
+        $base_safe_dir = $upload_dir['basedir'] . '//rometheme_template/';
+        $tmp_dir       = $base_safe_dir . 'tmp/';
+        if (! file_exists($tmp_dir)) {
+            wp_mkdir_p($tmp_dir);
+            // cegah eksekusi file php di folder ini
+            @file_put_contents(
+                $base_safe_dir . '.htaccess',
+                "Options -Indexes\n<FilesMatch \"\\.(php|phtml|phar)$\">\n  Deny from all\n</FilesMatch>\n"
+            );
+        }
+
+        // Buat nama unik untuk zip
+        $unique       = wp_generate_password(12, false);
+        $tmp_zip_path = $tmp_dir . 'upload_' . $unique . '.zip';
+
+        // Simpan file upload ke lokasi aman
+        if (! move_uploaded_file($file['tmp_name'], $tmp_zip_path)) {
+            wp_send_json_error(
+                array('message' => 'Failed save temporary file.'),
+                500
+            );
+        }
+
+        // Proses ekstraksi dengan fungsi aman
+        $res = $this->template_extract_secure($tmp_zip_path, $file['name'], true);
+
+        // Hapus zip sementara
+        if (file_exists($tmp_zip_path)) {
+            @unlink($tmp_zip_path);
+        }
+
+        if ($res) {
+            wp_send_json_success('Template has been successfully extracted.');
+        } else {
+            wp_send_json_error('Failed extracting template.');
+        }
+    }
+
+    /**
+     * Secure extraction of a local ZIP file into a template directory.
+     *
+     * NOTE:
+     * - This expects $zip_path to be a filesystem path (not a URL).
+     * - It will reject zips containing path traversal, absolute paths, or disallowed extensions.
+     * - Extracted files are stored under WP_CONTENT_DIR/rometheme_template/{hash}/
+     *   and .htaccess is created to prevent PHP execution on Apache.
+     *
+     * @param string $zip_path Full filesystem path to the ZIP file.
+     * @param string $id      Original identifier (used to generate hash).
+     * @param bool   $return  If true, return boolean; otherwise send JSON and exit.
+     * @return bool|void
+     */
+    function template_extract_secure($zip_path, $id, $return = false)
+    {
+        if (empty($zip_path) || ! file_exists($zip_path)) {
+            return $return ? false : wp_send_json_error(['message' => 'Zip file not found.'], 400);
+        }
+
+        $zip_path = realpath($zip_path);
+        if (strpos($zip_path, realpath(WP_CONTENT_DIR)) !== 0) {
+            return $return ? false : wp_send_json_error(['message' => 'Invalid zip location.', 'path' => $zip_path], 403);
         }
 
         $upload_dir = wp_upload_dir();
-        // path di server
-        $tmpFilePath = $upload_dir['basedir'] . '/rtm_temp_' . wp_unique_filename($upload_dir['basedir'], $file['name']);
+        $hashId     = wp_hash($id);
+        $base_dir   = $upload_dir['basedir'] . '/rometheme_template';
+        $targetDir  = $base_dir . '/' . $hashId . '/';
 
-        // URL publik
-        $tmpFileUrl  = $upload_dir['baseurl'] . '/' . basename($tmpFilePath);
-
-        if (!move_uploaded_file($file['tmp_name'], $tmpFilePath)) {
-            wp_send_json_error('Gagal menyimpan file sementara.');
+        // buat base dir + proteksi root
+        if (! file_exists($base_dir)) {
+            wp_mkdir_p($base_dir);
+            @file_put_contents($base_dir . '/.htaccess', "Options -Indexes\n<FilesMatch \"\\.(php|phtml|phar)$\">\n  Deny from all\n</FilesMatch>\n");
+        }
+        if (! file_exists($targetDir)) {
+            wp_mkdir_p($targetDir);
+            @file_put_contents($targetDir . 'index.html', '<!-- protected -->');
         }
 
-        $res = $this->template_extract($tmpFileUrl, $file['name'], true);
-
-        // setelah selesai hapus file
-        if (file_exists($tmpFilePath)) unlink($tmpFilePath);
-        if ($res) {
-            wp_send_json_success('Template berhasil diupload dan diekstrak.');
-        } else {
-            wp_send_json_error($res);
+        $zip = new ZipArchive();
+        if ($zip->open($zip_path) !== true) {
+            return $return ? false : wp_send_json_error(['message' => 'Invalid or corrupt zip.'], 400);
         }
+
+        // whitelist extension
+        $allowed_ext = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'json', 'css', 'js', 'txt', 'html', 'htm', 'md'];
+
+        // cek isi zip
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $entry = $zip->getNameIndex($i);
+            if (substr($entry, -1) === '/') continue;
+
+            $normalized = str_replace('\\', '/', $entry);
+
+            // block traversal / absolute
+            if (strpos($normalized, '../') !== false || substr($normalized, 0, 1) === '/' || preg_match('/^[A-Za-z]:\\\\/', $entry)) {
+                $zip->close();
+                error_log("[rtm] rejected: traversal ($entry)");
+                return $return ? false : wp_send_json_error(['message' => 'Zip contains invalid paths.'], 400);
+            }
+
+            $entry_ext = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
+            if (empty($entry_ext) || in_array($entry_ext, ['php', 'phtml', 'phar', 'exe', 'sh', 'pl', 'cgi'], true)) {
+                $zip->close();
+                error_log("[rtm] rejected: bad extension ($entry)");
+                return $return ? false : wp_send_json_error(['message' => 'Zip contains disallowed file types.'], 400);
+            }
+
+            if (! in_array($entry_ext, $allowed_ext, true)) {
+                $zip->close();
+                error_log("[rtm] rejected: unsupported ext $entry_ext ($entry)");
+                return $return ? false : wp_send_json_error(['message' => "Unsupported file type: $entry_ext"], 400);
+            }
+        }
+
+        // ekstrak dengan struktur folder asli
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $entry = $zip->getNameIndex($i);
+            if (substr($entry, -1) === '/') continue;
+
+            $entry_ext = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
+            if (! in_array($entry_ext, $allowed_ext, true)) continue;
+
+            $normalized = str_replace('\\', '/', $entry);
+            $safe_name  = sanitize_file_name(basename($normalized));
+            $subdir     = dirname($normalized);
+
+            $final_dir  = $targetDir . ($subdir !== '.' ? $subdir . '/' : '');
+            wp_mkdir_p($final_dir);
+
+            $target_path = $final_dir . $safe_name;
+
+            $stream = $zip->getStream($entry);
+            if ($stream === false) continue;
+
+            $out = fopen($target_path, 'w');
+            if ($out === false) {
+                fclose($stream);
+                continue;
+            }
+
+            while (! feof($stream)) fwrite($out, fread($stream, 8192));
+            fclose($out);
+            fclose($stream);
+
+            // detect embedded php
+            $head = @file_get_contents($target_path, false, null, 0, 512);
+            if ($head !== false && stripos($head, '<?php') !== false) {
+                @unlink($target_path);
+                error_log("[rtm] removed suspicious file ($target_path)");
+                continue;
+            }
+
+            // sanity check → skip mismatch untuk json agar manifest.json tidak kehapus
+            $check = wp_check_filetype_and_ext($target_path, $safe_name);
+            if ($entry_ext !== 'json' && $check && isset($check['ext']) && $check['ext'] !== $entry_ext) {
+                @unlink($target_path);
+                error_log("[rtm] removed mismatch file ($target_path)");
+                continue;
+            }
+        }
+
+        $zip->close();
+
+        // update option
+        $option = get_option('rtm_template_installed', []);
+        if (! is_array($option)) $option = [];
+        $option[$hashId] = ['template_id' => $hashId, 'created' => current_time('mysql')];
+        update_option('rtm_template_installed', $option);
+
+        return $return ? true : wp_send_json_success(['message' => 'success extract', 'template' => $hashId]);
     }
 
     public static function normalize_dash_key($key)

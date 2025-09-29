@@ -49,7 +49,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'label' => esc_html__('Text Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'flex-start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -57,7 +57,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'flex-end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
@@ -65,14 +65,15 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-advanced-heading' => 'text-align: {{VALUE}};',
-                    '{{WRAPPER}} .rkit-advanced-heading .rkit-trp-text' => 'justify-content: {{VALUE}}'
+                    // '{{WRAPPER}} .rkit-advanced-heading' => 'text-align: {{VALUE}};',
+                    // '{{WRAPPER}} .rkit-advanced-heading .rkit-trp-text' => 'justify-content: {{VALUE}}',
+                    '{{WRAPPER}} .rkit-advanced-heading' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control('html_tag', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -180,7 +181,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'container_box_shadow_ah',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-advanced-heading',
                 'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
             ]
@@ -189,7 +190,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'cont_advanced_padding',
             [
-                'label' => esc_html__('Container Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -232,7 +233,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .headline_text',
                 'fields_options' => [
                     'background' => [
-                        'label' => esc_html('Text Color')
+                        'label' => esc_html('Color')
                     ]
                 ]
             ]
@@ -292,7 +293,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'headtext_padding',
             [
-                'label' => esc_html__('Text head Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -304,7 +305,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'headtext_margin',
             [
-                'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -338,7 +339,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .std-text',
                 'fields_options' => [
                     'background' => [
-                        'label' => esc_html('Text Color')
+                        'label' => esc_html('Color')
                     ]
                 ]
             ]
@@ -363,7 +364,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrap_headtext_padding',
             [
-                'label' => esc_html__('Text head Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -375,7 +376,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrap_headtext_margin',
             [
-                'label' => esc_html__('Text head Margin', 'rometheme-for-elementor'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -397,7 +398,7 @@ class Rkit_advanced_heading extends \Elementor\Widget_Base
                 $innerString =  str_replace(['[', ']'], '', $matches[1]);
                 $arrayData = explode(', ', $innerString);
                 $dataAttribute = json_encode($arrayData);
-                return " <span class='bg-headline'>
+                return "<span class='bg-headline'>
                             <span class='headline_text'> " . esc_attr($innerString) . "</span>
                         </span>";
             },

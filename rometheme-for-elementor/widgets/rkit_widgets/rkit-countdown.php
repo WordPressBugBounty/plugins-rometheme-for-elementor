@@ -100,7 +100,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
         $this->add_control('html_tag_1', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -310,7 +310,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
         $this->add_control('html_tag_2', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -369,13 +369,28 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'title_color',
+        $this->add_responsive_control(
+            'title_align',
             [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
                 'selectors' => [
-                    '  {{WRAPPER}} .countdown-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .countdown-title-wrapper' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -389,28 +404,13 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'title_align',
+        $this->add_control(
+            'title_color',
             [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .countdown-title-wrapper' => 'text-align: {{VALUE}};',
+                    '  {{WRAPPER}} .countdown-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -499,31 +499,23 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'item_padding',
+                $this->add_responsive_control(
+            'item_width',
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 600,
+                        'step' => 1,
+                    ],
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
-
-        $this->add_responsive_control(
-            'item_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
 
         $this->add_responsive_control(
             'item_gap',
@@ -544,19 +536,25 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'item_width',
+            'item_border_radius',
             [
-                'label' => esc_html__('Width', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 600,
-                        'step' => 1,
-                    ],
-                ],
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'item_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -603,18 +601,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('separator_color', [
-            'label' => esc_html('Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'color:{{VALUE}}'
-            ],
-            'condition' => [
-                'show_separator' => '-separator'
-            ]
-        ]);
-
-        $this->add_responsive_control(
+          $this->add_responsive_control(
             'separator_size',
             [
                 'label' => esc_html__('Size', 'rometheme-for-elementor'),
@@ -635,6 +622,17 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_control('separator_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}}.rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before' => 'color:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_separator' => '-separator'
+            ]
+        ]);
 
         $this->add_responsive_control(
             'separator_margin',
@@ -665,30 +663,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'label_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .countdown-label',
-            ]
-        );
-
-        $this->add_control(
-            'label_color',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#00CEA6',
-                'selectors' => [
-                    '{{WRAPPER}} .countdown-label' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-
-        $this->add_responsive_control(
+                $this->add_responsive_control(
             'label_margin',
             [
                 'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
@@ -726,6 +701,27 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'label_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .countdown-label',
+            ]
+        );
+
+        $this->add_control(
+            'label_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#00CEA6',
+                'selectors' => [
+                    '{{WRAPPER}} .countdown-label' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
 
@@ -751,31 +747,10 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'expired_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .expired-title  ',
-            ]
-        );
-
-        $this->add_control(
-            'title_expired_color',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .expired-title ' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
+                $this->add_responsive_control(
             'exp_title_align',
             [
-                'label' => esc_html__('Title Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -799,10 +774,31 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         );
 
 
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'expired_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .expired-title  ',
+            ]
+        );
+
+        $this->add_control(
+            'title_expired_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .expired-title ' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'expired_title_padding',
             [
-                'label' => esc_html__('Tittle Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -829,31 +825,10 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'des_expired_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .expired-description  ',
-            ]
-        );
-
-        $this->add_control(
-            'descrip_expired_color',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .expired-description ' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
+                $this->add_responsive_control(
             'exp_subs_align',
             [
-                'label' => esc_html__('Description Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -876,10 +851,31 @@ class Rkit_Countdown extends \Elementor\Widget_Base
             ]
         );
 
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'des_expired_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .expired-description  ',
+            ]
+        );
+
+        $this->add_control(
+            'descrip_expired_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .expired-description ' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'expired_description_padding',
             [
-                'label' => esc_html__('Description Padding', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -908,7 +904,7 @@ class Rkit_Countdown extends \Elementor\Widget_Base
         $this->add_control(
             'expired_background_color',
             [
-                'label' => esc_html__('Body Background Color', 'rometheme-for-elementor'),
+                'label' => esc_html__('Background Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .expired-time-section' => 'background-color: {{VALUE}}',

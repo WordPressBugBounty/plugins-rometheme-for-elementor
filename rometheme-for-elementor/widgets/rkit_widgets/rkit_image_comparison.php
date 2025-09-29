@@ -24,7 +24,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
 
     public function get_keywords()
     {
-        return ['image', 'slider', 'rometheme'];
+        return ['image', 'comparison','image comparison', 'rometheme'];
     }
 
     function get_custom_help_url()
@@ -236,6 +236,27 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
+         $this->add_control(
+            'caption_color',
+            [
+                'label' => esc_html__('Caption Color', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .caption-img-comp' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+                $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'caption_bg_color',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .caption-img-comp',
+            ]
+        );
+
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
             [
@@ -252,32 +273,32 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'caption_color',
-            [
-                'label' => esc_html__('Caption Color', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .caption-img-comp' => 'color: {{VALUE}};'
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'caption_bg_color',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .caption-img-comp',
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'caption_border',
                 'label' => esc_html__('Border Caption', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .caption-img-comp',
+            ]
+        );
+
+         $this->add_responsive_control(
+            'desc_con_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .caption-img-comp ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -297,26 +318,6 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .caption-img-comp' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'desc_con_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .caption-img-comp ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -365,6 +366,7 @@ class Rkit_Imagecomparison extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .eicon-caret-left, {{WRAPPER}} .eicon-caret-right' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .eicon-caret-up, {{WRAPPER}} .eicon-caret-down' => 'color: {{VALUE}};',
                 ],
             ]
         );

@@ -62,28 +62,6 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
-        $this->add_control('layout', [
-            'label' => esc_html('Layout'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'horizontal' => esc_html('Horizontal'),
-                'vertical' => esc_html('Vertical'),
-            ],
-            'default' => 'horizontal'
-        ]);
-
-        $this->add_control('full_width', [
-            'label' => esc_html('Enable Full Width Navigation'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-            'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-            'return_value' => 'yes',
-            'default' => 'yes',
-            'condition' => [
-                'layout' => 'horizontal',
-            ]
-        ]);
-
         $this->add_control('nav_pos', [
             'label' => esc_html('Navigation Position'),
             'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -108,6 +86,28 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'condition' => [
                 'full_width!' => 'yes',
                 'layout' => 'horizontal'
+            ]
+        ]);
+
+        $this->add_control('layout', [
+            'label' => esc_html('Layout'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'horizontal' => esc_html('Horizontal'),
+                'vertical' => esc_html('Vertical'),
+            ],
+            'default' => 'horizontal'
+        ]);
+
+        $this->add_control('full_width', [
+            'label' => esc_html('Enable Full Width Navigation'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+            'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+            'return_value' => 'yes',
+            'default' => 'yes',
+            'condition' => [
+                'layout' => 'horizontal',
             ]
         ]);
 
@@ -295,6 +295,34 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'wrapper_border',
+                'selector' => '{{WRAPPER}} .rkit-tab-container',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'wrapper_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'wrapper_box_shadow',
+                'selector' => '{{WRAPPER}} .rkit-tab-container',
+            ]
+        );
+
         $this->add_responsive_control(
             'wrapper_padding',
             [
@@ -316,34 +344,6 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-tab-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'wrapper_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-tab-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'wrapper_border',
-                'selector' => '{{WRAPPER}} .rkit-tab-container',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'wrapper_box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-tab-container',
             ]
         );
 
@@ -480,18 +480,6 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'title_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-tab-btn-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->start_controls_tabs('title_tabs');
 
         $this->start_controls_tab('title_tab_normal', ['label' => esc_html('Normal')]);
@@ -512,22 +500,14 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'title_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-tab-btn-item',
-            ]
-        );
-
-        $this->add_control(
-            'title_bg_options_normal',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+        //         $this->add_control(
+        //     'title_bg_options_normal',
+        //     [
+        //         'label' => esc_html__('Background', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -538,19 +518,27 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'title_border_options_normal',
-            [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'title_border_normal',
+                'selector' => '{{WRAPPER}} .rkit-tab-btn-item',
+            ]
+        );
+
+        // $this->add_control(
+        //     'title_border_options_normal',
+        //     [
+        //         'label' => esc_html__('Border', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'title_box_shadow_normal',
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item',
             ]
         );
@@ -575,22 +563,15 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'title_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-tab-btn-item:hover',
-            ]
-        );
 
-        $this->add_control(
-            'title_bg_options_hover',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+        // $this->add_control(
+        //     'title_bg_options_hover',
+        //     [
+        //         'label' => esc_html__('Background', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -601,19 +582,27 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'title_border_options_hover',
-            [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+        // $this->add_control(
+        //     'title_border_options_hover',
+        //     [
+        //         'label' => esc_html__('Border', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'title_border_hover',
+                'selector' => '{{WRAPPER}} .rkit-tab-btn-item:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'title_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item:hover',
             ]
         );
@@ -638,22 +627,14 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'title_box_shadow_active',
-                'selector' => '{{WRAPPER}} .rkit-tab-btn-item.active',
-            ]
-        );
-
-        $this->add_control(
-            'title_bg_options_active',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+        // $this->add_control(
+        //     'title_bg_options_active',
+        //     [
+        //         'label' => esc_html__('Background', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -664,14 +645,14 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'title_border_options_active',
-            [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
+        // $this->add_control(
+        //     'title_border_options_active',
+        //     [
+        //         'label' => esc_html__('Border', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -681,9 +662,35 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'title_box_shadow_active',
+                'selector' => '{{WRAPPER}} .rkit-tab-btn-item.active',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        // control divider
+        $this->add_control('title_divider', [
+            'type' => \Elementor\Controls_Manager::DIVIDER,
+        ]);
+
+        $this->add_responsive_control(
+            'title_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-btn-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
 
         $this->end_controls_section();
 
@@ -708,29 +715,41 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_responsive_control(
-            'content_margin',
+        //         $this->add_control(
+        //     'content_bg_options',
+        //     [
+        //         'label' => esc_html__('Background', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-tab-content-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'content_background',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-tab-content-container',
             ]
         );
 
-        $this->add_responsive_control(
-            'content_padding',
+        // $this->add_control(
+        //     'content_border_options',
+        //     [
+        //         'label' => esc_html__('Border', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-tab-content-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'content_border',
+                'selector' => '{{WRAPPER}} .rkit-tab-content-container',
             ]
         );
+
 
         $this->add_responsive_control(
             'content_radius',
@@ -752,38 +771,27 @@ class Rkit_Tabs extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'content_bg_options',
+        $this->add_responsive_control(
+            'content_padding',
             [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-content-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
+        $this->add_responsive_control(
+            'content_margin',
             [
-                'name' => 'content_background',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-tab-content-container',
-            ]
-        );
-
-        $this->add_control(
-            'content_border_options',
-            [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'content_border',
-                'selector' => '{{WRAPPER}} .rkit-tab-content-container',
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-content-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -793,12 +801,12 @@ class Rkit_Tabs extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $bordered = $settings['bordered_nav'] === 'yes' ? 'bordered': '';
+        $bordered = $settings['bordered_nav'] === 'yes' ? 'bordered' : '';
 
 ?>
         <div class="rkit-tab-container <?php echo esc_attr($settings['layout']) ?>">
             <div class="rkit-tab-nav-container">
-                <ul class="rkit-tab-nav <?php echo $bordered?>">
+                <ul class="rkit-tab-nav <?php echo $bordered ?>">
                     <?php foreach ($settings['tab_list'] as $key => $tab) :
                         switch ($tab['title_tag']) {
                             case 'h1':
@@ -831,7 +839,7 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                         $shrink_tab = $settings['full_width'] === 'yes' ? '' : 'shrink';
                         $horizontal_lay = $settings['layout'] === 'horizontal' ? $shrink_tab : '';
                     ?>
-                        <li class="rkit-tab-btn-item <?php echo $active_default .' '. $horizontal_lay ?>" role="tab" data-tab="tab-<?php echo esc_attr($key) ?>">
+                        <li class="rkit-tab-btn-item <?php echo $active_default . ' ' . $horizontal_lay ?>" role="tab" data-tab="tab-<?php echo esc_attr($key) ?>">
                             <?php if ($settings['show_icon'] === 'yes') {
                                 \Elementor\Icons_Manager::render_icon($tab['icon_tab'], ['aria-hidden' => 'true', 'class' => 'tab-title-icon']);
                             } ?>

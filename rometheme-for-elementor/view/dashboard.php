@@ -21,7 +21,7 @@
             </div>
             <div class="col col-lg-5">
                 <div class="d-flex justify-content-center">
-                    <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/box-rtmkit.png') ?>" alt="" class="img-fluid w-75">
+                    <img src="<?php echo esc_url(\RomeTheme::plugin_url() . 'view/images/banner.png') ?>" alt="" class="img-fluid w-75">
                 </div>
             </div>
         </div>

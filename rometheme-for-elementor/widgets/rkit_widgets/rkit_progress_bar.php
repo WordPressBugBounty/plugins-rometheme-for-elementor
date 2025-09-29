@@ -40,6 +40,18 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
+        $this->add_control(
+            'show_percentage',
+            [
+                'label' => esc_html__('Show Percentage', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
         $this->add_control('progress_style', [
             'label' => esc_html('Progress Style'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -59,6 +71,42 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             'default' => esc_html('Progress'),
         ]);
 
+                $this->add_control('title_position', [
+            'label' => esc_html('Title Position'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'column' => esc_html('Top'),
+                'column-reverse' => esc_html('Bottom')
+            ],
+            'default' => 'column',
+            'selectors' => [
+                '{{WRAPPER}} .half-circular-progress .progress-value, {{WRAPPER}} .circular-progress .progress-value' => 'flex-direction:{{VALUE}}'
+            ],
+            'condition' => [
+                'progress_style!' => ['line', 'inline'],
+                'progress-title!' => '',
+                'show_percentage' => 'yes'
+            ]
+        ]);
+
+        $this->add_control('prefix_text', [
+            'label' => esc_html('Prefix Label'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => esc_html('Prefix'),
+            'condition' => [
+                'progress_style' => 'half'
+            ]
+        ]);
+
+        $this->add_control('postfix_text', [
+            'label' => esc_html('Postfix Label'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => esc_html('Postfix'),
+            'condition' => [
+                'progress_style' => 'half'
+            ]
+        ]);
+
         $this->add_responsive_control(
             'percent',
             [
@@ -75,36 +123,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                     'unit' => '%',
                     'size' => 50,
                 ],
-            ]
-        );
-
-        $this->add_control('title_position', [
-            'label' => esc_html('Title Position'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'column' => esc_html('Top'),
-                'column-reverse' => esc_html('Bottom')
-            ],
-            'default' => 'column',
-            'selectors' => [
-                '{{WRAPPER}} .half-circular-progress .progress-value, {{WRAPPER}} .circular-progress .progress-value' => 'flex-direction:{{VALUE}}'
-            ],
-            'condition' => [
-                'progress_style!' => ['line','inline'],
-                'progress-title!' => '',
-                'show_percentage' => 'yes'
-            ]
-        ]);
-
-        $this->add_control(
-            'show_percentage',
-            [
-                'label' => esc_html__('Show Percentage', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
             ]
         );
 
@@ -127,24 +145,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('prefix_text', [
-            'label' => esc_html('Prefix Label'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => esc_html('Prefix'),
-            'condition' => [
-                'progress_style' => 'half'
-            ]
-        ]);
-
-        $this->add_control('postfix_text', [
-            'label' => esc_html('Postfix Label'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => esc_html('Postfix'),
-            'condition' => [
-                'progress_style' => 'half'
-            ]
-        ]);
-
         $this->end_controls_section();
 
         $this->start_controls_section('general_style', [
@@ -160,21 +160,22 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 'options' => [
                     'start' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'align-items: {{VALUE}};',
+                    // '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'justify-content: {{VALUE}};',
                 ],
                 'condition' => [
                     'progress_style!' => ['line', 'inline']
@@ -182,47 +183,33 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'progress_color_hr',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-        $this->add_control('progress_color', [
-            'label' => esc_html('Progress Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-progress' => '--progress-color:{{VALUE}}'
-            ]
-        ]);
+        // $this->add_control(
+        //     'progress_color_hr',
+        //     [
+        //         'type' => \Elementor\Controls_Manager::DIVIDER,
+        //     ]
+        // );
 
-        $this->add_control('progress_bg_color', [
-            'label' => esc_html('Progress Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-progress' => '--secondary-progress-color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_control('bg_color', [
-            'label' => esc_html('Background Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .circular-progress .progress-value , {{WRAPPER}} .half-circular-progress .progress-value' => 'background-color:{{VALUE}}'
-            ],
-            'condition' => [
-                'progress_style!' => ['line', 'inline']
-            ]
-        ]);
+        // $this->add_control(
+        //     'progress_size_hr',
+        //     [
+        //         'type' => \Elementor\Controls_Manager::DIVIDER,
+        //     ]
+        // );
 
         $this->add_control(
-            'progress_size_hr',
+            'progress_line_options',
             [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'label' => esc_html__('Line', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'progress_style' => 'line'
+                ]
             ]
         );
-
-        $this->add_responsive_control(
+        
+          $this->add_responsive_control(
             'progress_size',
             [
                 'label' => esc_html__('Size', 'rometheme-for-elementor'),
@@ -242,48 +229,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .circular-progress ,  {{WRAPPER}} .half-circular-progress , {{WRAPPER}} .progress-bar , {{WRAPPER}} .prefix-postfix' => 'width: {{SIZE}}{{UNIT}};',
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'progress_line_options',
-            [
-                'label' => esc_html__('Line', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'progress_style' => 'line'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'progress_line_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .progress-bar ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'progress_style' => 'line'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'progress_line_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .progress-bar , {{WRAPPER}} .progress-bar .progress-value' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'progress_style' => ['line', 'inline']
-                ]
             ]
         );
 
@@ -339,6 +284,63 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 ],
                 'condition' => [
                     'progress_style' => 'inline'
+                ]
+            ]
+        );
+
+            $this->add_control('progress_color', [
+            'label' => esc_html('Progress Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-progress' => '--progress-color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('progress_bg_color', [
+            'label' => esc_html('Progress Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-progress' => '--secondary-progress-color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('bg_color', [
+            'label' => esc_html('Background Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .circular-progress .progress-value , {{WRAPPER}} .half-circular-progress .progress-value' => 'background-color:{{VALUE}}'
+            ],
+            'condition' => [
+                'progress_style!' => ['line', 'inline']
+            ]
+        ]);
+
+        $this->add_responsive_control(
+            'progress_line_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .progress-bar , {{WRAPPER}} .progress-bar .progress-value' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'progress_style' => ['line', 'inline']
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'progress_line_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .progress-bar ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'progress_style' => 'line'
                 ]
             ]
         );
@@ -452,6 +454,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 ]
             ]
         );
+
         $this->add_responsive_control(
             'title_padding_left',
             [
@@ -496,6 +499,32 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_control(
+            'percen_position',
+            [
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'top' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+                    'bottom' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ],
+                ],
+                'default' => 'top',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .progress-bar.percentage-label::after' => '{{VALUE}}:-25px;',
+                ],
+                'condition' => [
+                    'progress_style' => 'line'
+                ]
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -537,25 +566,25 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
-            'percen_position',
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'top' => [
-                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'bottom' => [
-                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'default' => 'top',
-                'toggle' => true,
+                'name' => 'percentage_border',
+                'selector' => '{{WRAPPER}} .progress-bar.percentage-label::after',
+                'condition' => [
+                    'progress_style' => 'line'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'percentage_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
-                    '{{WRAPPER}} .progress-bar.percentage-label::after' => '{{VALUE}}:-25px;',
+                    '{{WRAPPER}} .progress-bar.percentage-label::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
                 'condition' => [
                     'progress_style' => 'line'
@@ -611,32 +640,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .progress-bar.percentage-label::after' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'progress_style' => 'line'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'percentage_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .progress-bar.percentage-label::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'progress_style' => 'line'
-                ]
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'percentage_border',
-                'selector' => '{{WRAPPER}} .progress-bar.percentage-label::after',
                 'condition' => [
                     'progress_style' => 'line'
                 ]

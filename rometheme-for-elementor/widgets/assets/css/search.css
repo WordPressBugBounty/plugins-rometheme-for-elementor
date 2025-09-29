@@ -27,7 +27,7 @@
 .rkit-search {
     /* overflow: hidden; */
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 .rkit-search-icon {

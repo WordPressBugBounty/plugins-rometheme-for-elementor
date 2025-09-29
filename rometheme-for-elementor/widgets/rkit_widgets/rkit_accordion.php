@@ -262,7 +262,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'title_text_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -768,7 +768,7 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
-        $this->add_control(
+        $this->add_responsive_control(
             'content_text_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -823,12 +823,6 @@ class Rkit_Accordion extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'bg_content_hr',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -836,13 +830,6 @@ class Rkit_Accordion extends \Elementor\Widget_Base
                 'name' => 'background',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-accordion__content',
-            ]
-        );
-
-        $this->add_control(
-            'border_content_hr',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
             ]
         );
 

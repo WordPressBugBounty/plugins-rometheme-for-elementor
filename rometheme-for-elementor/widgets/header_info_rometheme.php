@@ -34,7 +34,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
     protected function register_controls()
     {
         $this->start_controls_section('content_section', [
-            'label' => 'Header Info',
+            'label' => 'Container',
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
@@ -157,28 +157,7 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('headerinfo-margin', [
-            'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'devices' => ['desktop', 'tablet', 'mobile'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-headerinfo' => 'margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
-            ]
-        ]);
-
-        $this->add_responsive_control('headerinfo-padding', [
-            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'devices' => ['desktop', 'tablet', 'mobile'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-headerinfo' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
-            ]
-        ]);
-
-
-        $this->add_responsive_control('headerinfo-row-gap', [
+                $this->add_responsive_control('headerinfo-row-gap', [
             'label' => esc_html__('Info Row Spacing', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
@@ -218,6 +197,26 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
+        $this->add_responsive_control('headerinfo-padding', [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'devices' => ['desktop', 'tablet', 'mobile'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-headerinfo' => 'padding : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ]
+        ]);
+
+          $this->add_responsive_control('headerinfo-margin', [
+            'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'devices' => ['desktop', 'tablet', 'mobile'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-headerinfo' => 'margin : {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+            ]
+        ]);
+
         $this->end_controls_section();
 
         $this->start_controls_section('text_style', [
@@ -234,18 +233,6 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-			'text_padding',
-			[
-				'label' => esc_html__( 'Padding', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
-				'selectors' => [
-					'{{WRAPPER}} .rkit-list-headerinfo' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-        $this->add_responsive_control(
 			'text_radius',
 			[
 				'label' => esc_html__( 'Border Radius', 'rometheme-for-elementor' ),
@@ -253,6 +240,18 @@ class HeaderInfo_Rometheme extends \Elementor\Widget_Base
 				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'selectors' => [
 					'{{WRAPPER}} .rkit-list-headerinfo' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+         $this->add_responsive_control(
+			'text_padding',
+			[
+				'label' => esc_html__( 'Padding', 'rometheme-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
+				'selectors' => [
+					'{{WRAPPER}} .rkit-list-headerinfo' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);

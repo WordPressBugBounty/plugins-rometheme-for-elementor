@@ -72,35 +72,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
-
-        $this->add_responsive_control(
-            'content_align_self',
-            [
-                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'flex-start' => [
-                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-middle',
-                    ],
-                    'flex-end' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-bottom',
-                    ]
-                ],
-                'default' => 'row',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-item-content' => 'align-self: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'content_direction',
             [
@@ -124,6 +95,36 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'content_align_self',
+            [
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ]
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'condition' => [
+                    'content_direction' => 'column'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-content' => 'align-self: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'show_title_post_tlist',
@@ -138,6 +139,40 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'container_title',
+            [
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'placeholder' => esc_html__('Type your Title here', 'rometheme-for-elementor'),
+                'condition' => [
+                    'show_title_post_tlist' => 'yes'
+                ],
+                'default' => 'Popular Post',
+            ]
+        );
+
+        $this->add_control(
+            'show_content_post_list',
+            [
+                'label' => esc_html__('Show Content', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'text-domain'),
+                'label_off' => esc_html__('Hide', 'text-domain'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control('truncate-content', [
+            'label' => esc_html__('Crop Content By Word', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::NUMBER,
+            'default' => 10,
+            'condition' => [
+                'show_content_post_list' => 'yes'
+            ]
+        ]);
+
+        $this->add_control(
             'show_category_box',
             [
                 'label' => esc_html__('Show Category', 'text-domain'),
@@ -146,6 +181,30 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'label_off' => esc_html__('Hide', 'text-domain'),
                 'return_value' => 'yes',
                 'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'show_divider',
+            [
+                'label' => esc_html__('Show Divider', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'text-domain'),
+                'label_off' => esc_html__('Hide', 'text-domain'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'show_image_content',
+            [
+                'label' => esc_html__('Show Featured Image', 'text-domain'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'text-domain'),
+                'label_off' => esc_html__('Hide', 'text-domain'),
+                'return_value' => 'yes',
+                'default' => 'yes',
             ]
         );
 
@@ -182,65 +241,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         ]);
 
-        $this->add_control('truncate-content', [
-            'label' => esc_html__('Crop Content By Word', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::NUMBER,
-            'default' => 10,
-            'condition' => [
-                'show_content_post_list' => 'yes'
-            ]
-        ]);
-
-        $this->add_control(
-            'show_image_content',
-            [
-                'label' => esc_html__('Show Featured Image', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'container_title',
-            [
-                'label' => esc_html__('Title', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Type your Title here', 'rometheme-for-elementor'),
-                'condition' => [
-                    'show_title_post_tlist' => 'yes'
-                ],
-                'default' => 'Popular Post',
-            ]
-        );
-
-        $this->add_control(
-            'show_content_post_list',
-            [
-                'label' => esc_html__('Show Content', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-
-        $this->add_control(
-            'show_divider',
-            [
-                'label' => esc_html__('Show Divider', 'text-domain'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
         $this->end_controls_section();
         $this->start_controls_section('query-content', [
             'label' => esc_html__('Query', 'rometheme-for-elementor'),
@@ -248,7 +248,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         ]);
 
         $this->add_control('title_postlist_tag', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -439,7 +439,7 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'label' => esc_html__('Comments', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
-                    'value' => 'rtmicon rtmicon-faqs',
+                    'value' => 'rtmicon rtmicon-comments',
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
@@ -461,6 +461,36 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             'return_value' => 'yes',
             'default' => 'no'
         ]);
+
+        $this->add_responsive_control(
+            'btn_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-readmore-postlist-div' => 'justify-content: {{VALUE}};',
+                ],
+                'condition' => [
+                    'show-read-more-postlist' => 'yes'
+                ],
+            ]
+        );
 
         $this->add_control(
             'readmore-text',
@@ -518,36 +548,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_responsive_control(
-            'btn_align',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'left',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-readmore-postlist-div' => 'justify-content: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show-read-more-postlist' => 'yes'
-                ],
-            ]
-        );
-
         $this->end_controls_section();
 
 
@@ -559,57 +559,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             'label' => esc_html('Container'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'container_border',
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-item-postlist  ',
-            ]
-        );
-
-        $this->add_control(
-            'container_background',
-            [
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_container',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-item-postlist ',
-            ]
-        );
-
-        $this->add_control(
-            'hover_background',
-            [
-                'label' => esc_html__('Hover Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-item-postlist:hover ',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-item-postlist',
-            ]
-        );
 
         $this->add_responsive_control(
             'cont_spacing',
@@ -634,6 +583,14 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-item-postlist',
+            ]
+        );
+
         $this->add_responsive_control(
             'contaoner_padding',
             [
@@ -650,6 +607,97 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-item-postlist ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'postlist_style_tabs'
+        );
+
+        $this->start_controls_tab(
+            'postlist_style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_container',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-item-postlist ',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'container_border',
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-item-postlist  ',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'postlist_style_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
+            ]
+        );
+
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-item-postlist:hover ',
+            ]
+        );
+
+        $this->add_control(
+            'container_border_hover_color',
+            [
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-postlist:hover' => 'border-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'container_border_border!' => '',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_control('divider_border', [
+            'label' => esc_html__('Divider', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIVIDER,
+        ]);
+
+        $this->add_responsive_control(
+            'container_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-postlist ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -676,12 +724,12 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'options' => [
                     'row' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-chevron-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
 
                     'row-reverse' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-chevron-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'toggle' => true,
@@ -691,59 +739,52 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'image_align_self',
             [
-                'name' => 'image_border',
-                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-item-thumbnail img ',
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
+
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-middle',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-bottom',
+                    ]
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-thumbnail' => 'align-self: {{VALUE}};',
+                ],
             ]
         );
-
-
 
         $this->add_responsive_control(
-            'padding',
+            'image_width',
             [
-                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 2000,
+                        'step' => 2,
+                    ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}  .rkit-item-thumbnail img  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-item-thumbnail img' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
-
-
-        $this->add_responsive_control(
-            'border_radius',
-            [
-                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}}  .rkit-item-thumbnail img ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
 
         $this->add_group_control(
             \Elementor\Group_Control_Image_Size::get_type(),
@@ -791,54 +832,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         ]);
 
-        $this->add_responsive_control(
-            'image_width',
-            [
-                'label' => esc_html__('Width', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 2000,
-                        'step' => 2,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-item-thumbnail img' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'image_align_self',
-            [
-                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'flex-start' => [
-                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-middle',
-                    ],
-                    'flex-end' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-v-align-bottom',
-                    ]
-                ],
-                'default' => 'row',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-item-thumbnail' => 'align-self: {{VALUE}};',
-                ],
-            ]
-        );
-
-
         $this->add_group_control(
             \Elementor\Group_Control_Css_Filter::get_type(),
             [
@@ -847,6 +840,56 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-item-thumbnail img ',
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'image_border',
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-item-thumbnail img ',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}  .rkit-item-thumbnail img ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}  .rkit-item-thumbnail img  ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
 
         $this->end_controls_section();
 
@@ -861,17 +904,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ],
 
         ]);
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_cont_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .f-title',
-
-            ]
-        );
 
         $this->add_responsive_control(
             'title_cont_align',
@@ -899,6 +931,16 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_cont_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .f-title',
+
+            ]
+        );
+
         $this->add_control(
             'title_cont',
             [
@@ -907,6 +949,15 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .f-title' => 'color: {{VALUE}};',
                 ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'background_title_container',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .f-title',
             ]
         );
 
@@ -922,15 +973,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'background_title_container',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .f-title',
-            ]
-        );
-
         $this->end_controls_section();
 
         //style section title post
@@ -939,17 +981,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 
         ]);
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_post_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .title-item',
-
-            ]
-        );
 
         $this->add_responsive_control(
             'title_pots_align',
@@ -974,6 +1005,16 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                     '{{WRAPPER}} .rkit-title-postlist' => 'text-align: {{VALUE}};',
                 ],
                 'default' => 'start',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_post_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .title-item',
+
             ]
         );
 
@@ -1008,16 +1049,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'date_post_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-metadata-postlist-row ',
-
-            ]
-        );
-
         $this->add_responsive_control(
             'date_pots_align',
             [
@@ -1041,6 +1072,16 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                     '{{WRAPPER}} .rkit-metadata-postlist-row ' => 'justify-content: {{VALUE}};',
                 ],
                 'default' => 'start',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'date_post_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-metadata-postlist-row ',
+
             ]
         );
 
@@ -1081,17 +1122,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
         ]);
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'content_post_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .content_descripson',
-
-            ]
-        );
-
         $this->add_responsive_control(
             'content_post_align',
             [
@@ -1115,6 +1145,16 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                     '{{WRAPPER}} .content_descripson' => 'text-align: {{VALUE}};',
                 ],
                 'default' => 'start',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'content_post_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .content_descripson',
+
             ]
         );
 
@@ -1227,22 +1267,32 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-readmore-postlist-btn',
             ]
         );
-        $this->add_responsive_control('button_padding', [
-            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-postlist-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+
+        $this->add_responsive_control(
+            'icon_button_size',
+            [
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 2000,
+                        'step' => 2,
+                    ],
+                ],
+                'default' => [
+                    'size' => 20,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_icon_readmore' => 'yes'
+                ]
             ]
-        ]);
-        $this->add_responsive_control('button_border_radius', [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-postlist-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
+        );
 
         $this->add_responsive_control(
             'icon_spacing',
@@ -1270,31 +1320,14 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'icon_button_size',
-            [
-                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 2000,
-                        'step' => 2,
-                    ],
-                ],
-                'default' => [
-                    'size' => 20,
-                    'unit' => 'px',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'show_icon_readmore' => 'yes'
-                ]
+        $this->add_responsive_control('button_padding', [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-postlist-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
             ]
-        );
+        ]);
 
         $this->start_controls_tabs('button_tabs');
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -1349,13 +1382,17 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_control(
+            'border_readmore_btn_hover_color',
             [
-                'name' => 'border_readmore_btn_hover',
-                'selector' => '{{WRAPPER}} .rkit-readmore-postlist-btn:hover',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-readmore-postlist-btn:hover' => 'border-color: {{VALUE}};',
+                ]
             ]
         );
+
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
@@ -1366,6 +1403,20 @@ class Rkit_Postlist extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->add_control('button_border', [
+            'label' => esc_html__('Border', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIVIDER,
+        ]);
+
+        $this->add_responsive_control('button_border_radius', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-postlist-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}};'
+            ]
+        ]);
 
         $this->end_controls_section();
 
@@ -1394,18 +1445,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'divider_color',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .divider_line' => 'border-bottom-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-
         $this->add_responsive_control(
             'divider_spacing',
             [
@@ -1429,6 +1468,18 @@ class Rkit_Postlist extends \Elementor\Widget_Base
 
             ]
         );
+
+        $this->add_control(
+            'divider_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .divider_line' => 'border-bottom-color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
 

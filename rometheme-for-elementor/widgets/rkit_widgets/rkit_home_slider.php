@@ -452,7 +452,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-hs-client ',
                 'description' => esc_html__('Give the container padding to see the results', 'text-domain'),
             ]
@@ -569,7 +569,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -844,7 +844,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
-          $this->add_responsive_control(
+        $this->add_responsive_control(
             'gap_subtitle_icon',
             [
                 'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
@@ -932,7 +932,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-         $this->add_responsive_control(
+        $this->add_responsive_control(
             'maxwidthtitle',
             [
                 'label' => esc_html__('Max Width', 'rometheme-for-elementor'),
@@ -1003,7 +1003,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-                $this->add_control(
+        $this->add_control(
             'title_animation',
             [
                 'label' => esc_html__('Animation', 'rometheme-for-elementor'),
@@ -1040,7 +1040,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-                $this->add_responsive_control(
+        $this->add_responsive_control(
             'maxwidthdesc',
             [
                 'label' => esc_html__('Max Width', 'rometheme-for-elementor'),
@@ -1110,7 +1110,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .hs-description',
             ]
         );
-                $this->add_control(
+        $this->add_control(
             'description_animation',
             [
                 'label' => esc_html__('Animation', 'rometheme-for-elementor'),
@@ -1186,6 +1186,29 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
+            'button_icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 300,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .icon-list-button-hs' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'gap_button_icon',
             [
                 'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
@@ -1213,48 +1236,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'button_icon_size',
-            [
-                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 300,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .icon-list-button-hs' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-                $this->add_responsive_control(
-            'button_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'default' => [
-                    'top' => 0,
-                    'right' => 0,
-                    'bottom' => 0,
-                    'left' => 0,
-                    'unit' => 'px',
-                    'isLinked' => true,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_responsive_control(
             'button_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -1279,7 +1260,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         ]);
 
-                // $this->add_control(
+        // $this->add_control(
         //     'btn_bg_options_normal',
         //     [
         //         'label' => esc_html__('Button Background', 'rometheme-for-elementor'),
@@ -1316,7 +1297,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-                $this->add_group_control(
+        $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
@@ -1331,14 +1312,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->start_controls_tab('button_tab_hover', ['label' => esc_html('Hover')]);
 
         $this->add_control('button_text_color_hover', [
-            'label' => esc_html__('Text Color (Hover)', 'rometheme-for-elementor'),
+            'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .button-element-homeslider:hover,  {{WRAPPER}} a:hover' => 'color : {{VALUE}}'
             ],
         ]);
 
-                $this->add_group_control(
+        $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name' => 'btn_background_hover',
@@ -1349,7 +1330,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
         $this->add_control('button_icon_color_hover', [
-            'label' => esc_html__('Icon Color (Hover)', 'rometheme-for-elementor'),
+            'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 ' {{WRAPPER}} a:hover .icon-list-button-hs' => 'color : {{VALUE}}'
@@ -1365,12 +1346,15 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-                $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        // border color
+        $this->add_control(
+            'button_border_color_hover',
             [
-                'name' => 'button_border_hover',
-                'label' => esc_html__('Border Button (Hover)', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider:hover',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider:hover' => 'border-color: {{VALUE}};',
+                ],
             ]
         );
 
@@ -1379,6 +1363,34 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
         $this->end_controls_tabs();
 
+        // divider
+        $this->add_control(
+            'divider_button',
+            [
+                'label' => esc_html__('Divider', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'button_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 0,
+                    'right' => 0,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -1393,7 +1405,7 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         ]);
 
 
-        $this->add_control(
+        $this->add_responsive_control(
             'dots_directions',
             [
                 'label' => esc_html__('Direction', 'rometheme-for-elementor'),
@@ -1433,21 +1445,19 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'min' => 0,
                         'max' => 100,
                     ],
-                    'desktop_default' => [
-                        'unit' => '%',
-                        'size' => 95,
-                    ],
-                    'tablet_default' => [
-                        'unit' => '%',
-                        'size' => 95,
-                    ],
-                    'mobile_default' => [
-                        'unit' => '%',
-                        'size' => 92,
-                    ],
                 ],
-
-
+                'default' => [
+                    'unit' => '%',
+                    'size' => 95,
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                    'size' => 95,
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                    'size' => 92,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .swiper-bullet-cont' => 'top: {{SIZE}}{{UNIT}};',
                 ],
@@ -1471,18 +1481,18 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'min' => 0,
                         'max' => 100,
                     ],
-                    'desktop_default' => [
-                        'unit' => '%',
-                        'size' => 48,
-                    ],
-                    'tablet_default' => [
-                        'unit' => '%',
-                        'size' => 44,
-                    ],
-                    'mobile_default' => [
-                        'unit' => '%',
-                        'size' => 37,
-                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 48,
+                ],
+                'tablet_default' => [
+                    'unit' => '%',
+                    'size' => 44,
+                ],
+                'mobile_default' => [
+                    'unit' => '%',
+                    'size' => 37,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .swiper-bullet-cont' => 'left: {{SIZE}}{{UNIT}};',
@@ -1514,20 +1524,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_responsive_control(
-            'dot_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
         $this->add_responsive_control(
             'dot_margin',
             [
@@ -1540,12 +1536,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->start_controls_tabs('dot_tabs');
 
-
         $this->start_controls_tab('dot_tab_normal', ['label' => esc_html('Normal')]);
-
 
         $this->add_responsive_control(
             'dot_size_normal',
@@ -1570,15 +1563,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'dot_bg_options_normal',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1588,17 +1572,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_control(
-            'dot_border_options_normal',
-            [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -1607,12 +1580,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->end_controls_tab();
 
-
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
-
 
         $this->add_responsive_control(
             'dot_size_hover',
@@ -1637,16 +1607,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'dot_bg_options_hover',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1656,31 +1616,21 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control(
-            'dot_border_options_hover',
+            'dot_border_color_hover',
             [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'dot_border_hover',
-                'selector' => '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet:hover',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet:hover' => 'border-color: {{VALUE}};',
+                ],
             ]
         );
 
 
         $this->end_controls_tab();
 
-
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('active')]);
-
 
         $this->add_responsive_control(
             'dot_size_active',
@@ -1705,15 +1655,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'dot_bg_options_active',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1723,31 +1664,43 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-
+        // border color active
         $this->add_control(
-            'dot_border_options_active',
+            'dot_border_color_active',
             [
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'dot_border_active',
-                'selector' => '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet.rkit-homeslider-bullet-active',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet.rkit-homeslider-bullet-active' => 'border-color: {{VALUE}};',
+                ],
             ]
         );
 
 
         $this->end_controls_tab();
 
-
         $this->end_controls_tabs();
 
+        // divider
+        $this->add_control(
+            'divider_dots',
+            [
+                'label' => esc_html__('Divider', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -1757,9 +1710,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             'label' => esc_html('Navigation'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
-
-
-
 
         $this->add_responsive_control(
             'navigation_align_horizontal',
@@ -1881,19 +1831,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
         $this->add_responsive_control(
-            'navigation_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-swiper-hs-button-prev , {{WRAPPER}} .rkit-swiper-hs-button-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-
-        $this->add_responsive_control(
             'navigation_padding',
             [
                 'label' => esc_html__('Padding', 'rometheme-for-elementor'),
@@ -2008,20 +1945,15 @@ class Rkit_home_slider extends \Elementor\Widget_Base
             ]
         );
 
-        // $this->add_control(
-        //     'nav_border_options_hover',
-        //     [
-        //         'label' => esc_html__('Border', 'rometheme-for-elementor'),
-        //         'type' => \Elementor\Controls_Manager::HEADING,
-        //         'separator' => 'before',
-        //     ]
-        // );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        // bprder hover color
+        $this->add_control(
+            'nav_border_color_hover',
             [
-                'name' => 'nav_border_hover',
-                'selector' => '{{WRAPPER}} .rkit-swiper-hs-button-prev:hover , {{WRAPPER}} .rkit-swiper-hs-button-next:hover',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-swiper-hs-button-prev:hover , {{WRAPPER}} .rkit-swiper-hs-button-next:hover' => 'border-color: {{VALUE}};',
+                ],
             ]
         );
 
@@ -2029,6 +1961,28 @@ class Rkit_home_slider extends \Elementor\Widget_Base
 
 
         $this->end_controls_tabs();
+
+        // divider
+        $this->add_control(
+            'divider_navigation',
+            [
+                'label' => esc_html__('Divider', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'navigation_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-swiper-hs-button-prev , {{WRAPPER}} .rkit-swiper-hs-button-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
         $this->end_controls_section();
@@ -2039,9 +1993,6 @@ class Rkit_home_slider extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $pauseOnHover = ($settings['pause_on_hover'] === 'yes') ? true : false;
-
-
-
 
         $config = [
             'rtl'                => is_rtl(),

@@ -10,7 +10,11 @@ jQuery(window).on("elementor/frontend/init", function () {
         rtl: config.rtl,
         arrows: config.arrows,
         dots: config.dots,
-        autoplay: config.autoplay,
+        autoplay: (config.autoplay) ? {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: config.pauseOnHover
+        } : false,
         loop: config.loop,
         speed: config.speed,
         slidesPerView: config.slidesPerView,

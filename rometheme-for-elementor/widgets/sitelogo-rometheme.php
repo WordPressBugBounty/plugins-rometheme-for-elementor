@@ -69,6 +69,9 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Link', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
                 'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'options' => ['url', 'is_external', 'nofollow'],
                 'default' => [
                     'url' => '',
@@ -81,16 +84,16 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'show_caption',
-			[
-				'label' => esc_html__( 'Show Caption', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'rometheme-for-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'rometheme-for-elementor' ),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+            'show_caption',
+            [
+                'label' => esc_html__('Show Caption', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
         $this->end_controls_section();
 
@@ -152,7 +155,7 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('caption_settings' , [
+        $this->start_controls_section('caption_settings', [
             'label' => esc_html('Caption'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
@@ -161,41 +164,41 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'caption_align',
-			[
-				'label' => esc_html__( 'Alignment', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => esc_html__( 'Left', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'right' => [
-						'title' => esc_html__( 'Right', 'rometheme-for-elementor' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'center',
-				'toggle' => true,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-image .site-caption' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
+            'caption_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-image .site-caption' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
-			[
-				'name' => 'caption_typography',
-				'selector' => '{{WRAPPER}} .rkit-image .site-caption',
-			]
-		);
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'caption_typography',
+                'selector' => '{{WRAPPER}} .rkit-image .site-caption',
+            ]
+        );
 
-        $this->add_control('caption_color' , [
+        $this->add_control('caption_color', [
             'label' => esc_html('Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
@@ -204,20 +207,20 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'caption_shadow',
-				'selector' => '{{WRAPPER}} .rkit-image .site-caption',
-			]
-		);
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'caption_shadow',
+                'selector' => '{{WRAPPER}} .rkit-image .site-caption',
+            ]
+        );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Stroke::get_type(),
-			[
-				'name' => 'caption_stroke',
-				'selector' => '{{WRAPPER}} .rkit-image .site-caption',
-			]
-		);
+            \Elementor\Group_Control_Text_Stroke::get_type(),
+            [
+                'name' => 'caption_stroke',
+                'selector' => '{{WRAPPER}} .rkit-image .site-caption',
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -236,8 +239,8 @@ class SiteLogo_Rometheme extends \Elementor\Widget_Base
         <div class="rkit-image-container">
             <a class="rkit-image" <?php $this->print_render_attribute_string('website_link') ?> style="text-decoration: none; border-bottom:none">
                 <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'image'); ?>
-                <?php if($settings['show_caption'] === 'yes') : ?>
-                <div class="site-caption"><?php echo $image_caption ?> </div>
+                <?php if ($settings['show_caption'] === 'yes') : ?>
+                    <div class="site-caption"><?php echo $image_caption ?> </div>
                 <?php endif; ?>
             </a>
         </div>

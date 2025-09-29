@@ -54,7 +54,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'default' => 'def-card'
         ]);
 
-
         $this->add_responsive_control(
             'imagebox_direction',
             [
@@ -111,7 +110,19 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-
+        $this->add_responsive_control('image_box_title_tag', [
+            'label' => esc_html('HTML Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+            ],
+            'default' => 'h4'
+        ]);
 
         $this->add_responsive_control('image_position_column', [
             'label' => esc_html('Image Position'),
@@ -158,17 +169,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_control(
-            'hover_animation',
-            [
-                'label' => esc_html__('Hover Image', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
-                'default' => 'grow',
-            ]
-        );
-
-
         $this->add_group_control(
             \Elementor\Group_Control_Image_Size::get_type(),
             [
@@ -178,7 +178,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'default' => 'large',
             ]
         );
-
 
         $this->add_responsive_control('img-aspect-ratio-ib', [
             'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
@@ -198,43 +197,35 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         ]);
 
-
-        $this->add_responsive_control('image_box_title_tag', [
-            'label' => esc_html('Tag'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'h1' => esc_html('H1'),
-                'h2' => esc_html('H2'),
-                'h3' => esc_html('H3'),
-                'h4' => esc_html('H4'),
-                'h5' => esc_html('H5'),
-                'h6' => esc_html('H6'),
-            ],
-            'default' => 'h4'
-        ]);
-
         $this->add_control(
             'imagebox_title',
             [
-                'label' => esc_html__('imagebox Title', 'rometheme-for-elementor'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Example Title', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type Title here', 'rometheme-for-elementor'),
             ]
         );
 
-
-
         $this->add_control(
             'imagebox_description',
             [
-                'label' => esc_html__('imagebox Description', 'rometheme-for-elementor'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 10,
                 'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type your description here', 'rometheme-for-elementor'),
             ]
         );
+
+        $this->add_control(
+            'hover_animation',
+            [
+                'label' => esc_html__('Hover Image', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+
         $this->add_control(
             'show_icon_container_top',
             [
@@ -350,7 +341,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_control(
             'imagebox_icon_readmore',
             [
-                'label' => esc_html__('Icon sss', 'rometheme-for-elementor'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'rtmicon rtmicon-arrow-right',
@@ -397,17 +388,16 @@ class Rkit_image_box extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-
-
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
+            \Elementor\Group_Control_Background::get_type(),
+
             [
-                'name' => 'container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
-                'selector' => '{{WRAPPER}} .rkit-image_box-card',
+                'name' => 'cont_backgroud_wrapper',
+                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-image_box-card'
             ]
         );
-
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
@@ -418,19 +408,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'condition' => [
                     'select_style!' => 'float-card',
                 ]
-            ]
-        );
-
-
-        $this->add_responsive_control(
-            'con_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-image_box-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -447,13 +424,23 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-
+            \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'cont_backgroud_wrapper',
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-image_box-card'
+                'name' => 'container_box_shadow',
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-image_box-card',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'con_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-image_box-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -467,6 +454,15 @@ class Rkit_image_box extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
+            \Elementor\Group_Control_Css_Filter::get_type(),
+            [
+                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
+                'name' => 'image_filters',
+                'selector' => '{{WRAPPER}} .rkit-image_box__img img ',
+            ]
+        );
+
+        $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
@@ -478,27 +474,10 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_responsive_control(
-            'padding',
-            [
-                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}}  .rkit-image_box__img, {{WRAPPER}} .rkit-image_box__img::after ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style!' => 'overlay',
-                ]
-            ]
-        );
-
-
         $this->add_responsive_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -507,12 +486,18 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Css_Filter::get_type(),
+        $this->add_responsive_control(
+            'padding',
             [
-                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
-                'name' => 'image_filters',
-                'selector' => '{{WRAPPER}} .rkit-image_box__img img ',
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}}  .rkit-image_box__img, {{WRAPPER}} .rkit-image_box__img::after ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style!' => 'overlay',
+                ]
             ]
         );
 
@@ -595,27 +580,11 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-image_box__title',
-            ]
-        );
-
-        $this->add_responsive_control('title_color', [
-            'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-image_box__title' => 'color : {{VALUE}}'
-            ],
-        ]);
 
         $this->add_responsive_control(
             'default_align',
             [
-                'label' => esc_html__('Title Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
@@ -642,7 +611,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'margin_title',
             [
-                'label' => esc_html__('Title Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -650,6 +619,23 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-image_box__title',
+            ]
+        );
+
+        $this->add_responsive_control('title_color', [
+            'label' => esc_html__('Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-image_box__title' => 'color : {{VALUE}}'
+            ],
+        ]);
 
         // desc
         $this->add_control(
@@ -660,27 +646,11 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'separator' => 'before',
             ]
         );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'desc_typography',
-                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-image_box__description',
-            ]
-        );
-
-        $this->add_control('desc_color', [
-            'label' => esc_html__('Color', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-image_box__description' => 'color : {{VALUE}}'
-            ],
-        ]);
 
         $this->add_responsive_control(
             'description_content_align',
             [
-                'label' => esc_html__('Desc Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
@@ -706,7 +676,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'desc_content_spacing',
             [
-                'label' => esc_html__('Description Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -727,6 +697,23 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'desc_typography',
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-image_box__description',
+            ]
+        );
+
+        $this->add_control('desc_color', [
+            'label' => esc_html__('Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-image_box__description' => 'color : {{VALUE}}'
+            ],
+        ]);
+
         // $this->add_responsive_control(
         //     'desc_con_paddingdet',
         //     [
@@ -744,7 +731,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
 
             [
                 'name' => 'desc_cont_backgroud',
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-image_box__detail',
                 'fields_options' => [
@@ -753,7 +740,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
                     ]
                 ],
                 'condition' => [
-                    'select_style!' => 'float-card',
+                    'select_style!' => ['float-card', 'def-card'],
                 ]
             ]
         );
@@ -764,7 +751,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
 
             [
                 'name' => 'defdesc_cont_backgroud_def',
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .float-detail ',
                 'fields_options' => [
@@ -791,10 +778,10 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'desc_container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'name' => 'desc_con_border',
+                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .float-detail ',
                 'condition' => [
                     'select_style' => 'float-card',
@@ -802,11 +789,26 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'desc_con_radius',
             [
-                'name' => 'desc_con_border',
-                'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .float-detail ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style' => 'float-card',
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'desc_container_box_shadow',
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .float-detail ',
                 'condition' => [
                     'select_style' => 'float-card',
@@ -829,25 +831,10 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'desc_con_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .float-detail ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'select_style' => 'float-card',
-                ]
-            ]
-        );
-
         $this->add_control(
             'deffloating_card',
             [
-                'label' => esc_html__('Container Center', 'rometheme-for-elementor'),
+                'label' => esc_html__('Container', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -857,14 +844,17 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
+            \Elementor\Group_Control_Background::get_type(),
+
             [
-                'name' => 'defdesc_container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'name' => 'defdesc_cont_backgroud_float',
+                'label' => esc_html__('Background', 'rometheme-for-elementor'),
+                'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .def-detail ',
                 'condition' => [
                     'select_style' => 'def-card',
                 ]
+
             ]
         );
 
@@ -874,21 +864,6 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'name' => 'defdesc_con_border',
                 'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .def-detail ',
-                'condition' => [
-                    'select_style' => 'def-card',
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'defdesc_con_padding',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .def-detail ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
                 'condition' => [
                     'select_style' => 'def-card',
                 ]
@@ -911,17 +886,29 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-
+            \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'defdesc_cont_backgroud_float',
-                'label' => esc_html__('Container Background', 'rometheme-for-elementor'),
-                'types' => ['classic', 'gradient'],
+                'name' => 'defdesc_container_box_shadow',
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .def-detail ',
                 'condition' => [
                     'select_style' => 'def-card',
                 ]
+            ]
+        );
 
+        $this->add_responsive_control(
+            'defdesc_con_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .def-detail ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_style' => 'def-card',
+                ]
             ]
         );
 
@@ -938,53 +925,10 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-
-        $this->add_responsive_control(
-            'icon_desc_size',
-            [
-                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-icon-top ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'show_icon_container_top' => 'yes'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'icon_desc_color',
-            [
-                'label' => esc_html__('Desc icon Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#000000FF',
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-icon-top' => ' color: {{VALUE}}; fill: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show_icon_container_top' => 'yes'
-                ]
-
-            ]
-        );
-
         $this->add_responsive_control(
             'icon_align',
             [
-                'label' => esc_html__('Icon Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -1011,6 +955,48 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'icon_desc_size',
+            [
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-icon-top ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_icon_container_top' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'icon_desc_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#000000FF',
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-icon-top' => ' color: {{VALUE}}; fill: {{VALUE}};',
+                ],
+                'condition' => [
+                    'show_icon_container_top' => 'yes'
+                ]
+
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section('button_style', [
@@ -1020,55 +1006,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ],
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'readmore_button_typography',
-                'selector' => '{{WRAPPER}} .rkit-readmore-imagebox-btn',
-            ]
-        );
-        $this->add_responsive_control('button_padding', [
-            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-imagebox-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
-        $this->add_responsive_control('button_border_radius', [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-imagebox-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
 
-        $this->add_responsive_control(
-            'icon_spacing',
-            [
-                'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} a.rkit-readmore-imagebox-btn' => 'gap: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'show_icon_readmore' => 'yes'
-                ]
-            ]
-        );
 
         $this->add_responsive_control(
             'imagebox_btn_align',
@@ -1125,6 +1063,32 @@ class Rkit_image_box extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => esc_html__('Icon Spacing    ', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} a.rkit-readmore-imagebox-btn' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'show_icon_readmore' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
             'icon_rm_gap',
             [
                 'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
@@ -1149,6 +1113,32 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'readmore_button_typography',
+                'selector' => '{{WRAPPER}} .rkit-readmore-imagebox-btn',
+            ]
+        );
+
+        $this->add_responsive_control('button_border_radius', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-imagebox-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+            ]
+        ]);
+
+        $this->add_responsive_control('button_padding', [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-readmore-imagebox-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+            ]
+        ]);
 
         $this->start_controls_tabs('button_tabs_normal');
         $this->start_controls_tab('button_tab_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -1236,6 +1226,7 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE
             ]
         );
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -1243,23 +1234,29 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-button-top',
             ]
         );
-        $this->add_responsive_control('button_padding_top', [
-            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-button-top' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
-        $this->add_responsive_control('button_border_radius_top', [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-button-top' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
-            ]
-        ]);
 
+        $this->add_responsive_control(
+            'btn_rm_top',
+            [
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 2,
+                    ],
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-button-top ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'icon_rm_sss',
@@ -1284,29 +1281,14 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'btn_rm_top',
-            [
-                'label' => esc_html__('Button Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 2,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-button-top ' => 'font-size: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                ],
+        $this->add_responsive_control('button_padding_top', [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-button-top' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
             ]
-        );
-
+        ]);
 
         $this->start_controls_tabs('button_tabs');
         $this->start_controls_tab('button_tab_normal_top', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);
@@ -1361,11 +1343,14 @@ class Rkit_image_box extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_control(
+            'border_color_control_top',
             [
-                'name' => 'border_readmore_btn_hover_top',
-                'selector' => '{{WRAPPER}} .rkit-button-top:hover',
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-button-top:hover' => 'border-color : {{VALUE}};'
+                ],
             ]
         );
         $this->add_group_control(
@@ -1378,6 +1363,24 @@ class Rkit_image_box extends \Elementor\Widget_Base
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->add_control(
+            'divider_button_control',
+            [
+                'label' => esc_html__('Button Control', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control('button_border_radius_top', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-button-top' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+            ]
+        ]);
+
 
         $this->end_controls_section();
     }

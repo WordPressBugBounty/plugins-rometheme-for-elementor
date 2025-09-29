@@ -35,6 +35,12 @@ class Rkit_Counter extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
+                $this->add_control('text_title', [
+            'label' => esc_html('Title'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => esc_html('Great Number')
+        ]);
+
         $this->add_control('starting_number', [
             'label' => esc_html('Starting Number'),
             'type' => \Elementor\Controls_Manager::NUMBER,
@@ -110,12 +116,6 @@ class Rkit_Counter extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('text_title', [
-            'label' => esc_html('Title'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => esc_html('Great Number')
-        ]);
-
         $this->end_controls_section();
 
         $this->start_controls_section('style_section', [
@@ -160,21 +160,21 @@ class Rkit_Counter extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('number_color', [
-            'label' => esc_html('Text Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-counter .counter' => 'color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_group_control(
+         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'number_typography',
                 'selector' => '{{WRAPPER}} .rkit-counter .counter',
             ]
         );
+
+        $this->add_control('number_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-counter .counter' => 'color:{{VALUE}}'
+            ]
+        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),
@@ -204,7 +204,7 @@ class Rkit_Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => esc_html__('Title Spacing', 'rometheme-for-elementor'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -224,21 +224,21 @@ class Rkit_Counter extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('title_color', [
-            'label' => esc_html('Text Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-counter .counter-title' => 'color:{{VALUE}}'
-            ]
-        ]);
-
-        $this->add_group_control(
+                $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
                 'selector' => '{{WRAPPER}} .rkit-counter .counter-title',
             ]
         );
+
+        $this->add_control('title_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-counter .counter-title' => 'color:{{VALUE}}'
+            ]
+        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Stroke::get_type(),

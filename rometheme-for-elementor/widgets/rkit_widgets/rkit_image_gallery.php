@@ -183,29 +183,6 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'gallery_image_border',
-                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .brick',
-
-            ]
-        );
-
-        $this->add_responsive_control(
-            'gallery_image_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .brick' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
 
@@ -241,11 +218,34 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'gallery_image_border',
+                'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .brick',
+
+            ]
+        );
+
+        $this->add_responsive_control(
+            'gallery_image_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .brick' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $lazy = '';
 
         if ($settings['lazy_load_ig'] == 'yes') {
             $lazy = 'skeleton';
@@ -263,12 +263,12 @@ class Rkit_image_gallery extends \Elementor\Widget_Base
                     <div class="brick">
                         <div class="<?php echo esc_attr($lazy); ?>"></div>
                         <?php if ($settings['lightbox'] === 'default' || $settings['lightbox'] === 'yes') : ?>
-                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="gallery" href="<?php echo esc_attr($image['url']); ?>">
+                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="products-gallery" href="<?php echo esc_attr($image['url']); ?>">
                             <?php endif; ?>
                             <img src="<?php echo esc_attr($image['url']); ?>"
                                 class="gallery_image <?php echo esc_attr($hover_animation_ig_class); ?>"
                                 alt="<?php echo !empty($image['alt']) ? esc_attr($image['alt']) : 'Gallery Image'; ?>"
-                                loading="lazy"></img>
+                                loading="lazy">
                             <?php if ($settings['lightbox'] === 'default' || $settings['lightbox'] === 'yes') : ?>
                             </a>
                         <?php endif; ?>

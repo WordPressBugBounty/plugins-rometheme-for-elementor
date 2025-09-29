@@ -68,6 +68,7 @@
   animation: loading 1.5s infinite;
   opacity: 1;
   position: relative;
+  pointer-events: none;
 }
 
 

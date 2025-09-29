@@ -1,6 +1,6 @@
 {
   "customcursor": {
-    "name": "RTM Custom Cursor",
+    "name": "Custom Cursor",
     "icon": "rtmicon rtmicon-custom-cursor",
     "classname": "Rkit_Custom_Cursor",
     "status": true,
@@ -12,7 +12,7 @@
     "notes":"link official cooming soon"
   },
   "stickycontent": {
-    "name": "RTM Sticky Content",
+    "name": "Sticky Content",
     "icon": "rtmicon rtmicon-advanced-sticky",
     "classname": "Rkit_Sticky_Content",
     "status": true,

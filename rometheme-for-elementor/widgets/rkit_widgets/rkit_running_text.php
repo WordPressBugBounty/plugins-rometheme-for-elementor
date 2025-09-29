@@ -116,38 +116,6 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('item_text', [
-            'label' => esc_html('Item'),
-            'type' => \Elementor\Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-            'default' => [
-                [
-                    'text' => esc_html('Welcome to our website!')
-                ],
-                [
-                    'text' => esc_html('Thank you for choosing us!')
-                ],
-                [
-                    'text' => esc_html('Stay tuned for more updates')
-                ]
-            ],
-            'title_field' => '{{{ text }}}'
-        ]);
-
-        $this->add_responsive_control(
-            'speed_control',
-            [
-                'label' => esc_html__('Speed', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 7
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-marquee-container' => '--speed:{{SIZE}}'
-                ]
-            ]
-        );
-
         $this->add_control(
             'direction',
             [
@@ -171,21 +139,8 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'pause_on_hover',
-            [
-                'label' => esc_html__('Pause On Hover', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'pause-hover',
-                'default' => 'pause-hover',
-            ]
-        );
-
-
         $this->add_control('html_tag', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -198,6 +153,50 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             'default' => 'h3'
         ]);
 
+        $this->add_control('item_text', [
+            'label' => esc_html('Item'),
+            'type' => \Elementor\Controls_Manager::REPEATER,
+            'fields' => $repeater->get_controls(),
+            'default' => [
+                [
+                    'text' => esc_html('Welcome to our website!')
+                ],
+                [
+                    'text' => esc_html('Thank you for choosing us!')
+                ],
+                [
+                    'text' => esc_html('Stay tuned for more updates')
+                ]
+            ],
+            'title_field' => '{{{ text }}}'
+        ]);
+
+         $this->add_control(
+            'pause_on_hover',
+            [
+                'label' => esc_html__('Pause On Hover', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'pause-hover',
+                'default' => 'pause-hover',
+            ]
+        );
+
+         $this->add_responsive_control(
+            'speed_control',
+            [
+                'label' => esc_html__('Speed', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 7
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-marquee-container' => '--speed:{{SIZE}}'
+                ]
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section('container_style', ['label' => esc_html('Container'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
@@ -208,46 +207,6 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                 'name' => 'background_container',
                 'types' => ['classic', 'gradient', 'video'],
                 'selector' => '{{WRAPPER}} .rkit-text-marquee',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'box_shadow_container',
-                'selector' => '{{WRAPPER}} .rkit-text-marquee',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'border_container',
-                'selector' => '{{WRAPPER}} .rkit-text-marquee',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'padding_container',
-            [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-text-marquee' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'border_radius_container',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-text-marquee' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
             ]
         );
 
@@ -270,6 +229,47 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'border_container',
+                'selector' => '{{WRAPPER}} .rkit-text-marquee',
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'border_radius_container',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-text-marquee' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_container',
+                'selector' => '{{WRAPPER}} .rkit-text-marquee',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'padding_container',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-text-marquee' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section('content_style', [
@@ -286,15 +286,11 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'content_padding',
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-marquee-item-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'name' => 'border_content',
+                'selector' => '{{WRAPPER}} .rkit-marquee-item-content',
             ]
         );
 
@@ -311,14 +307,6 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'border_content',
-                'selector' => '{{WRAPPER}} .rkit-marquee-item-content',
-            ]
-        );
-
-        $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'box_shadow_content',
@@ -326,10 +314,31 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-marquee-item-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
 
-        $this->start_controls_section('text_style', ['label' => esc_html('Text'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+        $this->start_controls_section('text_style', ['label' => esc_html('Text, Icons & Image'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+
+        $this->add_control(
+            'text_options',
+            [
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -347,7 +356,7 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-running-text__text',
                 'fields_options' => [
                     'background' => [
-                        'label' => esc_html('Text Color')
+                        'label' => esc_html('Color')
                     ]
                 ]
             ]
@@ -378,21 +387,6 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
-
-
-
-
-        $this->add_control(
-            'running_icon_color',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-running-text__icon' => 'color: {{VALUE}} ; fill : {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'icon_size',
             [
@@ -417,6 +411,17 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'running_icon_color',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-running-text__icon' => 'color: {{VALUE}} ; fill : {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'images_options',
             [
                 'label' => esc_html__('Image', 'rometheme-for-elementor'),
@@ -425,15 +430,28 @@ class Rkit_RunningText extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Css_Filter::get_type(),
+        $this->add_responsive_control(
+            'image_size_tm',
             [
-                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
-                'name' => 'custom_css_filters_tm',
-                'selector' => '{{WRAPPER}} .image-running img',
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .image-running' => 'width:{{SIZE}}{{UNIT}}; height:auto;',
+                ],
             ]
         );
-
 
         $this->add_responsive_control('img-aspect-ratio-tm', [
             'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
@@ -473,34 +491,20 @@ class Rkit_RunningText extends \Elementor\Widget_Base
         ]);
 
         $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
+            \Elementor\Group_Control_Css_Filter::get_type(),
             [
-                'name' => 'image_running_box_shadow',
-                'label' => esc_html__('Box Shadow', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .image-running',
+                'label' => esc_html__('Image Filter', 'rometheme-for-elementor'),
+                'name' => 'custom_css_filters_tm',
+                'selector' => '{{WRAPPER}} .image-running img',
             ]
         );
 
-        $this->add_responsive_control(
-            'image_size_tm',
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 1000,
-                        'step' => 5,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .image-running' => 'width:{{SIZE}}{{UNIT}}; height:auto;',
-                ],
+                'name' => 'image_container_border',
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .image-running img',
             ]
         );
 
@@ -520,19 +524,21 @@ class Rkit_RunningText extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .image-running img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .image-running' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
-
         $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+            \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'image_container_border',
-                'label' => esc_html__('Border', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .image-running img',
+                'name' => 'image_running_box_shadow',
+                'label' => esc_html__('Box Shadow', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .image-running',
             ]
         );
+
+
 
 
 

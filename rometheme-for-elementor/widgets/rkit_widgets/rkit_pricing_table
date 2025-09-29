@@ -63,7 +63,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
         );
 
         $this->add_control('html_tag_pricelist', [
-            'label' => esc_html('Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -414,10 +414,10 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
         $this->add_control(
             'badge_text',
             [
-                'label' => __('Ribbon Text', 'plugin-name'),
+                'label' => __('Ribbon Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => __('Best Seller', 'plugin-name'),
-                'placeholder' => __('Enter badge text', 'plugin-name'),
+                'default' => __('Best Seller', 'rometheme-for-elementor'),
+                'placeholder' => __('Enter badge text', 'rometheme-for-elementor'),
                 'condition' => [
                     'enable_badge' => 'yes'
                 ]
@@ -483,7 +483,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'label' => __('Container Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-pricelist-container',
               'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
             ]
@@ -1644,7 +1644,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ribbon_style_section',
             [
-                'label' => __(' Ribbon Style', 'plugin-name'),
+                'label' => __(' Ribbon Style', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -1653,7 +1653,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'ribbon_typography',
-                'label' => __('Typography', 'plugin-name'),
+                'label' => __('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
             ]
         );
@@ -1661,7 +1661,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
         $this->add_control(
             'ribbon_text_color',
             [
-                'label' => __('Text Color', 'plugin-name'),
+                'label' => __('Text Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pricelist-ribbon__inner' => 'color: {{VALUE}};',
@@ -1721,7 +1721,7 @@ class Rkit_Pricetable extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'ribbon_box_shadow',
-                'label' => __('Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-pricelist-ribbon__inner',
             ]
         );

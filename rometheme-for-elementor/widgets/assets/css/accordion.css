@@ -38,6 +38,7 @@
     justify-content: center;
     margin: 0px 20px 0px 20px;
     transition: all 0.5s;
+    flex-shrink: 0;
 }
 
 .rkit-accordion__title{

@@ -11,7 +11,7 @@ if (class_exists('RomeThemeForm')) {
 $args  = [
     'post_type' => $post_types,
     'posts_per_page' => -1,
-    'post_status' => ' trash'
+    'post_status' => 'trash'
 ];
 
 $post_type = new WP_Query($args);

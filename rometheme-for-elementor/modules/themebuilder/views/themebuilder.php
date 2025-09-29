@@ -42,7 +42,7 @@ $isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && 
                         <div class="rtm-divider rounded-pill"></div>
                     </div>
                     <p class="text">
-                        Make the best experience when using RomethemeKit by learning and seeing how to use it,
+                        Make the best experience when using RTMKit by learning and seeing how to use it,
                     </p>
                 </div>
             </div>

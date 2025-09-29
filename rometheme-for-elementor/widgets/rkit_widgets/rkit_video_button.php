@@ -260,30 +260,6 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             ],
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'border_icon',
-                'selector' => '{{WRAPPER}} .rkit-animated-icon-container',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'box_shadow',
-                'selector' => '{{WRAPPER}} .rkit-animated-icon-container',
-            ]
-        );
-
-        $this->add_control(
-            'box_shadow_note',
-            [
-                'type' => \Elementor\Controls_Manager::RAW_HTML,
-                'raw' => '<strong>Note:</strong> Enabling the <em>Box Shadow</em> effect is not recommended when the <em>Pulse Effect</em> is active, as it may cause visual conflicts.',
-                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
-            ]
-        );
 
         // $this->start_controls_tabs(
         //     'style_hover_tabs'
@@ -398,6 +374,31 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             'default' => '#00cea6'
         ]);
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'border_icon',
+                'selector' => '{{WRAPPER}} .rkit-animated-icon-container',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow',
+                'selector' => '{{WRAPPER}} .rkit-animated-icon-container',
+            ]
+        );
+
+        $this->add_control(
+            'box_shadow_note',
+            [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => '<strong>Note:</strong> Enabling the <em>Box Shadow</em> effect is not recommended when the <em>Pulse Effect</em> is active, as it may cause visual conflicts.',
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+            ]
+        );
+
 
         $this->end_controls_tab();
 
@@ -425,6 +426,39 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             ],
             'default' => '#00cea6'
         ]);
+
+        // $this->add_group_control(
+        //     \Elementor\Group_Control_Border::get_type(),
+        //     [
+        //         'name' => 'border_icon_hover',
+        //         'selector' => '{{WRAPPER}} .rkit-animated-icon-container:hover',
+        //     ]
+        // );
+
+        $this->add_control('border_color_icon_hover', [
+            'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-icon-container:hover' => 'border-color: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-animated-icon-container:hover',
+            ]
+        );
+
+        $this->add_control(
+            'box_shadow_note_hover',
+            [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => '<strong>Note:</strong> Enabling the <em>Box Shadow</em> effect is not recommended when the <em>Pulse Effect</em> is active, as it may cause visual conflicts.',
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+            ]
+        );
 
         $this->add_control(
             'hover_animation_style',
@@ -545,7 +579,7 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             ]
         );
 
-         $this->add_control('background_color_icon_animated_pulse_hover', [
+        $this->add_control('background_color_icon_animated_pulse_hover', [
             'label' => esc_html('Background Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#00CEA699',

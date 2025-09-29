@@ -13,7 +13,7 @@ class Rkit_PieChart extends \Elementor\Widget_Base
 
     public function get_icon()
     {
-        $icon = 'rkit-widget-icon '. \RomethemeKit\RkitWidgets::listWidgets()['piechart']['icon'];
+        $icon = 'rkit-widget-icon ' . \RomethemeKit\RkitWidgets::listWidgets()['piechart']['icon'];
         return $icon;
     }
 
@@ -163,20 +163,15 @@ class Rkit_PieChart extends \Elementor\Widget_Base
         ]);
 
         $this->add_control(
-			'custom_panel_notice',
-			[
-				'type' => \Elementor\Controls_Manager::NOTICE,
-				'notice_type' => 'warning',
-				'dismissible' => true,
-				'heading' => esc_html__( 'Global Color Not Working', 'rometheme-for-elementor' ),
-				'content' => esc_html__( 'Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'rometheme-for-elementor' ),
-			]
-		);
-
-        $this->add_responsive_control('border_radius', [
-            'label' => esc_html('Border Radius'),
-            'type' => \Elementor\Controls_Manager::SLIDER
-        ]);
+            'custom_panel_notice',
+            [
+                'type' => \Elementor\Controls_Manager::NOTICE,
+                'notice_type' => 'warning',
+                'dismissible' => true,
+                'heading' => esc_html__('Global Color Not Working', 'rometheme-for-elementor'),
+                'content' => esc_html__('Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element.', 'rometheme-for-elementor'),
+            ]
+        );
 
         $this->add_responsive_control('spacing', [
             'label' => esc_html('Spacing'),
@@ -192,6 +187,11 @@ class Rkit_PieChart extends \Elementor\Widget_Base
                     'max' => 100
                 ]
             ]
+        ]);
+
+        $this->add_responsive_control('border_radius', [
+            'label' => esc_html('Border Radius'),
+            'type' => \Elementor\Controls_Manager::SLIDER
         ]);
 
         $this->start_controls_tabs('pie_tabs');
@@ -244,23 +244,6 @@ class Rkit_PieChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('legend_font_size', [
-            'label'  => esc_html('Font Size'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'condition' => [
-                'show_legend' => 'yes'
-            ]
-        ]);
-
-        $this->add_control('legend_color', [
-            'label'  => esc_html('Font Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
-            'condition' => [
-                'show_legend' => 'yes'
-            ]
-        ]);
-
         $this->add_control('legend_position', [
             'label' => esc_html('Position'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -287,6 +270,23 @@ class Rkit_PieChart extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_responsive_control('legend_font_size', [
+            'label'  => esc_html('Font Size'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'condition' => [
+                'show_legend' => 'yes'
+            ]
+        ]);
+
+        $this->add_control('legend_color', [
+            'label'  => esc_html('Font Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#000000',
+            'condition' => [
+                'show_legend' => 'yes'
+            ]
+        ]);
 
         $this->add_control('legend_font_style', [
             'label'  => esc_html('Font Style'),

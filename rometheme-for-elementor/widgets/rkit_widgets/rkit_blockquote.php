@@ -54,7 +54,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         ]);
 
         $this->add_control('text_tag', [
-            'label' => esc_html('Text Tag'),
+            'label' => esc_html('HTML Tag'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'h1' => esc_html('H1'),
@@ -181,7 +181,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         );
 
         $this->add_control('text_color', [
-            'label' => esc_html('Text Color'),
+            'label' => esc_html('Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-blockquote' => 'color:{{VALUE}}'
@@ -203,7 +203,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         );
 
         $this->add_control('author_color', [
-            'label' => esc_html('Text Color'),
+            'label' => esc_html('Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-quote-author' => 'color : {{VALUE}}'
@@ -280,7 +280,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -305,7 +305,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         );
 
         $this->add_control('icon_color', [
-            'label' => esc_html('Icon Color'),
+            'label' => esc_html('Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-quote-icon .rkit-blockquote__icon' => 'color:{{VALUE}}'
@@ -316,7 +316,7 @@ class Rkit_BLockQuote extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_margin',
             [
-                'label' => esc_html__('Icon Margin', 'rometheme-for-elementor'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [

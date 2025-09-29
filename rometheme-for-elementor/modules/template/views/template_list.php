@@ -12,7 +12,7 @@ $tabs = isset($_GET['tabs']) ? sanitize_text_field($_GET['tabs']) : 'pro-templat
                     <span class="accent-color">Launch Website in minutes</span>
                     <div class="d-flex flex-row gap-3 align-items-center ">
                         <h1 class="text-white text-nowrap m-0">
-                            Elementor Template Kits
+                            Template Kits
                         </h1>
                         <div class="rtm-divider rounded-pill"></div>
                     </div>

@@ -87,6 +87,19 @@ class RkitToolTips
       ]
     ]);
 
+    $container->add_responsive_control('rkit_tooltip_wrapper', [
+      'label' => __('Wrapper Width', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SLIDER,
+      'size_units' => ['px'],
+      'range' => [
+        'px' => ['max' => 360],
+      ],
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'width: {{SIZE}}{{UNIT}};',
+      ],
+      'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
+    ]);
+
     $container->add_responsive_control('rkit_x_offset', [
       'label' => __('X Offset', 'rometheme-for-elementor'),
       'type' => \Elementor\Controls_Manager::SLIDER,
@@ -111,19 +124,6 @@ class RkitToolTips
       ],
       'selectors' => [
         '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--y: {{SIZE}}{{UNIT}};',
-      ],
-      'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-    ]);
-
-    $container->add_responsive_control('rkit_tooltip_wrapper', [
-      'label' => __('Wrapper Width', 'rometheme-for-elementor'),
-      'type' => \Elementor\Controls_Manager::SLIDER,
-      'size_units' => ['px'],
-      'range' => [
-        'px' => ['max' => 360],
-      ],
-      'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'width: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -165,15 +165,45 @@ class RkitToolTips
       ]
     );
 
-    $container->add_responsive_control(
-      'tooltip_padding',
+    $container->add_group_control(
+      \Elementor\Group_Control_Typography::get_type(),
       [
-        'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::DIMENSIONS,
-        'size_units' => ['px', '%', 'em', 'rem'],
-        'selectors' => [
-          '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
+        'name' => 'tooltip_typography',
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after ',
+      ]
+    );
+
+    $container->add_responsive_control('tooltip_color', [
+      'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::COLOR,
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'color : {{VALUE}}'
+      ],
+    ]);
+
+    // $container->add_control(
+    //   'background_tooltip',
+    //   [
+    //     'label' => esc_html__('Background', 'rometheme-for-elementor'),
+    //     'type' => \Elementor\Controls_Manager::HEADING,
+    //     'separator' => 'before',
+    //   ]
+    // );
+
+    $container->add_group_control(
+      \Elementor\Group_Control_Background::get_type(),
+      [
+        'name' => 'background_container_all',
+        'types' => ['classic', 'gradient'],
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
+      ]
+    );
+
+    $container->add_group_control(
+      \Elementor\Group_Control_Border::get_type(),
+      [
+        'name' => 'border_tooltips',
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
       ]
     );
 
@@ -190,14 +220,6 @@ class RkitToolTips
     );
 
     $container->add_group_control(
-      \Elementor\Group_Control_Border::get_type(),
-      [
-        'name' => 'border_tooltips',
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
-      ]
-    );
-
-    $container->add_group_control(
       \Elementor\Group_Control_Box_Shadow::get_type(),
       [
         'name' => 'tooltip_box_shadow',
@@ -206,40 +228,17 @@ class RkitToolTips
       ]
     );
 
-    $container->add_responsive_control('tooltip_color', [
-      'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-      'type' => \Elementor\Controls_Manager::COLOR,
-      'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'color : {{VALUE}}'
-      ],
-    ]);
-
-    $container->add_group_control(
-      \Elementor\Group_Control_Typography::get_type(),
+    $container->add_responsive_control(
+      'tooltip_padding',
       [
-        'name' => 'tooltip_typography',
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after ',
+        'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => ['px', '%', 'em', 'rem'],
+        'selectors' => [
+          '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
       ]
     );
-
-    $container->add_control(
-      'background_tooltip',
-      [
-        'label' => esc_html__('Background', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::HEADING,
-        'separator' => 'before',
-      ]
-    );
-
-    $container->add_group_control(
-      \Elementor\Group_Control_Background::get_type(),
-      [
-        'name' => 'background_container_all',
-        'types' => ['classic', 'gradient'],
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
-      ]
-    );
-
     $container->end_controls_tab();
     $container->end_controls_tabs();
     $container->end_controls_section();
@@ -288,6 +287,19 @@ class RkitToolTips
       ]
     ]);
 
+    $widget->add_responsive_control('rkit_tooltip_wrapper', [
+      'label' => __('Wrapper Width', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SLIDER,
+      'size_units' => ['px'],
+      'range' => [
+        'px' => ['max' => 360],
+      ],
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'width: {{SIZE}}{{UNIT}};',
+      ],
+      'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
+    ]);
+
     $widget->add_responsive_control('rkit_x_offset', [
       'label' => __('X Offset', 'rometheme-for-elementor'),
       'type' => \Elementor\Controls_Manager::SLIDER,
@@ -312,19 +324,6 @@ class RkitToolTips
       ],
       'selectors' => [
         '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--y: {{SIZE}}{{UNIT}};',
-      ],
-      'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
-    ]);
-
-    $widget->add_responsive_control('rkit_tooltip_wrapper', [
-      'label' => __('Wrapper Width', 'rometheme-for-elementor'),
-      'type' => \Elementor\Controls_Manager::SLIDER,
-      'size_units' => ['px'],
-      'range' => [
-        'px' => ['max' => 360],
-      ],
-      'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'width: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -365,15 +364,45 @@ class RkitToolTips
       ]
     );
 
-    $widget->add_responsive_control(
-      'tooltip_padding',
+    $widget->add_group_control(
+      \Elementor\Group_Control_Typography::get_type(),
       [
-        'label' => esc_html__('Padding', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::DIMENSIONS,
-        'size_units' => ['px', '%', 'em', 'rem'],
-        'selectors' => [
-          '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
+        'name' => 'tooltip_typography',
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after ',
+      ]
+    );
+
+    $widget->add_responsive_control('tooltip_color', [
+      'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::COLOR,
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'color : {{VALUE}}'
+      ],
+    ]);
+
+    // $widget->add_control(
+    //   'background_tooltip',
+    //   [
+    //     'label' => esc_html__('Background', 'rometheme-for-elementor'),
+    //     'type' => \Elementor\Controls_Manager::HEADING,
+    //     'separator' => 'before',
+    //   ]
+    // );
+
+    $widget->add_group_control(
+      \Elementor\Group_Control_Background::get_type(),
+      [
+        'name' => 'background_widget_all',
+        'types' => ['classic', 'gradient'],
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
+      ]
+    );
+
+    $widget->add_group_control(
+      \Elementor\Group_Control_Border::get_type(),
+      [
+        'name' => 'border_tooltips',
+        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
       ]
     );
 
@@ -389,13 +418,6 @@ class RkitToolTips
       ]
     );
 
-    $widget->add_group_control(
-      \Elementor\Group_Control_Border::get_type(),
-      [
-        'name' => 'border_tooltips',
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
-      ]
-    );
 
     $widget->add_group_control(
       \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -406,37 +428,15 @@ class RkitToolTips
       ]
     );
 
-    $widget->add_responsive_control('tooltip_color', [
-      'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
-      'type' => \Elementor\Controls_Manager::COLOR,
-      'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'color : {{VALUE}}'
-      ],
-    ]);
-
-    $widget->add_group_control(
-      \Elementor\Group_Control_Typography::get_type(),
+    $widget->add_responsive_control(
+      'tooltip_padding',
       [
-        'name' => 'tooltip_typography',
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after ',
-      ]
-    );
-
-    $widget->add_control(
-      'background_tooltip',
-      [
-        'label' => esc_html__('Background', 'rometheme-for-elementor'),
-        'type' => \Elementor\Controls_Manager::HEADING,
-        'separator' => 'before',
-      ]
-    );
-
-    $widget->add_group_control(
-      \Elementor\Group_Control_Background::get_type(),
-      [
-        'name' => 'background_widget_all',
-        'types' => ['classic', 'gradient'],
-        'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
+        'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => ['px', '%', 'em', 'rem'],
+        'selectors' => [
+          '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
       ]
     );
 

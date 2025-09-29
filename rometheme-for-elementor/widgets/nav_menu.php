@@ -795,6 +795,38 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
         ]);
 
 
+        $this->add_responsive_control(
+            'submenu_text_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-start-h',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-center-h',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-end-h',
+                    ],
+                    'space-between' => [
+                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-justify-space-between-h',
+                    ],
+                ],
+                'default' => 'start',
+                'toggle' => true,
+                // 'description' => esc_html__('`The alignment settings will only affect the responsive mode and will not have any effect on the desktop mode.`', 'rometheme-for-elementor'),
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'justify-content: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -892,6 +924,18 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control('submenu-radius', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:first-child' => 'border-top-left-radius:{{TOP}}{{UNIT}} ; border-top-right-radius: {{RIGHT}}{{UNIT}} ',
+                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:last-child' => 'border-bottom-left-radius:{{BOTTOM}}{{UNIT}} ; border-bottom-right-radius: {{LEFT}}{{UNIT}} ',
+                '{{WRAPPER}} .rkit-navmenu-dropdown' => 'border-radius:calc( {{TOP}}{{UNIT}}  + 1% ) calc({{RIGHT}}{{UNIT}} + 1% ) calc({{BOTTOM}}{{UNIT}} + 1%) calc({{LEFT}}{{UNIT}} + 1%);'
+            ],
+        ]);
+
+
 
         $this->add_control(
             'icon_options',
@@ -917,7 +961,7 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 'label' => esc_html__('Icon Color Hover', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu-item:hover .rkit-submenu-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}',
+                    '{{WRAPPER}} .rkit-menu-item:hover .rkit-nav-link .rkit-submenu-icon' => 'color: {{VALUE}} ; fill:{{VALUE}}',
                 ],
             ]
         );
@@ -939,74 +983,6 @@ class Nav_Menu_Rometheme extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-submenu-icon' => 'font-size:{{SIZE}}{{UNIT}} ; width:{{SIZE}}{{UNIT}};height:{{SIZE}}{{UNIT}};'
             ]
         ]);
-
-
-        $this->add_control(
-            'hr',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-
-
-
-        $this->add_responsive_control(
-            'submenu_text_align',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-justify-start-h',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-justify-center-h',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-justify-end-h',
-                    ],
-                    'space-between' => [
-                        'title' => esc_html__('Justified', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-justify-space-between-h',
-                    ],
-                ],
-                'default' => 'start',
-                'toggle' => true,
-                // 'description' => esc_html__('`The alignment settings will only affect the responsive mode and will not have any effect on the desktop mode.`', 'rometheme-for-elementor'),
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-submenu-item > .rkit-nav-link' => 'justify-content: {{VALUE}};',
-                ],
-            ]
-        );
-
-
-
-
-        $this->add_responsive_control('submenu-radius', [
-            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::DIMENSIONS,
-            'size_units' => ['px', '%', 'em', 'rem'],
-            'selectors' => [
-                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:first-child' => 'border-top-left-radius:{{TOP}}{{UNIT}} ; border-top-right-radius: {{RIGHT}}{{UNIT}} ',
-                '{{WRAPPER}} .rkit-navmenu-dropdown > .rkit-submenu-item:last-child' => 'border-bottom-left-radius:{{BOTTOM}}{{UNIT}} ; border-bottom-right-radius: {{LEFT}}{{UNIT}} ',
-                '{{WRAPPER}} .rkit-navmenu-dropdown' => 'border-radius:calc( {{TOP}}{{UNIT}}  + 1% ) calc({{RIGHT}}{{UNIT}} + 1% ) calc({{BOTTOM}}{{UNIT}} + 1%) calc({{LEFT}}{{UNIT}} + 1%);'
-            ],
-        ]);
-
-
-        $this->add_control(
-            'bg-separator',
-            [
-                'label' => esc_html__('Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-
 
         $this->start_controls_tabs('submenu_bg_tabs');
         $this->start_controls_tab('submenu_bg_normal', ['label' => esc_html__('Normal', 'rometheme-for-elementor')]);

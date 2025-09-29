@@ -1,33 +1,21 @@
-=== RTMKit Addons for Elementor ===
+=== RTMKit ===
 Contributors: dickoandrean 
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.7
 Tested up to: 6.8.1
 Requires PHP: 8.2
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 All-in-one toolkit for Elementor: advanced addons, theme builder, forms, icons & templates to build stunning sites fast and easy.
 
 == Description ==
-Unlock the Full Power of Elementor with RTMKit Addons
-Supercharge your Elementor Page Builder with 75+ powerful and highly customizable widgets and extensions. Instantly access 50+ professionally designed template kits and a ready-to-use icon library with over 1,500 icons, empowering you to build interactive, visually stunning, and performance-optimized WordPress websites—without writing a single line of code.
+Unlock your Elementor page building experience with 75+ powerful and growing widgets and extensions, designed to help you create interactive, visually stunning, and performance-optimized WordPress websites—without writing a single line of code. Instantly access free professionally designed template kits, a ready-to-use and growing icon library with over 2,000 icons, plus a full theme builder to complete your WordPress site—all in one lightweight toolkit.
 
-This all-in-one addon package is designed to replace multiple WordPress plugins, providing the ultimate solution for Elementor users. Whether you're building blogs, online stores, or full business websites, RTMKit equips you with everything you need in one lightweight toolkit, including:
+Unlike relying on multiple WordPress plugins, RTMKit provides an all-in-one solution to enhance your workflow. Whether you’re building blogs, online stores, or full business websites, RTMKit equips you with the tools to design faster, smarter, and prettier than ever before.
 
-- Blog Builder
-- WooCommerce Store Builder
-- Header & Footer Builder
-- 404 Page Builder
-- and much more!
-
-<iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-### Useful Links
-[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
-
-### 🚀 Why Choose RTMKit Addons?
+### 🚀 Why Choose RTMKit ?
 ✅ All-in-One Solution – Avoid plugin overload. RTMKit replaces multiple Elementor addons with a single, optimized package.
 ✅ Free Elementor Form Builder – Build custom forms easily, no extra plugin needed.
 ✅ Trusted by 40,000+ Active Websites – Growing steadily with global users.
@@ -40,263 +28,130 @@ This all-in-one addon package is designed to replace multiple WordPress plugins,
 ✅ Top Ratings – Rated 4.8 out of 5 stars on WordPress.org.
 ✅ Dedicated Support Team – Get help fast, whenever you need it.
 
-### 🌟 75+ Free & Premium Elementor Widgets That Simplify and Enhance Your Design Workflow
+<iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-### FREE Header Website Builder for Elementor:
-Create dynamic, responsive headers using Elementor—without any coding. With widgets like sticky nav menus, off-canvas panels, logo displays, search bars, and contact info sections, you have everything you need to build modern, professional headers that elevate your brand identity.
+### Useful Links
+[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
-#### Header Offcanvas (FREE):
-Create a button-triggered offcanvas area—ideal for showing demo links, registration forms, or any sidebar content.
+Elementor Website Builder is required for this plugin.
 
-#### Search (FREE):
-Add interactive search functionality, including classic and modal-style options, for a smoother user experience.
+### 🌟 75+ Elementor Widgets and Counting — Built to Enhance Your Workflow
 
-#### Site Logo (FREE):
-Easily display your website’s branding and logo.
+1. [Header Info](https://rometheme.net/plugins/rtmkit/widgets/header-info/) – Highlight address, phone, or email in the header.  
+2. [Header Offcanvas](https://rometheme.net/plugins/rtmkit/widgets/offcanvas/) – Add a toggleable offcanvas area for demos, forms, or sidebar content.  
+3. [Nav Menu](https://rometheme.net/plugins/rtmkit/widgets/nav-menu/) – Create clean dropdown menus for smooth navigation.  
+4. [Search](https://rometheme.net/plugins/rtmkit/widgets/search/) – Interactive search with classic or modal options.  
+5. [Site Logo](https://rometheme.net/plugins/rtmkit/widgets/site-logo/) – Display your brand logo easily.  
+6. [Accordion](https://rometheme.net/plugins/rtmkit/widgets/accordion/) – Collapsible sections for FAQs and content organization.  
+7. [Advanced Heading](https://rometheme.net/plugins/rtmkit/widgets/advanced-heading/) – Extended typography and style options for headings.  
+8. [Advanced Tabs](https://rometheme.net/plugins/rtmkit/widgets/advanced-tabs/) – Organize content into horizontal or vertical tabs.  
+9. [Animated Heading](https://rometheme.net/plugins/rtmkit/widgets/animated-heading/) – Dynamic text effects to make headlines stand out.  
+10. [Back to Top](https://rometheme.net/plugins/rtmkit/widgets/back-to-top/) – Customizable scroll-to-top button.  
+11. [Bar Chart](https://rometheme.net/plugins/rtmkit/widgets/bar-chart/) – Vertical or horizontal bar charts for comparisons.  
+12. [Blockquote](https://rometheme.net/plugins/rtmkit/widgets/blockquote/) – Highlight quotes, testimonials, or statements.  
+13. [Call To Action](https://rometheme.net/plugins/rtmkit/widgets/call-to-action/) – Compelling CTA blocks with headline, text, and button.  
+14. [Card Carousel](https://rometheme.net/plugins/rtmkit/widgets/card-carousel/) – Responsive, swipeable card slider for featured content.  
+15. [Client Grid](https://rometheme.net/plugins/rtmkit/widgets/client-grid/) – Display client logos in a clean grid.  
+16. [Countdown](https://rometheme.net/plugins/rtmkit/widgets/countdown/) – Real-time countdown timers for urgency.  
+17. [Counter](https://rometheme.net/plugins/rtmkit/widgets/counter/) – Animated number counters for stats and milestones.  
+18. [Hero Slider](https://rometheme.net/plugins/rtmkit/widgets/hero-slider/) – Full-width sliders with image or video backgrounds.  
+19. [Image Accordion](https://rometheme.net/plugins/rtmkit/widgets/image-accordion/) – Interactive horizontal or vertical image accordions.  
+20. [Image Box](https://rometheme.net/plugins/rtmkit/widgets/image-box/) – Combine image, icon, and text in a clean layout.  
+21. [Image Comparison](https://rometheme.net/plugins/rtmkit/widgets/image-comparison/) – Before-and-after image comparison slider.  
+22. [Image Gallery](https://rometheme.net/plugins/rtmkit/widgets/image-gallery/) – Responsive gallery grid or masonry with lightbox.  
+23. [Line Chart](https://rometheme.net/plugins/rtmkit/widgets/line-chart/) – Smooth line graphs to show data trends.  
+24. [Pie & Doughnut Chart](https://rometheme.net/plugins/rtmkit/widgets/pie-doughnut-chart/) – Circular animated charts for data visualization.  
+25. [Post Block](https://rometheme.net/plugins/rtmkit/widgets/post-block/) – Highlight posts in bold block-style cards.  
+26. [Post Grid](https://rometheme.net/plugins/rtmkit/widgets/post-grid/) – Present blog posts in a modern grid layout.  
+27. [Post List](https://rometheme.net/plugins/rtmkit/widgets/post-list/) – Display posts in a clean vertical list.  
+28. [Pricing Table](https://rometheme.net/plugins/rtmkit/widgets/pricing-table/) – Showcase pricing plans with features and CTAs.  
+29. [Progress Bar](https://rometheme.net/plugins/rtmkit/widgets/progress-bar/) – Display completion percentages visually.  
+30. [Social Icons](https://rometheme.net/plugins/rtmkit/widgets/social-icons/) – Customizable social media profile icons.  
+31. [Social Share](https://rometheme.net/plugins/rtmkit/widgets/social-share/) – Styled buttons to share content across platforms.  
+32. [Team Member](https://rometheme.net/plugins/rtmkit/widgets/team-member/) – Showcase team with photo, role, and social links.  
+33. [Testimonials Carousel](https://rometheme.net/plugins/rtmkit/widgets/testimonials-carousel/) – Rotating customer testimonials with ratings.  
+34. [Text Marquee](https://rometheme.net/plugins/rtmkit/widgets/text-marquee/) – Continuously scrolling text for announcements or offers.  
+35. [Video Button](https://rometheme.net/plugins/rtmkit/widgets/video-button/) – Sleek video play button with popup or lightbox.  
+36. [Woo Product Grid](https://rometheme.net/plugins/rtmkit/widgets/woo-product-grid/) – Display WooCommerce products in a customizable grid.  
+37. [RTMForm](https://rometheme.net/plugins/rtmform/) – Most User-Friendly Form Builder.  
 
-#### Header Info (FREE):
-Showcase key contact details such as address, phone number, or email directly in the header.
+### 🌟 50+ Advanced Widget in the Premium upgrade — and continuously growing.
 
-#### Nav Menu (FREE):
-Build clean dropdown navigation menus to help users move seamlessly across your site.
+1. [Advanced Toggle](https://rometheme.net/plugins/rtmkit/widgets/advanced-toggle/) – Toggle elements with custom styling and animations.  
+2. [Animated Circle Button](https://rometheme.net/plugins/rtmkit/widgets/animated-circle-button/) – Stylish circular buttons with hover effects for modern call-to-actions.  
+3. [Breadcrumbs](https://rometheme.net/plugins/rtmkit/widgets/breadcrumbs/) – Customizable navigation trail for better UX and SEO.  
+4. [Image Hotspot](https://rometheme.net/plugins/rtmkit/widgets/image-hotspot/) – Add interactive markers on images with tooltips, supporting dynamic content like posts or products.  
+5. [Image Stack Info](https://rometheme.net/plugins/rtmkit/widgets/image-stack-info/) – Showcase grouped images with ratings and key details.  
+6. [Interactive Link](https://rometheme.net/plugins/rtmkit/widgets/interactive-link/) – Add hover effects with images, text, buttons, and creative reveal animations.  
+7. [Pricing List](https://rometheme.net/plugins/rtmkit/widgets/pricing-list/) – Clean service or restaurant-style pricing menus.  
+8. [Client Carousel](https://rometheme.net/plugins/rtmkit/widgets/client-carousel/) – Interactive slider for multiple client logos.  
+9. [Image Marquee](https://rometheme.net/plugins/rtmkit/widgets/image-marquee/) – Smooth scrolling image strips, perfect for logos or portfolios.  
+10. [Pricing Image Box](https://rometheme.net/plugins/rtmkit/widgets/pricing-image-box/) – Pricing layouts combined with product images.  
+11. [Textual Showcase](https://rometheme.net/plugins/rtmkit/widgets/textual-showcase/) – Highlight information with animated or scroll-revealed text blocks.  
+12. [Post Carousel](https://rometheme.net/plugins/rtmkit/widgets/post-carousel/) – Add an interactive carousel to feature posts in limited space.  
+
+We’re constantly adding new features and improvements with every update. Take your design to the next level by upgrading to the Pro version.
+
+### 🌟 Advanced Extensions Toolkit:
+
+1. [Glass Effect (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Add modern frosted glass or blur-style backgrounds to sections, columns, or widgets.  
+2. [Duplicator (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Instantly duplicate any post or page for faster design workflow.  
+3. [Tooltips (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Show helpful hover tips or extra info on icons, buttons, and text.  
+4. [Wrapper Link (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Turn any section, column, or container into a clickable link area.  
+5. [Advanced Sticky (Pro)](https://rometheme.net/plugins/rtmkit/elements/) – Keep nav bars, headers, or columns fixed while scrolling with smart positioning controls.  
+6. [Custom Cursor Effect (Pro)](https://rometheme.net/plugins/rtmkit/elements/) – Replace the default cursor with creative, interactive cursor styles.  
 
 
-### Single & Archive Post Builder for Elementor:
-Design your blog and archive pages with complete layout flexibility. Use post grids, carousels, block styles, author bios, navigation links, and more—all styled visually inside Elementor. Deliver a seamless content experience that keeps readers engaged across your site
+### 🌟Free Form Builder for Elementor:
 
-#### Archive Title (PRO):
-Display the archive page title dynamically (e.g. category, tag, author, or date archive).
+Note: RTMForm Builder is required for this plugin.
 
-#### Archive Posts (PRO):
-Show posts filtered by archive types like categories, tags, or custom taxonomies with layout control.
-
-#### Post Grid (FREE):
-Present your blog posts in a modern grid-based layout, ideal for blog pages and content hubs.
-
-#### Post Block (FREE):
-Highlight each post in a block-style card, perfect for bold visual presentation.
-
-#### Post List (FREE):
-Display posts in a clean, vertical list format—ideal for minimal or editorial designs.
-
-#### Post Carousel (PRO):
-Add a sleek, interactive carousel to feature posts attractively in limited space.
-
-Post Author (PRO):
-#### Showcase author details like name, avatar, and bio to add a personal touch to your content.
-
-#### Post Content (PRO):
-Display the main content of the blog post with full styling control.
-
-#### Post Comment (PRO):
-Integrate a comment section to boost engagement and allow reader feedback.
-
-#### Post Excerpt (PRO):
-Show a short preview or summary of the post to encourage clicks.
-
-#### Featured Image (PRO):
-Display the post's featured image with adjustable size and layout options.
-
-#### Post Info (PRO):
-Show meta information like post date, categories, tags, and reading time.
-
-#### Post Navigation (PRO):
-Add previous/next navigation links to help readers move between posts easily.
-
-#### Post Title (PRO):
-Display the post title dynamically, with full control over typography and styling.
-
-### Free Form Builder for Elementor:
 Style contact, feedback, and newsletter forms directly within Elementor. With full control over every form field—including text, radio buttons, checkboxes, and GDPR consent—you can build branded, responsive forms without writing a line of CSS. Optimized for both usability and conversions.
 
-#### Checkbox (FREE):
-Add multi-option fields with custom checkbox styles, spacing, and alignment.
+1. [Checkbox](https://rometheme.net/plugins/rtmform/) – Multi-option fields with custom styles and alignment.  
+2. [Date](https://rometheme.net/plugins/rtmform/) – Calendar input for selecting dates.  
+3. [Email](https://rometheme.net/plugins/rtmform/) – Collect user email addresses with customizable fields.  
+4. [Number](https://rometheme.net/plugins/rtmform/) – Number input fields with validation.  
+5. [Radio Button](https://rometheme.net/plugins/rtmform/) – Single-option selections with styled buttons.  
+6. [Select](https://rometheme.net/plugins/rtmform/) – Dropdown input with full styling control.  
+7. [Submit Button](https://rometheme.net/plugins/rtmform/) – Customizable call-to-action with hover effects and icons.  
+8. [Telephone](https://rometheme.net/plugins/rtmform/) – Phone number field with country code and masking.  
+9. [Text](https://rometheme.net/plugins/rtmform/) – Standard input fields for short content.  
+10. [Text Area](https://rometheme.net/plugins/rtmform/) – Long-form input for messages or feedback.  
+11. [Time](https://rometheme.net/plugins/rtmform/) – Input field for selecting times.  
+12. [GDPR Consent](https://rometheme.net/plugins/rtmform/) – Required checkbox for privacy or terms compliance.  
 
-#### Date (FREE):
-Let users select dates using a styled calendar input that fits your design.
+### 🌟 Single & Archive Post Builder for Elementor:
 
-#### Email (FREE):
-Collect user email addresses with a fully customizable input field.
+Note: RTMKit PRO is required for this plugin.
 
-#### Number (FREE):
-Use number input fields with validation options and clean layout control.
+Design your blog and archive pages with complete layout flexibility. Use post grids, carousels, block styles, author bios, navigation links, and more—all styled visually inside Elementor. Deliver a seamless content experience that keeps readers engaged across your site
 
-#### Radio Button (FREE):
-Allow single-option selections with styled radio buttons that match your form aesthetic.
-
-#### Select (FREE):
-Offer dropdown-style input fields with adjustable typography, spacing, and layout.
-
-#### Submit Button (FREE):
-Customize your form’s call-to-action button with hover effects, icons, and typography settings.
-
-#### Telephone (FREE):
-Collect phone numbers with country code formatting and input masking support.
-
-#### Text (FREE):
-Add standard input fields for names, subject lines, or any short-form content.
-
-#### Text Area (FREE):
-Perfect for long-form user input like messages or suggestions—fully stylable.
-
-#### Time (FREE):
-Enable users to choose a time using an intuitive, styled input field.
-
-#### GDPR Consent (FREE):
-Add a required checkbox for privacy policy or terms consent, essential for compliance.
-
-### Creative Widgets:
-#### Animated Circle Button (PRO):
-Create stylish, animated circular buttons with hover effects—perfect for modern call-to-actions or feature highlights.
-
-#### Image Marquee (PRO):
-Display a smooth, continuous horizontal scrolling image strip—great for logos, brand icons, or portfolio previews.
-
-#### Text Marquee (FREE):
-Add continuously scrolling text to grab attention and showcase announcements, headlines, or offers creatively.
-
-#### Textual Showcase (PRO):
-Highlight key information with animated or scroll-revealed text blocks—ideal for service features or quotes.
-
-#### Animated Heading (FREE):
-Make your headlines pop with animated text effects that draw attention and add a dynamic flair to your designs.
-
-#### Interactive Link (PRO):
-Turn any link into a visually interactive element with hover effects, animated borders, and custom reveal styles.
-
-#### Card Carousel (FREE):
-Create a responsive, swipeable card slider to display featured content in a compact, interactive format.
-
-### Content Widgets:
-#### Accordion (FREE):
-Display collapsible sections to organize content such as FAQs or service descriptions, saving space while enhancing readability.
-
-#### Advanced Toggle (PRO):
-Create toggle elements with custom styling, icons, and animations—great for showing/hiding content with advanced control.
-
-#### Advanced Tabs (FREE):
-Organize content into horizontal or vertical tabbed layouts, allowing users to navigate sections without scrolling.
-
-#### Blockquote (FREE):
-Highlight quotes, testimonials, or statements with visually enhanced formatting to draw attention and add credibility.
-
-#### Advanced Heading (FREE):
-Design headings with extended typography and style options to make titles more engaging and on-brand.
-
-#### Video Button (FREE):
-Add a sleek video play button that opens YouTube, Vimeo, or self-hosted videos in a popup or lightbox format.
-
-#### Hero Slider (FREE):
-Build a full-width hero section with image or video sliders, ideal for landing pages, promotions, and homepage intros.
-
-#### Dual Button (FREE):
-Create two side-by-side call-to-action buttons—perfect for offering primary and secondary actions (e.g. "Buy Now" & "Learn More").
-
-#### Back to Top (FREE):
-Add a customizable scroll-to-top button for better user navigation and page usability.
-
-#### Social Share (FREE):
-Enable visitors to easily share your content across major social media platforms using styled, responsive buttons.
-
-#### Team Member (FREE):
-Showcase your team members with photo, name, role, and social links—perfect for About pages or agency sites.
-
-#### Client Grid (FREE):
-Display client logos in a clean grid layout, helping build trust and showcase brand collaborations.
-
-#### Client Carousel (PRO):
-Present client or partner logos in an interactive slider—ideal for showcasing many clients without cluttering the page.
-
-#### Testimonials Carousel (FREE):
-Display rotating customer testimonials with avatar, name, rating, and quote styling to boost social proof.
-
-### Image & Media Widgets:
-#### Image Box (FREE):
-Combine an image with a title, icon, and description in one clean box layout—ideal for showcasing features, services, or products with visuals and text.
-
-#### Image Gallery (FREE):
-Display multiple images in a responsive gallery grid or masonry with lightbox functionality—perfect for portfolios, project showcases, or product displays.
-
-#### Image Stack Info (PRO):
-Create stacked image layers with overlay information that appears on hover—great for storytelling, reviews, service highlights, or visual summaries.
-
-#### Image Accordion (FREE):
-Present multiple images in a horizontal or vertical accordion format where each section expands on hover or click—adds interactive flair to your gallery sections.
-
-#### Image Comparison (FREE):
-Let users compare two images (e.g. before & after) with a draggable slider—perfect for case studies, redesigns, product improvements, or photo edits.
-
-### Marketing Widgets:
-#### Social Icons (FREE):
-Add stylish, customizable icons that link to your social media profiles—perfect for increasing your online presence and user engagement.
-
-#### Call To Action (FREE):
-Create compelling CTAs with headline, description, and button in a visually engaging block—great for lead generation, offers, and promotions.
-
-#### Countdown (FREE):
-Display a real-time countdown timer to create urgency for limited-time offers, sales events, or product launches.
-
-#### Pricing Table (FREE):
-Showcase pricing plans with feature lists, highlight badges, and call-to-action buttons—ideal for SaaS, service packages, or subscription models.
-
-#### Pricing Image Box (PRO):
-Combine single images or image gallery with pricing information and feature descriptions in a modern layout—perfect for product showcases or service tiers with visuals.
-
-#### Pricing List (FREE):
-Create clean, restaurant-style or service-based pricing menus with item names, prices, and optional descriptions—perfect for food menus, service catalogs, and price breakdowns.
-
-#### Woo Product Grid (FREE):
-Display WooCommerce products in a responsive, customizable grid layout—includes image, title, price, and add-to-cart button for a seamless shopping experience.
-
-### Infographics Widgets:
-#### Counter (FREE):
-Display animated number counters to highlight key stats like project counts, user metrics, achievements, or milestones—perfect for homepage highlights or company overviews.
-
-#### Progress Bar (FREE):
-Show progress or completion percentages in a horizontal bar format—ideal for skill levels, project phases, or goal tracking.
-
-#### Pie & Doughnut Chart (FREE):
-Visualize data using animated circular charts to display proportions, percentages, or comparisons in a clean and interactive style.
-
-#### Line Chart (FREE):
-Display data trends over time with smooth line graphs—perfect for performance tracking, sales growth, or analytics dashboards.
-
-#### Bar Chart (FREE):
-Present data using vertical or horizontal bars—great for comparing values across categories, showcasing statistics, or visual reporting.
-
-### Extentions:
-#### Glass Effect (FREE):
-Apply a modern frosted glass or blur effect to any section or element—ideal for stylish overlays, headers, or callout sections.
-
-#### Advanced Sticky (PRO):
-Make any section or widget stay fixed on scroll with advanced controls—perfect for sticky headers, floating call-to-actions, or sidebar menus with offset and behavior settings.
-
-#### Custom Cursor (PRO):
-Replace the default mouse cursor with custom-designed cursors—add interactivity and branding to your website experience.
-
-#### Duplicator (FREE):
-Easily duplicate post or page with a single click—speed up your workflow.
-
-#### Wrapped Link (FREE):
-Turn an entire section, column, widget, or container into a clickable link—enhancing user interaction without relying on individual buttons or text links.
-
-#### Tooltips (FREE):
-Add contextual tooltips to icons, buttons, or any element—great for micro-interactions, explanations, or improving usability.
+13. [Post Author](https://rometheme.net/plugins/rtmkit/elements/) – Showcase author details like name, avatar, and bio.  
+14. [Post Content](https://rometheme.net/plugins/rtmkit/elements/) – Display the main content of a post with styling options.  
+15. [Post Comment](https://rometheme.net/plugins/rtmkit/elements/) – Integrate a comment section to boost engagement.  
+16. [Post Excerpt](https://rometheme.net/plugins/rtmkit/elements/) – Show a short preview or summary of a post.  
+17. [Featured Image](https://rometheme.net/plugins/rtmkit/elements/) – Display featured images with adjustable size and layout.  
+18. [Post Info](https://rometheme.net/plugins/rtmkit/elements/) – Show meta details like date, categories, tags, or reading time.  
+19. [Post Navigation](https://rometheme.net/plugins/rtmkit/elements/) – Add previous/next navigation links between posts.  
+20. [Post Title](https://rometheme.net/plugins/rtmkit/elements/) – Display post titles dynamically with full typography control.  
+21. [Archive Title](https://rometheme.net/plugins/rtmkit/elements/) – Display archive page titles dynamically (category, tag, author, or date).  
+22. [Archive Posts](https://rometheme.net/plugins/rtmkit/elements/) – Show posts filtered by archive types with layout control.  
 
 ### 🧭 Need Help Getting Started?
-Check out our [Getting Started Guide and Documentation](https://support.rometheme.net/docs/) for step-by-step tutorials to help you make the most of RTMKit Addons.
+Check out our Getting Started Guide and Documentation for step-by-step tutorials to help you make the most of RTMKit Addons.
 
 ### 🙋 Have a Question?
-Visit our [Support Forum on WordPress.org.](https://wordpress.org/support/plugin/rometheme-for-elementor/) Our team is ready to assist you with any issues or questions you might have.
+Visit our Support Forum on WordPress.org. Our team is ready to assist you with any issues or questions you might have.
 
 ### 🚀 Want to Unlock More Power?
-Explore the [RTMKit PRO version](https://rometheme.net/plugins/rtmkit/pricing/) to access exclusive widgets, advanced features, and premium design tools—all crafted to supercharge your Elementor workflow.
+Explore the RTMKit PRO version to access exclusive widgets, advanced features, and premium design tools—all crafted to supercharge your Elementor workflow.
 
 ### 🎥 Prefer Visual Learning?
-Watch our [video tutorials and walkthroughs on YouTube](https://www.youtube.com/@Rometheme_Studio) and learn how to build stunning websites with RTMKit.
+Watch our video tutorials and walkthroughs on YouTube and learn how to build stunning websites with RTMKit.
 
 ### ⭐ Found RTMKit Helpful?
-We’d love to hear your thoughts! [Leave us a review on WordPress.org](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post) and help others discover RTMKit Addons.
+We’d love to hear your thoughts! Leave us a review on WordPress.org and help others discover RTMKit Addons.
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
@@ -344,16 +199,36 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
-Version 1.6.4
+Version 1.6.6 - September 29, 2025
+FIX	Search button position not working in the "Search" widget.
+FIX	Submenu icon hover not changing in the "Nav Menu" widget
+FIX	Box shadow not follow the border radius scale on image or icon in the "Text Marquee" widget.
+FIX	Icon on Slider style not work when color change in the "Image Comparison" widget.
+FIX	Mouse hover show up in the editor canvas in the "Wrapper LInk" widget.
+FIX	Container broken in mobile view for "Woo Product Grid" widget.
+FIX	Mode responsive height content broken in the "CTA" widget. 
+FIX	Broken layout on Style Half Circle" in the "Progress Bar" widget
+FIX	Lightbox feature in "Image Gallery" widget not working in Tablet & Mobile.
+IMP	Added Responsive mode on All Alignment in the widget.
+Security Update
+
+Version 1.6.5 - September 5, 2025
+Change name hover effects "overlay" to "flip" widget " Client Grid" widget.
+"Restructure control" and add new feature normal, hover effects "Video Button" widget.
+Fix Title Alignment, Description Alignment and Button alignment in the " Image Accordion " widget.
+New Features : Import Template Kits
+New Features: Premium Template Kits
+
+Version 1.6.4 - August 13, 2025
 Fixed : Conflict within Header Offcanvas and glass blur effects.
 Fixed: Image Accordion → Description alignment not working.
 Improved : Image Box → Add aspect ratio options: 4:5, 2:3.
 
-Version 1.6.3
+Version 1.6.3 - August 11, 2025
 Added the ability to adjust padding responsively in the 'Client Grid' widget.
 Issue showing list discs in posts within the 'Post List' widget.
 
-Version 1.6.2
+Version 1.6.2 - August 6, 2025
 Upgrade to PHP 8.2
 New widget "Video Button"
 New widget "Social Icons"
@@ -364,7 +239,7 @@ Issue on bullet point on post blog
 Improve on Pricing Table
 Added width control in the "Tooltips" extentions
 
-Version 1.6.1
+Version 1.6.1 - May 21, 2025
 Fixed : Issue on button global kit style control in the "Setting" dashboard.
 Fixed : Issue on Button can't click save & editing in the "Form" theme builder.
 Fixed : Issue on navigation not working on editing canvas in the "Testimonial Carousel" widget.
@@ -384,7 +259,7 @@ Improved : Added optional layout position inline and list in the "Search" widget
 Improved : Added new style "inline" in the "Progress Bar"
 Improved : Added control content for border width, radius, & color in the "Team Widget"
 
-Version 1.6.0
+Version 1.6.0 - May 21, 2025
 Added : New extention "RTM Duplicator"
 Added : New extention "RTM Tooltips"
 Added : New extention "RTM Wrapper Link"
@@ -406,10 +281,10 @@ Improved : Added alignment, typo optioins for category in the "Post List" widget
 Improved : Added border color options in the "Pie Chart" widget
 Improved : Added border radius options in the "Header Info" widget
 
-Version 1.5.6
+Version 1.5.6 - March 15, 2025
 Bug Fixed in Export Import TemplateKit
 
-Version 1.5.5
+Version 1.5.5 - March 14, 2025
 New Extension : Glassmorphism Effect
 New Widget : Back to Top
 New Widget : Client Grid
@@ -419,7 +294,7 @@ Update : Product Grid
 Update : Pricing Table
 Update : Hero Slider
 
-Version 1.5.4
+Version 1.5.4 - January 30, 2025
 New Widget: Woo Product Grid
 Update Widget : hero slider
 Update Widget : image accordion
@@ -429,7 +304,7 @@ Update Widget : Blockquote
 Update Widget : Post Block
 Security Update
 
-Version 1.5.3
+Version 1.5.3 - January 10, 2025
 New : Template Library
 New Widget : Hero Slider
 New Widget : Image Box
@@ -442,7 +317,7 @@ Update Widget : Testimonial Carousel
 Update Widget : Nav Menu
 Security Update
 
-Version 1.5.2
+Version 1.5.2 - November 7, 2024
 New Widget: Image Comparison
 New Widget: Post List
 New Widget Advanced Heading
@@ -457,11 +332,11 @@ Bug Fix: Multiple Animated Heading Widgets on the Same Page
 Bug Fix: Multiple Testimonial Carousel Widgets on the Same Page
 
 
-Version 1.5.1
+Version 1.5.1 - September 13, 2024
 * Bug Fixed 
 * Update Header Info Widget
 
-Version 1.5.0
+Version 1.5.0 - August 28, 2024
 * New: Improve the user experience by updating the visual interface.
 * New: Adding Countdown and Pricing Widget.
 * Fix : Bug Fixed in Blog Post Widget
@@ -471,40 +346,40 @@ Version 1.5.0
 * Fix : Bug Fixed in Accordion Widget
 * Fix : Bug Fixed in Counter Widget
 
-Version 1.4.5
+Version 1.4.5 - June 28, 2024
 * Header Info Bug Fixed
 * Animated Heading Bug Fixed
 * Card Slider Bug Fixed
 * Testimonial Carousel
 * Adding New Icon for Rometheme Icon Pack
-
-Version 1.4.4
+ 
+Version 1.4.4 - April 30, 2024
 * Widgets Bug Fixed
 
-Version 1.4.3
+Version 1.4.3 - April 19, 2024
 * Adding New Rometheme Icon Pack
 * Widgets Bug Fixed
 * Add link Help for Widgets
 
-Version 1.4.2
+Version 1.4.2 - March 10, 2024
 * Security Update
 
-Version 1.4.1
+Version 1.4.1 - January 15, 2024
 * Update Card Slider Widget
 * Edit button Theme Builder Bug Fixed
 
-Version 1.4.0 
+Version 1.4.0 - December 27, 2023
 * Update Visual Interface for the Plugin
 * Testimonial Carousel Bug Fixed
 * Add Rometheme Icons Pack
 
-Version 1.3.4
+Version 1.3.4 - September 27, 2023
 * Bug Fixed Progress Bar Font Title
 * Add Padding & Margin Style Progress Bar Title
 * Add Team Social Media Margin
 * Bug Fixed Blog Post
 
-Version 1.3.3
+Version 1.3.3 - August 23, 2023
 * Add Line Chart Widget
 * Add Pie and Doughnut Chart Widget
 * Add Progress Bar Widget
@@ -512,21 +387,21 @@ Version 1.3.3
 * Fixed Social Media Margin in Team Widget
 * Fixed Padding Title in Accordion Widget
 
-Version 1.3.2
+Version 1.3.2 - August 7, 2023
 * Add Accordion Widget
 * Add Testimonial Carousel Widget
 * Add Bar Chart Widget
 * Add Advanced Tab Widget
 * Icon Size Search Widget
 
-Version 1.3.1
+Version 1.3.1 - July 17, 2023
 * Add Text Marquee Widget
 * Add Animated Heading Widget
 * Add Card Slider Widget
 * Navmenu Fixed Submenu Radius
 * Blog Post Fixed Featured Image
 
-Version 1.3.0 
+Version 1.3.0 - May 8, 2023
 * Add Features Rometheme Library
 * Add Rometheme Icons Pack
 * Add widget Call to Action
@@ -536,28 +411,28 @@ Version 1.3.0
 * Blog Post Bug Fixed
 * Header Info Bug Fixed
 
-Version : 1.2.1
+Version : 1.2.1 - February 28, 2023
 * Navmenu submenu typography bug fixed
 
-Version : 1.2.0
+Version : 1.2.0 - February 23, 2023
 * Navmenu settings improvement and enhancement
 * Addition of menu form
 * Bug Fixed on Date Blog Post
 * Bug FIxed on Edit Header & Footer
 
-Version : 1.1.3
+Version : 1.1.3 - January 27, 2023 
 * Some Bug Fixed
 
-Version : 1.1.2
+Version : 1.1.2 - January 27, 2023 
 * Add New Header Footer Bug Fixed
 
-Version : 1.1.1
+Version : 1.1.1 - January 27, 2023
 * Add Blog Post Widget
 
-Version : 1.1.0
+Version : 1.1.0 - January 19, 2023
 * CSS Bug Fixed
 * Nav Menu Bug Fixed, Multi Submenu Issue, Nav Menu Position Issue
 * Search Bug Fixed
 
-Version : 1.0.0 
+Version : 1.0.0 - January 5, 2023
 * this is first version of Rometheme for Elementor Plugin

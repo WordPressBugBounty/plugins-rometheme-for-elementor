@@ -46,6 +46,113 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
     {
         $this->start_controls_section('content_section', ['label' => esc_html('Content'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
 
+        $this->add_control('style_select', [
+            'label' => esc_html('Style'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'highlighted' => esc_html('Higlighted'),
+                'rotating' => esc_html('Rotating'),
+            ],
+            'default' => 'rotating'
+        ]);
+
+        $this->add_control('highlight_select', [
+            'label' => esc_html('Shape'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'circle' => esc_html('Circle'),
+                'curly' => esc_html('Curly'),
+                'underline' => esc_html('Underline'),
+                'double' => esc_html('Double'),
+                'double_underline' => esc_html('Double Underline'),
+                'underline_zigzag' => esc_html('Underline Zigzag'),
+                'diagonal' => esc_html('Diagonal'),
+                'strikethrough' => esc_html('Strikethrough'),
+                'x' => esc_html('X')
+            ],
+            'default' => 'circle',
+            'condition' => [
+                'style_select' => 'highlighted'
+            ]
+        ]);
+
+          $this->add_control('animation_select', [
+            'label' => esc_html('Animation'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'text-writing' => esc_html('Typing'),
+                'text-flipping' => esc_html('Flip'),
+                'text-sliding_down' => esc_html('Slide Down'),
+                'text-sliding_up' => esc_html('Slide Up'),
+                'text-drop-in' => esc_html('Drop In'),
+                'text-drop-out' => esc_html('Drop Out'),
+            ],
+            'default' => 'text-sliding_down',
+            'condition' => [
+                'style_select' => 'rotating'
+            ]
+        ]);
+
+        $this->add_control(
+            'duration',
+            [
+                'label' => esc_html__('Duration (ms)', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'step' => 5,
+                'default' => 2000,
+            ]
+        );
+
+        $this->add_control('html_tag', [
+            'label' => esc_html('HTML Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+            ],
+            'default' => 'h1'
+        ]);
+
+        $this->add_control(
+            'text',
+            [
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'rows' => 10,
+                'default' => esc_html__('Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page', 'rometheme-for-elementor'),
+                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
+                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
+            ]
+        );
+
+        $this->add_control(
+            '_link',
+            [
+                'label' => esc_html__('Link', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
+                'options' => ['url', 'is_external', 'nofollow'],
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                    // 'custom_attributes' => '',
+                ],
+                'label_block' => true,
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('headline_style', [
+            'label' => esc_html('Headline'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE
+        ]);
+
         $this->add_responsive_control(
             'text_align',
             [
@@ -72,151 +179,6 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
                 ],
             ]
         );
-
-        $this->add_control('html_tag', [
-            'label' => esc_html('Tag'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'h1' => esc_html('H1'),
-                'h2' => esc_html('H2'),
-                'h3' => esc_html('H3'),
-                'h4' => esc_html('H4'),
-                'h5' => esc_html('H5'),
-                'h6' => esc_html('H6'),
-            ],
-            'default' => 'h1'
-        ]);
-
-        $this->add_control(
-            'text',
-            [
-                'label' => esc_html__('Text', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'rows' => 10,
-                'default' => esc_html__('Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
-                'description' => esc_html('The {{ }} symbols are used to indicate that the text will be given animation effects. If there are multiple texts, separate them with commas inside the {{ }}.')
-            ]
-        );
-
-          $this->add_control(
-            '_link',
-            [
-                'label' => esc_html__('Link', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'rometheme-for-elementor'),
-                'options' => ['url', 'is_external', 'nofollow'],
-                'default' => [
-                    'url' => '',
-                    'is_external' => true,
-                    'nofollow' => true,
-                    // 'custom_attributes' => '',
-                ],
-                'label_block' => true,
-            ]
-        );
-
-        $this->add_control('style_select', [
-            'label' => esc_html('Style'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'highlighted' => esc_html('Higlighted'),
-                'rotating' => esc_html('Rotating'),
-            ],
-            'default' => 'rotating'
-        ]);
-
-        $this->add_control('animation_select', [
-            'label' => esc_html('Animation'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'text-writing' => esc_html('Typing'),
-                'text-flipping' => esc_html('Flip'),
-                'text-sliding_down' => esc_html('Slide Down'),
-                'text-sliding_up' => esc_html('Slide Up'),
-                'text-drop-in' => esc_html('Drop In'),
-                'text-drop-out' => esc_html('Drop Out'),
-            ],
-            'default' => 'text-sliding_down',
-            'condition' => [
-                'style_select' => 'rotating'
-            ]
-        ]);
-
-        $this->add_control('highlight_select', [
-            'label' => esc_html('Shape'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'circle' => esc_html('Circle'),
-                'curly' => esc_html('Curly'),
-                'underline' => esc_html('Underline'),
-                'double' => esc_html('Double'),
-                'double_underline' => esc_html('Double Underline'),
-                'underline_zigzag' => esc_html('Underline Zigzag'),
-                'diagonal' => esc_html('Diagonal'),
-                'strikethrough' => esc_html('Strikethrough'),
-                'x' => esc_html('X')
-            ],
-            'default' => 'circle',
-            'condition' => [
-                'style_select' => 'highlighted'
-            ]
-        ]);
-
-        $this->add_control(
-            'duration',
-            [
-                'label' => esc_html__('Duration (ms)', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'step' => 5,
-                'default' => 2000,
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section('shape_style', [
-            'label' => esc_html('Shape'),
-            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            'condition' => [
-                'style_select' => 'highlighted'
-            ]
-        ]);
-
-        $this->add_control(
-            'bring_to_front',
-            [
-                'label' => esc_html__('Bring to Front', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_responsive_control('shape_width', [
-            'label' => esc_html('Width'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke-width: {{SIZE}}{{UNIT}};'
-            ]
-        ]);
-
-        $this->add_control('shape_color', [
-            'label' => esc_html('Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke:{{VALUE}}'
-            ]
-        ]);
-
-        $this->end_controls_section();
-
-        $this->start_controls_section('headline_style', [
-            'label' => esc_html('Headline'),
-            'tab' => \Elementor\Controls_Manager::TAB_STYLE
-        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
@@ -274,6 +236,44 @@ class Rkit_AnimatedHeading extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-animated-heading__text',
             ]
         );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('shape_style', [
+            'label' => esc_html('Shape'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'style_select' => 'highlighted'
+            ]
+        ]);
+
+        $this->add_control(
+            'bring_to_front',
+            [
+                'label' => esc_html__('Bring to Front', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_responsive_control('shape_width', [
+            'label' => esc_html('Width'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke-width: {{SIZE}}{{UNIT}};'
+            ]
+        ]);
+
+        $this->add_control('shape_color', [
+            'label' => esc_html('Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-animated-heading__text svg' => 'stroke:{{VALUE}}'
+            ]
+        ]);
 
         $this->end_controls_section();
     }

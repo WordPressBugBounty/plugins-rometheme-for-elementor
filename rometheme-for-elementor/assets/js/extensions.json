@@ -1,6 +1,6 @@
 {
   "duplicator": {
-    "name": "RTM Duplicator",
+    "name": "Duplicator",
     "icon": "rtmicon rtmicon-duplicator",
     "classname": "RkitDuplicator",
     "status": true,
@@ -11,7 +11,7 @@
     "notes":"link official cooming soon"
   },
   "glasseffect": {
-    "name": "RTM Glass Effect",
+    "name": "Glass Effect",
     "icon": "rtmicon rtmicon-glass-effect",
     "classname": "BlurEffects",
     "status": true,
@@ -22,7 +22,7 @@
     "notes":"link official cooming soon"
   },
   "tooltip": {
-    "name": "RTM Tooltip",
+    "name": "Tooltip",
     "icon": "rtmicon rtmicon-tooltip",
     "classname": "RkitToolTips",
     "status": true,
@@ -33,7 +33,7 @@
     "notes":"link official cooming soon"
   },
   "wrapperlink": {
-    "name": "RTM Wrapper Link",
+    "name": "Wrapper Link",
     "icon": "rtmicon rtmicon-wrapper-link",
     "classname": "RkitWrapperLink",
     "status": true,

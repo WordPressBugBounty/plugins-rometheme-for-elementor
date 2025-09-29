@@ -50,19 +50,47 @@ class Search_Rometheme extends \Elementor\Widget_Base
 
     public function register_controls()
     {
-        $this->start_controls_section('search_setting', [
-            'label' => esc_html__('Search Setting', 'rometheme-for-elementor'),
+        $this->start_controls_section('search_field', [
+            'label' => esc_html__('Search Field', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
+
+        $this->add_control('input-placeholder', [
+            'label' => esc_html__('Placeholder', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => 'Type to start searching...',
+            'placeholder' => 'Type your Input Placeholder Here'
+        ]);
+
 
         $this->add_control(
             'search_text',
             [
-                'label' => esc_html__('Sumbit Text', 'rometheme-for-elementor'),
+                'label' => esc_html__('Submit Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Search', 'rometheme-for-elementor'),
             ]
         );
+
+        $this->add_control(
+            'autocomplete',
+            [
+                'label' => esc_html__('Autocomplete', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'description' => esc_html('The autocomplete feature enables the browser to match patterns against a list of values that are locally kept with the browser and provides the relevant value when the input is programmatically tagged.'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->end_controls_section();
+        $this->start_controls_section('search_button', [
+            'label' => esc_html__('Search Button', 'rometheme-for-elementor'),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]);
+
 
 
         $this->add_control(
@@ -93,34 +121,17 @@ class Search_Rometheme extends \Elementor\Widget_Base
             'label' => esc_html__('Search Button Position', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
-                'row-reverse' => 'Start',
-                'row' => 'End',
+                '-1' => 'Start',
+                '1' => 'End',
             ],
             'default' => 'row',
             'selectors' => [
-                '{{WRAPPER}} .rkit-search' => 'flex-direction:{{VALUE}}'
-            ]
+                '{{WRAPPER}} .rkit-container-button' => 'order: {{VALUE}};',
+            ],
+            'condition' => [
+            'direction' => 'row',
+        ],
         ]);
-
-        $this->add_control('input-placeholder', [
-            'label' => esc_html__('Placeholder', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => 'Type to start searching...',
-            'placeholder' => 'Type your Input Placeholder Here'
-        ]);
-
-        $this->add_control(
-            'autocomplete',
-            [
-                'label' => esc_html__('Autocomplete', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'description' => esc_html('The autocomplete feature enables the browser to match patterns against a list of values that are locally kept with the browser and provides the relevant value when the input is programmatically tagged.'),
-                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
 
         $this->end_controls_section();
 
@@ -132,23 +143,23 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'direction',
             [
-                'label' => __('Direction Button', 'plugin-name'),
+                'label' => __('Direction Button', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row' => [
-                        'title' => __('Right', 'plugin-name'),
+                        'title' => __('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                     'column' => [
-                        'title' => __('Bottom', 'plugin-name'),
+                        'title' => __('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
                 // 'default' => 'row',
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'desktop_default' =>  'row', 
-                'tablet_default' =>  'row', 
-				'mobile_default' =>  'column', 
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' =>  'row',
+                'tablet_default' =>  'row',
+                'mobile_default' =>  'column',
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-search ' => 'flex-direction:{{VALUE}} '
@@ -159,19 +170,19 @@ class Search_Rometheme extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'align_button',
             [
-                'label' => __('Alignment', 'plugin-name'),
+                'label' => __('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __('Left', 'plugin-name'),
+                        'title' => __('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center', 'plugin-name'),
+                        'title' => __('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __('Right', 'plugin-name'),
+                        'title' => __('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -195,10 +206,10 @@ class Search_Rometheme extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                'desktop_default' =>  'no', 
-                'tablet_default' =>  'no', 
-				'mobile_default' =>  'yes', 
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' =>  'no',
+                'tablet_default' =>  'no',
+                'mobile_default' =>  'yes',
                 'selectors' => [
                     '{{WRAPPER}} .rkit-search-button' => 'width:100%; display:flex; align-items:center; justify-content:center;',
                 ],
@@ -270,18 +281,18 @@ class Search_Rometheme extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
-                'devices' => [ 'desktop', 'tablet', 'mobile' ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
                 'desktop_default' =>  [
-                    'size'=>0,
-                    'unit'=>'px',
-                ], 
-                'tablet_default' =>[
-                    'size'=>0,
-                    'unit'=>'px'
-                ], 
-				'mobile_default' =>[
-                    'size'=>4,
-                    'unit'=>'px',
+                    'size' => 0,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 0,
+                    'unit' => 'px'
+                ],
+                'mobile_default' => [
+                    'size' => 4,
+                    'unit' => 'px',
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-search' => 'gap: {{SIZE}}{{UNIT}};',

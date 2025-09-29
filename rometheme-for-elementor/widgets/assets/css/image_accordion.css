@@ -199,7 +199,7 @@
   padding: 0px;
   overflow: hidden;
   transition-delay : 2s;
-  animation: fadeIn 2s ease-in-out forwards;  
+  animation: fadeIn 0.5s ease-in-out forwards;  
 }
 
 .background-item-text{

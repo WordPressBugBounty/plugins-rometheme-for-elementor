@@ -107,18 +107,19 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
         ]);
         $ss->add_control('social_link', [
             'label' => esc_html__('Link', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::TEXT,
+            'type' => \Elementor\Controls_Manager::URL,
+            'options' => ['url', 'is_external', 'nofollow'],
         ]);
-        $ss->add_control('url_behavior', [
-            'label' => esc_html__('Url Behavior', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'open_in_tab'      => esc_html__('Open In Current Tab', 'rometheme-for-elementor'),
-                'Open_new_tab'       => esc_html__('Open New Tab', 'rometheme-for-elementor'),
-                'default'     => esc_html__('Default', 'rometheme-for-elementor'),
-            ],
-            'default'=>'default'
-        ]);
+        // $ss->add_control('url_behavior', [
+        //     'label' => esc_html__('Url Behavior', 'rometheme-for-elementor'),
+        //     'type' => \Elementor\Controls_Manager::SELECT,
+        //     'options' => [
+        //         'open_in_tab'      => esc_html__('Open In Current Tab', 'rometheme-for-elementor'),
+        //         'Open_new_tab'       => esc_html__('Open New Tab', 'rometheme-for-elementor'),
+        //         'default'     => esc_html__('Default', 'rometheme-for-elementor'),
+        //     ],
+        //     'default'=>'default'
+        // ]);
 
         $this->add_control('social_media', [
             'label' => esc_html('Add Social Media'),
@@ -128,25 +129,25 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
                 [
                     'label_social' => 'Facebook',
                     'social_select' => 'facebook',
-                    'social_link'=>'',
+                    'social_link' => '',
                     'social_icon' => ['value' => 'fab fa-facebook-f', 'library' => 'fa-brands'],
                 ],
                 [
                     'label_social' => 'Twitter',
                     'social_select' => 'twitter',
-                    'social_link'=>'',
+                    'social_link' => '',
                     'social_icon' => ['value' => 'fab fa-x-twitter', 'library' => 'fa-brands'],
                 ],
                 [
                     'label_social' => 'Whatsapp',
                     'social_select' => 'whatsapp',
-                    'social_link'=>'',
+                    'social_link' => '',
                     'social_icon' => ['value' => 'fab fa-whatsapp', 'library' => 'fa-brands'],
                 ],
                 [
                     'label_social' => 'Telegram',
                     'social_select' => 'telegram',
-                    'social_link'=>'',
+                    'social_link' => '',
                     'social_icon' => ['value' => 'fab fa-telegram-plane', 'library' => 'fa-brands'],
                 ],
             ],
@@ -157,52 +158,6 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
 
         $this->start_controls_section('social_media_style', ['label' => esc_html('Social Media'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'social_typography',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'social_direction',
-            [
-                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'row' => [
-                        'title' => esc_html__('Horizontal', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-arrow-right',
-                    ],
-                    'column' => [
-                        'title' => esc_html__('Vertical', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-arrow-down',
-                    ],
-                ],
-                'default' => 'row',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-media__list' => 'flex-direction: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'social_fullwidth',
-            [
-                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'fullwidth',
-                'default' => '',
-                'condition' => [
-                    'social_direction' => 'column'
-                ]
-            ]
-        );
-
         $this->add_responsive_control(
             'social_alignment',
             [
@@ -211,15 +166,15 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
                 'options' => [
                     'left' => [
                         'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
+                        'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
                         'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
+                        'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
                         'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
+                        'icon' => 'eicon-h-align-right',
                     ],
                 ],
                 'default' => 'center',
@@ -265,6 +220,29 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
+            'social_direction',
+            [
+                'label' => esc_html__('Direction', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'row' => [
+                        'title' => esc_html__('Horizontal', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-right',
+                    ],
+                    'column' => [
+                        'title' => esc_html__('Vertical', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-arrow-down',
+                    ],
+                ],
+                'default' => 'row',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-media__list' => 'flex-direction: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
             'social_spacing',
             [
                 'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
@@ -287,25 +265,26 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'border_size',
+        $this->add_control(
+            'social_fullwidth',
             [
-                'label' => esc_html__('Border Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-share.outline .rkit-social-share__link , {{WRAPPER}} .rkit-social-share.framed .rkit-social-share__link ' => 'border-width: {{SIZE}}{{UNIT}};',
-                ],
+                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'fullwidth',
+                'default' => '',
                 'condition' => [
-                    'select_skin' => ['framed', 'outline']
+                    'social_direction' => 'column'
                 ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'social_typography',
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
             ]
         );
 
@@ -332,15 +311,24 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control(
-            'border-radius',
+            'border_size',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-share__link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .rkit-social-share.pointer .rkit-social-share__link::after , {{WRAPPER}} .rkit-social-share.pointer-on-hover .rkit-social-share__link::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'label' => esc_html__('Border Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
                 ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share.outline .rkit-social-share__link , {{WRAPPER}} .rkit-social-share.framed .rkit-social-share__link ' => 'border-width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_skin' => ['framed', 'outline']
+                ]
             ]
         );
 
@@ -428,12 +416,12 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'hr_color',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
+        // $this->add_control(
+        //     'hr_color',
+        //     [
+        //         'type' => \Elementor\Controls_Manager::DIVIDER,
+        //     ]
+        // );
 
         $this->add_control('select_color', [
             'label' => esc_html('Color'),
@@ -451,29 +439,6 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             'label' => esc_html('Normal')
         ]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'social_bg_normal',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
-            ]
-        );
-
-        $this->add_control(
-            'hr_bg_normal',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'social_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
-            ]
-        );
 
         $this->add_control('social_text_color_normal', [
             'label' => esc_html('Text Color'),
@@ -494,10 +459,12 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
-            'hr_border_normal',
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'name' => 'social_bg_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
             ]
         );
 
@@ -509,35 +476,19 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'social_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
+            ]
+        );
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('color_tab_hover', [
             'label' => esc_html('Hover')
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'social_bg_hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
-            ]
-        );
-
-        $this->add_control(
-            'hr_bg_hover',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'social_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
-            ]
-        );
 
         $this->add_control('social_text_color_hover', [
             'label' => esc_html('Text Color'),
@@ -558,17 +509,30 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
-            'hr_border_hover',
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'name' => 'social_bg_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
+            ]
+        );
+
+        $this->add_control(
+            'social_border_color_hover',
+            [
+                'label'     => __('Border Color', 'rometheme-for-elementor'),
+                'type'      => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share__link:hover' => 'border-color: {{VALUE}};',
+                ],
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+            \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'social_border_hover',
+                'name' => 'social_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
             ]
         );
@@ -577,41 +541,81 @@ class Rkit_Social_Icon extends \Elementor\Widget_Base
 
         $this->end_controls_tabs();
 
+        $this->add_control(
+            'more_options_icon_border',
+            [
+                'label' => esc_html__('More Options', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'border-radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share__link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-social-share.pointer .rkit-social-share__link::after , {{WRAPPER}} .rkit-social-share.pointer-on-hover .rkit-social-share__link::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
 ?>
         <div class="rkit-social-share <?php echo esc_attr($settings['select_skin']) ?> <?php echo esc_attr($settings['social_fullwidth']) ?>">
             <?php
             if ($settings['social_media']) {
                 echo '<dl class="rkit-social-media__list">';
                 foreach ($settings['social_media'] as $sm) {
+
+                    $link       = !empty($sm['social_link']['url']) ? esc_url($sm['social_link']['url']) : '#';
+                    $colorClass = ($settings['select_color'] === 'official') ? esc_attr($sm['social_select']) : '';
+
+                    $target = !empty($sm['social_link']['is_external']) ? ' target="_blank"' : '';
+                    $rel    = !empty($sm['social_link']['nofollow']) ? ' rel="nofollow"' : '';
             ?>
                     <dt class="elementor-repeater-item-<?php echo esc_attr($sm['_id']); ?>">
                         <?php
                         switch ($settings['select_style']) {
                             case 'icon':
                         ?>
-                                <a href="<?=esc_attr( $sm['social_link'] )?>" target="<?=esc_attr( $sm['url_behavior'] === 'open_in_tab' ? '_self' : '_blank' )?>"  class="rkit-social-share__link <?php echo ($settings['select_color'] == 'official') ? esc_attr($sm['social_select']) : '' ?>">
-                                    <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-social-share__icon']); ?>
+                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
+                                    <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], [
+                                        'aria-hidden' => 'true',
+                                        'class'       => 'rkit-social-share__icon'
+                                    ]); ?>
                                 </a>
                             <?php
                                 break;
+
                             case 'text':
                             ?>
-                                <a href="<?=esc_attr( $sm['social_link'] )?>" target="<?=esc_attr( $sm['url_behavior'] === 'open_in_tab' ? '_self' : '_blank' )?>" class="rkit-social-share__link <?php echo ($settings['select_color'] == 'official') ? esc_attr($sm['social_select']) : '' ?>">
-                                    <?php echo ($sm['label_social']) ? esc_html($sm['label_social']) : esc_html(ucwords($sm['social_select'])) ?>
+                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
+                                    <?= $sm['label_social']
+                                        ? esc_html($sm['label_social'])
+                                        : esc_html(ucwords($sm['social_select'])); ?>
                                 </a>
                             <?php
                                 break;
+
                             case 'both':
                             ?>
-                                <a href="<?=esc_attr( $sm['social_link'] )?>" target="<?=esc_attr( $sm['url_behavior'] === 'open_in_tab' ? '_self' : '_blank' )?>" class="rkit-social-share__link <?php echo ($settings['select_color'] == 'official') ? esc_attr($sm['social_select']) : '' ?>">
-                                    <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-social-share__icon']); ?>
-                                    <?php echo ($sm['label_social']) ? esc_html($sm['label_social']) : esc_html(ucwords($sm['social_select'])) ?>
+                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
+                                    <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], [
+                                        'aria-hidden' => 'true',
+                                        'class'       => 'rkit-social-share__icon'
+                                    ]); ?>
+                                    <?= $sm['label_social']
+                                        ? esc_html($sm['label_social'])
+                                        : esc_html(ucwords($sm['social_select'])); ?>
                                 </a>
                         <?php
                                 break;

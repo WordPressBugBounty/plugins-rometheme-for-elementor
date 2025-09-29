@@ -282,7 +282,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'container_box_shadow',
-                'label' => __('Container Box Shadow', 'plugin-name'),
+                'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .client-grid-wrapper',
             ]
         );
@@ -312,7 +312,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'image_height',
             [
-                'label' => esc_html__('Image Height', 'rometheme-for-elementor'),
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -340,7 +340,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'image_space',
             [
-                'label' => esc_html__('Spacing Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -401,7 +401,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -421,7 +421,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding',
             [
-                'label' => esc_html__('Padding Image', 'rometheme-for-elementor'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'default' => [
@@ -463,7 +463,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_align',
             [
-                'label' => esc_html__('Title Alignment', 'text-domain'),
+                'label' => esc_html__('Alignment', 'text-domain'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
@@ -514,7 +514,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => esc_html__('Title Typography', 'text-domain'),
+                'label' => esc_html__('Typography', 'text-domain'),
                 'selector' => '{{WRAPPER}} .card-title',
             ]
         );
@@ -523,7 +523,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_control(
             'title_color_external',
             [
-                'label' => esc_html__('Title Color', 'text-domain'),
+                'label' => esc_html__('Color', 'text-domain'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .card-title' => 'color: {{VALUE}};'
@@ -648,14 +648,14 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'hover_style_divider',
             [
                 'label' => esc_html__('Title', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'type' => \Elementor\Controls_Manager::HEADING,
             ]
         );
         
         $this->add_control(
             'title_hover_align',
             [
-                'label' => esc_html__('Title Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
@@ -682,7 +682,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_hover_typography',
-                'label' => esc_html__('Title Typography', 'rometheme-for-elementor'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hover-title-cg',
 
             ]
@@ -692,7 +692,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_control(
             'title_hover_color',
             [
-                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hover-title-cg' => 'color: {{VALUE}};',
@@ -704,7 +704,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             'hover_style_title_divider',
             [
                 'label' => esc_html__('Description', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'type' => \Elementor\Controls_Manager::HEADING,
             ]
         );
 
@@ -712,7 +712,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_control(
             'desc_hover_align',
             [
-                'label' => esc_html__('Desc Alignment', 'rometheme-for-elementor'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
@@ -739,7 +739,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_hover_typography',
-                'label' => esc_html__('Desc Typography', 'rometheme-for-elementor'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hover-description-cg',
 
             ]
@@ -748,7 +748,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_control(
             'desc_hover_color',
             [
-                'label' => esc_html__('Desc Color', 'rometheme-for-elementor'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hover-description-cg' => 'color: {{VALUE}};',

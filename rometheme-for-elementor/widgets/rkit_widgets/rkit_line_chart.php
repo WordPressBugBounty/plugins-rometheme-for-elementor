@@ -122,6 +122,14 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'tension',
+            [
+                'label' => esc_html__('Tension', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+            ]
+        );
+
         $this->add_control('fill_bg_color', [
             'label' => esc_html('Background Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
@@ -130,14 +138,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
                 'fill_bg' =>  'yes'
             ]
         ]);
-
-        $this->add_responsive_control(
-            'tension',
-            [
-                'label' => esc_html__('Tension', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-            ]
-        );
 
         $this->add_control('point_style', [
             'label' => esc_html('Point Style'),
@@ -170,11 +170,16 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control('line_bg_normal', [
             'label' => esc_html('Point Background'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => 'rgba(75, 192, 192, 0.2)'
+        ]);
+
+        $this->add_control('line_border_normal', [
+            'label' => esc_html('Border Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => 'rgba(75, 192, 192, 1)'
         ]);
 
         $this->add_responsive_control(
@@ -185,11 +190,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('line_border_normal', [
-            'label' => esc_html('Border Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => 'rgba(75, 192, 192, 1)'
-        ]);
 
         $this->end_controls_tab();
 
@@ -211,6 +211,12 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             'default' => 'rgba(75, 192, 192, 1)'
         ]);
 
+        $this->add_control('line_border_hover', [
+            'label' => esc_html('Border Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => 'rgba(75, 192, 192, 1)'
+        ]);
+
         $this->add_responsive_control(
             'border_width_hover',
             [
@@ -219,11 +225,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control('line_border_hover', [
-            'label' => esc_html('Border Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => 'rgba(75, 192, 192, 1)'
-        ]);
 
         $this->end_controls_tab();
 
@@ -265,15 +266,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('scale_x_color', [
-            'label'  => esc_html('Font Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
-            'condition' => [
-                'show_scale_x' => 'yes'
-            ]
-        ]);
-
         $this->add_control(
             'scale_x_font_family',
             [
@@ -285,6 +277,15 @@ class Rkit_LineChart extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_control('scale_x_color', [
+            'label'  => esc_html('Font Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#000000',
+            'condition' => [
+                'show_scale_x' => 'yes'
+            ]
+        ]);
 
         $this->add_control('scale_x_font_style', [
             'label'  => esc_html('Font Style'),
@@ -348,15 +349,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('scale_y_color', [
-            'label'  => esc_html('Font Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
-            'condition' => [
-                'show_scale_y' => 'yes'
-            ]
-        ]);
-
         $this->add_control(
             'scale_y_font_family',
             [
@@ -368,6 +360,15 @@ class Rkit_LineChart extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_control('scale_y_color', [
+            'label'  => esc_html('Font Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#000000',
+            'condition' => [
+                'show_scale_y' => 'yes'
+            ]
+        ]);
 
         $this->add_control('scale_y_font_style', [
             'label'  => esc_html('Font Style'),
@@ -454,7 +455,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
         );
 
         $this->add_control('grid_y_color', [
-            'label' => esc_html('Grid X Color'),
+            'label' => esc_html('Grid Y Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',
             'condition' => [
@@ -482,23 +483,6 @@ class Rkit_LineChart extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('legend_font_size', [
-            'label'  => esc_html('Font Size'),
-            'type' => \Elementor\Controls_Manager::SLIDER,
-            'condition' => [
-                'show_legend' => 'yes'
-            ]
-        ]);
-
-        $this->add_control('legend_color', [
-            'label'  => esc_html('Font Color'),
-            'type' => \Elementor\Controls_Manager::COLOR,
-            'default' => '#000000',
-            'condition' => [
-                'show_legend' => 'yes'
-            ]
-        ]);
-
         $this->add_control('legend_position', [
             'label' => esc_html('Position'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -525,6 +509,23 @@ class Rkit_LineChart extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_control('legend_color', [
+            'label'  => esc_html('Font Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#000000',
+            'condition' => [
+                'show_legend' => 'yes'
+            ]
+        ]);
+
+        $this->add_responsive_control('legend_font_size', [
+            'label'  => esc_html('Font Size'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'condition' => [
+                'show_legend' => 'yes'
+            ]
+        ]);
 
         $this->add_control('legend_font_style', [
             'label'  => esc_html('Font Style'),
@@ -639,7 +640,7 @@ class Rkit_LineChart extends \Elementor\Widget_Base
                     'weight' => $settings['legend_font_weight'],
                 ]
             ]
-        ]
+        ];
 
 ?>
         <div class="rkit-linechart-container">

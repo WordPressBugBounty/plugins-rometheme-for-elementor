@@ -107,21 +107,27 @@ $page = $_GET['page'];
                 Free Version
                 <div class="d-flex flex-row align-items-center gap-2">
                     <span class="rtm-version px-4 py-2 fs-6">V.<?php echo esc_html(\RomeTheme::rt_version()) ?></span>
-                    <h6 class="m-0">September 12, 2025</h6>
+                    <h6 class="m-0">September 29, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
                     <li><strong>Upgrade</strong> to PHP 8.2</li>
-                    <li><strong>New</strong>Premium Template Kits</li>
-                    <li><strong>New</strong>Import Template Kits</li>
-                    <li><strong>Fix</strong>Change name hover effects "overlay" to "flip" widget " Client Grid" widget.</li>
-                    <li><strong>New</strong> Fix Title Alignment, Description Alignment and Button alignment in the " Image Accordion " widget.</li>
+                    <li><strong>FIX:</strong> Search button position not working in the "Search" widget.</li>
+                    <li><strong>FIX:</strong> Submenu icon hover not changing in the "Nav Menu" widget.</li>
+                    <li><strong>FIX:</strong> Box shadow not follow the border radius scale on image or icon in the "Text Marquee" widget.</li>
+                    <li><strong>FIX:</strong> Icon on Slider style not work when color change in the "Image Comparison" widget.</li>
+                    <li><strong>FIX:</strong> Mouse hover show up in the editor canvas in the "Wrapper Link" widget.</li>
+                    <li><strong>FIX:</strong> Container broken in mobile view for "Woo Product Grid" widget.</li>
+                    <li><strong>FIX:</strong> Mode responsive height content broken in the "CTA" widget.</li>
+                    <li><strong>FIX:</strong> Broken layout on "Style Half Circle" in the "Progress Bar" widget.</li>
+                    <li><strong>FIX:</strong> Lightbox feature in "Image Gallery" widget not working in Tablet & Mobile.</li>
+                    <li><strong>IMPROVE:</strong> Added Responsive mode on All Alignment in the widget.</li>
                 </ul>
             </div>
             <div class="d-flex flex-column text-white">
                 Pro Version
                 <div class="d-flex flex-row align-items-center gap-2">
                     <span class="rtm-version px-4 py-2 fs-6">V.1.0.9</span>
-                    <h6 class="m-0">September 04, 2025</h6>
+                    <h6 class="m-0">September 26, 2025</h6>
                 </div>
                 <ul class="list text-white ms-4 py-3" style="font-size:14px">
                     <li><strong>Upgrade</strong> to PHP 8.2</li>

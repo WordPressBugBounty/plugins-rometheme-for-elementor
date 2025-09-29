@@ -166,11 +166,64 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
 
         $this->start_controls_section('social_media_style', ['label' => esc_html('Social Media'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+        $this->add_responsive_control(
+            'social_alignment',
             [
-                'name' => 'social_typography',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-media__list' => 'justify-content: {{VALUE}};'
+                ],
+                'condition' => [
+                    'social_direction' => 'row'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'social_alignment_column',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-media__list' => 'align-items: {{VALUE}};'
+                ],
+                'condition' => [
+                    'social_direction' => 'column',
+                    'social_fullwidth' => ''
+                ]
             ]
         );
 
@@ -197,82 +250,6 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'social_fullwidth',
-            [
-                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
-                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
-                'return_value' => 'fullwidth',
-                'default' => '',
-                'condition' => [
-                    'social_direction' => 'column'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'social_alignment',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-media__list' => 'justify-content: {{VALUE}};'
-                ],
-                'condition' => [
-                    'social_direction' => 'row'
-                ]
-            ]
-        );
-
-        $this->add_responsive_control(
-            'social_alignment_column',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'start' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'end' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-media__list' => 'align-items: {{VALUE}};'
-                ],
-                'condition' => [
-                    'social_direction' => 'column',
-                    'social_fullwidth' => ''
-                ]
-            ]
-        );
-
         $this->add_responsive_control(
             'social_spacing',
             [
@@ -296,25 +273,27 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'border_size',
+
+        $this->add_control(
+            'social_fullwidth',
             [
-                'label' => esc_html__('Border Size', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', 'em', 'rem'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-share.outline .rkit-social-share__link , {{WRAPPER}} .rkit-social-share.framed .rkit-social-share__link ' => 'border-width: {{SIZE}}{{UNIT}};',
-                ],
+                'label' => esc_html__('Fullwidth ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'fullwidth',
+                'default' => '',
                 'condition' => [
-                    'select_skin' => ['framed', 'outline']
+                    'social_direction' => 'column'
                 ]
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'social_typography',
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
             ]
         );
 
@@ -340,16 +319,26 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         );
 
+
         $this->add_responsive_control(
-            'border-radius',
+            'border_size',
             [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-social-share__link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .rkit-social-share.pointer .rkit-social-share__link::after , {{WRAPPER}} .rkit-social-share.pointer-on-hover .rkit-social-share__link::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'label' => esc_html__('Border Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
                 ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share.outline .rkit-social-share__link , {{WRAPPER}} .rkit-social-share.framed .rkit-social-share__link ' => 'border-width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'select_skin' => ['framed', 'outline']
+                ]
             ]
         );
 
@@ -437,12 +426,12 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'hr_color',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
+        // $this->add_control(
+        //     'hr_color',
+        //     [
+        //         'type' => \Elementor\Controls_Manager::DIVIDER,
+        //     ]
+        // );
 
         $this->add_control('select_color', [
             'label' => esc_html('Color'),
@@ -459,30 +448,6 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
         $this->start_controls_tab('color_tab_normal', [
             'label' => esc_html('Normal')
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'social_bg_normal',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
-            ]
-        );
-
-        $this->add_control(
-            'hr_bg_normal',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'social_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link',
-            ]
-        );
 
         $this->add_control('social_text_color_normal', [
             'label' => esc_html('Text Color'),
@@ -503,10 +468,13 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control(
-            'hr_border_normal',
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
             [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'name' => 'social_bg_normal',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
             ]
         );
 
@@ -518,35 +486,20 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'social_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-social-share__link',
+            ]
+        );
+
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('color_tab_hover', [
             'label' => esc_html('Hover')
         ]);
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'social_bg_hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
-            ]
-        );
-
-        $this->add_control(
-            'hr_bg_hover',
-            [
-                'type' => \Elementor\Controls_Manager::DIVIDER,
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Box_Shadow::get_type(),
-            [
-                'name' => 'social_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
-            ]
-        );
 
         $this->add_control('social_text_color_hover', [
             'label' => esc_html('Text Color'),
@@ -567,24 +520,58 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             ]
         ]);
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'social_bg_hover',
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
+            ]
+        );
+
         $this->add_control(
-            'hr_border_hover',
+            'social_border_color_hover',
+            [
+                'label'     => __('Border Color', 'rometheme-for-elementor'),
+                'type'      => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share__link:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'social_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
+            ]
+        );
+
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_control(
+            'hr_border',
             [
                 'type' => \Elementor\Controls_Manager::DIVIDER,
             ]
         );
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
+        $this->add_responsive_control(
+            'border-radius',
             [
-                'name' => 'social_border_hover',
-                'selector' => '{{WRAPPER}} .rkit-social-share__link:hover',
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-social-share__link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-social-share.pointer .rkit-social-share__link::after , {{WRAPPER}} .rkit-social-share.pointer-on-hover .rkit-social-share__link::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
-
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
 
         $this->end_controls_section();
     }

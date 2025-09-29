@@ -404,7 +404,7 @@ class Rkit_BarChart extends \Elementor\Widget_Base
         );
 
         $this->add_control('grid_y_color', [
-            'label' => esc_html('Grid X Color'),
+            'label' => esc_html('Grid Y Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'default' => '#aaaaaa',
             'condition' => [
