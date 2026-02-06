@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor widgets, elementor templates, eleme
 Requires at least: 6.7
 Tested up to: 6.8.1
 Requires PHP: 8.2
-Stable tag: 1.6.6
+Stable tag: 1.6.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,26 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 1.6.8 - November 2024, 2025
+Security Update
+
+Version 1.6.7 - October 24, 2025
+IMPROVE : setting navigation animation in the "Card Carousel" widget.
+IMPROVE : Control width and height Dot in the Hero Slider widget.
+IMPROVE : Responsive alignment text in the client grid widget.
+IMPROVE : control navigation in the testimonial carousel widget.
+IMPROVE : Responsive control alignment in the Pricing Table widget.
+IMPROVE : Control height in the progres bar widget.
+IMPROVE : control border time style in the countdown widget.
+IMPROVE : more social media selected in the social icons widget.
+IMPROVE : more social media selected in the social share widget.
+IMPROVE : responsive control direction in the woo product grid widget.
+FIX : control alignment text not working in the advanced heading widget.
+FIX : text shadow headline standard control in the advanced heading widget.
+FIX : alignment in control container is not effect to feature in the Pricing Table widget.
+NEW : Woo Product Carousel Widget
+NEW : Team Carousel Widget
+
 Version 1.6.6 - September 29, 2025
 FIX	Search button position not working in the "Search" widget.
 FIX	Submenu icon hover not changing in the "Nav Menu" widget
@@ -436,3 +456,6 @@ Version : 1.1.0 - January 19, 2023
 
 Version : 1.0.0 - January 5, 2023
 * this is first version of Rometheme for Elementor Plugin
+
+== Wordfence Verification ==
+Vendor Key: eev51sugjaq1fchrfpnfqvtkaqbvbeds

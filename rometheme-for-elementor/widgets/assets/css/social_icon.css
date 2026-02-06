@@ -100,6 +100,63 @@
   --color: #009900; /* LINE Darker Green */
 }
 
+/* Discord */
+.discord {
+  --color: #5865f2; /* Discord Blurple */
+}
+.discord:hover {
+  --color: #4752c4; /* Discord Darker Blurple */
+}
+
+/* GitHub */
+.github {
+  --color: #181717; /* GitHub Black */
+}
+.github:hover {
+  --color: #000000; /* GitHub Darker Black */
+}
+
+/* Instagram */
+.instagram {
+  --color: #e4405f; /* Instagram Pink */
+}
+.instagram:hover {
+  --color: #bc2a8d; /* Instagram Darker Pink */
+}
+
+/* Snapchat */
+.snapchat {
+  --color: #fffc00; /* Snapchat Yellow */
+}
+.snapchat:hover {
+  --color: #e6d800; /* Snapchat Darker Yellow */
+}
+
+/* Threads */
+.threads {
+  --color: #000000; /* Threads Black */
+}
+.threads:hover {
+  --color: #222222; /* Threads Darker Black */
+}
+
+/* TikTok */
+.tiktok {
+  --color: #010101; /* TikTok Black */
+}
+.tiktok:hover {
+  --color: #25f4ee; /* TikTok Cyan Glow */
+}
+
+/* YouTube */
+.youtube {
+  --color: #ff0000; /* YouTube Red */
+}
+.youtube:hover {
+  --color: #cc0000; /* YouTube Darker Red */
+}
+
+
 .rkit-social-share.flat .rkit-social-share__link {
   background-color: var(--color);
   color: white;

@@ -1,103 +1,37 @@
- 
-  .rkit-advanced-heading p {
-    position: relative; 
-  }
- 
- 
-  .rkit-advanced-heading {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-    
-  } 
-
-   
-  .rkit-advanced-heading p {
-    margin-bottom: 0;
-  }
-
-  .combined-text { 
-    border-radius: 5px; 
-    gap: 10px;
-    justify-content : center;
-  }
-  
-  
-  .rkit-trp-text{ 
-    font-weight: bold;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-}
-  
-.rkit-trp-text .headline_text{ 
+.rkit-advanced-heading,
+.rkit-advanced-heading a {
+  display: inline-block;
+  position: relative;
   -webkit-background-clip: text;
+  /* -webkit-text-fill-color: transparent; */
   background-clip: text;
-  background-color: #00cea6;  
-  z-index: 1;
+}
+.rkit-advanced-heading-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.rkit-advanced-heading span:not(.headline-container) {
+  display: inline;
+  position: relative;
+  white-space: nowrap;
+  text-wrap: wrap;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
-.std-text{ 
-  background-color:  black; 
+.rkit-advanced-heading .text {
+  background-color: black;
+  text-decoration-color: black;
 }
 
+.rkit-advanced-heading .headline-text {
+  background-color: #00cea6;
+    text-decoration-color: #00cea6;
+}
 
-.bg-headline{
-  background-color: transparent;  
+.rkit-advanced-heading .headline-container {
   display: inline-flex;
 }
-
-.bg-std{
-  background-color: transparent;  
-  display: inline-flex;
-}
- 
-
-/* Style untuk semua heading */
- 
-
-@media only screen and (max-width: 1024px) {
-  .combined-text {
-      gap: 20px;  
-  }
-}
-
- 
-@media only screen and (max-width: 768px) {
-  .combined-text { 
-    font-size: 2rem;  
-  }
-
-}
-
- 
-@media only screen and (max-width: 480px) {
-  /* .combined-text { 
-    font-size: 1rem;  
-  }
-
-  .before_text{
-    font-size: 1rem; 
-  }
-
-  .center_text{
-    font-size: 1rem; 
-  }
-
-  .after_text{
-    font-size: 1rem; 
-  } */
-
-  .headline_text{
-    /* font-size: 1rem; */
-     display: inline-flex;
-  }
-
-  .wrap_text{
-    font-size: 1rem; 
-  }
-} 

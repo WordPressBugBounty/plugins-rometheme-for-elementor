@@ -171,15 +171,15 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
-                'default' => 'center',
+                'default' => 'start',
                 'toggle' => true,
                 'selectors' => [
                     // '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'align-items: {{VALUE}};',
-                    '{{WRAPPER}} .rkit-progress .progress-bar-container' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-progress' => 'display:flex; flex-direction:column; align-items: {{VALUE}};',
                 ],
-                'condition' => [
-                    'progress_style!' => ['line', 'inline']
-                ]
+                // 'condition' => [
+                //     'progress_style!' => ['line', 'inline']
+                // ]
             ]
         );
 
@@ -212,7 +212,7 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
           $this->add_responsive_control(
             'progress_size',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -227,8 +227,39 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .circular-progress ,  {{WRAPPER}} .half-circular-progress , {{WRAPPER}} .progress-bar , {{WRAPPER}} .prefix-postfix' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .circular-progress ,  
+                    {{WRAPPER}} .half-circular-progress , 
+                    {{WRAPPER}} .progress-bar , {{WRAPPER}} .progress-title, {{WRAPPER}} .progress-bar-container, 
+                    {{WRAPPER}} .prefix-postfix' => 'width: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        // height for cicle and half circle
+        $this->add_responsive_control(
+            'progress_height_circle',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .circular-progress ,  
+                    {{WRAPPER}} .half-circular-progress' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'progress_style!' => ['line', 'inline']
+                ]
             ]
         );
 
@@ -682,11 +713,9 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
         <div class="rkit-progress" style="--value:<?php echo esc_attr($settings['percent']['size']) ?> ; --title: '<?php echo esc_attr($settings['progress-title']) ?>' ; --animation-duration:<?php echo esc_attr($settings['animation-duration']['size']) ?>;">
             <?php switch ($settings['progress_style']) {
                 case 'circle': ?>
-                    <div class="progress-bar-container">
                         <div class="circular-progress">
                             <div class="progress-value <?php echo ($settings['show_percentage'] === 'yes') ? 'percentage-label' : '' ?>"></div>
                         </div>
-                    </div>
                 <?php break;
                 case 'line': ?>
                     <span class="progress-title"><?php echo esc_html($settings['progress-title']) ?></span>
@@ -697,7 +726,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                     </div>
                 <?php break;
                 case 'half': ?>
-                    <div class="progress-bar-container">
                         <div class="half-circular-progress">
                             <div class="progress-value <?php echo ($settings['show_percentage'] === 'yes') ? 'percentage-label' : '' ?>"></div>
                         </div>
@@ -705,7 +733,6 @@ class Rkit_ProgressBar extends \Elementor\Widget_Base
                             <span><?php echo esc_html($settings['prefix_text']) ?></span>
                             <span><?php echo esc_html($settings['postfix_text']) ?></span>
                         </div>
-                    </div>
                 <?php break;
                 case 'inline': ?>
                     <div class="progress-bar-container">

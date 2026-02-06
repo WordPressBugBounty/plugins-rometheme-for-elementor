@@ -126,6 +126,20 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             ]
         );
 
+         $this->add_control('title_postlist_tag', [
+            'label' => esc_html('HTML Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+            ],
+            'default' => 'h5'
+        ]);
+
         $this->add_control(
             'show_title_post_tlist',
             [
@@ -246,21 +260,6 @@ class Rkit_Postlist extends \Elementor\Widget_Base
             'label' => esc_html__('Query', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
-
-        $this->add_control('title_postlist_tag', [
-            'label' => esc_html('HTML Tag'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'h1' => esc_html('H1'),
-                'h2' => esc_html('H2'),
-                'h3' => esc_html('H3'),
-                'h4' => esc_html('H4'),
-                'h5' => esc_html('H5'),
-                'h6' => esc_html('H6'),
-            ],
-            'default' => 'h5'
-        ]);
-
 
         $this->add_control(
             'posts_per_page',
@@ -1389,6 +1388,9 @@ class Rkit_Postlist extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-readmore-postlist-btn:hover' => 'border-color: {{VALUE}};',
+                ],
+                'condition'=>[
+                    'border_readmore_btn_normal_border!'=>''
                 ]
             ]
         );

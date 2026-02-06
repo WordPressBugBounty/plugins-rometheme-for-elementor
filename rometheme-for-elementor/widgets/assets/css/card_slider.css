@@ -1,6 +1,6 @@
 .rkit-swiper {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .rkit-card {
@@ -10,7 +10,8 @@
 
 .rkit-card-slider {
   padding: 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
 }
 
 .rkit-cardslider-pagination {
@@ -23,13 +24,11 @@
 }
 
 .rkit-swiper-button-prev {
-  left: 0;
-  top: 50%;
+  left: -55px;
 }
 
 .rkit-swiper-button-next {
-  right: 0;
-  top: 50%;
+  right: -55px;
 }
 
 .rkit-swiper-button-next,
@@ -37,11 +36,13 @@
   position: absolute;
   z-index: 999;
   cursor: pointer;
+  pointer-events: auto;
   width: 45px;
+  top: 50%;
   height: 45px;
-  background-color: #00cea6;
-  transform: translateY(-50%);
-  color: white;
+  background-color: #f7f7f7;
+  transform: translateY(0);
+  color: #1f1f1f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,4 +194,33 @@
 
 .card-button.fullwidth a {
   width: 100%;
+}
+
+.rkit-flex-absolute-card-slider {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  justify-content: space-between;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+.rkit-animation-hover-card-slider-enabled .rkit-swiper-button-next,
+.rkit-animation-hover-card-slider-enabled .rkit-swiper-button-prev {
+  opacity: 0;
+  transition: all 0.5s;
+  transition-delay: 0.3s;
+}
+.rkit-animation-hover-card-slider-enabled:hover .rkit-swiper-button-next,
+.rkit-animation-hover-card-slider-enabled:hover .rkit-swiper-button-prev {
+  opacity: 1;
+   transform: translate(0, -50%);
+}
+
+.rkit-animation-hover-card-slider-enabled .rkit-swiper-button-next {
+  transform: translate(-30px, -50%);
+}
+.rkit-animation-hover-card-slider-enabled .rkit-swiper-button-prev {
+  transform: translate(30px, -50%);
 }

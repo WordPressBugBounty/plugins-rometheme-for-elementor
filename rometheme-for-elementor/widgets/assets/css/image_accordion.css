@@ -169,7 +169,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: none;
-  transition: flex 1s ease;
+  transition: flex 0.3s ease;
   overflow : hidden;
   position: relative;
 } 
@@ -209,6 +209,7 @@
   overflow: hidden;
   background-color: #9A9191;
   opacity: 20%;
+  pointer-events: none;
 }
 
 /* .item-ia-hover.active .item-text{
@@ -232,7 +233,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: none;
-  transition: flex 1s ease;
+  transition: flex 0.3s ease;
   overflow : hidden;
 } 
 

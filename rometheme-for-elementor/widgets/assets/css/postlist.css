@@ -127,6 +127,9 @@ a.rkit-readmore-postlist-btn:hover {
   display: flex;
 }
 
+.rkit-price-table-features-plain-text{
+  display: flex;
+}
 
   /* Default styles (untuk layar desktop dan tablet) sudah diatur seperti sebelumnya */
 

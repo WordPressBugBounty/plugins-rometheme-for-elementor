@@ -534,6 +534,15 @@ class Rkit_Countdown extends \Elementor\Widget_Base
                 ],
             ]
         );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+            'name' => 'section_border',
+            'label' => esc_html__('Border', 'rometheme-for-elementor'),
+            'selector' => '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row',
+            ]
+        );
 
         $this->add_responsive_control(
             'item_border_radius',

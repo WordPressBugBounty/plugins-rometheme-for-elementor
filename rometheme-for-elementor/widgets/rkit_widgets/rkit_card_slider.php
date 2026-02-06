@@ -280,6 +280,22 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'show_hover_animation',
+            [
+                'label' => esc_html__('Show Animation', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'show_navigation' => 'yes'
+                ]
+            ]
+        );
+
+
+        $this->add_control(
             'next_icon',
             [
                 'label' => esc_html__('Next Icon', 'rometheme-for-elementor'),
@@ -1123,6 +1139,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-card .card-button a:hover' => 'border-color : {{VALUE}}'
+            ],
+            'condition'=>[
+                'btn_border_normal_border!'=>''
             ]
         ]);
 
@@ -1235,10 +1254,33 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
 
         $this->start_controls_tab('dot_tab_normal', ['label' => esc_html('Normal')]);
 
+        // $this->add_responsive_control(
+        //     'dot_size_normal',
+        //     [
+        //         'label' => esc_html__('Size', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::SLIDER,
+        //         'size_units' => ['px', '%', 'em', 'rem'],
+        //         'range' => [
+        //             'px' => [
+        //                 'min' => 0,
+        //                 'max' => 1000,
+        //                 'step' => 5,
+        //             ],
+        //             '%' => [
+        //                 'min' => 0,
+        //                 'max' => 100,
+        //             ],
+        //         ],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet' => 'width: {{SIZE}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
+
         $this->add_responsive_control(
-            'dot_size_normal',
+            'dot_width_normal',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1252,8 +1294,39 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_normal',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1288,9 +1361,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
 
         $this->add_responsive_control(
-            'dot_size_hover',
+            'dot_width_hover',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1304,8 +1377,39 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_hover',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1324,6 +1428,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet:hover' => 'border-color : {{VALUE}};'
+            ],
+            'condition'=>[
+                'dot_border_normal_border!'=>''
             ]
         ]);
 
@@ -1340,9 +1447,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('active')]);
 
         $this->add_responsive_control(
-            'dot_size_active',
+            'dot_width_active',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1356,8 +1463,39 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 24,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_active',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1376,6 +1514,9 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet.rkit-cardslider-bullet-active' => 'border-color : {{VALUE}}'
+            ],
+              'condition'=>[
+                'dot_border_normal_border!'=>''
             ]
         ]);
 
@@ -1405,6 +1546,13 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'unit' => 'px',
+                    'top' => 12,
+                    'right' => 12,
+                    'bottom' => 12,
+                    'left' => 12,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-cardslider-pagination .rkit-cardslider-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -1490,38 +1638,125 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'nav_margin_options',
+        // navigation spacing control slider
+        $this->add_responsive_control(
+            'spacing_navigation_animation',
             [
-                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
+                'label' => esc_html__('Navigation Spacing', 'rometheme-for-elementor'),
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'description' => 'Adjust the distance of the navigation buttons from the left and right edges. Use negative values (e.g., -20px) to position the buttons outside the carousel area.',
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => -9
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 70
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 64
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-flex-absolute-card-slider ' => 'left:{{SIZE}}{{UNIT}} !important; right:{{SIZE}}{{UNIT}} !important;',
+                ],
+                'condition' => [
+                    'show_navigation' => 'yes',
+                    'show_hover_animation' => 'yes'
+                ]
             ]
         );
 
         $this->add_responsive_control(
-            'navigation_margin_prev',
+            'navigation_spacing',
             [
-                'label' => esc_html__('Previous', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__('Navigation Spacing', 'rometheme-for-elementor'),
                 'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-swiper-button-prev' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'description' => 'Adjust the distance of the navigation buttons from the left and right edges. Use negative values (e.g., -20px) to position the buttons outside the carousel area.',
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
                 ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => -10
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 66
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 61
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-flex-absolute-card-slider ' => 'left:{{SIZE}}{{UNIT}} !important; right:{{SIZE}}{{UNIT}} !important;',
+                ],
+                'condition' => [
+                    'show_navigation' => 'yes',
+                    'show_hover_animation!' => 'yes'
+                ]
             ]
         );
 
-        $this->add_responsive_control(
-            'navigation_margin_next',
-            [
-                'label' => esc_html__('Next', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-swiper-button-next' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        // $this->add_control(
+        //     'nav_margin_options',
+        //     [
+        //         'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::HEADING,
+        //         'separator' => 'before',
+        //     ]
+        // );
+
+        // $this->add_responsive_control(
+        //     'navigation_margin_prev',
+        //     [
+        //         'label' => esc_html__('Previous', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%', 'em', 'rem'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-swiper-button-prev' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
+
+        // $this->add_responsive_control(
+        //     'navigation_margin_next',
+        //     [
+        //         'label' => esc_html__('Next', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%', 'em', 'rem'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-swiper-button-next' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
 
         $this->start_controls_tabs('nav_tabs');
 
@@ -1579,17 +1814,29 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'nav_background_hover',
-                'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover',
+                'name'     => 'nav_background_hover',
+                'types'    => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .rkit-swiper-button-prev:hover, {{WRAPPER}} .rkit-swiper-button-next:hover',
+                'fields_options' => [
+                    'background' => [
+                        'default' => 'classic',
+                    ],
+                    'color' => [
+                        'default' => '#00cea6',
+                    ],
+                ],
             ]
         );
+
 
         $this->add_control('nav_border_color_hover', [
             'label' => esc_html('Border Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-swiper-button-prev:hover , {{WRAPPER}} .rkit-swiper-button-next:hover' => 'border-color : {{VALUE}};'
+            ],
+              'condition'=>[
+                'nav_border_normal_border!'=>''
             ]
         ]);
 
@@ -1632,6 +1879,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $pauseOnHover = ($settings['pause_on_hover'] === 'yes') ? true : false;
         $initialSlide = $this->initialSlide($settings['list']);
+        $showAnimationNavigation = ($settings['show_hover_animation'] === 'yes') ? 'rkit-animation-hover-card-slider-enabled' : 'rkit-animation-hover-card-slider-disabled';
 
         $config = [
             'rtl'                => is_rtl(),
@@ -1688,7 +1936,7 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
         }
 
 ?>
-        <div class="rkit-card-slider" data-config="<?php echo esc_attr(json_encode($config)) ?>">
+        <div class="rkit-card-slider <?= $showAnimationNavigation ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
             <!-- Slider main container -->
             <div class="rkit-swiper">
                 <?php if ($settings['dots_position'] == 'top') : ?>
@@ -1743,11 +1991,14 @@ class Rkit_CardSlider extends \Elementor\Widget_Base
                     <div class="rkit-cardslider-pagination"></div>
                 <?php endif; ?>
             </div>
-            <?php if ($settings['show_navigation'] === 'yes') : ?>
-                <!-- If we need navigation buttons -->
-                <div class="rkit-swiper-button-prev"><?php \Elementor\Icons_Manager::render_icon($settings['previous_icon'], ['aria-hidden' => 'true']); ?></div>
-                <div class="rkit-swiper-button-next"><?php \Elementor\Icons_Manager::render_icon($settings['next_icon'], ['aria-hidden' => 'true']); ?></div>
-            <?php endif; ?>
+
+            <div class="rkit-flex-absolute-card-slider">
+                <?php if ($settings['show_navigation'] === 'yes') : ?>
+                    <!-- If we need navigation buttons -->
+                    <div class="rkit-swiper-button-prev"><?php \Elementor\Icons_Manager::render_icon($settings['previous_icon'], ['aria-hidden' => 'true']); ?></div>
+                    <div class="rkit-swiper-button-next"><?php \Elementor\Icons_Manager::render_icon($settings['next_icon'], ['aria-hidden' => 'true']); ?></div>
+                <?php endif; ?>
+            </div>
         </div>
 <?php
     }

@@ -7,8 +7,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-post-carousel-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/post-carousel/",
     "scripts": {
       "css": "post_carousel.css",
       "js": "post_carousel.js"
@@ -22,8 +21,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-pricing-image-box-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/pricing-image-box/",
     "scripts": {
       "css": "pricingbox.css",
       "js": "pricing-image-box.js"
@@ -65,8 +63,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-textual-showcase-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/widget-textual-showcase",
     "scripts": {
       "css": "textual_showcase.css",
       "js": "textual_showcase.js"
@@ -94,8 +91,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/how-to-use-ezd_ampersand-customize-interactive-link-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/interactive-link/",
     "scripts": {
       "css": "interactive_links.css",
       "js": "interactive_links.js"
@@ -109,8 +105,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/animated-circle-button/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/animated-circle-button/",
     "scripts": {
       "css": "animated_circle_button.css",
       "js": ""
@@ -124,8 +119,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/image-stack-info-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/image-stack-info/",
     "scripts": {
       "css": "image_stack.css",
       "js": ""
@@ -139,8 +133,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/breadcrumb-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/plugin/widget-test/breadcrumbs/",
     "scripts": {
       "css": "breadcrumbs.css",
       "js": ""
@@ -154,8 +147,7 @@
     "status": true,
     "type": "pro",
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/image-hotspot-widget/",
-    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
-    "notes": "link official cooming soon",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/image-hotspot",
     "scripts": {
       "css": "image_hotspot.css",
       "js": "image_hotspot.js",
@@ -177,6 +169,34 @@
     "scripts": {
       "css": "client_carousel.css",
       "js": "client_carousel.js"
+    }
+  },
+  "background_switcher": {
+    "name": "Background Switcher",
+    "icon": "rtmicon rtmicon-background-switcher",
+    "class_name": "Rkit_Background_Switcher",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "comming soon",
+    "previewURL": "comming soon",
+    "scripts": {
+      "css": "background_switcher.css",
+      "js": "background_switcher.js"
+    }
+  },
+  "image_accordion_carousel": {
+    "name": "Image Accordion Carousel",
+    "icon": "rtmicon ",
+    "class_name": "Rkit_Image_Accordion_Carousel",
+    "category": "rkit",
+    "status": true,
+    "type": "pro",
+    "docsURL": "comming soon",
+    "previewURL": "comming soon",
+    "scripts": {
+      "css": "image_accordion_carousel.css",
+      "js": "image_accordion_carousel.js"
     }
   }
 }

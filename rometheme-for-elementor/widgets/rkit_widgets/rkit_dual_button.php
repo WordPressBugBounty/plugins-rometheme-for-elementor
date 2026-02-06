@@ -697,6 +697,9 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}}   .dual-left:hover .left_button' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'button_border_left_border!'=>''
+                ]
             ]
         );
 
@@ -985,6 +988,9 @@ class Rkit_dual_button extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}}   .dual-right:hover .right_button' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'button_border_right_border!'=>''
+                ]
             ]
         );
 

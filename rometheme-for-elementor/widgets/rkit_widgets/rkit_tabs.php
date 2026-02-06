@@ -374,6 +374,9 @@ class Rkit_Tabs extends \Elementor\Widget_Base
                     ],
                 ],
                 'default' => 'center',
+                'condition'=>[
+                     'layout' => 'horizontal'
+                ],
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-tab-btn-item' => 'justify-content: {{VALUE}};',

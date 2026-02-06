@@ -3,11 +3,12 @@
 /**
  * Plugin Name:       RTMKit
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           1.6.6
+ * Version:           1.6.8
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License : 		  GPLv3 or later
  * Requires Plugins : elementor 
+ * Plugin URI : https://rometheme.net/
  * 
  * The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
  */
@@ -49,6 +50,7 @@ class RomeTheme
 			require_once self::module_dir() . 'extensions/ext.php';
 			require_once self::module_dir() . 'controls/controls.php';
 			require_once self::module_dir() . 'updates/updates.php';
+			require_once self::module_dir() . 'banner/banner.php';
 
 			new RomethemeKit\RkitWidgets();
 			\Rkit_Rform::instance();
@@ -60,6 +62,7 @@ class RomeTheme
 			new \RomethemeKit\RTMExtension();
 			new \RomethemeKit\Controls();
 			new \RomethemeKit\Update();
+			new \RomethemeKit\Banner();
 			// \RomethemeKit\Rkit_GetPro::instance();	
 			add_action('admin_enqueue_scripts', [$this, 'register_style']);
 			add_action('wp_ajax_rkitRemoveNotice', [$this, 'rkitRemoveNotice']);
@@ -123,7 +126,7 @@ class RomeTheme
 	 */
 	static function rt_version()
 	{
-		return '1.6.6';
+		return '1.6.8';
 	}
 
 	/**

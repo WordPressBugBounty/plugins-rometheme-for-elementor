@@ -1355,6 +1355,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-item-button .button-element-homeslider:hover' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'button_border_border!'=>''
+                ]
             ]
         );
 
@@ -1541,9 +1544,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->start_controls_tab('dot_tab_normal', ['label' => esc_html('Normal')]);
 
         $this->add_responsive_control(
-            'dot_size_normal',
+            'dot_width_normal',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1557,8 +1560,39 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_normal',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1585,9 +1619,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->start_controls_tab('dot_tab_hover', ['label' => esc_html('Hover')]);
 
         $this->add_responsive_control(
-            'dot_size_hover',
+            'dot_width_hover',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1601,8 +1635,39 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet:hover' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_hover',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet:hover' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1624,6 +1689,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet:hover' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'dot_border_normal_border!'=>''
+                ]
             ]
         );
 
@@ -1633,9 +1701,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
         $this->start_controls_tab('dot_tab_active', ['label' => esc_html('active')]);
 
         $this->add_responsive_control(
-            'dot_size_active',
+            'dot_width_active',
             [
-                'label' => esc_html__('Size', 'rometheme-for-elementor'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
@@ -1649,8 +1717,39 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 24,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet.rkit-homeslider-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dot_height_active',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet.rkit-homeslider-bullet-active' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1673,6 +1772,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet.rkit-homeslider-bullet-active' => 'border-color: {{VALUE}};',
                 ],
+                 'condition'=>[
+                    'dot_border_normal_border!'=>''
+                ]
             ]
         );
 
@@ -1696,6 +1798,14 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
+                'default' => [
+                    'top' => 12,
+                    'right' => 12,
+                    'bottom' => 12,
+                    'left' => 12,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-homeslider-pagination .rkit-homeslider-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -1954,6 +2064,9 @@ class Rkit_home_slider extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-swiper-hs-button-prev:hover , {{WRAPPER}} .rkit-swiper-hs-button-next:hover' => 'border-color: {{VALUE}};',
                 ],
+                 'condition'=>[
+                    'nav_border_normal_border!'=>''
+                ]
             ]
         );
 

@@ -92,11 +92,23 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::SELECT,
             'default' => 'facebook',
             'options' => [
+                'discord'       => esc_html__('Discord', 'rometheme-for-elementor'),
                 'facebook'      => esc_html__('Facebook', 'rometheme-for-elementor'),
-                'twitter'       => esc_html__('Twitter', 'rometheme-for-elementor'),
-                'pinterest'     => esc_html__('Pinterest', 'rometheme-for-elementor'),
+                'github'        => esc_html__('GitHub', 'rometheme-for-elementor'),
+                'instagram'     => esc_html__('Instagram', 'rometheme-for-elementor'),
+                'line'          => esc_html__('Line', 'rometheme-for-elementor'),
                 'linkedin'      => esc_html__('Linkedin', 'rometheme-for-elementor'),
-                'quora'      => esc_html__('Quora', 'rometheme-for-elementor'),
+                'pinterest'     => esc_html__('Pinterest', 'rometheme-for-elementor'),
+                'quora'         => esc_html__('Quora', 'rometheme-for-elementor'),
+                'reddit'        => esc_html__('Reddit', 'rometheme-for-elementor'),
+                'snapchat'      => esc_html__('Snapchat', 'rometheme-for-elementor'),
+                'telegram'      => esc_html__('Telegram', 'rometheme-for-elementor'),
+                'threads'      => esc_html__('Threads', 'rometheme-for-elementor'),
+                'tiktok'        => esc_html__('TikTok', 'rometheme-for-elementor'),
+                'twitter'       => esc_html__('Twitter', 'rometheme-for-elementor'),
+                'viber'         => esc_html__('Viber', 'rometheme-for-elementor'),
+                'whatsapp'      => esc_html__('Whatsapp', 'rometheme-for-elementor'),
+                'youtube'       => esc_html__('YouTube', 'rometheme-for-elementor'),
                 // 'tumblr'        => esc_html__('Tumblr', 'rometheme-for-elementor'),
                 // 'snapchat'        => esc_html__( 'Snapchat', 'rometheme-for-elementor' ),
                 // 'flicker'        => esc_html__('Flicker', 'rometheme-for-elementor'),
@@ -107,7 +119,6 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
                 // 'blogger'       => esc_html__('Blogger', 'rometheme-for-elementor'),
                 // 'digg'          => esc_html__('Digg', 'rometheme-for-elementor'),
                 // 'evernote'      => esc_html__('Evernote', 'rometheme-for-elementor'),
-                'reddit'        => esc_html__('Reddit', 'rometheme-for-elementor'),
                 // 'delicious'     => esc_html__('Delicious', 'rometheme-for-elementor'),
                 // 'stumbleupon'   => esc_html__('Stumbleupon', 'rometheme-for-elementor'),
                 // 'pocket'        => esc_html__('Pocket', 'rometheme-for-elementor'),
@@ -121,10 +132,6 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
                 // 'renren'        => esc_html__('Renren', 'rometheme-for-elementor'),
                 // 'weibo'         => esc_html__('Weibo', 'rometheme-for-elementor'),
                 // 'skype'         => esc_html__('Skype', 'rometheme-for-elementor'),
-                'telegram'      => esc_html__('Telegram', 'rometheme-for-elementor'),
-                'viber'         => esc_html__('Viber', 'rometheme-for-elementor'),
-                'whatsapp'      => esc_html__('Whatsapp', 'rometheme-for-elementor'),
-                'line'          => esc_html__('Line', 'rometheme-for-elementor'),
             ],
         ]);
 
@@ -537,6 +544,9 @@ class Rkit_SocialShare extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-social-share__link:hover' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'social_border_normal_border!'=>''
+                ]
             ]
         );
 

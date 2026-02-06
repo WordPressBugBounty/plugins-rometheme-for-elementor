@@ -1351,6 +1351,9 @@ class Rkit_image_box extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-button-top:hover' => 'border-color : {{VALUE}};'
                 ],
+                'condition'=>[
+                    'border_readmore_btn_normal_top_border!'=>''
+                ]
             ]
         );
         $this->add_group_control(

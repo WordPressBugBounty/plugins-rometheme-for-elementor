@@ -51,6 +51,12 @@ class Template
 
     public function fetch_lib()
     {
+        // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
@@ -148,6 +154,13 @@ class Template
 
     public function fetch_envato_template()
     {
+
+        // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
@@ -356,6 +369,12 @@ class Template
 
     public function get_installed_template()
     {
+        // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
@@ -380,6 +399,12 @@ class Template
 
     public function get_installed_templates()
     {
+        // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         $templates = get_option('rtm_template_installed', []);
         $upload_dir = wp_upload_dir();
         $rtmTemplateDir = $upload_dir['basedir'] . '/rometheme_template';
@@ -522,6 +547,12 @@ class Template
             wp_die();
         }
 
+       // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         $id = absint($_POST['template']);
 
         $elementorData = get_post_meta($id, '_elementor_data', true);
@@ -607,6 +638,12 @@ class Template
 
     public function template_category()
     {
+        // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied: Insufficient permissions');
+            wp_die();
+        }
+
         if (!isset($_POST['wpnonce']) ||  !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();

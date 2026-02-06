@@ -536,6 +536,9 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-grid-card:hover' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'container_border_border!'=>'',
+                ]
             ]
         );
 
@@ -696,6 +699,9 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-grid-body:hover' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'content_border_border!'=>'',
+                ]
             ]
         );
 
@@ -859,6 +865,9 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-grid-card:hover .rkit-image-link' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'img_border_border!'=>'',
+                ]
             ]
         );
 
@@ -2040,6 +2049,9 @@ class Blog_Post_Rkit extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-floating-category-btn:hover' => 'color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'floating_category_border_normal_border!'=>'',
+                ]
             ]
         );
 

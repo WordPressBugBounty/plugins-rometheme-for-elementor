@@ -576,6 +576,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'container_border_border!'=>''
+                ]
             ]
         );
 
@@ -735,6 +738,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover .rkit-post-block-body' => 'border-color: {{VALUE}};',
                 ],
+                'condition'=>[
+                    'content_border_border!'=>''
+                ]
             ]
         );
 
@@ -896,6 +902,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover .rkit-image-link' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'img_border_border!'=>''
+                ]
             ]
         );
 
@@ -1189,6 +1198,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-metadata-item:hover' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'meta_border_normal_border!'=>''
+                ]
             ]
         );
         $this->add_group_control(
@@ -1692,6 +1704,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-readmore-btn:hover' => 'border-color: {{VALUE}}',
                 ],
+                'condition'=>[
+                    'border_readmore_btn_normal_border!'=>''
+                ]
             ]
         );
 
@@ -2101,6 +2116,9 @@ class RkitPostBlock extends \Elementor\Widget_Base
 				'selectors' => [
 					'{{WRAPPER}} .rkit-floating-category-btn:hover' => 'border-color: {{VALUE}}',
 				],
+                'condition'=>[
+                    'floating_category_border_normal_border!'=>''
+                ]
 			]
 		);
 

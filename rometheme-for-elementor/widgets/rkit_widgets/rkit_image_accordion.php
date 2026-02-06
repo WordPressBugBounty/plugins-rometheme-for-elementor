@@ -18,7 +18,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
 
     public function get_keywords()
     {
-        return ['rometheme', 'image', 'accordion'];
+        return ['rometheme','image accordion', 'image', 'accordion'];
     }
 
     function get_custom_help_url()
@@ -315,8 +315,8 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 'default' => 'center',
                 'selectors' => [
                     // '{{WRAPPER}} .item-ia-hover.active .item-text ' => 'align-items: {{VALUE}}; text-align: {{VALUE}};',
-                    '{{WRAPPER}} .text-description' => 'align-self:{{VALUE}};',
-                    '{{WRAPPER}} .text-title-ia' => 'align-self:{{VALUE}};',
+                    '{{WRAPPER}} .text-description' => 'align-self:{{VALUE}};text-align:{{VALUE}};',
+                    '{{WRAPPER}} .text-title-ia' => 'align-self:{{VALUE}};text-align:{{VALUE}};',
                     '{{WRAPPER}} .rkit-image-accordion-item-button' => 'align-self: {{VALUE}};',
                 ],
             ]
@@ -562,7 +562,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .text-title-ia' => 'align-self: {{VALUE}} ;'
+                    '{{WRAPPER}} .text-title-ia' => 'align-self: {{VALUE}}; text-align:{{VALUE}};'
                 ],
             ]
         );
@@ -693,7 +693,7 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     // '{{WRAPPER}} .text-description' => 'justify-content: {{VALUE}};',
-                    '{{WRAPPER}} .text-description' => 'align-self: {{VALUE}};',
+                    '{{WRAPPER}} .text-description' => 'align-self: {{VALUE}};text-align:{{VALUE}};',
                 ],
                 // 'default' => 'center',
             ]
@@ -990,6 +990,9 @@ class Rkit_image_accordion extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .button-element-image-accordion:hover' => 'border-color : {{VALUE}}'
                 ],
+                'condition'=>[
+                    'button_border_border!'=>''
+                ]
             ]
         );
 

@@ -83,7 +83,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                     'flip_effect'  => esc_html__('Flip', 'rometheme-for-elementor'),
                 ],
                 'default' => 'default',
-                'description' => esc_html__('Hover function ready to use except at default mode', 'text-domain'),
+                'description' => esc_html__('Hover function ready to use except at default mode', 'rometheme-for-elementor'),
             ]
         );
 
@@ -106,10 +106,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'show_title',
             [
-                'label' => esc_html__('Show title', 'text-domain'),
+                'label' => esc_html__('Show title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Hide', 'text-domain'),
-                'label_off' => esc_html__('Show', 'text-domain'),
+                'label_on' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Show', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -130,10 +130,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'hover_text',
             [
-                'label' => esc_html__('Hover Text', 'text-domain'),
+                'label' => esc_html__('Hover Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
                 'condition' => [
@@ -145,10 +145,10 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'hover_image_choose',
             [
-                'label' => esc_html__('Choose Hover', 'text-domain'),
+                'label' => esc_html__('Choose Hover', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
                 'condition' => [
@@ -183,7 +183,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                     'hover_text' => 'yes',
                     // 'select_style_hover' => 'yes'
                 ],
-                'description' => esc_html__('Short Description Only', 'text-domain'),
+                'description' => esc_html__('Short Description Only', 'rometheme-for-elementor'),
             ]
         );
 
@@ -368,7 +368,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .clientslogo-image-full-cg',
                 'exclude' => ['image'],
-                'description' => esc_html__('Use For Transparent background & PNG format', 'text-domain'),
+                'description' => esc_html__('Use For Transparent background & PNG format', 'rometheme-for-elementor'),
             ]
         );
 
@@ -445,9 +445,9 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_section',
             [
-                'label' => esc_html__('Section Title', 'text-domain'),
+                'label' => esc_html__('Section Title', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'description' => esc_html__('Use For Title section', 'text-domain'),
+                'description' => esc_html__('Use For Title section', 'rometheme-for-elementor'),
             ]
         );
 
@@ -463,19 +463,19 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_align',
             [
-                'label' => esc_html__('Alignment', 'text-domain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'text-domain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'text-domain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'text-domain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -514,7 +514,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => esc_html__('Typography', 'text-domain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .card-title',
             ]
         );
@@ -523,7 +523,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         $this->add_control(
             'title_color_external',
             [
-                'label' => esc_html__('Color', 'text-domain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .card-title' => 'color: {{VALUE}};'
@@ -564,7 +564,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'text_hover_align',
             [
                 'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
@@ -652,7 +652,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
             ]
         );
         
-        $this->add_control(
+        $this->add_responsive_control(
             'title_hover_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
@@ -709,7 +709,7 @@ class Rkit_Clientgrid extends \Elementor\Widget_Base
         );
 
         // Description
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_hover_align',
             [
                 'label' => esc_html__('Alignment', 'rometheme-for-elementor'),

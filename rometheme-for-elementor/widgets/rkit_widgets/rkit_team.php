@@ -534,6 +534,14 @@ class Rkit_Team extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'image_border',
+                'selector' => '{{WRAPPER}} .rkit-team__img',
+            ]
+        );
+
         $this->add_responsive_control(
             'image_radius',
             [
@@ -1230,7 +1238,7 @@ class Rkit_Team extends \Elementor\Widget_Base
                             if ($settings['social_media_item']) {
                                 foreach ($settings['social_media_item'] as $sm) :
                             ?>
-                                    <div class="elementor-repeater-item-<?php echo esc_attr($sm['_id']) ?> <?php echo esc_attr(strtolower($sm['social_select'])) ?>">
+                                    <div class="<?php echo esc_attr($sm['_id']) ?> <?php echo esc_attr(strtolower($sm['social_select'])) ?>">
                                         <a class="rkit-team__social_item" href="<?php echo esc_url($sm['social_link']['url']) ?>">
                                             <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-team__social_icon']); ?>
                                         </a>

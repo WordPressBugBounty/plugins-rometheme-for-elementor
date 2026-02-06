@@ -36,6 +36,7 @@ class Plugin
         wp_enqueue_style('rkit-social-share', \RomeTheme::widget_url() . 'assets/css/social_share.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-social-icon', \RomeTheme::widget_url() . 'assets/css/social_icon.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-team-style', \RomeTheme::widget_url() . 'assets/css/rkit_team.css', '', \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-team-carousel-style', \RomeTheme::widget_url() . 'assets/css/rkit_team_carousel.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-running_text-style', \RomeTheme::widget_url() . 'assets/css/running_text.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-animated_heading-style', \RomeTheme::widget_url() . 'assets/css/animated_heading.css', '', \RomeTheme::rt_version());
         wp_enqueue_style('rkit-card_slider-style', \RomeTheme::widget_url() . 'assets/css/card_slider.css', '', \RomeTheme::rt_version());
@@ -67,6 +68,7 @@ class Plugin
         wp_enqueue_style('rkit-back-to-top-style', \Rometheme::widget_url() . 'assets/css/back_to_top.css', [], \RomeTheme::rt_version());
         wp_enqueue_style('rkit-video-button-style', \Rometheme::widget_url() . 'assets/css/video_button.css', [], \RomeTheme::rt_version());
         wp_enqueue_style('rkit-glightbox-style', \Rometheme::widget_url() . 'assets/css/glightbox.min.css', [], \RomeTheme::rt_version());
+        wp_enqueue_style('rkit-woo-product-carousel-style', \RomeTheme::widget_url() . 'assets/css/woo_product_carousel.css', '', \RomeTheme::rt_version());
        
     }
 
@@ -78,6 +80,8 @@ class Plugin
         wp_enqueue_script('social-share-script', \RomeTheme::widget_url() . 'assets/js/social_share.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('running-text-script', \RomeTheme::widget_url() . 'assets/js/running_text.js', ['jquery'], \RomeTheme::rt_version(), true);
         wp_enqueue_script('card-slider-script', \RomeTheme::widget_url() . 'assets/js/card_slider.js', ['jquery'], \RomeTheme::rt_version(), false);
+        wp_enqueue_script('woo-product-script', \RomeTheme::widget_url() . 'assets/js/woo_product_carousel.js', ['jquery'], \RomeTheme::rt_version(), false);
+        wp_enqueue_script('rkit-team-carousel-script', \RomeTheme::widget_url() . 'assets/js/team_carousel.js', ['jquery'], \RomeTheme::rt_version(), false);
         wp_enqueue_script('animated-heading-script', \RomeTheme::widget_url() . 'assets/js/animated_heading.js', ['jquery'], \RomeTheme::rt_version(), false);
         wp_enqueue_script('accordion-script', \RomeTheme::widget_url() . 'assets/js/accordion.js', ['jquery'], \RomeTheme::rt_version(), false);
         wp_enqueue_script('bar_chart-script', \RomeTheme::widget_url() . 'assets/js/bar_chart.js', ['jquery'], \RomeTheme::rt_version(), false);

@@ -441,6 +441,9 @@ class Rkit_Video_Button extends \Elementor\Widget_Base
             'selectors' => [
                 '{{WRAPPER}} .rkit-animated-icon-container:hover' => 'border-color: {{VALUE}};',
             ],
+            'condition'=>[
+                'border_icon_border!'=>''
+            ]
         ]);
 
         $this->add_group_control(

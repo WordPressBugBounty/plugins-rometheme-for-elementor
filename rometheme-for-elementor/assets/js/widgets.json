@@ -375,5 +375,26 @@
     "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
     "notes": "link official cooming soon",
     "is_new": true
+  },
+  "woo_product_carousel": {
+    "name": "Woo Product Carousel",
+    "icon": "eicon-products",
+    "class_name": "Rkit_woo_product_carousel",
+    "category": "woocommerce",
+    "status": true,
+    "type": "free",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-product-grid-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/woo-product-grid/",
+    "is_new": true
+  },
+  "team_carousel": {
+    "name": "Team Carousel",
+    "icon": "rtmicon rtmicon-team",
+    "class_name": "Rkit_Team_Carousel",
+    "category": "rkit",
+    "status": true,
+    "type": "free",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-team-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/team/"
   }
 }

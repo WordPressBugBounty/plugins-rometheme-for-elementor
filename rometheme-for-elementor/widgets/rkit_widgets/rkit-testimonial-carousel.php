@@ -233,9 +233,22 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
                 'label_off' => esc_html__('no', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
-                'default' => 'no',
+                'default' => 'yes',
             ]
         );
+
+        // show animation swithcer control
+        $this->add_control('show_hover_animation', [
+            'label' => esc_html('Show Animation', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => esc_html('Yes', 'rometheme-for-elementor'),
+            'label_off' => esc_html('No', 'rometheme-for-elementor'),
+            'return_value' => 'yes',
+            'default' => 'yes',
+            'condition' => [
+                'show_navigation' => 'yes'
+            ]
+        ]);
 
         $this->add_control(
             'next_icon',
@@ -1192,6 +1205,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet' => 'width: {{SIZE}}{{UNIT}};',
                 ],
@@ -1214,6 +1231,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'min' => 0,
                         'max' => 100,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet' => 'height: {{SIZE}}{{UNIT}};',
@@ -1267,6 +1288,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet:hover' => 'width: {{SIZE}}{{UNIT}};',
                 ],
@@ -1289,6 +1314,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'min' => 0,
                         'max' => 100,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet:hover' => 'height: {{SIZE}}{{UNIT}};',
@@ -1318,6 +1347,9 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-pagination-bullet:hover' => 'border-color: {{VALUE}};',
+            ],
+            'condition'=>[
+                'dot_border_normal_border!'=>''
             ]
         ]);
 
@@ -1350,6 +1382,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'max' => 100,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 24
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet.rkit-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
                 ],
@@ -1372,6 +1408,10 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         'min' => 0,
                         'max' => 100,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pagination-bullet.rkit-pagination-bullet-active' => 'height: {{SIZE}}{{UNIT}};',
@@ -1401,6 +1441,9 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-pagination-bullet.rkit-pagination-bullet-active' => 'border-color: {{VALUE}};',
+            ],
+            'condition'=>[
+                'dot_border_normal_border!'=>''
             ]
         ]);
 
@@ -1438,7 +1481,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                     'isLinked' => true,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .button-element-price-table ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-pagination-bullet ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1446,7 +1489,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('arrow_style', [
-            'label' => esc_html('Arrow'),
+            'label' => esc_html('Navigation'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             'condition' => [
                 'show_navigation' => 'yes'
@@ -1476,6 +1519,94 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
+         // navigation spacing control slider
+        $this->add_responsive_control(
+            'spacing_navigation_animation',
+            [
+                'label' => esc_html__('Navigation Spacing', 'rometheme-for-elementor'),
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'description' => 'Adjust the distance of the navigation buttons from the left and right edges. Use negative values (e.g., -20px) to position the buttons outside the carousel area.',
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => -9
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 70
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 64
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-absolute-testimonial-wrapper ' => 'left:{{SIZE}}{{UNIT}} !important; right:{{SIZE}}{{UNIT}} !important;',
+                ],
+                'condition' => [
+                    'show_navigation' => 'yes',
+                    'show_hover_animation' => 'yes'
+                ]
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'navigation_spacing',
+            [
+                'label' => esc_html__('Navigation Spacing', 'rometheme-for-elementor'),
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'description' => 'Adjust the distance of the navigation buttons from the left and right edges. Use negative values (e.g., -20px) to position the buttons outside the carousel area.',
+                'range' => [
+                    'px' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -100,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => -10
+                ],
+                'tablet_default' => [
+                    'unit' => 'px',
+                    'size' => 66
+                ],
+                'mobile_default' => [
+                    'unit' => 'px',
+                    'size' => 61
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-absolute-testimonial-wrapper ' => 'left:{{SIZE}}{{UNIT}} !important; right:{{SIZE}}{{UNIT}} !important;',
+                ],
+                'condition' => [
+                    'show_navigation' => 'yes',
+                    'show_hover_animation!' => 'yes'
+                ]
+            ]
+        );
+
         $this->add_responsive_control(
             'nav_padding',
             [
@@ -1488,29 +1619,29 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control(
-            'nav_margin_next',
-            [
-                'label' => esc_html__('Margin Next Button', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .testimonial-next-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'nav_margin_next',
+        //     [
+        //         'label' => esc_html__('Margin Next Button', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .testimonial-next-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
 
-        $this->add_responsive_control(
-            'nav_margin_prev',
-            [
-                'label' => esc_html__('Margin Previous Button', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
-                'selectors' => [
-                    '{{WRAPPER}} .testimonial-prev-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        // $this->add_responsive_control(
+        //     'nav_margin_prev',
+        //     [
+        //         'label' => esc_html__('Margin Previous Button', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .testimonial-prev-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
 
         $this->start_controls_tabs('nav_tabs');
 
@@ -1569,6 +1700,14 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'name' => 'nav_background_hover',
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
+                'fields_options' => [
+                    'background' => [
+                        'default' => 'classic',
+                    ],
+                    'color' => [
+                        'default' => '#00cea6',
+                    ],
+                ],
             ]
         );
 
@@ -1585,6 +1724,9 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-testimonial-navigation:hover' => 'border-color: {{VALUE}};',
+            ],
+            'condition'=>[
+                'nav_border_normal_border!'=>''
             ]
         ]);
 
@@ -1613,6 +1755,14 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'default' => [
+                    'top' => 12,
+                    'right' => 12,
+                    'bottom' => 12,
+                    'left' => 12,
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-testimonial-navigation' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -1625,6 +1775,7 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $showAnimationNavigation = ($settings['show_hover_animation'] === 'yes') ? 'rkit-animation-hover-testimonial-cr-enabled' : 'rkit-animation-hover-testimonial-cr-disabled';
         $config = [
             'rtl'                => is_rtl(),
             'arrows'            => ($settings['show_navigation'] === 'yes') ? true : false,
@@ -1654,8 +1805,8 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
             ],
         ];
 ?>
-        <div class="rkit-testimonial-carousel" data-config="<?php echo esc_attr(json_encode($config)) ?>">
-            <div class="testimonial-container">
+        <div class="rkit-testimonial-carousel <?= $showAnimationNavigation ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
+            <div class="rkit-absolute-testimonial-wrapper">
                 <?php if ($settings['show_navigation'] === 'yes') : ?>
                     <div class="testimonial-prev-wrapper">
                         <div class="rkit-testimonial-navigation rkit-testimonial-button-prev">
@@ -1663,6 +1814,15 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         </div>
                     </div>
                 <?php endif; ?>
+                <?php if ($settings['show_navigation'] === 'yes') : ?>
+                    <div class="testimonial-next-wrapper">
+                        <div class="rkit-testimonial-navigation rkit-testimonial-button-next">
+                            <?php \Elementor\Icons_Manager::render_icon($settings['next_icon'], ['aria-hidden' => 'true', 'class' => 'navigation-icon']); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="testimonial-container">
                 <div class="swiper-wrapper rkit-testimonial-wrapper <?php echo esc_attr($settings['layout_style']) ?>">
                     <?php foreach ($settings['testi_list'] as $list) : ?>
                         <?php switch ($settings['layout_style']) {
@@ -1883,13 +2043,6 @@ class Rkit_TestimonialCarousel extends \Elementor\Widget_Base
                         } ?>
                     <?php endforeach; ?>
                 </div>
-                <?php if ($settings['show_navigation'] === 'yes') : ?>
-                    <div class="testimonial-next-wrapper">
-                        <div class="rkit-testimonial-navigation rkit-testimonial-button-next">
-                            <?php \Elementor\Icons_Manager::render_icon($settings['next_icon'], ['aria-hidden' => 'true', 'class' => 'navigation-icon']); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
                 <!-- Add pagination -->
                 <?php if ($settings['show_dots'] === 'yes') : ?>
                     <div class="rkit-testimonial-pagination"></div>
