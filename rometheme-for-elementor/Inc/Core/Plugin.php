@@ -80,6 +80,13 @@ class Plugin
             // wizard belum selesai → biarkan
             return;
         }
+
+        if($page === 'rtm-update' || $page === 'romethemekit') {
+            if (get_option('rtmkit_wizard_setup_complete_2.0', false) === false) {
+                wp_safe_redirect(admin_url('admin.php?page=rtmkit-setup-wizard'));
+                exit;
+            }
+        }
     }
 
     public function before_plugin_load()
@@ -105,27 +112,45 @@ class Plugin
             $this->rtm_handle_install_upgrade();
         }, 10, 2);
         add_action('admin_init', function () {
+
             if (!get_option('rtmkit_redirect_wizard')) {
                 return;
             }
+
             if (
                 wp_doing_ajax() ||
                 wp_doing_cron() ||
                 defined('WP_CLI') ||
+                is_network_admin() ||
                 !current_user_can('manage_options')
             ) {
                 return;
             }
 
-            if (isset($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard') {
+            // hindari redirect loop
+            if (!empty($_GET['rtmkit_redirected'])) {
                 return;
             }
 
-            delete_option('rtmkit_redirect_wizard');
+            // jangan redirect kalau sudah di wizard
+            if (!empty($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard') {
+                return;
+            }
 
-            wp_safe_redirect(admin_url('admin.php?page=rtmkit-setup-wizard'));
+            $url = add_query_arg(
+                'rtmkit_redirected',
+                '1',
+                admin_url('admin.php?page=rtmkit-setup-wizard')
+            );
+
+            if (!empty($_GET['page']) && $_GET['page'] === 'rtm-update') {
+                wp_safe_redirect($url);
+                exit;
+            }
+            
+            wp_safe_redirect($url);
             exit;
-        });
+        }, 1);
     }
 
     public function wizard_setup_check()
