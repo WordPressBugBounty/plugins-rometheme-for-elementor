@@ -1,0 +1,10 @@
+{
+  "name": "rometheme/for-elementor",
+  "description": "RomethemeKit for Elementor Plugin",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+        "RTMKit\\" : "Inc"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "postauthor": {
+    "name": "Post Author",
+    "icon": "rtmicon rtmicon-post-author",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postcontent": {
+    "name": "Post Content",
+    "icon": "rtmicon rtmicon-post-content",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postcomment": {
+    "name": "Post Comment",
+    "icon": "rtmicon rtmicon-post-comment",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postexcerpt": {
+    "name": "Post Excerpt",
+    "icon": "rtmicon rtmicon-post-excerpt",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postfeaturedimage": {
+    "name": "Featured Image",
+    "icon": "rtmicon rtmicon-featured-image",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postinfo": {
+    "name": "Post Info",
+    "icon": "rtmicon rtmicon-post-info",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "postnavigation": {
+    "name": "Post Navigation",
+    "icon": "rtmicon rtmicon-post-navigation",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "posttitle": {
+    "name": "Post Title",
+    "icon": "rtmicon rtmicon-post-title",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "archivetitle": {
+    "name": "Archieve Title",
+    "icon": "rtmicon rtmicon-post-title",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "archivepost": {
+    "name": "Archieve Posts",
+    "icon": "rtmicon rtmicon-post-list",
+    "class_name": "",
+    "category": "single_archive",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  }
+}
