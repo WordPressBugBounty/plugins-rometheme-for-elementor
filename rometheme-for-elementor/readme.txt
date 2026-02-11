@@ -199,6 +199,9 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.0.1 - Februaru 10, 2026
+Bug Fix
+
 Version 2.0.0 - February 10, 2026
 New: Improve the user experience by updating the visual interface.
 Improved widget controls and UI consistency
