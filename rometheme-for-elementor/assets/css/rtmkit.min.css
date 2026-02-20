@@ -840,10 +840,10 @@ html {
 }
 #rtmkit-root .list-group-item .list-icon {
   flex: 0 0 auto;
-  color: var(--accent-color);
+  color: var(--secondary-color);
   font-size: 0.8rem;
   margin-right: 0.5rem;
-  background-color: var(--border-color);
+  background-color: var(--accent-color);
   border-radius: 50%;
   padding: 0.2rem;
   display: flex;
@@ -856,7 +856,8 @@ html {
     color 0.3s ease;
 }
 #rtmkit-root .list-group-item .list-icon.list-icon-danger {
-  color: var(--danger-color);
+  color: var(--secondary-color);
+  background-color: var(--danger-color);
 }
 #rtmkit-root .list-group-item:hover .list-icon {
   background-color: var(--accent-color);

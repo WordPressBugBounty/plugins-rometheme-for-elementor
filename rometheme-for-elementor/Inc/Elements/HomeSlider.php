@@ -87,6 +87,20 @@ class HomeSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control('title_tag', [
+            'label' => esc_html('HTML Tag'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'h1' => esc_html('H1'),
+                'h2' => esc_html('H2'),
+                'h3' => esc_html('H3'),
+                'h4' => esc_html('H4'),
+                'h5' => esc_html('H5'),
+                'h6' => esc_html('H6'),
+                'span' => esc_html('SPAN')
+            ],
+            'default' => 'h4'
+        ]);
 
         $home_slider_list = new \Elementor\Repeater();
 
@@ -2128,7 +2142,29 @@ class HomeSlider extends \Elementor\Widget_Base
             'slideStyle' => $settings['slide_style'],
         ];
 
-
+        switch ($settings['title_tag']) {
+            case 'h1':
+                $title_tag = 'h1';
+                break;
+            case 'h2':
+                $title_tag = 'h2';
+                break;
+            case 'h3':
+                $title_tag = 'h3';
+                break;
+            case 'h4':
+                $title_tag = 'h4';
+                break;
+            case 'h5':
+                $title_tag = 'h5';
+                break;
+            case 'h6':
+                $title_tag = 'h6';
+                break;
+            default:
+                $title_tag = 'h3';
+                break;
+        }
 
 
 ?>
@@ -2164,7 +2200,7 @@ class HomeSlider extends \Elementor\Widget_Base
 
 
                                         </div>
-                                        <span class="hs-title hs-mw <?php echo esc_attr($settings['title_animation']) ?>"><?php echo esc_html($li['home_slider_title']); ?></span>
+                                        <<?php echo esc_attr($title_tag); ?> class="hs-title hs-mw <?php echo esc_attr($settings['title_animation']) ?>"><?php echo esc_html($li['home_slider_title']); ?></<?php echo esc_attr($title_tag); ?>>
                                         <span class="hs-description hs-mw <?php echo esc_attr($settings['description_animation']) ?> "><?php echo esc_html($li['home_slider_description']); ?></span>
                                         <?php if (($settings['show_button']) == 'yes') {  ?>
                                             <div class="rkit-homeslider-item-button">

@@ -18,7 +18,7 @@ class WidgetModule
     {
         \RTMKit\Modules\Widgets\WidgetStorage::instance()->init();
         add_action('elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories']);
-        add_action('wp_enqueue_scripts', [$this, 'enqueue_widget_style']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_widget_style'], 1);
         new \RTMKit\Modules\Helper\SavedTemplateEditor();
     }
 
@@ -46,18 +46,13 @@ class WidgetModule
         );
     }
 
-    public function enqueue_widget_style()
+    public function register_widget_scripts()
     {
         $widgets_css = scandir(RTM_KIT_DIR . 'Inc/Widgets/assets/css');
-        $element_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css');
         $widget_js = scandir(RTM_KIT_DIR . 'Inc/Widgets/assets/js');
-        $element_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js');
-        $lib_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js/lib');
-        $lib_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css/lib');
-
         foreach ($widgets_css as $css_file) {
             if (pathinfo($css_file, PATHINFO_EXTENSION) === 'css') {
-                wp_register_style(
+                wp_enqueue_style(
                     'rtmkit-widget-' . pathinfo($css_file, PATHINFO_FILENAME),
                     RTM_KIT_URL . 'Inc/Widgets/assets/css/' . $css_file,
                     [],
@@ -65,6 +60,30 @@ class WidgetModule
                 );
             }
         }
+
+        foreach ($widget_js as $js_file) {
+            if (pathinfo($js_file, PATHINFO_EXTENSION) === 'js') {
+                wp_enqueue_script(
+                    'rtmkit-widget-' . pathinfo($js_file, PATHINFO_FILENAME),
+                    RTM_KIT_URL . 'Inc/Widgets/assets/js/' . $js_file,
+                    ['jquery'],
+                    RTM_KIT_VERSION,
+                    true
+                );
+            }
+        }
+    }
+
+    public function enqueue_widget_style()
+    {
+
+        $element_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css');
+        $element_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js');
+        $lib_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js/lib');
+        $lib_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css/lib');
+
+        $this->register_widget_scripts();
+
         foreach ($element_css as $css_file) {
             if (pathinfo($css_file, PATHINFO_EXTENSION) === 'css') {
                 wp_register_style(
@@ -75,20 +94,10 @@ class WidgetModule
                 );
             }
         }
-        foreach ($widget_js as $js_file) {
-            if (pathinfo($js_file, PATHINFO_EXTENSION) === 'js') {
-                wp_register_script(
-                    'rtmkit-widget-' . pathinfo($js_file, PATHINFO_FILENAME),
-                    RTM_KIT_URL . 'Inc/Widgets/assets/js/' . $js_file,
-                    ['jquery'],
-                    RTM_KIT_VERSION,
-                    true
-                );
-            }
-        }
+
         foreach ($element_js as $js_file) {
             if (pathinfo($js_file, PATHINFO_EXTENSION) === 'js') {
-                wp_register_script(
+                wp_enqueue_script(
                     'rtmkit-element-' . pathinfo($js_file, PATHINFO_FILENAME),
                     RTM_KIT_URL . 'Inc/Elements/assets/js/' . $js_file,
                     ['jquery'],
@@ -100,7 +109,7 @@ class WidgetModule
 
         foreach ($lib_js as $js_file) {
             if (pathinfo($js_file, PATHINFO_EXTENSION) === 'js') {
-                wp_register_script(
+                wp_enqueue_script(
                     'rtmkit-lib-' . pathinfo($js_file, PATHINFO_FILENAME),
                     RTM_KIT_URL . 'Inc/Elements/assets/js/lib/' . $js_file,
                     ['jquery'],

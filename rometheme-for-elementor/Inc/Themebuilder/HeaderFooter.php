@@ -69,7 +69,7 @@ class HeaderFooter
         foreach ($headers as $header) {
             $header_id = $header->ID;
             $condition = get_post_meta($header_id, 'rometheme_template_condition', true) ?? true;
-            if ($condition && \RTMKit\Modules\Themebuilder\ThemebuilderModule::instance()->check_condition($condition)) {
+            if (\RTMKit\Modules\Themebuilder\ThemebuilderModule::instance()->check_condition($condition)) {
                 $headerHTML = '<header itemtype="https://schema.org/WPHeader" itemscope="itemscope">%s</header>';
                 $fullHeader =
                     sprintf(
@@ -91,9 +91,9 @@ class HeaderFooter
 
         foreach ($footers as $footer) {
             $footer_id = $footer->ID;
-            $condition = get_post_meta($footer_id, 'rometheme_template_condition', true);
+            $condition = get_post_meta($footer_id, 'rometheme_template_condition', true) ?? true;
 
-            if ($condition && \RTMKit\Modules\Themebuilder\ThemebuilderModule::instance()->check_condition($condition)) {
+            if (\RTMKit\Modules\Themebuilder\ThemebuilderModule::instance()->check_condition($condition)) {
                 $footerHTML = '<footer itemtype="https://schema.org/WPFooter" itemscope="itemscope">%s</footer>';
                 $fullFooter =
                     sprintf(

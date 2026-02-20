@@ -41,7 +41,7 @@ class VideoButton extends \Elementor\Widget_Base
 
     public function get_style_depends()
     {
-        return ['rtmkit-element-video_button' ,'rtmkit-lib-glightbox.min'];
+        return ['rtmkit-element-video_button' ,'rtmkit-lib-glightbox.min' , 'rtmkit-lib-plyr'];
     }
 
     public function get_script_depends()

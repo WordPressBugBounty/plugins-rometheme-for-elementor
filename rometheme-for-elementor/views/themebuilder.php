@@ -23,6 +23,11 @@ $active_tabs = (isset($_POST['themebuilder'])) ? sanitize_text_field($_POST['the
 $isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
 $has_woocommerce = is_plugin_active('woocommerce/woocommerce.php');
 
+
+if (!$has_woocommerce) {
+    unset($active_themebuilder_key['rtm_shop'], $active_themebuilder_key['archive_product'], $active_themebuilder_key['single_product']);
+}
+
 ?>
 
 <div class="px-4 mb-5 scroll-behavior-smooth">

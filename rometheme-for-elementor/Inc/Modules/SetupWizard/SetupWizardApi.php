@@ -29,12 +29,11 @@ class SetupWizardApi
         $plugin_slug = $_POST['plugin_slug'];
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
         $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
-        if ($plugin_slug === 'rtmkitpro') {
-            if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
+        if ($plugin_slug === 'rtmkitpro' && file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
                 $proCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')['Version'] ?? null;
-                $isProActive = \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() ?? false;
+                // $isProActive = \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() ?? false;
 
-                if ($isProActive && $proCurrentVersion) {
+                if ($proCurrentVersion) {
                     $pluginProInfo = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info('rtmkitpro');
                     $proVersion = $pluginProInfo ? $pluginProInfo->version : null;
                     $proMinVersion = $plugins['rtmkitpro']['min_version'] ?? null;
@@ -48,11 +47,11 @@ class SetupWizardApi
                         'is_installed' => true,
                     ]);
                 }
-            }
-            wp_send_json_success([
-                'is_active' => false,
-                'is_installed' => false,
-            ]);
+            // }
+            // wp_send_json_success([
+            //     'is_active' => false,
+            //     'is_installed' => false,
+            // ]);
         } elseif ($plugin_slug === 'rtmform') {
 
             $formInfo = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info('rtmform');
@@ -81,6 +80,11 @@ class SetupWizardApi
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
         $email = sanitize_text_field($_POST['email']);
         $url = "https://www.rometheme.net/wp-content/plugins/newsletter-api/add.php?nk=c49c06ac22bb6f00df99f832bbd597b2eddc4cc2&ne=" . $email . "&nn=" . $email;
+        if(file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
+            $url .= "&nl=2";
+        } else {
+            $url .= "&nl=3";
+        }
         $res = wp_remote_post($url);
         if (!is_wp_error($res)) {
             wp_send_json_success("OK");
@@ -93,7 +97,8 @@ class SetupWizardApi
 
         $finish = update_option('rtmkit_wizard_setup_complete_2.0', 'completed');
 
-        if($finish) {
+        if ($finish) {
+            delete_option('rtmkit_redirect_wizard');
             wp_send_json_success('success');
         } else {
             wp_send_json_error('failed');

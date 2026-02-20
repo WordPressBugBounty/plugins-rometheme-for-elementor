@@ -30,8 +30,8 @@ class ThemebuilderModule
         $labels = array(
             'name'               => esc_html__('Rometheme Templates', 'rometheme-for-elementor'),
             'singular_name'      => esc_html__('Templates', 'rometheme-for-elementor'),
-            'menu_name'          => esc_html__('Header Footer', 'rometheme-for-elementor'),
-            'name_admin_bar'     => esc_html__('Header Footer', 'rometheme-for-elementor'),
+            'menu_name'          => esc_html__('Rometheme Templates', 'rometheme-for-elementor'),
+            'name_admin_bar'     => esc_html__('Rometheme Templates', 'rometheme-for-elementor'),
             'add_new'            => esc_html__('Add New', 'rometheme-for-elementor'),
             'add_new_item'       => esc_html__('Add New Template', 'rometheme-for-elementor'),
             'new_item'           => esc_html__('New Template', 'rometheme-for-elementor'),
@@ -107,9 +107,9 @@ class ThemebuilderModule
         return $single_template;
     }
 
-    public function check_condition($conditions)
+    public function check_condition($conditions = [])
     {
-        if (empty($conditions)) {
+        if (empty($conditions) || !is_array($conditions)) {
             return true;
         }
 

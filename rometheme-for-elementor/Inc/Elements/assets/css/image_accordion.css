@@ -26,10 +26,6 @@
   }
 }
 
-.item-ia-click {
-  position: relative;
-}
-
 .item-text {
   opacity: 0;
   display: flex;

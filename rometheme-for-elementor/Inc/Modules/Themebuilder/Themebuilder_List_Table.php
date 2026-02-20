@@ -2,7 +2,7 @@
 
 namespace RTMKit\Modules\Themebuilder;
 
-if (! class_exists('WP_List_Table')) {
+if (!class_exists('WP_List_Table')) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
@@ -15,8 +15,8 @@ class Themebuilder_List_Table extends \WP_List_Table
     {
         parent::__construct([
             'singular' => __('Themebuilder', 'rometheme-for-elementor'),
-            'plural'   => __('Themebuilders', 'rometheme-for-elementor'),
-            'ajax'     => false,
+            'plural' => __('Themebuilders', 'rometheme-for-elementor'),
+            'ajax' => false,
         ]);
     }
 
@@ -34,7 +34,7 @@ class Themebuilder_List_Table extends \WP_List_Table
 
         $this->datas = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()
             ->get_themebuilder_data($args);
-        $status  = isset($_POST['status']) ? sanitize_text_field($_POST['status']) : 'all';
+        $status = isset($_POST['status']) ? sanitize_text_field($_POST['status']) : 'all';
         $base_url = remove_query_arg(['status', 'paged']);
 
         $counts = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()
@@ -43,7 +43,7 @@ class Themebuilder_List_Table extends \WP_List_Table
         $views = [];
         foreach ($counts as $key => $count) {
             $class = ($status === $key) ? 'current' : '';
-            $url   = add_query_arg('status', $key, $base_url);
+            $url = add_query_arg('status', $key, $base_url);
 
             $views[$key] = sprintf(
                 '<a  class="link table-link %s" data-status="%s">%s <span class="count">(%d)</span></a>',
@@ -67,7 +67,7 @@ class Themebuilder_List_Table extends \WP_List_Table
     {
         $singular = $this->_args['singular'];
         $this->screen->render_screen_reader_content('heading_list');
-?>
+        ?>
         <table class="wp-list-table <?php echo implode(' ', $this->get_table_classes()); ?>">
             <?php $this->print_table_description(); ?>
             <thead>
@@ -76,12 +76,11 @@ class Themebuilder_List_Table extends \WP_List_Table
                 </tr>
             </thead>
 
-            <tbody id="the-list"
-                <?php
-                if ($singular) {
-                    echo " data-wp-lists='list:$singular'";
-                }
-                ?>>
+            <tbody id="the-list" <?php
+            if ($singular) {
+                echo " data-wp-lists='list:$singular'";
+            }
+            ?>>
                 <?php $this->display_rows_or_placeholder(); ?>
             </tbody>
 
@@ -92,12 +91,15 @@ class Themebuilder_List_Table extends \WP_List_Table
             </tfoot>
 
         </table>
-<?php
+        <?php
     }
 
     public function prepare_items()
     {
         $args = [];
+        $woo_types = ['single_product', 'archive_product'];
+        $has_woocommerce = is_plugin_active('woocommerce/woocommerce.php');
+
         $pro_types = ['error_404', 'archive_post', 'search' , 'archive' , 'single_post' , 'search_results'];
 
         if (isset($_POST['status']) && $_POST['status'] !== 'all') {
@@ -123,8 +125,8 @@ class Themebuilder_List_Table extends \WP_List_Table
             $no = 0;
             while ($this->datas->have_posts()) {
                 $this->datas->the_post();
-                $id_post   = intval(get_the_ID());
-                $type      = get_post_meta($id_post, 'rometheme_template_type', true);
+                $id_post = intval(get_the_ID());
+                $type = get_post_meta($id_post, 'rometheme_template_type', true);
                 $no++;
                 if (in_array($type, $pro_types, true)) {
                     if (class_exists('\\RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
@@ -133,65 +135,76 @@ class Themebuilder_List_Table extends \WP_List_Table
                         continue;
                     }
                 }
+                if (in_array($type, $woo_types, true)) {
+                    if (
+                        class_exists('\\RTMKitPro\\Core\\Plugin') &&
+                        \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() &&
+                        $has_woocommerce
+                    ) {
+                        //do nothing
+                    } else {
+                        continue;
+                    }
+                }
                 if ($_POST['themebuilder'] === 'form') {
                     $entries = \RomethemeForm\Form\Form::count_entries($id_post);
                     $shortcode = get_post_meta($id_post, 'rtform_shortcode', true);
-                    $status    = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
+                    $status = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
                     $posts[] = [
                         'no' => $no,
-                        'ID'       => $id_post,
-                        'title'    => get_the_title(),
-                        'author'   => get_the_author(),
-                        'shortcode'     => $shortcode,
-                        'entries'   => $entries,
-                        'status'   => $status,
-                        'date'     => get_the_date('Y/m/d H:i a'),
+                        'ID' => $id_post,
+                        'title' => get_the_title(),
+                        'author' => get_the_author(),
+                        'shortcode' => $shortcode,
+                        'entries' => $entries,
+                        'status' => $status,
+                        'date' => get_the_date('Y/m/d H:i a'),
                     ];
                 } else {
-                    $active    = get_post_meta($id_post, 'rometheme_template_active', true);
-                    $condition    = get_post_meta($id_post, 'rometheme_template_condition', true);
-                    $status    = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
+                    $active = get_post_meta($id_post, 'rometheme_template_active', true);
+                    $condition = get_post_meta($id_post, 'rometheme_template_condition', true);
+                    $status = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
                     $posts[] = [
                         'no' => $no,
-                        'ID'       => $id_post,
-                        'title'    => get_the_title(),
-                        'author'   => get_the_author(),
-                        'type'     => $type,
-                        'active'   => $active,
-                        'status'   => $status,
+                        'ID' => $id_post,
+                        'title' => get_the_title(),
+                        'author' => get_the_author(),
+                        'type' => $type,
+                        'active' => $active,
+                        'status' => $status,
                         'display' => $condition,
-                        'date'     => get_the_date('Y/m/d H:i a'),
+                        'date' => get_the_date('Y/m/d H:i a'),
                     ];
                 }
             }
         }
 
-        $columns  = $this->get_columns();
-        $hidden   = [];
+        $columns = $this->get_columns();
+        $hidden = [];
 
         $this->_column_headers = [$columns, $hidden];
-        $this->items           = $posts;
+        $this->items = $posts;
     }
 
     public function get_columns()
     {
         if ($_POST['themebuilder'] === 'form') {
-            $fields =  [
+            $fields = [
                 'no' => __('No', 'rometheme-for-elementor'),
-                'title'   => __('Title', 'rometheme-for-elementor'),
-                'shortcode'  => __('Shortcode', 'rometheme-for-elementor'),
-                'entries'    => __('Entries', 'rometheme-for-elementor'),
-                'author'  => __('Author', 'rometheme-for-elementor'),
-                'date'    => __('Date', 'rometheme-for-elementor'),
+                'title' => __('Title', 'rometheme-for-elementor'),
+                'shortcode' => __('Shortcode', 'rometheme-for-elementor'),
+                'entries' => __('Entries', 'rometheme-for-elementor'),
+                'author' => __('Author', 'rometheme-for-elementor'),
+                'date' => __('Date', 'rometheme-for-elementor'),
             ];
         } else {
-            $fields =  [
+            $fields = [
                 'no' => __('No', 'rometheme-for-elementor'),
-                'title'   => __('Title', 'rometheme-for-elementor'),
-                'type'  => __('Type', 'rometheme-for-elementor'),
-                'display'    => __('Display', 'rometheme-for-elementor'),
-                'author'  => __('Author', 'rometheme-for-elementor'),
-                'date'    => __('Date', 'rometheme-for-elementor'),
+                'title' => __('Title', 'rometheme-for-elementor'),
+                'type' => __('Type', 'rometheme-for-elementor'),
+                'display' => __('Display', 'rometheme-for-elementor'),
+                'author' => __('Author', 'rometheme-for-elementor'),
+                'date' => __('Date', 'rometheme-for-elementor'),
             ];
         }
 
@@ -212,7 +225,7 @@ class Themebuilder_List_Table extends \WP_List_Table
     protected function column_title($item)
     {
         $id_post = $item['ID'];
-        $status  = get_post_status($id_post);
+        $status = get_post_status($id_post);
         $data = [];
         if ($status === 'trash') {
             $restoreURL = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_restore_post_link($id_post);
@@ -231,7 +244,7 @@ class Themebuilder_List_Table extends \WP_List_Table
             ];
         } else {
             // ✅ Kalau status bukan Trash → Edit / Elementor / Trash
-            $edit_link      = get_edit_post_link($id_post, 'display');
+            $edit_link = get_edit_post_link($id_post, 'display');
             $edit_elementor = str_replace('action=edit', 'action=elementor', $edit_link);
 
             if ($_POST['themebuilder'] === 'form') {
@@ -251,7 +264,7 @@ class Themebuilder_List_Table extends \WP_List_Table
             }
 
             $actions = [
-                'edit'   => sprintf(
+                'edit' => sprintf(
                     '<a class="link action-link %sedit-link" href="%s" data="%s">%s</a>',
                     ($_POST['themebuilder'] === 'form') ? esc_attr('form-') : '',
                     esc_url($edit_link),
@@ -333,31 +346,31 @@ class Themebuilder_List_Table extends \WP_List_Table
             'front_page' => 'Front Page',
             'error_404' => '404 Page',
             'archives' => [
-                'all'           => 'All Archives',
-                'author'        => 'Author Archive',
-                'search'        => 'Search Results',
-                'post_archive'  => 'Post Archive',
-                'categories'    => 'Categories',
-                'tags'          => 'Tags',
+                'all' => 'All Archives',
+                'author' => 'Author Archive',
+                'search' => 'Search Results',
+                'post_archive' => 'Post Archive',
+                'categories' => 'Categories',
+                'tags' => 'Tags',
             ],
             'singular' => [
-                'all'           => 'All Singular',
-                'front_page'    => 'Front Page',
-                'posts'         => 'Posts',
+                'all' => 'All Singular',
+                'front_page' => 'Front Page',
+                'posts' => 'Posts',
                 'post_category' => 'Post Category',
-                'post_tag'      => 'Post Tag',
-                'post_author'   => 'Post Author',
-                'pages'         => 'Pages',
-                'page_author'   => 'Page by Author',
-                'author'        => 'By Author',
+                'post_tag' => 'Post Tag',
+                'post_author' => 'Post Author',
+                'pages' => 'Pages',
+                'page_author' => 'Page by Author',
+                'author' => 'By Author',
             ],
             'woocommerce' => [
-                'shop'              => 'Shop Page',
-                'product_archive'   => 'Product Archive',
-                'single_product'    => 'Single Product',
+                'shop' => 'Shop Page',
+                'product_archive' => 'Product Archive',
+                'single_product' => 'Single Product',
                 'product_categories' => 'Product Categories',
-                'product_tags'      => 'Product Tags',
-                'product_author'    => 'Product by Author',
+                'product_tags' => 'Product Tags',
+                'product_author' => 'Product by Author',
             ],
         ];
     }

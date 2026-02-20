@@ -174,11 +174,11 @@ class ImageGallery extends \Elementor\Widget_Base
                 'label' => esc_html__('Lightbox', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'default' => esc_html('Default'),
+                    // 'default' => esc_html('Default'),
                     'yes' => esc_html('Yes'),
                     'no' => esc_html('No'),
                 ],
-                'default' => 'default',
+                'default' => 'yes',
             ]
         );
         $this->end_controls_section();

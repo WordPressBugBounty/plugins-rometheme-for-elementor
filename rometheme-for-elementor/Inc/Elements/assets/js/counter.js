@@ -5,7 +5,6 @@ jQuery(window).on("elementor/frontend/init", function () {
       const counterContainer = $scope.find(".rkit-counter");
       const counter = counterContainer.find(".odometer");
       let config = counter.data("config");
-      console.log(config);
       let counterEl = counter[0];
       let opt = {
         root: null,

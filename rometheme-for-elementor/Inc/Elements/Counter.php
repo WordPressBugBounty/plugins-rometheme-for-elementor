@@ -245,7 +245,7 @@ class Counter extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-counter-wrapper, {{WRAPPER}} .rkit-counter-container' => 'align-items:{{VALUE}}'
+                    '{{WRAPPER}} .rkit-counter-wrapper, {{WRAPPER}} .rkit-counter-container' => 'align-items:{{VALUE}} ; text-align: {{VALUE}};',
                 ]
             ]
         );

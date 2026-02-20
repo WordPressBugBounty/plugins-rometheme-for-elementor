@@ -1306,6 +1306,7 @@ class ImageAccordion extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
     }
 
 
@@ -1341,7 +1342,7 @@ class ImageAccordion extends \Elementor\Widget_Base
 
 
 
-?>
+        ?>
 
         <div class="container-image-accordion">
             <div class="gallery-wrap" data-animate="<?php echo $settings['container_animation'] ?>">
@@ -1358,7 +1359,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                     if (!empty($li['ia_card_link']['url'])) {
                         $this->add_link_attributes('ia_card_link_' . $li['_id'], $li['ia_card_link']);
                     }
-                ?>
+                    ?>
                     <?php
                     $image_html_url = \Elementor\Group_Control_Image_Size::get_attachment_image_html($li, 'thumbnail', 'image_acc');
                     $image_html_url = str_replace('<img ', '<img class="" ', $image_html_url);
@@ -1396,7 +1397,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                                         </a>
                                     <?php } ?>
                                 </div>
-                            <?php
+                                <?php
                             } ?>
                         </div>
                     </div>
@@ -1407,7 +1408,7 @@ class ImageAccordion extends \Elementor\Widget_Base
 
 
 
-<?php
+        <?php
     }
 }
 ?>

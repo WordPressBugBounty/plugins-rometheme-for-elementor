@@ -1,4 +1,5 @@
 jQuery(window).on("elementor/frontend/init", function () {
+  const elementor = window.elementor;
   elementorFrontend.hooks.addAction(
     "frontend/element_ready/rkit-accordion.default",
     function ($scope, $) {
@@ -87,25 +88,29 @@ jQuery(window).on("elementor/frontend/init", function () {
         }
       });
 
-      jQuery(document).on("click", ".accordion-edit-template-btn", function (e) {
-        e.preventDefault();
+      jQuery(document).on(
+        "click",
+        ".accordion-edit-template-btn",
+        function (e) {
+          e.preventDefault();
 
-        const targetUrl =
-          jQuery(this).attr("href") || jQuery(this).data("href");
-        if (!targetUrl) return console.warn("No target URL found.");
+          const targetUrl =
+            jQuery(this).attr("href") || jQuery(this).data("href");
+          if (!targetUrl) return console.warn("No target URL found.");
 
-        window.parent.postMessage(
-          {
-            action: "open-saved-template-editor",
-            url: targetUrl,
-          },
-          "*",
-        );
-      });
+          window.parent.postMessage(
+            {
+              action: "open-saved-template-editor",
+              url: targetUrl,
+            },
+            "*",
+          );
+        },
+      );
     },
   );
 
-  elementor.hooks.addAction(
+  elementorFrontend.hooks.addAction(
     "panel/open_editor/widget",
     function (panel, model, view) {
       const settings = model.get("settings");
@@ -116,6 +121,11 @@ jQuery(window).on("elementor/frontend/init", function () {
       hideRepeaterIconField(showIconHeading);
     },
   );
+
+  if (!window.elementor || !elementor.channels || !elementor.channels.editor) {
+    // console.warn("Elementor editor not ready");
+    return;
+  }
 
   elementor.channels.editor.on("change", function (panel, model) {
     const currentWidget = elementor

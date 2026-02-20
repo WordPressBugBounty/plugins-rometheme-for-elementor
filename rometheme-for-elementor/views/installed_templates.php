@@ -249,9 +249,9 @@ $isProActive = class_exists('\RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Lice
                 </div>
             </div>
         </div>
-        <?php foreach ($datas['data_template'] as $data) :
-            $manifest = json_decode(file_get_contents($rtmTemplateDir . '/' . $data['id'] . '/manifest.json'));
-            $imgurl = $rtmTemplateUrl . '/' . $data['id'] . '/' . $manifest->templates[0]->screenshot;
+        <?php foreach ($datas['data_template'] as $data) : 
+            $manifest = json_decode(file_get_contents($rtmTemplateDir . '/' . $data['hash_id'] . '/manifest.json'));
+            $imgurl = $rtmTemplateUrl . '/' . $data['hash_id'] . '/' . $manifest->templates[0]->screenshot;
         ?>
             <div class="col">
                 <div class="card rounded-4 shadow-sm p-3 h-100 gap-3">
@@ -261,8 +261,8 @@ $isProActive = class_exists('\RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Lice
                     <div class="card-body d-flex flex-column gap-3 h-100 justify-content-between p-0">
                         <h5 class="card-title"><?php echo esc_html($manifest->title) ?></h5>
                         <div class="d-flex flex-row gap-2">
-                            <button class="btn btn-secondary rounded-2 view-template" data-template="<?php echo esc_attr($data['id']) ?>"><i class="far fa-eye"></i>View Kit</button>
-                            <button class="btn btn-danger rounded-2 delete-template" data-template="<?php echo esc_attr($data['id']) ?>"><i class="far fa-trash-can"></i>Delete</a>
+                            <button class="btn btn-secondary rounded-2 view-template" data-template="<?php echo esc_attr($data['hash_id']) ?>"><i class="far fa-eye"></i>View Kit</button>
+                            <button class="btn btn-danger rounded-2 delete-template" data-template="<?php echo esc_attr($data['hash_id']) ?>"><i class="far fa-trash-can"></i>Delete</button>
                         </div>
                     </div>
                 </div>

@@ -48,7 +48,7 @@ function switcher(switchElement, switchTarget) {
 
     switchs.forEach((el) => {
       el.addEventListener("change", () =>
-        checkEnableAll(switchElement, switchs)
+        checkEnableAll(switchElement, switchs),
       );
     });
 
@@ -79,7 +79,7 @@ function resetAllWidgets() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       )
         .then((res) => res.json())
         .then((response) => {
@@ -129,7 +129,7 @@ function saveWidgetsOption() {
       const promises = types.map((e) => {
         let data = {};
         const switchWidget = document.querySelectorAll(
-          `[data-widget-type="${e}"] input.switch-status`
+          `[data-widget-type="${e}"] input.switch-status`,
         );
 
         switchWidget.forEach((el) => {
@@ -144,7 +144,7 @@ function saveWidgetsOption() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
-          }
+          },
         )
           .then((res) => res.json())
           .then((response) => {
@@ -156,10 +156,10 @@ function saveWidgetsOption() {
                 theme: "dark",
               });
               const activeWidgets = document.querySelectorAll(
-                `[data-widget-type] input.switch-status:checked`
+                `[data-widget-type] input.switch-status:checked`,
               );
               document.querySelector(
-                "#active-widgets"
+                "#active-widgets",
               ).textContent = `${activeWidgets.length} Active Widgets`;
             } else {
               window.reactToast.error(response.data.message, {
@@ -224,7 +224,7 @@ function saveModules() {
       const promise = type.map((e) => {
         let data = {};
         const switchExtension = document.querySelectorAll(
-          `[data-module-type="${e}"] input.switch-status`
+          `[data-module-type="${e}"] input.switch-status`,
         );
         switchExtension.forEach((el) => {
           data[el.name] = el.checked;
@@ -238,7 +238,7 @@ function saveModules() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
-          }
+          },
         )
           .then((res) => res.json())
           .then((response) => {
@@ -286,7 +286,7 @@ function reset_modules() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       )
         .then((res) => res.json())
         .then((response) => {
@@ -336,7 +336,7 @@ function tabs() {
 
         // aktifkan sesuai tabId
         const activeBtn = el.querySelector(
-          `.tab-nav .nav-link[data-tabs="${tabId}"]`
+          `.tab-nav .nav-link[data-tabs="${tabId}"]`,
         );
         const target = document.querySelector(tabId);
 
@@ -389,7 +389,7 @@ const ThemebuilderTabs = () => {
     btn.forEach((b) => b.classList.remove("active"));
     // aktifkan sesuai tabId
     const activeBtn = document.querySelector(
-      `.themebuilder.tabs .nav-link[data-tabs="${tabId}"]`
+      `.themebuilder.tabs .nav-link[data-tabs="${tabId}"]`,
     );
     // const target = document.getElementById(tabId);
 
@@ -582,7 +582,7 @@ function editFormThemebuilder() {
       toogle_form_notification(editFormModalEl);
 
       const switchConfirmation = editFormModalEl.querySelector(
-        "#switch_confirmation"
+        "#switch_confirmation",
       );
       const switchNotif = editFormModalEl.querySelector("#switch_notification");
       switchConfirmation.onchange = (e) => {
@@ -668,10 +668,10 @@ function addThemebuilder() {
           toogle_form_confirmation(addModalFormEl);
           toogle_form_notification(addModalFormEl);
           const switchConfirmation = addModalFormEl.querySelector(
-            "#switch_confirmation"
+            "#switch_confirmation",
           );
           const switchNotif = addModalFormEl.querySelector(
-            "#switch_notification"
+            "#switch_notification",
           );
           switchConfirmation.onchange = (e) => {
             toogle_form_confirmation(addModalFormEl);
@@ -795,7 +795,7 @@ function submitForm(modalEl, modal, editor = false) {
                     autoClose: 5000,
                     className: "rtmkit-toast",
                     theme: "dark",
-                  }
+                  },
                 );
                 modalEditor.style.display = "none";
                 render_themebuilder_tab();
@@ -891,7 +891,7 @@ function editThemebuilder() {
             } else {
               console.warn("Tidak ada data.conditions pada data edit:", data);
             }
-          }
+          },
         );
       });
     });
@@ -953,14 +953,10 @@ function addCondition(savedConditions = null, modalEl) {
   };
 
   // Pastikan tombol .add-condition hanya terdaftar 1 kali
-  if (!modalEl.dataset.listenerBound) {
-    modalEl.querySelectorAll(".add-condition").forEach((btn) => {
-      btn.addEventListener("click", (e) =>
-        handleAddCondition(e, null, null, modalEl)
-      );
-    });
-    modalEl.dataset.listenerBound = "true";
-  }
+
+  modalEl.querySelectorAll(".add-condition").forEach((btn) => {
+    btn.onclick = (e) => handleAddCondition(e, null, null, modalEl);
+  });
 
   function handleAddCondition(e, predefined = null, type = "include", modalEl) {
     e?.preventDefault();
@@ -989,7 +985,7 @@ function addCondition(savedConditions = null, modalEl) {
     const renderSub = (
       pageVal,
       selectedSub = null,
-      selectedSpecific = null
+      selectedSpecific = null,
     ) => {
       wrapper
         .querySelectorAll(".sub-select, .specific-select")
@@ -1013,7 +1009,7 @@ function addCondition(savedConditions = null, modalEl) {
 
         subSelect.addEventListener("change", () => {
           const selected = subOptions[pageVal].find(
-            (o) => o.val === subSelect.value
+            (o) => o.val === subSelect.value,
           );
           wrapper
             .querySelectorAll(".specific-select")
@@ -1052,7 +1048,7 @@ function addCondition(savedConditions = null, modalEl) {
                       data?.data?.map((item) => ({
                         id: item.id,
                         text: item.text,
-                      })) || []
+                      })) || [],
                     );
                   })
                   .catch(() => callback());
@@ -1105,14 +1101,14 @@ function addCondition(savedConditions = null, modalEl) {
               null,
               { page: predefined.page, sub: { [subKey]: subValue } },
               type,
-              modalEl
+              modalEl,
             );
         });
       } else {
         renderSub(
           predefined.page,
           predefined.sub ? Object.keys(predefined.sub)[0] : null,
-          predefined.sub ? Object.values(predefined.sub)[0] : null
+          predefined.sub ? Object.values(predefined.sub)[0] : null,
         );
       }
     }
@@ -1125,7 +1121,7 @@ function addCondition(savedConditions = null, modalEl) {
     ["include", "exclude"].forEach((type) => {
       if (Array.isArray(savedConditions[type])) {
         savedConditions[type].forEach((cond) =>
-          handleAddCondition(null, cond, type, modalEl)
+          handleAddCondition(null, cond, type, modalEl),
         );
       }
     });
@@ -1183,10 +1179,10 @@ function buildConditions(forms) {
   let conditions = { include: [], exclude: [] };
 
   const inputConditionInclude = forms.querySelectorAll(
-    ".condition-input[data-condition-type=include]"
+    ".condition-input[data-condition-type=include]",
   );
   const inputConditionExclude = forms.querySelectorAll(
-    ".condition-input[data-condition-type=exclude]"
+    ".condition-input[data-condition-type=exclude]",
   );
 
   // Handle Include
@@ -1405,7 +1401,7 @@ function downloadTemplate() {
           {
             method: "GET",
             headers: {},
-          }
+          },
         )
           .then((res) => res.json())
           .then((response) => {
@@ -1463,7 +1459,7 @@ function uploadTemplate() {
     if (!files.length) return;
 
     const zipFiles = [...files].filter((f) =>
-      f.name.toLowerCase().endsWith(".zip")
+      f.name.toLowerCase().endsWith(".zip"),
     );
     if (!zipFiles.length) {
       prompt.innerHTML = `<span style="color:red">❌ Hanya file .zip yang diperbolehkan</span>`;
@@ -1481,7 +1477,7 @@ function uploadTemplate() {
   fileInput.addEventListener("change", (e) => {
     const files = e.target.files;
     const zipFiles = [...files].filter((f) =>
-      f.name.toLowerCase().endsWith(".zip")
+      f.name.toLowerCase().endsWith(".zip"),
     );
 
     if (!zipFiles.length) {
@@ -1548,7 +1544,7 @@ function deleteTemplate() {
           `${rtmkit_ajax.ajax_url}?action=delete_template&template=${templateID}&nonce=${rtmkit_ajax.nonce}`,
           {
             method: "GET",
-          }
+          },
         )
           .then((res) => res.json())
           .then((response) => {
@@ -1659,7 +1655,7 @@ function importTemplates() {
       const importAsPage =
         importAllModalEl.querySelector("#import-as-page")?.checked ?? false;
       const importWithoutImages = importAllModalEl.querySelector(
-        "#import-without-images"
+        "#import-without-images",
       ).checked;
       importAllStartBtn.onclick = async (e) => {
         e.preventDefault();
@@ -1678,11 +1674,11 @@ function importTemplates() {
         const importAsPage =
           importAllModalEl.querySelector("#import-as-page")?.checked ?? false;
         const importWithoutImages = importAllModalEl.querySelector(
-          "#import-without-images"
+          "#import-without-images",
         ).checked;
 
         const allTemplates = Array.from(
-          document.querySelectorAll("[data-template][data-path]")
+          document.querySelectorAll("[data-template][data-path]"),
         );
 
         let filteredTemplates = [];
@@ -1694,14 +1690,14 @@ function importTemplates() {
           case "content":
             // buang global style
             filteredTemplates = allTemplates.filter(
-              (el) => el.dataset.templateType !== "global"
+              (el) => el.dataset.templateType !== "global",
             );
             break;
 
           case "global-only":
             // hanya global style
             filteredTemplates = allTemplates.filter(
-              (el) => el.dataset.templateType === "global"
+              (el) => el.dataset.templateType === "global",
             );
             break;
 
@@ -1743,7 +1739,7 @@ function importTemplates() {
             formData.append("import_as_page", importAsPage ? "1" : "0");
             formData.append(
               "import_without_images",
-              importWithoutImages ? "1" : "0"
+              importWithoutImages ? "1" : "0",
             );
             formData.append("nonce", rtmkit_ajax.nonce);
 
@@ -1804,7 +1800,7 @@ async function importTemplate(e) {
   const importAsPage =
     document.getElementById("import-as-page")?.checked ?? false;
   const importWithoutImages = document.getElementById(
-    "import-without-images"
+    "import-without-images",
   ).checked;
 
   console.log({ importAsPage, importWithoutImages });
@@ -1899,7 +1895,7 @@ function deleteInstalledTemplate() {
 
         if (
           confirm(
-            `Are you sure you want to permanently delete the ${templateName} Template ?`
+            `Are you sure you want to permanently delete the ${templateName} Template ?`,
           )
         ) {
           thisBtn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
@@ -1945,11 +1941,11 @@ function deleteInstalledTemplate() {
       let currentHTMLBtn = thisBtn.innerHTML;
       if (
         confirm(
-          "Are you sure you want to permanently delete all the template ?"
+          "Are you sure you want to permanently delete all the template ?",
         )
       ) {
         const toDelete = document.querySelectorAll(
-          ".delete-installed-template"
+          ".delete-installed-template",
         );
 
         if (toDelete.length) {
@@ -1991,7 +1987,7 @@ function deleteInstalledTemplate() {
               autoClose: 5000,
               className: "rtmkit-toast",
               theme: "dark",
-            }
+            },
           );
           renderTemplates("installed");
         } else {
@@ -2002,7 +1998,7 @@ function deleteInstalledTemplate() {
               autoClose: 5000,
               className: "rtmkit-toast",
               theme: "dark",
-            }
+            },
           );
         }
       }
@@ -2256,7 +2252,7 @@ function update_plugin() {
         const pluginVersion = thisBtn.dataset.pluginVersion;
         if (
           confirm(
-            `Do you want to proceed with updating the ${pluginName} to version ${pluginVersion} ?`
+            `Do you want to proceed with updating the ${pluginName} to version ${pluginVersion} ?`,
           )
         ) {
           thisBtn.classList.add("loading");
@@ -2298,7 +2294,7 @@ function reinstall_plugin() {
 
         if (
           confirm(
-            `Do You Want to procced with reinstall the ${pluginName} to version ${version} ?`
+            `Do You Want to procced with reinstall the ${pluginName} to version ${version} ?`,
           )
         ) {
           thisBtn.classList.add("loading");

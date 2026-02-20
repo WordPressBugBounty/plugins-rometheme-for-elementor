@@ -51,16 +51,20 @@ class UpdateModule
 
     public function get_pluginpro_info()
     {
-        if (!class_exists('RTMKitPro\Modules\Licenses\LicenseApi') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+        // if (!class_exists('RTMKitPro\Modules\Licenses\LicenseApi') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+        //     return null;
+        // }
+
+        $license = get_option('rtmpro-license-key' , false);
+        $activation = get_option('rtmpro-license-activation ', false);
+
+        if($license == false || $activation == false) {
             return null;
         }
 
-        $license = get_option('rtmpro-license-key');
-        $activation = get_option('rtmpro-license-activation');
-
-        $endpoint =  '/wp-json/lmfwc/v2/licenses/' . $license;
-
-        $json = \RTMKitPro\Modules\Licenses\LicenseApi::instance()->_request($endpoint);
+        $endpoint =  '/wp-json/rtm-core/auth/v1/licenses/' . $license;
+        $apiHandler = \RTMKit\Modules\Helper\APIHandler::instance();
+        $json = $apiHandler->remote($endpoint, [], null, true, true);
 
         $version = json_decode($json['data']['product']['version'], TRUE);
         if (!isset($version['current'], $version['versions'])) return null;

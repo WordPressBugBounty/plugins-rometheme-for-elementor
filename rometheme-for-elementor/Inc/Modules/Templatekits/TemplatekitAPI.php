@@ -111,6 +111,7 @@ class TemplatekitAPI
                     $hash_id = wp_hash($v['id']);
                     $data[$k] = [
                         'id' => $v['id'],
+                        'hash_id' => $hash_id,
                         'name' => $v['name'],
                         'category' => $v['category'],
                         'type' => $v['type'],
@@ -150,6 +151,7 @@ class TemplatekitAPI
             foreach ($option as $k => $v) {
                 $templates[$k] = [
                     'id' => $v['template_id'],
+                    'hash_id' => $k,
                     'installed' => $v['template_id'],
                     'created' => $v['created'],
                 ];

@@ -472,7 +472,7 @@ class Countdown extends \Elementor\Widget_Base
             [
                 'name' => 'time_expired_typography',
                 'label' => esc_html__('Typography', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .time_sett , .rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before, {{WRAPPER}} .flip-clock__card.card',
+                'selector' => '{{WRAPPER}} .time_sett , .rkit-countdown-separator .countdown_contain .countdown-section-container:not(:first-child)::before, {{WRAPPER}} .flip-clock__card.card , {{WRAPPER}} .flip-clock__card.card .card__top , {{WRAPPER}} .flip-clock__card.card .card__bottom , {{WRAPPER}} .flip-clock__card.card .card__back',
             ]
         );
 
