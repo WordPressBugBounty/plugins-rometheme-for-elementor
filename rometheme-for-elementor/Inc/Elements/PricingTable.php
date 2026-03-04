@@ -24,8 +24,7 @@ class PricingTable extends \Elementor\Widget_Base
         $icon = 'rkit-widget-icon ' . $this->get_widget_data()['icon'];
         return $icon;
     }
-
-
+    
     public function get_categories()
     {
         return ['romethemekit_widgets'];

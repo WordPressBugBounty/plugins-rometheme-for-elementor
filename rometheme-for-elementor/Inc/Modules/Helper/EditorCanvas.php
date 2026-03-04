@@ -26,23 +26,34 @@ class EditorCanvas
             add_action('wp_ajax_get_installed_templates', [$this, 'get_installed_templates']);
             add_action('wp_ajax_get_installed_template', [$this, 'get_installed_template']);
             add_action('wp_ajax_get_template_content', [$this, 'get_template_content']);
-            add_action('wp_ajax_is_pro_active' , [$this , 'is_pro_active']);
+            add_action('wp_ajax_is_pro_active', [$this, 'is_pro_active']);
         }
     }
 
-    public function is_pro_active() {
-        check_ajax_referer('rtmkit_nonce' , 'nonce');
+    public function is_pro_active()
+    {
+        check_ajax_referer('rtmkit_nonce', 'nonce');
 
         wp_send_json_success(\RTMKit\Core\Plugin::instance()->pro_is_active());
     }
 
     public function template_category()
     {
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
         wp_send_json_success(\RTMKit\Modules\Templatekits\TemplatekitAPI::instance()->get_template_categories());
     }
 
     public function fetch_lib()
     {
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
         wp_send_json_success(\RTMKit\Modules\Templatekits\TemplatekitAPI::instance()->_get_template_data('templatekits'));
     }
 

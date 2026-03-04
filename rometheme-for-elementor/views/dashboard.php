@@ -91,10 +91,10 @@ $current_user = wp_get_current_user();
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 col-4 col-xxl-4">
-                    <div class="card rounded-4 text-center  flex-column justify-content-center align-items-center gap-3 p-2 h-100" style="background-image: url(<?php echo esc_url(RTM_KIT_URL . 'assets/images/banner-bg.png') ?>); background-size:cover; background-repeat:no-repeat;">
-                        <span class="accent-color fs-5">UPGRADE TO PRO</span>
-                        <h1 class="m-0 fw-light fs-1 text-center lh-1">Unlock Now<br /><span class="fw-bold fs-1 lh-1 text-white">Hi-End Power</span></h1>
-                        <span class="text-white">
+                    <div class="card rounded-4 text-center  flex-column justify-content-center align-items-center gap-3 p-4 h-100" style="background-image: url(<?php echo esc_url(RTM_KIT_URL . 'assets/images/banner-bg.png') ?>); background-size:cover; background-repeat:no-repeat;">
+                        <h4 class="accent-color fs-6">UPGRADE TO PRO</h4>
+                        <h1 class="m-0 fw-light fs-2 text-center lh-1">Unlock Now<br /><span class="fw-bold fs-2 lh-1 text-white">Hi-End Power</span></h1>
+                        <span class="text-white px-2">
                             Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+ icons, extensions, and priority support. Only in RTMkit Pro.
                         </span>
                         <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" class="btn btn-accent fw-bold align-items-center gap-2">

@@ -74,9 +74,9 @@ class SocialIcon extends \Elementor\Widget_Base
                 'pointer-on-hover' => esc_html('Pointer On Hover'),
             ],
             'default' => 'flat',
-            'condition' => [
-                'select_color' => 'official'
-            ]
+            // 'condition' => [
+            //     'select_color' => 'official'
+            // ]
         ]);
 
         $ss = new \Elementor\Repeater();
@@ -472,6 +472,17 @@ class SocialIcon extends \Elementor\Widget_Base
             ]
         ]);
 
+         $this->add_control('social_pointer_color_normal', [
+            'label' => esc_html('Pointer Color'),
+            'type'  => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-social-share__link' => '--color:{{VALUE}}'
+            ],
+            'condition' => [
+                'select_skin' => ['pointer', 'pointer-on-hover']
+            ]
+        ]);
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -519,6 +530,17 @@ class SocialIcon extends \Elementor\Widget_Base
             ],
             'condition' => [
                 'select_style!' => 'text'
+            ]
+        ]);
+
+        $this->add_control('social_pointer_color_normal', [
+            'label' => esc_html('Pointer Color'),
+            'type'  => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-social-share__link:hover' => '--color:{{VALUE}}'
+            ],
+            'condition' => [
+                'select_skin' => ['pointer', 'pointer-on-hover']
             ]
         ]);
 

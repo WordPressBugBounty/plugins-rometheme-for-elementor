@@ -37,6 +37,12 @@ class PluginApi
         // Load the sidebar view file
 
         check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
+
         if (!file_exists(RTM_KIT_DIR . 'views/sidebar.php')) {
             wp_send_json_error('Sidebar view file not found.');
             return;
@@ -50,15 +56,23 @@ class PluginApi
     public function get_content()
     {
         check_ajax_referer('rtmkit_nonce', 'nonce');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
+        $path = sanitize_text_field($_POST['path']);
+        $menus = \RTMKit\Modules\Menu::instance()->get_menu_by_path($_POST['path']);
 
         if (!isset($_POST['path'])) {
             wp_send_json_error('Path not specified.');
             return;
         }
-        $path = sanitize_text_field($_POST['path']);
-        $file = RTM_KIT_DIR . 'views/' . $path . '.php';
-        if (!file_exists($file)) {
-            return '';
+
+        if (isset($menus['render_view']) && file_exists($menus['render_view'])) {
+            $file = $menus['render_view'];
+        } else {
+            wp_send_json_error('View file not found for the specified path.');
+            return;
         }
         ob_start();
         require_once $file;

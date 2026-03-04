@@ -19,6 +19,7 @@ class WidgetModule
         \RTMKit\Modules\Widgets\WidgetStorage::instance()->init();
         add_action('elementor/elements/categories_registered', [$this, 'add_elementor_widget_categories']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_widget_style'], 1);
+        add_action('elementor/editor/before_enqueue_scripts', [$this, 'pro_js']);
         new \RTMKit\Modules\Helper\SavedTemplateEditor();
     }
 
@@ -140,6 +141,19 @@ class WidgetModule
                 Edit Saved Template <i class="eicon-edit" aria-hidden="true"></i>
             </a>
 <?php
+        }
+    }
+
+    function pro_js()
+    {
+        $list_widgets_pro = \RTMKit\Modules\Widgets\WidgetStorage::instance()->get_widget_data("pro");
+
+        if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
+            wp_enqueue_script('rtmprojs', RTM_KIT_URL . 'assets/js/rtmwp.js', ['jquery' , 'wp-i18n'], RTM_KIT_VERSION, true);
+            wp_localize_script('rtmprojs', 'rtmpro', [
+                'is_pro' =>  \RTMKit\Core\Plugin::instance()->pro_is_active() ? 'true' : 'false',
+                'widgets' => $list_widgets_pro
+            ]);
         }
     }
 }

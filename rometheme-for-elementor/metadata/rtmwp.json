@@ -214,5 +214,20 @@
       "css": "woo_product_carousel.css",
       "js": "woo_product_carousel.js"
     }
+  },
+  "background_switcher": {
+    "name": "Background Switcher",
+    "icon": "rtmicon rtmicon-image-accordion",
+    "class_name": "Rkit_Background_Switcher",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/background-switcher-widget/",
+    "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/background-switcher/",
+    "videoURL": "https://youtu.be/BDXY0FCe_2U?si=vu5zyfUkGotcjm1f",
+    "scripts": {
+      "css": "background_switcher.css",
+      "js": "background_switcher.js"
+    }
   }
 }

@@ -251,7 +251,7 @@
   align-items: center;
   align-self: center;
   justify-content: center;
-  line-height: 0px !important;
+  line-height: 0px ;
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -261,7 +261,7 @@
   align-items: center;
   align-self: center;
   justify-content: center;
-  line-height: 0px !important;
+  line-height: 0px ;
 }
 
 .no-icon-hidden {
@@ -558,7 +558,7 @@
 }
 .rkit-pricelist-btn-1 span:hover,
 .rkit-pricelist-btn-1 span:hover .icon-list-button-pt {
-  color: rgb(28, 31, 30) !important;
+  color: rgb(28, 31, 30);
   transition: 0.2s 0.1s;
 }
 

@@ -316,19 +316,14 @@ jQuery(document).ready(function ($) {
     $("[data-next=6]")
       .off("click")
       .on("click", function (e) {
-        const done = $("[data-submit-done]");
-        if (!done.length) {
-          form.submit();
-        } else {
-          var nextStep = 6;
-          $(".wizard-step-content").removeClass("active");
-          $('[data-step-content="' + nextStep + '"]').addClass("active");
-          $('.wizard-step[data-step="' + nextStep + '"]').addClass("active");
-          url = new URL(window.location);
-          url.searchParams.set("step", nextStep);
-          window.history.pushState({}, "", url);
-          functionRunner(nextStep);
-        }
+        var nextStep = 6;
+        $(".wizard-step-content").removeClass("active");
+        $('[data-step-content="' + nextStep + '"]').addClass("active");
+        $('.wizard-step[data-step="' + nextStep + '"]').addClass("active");
+        url = new URL(window.location);
+        url.searchParams.set("step", nextStep);
+        window.history.pushState({}, "", url);
+        functionRunner(nextStep);
       });
     form.on("submit", function (e) {
       e.preventDefault();
@@ -384,12 +379,12 @@ jQuery(document).ready(function ($) {
           nonce: rtmkitWizard.nonce,
           action: "rtm_wizard_finish",
         },
-        success: function(res) {
-          console.log(res)
-          if(res.success) {
+        success: function (res) {
+          console.log(res);
+          if (res.success) {
             window.location.reload();
           }
-        }
+        },
       });
     });
   }

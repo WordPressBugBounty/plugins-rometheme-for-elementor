@@ -20,6 +20,7 @@ class ThemebuilderAPI
             add_action('wp_ajax_get_themebuilder_table', [$this, 'get_themebuilder_table']);
             add_action('wp_ajax_add_themebuilder', [$this, 'add_themebuilder']);
             add_action('wp_ajax_edit_themebuilder', [$this, 'edit_themebuilder']);
+            add_action('wp_ajax_install_requirements', [$this, 'install_requirements']);
         }
     }
 
@@ -124,6 +125,48 @@ class ThemebuilderAPI
         } else {
             // Menambahkan respon JSON jika penyisipan posting gagal
             wp_send_json_error('Failed Save Template');
+        }
+    }
+
+    public function install_requirements()
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die();
+        }
+
+         check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+        include_once ABSPATH . 'wp-admin/includes/file.php';
+        include_once ABSPATH . 'wp-admin/includes/misc.php';
+        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+        $plugin = $_POST['plugin'];
+        $plugin_file = WP_PLUGIN_DIR . '/' . $plugin;
+        $plugin_slug = dirname($plugin);
+
+        if (file_exists($plugin_file)) {
+            // Activate the plugin if already installed but inactive
+            ob_start();
+            activate_plugin($plugin);
+            ob_clean();
+            ob_end_clean();
+            wp_send_json_success("Install and Activate Successfully");
+        } else {
+            ob_start();
+            $plugin_download_url = "https://downloads.wordpress.org/plugin/{$plugin_slug}.latest-stable.zip"; // Adjust URL structure
+            $upgrader = new \Plugin_Upgrader();
+            $result = $upgrader->install($plugin_download_url);
+
+            if (is_wp_error($result)) {
+                wp_send_json_error();
+            }
+            $activate_result = activate_plugin($plugin);
+            if (is_wp_error($activate_result)) {
+                wp_send_json_error('Plugin installed but failed to activate: ' . $activate_result->get_error_message());
+            }
+
+            wp_send_json_success('Plugin installed and activated successfully.');
         }
     }
 }

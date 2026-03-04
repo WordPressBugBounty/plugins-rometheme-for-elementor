@@ -1088,28 +1088,39 @@ function addCondition(savedConditions = null, modalEl) {
     // Jika ada predefined (edit)
     if (predefined) {
       pageSelect.value = predefined.page;
-      if (
-        predefined.sub &&
-        typeof predefined.sub === "object" &&
-        !Array.isArray(predefined.sub)
-      ) {
+
+      if (predefined.sub && typeof predefined.sub === "object") {
         const entries = Object.entries(predefined.sub);
+
         entries.forEach(([subKey, subValue], index) => {
-          if (index === 0) renderSub(predefined.page, subKey, subValue);
-          else
-            handleAddCondition(
-              null,
-              { page: predefined.page, sub: { [subKey]: subValue } },
-              type,
-              modalEl,
-            );
+          // Jika value adalah array → buat multiple row
+          if (Array.isArray(subValue)) {
+            subValue.forEach((val, i) => {
+              if (index === 0 && i === 0) {
+                renderSub(predefined.page, subKey, val);
+              } else {
+                handleAddCondition(
+                  null,
+                  { page: predefined.page, sub: { [subKey]: val } },
+                  type,
+                  modalEl,
+                );
+              }
+            });
+          } else {
+            // single value (string / true)
+            if (index === 0) {
+              renderSub(predefined.page, subKey, subValue);
+            } else {
+              handleAddCondition(
+                null,
+                { page: predefined.page, sub: { [subKey]: subValue } },
+                type,
+                modalEl,
+              );
+            }
+          }
         });
-      } else {
-        renderSub(
-          predefined.page,
-          predefined.sub ? Object.keys(predefined.sub)[0] : null,
-          predefined.sub ? Object.values(predefined.sub)[0] : null,
-        );
       }
     }
 
@@ -1118,6 +1129,7 @@ function addCondition(savedConditions = null, modalEl) {
 
   // Jika edit mode (savedConditions)
   if (savedConditions) {
+    console.log("Loading saved conditions:", savedConditions);
     ["include", "exclude"].forEach((type) => {
       if (Array.isArray(savedConditions[type])) {
         savedConditions[type].forEach((cond) =>
@@ -1153,7 +1165,7 @@ function submitThemebuilder() {
         };
 
         data = { ...data, conditions: JSON.stringify(condition) };
-
+        console.log(data);
         if (formData.has("themebuilder_id")) {
           data = { ...data, themebuilder_id: formData.get("themebuilder_id") };
         }
@@ -1202,11 +1214,28 @@ function buildConditions(forms) {
       } else {
         subObj[subSelect.value] = true;
       }
-
       // cek apakah sudah ada page yg sama
       let existing = conditions.include.find((c) => c.page === pageValue);
       if (existing) {
-        existing.sub = { ...existing.sub, ...subObj };
+        Object.keys(subObj).forEach((key) => {
+          const newValue = subObj[key];
+
+          if (!existing.sub[key]) {
+            // belum ada key → langsung set
+            existing.sub[key] = newValue;
+          } else {
+            // sudah ada key
+            if (!Array.isArray(existing.sub[key])) {
+              // ubah ke array jika masih string
+              existing.sub[key] = [existing.sub[key]];
+            }
+
+            // hindari duplicate
+            if (!existing.sub[key].includes(newValue)) {
+              existing.sub[key].push(newValue);
+            }
+          }
+        });
       } else {
         conditions.include.push({
           page: pageValue,
@@ -1238,7 +1267,25 @@ function buildConditions(forms) {
 
       let existing = conditions.exclude.find((c) => c.page === pageValue);
       if (existing) {
-        existing.sub = { ...existing.sub, ...subObj };
+        Object.keys(subObj).forEach((key) => {
+          const newValue = subObj[key];
+
+          if (!existing.sub[key]) {
+            // belum ada key → langsung set
+            existing.sub[key] = newValue;
+          } else {
+            // sudah ada key
+            if (!Array.isArray(existing.sub[key])) {
+              // ubah ke array jika masih string
+              existing.sub[key] = [existing.sub[key]];
+            }
+
+            // hindari duplicate
+            if (!existing.sub[key].includes(newValue)) {
+              existing.sub[key].push(newValue);
+            }
+          }
+        });
       } else {
         conditions.exclude.push({
           page: pageValue,
@@ -1337,6 +1384,7 @@ function renderTemplates(templates) {
             viewTemplateDetails();
             importTemplates();
             deleteInstalledTemplate();
+            installRequiredPlugin();
           } else if (templates === "themeforest") {
             themeforestStats();
           }
@@ -2077,6 +2125,72 @@ function themeforestStats() {
       });
     });
   }
+}
+
+function installRequiredPlugin() {
+  const installBtns = document.querySelectorAll(".btn-install-requirements");
+
+  if (!installBtns.length) return;
+
+  installBtns.forEach((btn) => {
+    btn.addEventListener("click", function handler(e) {
+      e.preventDefault();
+
+      let missingPlugins = btn.getAttribute("data-missing");
+
+      try {
+        missingPlugins = JSON.parse(missingPlugins);
+      } catch {
+        alert("Invalid plugin data.");
+        return;
+      }
+
+      if (!Array.isArray(missingPlugins) || missingPlugins.length === 0) {
+        alert("No plugins to install.");
+        return;
+      }
+
+      btn.disabled = true;
+
+      const total = missingPlugins.length;
+
+      function installPlugin(index) {
+        if (index >= total) {
+          window.reactToast.success("All Required plugins installed successfully.", {
+            position: "bottom-right",
+            autoClose: 5000,
+            className: "rtmkit-toast",
+            theme: "dark",
+          });
+
+          btn.closest('.alert').remove();
+          return;
+        }
+
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Installing...</span>`;
+
+        const formData = new FormData();
+        formData.append("action", "install_requirements");
+        formData.append("plugin", missingPlugins[index].file);
+        formData.append("nonce", rtmkit_ajax.nonce);
+
+        fetch(rtmkit_ajax.ajax_url, {
+          method: "POST",
+          body: formData,
+          credentials: "same-origin",
+        })
+          .then(() => {
+            installPlugin(index + 1);
+          })
+          .catch(() => {
+            installPlugin(index + 1);
+          });
+      }
+
+      installPlugin(0);
+    });
+  });
 }
 
 function settings() {

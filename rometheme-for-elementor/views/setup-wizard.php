@@ -407,7 +407,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
 
                     <div class="footer">
                         <button id="next-button" class="btn btn-link" data-next="4">Back</button>
-                        <button id="next-button" class="btn btn-gradient-accent" data-next="6">Next</button>
+                        <button id="next-button" class="btn btn-gradient-accent" data-next="6">Skip</button>
                     </div>
                 </div>
             </div>

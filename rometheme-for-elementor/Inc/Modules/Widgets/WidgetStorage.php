@@ -182,6 +182,11 @@ class WidgetStorage
         // Cek keamanan nonce
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
+
         // Ambil body JSON
         $rawInput = file_get_contents('php://input');
         $dataJson = json_decode($rawInput, true);
@@ -280,6 +285,10 @@ class WidgetStorage
     {
         // Cek keamanan nonce
         check_ajax_referer('rtmkit_nonce', 'nonce');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied.');
+            wp_die();
+        }
 
         delete_option('rkit-widget-options');
 

@@ -91,7 +91,7 @@ $activemodules = count(array_filter($options, function ($module) {
                 <div id="<?php echo esc_attr($c) ?>" class="card rounded-4  flex-column gap-3">
                     <div class="pb-4 pt-1 border-bottom d-flex align-items-center gap-3">
                         <i class="fa-solid fa-circle" style="font-size: 10px;"></i>
-                        <h4 class="m-0"><?php echo esc_html(ucwords($c)) ?></h4>
+                        <h4 class="m-0"><?php echo esc_html(ucwords($c == 'themebuilder' ? 'Theme Builder' : $c)) ?></h4>
                     </div>
                     <div class="row row-cols-3 g-3">
                         <?php

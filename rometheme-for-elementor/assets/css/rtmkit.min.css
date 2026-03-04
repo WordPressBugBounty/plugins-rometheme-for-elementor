@@ -17,6 +17,7 @@
   --bg-approved-color: #083f04;
   --success-color: #29d697;
   --heading-color: #fff;
+  --warning-color: #ffc107;
 }
 body {
   background-color: var(--primary-color);
@@ -1093,6 +1094,19 @@ html {
 #rtmkit-root .scrollspy #save-global-site.loading .icon-loading {
   display: inline;
   animation: loading 1s linear infinite;
+}
+
+#rtmkit-root .scrollspy .btn-warning {
+  background-color: var(--warning-color);
+  color: var(--primary-color);
+  border: solid 1px var(--warning-color);
+}
+
+#rtmkit-root .scrollspy .btn-warning:hover {
+  background-color: #ebb510 !important;
+  color: var(--primary-color) !important;
+  border: solid 1px #ebb510;
+  box-shadow: unset;
 }
 
 #rtmkit-root .scrollspy .btn-update-plugin.loading .icon,

@@ -77,7 +77,7 @@ class HeaderFooter
                         \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder_content($header_id)
                     );
                 echo $fullHeader;
-                break;
+                // break;
             }
         }
     }

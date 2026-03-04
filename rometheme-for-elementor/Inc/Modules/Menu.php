@@ -42,6 +42,7 @@ class Menu
                     'function' => [$this, 'rtmkit_root_page'],
                     'icon_url' => RTM_KIT_URL . 'assets/images/romethemekit.svg',
                     'position' => 20,
+                    'render_view' => RTM_KIT_DIR . 'views/dashboard.php',
                 ],
             ],
 
@@ -51,60 +52,69 @@ class Menu
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=widgets',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/widgets.php',
                 ],
                 'modules' => [
                     'title' => __('Modules', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=modules',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/modules.php',
                 ],
                 'themebuilder' => [
                     'title' => __('Theme Builder', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=themebuilder',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/themebuilder.php',
                 ],
                 'templates' => [
                     'title' => __('Template Kits', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=templates',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/templates.php',
                 ],
             ],
 
             'settings' => [
-                'settings' => [
+                'global-kit-setup' => [
                     'title' => __('Global Kit Setup', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
-                    'menu_slug' => 'rtmkit&path=settings',
+                    'menu_slug' => 'rtmkit&path=global-kit-setup',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/settings.php',
                 ],
                 'updates' => [
                     'title' => __('Version Controls', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=updates',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/updates.php',
                 ],
             ],
 
             'information' => [
                 'submission' => [
-                    'title' => __('Submission', 'rometheme-for-elementor'),
+                    'title' => __('Submissions', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=submission',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/submission.php',
                 ],
                 'system-status' => [
                     'title' => __('System Info', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
                     'menu_slug' => 'rtmkit&path=system-status',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/system-status.php',
                 ],
                 'documentation' => [
                     'title' => __('Help & Center', 'rometheme-for-elementor'),
                     'capability' => 'read',
                     'menu_slug' => 'rtmkit&path=help',
                     'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/help.php',
                 ],
             ],
         ];
@@ -235,7 +245,7 @@ class Menu
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_submission',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Submission',
+            'title' => 'Submissions',
             'href' => admin_url('admin.php?page=rtmkit&path=submission'),
         ]);
 
@@ -368,5 +378,32 @@ class Menu
             wp_enqueue_style('rtmkit-new-features', RTM_KIT_URL . 'assets/css/rtmkit-new-feature.css', [], RTM_KIT_VERSION);
             wp_enqueue_script('rtmkit-new-features', RTM_KIT_URL . 'assets/js/rtmkit-new-feature.js', [], RTM_KIT_VERSION, true);
         }
+    }
+
+    protected function findByKey(array $array, string $searchKey)
+    {
+        foreach ($array as $key => $value) {
+
+            // Kalau key ketemu
+            if ($key === $searchKey) {
+                return $value;
+            }
+
+            // Kalau value masih array, lanjut cari ke dalam
+            if (is_array($value)) {
+                $result = $this->findByKey($value, $searchKey);
+                if ($result !== null) {
+                    return $result;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public function get_menu_by_path(string $path)
+    {
+        $menus = $this->get_menus();
+        return $this->findByKey($menus, $path);
     }
 }

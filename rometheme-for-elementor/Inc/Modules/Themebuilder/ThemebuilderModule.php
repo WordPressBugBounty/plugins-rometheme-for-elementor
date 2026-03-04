@@ -113,11 +113,9 @@ class ThemebuilderModule
             return true;
         }
 
-        // Pastikan struktur include/exclude ada
         $includes = isset($conditions['include']) ? (array) $conditions['include'] : [];
         $excludes = isset($conditions['exclude']) ? (array) $conditions['exclude'] : [];
 
-        // 🔹 Helper function: cek apakah kondisi cocok
         $match_condition = function ($cond) {
 
             if (empty($cond['page'])) {
@@ -127,124 +125,224 @@ class ThemebuilderModule
             $page = $cond['page'];
             $sub  = isset($cond['sub']) ? $cond['sub'] : [];
 
-            // === 🔸 ENTIRE SITE ===
+            $normalize = function ($val) {
+                if ($val === true || $val === null || $val === '') {
+                    return [true];
+                }
+                return is_array($val) ? $val : [$val];
+            };
+
+            // ===== ENTIRE =====
             if ($page === 'entire') {
                 return true;
             }
 
-            // === 🔸 ARCHIVES ===
+            // ===== ARCHIVES =====
             if ($page === 'archives' && (is_archive() || is_home())) {
+
                 if (empty($sub)) return true;
 
                 foreach ($sub as $key => $val) {
+
                     switch ($key) {
+
                         case 'all':
                             return true;
+
                         case 'author':
-                            if (is_author($val)) return true;
+                            foreach ($normalize($val) as $v) {
+                                if (is_author($v)) return true;
+                            }
                             break;
+
                         case 'search':
                             if (is_search()) return true;
                             break;
+
                         case 'post_archive':
                             if (is_home()) return true;
                             break;
+
                         case 'categories':
-                            if (is_category($val)) return true;
+                            foreach ($normalize($val) as $v) {
+                                if (is_category($v)) return true;
+                            }
                             break;
+
                         case 'tags':
-                            if (is_tag($val)) return true;
+                            foreach ($normalize($val) as $v) {
+                                if (is_tag($v)) return true;
+                            }
                             break;
                     }
                 }
+
+                return false;
             }
 
-            // === 🔸 SINGULAR ===
+            // ===== SINGULAR =====
             if ($page === 'singular' && is_singular()) {
+
                 if (empty($sub)) return true;
 
                 foreach ($sub as $key => $val) {
+
                     switch ($key) {
+
                         case 'all':
                             return true;
+
                         case 'front_page':
                             if (is_front_page() || (is_home() && !is_paged())) return true;
                             break;
 
                         case 'posts':
-                            if (get_post_type() === 'post' && (empty($val) || get_the_ID() == $val)) return true;
+                            if (get_post_type() === 'post') {
+                                foreach ($normalize($val) as $v) {
+                                    if ($v === true || get_the_ID() == $v) return true;
+                                }
+                            }
                             break;
+
                         case 'pages':
-                            if (get_post_type() === 'page' && (empty($val) || get_the_ID() == $val)) return true;
+                            if (get_post_type() === 'page') {
+                                foreach ($normalize($val) as $v) {
+                                    if ($v === true || get_the_ID() == $v) return true;
+                                }
+                            }
                             break;
+
                         case 'post_category':
-                            if (is_single() && has_category($val)) return true;
+                            if (is_single()) {
+                                foreach ($normalize($val) as $v) {
+                                    if (has_category($v)) return true;
+                                }
+                            }
                             break;
+
                         case 'post_tag':
-                            if (is_single() && has_tag($val)) return true;
+                            if (is_single()) {
+                                foreach ($normalize($val) as $v) {
+                                    if (has_tag($v)) return true;
+                                }
+                            }
                             break;
+
                         case 'post_author':
-                            if (is_single() && get_post_field('post_author', get_the_ID()) == $val) return true;
+                            if (is_single()) {
+                                foreach ($normalize($val) as $v) {
+                                    if (get_post_field('post_author', get_the_ID()) == $v) return true;
+                                }
+                            }
                             break;
+
                         case 'page_author':
-                            if (is_page() && get_post_field('post_author', get_the_ID()) == $val) return true;
-                            break;
-                        case 'author':
-                            if (is_author($val)) return true;
+                            if (is_page()) {
+                                foreach ($normalize($val) as $v) {
+                                    if (get_post_field('post_author', get_the_ID()) == $v) return true;
+                                }
+                            }
                             break;
                     }
                 }
+
+                return false;
             }
 
-            // === 🔸 WOO ===
+            // ===== WOOCOMMERCE =====
             if ($page === 'woocommerce' && function_exists('is_woocommerce')) {
+
                 if (empty($sub)) return is_woocommerce();
 
                 foreach ($sub as $key => $val) {
+
                     switch ($key) {
+
                         case 'shop':
                             if (is_shop()) return true;
                             break;
+
                         case 'product_archive':
                             if (is_post_type_archive('product')) return true;
                             break;
+
                         case 'single_product':
-                            if (is_product() && (empty($val) || get_the_ID() == $val)) return true;
+                            if (is_product()) {
+                                foreach ($normalize($val) as $v) {
+                                    if ($v === true || get_the_ID() == $v) return true;
+                                }
+                            }
                             break;
+
                         case 'product_categories':
-                            if (is_product_category($val)) return true;
+                            foreach ($normalize($val) as $v) {
+                                if (is_product_category($v)) return true;
+                            }
                             break;
+
                         case 'product_tags':
-                            if (is_product_tag($val)) return true;
+                            foreach ($normalize($val) as $v) {
+                                if (is_product_tag($v)) return true;
+                            }
                             break;
+
                         case 'product_author':
-                            if (is_singular('product') && get_post_field('post_author', get_the_ID()) == $val) return true;
+                            if (is_singular('product')) {
+                                foreach ($normalize($val) as $v) {
+                                    if (get_post_field('post_author', get_the_ID()) == $v) return true;
+                                }
+                            }
                             break;
                     }
                 }
+
+                return false;
             }
-            // === 🔸 404 ===
+
+            // ===== 404 =====
             if ($page === 'error_404' && is_404()) {
                 return true;
             }
 
             return false;
         };
-        // 🔹 Jika ada kondisi EXCLUDE yang cocok → langsung FALSE
+
+        // ===== INCLUDE FIRST =====
+        if (!empty($includes)) {
+
+            $includeMatched = false;
+
+            foreach ($includes as $cond) {
+                if ($match_condition($cond)) {
+                    $includeMatched = true;
+                    break;
+                }
+            }
+
+            if (!$includeMatched) {
+                return false;
+            }
+
+            // jika include match, cek exclude
+            foreach ($excludes as $cond) {
+                if ($match_condition($cond)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // ===== ONLY EXCLUDE =====
         foreach ($excludes as $cond) {
             if ($match_condition($cond)) {
                 return false;
             }
         }
-        // 🔹 Jika ada kondisi INCLUDE yang cocok → TRUE
-        foreach ($includes as $cond) {
-            if ($match_condition($cond)) {
-                return true;
-            }
-        }
+
         return true;
     }
-
+    
     public function load_themebuilder()
     {
         $active_themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_active_themebuilder();
