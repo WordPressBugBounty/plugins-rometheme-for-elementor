@@ -81,27 +81,54 @@ class Postlist extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control(
-            'content_direction',
+            'image_position',
             [
-                'label' => esc_html__('Direction', 'text-domain'),
+                'label' => esc_html__('Image Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'column' => [
-                        'title' => esc_html__('Column', 'text-domain'),
-                        'icon' => 'eicon-section',
-                    ],
                     'row' => [
-                        'title' => esc_html__('Row', 'text-domain'),
-                        'icon' => 'eicon-column',
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
                     ],
 
+                    'row-reverse' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                    'column' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-v-align-top',
+                    ],
                 ],
-                'default' => 'row',
+                'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-item-postlist' => 'flex-direction: {{VALUE}};',
                 ],
             ]
         );
+
+        // $this->add_responsive_control(
+        //     'content_direction',
+        //     [
+        //         'label' => esc_html__('Direction', 'text-domain'),
+        //         'type' => \Elementor\Controls_Manager::CHOOSE,
+        //         'options' => [
+        //             'column' => [
+        //                 'title' => esc_html__('Column', 'text-domain'),
+        //                 'icon' => 'eicon-section',
+        //             ],
+        //             'row' => [
+        //                 'title' => esc_html__('Row', 'text-domain'),
+        //                 'icon' => 'eicon-column',
+        //             ],
+
+        //         ],
+        //         'default' => 'row',
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-item-postlist' => 'flex-direction: {{VALUE}};',
+        //         ],
+        //     ]
+        // );
 
         $this->add_responsive_control(
             'content_align_self',
@@ -126,7 +153,7 @@ class Postlist extends \Elementor\Widget_Base
                 'default' => 'row',
                 'toggle' => true,
                 'condition' => [
-                    'content_direction' => 'column'
+                    'image_position' => 'column'
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-item-content' => 'align-self: {{VALUE}};',
@@ -722,30 +749,6 @@ class Postlist extends \Elementor\Widget_Base
             ],
         ]);
 
-
-        $this->add_responsive_control(
-            'image_position',
-            [
-                'label' => esc_html__('Image Position', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'row' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-
-                    'row-reverse' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-item-postlist' => 'flex-direction: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'image_align_self',
             [
@@ -762,17 +765,52 @@ class Postlist extends \Elementor\Widget_Base
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ]
                 ],
-                'default' => 'row',
+                'default' => 'flex-start',
                 'toggle' => true,
+                'condition' => [
+                    'image_position!' => 'column'
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-item-thumbnail' => 'align-self: {{VALUE}};',
                 ],
             ]
         );
+
+         $this->add_responsive_control(
+            'image_align_self_horizontal',
+            [
+                'label' => esc_html__('Horizontal Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ]
+                ],
+                'default' => 'flex-start',
+                'toggle' => true,
+                'condition' => [
+                    'image_position' => 'column'
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-thumbnail' => 'align-self: {{VALUE}};',
+                ],
+            ]
+        );
+
 
         $this->add_responsive_control(
             'image_width',

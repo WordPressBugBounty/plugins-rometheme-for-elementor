@@ -1064,6 +1064,12 @@ html {
   background-color: #140e6c;
   color: #aaa4f9;
 }
+
+#rtmkit-root .scrollspy .badge.Woo {
+  background-color: #5007AA;
+  color: #D1C1FF;
+}
+
 #rtmkit-root .scrollspy .link {
   color: var(--text-muted);
   text-decoration: underline;

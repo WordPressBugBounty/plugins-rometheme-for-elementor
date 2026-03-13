@@ -111,6 +111,8 @@ class SocialIcon extends \Elementor\Widget_Base
                 'viber'         => esc_html__('Viber', 'rometheme-for-elementor'),
                 'whatsapp'      => esc_html__('Whatsapp', 'rometheme-for-elementor'),
                 'youtube'       => esc_html__('YouTube', 'rometheme-for-elementor'),
+                'dribbble'      => esc_html__('Dribbble', 'rometheme-for-elementor'),
+                'behance'       => esc_html__('Behance', 'rometheme-for-elementor'),
             ],
         ]);
 
@@ -533,7 +535,7 @@ class SocialIcon extends \Elementor\Widget_Base
             ]
         ]);
 
-        $this->add_control('social_pointer_color_normal', [
+        $this->add_control('social_pointer_color_hover', [
             'label' => esc_html('Pointer Color'),
             'type'  => \Elementor\Controls_Manager::COLOR,
             'selectors' => [

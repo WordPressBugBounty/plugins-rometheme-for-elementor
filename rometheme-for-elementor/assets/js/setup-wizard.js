@@ -13,15 +13,12 @@ jQuery(document).ready(function ($) {
   function functionRunner(step) {
     switch (step) {
       case 2:
-        pluginCheck();
-        break;
-      case 3:
         modules();
         break;
-      case 5:
+      case 4:
         subscribe();
         break;
-      case 6:
+      case 5:
         finish();
         break;
     }
@@ -273,7 +270,7 @@ jQuery(document).ready(function ($) {
       // Tunggu semua request selesai
       await Promise.all(promises);
       $(this).prop("disabled", false).html(`Next`);
-      var nextStep = 4;
+      var nextStep = 3;
       $(".wizard-step-content").removeClass("active");
       $('[data-step-content="' + nextStep + '"]').addClass("active");
       $('.wizard-step[data-step="' + nextStep + '"]').addClass("active");
@@ -355,7 +352,7 @@ jQuery(document).ready(function ($) {
               .html(
                 `<span class="d-flex gap-2 align-items-center"><i class="fa-regular fa-circle-check accent-color"></i>Successfully</span>`,
               );
-            $("[data-next=6]").prop("disabled", false).html(`Next`);
+            $("[data-next=5]").prop("disabled", false).html(`Next`);
           }
         },
       });
@@ -380,9 +377,10 @@ jQuery(document).ready(function ($) {
           action: "rtm_wizard_finish",
         },
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           if (res.success) {
-            window.location.reload();
+            // window.location.reload();
+            window.location.href = res.data.redirect_url;
           }
         },
       });

@@ -51,7 +51,9 @@ if (!$has_woocommerce) {
                         ?>
                     </span>
                 </div>
-                <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <button id="add-themebuilder" class="btn btn-accent fw-bold px-4 py-3 gap-2">
@@ -70,7 +72,7 @@ if (!$has_woocommerce) {
                                 continue;
                             }
                         ?>
-                             <?php if(!stripos($item['name'], 'shop')): ?>
+                            <?php if (!stripos($item['name'], 'shop')): ?>
                                 <button class="nav-link rounded-3 <?php echo ($active_tabs == $key) ? 'active' : '' ?>" data-tabs="<?php echo esc_attr($key) ?>">
                                     <?php echo esc_html($item['name']) . (isset($item['type']) && $item['type'] === 'pro' ? ' <span class="badge bg-danger">Pro</span>' : ''); ?>
                                 </button>
@@ -128,7 +130,7 @@ if (!$has_woocommerce) {
                                     <option value="single_post"><?php esc_html_e('Single Post', 'rometheme-for-elementor') ?></option>
                                     <option value="archive_post"><?php esc_html_e('Archive Post', 'rometheme-for-elementor') ?></option>
                                     <option value="search"><?php esc_html_e('Search Result', 'rometheme-for-elementor') ?></option>
-                                    <?php if($has_woocommerce && $isLicenseActive): ?>
+                                    <?php if ($has_woocommerce && $isLicenseActive): ?>
                                         <option value="archive_product"><?php esc_html_e('Archive Product', 'rometheme-for-elementor') ?></option>
                                         <option value="single_product"><?php esc_html_e('Single Product', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>
@@ -217,7 +219,7 @@ if (!$has_woocommerce) {
                                     <option value="single_post"><?php esc_html_e('Single Post', 'rometheme-for-elementor') ?></option>
                                     <option value="archive_post"><?php esc_html_e('Archive Post', 'rometheme-for-elementor') ?></option>
                                     <option value="search"><?php esc_html_e('Search Result', 'rometheme-for-elementor') ?></option>
-                                     <?php if($has_woocommerce && $isLicenseActive): ?>
+                                    <?php if ($has_woocommerce && $isLicenseActive): ?>
                                         <option value="archive_product"><?php esc_html_e('Archive Product', 'rometheme-for-elementor') ?></option>
                                         <option value="single_product"><?php esc_html_e('Single Product', 'rometheme-for-elementor') ?></option>
                                     <?php endif; ?>

@@ -1045,6 +1045,18 @@ class PricingTable extends \Elementor\Widget_Base
             ]
         );
 
+         $this->add_responsive_control(
+            'Header_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-title-section' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_control(
             'divider title',
             [
@@ -2507,6 +2519,26 @@ class PricingTable extends \Elementor\Widget_Base
                 // ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-pricelisttable-item-footer ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'footer_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                // 'default' => [
+                //     'top' => 20,
+                //     'right' => 0,
+                //     'bottom' => 40,
+                //     'left' => 0,
+                //     'unit' => 'px',
+                //     'isLinked' => false,
+                // ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-pricelisttable-item-footer ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );

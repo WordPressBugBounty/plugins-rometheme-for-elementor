@@ -30,23 +30,23 @@ class SetupWizardApi
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
         $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
         if ($plugin_slug === 'rtmkitpro' && file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
-                $proCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')['Version'] ?? null;
-                // $isProActive = \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() ?? false;
+            $proCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')['Version'] ?? null;
+            // $isProActive = \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() ?? false;
 
-                if ($proCurrentVersion) {
-                    $pluginProInfo = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info('rtmkitpro');
-                    $proVersion = $pluginProInfo ? $pluginProInfo->version : null;
-                    $proMinVersion = $plugins['rtmkitpro']['min_version'] ?? null;
-                    $update = version_compare($proCurrentVersion, $proMinVersion, '<') ? true : false;
-                    wp_send_json_success([
-                        'is_active' => true,
-                        'pro_version' => $proVersion,
-                        'pro_current_version' => $proCurrentVersion,
-                        'pro_min_version' => $proMinVersion,
-                        'update_required' => $update,
-                        'is_installed' => true,
-                    ]);
-                }
+            if ($proCurrentVersion) {
+                $pluginProInfo = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info('rtmkitpro');
+                $proVersion = $pluginProInfo ? $pluginProInfo->version : null;
+                $proMinVersion = $plugins['rtmkitpro']['min_version'] ?? null;
+                $update = version_compare($proCurrentVersion, $proMinVersion, '<') ? true : false;
+                wp_send_json_success([
+                    'is_active' => true,
+                    'pro_version' => $proVersion,
+                    'pro_current_version' => $proCurrentVersion,
+                    'pro_min_version' => $proMinVersion,
+                    'update_required' => $update,
+                    'is_installed' => true,
+                ]);
+            }
             // }
             // wp_send_json_success([
             //     'is_active' => false,
@@ -80,7 +80,7 @@ class SetupWizardApi
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
         $email = sanitize_text_field($_POST['email']);
         $url = "https://www.rometheme.net/wp-content/plugins/newsletter-api/add.php?nk=c49c06ac22bb6f00df99f832bbd597b2eddc4cc2&ne=" . $email . "&nn=" . $email;
-        if(file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
+        if (file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
             $url .= "&nl=2";
         } else {
             $url .= "&nl=3";
@@ -97,9 +97,11 @@ class SetupWizardApi
 
         $finish = update_option('rtmkit_wizard_setup_complete_2.0', 'completed');
 
+        $dashboard_url = admin_url('admin.php?page=rtmkit');
+
         if ($finish) {
             delete_option('rtmkit_redirect_wizard');
-            wp_send_json_success('success');
+            wp_send_json_success(['redirect_url' => $dashboard_url]);
         } else {
             wp_send_json_error('failed');
         }

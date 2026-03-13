@@ -575,8 +575,8 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover' => 'border-color: {{VALUE}};',
                 ],
-                'condition'=>[
-                    'container_border_border!'=>''
+                'condition' => [
+                    'container_border_border!' => ''
                 ]
             ]
         );
@@ -737,8 +737,8 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover .rkit-post-block-body' => 'border-color: {{VALUE}};',
                 ],
-                'condition'=>[
-                    'content_border_border!'=>''
+                'condition' => [
+                    'content_border_border!' => ''
                 ]
             ]
         );
@@ -901,8 +901,8 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-post-block-card:hover .rkit-image-link' => 'border-color: {{VALUE}}',
                 ],
-                'condition'=>[
-                    'img_border_border!'=>''
+                'condition' => [
+                    'img_border_border!' => ''
                 ]
             ]
         );
@@ -1197,8 +1197,8 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-metadata-item:hover' => 'border-color: {{VALUE}}',
                 ],
-                'condition'=>[
-                    'meta_border_normal_border!'=>''
+                'condition' => [
+                    'meta_border_normal_border!' => ''
                 ]
             ]
         );
@@ -1703,8 +1703,8 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-readmore-btn:hover' => 'border-color: {{VALUE}}',
                 ],
-                'condition'=>[
-                    'border_readmore_btn_normal_border!'=>''
+                'condition' => [
+                    'border_readmore_btn_normal_border!' => ''
                 ]
             ]
         );
@@ -1872,6 +1872,18 @@ class PostBlock extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-float-metawrapper-date' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+            ]
+        );
+
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'floating_date_border',
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
                 'condition' => [
                     'show-floating-date' => 'yes'
                 ]
@@ -2107,19 +2119,19 @@ class PostBlock extends \Elementor\Widget_Base
             ]
         );
 
-		$this->add_control(
-			'floating_border_color_hover',
-			[
-				'label' => esc_html__( 'Border Color', 'rometheme-for-elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .rkit-floating-category-btn:hover' => 'border-color: {{VALUE}}',
-				],
-                'condition'=>[
-                    'floating_category_border_normal_border!'=>''
+        $this->add_control(
+            'floating_border_color_hover',
+            [
+                'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-floating-category-btn:hover' => 'border-color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'floating_category_border_normal_border!' => ''
                 ]
-			]
-		);
+            ]
+        );
 
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),

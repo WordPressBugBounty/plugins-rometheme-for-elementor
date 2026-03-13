@@ -28,10 +28,12 @@ jQuery(window).on("elementor/frontend/init", function () {
       });
 
       myChart.resize();
-
-      jQuery(window).on("resize", function () {
+      // Observe element resize
+      const resizeObserver = new ResizeObserver(() => {
         myChart.resize();
       });
-    }
+
+      resizeObserver.observe($scope[0]);
+    },
   );
 });

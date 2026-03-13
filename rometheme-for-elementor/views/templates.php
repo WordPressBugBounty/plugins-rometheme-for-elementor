@@ -26,7 +26,9 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                         ?>
                     </span>
                 </div>
-                <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <button id="add-themebuilder" class="btn btn-accent fw-bold px-4 py-3 gap-2">

@@ -46,8 +46,9 @@ $activemodules = count(array_filter($options, function ($module) {
                         ?>
                     </span>
                 </div>
-                <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
-
+                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <button id="save-modules" class="btn btn-accent px-4 py-3 gap-2">
@@ -101,7 +102,7 @@ $activemodules = count(array_filter($options, function ($module) {
                         foreach ($modules as $key => $module) :
                             // $active = ($options[$key]['status'] == true && ($module['type'] != 'pro' || $isProActive)) ? 'checked' : '';
                             // $active = (($module['type'] == 'pro' && $isProActive) && $options[$key]['status'] == true || $module['type'] != 'pro' && $options[$key]['status'] == true) ? 'checked' : '';
-                           $required_another = true;
+                            $required_another = true;
 
                             if (isset($module['required'])) {
                                 $required_another = in_array(
@@ -147,10 +148,12 @@ $activemodules = count(array_filter($options, function ($module) {
                                                             <i class="fa-solid fa-star"></i>
                                                             Popular</span>
                                                     <?php endif; ?>
-                                                    <?php if(isset($module['required'])): ?>
-                                                        <span class="badge popular" style="text-transform: capitalize">
+                                                    <?php if (isset($module['required'])):
+                                                        $required = (explode('/', $module['required']))[0] === 'woocommerce' ? 'Woo' : (explode('/', $module['required']))[0];
+                                                    ?>
+                                                        <span class="badge <?php echo esc_attr($required) ?>" style="text-transform: capitalize">
                                                             <i class="fa-solid fa-star"></i>
-                                                            <?php echo (explode('/', $module['required']))[0] ?></span>
+                                                            <?php echo ucfirst($required) ?></span>
                                                     <?php endif ?>
                                                 </h5>
                                             </div>

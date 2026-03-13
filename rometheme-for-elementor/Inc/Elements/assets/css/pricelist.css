@@ -252,8 +252,8 @@
   align-self: center;
   justify-content: center;
   line-height: 0px ;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  /* margin-top: 12px;
+  margin-bottom: 12px; */
 }
 
 .icon-list-button-pt {

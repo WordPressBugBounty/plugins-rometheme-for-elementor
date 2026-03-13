@@ -33,8 +33,9 @@ $globalSettings = new WP_Query($args);
                         }
                         ?>
                     </span>
-                </div>
-                <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                </div><?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php endif; ?>
             </div>
         </div>
         <div class="divider"></div>
@@ -81,7 +82,7 @@ $globalSettings = new WP_Query($args);
                         <path d="M11.9999 16.996C12.5506 16.996 12.9969 16.5496 12.9969 15.999C12.9969 15.4483 12.5506 15.002 11.9999 15.002C11.4493 15.002 11.0029 15.4483 11.0029 15.999C11.0029 16.5496 11.4493 16.996 11.9999 16.996Z" fill="#F15C5C" />
                     </svg>
                     <span class="lh-1">
-                        <small >
+                        <small>
                             When used, the "Global Site Settings" that some Template Kits contain can affect your entire website.<br>
                             The Elementor Hamburger Menu » Site Settings is where you can change the Site Settings. The global site settings that are applied to your website can be altered below.
                         </small>

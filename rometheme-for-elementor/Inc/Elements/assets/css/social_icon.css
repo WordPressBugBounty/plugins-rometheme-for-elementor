@@ -24,6 +24,13 @@
   --color: #1877f2; /* Facebook Blue */
 }
 
+.dribbble {
+  --color: #ea4c89; /* Dribbble Pink */
+}
+.behance {
+  --color: #1769ff; /* Behance Blue */
+}
+
 .twitter {
   --color: #000000; /* X (Twitter) Black */
 }

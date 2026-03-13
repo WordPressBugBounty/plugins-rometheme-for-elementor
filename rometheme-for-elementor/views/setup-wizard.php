@@ -60,22 +60,18 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
             </div>
             <div class="wizard-step <?php echo $current_step >= 2 ? 'active' : ''; ?>" data-step="2">
                 <div class="step-number">[02]</div>
-                <div class="step-title">Plugin Check</div>
+                <div class="step-title">Modules</div>
             </div>
             <div class="wizard-step <?php echo $current_step >= 3 ? 'active' : ''; ?>" data-step="3">
                 <div class="step-number">[03]</div>
-                <div class="step-title">Modules</div>
+                <div class="step-title">Elementrue Theme</div>
             </div>
             <div class="wizard-step <?php echo $current_step >= 4 ? 'active' : ''; ?>" data-step="4">
                 <div class="step-number">[04]</div>
-                <div class="step-title">Elementrue Theme</div>
+                <div class="step-title">Get Update</div>
             </div>
             <div class="wizard-step <?php echo $current_step >= 5 ? 'active' : ''; ?>" data-step="5">
                 <div class="step-number">[05]</div>
-                <div class="step-title">Get Update</div>
-            </div>
-            <div class="wizard-step <?php echo $current_step >= 6 ? 'active' : ''; ?>" data-step="6">
-                <div class="step-number">[06]</div>
                 <div class="step-title">Finalizing</div>
             </div>
         </div>
@@ -170,88 +166,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     <button id="next-button" class="btn btn-gradient-accent" data-next="2">Next</button>
                 </div>
             </div>
-            <div id="plugin-check" data-step-content="2" class="wizard-step-content <?php echo $current_step === 2 ? 'active' : ''; ?>">
-                <div class="mb-5">
-                    <div class="logo">
-                        <div class="logo-image">
-                            <img width="150" src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/rtmkit.png'); ?>" alt="RTMKit Logo">
-                        </div>
-                        <span class="rtmkit-version">v.<?php echo esc_html(RTM_KIT_VERSION) ?></span>
-                    </div>
-                    <div class="d-flex flex-row w-100 align-items-start justify-content-center gap-4">
-                        <span class="step-number-content">[&emsp;STEP 02&emsp;]</span>
-                        <h1 class="text-uppercase">
-                            Make sure your plugins <br> are compatible before <br> moving forward.
-                        </h1>
-                    </div>
-                    <div class="row row-cols-2 mt-5">
-                        <div class="col mt-5">
-                            <div class="mt-5 d-flex gap-3">
-                                <div class="d-flex gap-4">
-                                    <div class="col">
-                                        <div class="mb-4 rounded-4 bg-secondary p-3">
-                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/box-rtmkit.png'); ?>" alt="" class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <div class="col d-flex flex-column gap-3 justify-content-end">
-                                        <div class="d-flex align-items-center gap-3">
-                                            <h5 class="m-0 fw-normal"><span class="fw-semibold">RTM</span>kit Pro</h5>
-                                            <span class="rtmkitpro-version version"><?php echo ($proCurrentVersion !== null && $proCurrentVersion !== '') ? esc_html('v.' . $proCurrentVersion) : 'Not installed'; ?></span>
-                                        </div>
-                                        <span class="text-muted">
-                                            Exclusive widgets, theme tools, and features for professional websites.
-                                        </span>
-                                        <div id="rtmkit-pro-button">
-                                            <div class="d-flex align-items-center gap-2 text-muted">
-                                                <div class="spinner-border spinner-border-sm" role="status" style="--bs-spinner-border-width:0.1em">
-                                                    <span class="visually-hidden">Loading...</span>
-                                                </div>
-                                                <span id="rtmkitpro-status" class="">Version Checking...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-5 d-flex gap-3">
-                                <div class="d-flex gap-4">
-                                    <div class="col">
-                                        <div class="mb-4 h-100 rounded-4 bg-secondary d-flex align-items-center justify-content-center">
-                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/form.png'); ?>" alt="" class="img-fluid w-100">
-                                        </div>
-                                    </div>
-                                    <div class="col d-flex flex-column gap-3 justify-content-end">
-                                        <div class="d-flex align-items-center gap-3">
-                                            <h5 class="m-0 fw-normal"><span class="fw-semibold">RTM</span>Form</h5>
-                                            <span class="rtmform-version version"><?php echo ($formCurrentVersion !== null && $formCurrentVersion !== '') ? esc_html('v.' . $formCurrentVersion) : 'Not installed'; ?></span>
-                                        </div>
-                                        <span class="text-muted">
-                                            Friendly Elementor form builder for stylish, fully customizable forms.
-                                        </span>
-                                        <div id="rtmform-button">
-                                            <div class="d-flex align-items-center gap-2 text-muted">
-                                                <div class="spinner-border spinner-border-sm" role="status" style="--bs-spinner-border-width:0.1em">
-                                                    <span class="visually-hidden">Loading...</span>
-                                                </div>
-                                                <span id="rtmform-status" class="">Version Checking...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="footer gap-2">
-                        <button id="next-button" class="btn btn-gradient-accent" disabled>
-                            <div class="spinner-border spinner-border-sm" role="status"
-                                style="--bs-spinner-border-width:0.1em"></div>
-                            <span>Checking...</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div id="module-switcher" data-step-content="3" class="wizard-step-content <?php echo $current_step === 3 ? 'active' : ''; ?>">
+            <div id="module-switcher" data-step-content="2" class="wizard-step-content <?php echo $current_step === 2 ? 'active' : ''; ?>">
                 <div class="mb-5">
                     <div class="logo">
                         <div class="logo-image">
@@ -303,11 +218,11 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     </div>
                 </div>
                 <div class="footer">
-                    <button id="next-button" class="btn btn-link" data-next="2">Back</button>
+                    <button id="next-button" class="btn btn-link" data-next="1">Back</button>
                     <button id="next-button" class="btn btn-gradient-accent" data-action="save-module">Next</button>
                 </div>
             </div>
-            <div id="elementrue" data-step-content="4" class="wizard-step-content <?php echo $current_step === 4 ? 'active' : ''; ?>">
+            <div id="elementrue" data-step-content="3" class="wizard-step-content <?php echo $current_step === 3 ? 'active' : ''; ?>">
                 <div class="mb-5">
                     <div class="row row-cols-lg-2 row-cols-1 h-100">
                         <div class="col">
@@ -371,11 +286,11 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     </div>
                 </div>
                 <div class="footer">
-                    <button id="next-button" class="btn btn-link" data-next="3">Back</button>
-                    <button id="next-button" class="btn btn-gradient-accent" data-next="5">Next</button>
+                    <button id="next-button" class="btn btn-link" data-next="2">Back</button>
+                    <button id="next-button" class="btn btn-gradient-accent" data-next="4">Next</button>
                 </div>
             </div>
-            <div id="subscribe" data-step-content="5" class="wizard-step-content <?php echo $current_step === 5 ? 'active' : ''; ?>">
+            <div id="subscribe" data-step-content="4" class="wizard-step-content <?php echo $current_step === 4 ? 'active' : ''; ?>">
                 <div class="mb-5">
                     <div class="logo">
                         <div class="logo-image">
@@ -406,12 +321,12 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     </div>
 
                     <div class="footer">
-                        <button id="next-button" class="btn btn-link" data-next="4">Back</button>
-                        <button id="next-button" class="btn btn-gradient-accent" data-next="6">Skip</button>
+                        <button id="next-button" class="btn btn-link" data-next="3">Back</button>
+                        <button id="next-button" class="btn btn-gradient-accent" data-next="5">Skip</button>
                     </div>
                 </div>
             </div>
-            <div id="finish" data-step-content="6" class="wizard-step-content <?php echo $current_step === 6 ? 'active' : ''; ?>">
+            <div id="finish" data-step-content="5" class="wizard-step-content <?php echo $current_step === 5 ? 'active' : ''; ?>">
                 <div class="mb-5">
                     <div class="row row-cols-2 gx-5">
                         <div class="col">

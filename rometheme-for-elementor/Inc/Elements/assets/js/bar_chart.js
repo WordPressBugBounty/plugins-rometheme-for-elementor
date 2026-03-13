@@ -2,11 +2,13 @@ jQuery(window).on("elementor/frontend/init", function () {
   elementorFrontend.hooks.addAction(
     "frontend/element_ready/rkit-bar-chart.default",
     function ($scope, $) {
-      var ctx = $scope.find("#barChart")[0].getContext("2d");
-      var labels = $scope.find("#barChart").data("label");
-      var datasets = $scope.find("#barChart").data("datasets");
-      var scales = $scope.find("#barChart").data("scales");
-      var legend = $scope.find("#barChart").data("legend");
+      var $chart = $scope.find("#barChart");
+      var ctx = $chart[0].getContext("2d");
+
+      var labels = $chart.data("label");
+      var datasets = $chart.data("datasets");
+      var scales = $chart.data("scales");
+      var legend = $chart.data("legend");
 
       var data = {
         labels: labels,
@@ -29,9 +31,12 @@ jQuery(window).on("elementor/frontend/init", function () {
       });
 
       myChart.resize();
-      jQuery(window).on("resize", function () {
+      // Observe element resize
+      const resizeObserver = new ResizeObserver(() => {
         myChart.resize();
       });
-    },
+
+      resizeObserver.observe($scope[0]);
+    }
   );
 });

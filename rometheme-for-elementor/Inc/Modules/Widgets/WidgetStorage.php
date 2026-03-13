@@ -121,7 +121,7 @@ class WidgetStorage
             return $formWidgets;
         }
 
-        return array_merge($widgetsFree, $widgetsPro, $formWidgets);
+        return array_merge($widgetsFree, $widgetsPro ?? [], $formWidgets ?? []);
     }
 
     public function get_widget_data_by_key($key)

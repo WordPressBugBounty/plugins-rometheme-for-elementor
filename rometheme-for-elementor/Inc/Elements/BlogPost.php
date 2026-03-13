@@ -1861,6 +1861,17 @@ class BlogPost extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'floating_date_border',
+				'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
+				'condition' => [
+					'show-floating-date' => 'yes'
+				]
+			]
+		);
+
         $this->add_responsive_control(
             'floating-date-border-radius',
             [

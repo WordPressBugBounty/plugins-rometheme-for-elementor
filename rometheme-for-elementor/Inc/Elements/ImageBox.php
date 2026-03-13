@@ -535,10 +535,7 @@ class ImageBox extends \Elementor\Widget_Base
             [
                 'name' => 'image_border',
                 'label' => esc_html__('Border  ', 'rometheme-for-elementor'),
-                'selector' => '{{WRAPPER}} .rkit-image_box__img img ',
-                'condition' => [
-                    'select_style' => 'float-card',
-                ]
+                'selector' => '{{WRAPPER}} .rkit-image_box__img',
             ]
         );
 

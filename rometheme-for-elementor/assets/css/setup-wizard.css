@@ -7,7 +7,7 @@
   --muted-color: #b0b0b0;
   --border-color: #3c4146;
   background-color: #f9f9f9;
-  position: fixed;
+  /* position: fixed; */
   top: var(--wp-admin--admin-bar--height, 32px);
   left: 0;
   width: 100%;
@@ -59,10 +59,12 @@
 
 .rtmkit-wizard-container .wizard-steps {
   display: flex;
-  width: 100%;
+  width: calc(100% - 160px);
+  margin: 0 auto;
   align-items: center;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: var(--wp-admin--admin-bar--height, 32px);
+  left: 160px;
   background-color: #f9f9f9;
   z-index: 1;
 }
@@ -100,6 +102,7 @@
   border-radius: 20px;
   position: relative;
   overflow: hidden;
+  margin-top: 5rem;
 }
 
 .rtmkit-wizard-container .wizard-content .wizard-step-content {
