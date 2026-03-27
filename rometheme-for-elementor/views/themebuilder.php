@@ -15,9 +15,9 @@ foreach ($active_themebuilder as $key => $item) {
     $active_themebuilder_key[$key] = ['name' => $item['name']];
 }
 
-if (class_exists('RomeThemeForm')) {
+// if (class_exists('RomeThemeForm')) {
     $active_themebuilder_key['form'] = ['name' => 'Form '];
-}
+// }
 
 $active_tabs = (isset($_POST['themebuilder'])) ? sanitize_text_field($_POST['themebuilder']) : 'all';
 $isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());

@@ -154,6 +154,8 @@
   font-size: 9vw;
   line-height: 0.95;
   color: #333;
+  overflow: hidden;
+  border-radius: 0.15em;
 }
 
 .card__top,
@@ -165,7 +167,7 @@
   color: inherit;
   background: #00CEA6;
   padding: 0.25em 0.25em;
-  border-radius: 0.15em 0.15em 0 0;
+  /* border-radius: 0.15em 0.15em 0 0; */
   backface-visiblity: hidden;
   transform-style: preserve-3d;
   width: 1.8em;
@@ -179,7 +181,7 @@
   left: 0;
   /* border-top: solid 1px var(--card-bottom-b-color); */
   background: #00CEA6;
-  border-radius: 0 0 0.15em 0.15em;
+  /* border-radius: 0 0 0.15em 0.15em; */
   pointer-events: none;
   overflow: hidden;
   filter: brightness(1.1);

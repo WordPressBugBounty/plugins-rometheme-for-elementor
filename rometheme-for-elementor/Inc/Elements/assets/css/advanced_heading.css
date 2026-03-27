@@ -27,6 +27,16 @@
   background-color: black;
 }
 
+.rkit-advanced-heading-wrapper h1.rkit-advanced-heading{
+  line-height: unset;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rkit-advanced-heading-wrapper h1.rkit-advanced-heading .text-container{
+  display: inline-flex;
+}
+
 .rkit-advanced-heading span:not(.headline-container , .text-container) {
   display: inline;
   position: relative;

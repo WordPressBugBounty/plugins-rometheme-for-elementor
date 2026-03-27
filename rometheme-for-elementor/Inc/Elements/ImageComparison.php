@@ -422,6 +422,15 @@ class ImageComparison extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'image_border_type',
+                'label' => esc_html__('Border Type', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .img-comp-container',
+            ]
+        );
+
         $this->add_responsive_control(
             'border_radius',
             [

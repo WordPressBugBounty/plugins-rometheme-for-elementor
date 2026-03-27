@@ -1177,6 +1177,26 @@ class ImageAccordion extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'badge_border_type',
+                'selector' => '{{WRAPPER}} .container-image-accordion .item-badge',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'badge_wrapper_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem'],
+                'selectors' => [
+                    '{{WRAPPER}} .item-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'badge_wrapper_padding',
             [
@@ -1197,18 +1217,6 @@ class ImageAccordion extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .item-badge' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'badge_wrapper_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em', 'rem'],
-                'selectors' => [
-                    '{{WRAPPER}} .item-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1375,7 +1383,8 @@ class ImageAccordion extends \Elementor\Widget_Base
                         <div class="item-text">
                             <div class="background-item-text"></div>
 
-                            <<?php echo esc_html($html_tag) ?> class="text-title-ia animate__animated"> <?php echo esc_html($li['image_title']); ?>
+                            <<?php echo esc_html($html_tag) ?> class="text-title-ia animate__animated">
+                                <?php echo esc_html($li['image_title']); ?>
                             </<?php echo esc_html($html_tag) ?>>
                             <span class="text-description animate__animated">
                                 <?php echo esc_html($li['image_description']); ?>

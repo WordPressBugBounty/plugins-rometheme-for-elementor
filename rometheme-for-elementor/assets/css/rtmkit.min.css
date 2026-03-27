@@ -422,8 +422,8 @@ html {
   .menu-list
   .menu-item
   .menu-link:hover {
-    color: #fff;
-  }
+  color: #fff;
+}
 #rtmkit-root
   .rtmkit-app
   .rtmkit-app__sidebar
@@ -1066,8 +1066,8 @@ html {
 }
 
 #rtmkit-root .scrollspy .badge.Woo {
-  background-color: #5007AA;
-  color: #D1C1FF;
+  background-color: #5007aa;
+  color: #d1c1ff;
 }
 
 #rtmkit-root .scrollspy .link {
@@ -1396,6 +1396,22 @@ html {
 
 #rtmkit-root .list .list-item:hover {
   border-bottom: solid 1px var(--border-color);
+}
+
+#rtmkit-root .banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(101.74deg, #121416 41.4%, #00cea6 153.56%) !important;
+}
+
+#rtmkit-root .banner::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0.4rem;
+  height: 100%;
+  background-color: var(--accent-color);
 }
 
 a.wp-has-submenu.wp-has-current-submenu.wp-menu-open.menu-top.toplevel_page_rtmkit {

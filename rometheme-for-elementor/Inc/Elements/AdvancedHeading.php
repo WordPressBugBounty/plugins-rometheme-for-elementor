@@ -158,6 +158,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'default' => 'left',
                 'selectors' => [
                     '{{WRAPPER}} .rkit-advanced-heading-wrapper' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-advanced-heading' => 'justify-content: {{VALUE}};',
                 ],
             ]
         );

@@ -49,17 +49,27 @@ class RkitWrapperLink
                 $url = esc_url($settings['rtm_wrapper_link']['url']);
                 $target = $settings['rtm_wrapper_link']['is_external'] ? ' target="_blank"' : '';
                 $nofollow = $settings['rtm_wrapper_link']['nofollow'] ? ' rel="nofollow"' : '';
-                echo '<a class="rtmkit-wrapper-link" href="' . $url . '"' . $target . $nofollow . '>';
+                // echo '<a class="rtmkit-wrapper-link" href="' . $url . '"' . $target . $nofollow . '>';
+
+                // Wrap the entire container content with the link
+                $element->add_render_attribute('_wrapper', 'data-url', $url);
+                $element->add_render_attribute('_wrapper', 'data-target', !empty($settings['rtm_wrapper_link']['is_external']) ? '_blank' : '_self');
+
+                if (!empty($settings['rtm_wrapper_link']['nofollow'])) {
+                    $element->add_render_attribute('_wrapper', 'data-rel', 'nofollow');
+                }
+
+                $element->add_render_attribute('_wrapper', 'class', 'rtmkit-wrapper-link');
             }
         });
 
-        add_action('elementor/frontend/widget/after_render', function ($element) {
-            $settings = $element->get_settings_for_display();
+        // add_action('elementor/frontend/widget/after_render', function ($element) {
+        //     $settings = $element->get_settings_for_display();
 
-            if (!empty($settings['rtm_wrapper_link']['url'])) {
-                echo '</a>';
-            }
-        });
+        //     if (!empty($settings['rtm_wrapper_link']['url'])) {
+        //         echo '</a>';
+        //     }
+        // });
 
         add_action('wp_enqueue_scripts', array($this, 'enqueue_style'));
     }

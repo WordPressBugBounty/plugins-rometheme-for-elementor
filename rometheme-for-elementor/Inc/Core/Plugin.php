@@ -211,6 +211,7 @@ class Plugin
             wp_enqueue_script('rtmkit-system-panel', RTM_KIT_URL . 'assets/js/panel_system.js', ['jquery'], RTM_KIT_VERSION, true);
         });
         add_action('wp_enqueue_scripts', function () {
+            wp_enqueue_style('elementor-icons');
             wp_enqueue_style('rtmkit-animate-css', RTM_KIT_URL . 'assets/css/animate.min.css', [], RTM_KIT_VERSION);
 
             wp_enqueue_style('rtmkit-system-panel', RTM_KIT_URL . 'assets/css/panel_system.css', [], RTM_KIT_VERSION);

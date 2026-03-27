@@ -132,6 +132,12 @@
     display: flex;
 }
 
+.rkit-readmore-div .rkit-readmore-btn .rkit-icon-readmore{
+    width: unset;
+    height: unset;
+    margin: 0;
+}
+
 .rkit-metadata-item {
     display: flex;
     align-items: center;

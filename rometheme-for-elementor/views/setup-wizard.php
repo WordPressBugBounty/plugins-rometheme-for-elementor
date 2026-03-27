@@ -64,7 +64,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
             </div>
             <div class="wizard-step <?php echo $current_step >= 3 ? 'active' : ''; ?>" data-step="3">
                 <div class="step-number">[03]</div>
-                <div class="step-title">Elementrue Theme</div>
+                <div class="step-title">Luminex Theme</div>
             </div>
             <div class="wizard-step <?php echo $current_step >= 4 ? 'active' : ''; ?>" data-step="4">
                 <div class="step-number">[04]</div>
@@ -117,14 +117,13 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                 <li class="list-group-item">
                                     <div class="row row-cols-2">
                                         <div class="col-3">
-                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/theme.png'); ?>" alt="">
+                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/plugin-check.png'); ?>" alt="">
                                         </div>
                                         <div class="col-9">
                                             <div class="d-flex flex-column h-100 justify-content-center">
-                                                <h5 class="mb-2">2. Elementrue Theme</h5>
+                                                <h5 class="mb-2">2. Modules</h5>
                                                 <p class="text-muted">
-                                                    Upgrade Your Website with Elementrue a
-                                                    High-End WordPress Theme</p>
+                                                    Customize Your Experience with Module Switching, Letting You Enable or Disable Features Based on Your Workflow.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -132,17 +131,19 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                 <li class="list-group-item">
                                     <div class="row row-cols-2">
                                         <div class="col-3">
-                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/plugin-check.png'); ?>" alt="">
+                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/theme.png'); ?>" alt="">
                                         </div>
                                         <div class="col-9">
                                             <div class="d-flex flex-column h-100 justify-content-center">
-                                                <h5 class="mb-2">3. Plugin Check</h5>
+                                                <h5 class="mb-2">3. Luminex Theme</h5>
                                                 <p class="text-muted">
-                                                    We’ll check your plugin version and compatibility to ensure everything works properly.</p>
+                                                    Upgrade Your Website with Luminex a
+                                                    High-End WordPress Theme</p>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+
                                 <li class="list-group-item">
                                     <div class="row row-cols-2">
                                         <div class="col-3">
@@ -175,9 +176,9 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                         <span class="rtmkit-version">v.<?php echo esc_html(RTM_KIT_VERSION) ?></span>
                     </div>
                     <div class="mt-4">
-                        <div class="d-flex flex-row w-100 align-items-start justify-content-start gap-4">
+                        <div class="d-flex flex-row w-100 align-items-start justify-content-start gap-4 mb-4">
                             <h1 class="text-uppercase">
-                                <span class="step-number-content">[&emsp;STEP 03&emsp;]</span>
+                                <span class="step-number-content">[&emsp;STEP 02&emsp;]</span>
                                 upgrade your website<br>
                                 with a complete modules
                             </h1>
@@ -222,14 +223,14 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     <button id="next-button" class="btn btn-gradient-accent" data-action="save-module">Next</button>
                 </div>
             </div>
-            <div id="elementrue" data-step-content="3" class="wizard-step-content <?php echo $current_step === 3 ? 'active' : ''; ?>">
+            <div id="Luminex" data-step-content="3" class="wizard-step-content <?php echo $current_step === 3 ? 'active' : ''; ?>">
                 <div class="mb-5">
                     <div class="row row-cols-lg-2 row-cols-1 h-100">
                         <div class="col">
                             <div class="d-flex flex-column gap-5">
                                 <div class="logo">
                                     <div class="logo-image">
-                                        <img width="150" src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/elementrue.png'); ?>" alt="elementrue Logo">
+                                        <img width="150" src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/Luminex.png'); ?>" alt="Luminex Logo">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column gap-3 h-100">
@@ -240,46 +241,52 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                     <ul class="p-0 m-0 d-flex flex-column gap-2">
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check elementrue-color"></i>
-                                                <span>50+ Niche Business WordPress Themes</span>
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
+                                                <span>9+ Demo Pages</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check elementrue-color"></i>
-                                                <span>320+ Premium Blocks & Layouts</span>
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
+                                                <span>109+ Premium Inner Pages</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check elementrue-color"></i>
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
+                                                <span>Quality checked by Themeforest, Envato</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
                                                 <span>Lifetime Access to RTMkit PRO</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check elementrue-color"></i>
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
                                                 <span>Lifetime Updates</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check elementrue-color"></i>
+                                                <i class="fa-regular fa-circle-check luminex-color"></i>
                                                 <span>6 Months of Dedicated Support</span>
                                             </div>
                                         </li>
                                     </ul>
                                     <div>
-                                        <a href="https://elementrue.rometheme.net/" target="_blank" class="btn elementrue-btn" style="background-image: url(<?php echo esc_url(RTM_KIT_URL . 'assets/images/bg-button.png') ?>);">
-                                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/elementrue-logo.png');  ?>" alt="" width="20">
-                                            GET ELEMENTRUE
+                                        <a href="https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551" target="_blank" class="btn luminex-btn">
+
+                                            GET LUMINEX
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/group.png'); ?>" class="img-fluid" alt="" style="
+                            <img src="<?php echo esc_url(RTM_KIT_URL . 'assets/images/luminex-group.png'); ?>" class="img-fluid" alt="" style="
                                 position: absolute; top: 0;bottom: 0;right: -23rem;height: 100%;object-fit: cover;width: 90%;
                             ">
                         </div>
@@ -299,7 +306,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                         <span class="rtmkit-version">v.<?php echo esc_html(RTM_KIT_VERSION) ?></span>
                     </div>
                     <div class="d-flex flex-row w-100 align-items-start justify-content-start gap-4 mt-5">
-                        <span class="step-number-content">[&emsp;STEP 05&emsp;]</span>
+                        <span class="step-number-content">[&emsp;STEP 04&emsp;]</span>
                         <div class="d-flex flex-column gap-3 w-50">
                             <h1 class="text-uppercase">
                                 Get the latest updates <br> and announcements.
@@ -334,7 +341,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                         </div>
                         <div class="col">
                             <div class="d-flex flex-column  gap-3 h-100 justify-content-end ps-5">
-                                <span class="step-number-content">[&emsp;STEP 06&emsp;]</span>
+                                <span class="step-number-content">[&emsp;STEP 05&emsp;]</span>
                                 <h1 class="text-uppercase">
                                     finally, <br>
                                     Setup Completed
@@ -349,7 +356,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                     </div>
                 </div>
                 <div class="footer">
-                    <button id="next-button" class="btn btn-link" data-next="5">Back</button>
+                    <button id="next-button" class="btn btn-link" data-next="4">Back</button>
                     <button id="next-button" class="btn btn-light" data-finish="true">Visit Dashboard</button>
                 </div>
             </div>

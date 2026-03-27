@@ -277,11 +277,11 @@
   color: #a4ffed;
 }
 
-.elementrue-color {
-  color: #00f4ff;
+.luminex-color {
+  color: #9e56e6;
 }
 
-.btn.elementrue-btn {
+.btn.luminex-btn {
   position: relative;
   border-radius: 40px;
   border: none;
@@ -290,10 +290,11 @@
   isolation: isolate;
   color: white;
   transition: all 0.3s;
+  background-image: linear-gradient(127deg, #9e56e6 35%, #fafafa 100%);
 }
 
-.btn.elementrue-btn:hover {
-  box-shadow: 0px 9px 24px rgba(115, 246, 252, 0.4);
+.btn.luminex-btn:hover {
+  box-shadow: 0px 9px 24px #9e56e665;
 }
 
 .rtmkit-wizard-container .form-control,

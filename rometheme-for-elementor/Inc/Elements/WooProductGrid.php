@@ -818,6 +818,69 @@ class WooProductGrid extends \Elementor\Widget_Base
             ]
         );
 
+        $this->start_controls_tabs('title_tab');
+
+        $this->start_controls_tab('title_tab_normal', ['label' => esc_html('Normal')]);
+
+        $this->add_control(
+            'title_color_wpg',
+            [
+                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-title-wpg, {{WRAPPER}} .rkit-product-title-wpg-pro, {{WRAPPER}} .rkit-product-title-wpg-prem' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('title_tab_hover', ['label' => esc_html('Hover')]);
+
+
+        $this->add_control(
+            'title_color_wpg_hover',
+            [
+                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-title-wpg:hover, {{WRAPPER}} .rkit-product-title-wpg-pro:hover, {{WRAPPER}} .rkit-product-title-wpg-prem:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title_transition_duration',
+            [
+                'label' => esc_html__('Transition Duration', 'romethemekitpro'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['ms', 's'],
+                'range' => [
+                    's' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 0.1,
+                    ],
+                    'ms' => [
+                        'min' => 0,
+                        'step' => 1000,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 's',
+                    'size' => 0.3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-title-wpg' => 'transition: all {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->add_responsive_control(
             'title_container_width',
             [
@@ -1106,41 +1169,6 @@ class WooProductGrid extends \Elementor\Widget_Base
                 ],
             ]
         );
-
-        $this->start_controls_tabs('title_tab');
-
-        $this->start_controls_tab('title_tab_normal', ['label' => esc_html('Normal')]);
-
-        $this->add_control(
-            'title_color_wpg',
-            [
-                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-product-title-wpg, {{WRAPPER}} .rkit-product-title-wpg-pro, {{WRAPPER}} .rkit-product-title-wpg-prem' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->start_controls_tab('title_tab_hover', ['label' => esc_html('Hover')]);
-
-
-        $this->add_control(
-            'title_color_wpg_hover',
-            [
-                'label' => esc_html__('Title Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-product-title-wpg:hover, {{WRAPPER}} .rkit-product-title-wpg-pro:hover, {{WRAPPER}} .rkit-product-title-wpg-prem:hover' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
 
 
         $this->end_controls_section();
@@ -1584,6 +1612,14 @@ class WooProductGrid extends \Elementor\Widget_Base
             [
                 'name' => 'woo_product_border',
                 'selector' => '{{WRAPPER}} .rkit-addcart-button-wpg-pro, {{WRAPPER}} .gradient-border, {{WRAPPER}} .rkit-addcart-button-wpg,  {{WRAPPER}} .rkit-addcart-button-wpg-prem',
+            ]
+        );
+
+         $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'btn_box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-addcart-button-wpg-pro, {{WRAPPER}} .rkit-addcart-button-wpg, {{WRAPPER}} .rkit-addcart-button-wpg-prem',
             ]
         );
 

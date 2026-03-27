@@ -1,0 +1,12 @@
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-react',
+      {
+        pragma: 'wp.element.createElement',
+        pragmaFrag: 'wp.element.Fragment',
+        runtime: 'classic'
+      }
+    ]
+  ],
+};

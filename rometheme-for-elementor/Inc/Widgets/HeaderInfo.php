@@ -336,7 +336,8 @@ class HeaderInfo extends \Elementor\Widget_Base
                 'size' => 20
             ],
             'selectors' => [
-                '{{WRAPPER}} .rkit-headerinfo-icon' => 'font-size: {{SIZE}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-headerinfo-icon' => 'font-size: {{SIZE}}{{UNIT}}',
+                '{{WRAPPER}} .header-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}'
             ],
         ]);
 
@@ -371,6 +372,7 @@ class HeaderInfo extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-headerinfo-icon' => 'color : {{VALUE}}',
+                '{{WRAPPER}} .header-icon' => 'fill: {{VALUE}}'
             ],
         ]);
 
@@ -385,6 +387,7 @@ class HeaderInfo extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
                 '{{WRAPPER}} .rkit-list-headerinfo:hover .rkit-headerinfo-icon' => 'color : {{VALUE}}',
+                '{{WRAPPER}} .rkit-list-headerinfo:hover .header-icon' => 'fill: {{VALUE}}'
             ],
         ]);
 
@@ -405,7 +408,7 @@ class HeaderInfo extends \Elementor\Widget_Base
 ?>
             <div class="rkit-list-headerinfo">
                 <div class="rkit-headerinfo-icon">
-                    <?php \Elementor\Icons_Manager::render_icon($setting['rkit_headerinfo_icons'], ['aria-hidden' => 'true']); ?>
+                    <?php \Elementor\Icons_Manager::render_icon($setting['rkit_headerinfo_icons'], ['aria-hidden' => 'true', 'class' => 'header-icon']); ?>
                 </div>
                 <a class="rkit-headerinfo-text" <?php $this->print_render_attribute_string('button-' . $key) ?>> <?php echo esc_html__($setting['rkit_headerinfo_text'], 'rometheme-for-elementor') ?></a>
             </div>

@@ -1,12 +1,31 @@
 jQuery(document).ready(function ($) {
   $("[data-next]").on("click", function () {
-    var nextStep = $(this).data("next");
+    var nextStep = parseInt($(this).data("next"));
+    var maxStep = 5;
+
+    // Reset semua content
     $(".wizard-step-content").removeClass("active");
+
+    // Aktifkan content sesuai step
     $('[data-step-content="' + nextStep + '"]').addClass("active");
+
+    // Aktifkan step saat ini
     $('.wizard-step[data-step="' + nextStep + '"]').addClass("active");
-    url = new URL(window.location);
+
+    // 🔥 Remove active untuk step di atas nextStep
+    $(".wizard-step").each(function () {
+      var step = parseInt($(this).data("step"));
+
+      if (step > nextStep && step <= maxStep) {
+        $(this).removeClass("active");
+      }
+    });
+
+    // Update URL
+    var url = new URL(window.location);
     url.searchParams.set("step", nextStep);
     window.history.pushState({}, "", url);
+
     functionRunner(nextStep);
   });
 

@@ -442,23 +442,6 @@ class ClientGrid extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_responsive_control('object_fit', [
-            'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                'none' => esc_html__('None', 'rometheme-for-elementor'),
-                'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
-                'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
-                'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
-                'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
-
-            ],
-            'selectors' => [
-                '{{WRAPPER}} .clientslogo-image-full-cg, {{WRAPPER}} .clientslogo-image-full-cg img, {{WRAPPER}} .image-container-cg'  => 'object-fit:{{VALUE}}'
-            ],
-            'default' => 'scale-down',
-        ]);
-
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -508,6 +491,61 @@ class ClientGrid extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->start_controls_tabs('tabs_object_fit');
+
+        $this->start_controls_tab(
+            'tab_object_fit_normal',
+            [
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_responsive_control('object_fit', [
+            'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'none' => esc_html__('None', 'rometheme-for-elementor'),
+                'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+                'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+                'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+                'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .clientslogo-image-full-cg, {{WRAPPER}} .clientslogo-image-full-cg img, {{WRAPPER}} .image-container-cg'  => 'object-fit:{{VALUE}}'
+            ],
+            'default' => 'scale-down',
+        ]);
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_object_fit_hover',
+            [
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_responsive_control('object_fit_hover', [
+            'label' => esc_html__('Object Fit Image', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                'none' => esc_html__('None', 'rometheme-for-elementor'),
+                'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+                'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+                'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+                'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+            ],
+            'selectors' => [
+                '{{WRAPPER}} .image-hover-cg img' => 'object-fit: {{VALUE}};',
+            ],
+            'default' => 'scale-down',
+        ]);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
 

@@ -11,6 +11,8 @@ jQuery(window).on('elementor/frontend/init', function () {
         
             const naturalWidth = imgCompImgs[0].naturalWidth;
             const naturalHeight = imgCompImgs[0].naturalHeight;
+
+            console.log(naturalHeight, naturalWidth, imgCompImgs.length, imgCompImgs[0])
         
             if (!naturalWidth || !naturalHeight) {
                 console.error('Natural dimensions not available.');

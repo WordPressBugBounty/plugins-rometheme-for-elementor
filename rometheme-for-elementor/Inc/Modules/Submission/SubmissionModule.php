@@ -28,6 +28,13 @@ class SubmissionModule
 
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
+        if (!class_exists('RomeThemeForm')) {
+            ob_start();
+            require_once RTM_KIT_DIR . 'views/rtmform-not-active.php';
+            $content = ob_get_clean();
+            wp_send_json_success($content);
+        }
+
         if (isset($_POST['entries_id'])) {
             ob_start();
             require \RomeThemeForm::module_dir() . 'form/views/entries-view.php';

@@ -497,7 +497,6 @@ class Countdown extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control(
             'more_optionsssssa',
             [
@@ -547,6 +546,7 @@ class Countdown extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem'],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -556,10 +556,11 @@ class Countdown extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .card__top, {{WRAPPER}} .card__bottom, {{WRAPPER}} .card__back::before, {{WRAPPER}} .card__back::after' => 'width: {{SIZE}}{{UNIT}};',
                 ],
-                'condition' => [
-                    'countdown_style' => 'classic'
-                ]
+                // 'condition' => [
+                //     'countdown_style' => 'classic'
+                // ]
             ]
         );
 
@@ -593,6 +594,26 @@ class Countdown extends \Elementor\Widget_Base
             ]
         );
 
+            $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'flip_clock_card_border',
+                'selector' => '{{WRAPPER}} .flip-clock__card.card',
+            ]
+        );
+
+        // $this->add_responsive_control(
+        //     'flip_clock_card_border_radius',
+        //     [
+        //         'label' => esc_html__('Border Radius', 'textdomain'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .flip-clock__card.card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
+
         $this->add_responsive_control(
             'item_border_radius',
             [
@@ -601,8 +622,9 @@ class Countdown extends \Elementor\Widget_Base
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
                     '{{WRAPPER}} .countdown-section, {{WRAPPER}} .countdown-section-row' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .flip-clock__card .card__top, {{WRAPPER}} .flip-clock__card .card__back::before, {{WRAPPER}} .flip-clock__card .card__back::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0 0;',
-                    '{{WRAPPER}} .card__bottom' => 'border-radius: 0 0 {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
+                    // '{{WRAPPER}} .flip-clock__card .card__top, {{WRAPPER}} .flip-clock__card .card__back::before, {{WRAPPER}} .flip-clock__card .card__back::after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0 0;',
+                    // '{{WRAPPER}} .card__bottom' => 'border-radius: 0 0 {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .flip-clock__card.card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );

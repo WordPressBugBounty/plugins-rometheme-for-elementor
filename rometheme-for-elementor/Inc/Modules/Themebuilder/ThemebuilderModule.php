@@ -63,6 +63,12 @@ class ThemebuilderModule
 
     function render_themebuilder_table_page()
     {
+
+        if($_POST['themebuilder'] === 'form' && !class_exists('RomeThemeForm')){
+            require_once RTM_KIT_DIR . 'views/rtmform-not-active.php';
+            return;
+        }
+        
         $themebuilderTable = new Themebuilder_List_Table();
         $themebuilderTable->prepare_items();
 ?>

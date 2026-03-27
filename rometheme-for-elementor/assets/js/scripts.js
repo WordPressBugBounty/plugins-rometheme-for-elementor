@@ -455,6 +455,7 @@ async function render_themebuilder_tab() {
         let themebuilder = urlParams.get("themebuilder") ?? "all";
         if (themebuilder == "form") {
           form();
+          installRTMForm();
         }
       }
     } catch (error) {
@@ -2243,6 +2244,7 @@ function save_global_settings() {
 
 function submission() {
   renderSubmission();
+  // installRTMForm();
 }
 
 function renderSubmission() {
@@ -2265,8 +2267,26 @@ function renderSubmission() {
         if (res.success) {
           submissionContainer.innerHTML = res.data;
           entriesDetail();
+          installRTMForm();
         }
       });
+  }
+}
+
+function installRTMForm() {
+  // console.log("Setting up RTMForm installation...");
+  const installBtn = document.getElementById("install-rtmform");
+  if (installBtn) {
+    installBtn.onclick = (e) => {
+      // e.preventDefault();
+      const thisBtn = e.currentTarget;
+      let action = thisBtn.dataset.action;
+      thisBtn.classList.add("loading");
+      thisBtn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">${action}...</span>`;
+      thisBtn.disabled = true;
+// console.log("Installing RTMForm...");
+    };
   }
 }
 
