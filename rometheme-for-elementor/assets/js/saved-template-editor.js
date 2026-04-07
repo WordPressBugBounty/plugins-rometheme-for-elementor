@@ -75,7 +75,7 @@ window.addEventListener("message", function (event) {
 
     iframe.off("load").on("load", function () {
       const iframeDoc = iframe.contents();
-      iframeDoc.find("#elementor-editor-wrapper-v2").hide();
+      // iframeDoc.find("#elementor-editor-wrapper-v2").hide();
       iframeDoc.find("#elementor-editor-wrapper").css("height", "100vh");
     });
   }

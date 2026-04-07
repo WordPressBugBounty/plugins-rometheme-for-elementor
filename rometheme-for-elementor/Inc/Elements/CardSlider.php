@@ -1952,6 +1952,33 @@ class CardSlider extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+			'navigation_transition_duration',
+			[
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Transition Duration', 'rometheme-for-elementor' ),
+				'size_units' => [ 's', 'ms' ],
+				'range' => [
+					's' => [
+						'min' => 1,
+						'max' => 5,
+					],
+                    'ms' => [
+                        'min' => 100,
+                        'max' => 5000,
+                        'step' => 100,
+                    ],
+				],
+				'default' => [
+					'unit' => 'ms',
+					'size' => 200,
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-swiper-button-prev , {{WRAPPER}} .rkit-swiper-button-next' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
+
         $this->end_controls_tab();
 
         $this->end_controls_tabs();

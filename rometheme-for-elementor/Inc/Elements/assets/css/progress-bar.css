@@ -95,7 +95,7 @@
   left: calc(var(--progress) * 1% - 0.39rem);
   text-align: right;
   display: inline-block;
-  transition: left 0.3s ease;
+  transition: left 0.3s linear;
   /* top: -100%; */
   z-index: 2;
 }
@@ -127,14 +127,14 @@
   );
   position: relative;
   border-radius: 50px;
-  transition: width 0.3s ease;
+  transition: width 0.3s linear;
 }
 
 .progress-bar.percentage-label::after {
   display: inline-block;
   position: absolute;
   left: calc(var(--progress) * 1% - 2rem);
-  transition: left 0.3s ease;
+  transition: left 0.3s linear;
 }
 
 .progress-bar-inline.percentage-label::after {

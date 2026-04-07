@@ -359,7 +359,7 @@
 .rkit-animation-hover-testimonial-cr-enabled .rkit-testimonial-button-prev {
   opacity: 0;
   transition: all 0.5s;
-  transition-delay: 0.3s;
+  /* transition-delay: 0.3s; */
 }
 .rkit-animation-hover-testimonial-cr-enabled:hover .rkit-testimonial-button-next,
 .rkit-animation-hover-testimonial-cr-enabled:hover .rkit-testimonial-button-prev {

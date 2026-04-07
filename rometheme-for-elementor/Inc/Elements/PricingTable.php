@@ -666,9 +666,7 @@ class PricingTable extends \Elementor\Widget_Base
                     ],
                 ],
                 'default' => 'right',
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelisttable-badge, {{WRAPPER}} .rkit-pricelisttable-ribbon-1st, {{WRAPPER}} .rkit-pricelisttable-ribbon-2nd' => '{{VALUE}}: 10px',
-                ],
+                'prefix_class' => 'rkit-badge-position-',
                 'toggle' => true,
                 'condition' => [
                     'enable_badge' => 'yes',
@@ -1989,19 +1987,7 @@ class PricingTable extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'more_options_icon_button_back',
-            [
-                'label' => esc_html__('Button Container Background', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'button_type' => 'button'
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
+         $this->add_responsive_control(
             'button-size-pt',
             [
                 'label' => esc_html__('Size', 'rometheme-for-elementor'),
@@ -2053,6 +2039,30 @@ class PricingTable extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_control(
+            'more_options_icon_button_back',
+            [
+                'label' => esc_html__('Button Container', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'button_type' => 'button'
+                ],
+            ]
+        );
+
+        $this->add_responsive_control('btn_container_padding' , [
+            'label' => esc_html__('Padding', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem'],
+            'selectors' => [
+                '{{WRAPPER}} .rkit-pricelisttable-item-button, {{WRAPPER}} .rkit-pricelisttable-item-button-full' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+            'condition' => [
+                'button_type' => 'button'
+            ],
+        ]);
 
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
@@ -2274,7 +2284,7 @@ class PricingTable extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner, {{WRAPPER}} .rkit-pricelisttable-badge' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-pricelisttable-ribbon__inner, {{WRAPPER}} .rkit-pricelisttable-badge , {{WRAPPER}} .rkit-styled-ribbon' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -2296,6 +2306,48 @@ class PricingTable extends \Elementor\Widget_Base
                 ],
                 'condition' => [
                     'badge_style' => ['ribbon-1st', 'ribbon-2nd']
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'ribbon_offset_x',
+            [
+                'label' => esc_html__('Offset X', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -200,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-styled-ribbon' => '--styled-ribbon-offset-x: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'badge_style!' => 'default' 
+                ]
+            ]
+        );
+
+         $this->add_responsive_control(
+            'ribbon_offset_y',
+            [
+                'label' => esc_html__('Offset Y', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -200,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-styled-ribbon' => '--styled-ribbon-offset-y: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'badge_style!' => 'default' 
                 ]
             ]
         );

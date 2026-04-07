@@ -36,9 +36,8 @@ class Plugin
     {
         if (! $this->wizard_setup_check()) {
             (new \RTMKit\Modules\SetupWizard\SetupWizardModule())->init();
-            return;
+            // return;
         }
-        // Wizard sudah selesai → jalankan plugin normal
         $this->runner();
     }
 

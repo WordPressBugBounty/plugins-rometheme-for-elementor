@@ -1653,11 +1653,13 @@ class Cta extends \Elementor\Widget_Base
                     <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true', 'class' => 'rkit-cta-button__icon']); ?>
                 </a>
             </div>
+            <?php if (!empty($settings['ribbon_text']) || $settings['ribbon_text'] !== '' ): ?>
             <div class="rkit-cta-ribbon <?php echo esc_attr($settings['ribbon_position']) ?>">
                 <div class="rkit-cta-ribbon__inner">
                     <?php echo esc_html($settings['ribbon_text']) ?>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
 <?php
     }

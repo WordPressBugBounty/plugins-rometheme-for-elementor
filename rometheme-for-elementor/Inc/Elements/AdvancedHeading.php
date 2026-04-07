@@ -57,6 +57,19 @@ class AdvancedHeading extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'use_boxed_hedading',
+            [
+                'label' => esc_html__('Boxed Heading', 'textdomain'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'textdomain'),
+                'label_off' => esc_html__('No', 'textdomain'),
+                'return_value' => 'enabled',
+                'default' => '',
+                'prefix_class' => 'use-boxed-heading-',
+            ]
+        );
+
+        $this->add_control(
             'text',
             [
                 'label' => esc_html__('Text', 'rometheme-for-elementor'),
@@ -371,6 +384,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'label' => esc_html__('Container', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -384,6 +400,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                     'background' => [
                         'label' => esc_html('Background Color'),
                     ]
+                ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
                 ]
             ]
         );
@@ -397,6 +416,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .text-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -409,6 +431,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-advanced-heading .text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -421,6 +446,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-advanced-heading .text-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -594,6 +622,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'label' => esc_html__('Container Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -607,6 +638,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                     'background' => [
                         'label' => esc_html('Background Color'),
                     ]
+                ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
                 ]
             ]
         );
@@ -620,6 +654,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .headline-container' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -632,6 +669,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .headline-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -644,6 +684,9 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .headline-container' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'use_boxed_hedading' => 'enabled'
+                ]
             ]
         );
 
@@ -899,12 +942,12 @@ class AdvancedHeading extends \Elementor\Widget_Base
             function ($matches) {
                 if (!empty($matches[1])) {
                     // bagian {{...}}
-                    $items = array_map('trim', explode(',', $matches[1]));
-                    $animated_parts = '';
-                    foreach ($items as $item) {
-                        $animated_parts .= '<span class="headline-text">' . esc_html($item) . '</span>';
-                    }
-                    return '<span class="headline-container">' . $animated_parts . '</span>';
+                    // $items = array_map('trim', explode(',', $matches[1]));
+                    // $animated_parts = '';
+                    // foreach ($items as $item) {
+                    //     $animated_parts .= '<span class="headline-text">' . esc_html($item) . '</span>';
+                    // }
+                    return '<span class="headline-container"><span class="headline-text">' . esc_html($matches[1]) . '</span></span>';
                 } elseif (!empty($matches[2])) {
                     // bagian di luar {{...}}
                     return '<span class="text-container"><span class="text">' . esc_html($matches[2]) . '</span></span>';

@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor widgets, elementor templates, eleme
 Requires at least: 6.8
 Tested up to: 6.9.1
 Requires PHP: 8.2
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,7 +199,15 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
-Version 2.0.5 -  March 27, 2026
+Version 2.0.6 - April 7, 2026
+Pricing table Bug Fixed
+Card Carousel Bug Fixed
+Advanced Heading Update
+Call To Action Bug Fixed
+Advanced Tab Bug Fixed
+Testimonial Carousel Update
+
+Version 2.0.5 – March 27, 2026
 Setup Wizard Update
 Wrapper Link Extension Bug Fixed
 Advanced Heading Bug Fixed

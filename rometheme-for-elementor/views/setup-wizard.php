@@ -143,7 +143,7 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                         </div>
                                     </div>
                                 </li>
-
+                                
                                 <li class="list-group-item">
                                     <div class="row row-cols-2">
                                         <div class="col-3">
@@ -242,19 +242,13 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
                                                 <i class="fa-regular fa-circle-check luminex-color"></i>
-                                                <span>9+ Demo Pages</span>
+                                                <span>50+ Niche Business WordPress Themes</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="d-flex gap-2 align-items-center">
                                                 <i class="fa-regular fa-circle-check luminex-color"></i>
-                                                <span>109+ Premium Inner Pages</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex gap-2 align-items-center">
-                                                <i class="fa-regular fa-circle-check luminex-color"></i>
-                                                <span>Quality checked by Themeforest, Envato</span>
+                                                <span>320+ Premium Blocks & Layouts</span>
                                             </div>
                                         </li>
                                         <li>
@@ -277,8 +271,8 @@ $isProActive = (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RT
                                         </li>
                                     </ul>
                                     <div>
-                                        <a href="https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551" target="_blank" class="btn luminex-btn">
-
+                                        <a href="https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551" target="_blank" class="btn luminex-btn" >
+                                            
                                             GET LUMINEX
                                         </a>
                                     </div>

@@ -419,12 +419,10 @@ class Tabs extends \Elementor\Widget_Base
                     ],
                 ],
                 'default' => 'center',
-                'condition' => [
-                    'layout' => 'horizontal'
-                ],
                 'toggle' => true,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-tab-btn-item' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-tab-btn-item .tab-title-text' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -434,6 +432,32 @@ class Tabs extends \Elementor\Widget_Base
             [
                 'name' => 'title_typography',
                 'selector' => '{{WRAPPER}} .rkit-tab-btn-item .tab-title-text',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_width',
+            [
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 500,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-tab-container.vertical .rkit-tab-btn-item' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'layout' => 'vertical'
+                ]
             ]
         );
 

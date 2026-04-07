@@ -22,7 +22,9 @@ class Menu
 
     public function init()
     {
-        add_action('admin_menu', [$this, 'register_menu']);
+        if (\RTMKit\Core\Plugin::instance()->wizard_setup_check()) {
+            add_action('admin_menu', [$this, 'register_menu']);
+        }
         add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('admin_bar_menu', [$this, 'top_bar_menu'], 100);
         add_action('admin_enqueue_scripts', [$this, 'feature_drawer_script']);

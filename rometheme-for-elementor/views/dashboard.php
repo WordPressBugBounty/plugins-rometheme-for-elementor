@@ -35,7 +35,7 @@ $systems = [
     'wp_memory_limit' => [
         'title' => 'WP Memory Limit',
         'desc' => $sysInfo['wordpress']['memory_limit'],
-        'value' => $sysInfo['wordpress']['memory_limit'] <= 256
+        'value' => $sysInfo['wordpress']['memory_limit'] >= 256
     ]
 ];
 

@@ -67,28 +67,28 @@ class TestimonialCarousel extends \Elementor\Widget_Base
         $this->add_control(
             'layout_style',
             [
-                'label' => esc_html__('Layout Style', 'textdomain'),
+                'label' => esc_html__('Layout Style', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::VISUAL_CHOICE,
                 'label_block' => true,
                 'options' => [
                     'style_1' => [
-                        'title' => esc_attr__('Style 1', 'textdomain'),
+                        'title' => esc_attr__('Style 1', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/testimonial-skin-1.svg',
                     ],
                     'style_2' => [
-                        'title' => esc_attr__('Style 2', 'textdomain'),
+                        'title' => esc_attr__('Style 2', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/testimonial-skin-2.svg',
                     ],
                     'style_3' => [
-                        'title' => esc_attr__('Style 3', 'textdomain'),
+                        'title' => esc_attr__('Style 3', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/testimonial-skin-3.svg',
                     ],
                     'style_4' => [
-                        'title' => esc_attr__('Style 4', 'textdomain'),
+                        'title' => esc_attr__('Style 4', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/testimonial-skin-4.svg',
                     ],
                     'style_5' => [
-                        'title' => esc_attr__('Style 5', 'textdomain'),
+                        'title' => esc_attr__('Style 5', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/testimonial-skin-5.svg',
                     ]
                 ],
@@ -491,10 +491,10 @@ class TestimonialCarousel extends \Elementor\Widget_Base
         $this->add_control(
             'show_edge_fade',
             [
-                'label' => esc_html__('Edge Fading', 'textdomain'),
+                'label' => esc_html__('Edge Fading', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'enabled',
                 'default' => '',
                 'prefix_class' => 'edge-fade-',
@@ -505,7 +505,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             'edge_fade_depth',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Fading Size', 'textdomain'),
+                'label' => esc_html__('Fading Size', 'rometheme-for-elementor'),
                 'size_units' => ['px', '%', 'rem', 'em'],
                 'range' => [
                     'px' => [
@@ -829,19 +829,19 @@ class TestimonialCarousel extends \Elementor\Widget_Base
         $this->add_control(
             'author_avatar_align',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-start-v',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-center-v',
                     ],
                     'end' => [
-                        'title' => esc_html__('End', 'textdomain'),
+                        'title' => esc_html__('End', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-end-v',
                     ],
                 ],
@@ -1863,6 +1863,33 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}} .rkit-testimonial-navigation:hover',
             ]
         );
+
+        $this->add_control(
+			'navigation_transition_duration',
+			[
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Transition Duration', 'rometheme-for-elementor' ),
+				'size_units' => [ 's', 'ms' ],
+				'range' => [
+					's' => [
+						'min' => 1,
+						'max' => 5,
+					],
+                    'ms' => [
+                        'min' => 100,
+                        'max' => 5000,
+                        'step' => 100,
+                    ],
+				],
+				'default' => [
+					'unit' => 'ms',
+					'size' => 200,
+				],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-testimonial-navigation' => 'transition-duration: {{SIZE}}{{UNIT}};',
+                ],
+			]
+		);
 
         $this->end_controls_tab();
 

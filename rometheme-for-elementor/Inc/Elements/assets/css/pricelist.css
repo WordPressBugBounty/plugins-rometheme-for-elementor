@@ -336,6 +336,22 @@
   text-align: center;
 }
 
+.rkit-badge-position-right .rkit-styled-ribbon {
+  right: var(--styled-ribbon-offset-x, 10px);
+  left: auto;
+}
+
+.rkit-badge-position-left .rkit-styled-ribbon {
+  left: var(--styled-ribbon-offset-x, 10px);
+  right: auto;
+}
+
+.rkit-styled-ribbon {
+  /* position: absolute; */
+  top: var(--styled-ribbon-offset-y, 10px) !important;
+  /* z-index: 1; */
+}
+
 .rkit-pricelisttable-ribbon {
   position: absolute;
   z-index: 1;
@@ -470,7 +486,7 @@
   height: 0;
   width: 0;
   border-left: var(--styled-ribbon-after-width, 30px) solid var(--styled-ribbon-bg);
-  border-right: var(--styled-ribbon-after-width, 30px) solid var(--styled-ribbon-bg);
+  border-right: var(--styled-ribbon-after-width, 31px) solid var(--styled-ribbon-bg);
   border-bottom: 10px solid transparent;
 }
 
