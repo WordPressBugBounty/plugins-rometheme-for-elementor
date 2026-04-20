@@ -148,7 +148,7 @@ class EditorCanvas
         <script type="text/javascript">
             var rkitLO = {
                 "btnIcon": "<?php echo esc_url(RTM_KIT_URL . '/assets/images/romethemekit.svg'); ?>",
-                "api_url": "<?php echo esc_url("https://api.rometheme.pro/") ?>",
+                "api_url": "<?php echo esc_url("https://api.rtmwp.com/") ?>",
                 "default_tab": "template"
             };
         </script>
@@ -164,7 +164,7 @@ class EditorCanvas
             wp_die();
         }
 
-        $url = "https://api.rometheme.pro/wp-json/public/get_layout_api/";
+        $url = "https://api.rtmwp.com/wp-json/public/get_layout_api/";
         $ck = 'ck_p2ke51ckfmb42kefnw67krk93wwjawj6';
         $cs = 'cs_djg1rrp51rn6hvj5ck76x75u99ec8e19';
 

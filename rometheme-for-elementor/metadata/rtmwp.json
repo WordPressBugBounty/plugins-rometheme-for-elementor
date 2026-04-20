@@ -162,7 +162,10 @@
     "scripts": {
       "css": "image_hotspot.css",
       "js": "image_hotspot.js",
-      "lib": ["popper.min.js", "tippy-bundle.umd.min.js"]
+      "lib": [
+        "popper.min.js",
+        "tippy-bundle.umd.min.js"
+      ]
     }
   },
   "client_carousel": {
@@ -228,6 +231,23 @@
     "scripts": {
       "css": "background_switcher.css",
       "js": "background_switcher.js"
+    }
+  },
+  "advanced_category": {
+    "name": "Advanced Categories",
+    "icon": "rtmicon rtmicon-team-carousel",
+    "class_name": "Rkit_Advanced_Category",
+    "category": "post",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "link official cooming soon",
+    "is_new": true,
+    "scripts": {
+      "css": "advanced-category.css",
+      "js": "advanced-category.js"
     }
   }
 }
