@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Helper;
 
+if (! defined('ABSPATH')) exit;
+
 class EditorCanvas
 {
     private static $instance;
@@ -97,12 +99,20 @@ class EditorCanvas
             wp_die();
         }
 
-        if (!isset($_POST['wpnonce']) || !wp_verify_nonce($_POST['wpnonce'], 'rtm_template_nonce')) {
+        $nonce = isset($_POST['wpnonce'])
+            ? sanitize_key(wp_unslash($_POST['wpnonce']))
+            : '';
+            
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (!wp_verify_nonce($nonce, 'rtm_template_nonce')) {
             wp_send_json_error('Access Denied');
             wp_die();
         }
 
-        $hashId = $_POST['template'];
+        // $hashId = $_POST['template'];
+        $path = isset($_POST['template'])
+            ? sanitize_text_field(wp_unslash($_POST['template']))
+            : '';
 
         $upload_dir = wp_upload_dir();
         $rtmTemplateDir = $upload_dir['basedir'] . '/rometheme_template';
@@ -148,7 +158,7 @@ class EditorCanvas
         <script type="text/javascript">
             var rkitLO = {
                 "btnIcon": "<?php echo esc_url(RTM_KIT_URL . '/assets/images/romethemekit.svg'); ?>",
-                "api_url": "<?php echo esc_url("https://api.rtmwp.com/") ?>",
+                "api_url": "<?php echo esc_url("https://api.rometheme.pro/") ?>",
                 "default_tab": "template"
             };
         </script>
@@ -156,42 +166,103 @@ class EditorCanvas
 <?php
     }
 
+    // public function fetch_layout_lib()
+    // {
+
+    //     if (!isset($_GET['wpnonce']) || !wp_verify_nonce($_GET['wpnonce'], 'rtm_template_nonce')) {
+    //         wp_send_json_error('Access Denied');
+    //         wp_die();
+    //     }
+
+    //     $url = "https://api.rometheme.pro/wp-json/public/get_layout_api/";
+    //     $ck = 'ck_p2ke51ckfmb42kefnw67krk93wwjawj6';
+    //     $cs = 'cs_djg1rrp51rn6hvj5ck76x75u99ec8e19';
+
+    //     if (isset($_GET['id'])) {
+    //         $url .= '?id=' . $_GET['id'];
+    //     }
+
+    //     $ch = curl_init();
+    //     // Header untuk meminta respons JSON
+    //     $headers = [
+    //         'Accept: application/json'
+    //     ];
+    //     // Atur opsi cURL
+    //     curl_setopt($ch, CURLOPT_URL, $url);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    //     curl_setopt($ch, CURLOPT_USERPWD, "$ck:$cs");
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    //     // Eksekusi permintaan
+    //     $response = json_decode(curl_exec($ch), true);
+
+    //     if (curl_errno($ch)) {
+    //         wp_send_json_error('Error:' . curl_error($ch));
+    //     } else {
+    //         wp_send_json($response);
+    //     }
+    // }
+
     public function fetch_layout_lib()
     {
-
-        if (!isset($_GET['wpnonce']) || !wp_verify_nonce($_GET['wpnonce'], 'rtm_template_nonce')) {
+        if (
+            ! isset($_GET['wpnonce']) ||
+            ! wp_verify_nonce(
+                sanitize_text_field(wp_unslash($_GET['wpnonce'])),
+                'rtm_template_nonce'
+            )
+        ) {
             wp_send_json_error('Access Denied');
-            wp_die();
         }
 
-        $url = "https://api.rtmwp.com/wp-json/public/get_layout_api/";
+        if (! current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied');
+        }
+
+        $url = 'https://api.rometheme.pro/wp-json/public/get_layout_api/';
+
+        $id = sanitize_text_field(
+            wp_unslash($_GET['id'] ?? '')
+        );
+
+        if (! empty($id)) {
+            $url = add_query_arg(
+                'id',
+                $id,
+                $url
+            );
+        }
+
         $ck = 'ck_p2ke51ckfmb42kefnw67krk93wwjawj6';
         $cs = 'cs_djg1rrp51rn6hvj5ck76x75u99ec8e19';
 
-        if (isset($_GET['id'])) {
-            $url .= '?id=' . $_GET['id'];
+        $response = wp_remote_get(
+            $url,
+            [
+                'timeout' => 30,
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Basic ' . base64_encode($ck . ':' . $cs),
+                ],
+            ]
+        );
+
+        if (is_wp_error($response)) {
+            wp_send_json_error(
+                $response->get_error_message()
+            );
         }
 
-        $ch = curl_init();
-        // Header untuk meminta respons JSON
-        $headers = [
-            'Accept: application/json'
-        ];
-        // Atur opsi cURL
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "$ck:$cs");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $body = wp_remote_retrieve_body($response);
 
-        // Eksekusi permintaan
-        $response = json_decode(curl_exec($ch), true);
+        $data = json_decode($body, true);
 
-        if (curl_errno($ch)) {
-            wp_send_json_error('Error:' . curl_error($ch));
-        } else {
-            wp_send_json($response);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            wp_send_json_error('Invalid API response');
         }
+
+        wp_send_json($data);
     }
 
     public function get_template_content()
@@ -202,12 +273,15 @@ class EditorCanvas
         }
 
         // SECURITY FIX: Add capability check to prevent IDOR vulnerability
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!current_user_can('manage_options')) {
             wp_send_json_error('Access Denied: Insufficient permissions');
             wp_die();
         }
 
-        $id = absint($_POST['template']);
+        $id = isset($_POST['template'])
+            ? absint(wp_unslash($_POST['template']))
+            : 0;
 
         $elementorData = get_post_meta($id, '_elementor_data', true);
 

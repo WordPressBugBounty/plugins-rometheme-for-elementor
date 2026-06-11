@@ -127,7 +127,18 @@
     "category": "form",
     "status": true,
     "type": "form",
-    "docsURL": "https://support.rometheme.net/docs/romethemeform/gdpr-consent/",
+    "docsURL": "https://support.rometheme.net/docs/romethemeform-for-elementor/",
+    "previewURL": "https://rometheme.net/plugins/rtmform/",
+    "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "recaptcha": {
+    "name": "reCAPTCHA",
+    "icon": "eicon-captcha",
+    "class_name": "RFORM_ReCAPTCHA",
+    "category": "form",
+    "status": true,
+    "type": "form",
+    "docsURL": "https://support.rometheme.net/docs/romethemeform-for-elementor/widget-guidelines/how-to-add-captcha-to-a-form-for-better-security/",
     "previewURL": "https://rometheme.net/plugins/rtmform/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
   }

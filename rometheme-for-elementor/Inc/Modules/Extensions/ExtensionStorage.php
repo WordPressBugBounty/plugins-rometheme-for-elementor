@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Extensions;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ExtensionStorage
 {
     private static $instance = null;

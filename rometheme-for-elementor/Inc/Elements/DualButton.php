@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class DualButton extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -79,15 +81,15 @@ class DualButton extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'layout_db',
             [
-                'label' => esc_html__('Layout', 'text-domain'),
+                'label' => esc_html__('Layout', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'column' => [
-                        'title' => esc_html__('vertical', 'text-domain'),
+                        'title' => esc_html__('vertical', 'rometheme-for-elementor'),
                         'icon' => 'eicon-arrow-up',
                     ],
                     'row' => [
-                        'title' => esc_html__('Horizontal', 'text-domain'),
+                        'title' => esc_html__('Horizontal', 'rometheme-for-elementor'),
                         'icon' => 'eicon-arrow-right',
                     ],
 
@@ -306,10 +308,10 @@ class DualButton extends \Elementor\Widget_Base
         $this->add_control(
             'middle_button',
             [
-                'label' => esc_html__('Middle Button', 'text-domain'),
+                'label' => esc_html__('Middle Button', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -1303,7 +1305,7 @@ class DualButton extends \Elementor\Widget_Base
                     </div>
                 </a>
                 <?php if ($settings['middle_button'] == 'yes'): ?>
-                    <div class="middle-button <?php echo $settings['middle_button_effect'] ?>">
+                    <div class="middle-button <?php echo esc_attr($settings['middle_button_effect']) ?>">
                         <span class="middle">
                             <?php \Elementor\Icons_Manager::render_icon($settings['midle_icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-middle-button']);
                             echo esc_html($settings['middle_button_text']) ?>

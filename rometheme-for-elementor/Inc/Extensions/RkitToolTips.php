@@ -2,12 +2,10 @@
 
 
 namespace RTMKit\Extensions;
-
-
-
 use Elementor\Plugin;
 use RomethemePro;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class RkitToolTips
 {
@@ -46,7 +44,7 @@ class RkitToolTips
   public function add_container_options($container)
   {
     $container->start_controls_section('rtmkit_tool_tips_container', [
-      'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Tooltip'),
+      'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Tooltip', 'rometheme-for-elementor'),
       'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
     ]);
 
@@ -249,7 +247,7 @@ class RkitToolTips
   public function add_widget_options($widget)
   {
     $widget->start_controls_section('rtmkit_tool_tips_widget', [
-      'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Tooltip'),
+      'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Tooltip', 'rometheme-for-elementor'),
       'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
     ]);
 

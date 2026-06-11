@@ -6,6 +6,8 @@ use Elementor\Plugin;
 use Romethemekits\Modules\Controls\Widget_Area_Utils;
 use WP_Query;
 
+if (! defined('ABSPATH')) exit;
+
 class Offcanvas extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -58,12 +60,12 @@ class Offcanvas extends \Elementor\Widget_Base
 
     public function get_elementor_template()
     {
-        $template = new WP_Query(['post_type' => 'elementor_library' , 'posts_per_page' => -1]);
+        $template = new WP_Query(['post_type' => 'elementor_library', 'posts_per_page' => -1]);
         $list = [];
         if ($template->have_posts()) {
             while ($template->have_posts()) {
                 $template->the_post();
-                $list[intval(get_the_ID())] = esc_html__(get_the_title(), 'rometheme-for-elementor');
+                $list[intval(get_the_ID())] = esc_html(get_the_title());
             }
         }
         return $list;
@@ -401,7 +403,7 @@ class Offcanvas extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
 ?>
 
-        <div class="rkit-offcanvas <?php echo esc_attr__($settings['offcanvas-position'], 'rometheme-for-elementor') ?>">
+        <div class="rkit-offcanvas <?php echo esc_attr($settings['offcanvas-position']) ?>">
             <div class="rkit-btn-container">
                 <button class="menu-button-rometheme"><?php \Elementor\Icons_Manager::render_icon($settings['icon-select'], ['aria-hidden' => 'true', 'class' => 'rkit-offcanvas-icon']) ?></button>
             </div>
@@ -417,7 +419,9 @@ class Offcanvas extends \Elementor\Widget_Base
                             $status = get_post_status($settings['menu-select']);
                             if ($status == 'publish') {
                                 echo '<div saved-template="true">';
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 echo \RTMKit\Modules\Widgets\WidgetModule::instance()->render_edit_template_button($settings['menu-select'], get_queried_object_id());
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($settings['menu-select']);
                                 echo '</div>';
                             }

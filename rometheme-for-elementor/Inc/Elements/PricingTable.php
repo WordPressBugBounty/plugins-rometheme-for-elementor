@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class PricingTable extends \Elementor\Widget_Base
 {
 
@@ -51,7 +53,7 @@ class PricingTable extends \Elementor\Widget_Base
         //description TEST
         //content 
         $this->start_controls_section('content_section_new', [
-            'label' => esc_html__('Header'),
+            'label' => esc_html__('Header', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -124,7 +126,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('normal_price_section', [
-            'label' => esc_html__('Price'),
+            'label' => esc_html__('Price', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -255,7 +257,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('sale_price_section', [
-            'label' => esc_html__('Sale Price'),
+            'label' => esc_html__('Sale Price', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -307,7 +309,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_descs_new', [
-            'label' => esc_html__('Feature'),
+            'label' => esc_html__('Feature', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -402,7 +404,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_button_new', [
-            'label' => esc_html__('Button'),
+            'label' => esc_html__('Button', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
         // Add controls for link, and button
@@ -570,7 +572,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_rib_new', [
-            'label' => esc_html__('Ribbon'),
+            'label' => esc_html__('Ribbon', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
         //more
@@ -678,7 +680,7 @@ class PricingTable extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_infob_new', [
-            'label' => esc_html__('Footer'),
+            'label' => esc_html__('Footer', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -822,7 +824,7 @@ class PricingTable extends \Elementor\Widget_Base
                 'name' => 'container_box_shadow',
                 'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-pricelisttable-container',
-                'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
+                'description' => esc_html__('Put 0 for no box shadow ', 'rometheme-for-elementor'),
             ]
         );
 
@@ -1644,7 +1646,7 @@ class PricingTable extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .icon-list-feature-pt ' => 'align-self: {{VALUE}};',
                 ],
-                'description' => esc_html__('The result will affected if your text more than 1 row', 'text-domain'),
+                'description' => esc_html__('The result will affected if your text more than 1 row', 'rometheme-for-elementor'),
             ]
         );
 
@@ -2656,7 +2658,7 @@ class PricingTable extends \Elementor\Widget_Base
                             </div>
                         </div>
                     <?php } else { ?>
-                        <div class="rkit-styled-ribbon rkit-pricelisttable-<?= $settings['badge_style'] ?>">
+                        <div class="rkit-styled-ribbon rkit-pricelisttable-<?php echo  esc_attr($settings['badge_style']) ?>">
                             <?php echo esc_html($settings['badge_text']) ?>
                         </div>
                     <?php } ?>
@@ -2726,7 +2728,7 @@ class PricingTable extends \Elementor\Widget_Base
                             <?php if (!empty($settings['description_list'])) { ?>
                                 <ul class="rkit-pricelisttable-item-description no-icon-hidden">
                                     <?php foreach ($settings['description_list'] as $desc_item) { ?>
-                                        <div class="elementor-repeater-item-<?= esc_attr($desc_item['_id']) ?> rkit-item-list-desc">
+                                        <div class="elementor-repeater-item-<?php echo  esc_attr($desc_item['_id']) ?> rkit-item-list-desc">
                                             <?php \Elementor\Icons_Manager::render_icon($desc_item['description_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-feature-pt"]) ?>
                                             <?php echo  esc_html($desc_item['description_item']) ?>
                                         </div>
@@ -2737,27 +2739,27 @@ class PricingTable extends \Elementor\Widget_Base
                             <?php } ?>
                             <?php if (!empty($settings['description_plain_text'])) { ?>
                                 <div class="rkit-price-table-features-plain-text">
-                                    <?= $settings['description_plain_text']; ?>
+                                    <?php echo  wp_kses_post($settings['description_plain_text']); ?>
                                 </div>
                             <?php }
 
                             if (!empty($settings['button_text'])) {  ?>
                                 <div class="rkit-pricelisttable-item-button <?php echo esc_attr($class_button) ?>">
                                     <!-- <?php if ($settings['button_icon_position'] == "before") { ?>
-                                        <a href="<?php echo esc_url($item_link); ?>" class=" <?= $btn_class; ?> hover-filled-slide-down">
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" <?php echo  esc_attr($btn_class); ?> hover-filled-slide-down">
                                             <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                             <?php echo esc_html($settings['button_text']) ?>
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url($item_link); ?>" class=" <?= $btn_class; ?> hover-filled-slide-down">
+                                        <a href="<?php echo esc_url($item_link); ?>" class=" <?php echo  esc_attr($btn_class); ?> hover-filled-slide-down">
                                             <?php echo esc_html($settings['button_text']) ?>
                                             <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
                                         </a>
                                     <?php } ?> -->
-                                    <a href="<?= esc_url($item_link); ?>" class="<?= esc_html($btn_class) ?>">
+                                    <a href="<?php echo  esc_url($item_link); ?>" class="<?php echo  esc_attr($btn_class) ?>">
                                         <span>
                                             <?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true', 'class' => "icon-list-button-pt"]); ?>
-                                            <?= esc_html($settings['button_text']) ?>
+                                            <?php echo  esc_html($settings['button_text']) ?>
                                         </span>
                                     </a>
                                 </div>

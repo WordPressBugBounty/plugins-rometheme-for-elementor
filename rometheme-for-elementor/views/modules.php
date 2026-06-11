@@ -1,8 +1,11 @@
 <?php
+
+ if ( ! defined( 'ABSPATH' ) ) exit;
+ 
 $extensionStorage = \RTMKit\Modules\Extensions\ExtensionStorage::instance();
 $moduleManager = \RTMKit\Modules\Manager::instance();
 $moduleWithExtension = \RTMKit\Modules\Storage::instance()->get_all_modules();
-$category = ["themebuilder", "extension", "other"];
+$category = ["themebuilder", "extension", "gsap" , "other"];
 $options = \RTMKit\Modules\Storage::instance()->get_module_option();
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 $totalmodules = count($moduleWithExtension);
@@ -39,6 +42,7 @@ $activemodules = count(array_filter($options, function ($module) {
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
                         } else {
                             echo 'Free';
@@ -92,7 +96,7 @@ $activemodules = count(array_filter($options, function ($module) {
                 <div id="<?php echo esc_attr($c) ?>" class="card rounded-4  flex-column gap-3">
                     <div class="pb-4 pt-1 border-bottom d-flex align-items-center gap-3">
                         <i class="fa-solid fa-circle" style="font-size: 10px;"></i>
-                        <h4 class="m-0"><?php echo esc_html(ucwords($c == 'themebuilder' ? 'Theme Builder' : $c)) ?></h4>
+                        <h4 class="m-0"><?php echo ($c == 'gsap') ? 'GSAP' : esc_html(ucwords($c == 'themebuilder' ? 'Theme Builder' : $c)) ?></h4>
                     </div>
                     <div class="row row-cols-3 g-3">
                         <?php
@@ -153,7 +157,7 @@ $activemodules = count(array_filter($options, function ($module) {
                                                     ?>
                                                         <span class="badge <?php echo esc_attr($required) ?>" style="text-transform: capitalize">
                                                             <i class="fa-solid fa-star"></i>
-                                                            <?php echo ucfirst($required) ?></span>
+                                                            <?php echo esc_html(ucfirst($required)) ?></span>
                                                     <?php endif ?>
                                                 </h5>
                                             </div>

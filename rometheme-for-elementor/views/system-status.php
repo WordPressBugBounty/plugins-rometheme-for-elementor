@@ -1,11 +1,17 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $system_info = \RTMKit\Modules\SystemInfo::instance()->get_system_info();
 $php_info = $system_info['php'];
 $wp_info = $system_info['wordpress'];
 $db_info = $system_info['database'];
 $uploads_dir = wp_upload_dir();
 $upload_path = $uploads_dir['basedir'];
-$is_writable = is_writable($upload_path) ? 'Writeable' : 'Not Writeable';
+// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
+$is_writable = is_writable( $upload_path )
+    ? esc_html__( 'Writable', 'rometheme-for-elementor' )
+    : esc_html__( 'Not Writable', 'rometheme-for-elementor' );
 
 $active_theme = wp_get_theme();
 $theme_name = $active_theme->get('Name');
@@ -29,6 +35,7 @@ $active_plugins = get_option('active_plugins');
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
                         } else {
                             echo 'Free';

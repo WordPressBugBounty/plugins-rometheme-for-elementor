@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class SocialIcon extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -627,7 +629,7 @@ class SocialIcon extends \Elementor\Widget_Base
                         switch ($settings['select_style']) {
                             case 'icon':
                         ?>
-                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
+                                <a href="<?php echo esc_url($link); ?>" class="rkit-social-share__link <?php echo  esc_attr($colorClass); ?>" <?php echo  esc_attr($target) . esc_attr($rel); ?>>
                                     <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], [
                                         'aria-hidden' => 'true',
                                         'class'       => 'rkit-social-share__icon'
@@ -638,8 +640,8 @@ class SocialIcon extends \Elementor\Widget_Base
 
                             case 'text':
                             ?>
-                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
-                                    <?= $sm['label_social']
+                                <a href="<?php echo esc_url($link); ?>" class="rkit-social-share__link <?php echo  esc_attr($colorClass); ?>" <?php echo  esc_attr($target) . esc_attr($rel); ?>>
+                                    <?php echo  $sm['label_social']
                                         ? esc_html($sm['label_social'])
                                         : esc_html(ucwords($sm['social_select'])); ?>
                                 </a>
@@ -648,12 +650,12 @@ class SocialIcon extends \Elementor\Widget_Base
 
                             case 'both':
                             ?>
-                                <a href="<?= $link; ?>" class="rkit-social-share__link <?= $colorClass; ?>" <?= $target . $rel; ?>>
+                                <a href="<?php echo esc_url($link); ?>" class="rkit-social-share__link <?php echo  esc_attr($colorClass); ?>" <?php echo  esc_attr($target) . esc_attr($rel); ?>>
                                     <?php \Elementor\Icons_Manager::render_icon($sm['social_icon'], [
                                         'aria-hidden' => 'true',
                                         'class'       => 'rkit-social-share__icon'
                                     ]); ?>
-                                    <?= $sm['label_social']
+                                    <?php echo  $sm['label_social']
                                         ? esc_html($sm['label_social'])
                                         : esc_html(ucwords($sm['social_select'])); ?>
                                 </a>

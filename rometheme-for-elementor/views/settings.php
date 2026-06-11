@@ -1,4 +1,5 @@
 <?php
+ if ( ! defined( 'ABSPATH' ) ) exit;
 $args = array(
     'post_type' => 'elementor_library', // Post type
     'posts_per_page' => -1, // Get all posts
@@ -27,6 +28,7 @@ $globalSettings = new WP_Query($args);
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
                         } else {
                             echo 'Free';

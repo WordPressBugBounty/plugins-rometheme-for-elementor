@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class Cta extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -236,12 +238,27 @@ class Cta extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'is_show_btn',
+            [
+                'label' => esc_html__('Show Button ?', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
             'button_text',
             [
                 'label' => esc_html__('Button Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Click Here', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type your text here', 'rometheme-for-elementor'),
+                'condition' => [
+                    'is_show_btn' => 'yes'
+                ]
             ]
         );
 
@@ -259,6 +276,10 @@ class Cta extends \Elementor\Widget_Base
                     // 'custom_attributes' => '',
                 ],
                 'label_block' => true,
+                'condition' => [
+                    'is_show_btn' => 'yes'
+                ]
+
             ]
         );
 
@@ -271,6 +292,10 @@ class Cta extends \Elementor\Widget_Base
                 'label_off' => esc_html__('no', 'rometheme-for-elementor'),
                 'return_value' => 'fullwidth',
                 'default' => '',
+                'condition' => [
+                    'is_show_btn' => 'yes'
+                ]
+
             ]
         );
 
@@ -283,6 +308,10 @@ class Cta extends \Elementor\Widget_Base
                 'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'condition' => [
+                    'is_show_btn' => 'yes'
+                ]
+
             ]
         );
 
@@ -307,8 +336,10 @@ class Cta extends \Elementor\Widget_Base
                     '{{WRAPPER}} .rkit-cta a.rkit-cta-button' => 'flex-direction: {{VALUE}};',
                 ],
                 'condition' => [
-                    'add_btn_icon' => 'yes'
+                    'add_btn_icon' => 'yes',
+                    'is_show_btn' => 'yes'
                 ]
+
             ]
         );
 
@@ -322,7 +353,8 @@ class Cta extends \Elementor\Widget_Base
                     'library' => 'rtmicons',
                 ],
                 'condition' => [
-                    'add_btn_icon' => 'yes'
+                    'add_btn_icon' => 'yes',
+                    'is_show_btn' => 'yes'
                 ]
             ]
         );
@@ -556,6 +588,16 @@ class Cta extends \Elementor\Widget_Base
             ]
         );
 
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_normal',
+                'selector' => '{{WRAPPER}} .rkit-cta',
+            ]
+        );
+
+
         $this->end_controls_tab();
 
         $this->start_controls_tab('box_tab_hover', ['label' => esc_html("Hover")]);
@@ -579,6 +621,14 @@ class Cta extends \Elementor\Widget_Base
                 'cta_border_border!' => ''
             ]
         ]);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow_hover',
+                'selector' => '{{WRAPPER}} .rkit-cta:hover',
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1165,7 +1215,16 @@ class Cta extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('button_style', ['label' => esc_html('Button'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+        $this->start_controls_section(
+            'button_style',
+            [
+                'label' => esc_html('Button'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'is_show_btn' => 'yes'
+                ]
+            ]
+        );
 
         $this->add_responsive_control(
             'content_align_cta_button',
@@ -1588,6 +1647,7 @@ class Cta extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $show_btn = $settings['is_show_btn'];
         if (!empty($settings['website_link']['url'])) {
             $this->add_link_attributes('website_link', $settings['website_link']);
         }
@@ -1634,6 +1694,7 @@ class Cta extends \Elementor\Widget_Base
                 switch ($settings['graphic_element']) {
                     case 'image':
                         echo '<div class="rkit-cta__graphic_element">';
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'graphic_image');
                         echo '</div>';
                         break;
@@ -1648,17 +1709,19 @@ class Cta extends \Elementor\Widget_Base
                     <<?php echo esc_html($title_tag) ?> class="rkit-cta-title"><?php echo esc_html($settings['content_title']) ?></<?php echo esc_html($title_tag) ?>>
                     <div class="rkit-cta-description"><?php echo esc_html($settings['content_description']) ?></div>
                 </div>
-                <a class="rkit-cta-button <?php echo esc_attr($settings['btn_fullwidth']) ?>" type="button" <?php $this->print_render_attribute_string('website_link') ?>>
-                    <?php echo esc_html($settings['button_text']) ?>
-                    <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true', 'class' => 'rkit-cta-button__icon']); ?>
-                </a>
+                <?php if ($show_btn): ?>
+                    <a class="rkit-cta-button <?php echo esc_attr($settings['btn_fullwidth']) ?>" type="button" <?php $this->print_render_attribute_string('website_link') ?>>
+                        <?php echo esc_html($settings['button_text']) ?>
+                        <?php \Elementor\Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true', 'class' => 'rkit-cta-button__icon']); ?>
+                    </a>
+                <?php endif; ?>
             </div>
-            <?php if (!empty($settings['ribbon_text']) || $settings['ribbon_text'] !== '' ): ?>
-            <div class="rkit-cta-ribbon <?php echo esc_attr($settings['ribbon_position']) ?>">
-                <div class="rkit-cta-ribbon__inner">
-                    <?php echo esc_html($settings['ribbon_text']) ?>
+            <?php if (!empty($settings['ribbon_text']) || $settings['ribbon_text'] !== ''): ?>
+                <div class="rkit-cta-ribbon <?php echo esc_attr($settings['ribbon_position']) ?>">
+                    <div class="rkit-cta-ribbon__inner">
+                        <?php echo esc_html($settings['ribbon_text']) ?>
+                    </div>
                 </div>
-            </div>
             <?php endif; ?>
         </div>
 <?php

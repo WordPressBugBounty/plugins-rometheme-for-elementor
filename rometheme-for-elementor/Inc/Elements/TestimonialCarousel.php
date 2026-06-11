@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class TestimonialCarousel extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -35,7 +37,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
 
     public function get_style_depends()
     {
-        return ['rtmkit-element-testimonial_carousel' , 'rtmkit-lib-swiper.min'];
+        return ['rtmkit-element-testimonial_carousel', 'rtmkit-lib-swiper.min'];
     }
     public function get_script_depends()
     {
@@ -570,7 +572,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                 'condition' => [
                     'layout_style' => 'style_5'
                 ],
-                'description' => esc_html__('Use the slide below the color options to adjust the opacity', 'text-domain'),
+                'description' => esc_html__('Use the slide below the color options to adjust the opacity', 'rometheme-for-elementor'),
 
             ]
         );
@@ -780,7 +782,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'author_typography',
-                'selector' => '{{WRAPPER}} .testimonial-author strong',
+                'selector' => '{{WRAPPER}} .testimonial-author .author-name',
             ]
         );
 
@@ -788,7 +790,16 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .testimonial-author strong' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .testimonial-author .author-name' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('author_name_margin', [
+            'label' => esc_html('Margin'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+            'selectors' => [
+                '{{WRAPPER}} .testimonial-author .author-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ]
         ]);
 
@@ -805,7 +816,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'author_occupation_typography',
-                'selector' => '{{WRAPPER}} .testimonial-author span',
+                'selector' => '{{WRAPPER}} .testimonial-author .author-occupation',
             ]
         );
 
@@ -813,7 +824,16 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             'label' => esc_html('Text Color'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .testimonial-author span' => 'color:{{VALUE}}'
+                '{{WRAPPER}} .testimonial-author .author-occupation' => 'color:{{VALUE}}'
+            ]
+        ]);
+
+        $this->add_control('author_occupation_margin', [
+            'label' => esc_html('Margin'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+            'selectors' => [
+                '{{WRAPPER}} .testimonial-author .author-occupation' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ]
         ]);
 
@@ -1865,31 +1885,31 @@ class TestimonialCarousel extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'navigation_transition_duration',
-			[
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Transition Duration', 'rometheme-for-elementor' ),
-				'size_units' => [ 's', 'ms' ],
-				'range' => [
-					's' => [
-						'min' => 1,
-						'max' => 5,
-					],
+            'navigation_transition_duration',
+            [
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+                'size_units' => ['s', 'ms'],
+                'range' => [
+                    's' => [
+                        'min' => 1,
+                        'max' => 5,
+                    ],
                     'ms' => [
                         'min' => 100,
                         'max' => 5000,
                         'step' => 100,
                     ],
-				],
-				'default' => [
-					'unit' => 'ms',
-					'size' => 200,
-				],
+                ],
+                'default' => [
+                    'unit' => 'ms',
+                    'size' => 200,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-testimonial-navigation' => 'transition-duration: {{SIZE}}{{UNIT}};',
                 ],
-			]
-		);
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -1958,7 +1978,7 @@ class TestimonialCarousel extends \Elementor\Widget_Base
             ],
         ];
 ?>
-        <div class="rkit-testimonial-carousel <?= $showAnimationNavigation ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
+        <div class="rkit-testimonial-carousel <?php echo  esc_attr($showAnimationNavigation) ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
             <div class="rkit-absolute-testimonial-wrapper">
                 <?php if ($settings['show_navigation'] === 'yes') : ?>
                     <div class="testimonial-prev-wrapper">
@@ -1983,7 +2003,9 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                 <div class="swiper-slide rkit-testimonial-card">
                                     <div class="testimonial_header">
                                         <div class="testimonial-client-img">
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
                                         </div>
                                         <?php if ($settings['show_quote'] === 'yes') : ?>
                                             <div class="testimonial_quote_wrapper">
@@ -1998,8 +2020,8 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                             <span><?php echo esc_html($list['testimonial_review']) ?></span>
                                         </div>
                                         <div class="testimonial-author">
-                                            <strong><?php echo esc_html($list['author_name']) ?></strong>
-                                            <span><?php echo esc_html($list['author_occupation']) ?></span>
+                                            <strong class="author-name"><?php echo esc_html($list['author_name']) ?></strong>
+                                            <span class="author-occupation"><?php echo esc_html($list['author_occupation']) ?></span>
                                         </div>
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
@@ -2039,11 +2061,13 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                     </div>
                                     <div class="testimonial_header">
                                         <div class="testimonial-client-img">
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
                                         </div>
                                         <div class="testimonial-author">
-                                            <strong><?php echo esc_html($list['author_name']) ?></strong>
-                                            <span><?php echo esc_html($list['author_occupation']) ?></span>
+                                            <strong class="author-name"><?php echo esc_html($list['author_name']) ?></strong>
+                                            <span class="author-occupation"><?php echo esc_html($list['author_occupation']) ?></span>
                                         </div>
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
@@ -2071,7 +2095,9 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                 <div class="swiper-slide rkit-testimonial-card">
                                     <div class="testimonial_header">
                                         <div class="testimonial-client-img">
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
                                         </div>
                                     </div>
                                     <div class="testimonial_body">
@@ -2086,8 +2112,8 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                             <span><?php echo esc_html($list['testimonial_review']) ?></span>
                                         </div>
                                         <div class="testimonial-author">
-                                            <strong><?php echo esc_html($list['author_name']) ?></strong>
-                                            <span><?php echo esc_html($list['author_occupation']) ?></span>
+                                            <strong class="author-name"><?php echo esc_html($list['author_name']) ?></strong>
+                                            <span class="author-occupation"><?php echo esc_html($list['author_occupation']) ?></span>
                                         </div>
                                         <?php if ($settings['show_rating'] === 'yes') : ?>
                                             <div class="testimonial-rating">
@@ -2127,11 +2153,13 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                     </div>
                                     <div class="testimonial_header">
                                         <div class="testimonial-client-img">
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
                                         </div>
                                         <div class="testimonial-author">
-                                            <strong><?php echo esc_html($list['author_name']) ?></strong>
-                                            <span><?php echo esc_html($list['author_occupation']) ?></span>
+                                            <strong class="author-name"><?php echo esc_html($list['author_name']) ?></strong>
+                                            <span class="author-occupation"><?php echo esc_html($list['author_occupation']) ?></span>
                                             <?php if ($settings['show_rating'] === 'yes') : ?>
                                                 <div class="testimonial-rating">
                                                     <?php for ($i = 1; $i <= 5; $i++) : ?>
@@ -2159,7 +2187,9 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                 <div class="swiper-slide rkit-testimonial-card">
                                     <div class="testimonial_header">
                                         <div class="testimonial-client-img">
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
+                                            <?php
+                                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($list, 'thumbnail', 'client_avatar'); ?>
                                         </div>
                                     </div>
                                     <div class="testimonial_body">
@@ -2186,8 +2216,8 @@ class TestimonialCarousel extends \Elementor\Widget_Base
                                             <span><?php echo esc_html($list['testimonial_review']) ?></span>
                                         </div>
                                         <div class="testimonial-author">
-                                            <strong><?php echo esc_html($list['author_name']) ?></strong>
-                                            <span><?php echo esc_html($list['author_occupation']) ?></span>
+                                            <strong class="author-name"><?php echo esc_html($list['author_name']) ?></strong>
+                                            <span class="author-occupation"><?php echo esc_html($list['author_occupation']) ?></span>
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,8 @@ namespace RTMKit\Elements;
 
 use WP_Query;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class BlogPost extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -53,10 +55,10 @@ class BlogPost extends \Elementor\Widget_Base
 
     public function rkit_get_posts()
     {
-        $posts = get_posts(['post_type' => 'post']);
+        $posts = get_posts(['post_type' => 'post','numberposts' => -1]);
         $list_post = [];
         foreach ($posts as $post) {
-            $list_post[$post->ID] = esc_html__($post->post_title);
+            $list_post[$post->ID] = esc_html($post->post_title);
         }
         return $list_post;
     }
@@ -79,7 +81,7 @@ class BlogPost extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control('show-post-row', [
-            'label' => esc_html__('Show Post Per Row'),
+            'label' => esc_html__('Show Post Per Row','rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::NUMBER,
             'selectors' => [
                 '{{WRAPPER}} .rkit-post-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);'
@@ -370,9 +372,9 @@ class BlogPost extends \Elementor\Widget_Base
                 'M j, Y' => esc_html__('Jan 01, 2023', 'rometheme-for-elementor'),
                 'd M Y' => esc_html__('01 Jan 2023', 'rometheme-for-elementor'),
                 'F jS, Y' => esc_html__('January 1st, 2023', 'rometheme-for-elementor'),
-                'd/m/Y' => esc_html__('(Day/Month/Year) - 01/01/2023'),
-                'm/d/Y' => esc_html__('(Month/Day/Year) - 01/01/2023'),
-                'Y-m-d' => esc_html('(Year-Month-Day) - 2023-01-01'),
+                'd/m/Y' => esc_html__('(Day/Month/Year) - 01/01/2023','rometheme-for-elementor'),
+                'm/d/Y' => esc_html__('(Month/Day/Year) - 01/01/2023','rometheme-for-elementor'),
+                'Y-m-d' => esc_html('(Year-Month-Day) - 2023-01-01','rometheme-for-elementor'),
             ],
             'default' => 'F d, Y',
             'condition' => [
@@ -412,7 +414,7 @@ class BlogPost extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
+        $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button','rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
 
         $this->add_control(
             'readmore-text',
@@ -421,6 +423,22 @@ class BlogPost extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Read More', 'rometheme-for-elementor'),
                 'placeholder' => esc_html__('Type your label button here', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'readmore_animation',
+            [
+                'label' => esc_html__('Button Animation', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    '' => esc_html__('Default', 'rometheme-for-elementor'),
+                    'hover-filled-slide-down' => esc_html__('Filled Slide Down', 'rometheme-for-elementor'),
+                    'hover-filled-slide-up' => esc_html__('Filled Slide Up', 'rometheme-for-elementor'),
+                    'hover-filled-slide-left' => esc_html__('Filled Slide Left', 'rometheme-for-elementor'),
+                    'hover-filled-slide-right' => esc_html__('Filled Slide Right', 'rometheme-for-elementor'),
+                ],
+                'default' => '',
             ]
         );
 
@@ -1016,7 +1034,7 @@ class BlogPost extends \Elementor\Widget_Base
         );
 
         $this->add_responsive_control('metadata_spacing', [
-            'label' => esc_html__('Spacing'),
+            'label' => esc_html__('Spacing','rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
@@ -1025,12 +1043,32 @@ class BlogPost extends \Elementor\Widget_Base
         ]);
 
         $this->add_responsive_control('icon_size', [
-            'label' => esc_html__('Icon Size'),
+            'label' => esc_html__('Icon Size','rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SLIDER,
             'selectors' => [
                 '{{WRAPPER}} .rkit-meta-icon' => 'font-size:{{SIZE}}{{UNIT}}'
             ]
         ]);
+
+        // $this->add_group_control(
+        //     \Elementor\Group_Control_Border::get_type(),
+        //     [
+        //         'name' => 'meta_border',
+        //         'selector' => '{{WRAPPER}} .rkit-metadata',
+        //     ]
+        // );
+
+        // $this->add_responsive_control(
+        //     'meta-border',
+        //     [
+        //         'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+        //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        //         'size_units' => ['px', '%', 'em', 'rem'],
+        //         'selectors' => [
+        //             '{{WRAPPER}} .rkit-metadata' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        //         ],
+        //     ]
+        // );
 
         $this->add_responsive_control(
             'meta-icon-spacing',
@@ -1299,7 +1337,7 @@ class BlogPost extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('content_style', ['label' => esc_html__('Content'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+        $this->start_controls_section('content_style', ['label' => esc_html__('Content','rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
 
         $this->add_responsive_control(
             'content_align',
@@ -1557,7 +1595,7 @@ class BlogPost extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} a.rkit-readmore-btn .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; , width : {{SIZE}}{{UNIT}} ; height : {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid a.rkit-readmore-btn .rkit-icon-readmore' => 'font-size: {{SIZE}}{{UNIT}}; , width : {{SIZE}}{{UNIT}} ; height : {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_icon_readmore' => 'yes'
@@ -1583,7 +1621,7 @@ class BlogPost extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} a.rkit-readmore-btn' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .rkit-post-grid a.rkit-readmore-btn' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'show_icon_readmore' => 'yes'
@@ -1595,7 +1633,7 @@ class BlogPost extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'readmore_button_typography',
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
+                'selector' => '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn',
             ]
         );
 
@@ -1604,7 +1642,7 @@ class BlogPost extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn' => 'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}'
             ]
         ]);
 
@@ -1614,8 +1652,19 @@ class BlogPost extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn' => 'color : {{VALUE}}'
             ],
+        ]);
+
+        $this->add_control('button_icon_color', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn .rkit-icon-readmore' => 'color:{{VALUE}}; fill:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_icon_readmore' => 'yes'
+            ]
         ]);
 
         $this->add_group_control(
@@ -1623,7 +1672,7 @@ class BlogPost extends \Elementor\Widget_Base
             [
                 'name' => 'btn_background_normal',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
+                'selector' => '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn',
             ]
         );
 
@@ -1631,14 +1680,14 @@ class BlogPost extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'border_readmore_btn_normal',
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
+                'selector' => '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn',
             ]
         );
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'btn_box_shadow_normal',
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn',
+                'selector' => '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn',
             ]
         );
         $this->end_controls_tab();
@@ -1648,8 +1697,19 @@ class BlogPost extends \Elementor\Widget_Base
             'label' => esc_html__('Text Color', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::COLOR,
             'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn:hover' => 'color : {{VALUE}}'
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn:hover' => 'color : {{VALUE}}'
             ],
+        ]);
+
+        $this->add_control('button_icon_color_hover', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn:hover .rkit-icon-readmore' => 'color:{{VALUE}}; fill:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_icon_readmore' => 'yes'
+            ]
         ]);
 
         $this->add_group_control(
@@ -1657,7 +1717,7 @@ class BlogPost extends \Elementor\Widget_Base
             [
                 'name' => 'btn_background_hover',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn:hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid a.rkit-readmore-btn:not(.has-animation):hover, {{WRAPPER}} .rkit-post-grid a.rkit-readmore-btn.has-animation::before'
             ]
         );
 
@@ -1668,7 +1728,7 @@ class BlogPost extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-readmore-btn:hover' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn:hover' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -1677,7 +1737,36 @@ class BlogPost extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'btn_box_shadow_hover',
-                'selector' => '{{WRAPPER}} .rkit-readmore-btn:hover',
+                'selector' => '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn:hover',
+            ]
+        );
+
+        $this->add_control(
+            'btn_transition_duration',
+            [
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['ms', 's'],
+                'range' => [
+                    's' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 0.1,
+                    ],
+                    'ms' => [
+                        'min' => 0,
+                        'step' => 1000,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 's',
+                    'size' => 0.3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn' => 'transition: all {{SIZE}}{{UNIT}} ease-in-out;',
+                    '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn.has-animation::before' => 'transition: all {{SIZE}}{{UNIT}} ease-in-out;',
+                ],
             ]
         );
         $this->end_controls_tab();
@@ -1696,7 +1785,7 @@ class BlogPost extends \Elementor\Widget_Base
             'type' => \Elementor\Controls_Manager::DIMENSIONS,
             'size_units' => ['px', '%', 'em', 'rem'],
             'selectors' => [
-                '{{WRAPPER}} .rkit-readmore-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
+                '{{WRAPPER}} .rkit-post-grid .rkit-readmore-btn' => 'border-radius:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}}'
             ]
         ]);
 
@@ -1862,15 +1951,15 @@ class BlogPost extends \Elementor\Widget_Base
         );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			[
-				'name' => 'floating_date_border',
-				'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
-				'condition' => [
-					'show-floating-date' => 'yes'
-				]
-			]
-		);
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'floating_date_border',
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date',
+                'condition' => [
+                    'show-floating-date' => 'yes'
+                ]
+            ]
+        );
 
         $this->add_responsive_control(
             'floating-date-border-radius',
@@ -2141,7 +2230,7 @@ class BlogPost extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $arg = [
             'post_type' => 'post',
-            'order_by' => $settings['order-by'],
+            'orderby' => $settings['order-by'],
             'order' => $settings['order']
         ];
 
@@ -2160,6 +2249,11 @@ class BlogPost extends \Elementor\Widget_Base
         if (!empty($settings['offset'])) {
             $arg['offset'] = $settings['offset'];
         }
+
+        $hover = !empty($settings['readmore_animation']) || $settings['readmore_animation'] !== ''
+            ? 'has-animation ' . $settings['readmore_animation']
+            : '';
+
         $post = new WP_Query($arg);
         if ($post->have_posts()) {
             while ($post->have_posts()) {
@@ -2177,7 +2271,7 @@ class BlogPost extends \Elementor\Widget_Base
                                     <?php $categories = get_the_category();
                                     foreach ($categories as $cat) : ?>
                                         <div class="rkit-floating-category-div">
-                                            <a class="rkit-floating-category-btn" type="button" href="<?php echo esc_url(get_category_link($cat->term_id)) ?>"><?php echo esc_html__($cat->name, 'rometheme-for-elementor') ?></a>
+                                            <a class="rkit-floating-category-btn" type="button" href="<?php echo esc_url(get_category_link($cat->term_id)) ?>"><?php echo esc_html($cat->name) ?></a>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -2205,7 +2299,7 @@ class BlogPost extends \Elementor\Widget_Base
                                 ?>
                                                 <div class="rkit-metadata-item">
                                                     <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon']); ?>
-                                                    <?php the_author_posts_link() ?>
+                                                    <?php wp_kses_post(the_author_posts_link() ?? '') ?>
                                                 </div>
                                             <?php
                                                 break;
@@ -2241,7 +2335,7 @@ class BlogPost extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-title']) : ?>
                             <div class="rkit-post-grid-title-container">
-                                <a class="rkit-post-grid-title" href="<?php the_permalink() ?>"><?php echo esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
+                                <a class="rkit-post-grid-title" href="<?php the_permalink() ?>"><?php echo esc_html((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title']), 'rometheme-for-elementor') ?></a>
                             </div>
                         <?php endif; ?>
                         <?php if ('after_title' === $settings['meta_position']) : ?>
@@ -2254,7 +2348,7 @@ class BlogPost extends \Elementor\Widget_Base
                                 ?>
                                                 <div class="rkit-metadata-item">
                                                     <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon']); ?>
-                                                    <?php esc_html__(the_author_posts_link(), 'rometheme-for-elementor') ?>
+                                                    <?php wp_kses_post(the_author_posts_link() ?? '') ?>
                                                 </div>
                                             <?php
                                                 break;
@@ -2290,7 +2384,7 @@ class BlogPost extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-content']) : ?>
                             <div class="rkit-post-grid-content">
-                                <p class="rkit-post-grid-paragraph"><?php echo esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($post_content) : wp_trim_words(wp_strip_all_tags($post_content), $settings['truncate-content']), 'rometheme-for-elementor') ?>
+                                <p class="rkit-post-grid-paragraph"><?php echo esc_html((empty($settings['truncate-content'])) ? wp_strip_all_tags($post_content) : wp_trim_words(wp_strip_all_tags($post_content), $settings['truncate-content']), 'rometheme-for-elementor') ?>
                                 </p>
                             </div>
                         <?php endif; ?>
@@ -2304,7 +2398,7 @@ class BlogPost extends \Elementor\Widget_Base
                                 ?>
                                                 <div class="rkit-metadata-item">
                                                     <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon']); ?>
-                                                    <?php esc_html__(the_author_posts_link(), 'rometheme-for-elementor') ?>
+                                                    <?php wp_kses_post(the_author_posts_link() ?? '') ?>
                                                 </div>
                                             <?php
                                                 break;
@@ -2340,11 +2434,13 @@ class BlogPost extends \Elementor\Widget_Base
                         <?php endif; ?>
                         <?php if ('yes' === $settings['show-read-more']) : ?>
                             <div class="rkit-readmore-div">
-                                <a class="rkit-readmore-btn" type="button" href="<?php the_permalink() ?>">
+                                <a class="rkit-readmore-btn <?php echo  esc_attr($hover); ?>" type="button" href="<?php the_permalink() ?>">
                                     <?php if ('before' === $settings['icon_position']) {
                                         \Elementor\Icons_Manager::render_icon($settings['icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore']);
                                     } ?>
-                                    <?php echo esc_html__($settings['readmore-text'], 'rometheme-for-elementor') ?>
+                                    <span class="btn-text">
+                                        <?php echo esc_html($settings['readmore-text']) ?>
+                                    </span>
                                     <?php if ('after' === $settings['icon_position']) {
                                         \Elementor\Icons_Manager::render_icon($settings['icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore']);
                                     } ?>

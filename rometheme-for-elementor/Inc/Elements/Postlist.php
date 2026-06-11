@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Postlist extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -53,10 +55,10 @@ class Postlist extends \Elementor\Widget_Base
 
     public function rkit_get_posts()
     {
-        $posts = get_posts(['post_type' => 'post']);
+        $posts = get_posts(['post_type' => 'post', 'numberposts' => -1]);
         $list_post = [];
         foreach ($posts as $post) {
-            $list_post[$post->ID] = esc_html__($post->post_title);
+            $list_post[$post->ID] = esc_html($post->post_title);
         }
         return $list_post;
     }
@@ -110,15 +112,15 @@ class Postlist extends \Elementor\Widget_Base
         // $this->add_responsive_control(
         //     'content_direction',
         //     [
-        //         'label' => esc_html__('Direction', 'text-domain'),
+        //         'label' => esc_html__('Direction', 'rometheme-for-elementor'),
         //         'type' => \Elementor\Controls_Manager::CHOOSE,
         //         'options' => [
         //             'column' => [
-        //                 'title' => esc_html__('Column', 'text-domain'),
+        //                 'title' => esc_html__('Column', 'rometheme-for-elementor'),
         //                 'icon' => 'eicon-section',
         //             ],
         //             'row' => [
-        //                 'title' => esc_html__('Row', 'text-domain'),
+        //                 'title' => esc_html__('Row', 'rometheme-for-elementor'),
         //                 'icon' => 'eicon-column',
         //             ],
 
@@ -152,9 +154,9 @@ class Postlist extends \Elementor\Widget_Base
                 ],
                 'default' => 'row',
                 'toggle' => true,
-                'condition' => [
-                    'image_position' => 'column'
-                ],
+                // 'condition' => [
+                //     'image_position' => 'column'
+                // ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-item-content' => 'align-self: {{VALUE}};',
                 ],
@@ -178,10 +180,10 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_title_post_tlist',
             [
-                'label' => esc_html__('Show Title', 'text-domain'),
+                'label' => esc_html__('Show Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -203,10 +205,10 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_content_post_list',
             [
-                'label' => esc_html__('Show Content', 'text-domain'),
+                'label' => esc_html__('Show Content', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -224,10 +226,10 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_category_box',
             [
-                'label' => esc_html__('Show Category', 'text-domain'),
+                'label' => esc_html__('Show Category', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -236,10 +238,10 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_divider',
             [
-                'label' => esc_html__('Show Divider', 'text-domain'),
+                'label' => esc_html__('Show Divider', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -248,10 +250,10 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'show_image_content',
             [
-                'label' => esc_html__('Show Featured Image', 'text-domain'),
+                'label' => esc_html__('Show Featured Image', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -261,10 +263,10 @@ class Postlist extends \Elementor\Widget_Base
         // $this->add_control(
         //     'title_position',
         //     [
-        //         'label' => esc_html__('Title Position', 'text-domain'),
+        //         'label' => esc_html__('Title Position', 'rometheme-for-elementor'),
         //         'type' => \Elementor\Controls_Manager::SWITCHER,
-        //         'label_on' => esc_html__('Top', 'text-domain'),
-        //         'label_off' => esc_html__('Bottom', 'text-domain'),
+        //         'label_on' => esc_html__('Top', 'rometheme-for-elementor'),
+        //         'label_off' => esc_html__('Bottom', 'rometheme-for-elementor'),
         //         'return_value' => 'yes',
         //         'default' => 'yes',
         //     ]
@@ -299,7 +301,7 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'posts_per_page',
             [
-                'label' => __('Posts Per Page', 'text-domain'),
+                'label' => __('Posts Per Page', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 3,
             ]
@@ -442,9 +444,9 @@ class Postlist extends \Elementor\Widget_Base
                 'M j, Y' => esc_html__('Jan 01, 2023', 'rometheme-for-elementor'),
                 'd M Y' => esc_html__('01 Jan 2023', 'rometheme-for-elementor'),
                 'F jS, Y' => esc_html__('January 1st, 2023', 'rometheme-for-elementor'),
-                'd/m/Y' => esc_html__('(Day/Month/Year) - 01/01/2023'),
-                'm/d/Y' => esc_html__('(Month/Day/Year) - 01/01/2023'),
-                'Y-m-d' => esc_html('(Year-Month-Day) - 2023-01-01'),
+                'd/m/Y' => esc_html__('(Day/Month/Year) - 01/01/2023', 'rometheme-for-elementor'),
+                'm/d/Y' => esc_html__('(Month/Day/Year) - 01/01/2023', 'rometheme-for-elementor'),
+                'Y-m-d' => esc_html('(Year-Month-Day) - 2023-01-01', 'rometheme-for-elementor'),
             ],
             'default' => 'F d, Y',
             'condition' => [
@@ -484,7 +486,7 @@ class Postlist extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
+        $this->start_controls_section('read-more-content', ['label' => esc_html__('Read More Button', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT]);
 
 
         $this->add_control('show-read-more-postlist', [
@@ -495,36 +497,6 @@ class Postlist extends \Elementor\Widget_Base
             'return_value' => 'yes',
             'default' => 'no'
         ]);
-
-        $this->add_responsive_control(
-            'btn_align',
-            [
-                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'default' => 'left',
-                'toggle' => true,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-readmore-postlist-div' => 'justify-content: {{VALUE}};',
-                ],
-                'condition' => [
-                    'show-read-more-postlist' => 'yes'
-                ],
-            ]
-        );
 
         $this->add_control(
             'readmore-text',
@@ -539,6 +511,16 @@ class Postlist extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'readmore_line_btn',
+            [
+                'label' => esc_html__('Show Line Button', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+            ]
+        );
         $this->add_control(
             'show_icon_readmore',
             [
@@ -780,7 +762,7 @@ class Postlist extends \Elementor\Widget_Base
             ]
         );
 
-         $this->add_responsive_control(
+        $this->add_responsive_control(
             'image_align_self_horizontal',
             [
                 'label' => esc_html__('Horizontal Position', 'rometheme-for-elementor'),
@@ -1105,7 +1087,7 @@ class Postlist extends \Elementor\Widget_Base
         $this->add_control(
             'title_transition_duration',
             [
-                'label' => esc_html__('Transition Duration', 'romethemekitpro'),
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['ms', 's'],
                 'range' => [
@@ -1178,17 +1160,6 @@ class Postlist extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'date_post',
-            [
-                'label' => esc_html__('Color', 'rometheme-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .rkit-metadata-item-postlist a,{{WRAPPER}} .rkit-metadata-postlist-row, {{WRAPPER}} .rkit-meta-icon-postlist   ' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
             'date_posts_padding',
             [
@@ -1201,6 +1172,107 @@ class Postlist extends \Elementor\Widget_Base
             ]
         );
 
+        // TABS
+        $this->start_controls_tabs(
+            'style_tabs_meta_data'
+        );
+
+        // --- Tab Normal ---
+        $this->start_controls_tab(
+            'style_normal_meta_data',
+            [
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'date_post',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item-postlist a, {{WRAPPER}} .rkit-metadata-item-postlist span' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'meta_icon_color',
+            [
+                'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item-postlist i, {{WRAPPER}} .rkit-metadata-item-postlist svg' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // --- Tab Hover ---
+        $this->start_controls_tab(
+            'style_hover_meta_data', // ID harus unik (berbeda dari normal)
+            [
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'date_post_hover',
+            [
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item-postlist:hover a, {{WRAPPER}} .rkit-metadata-item-postlist:hover span' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'meta_icon_color_hover',
+            [
+                'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item-postlist:hover i, {{WRAPPER}} .rkit-metadata-item-postlist:hover svg    ' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'meta_transition_duration',
+            [
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['ms', 's'],
+                'range' => [
+                    's' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 0.1,
+                    ],
+                    'ms' => [
+                        'min' => 0,
+                        'step' => 1000,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 's',
+                    'size' => 0.3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-metadata-item-postlist i,
+                    {{WRAPPER}} .rkit-metadata-item-postlist svg,
+                    {{WRAPPER}} .rkit-metadata-item-postlist span,
+                    {{WRAPPER}} .rkit-metadata-item-postlist a' => 'transition: all {{SIZE}}{{UNIT}} ease;',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
 
         $this->end_controls_section();
@@ -1353,6 +1425,37 @@ class Postlist extends \Elementor\Widget_Base
 
         //button style
         $this->start_controls_section('button_style', ['label' => esc_html__('Button', 'rometheme-for-elementor'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
+
+        $this->add_responsive_control(
+            'btn_align',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => true,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-readmore-postlist-div' => 'justify-content: {{VALUE}};',
+                ],
+                'condition' => [
+                    'show-read-more-postlist' => 'yes'
+                ],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
@@ -1432,6 +1535,31 @@ class Postlist extends \Elementor\Widget_Base
             ],
         ]);
 
+        $this->add_control('button_icon_color', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-item-postlist .rkit-readmore-postlist-btn .rkit-icon-readmore' => 'color:{{VALUE}}; fill:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_icon_readmore' => 'yes'
+            ]
+        ]);
+
+        $this->add_control(
+            'button_line_color',
+            [
+                'label' => esc_html__('Button Line Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-postlist .rkit-readmore-postlist-btn .btn-text::before' => 'background-color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'show_icon_readmore' => 'yes'
+                ]
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1466,6 +1594,28 @@ class Postlist extends \Elementor\Widget_Base
             ],
         ]);
 
+        $this->add_control('button_icon_color_hover', [
+            'label' => esc_html('Icon Color'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                '{{WRAPPER}} .rkit-item-postlist .rkit-readmore-postlist-btn:hover .rkit-icon-readmore' => 'color:{{VALUE}}; fill:{{VALUE}}'
+            ],
+            'condition' => [
+                'show_icon_readmore' => 'yes'
+            ]
+        ]);
+
+        $this->add_control(
+            'button_line_color_hover',
+            [
+                'label' => esc_html__('Button Line Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}  .rkit-item-postlist .rkit-readmore-postlist-btn:hover .btn-text::before' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -1494,6 +1644,34 @@ class Postlist extends \Elementor\Widget_Base
             [
                 'name' => 'btn_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .rkit-readmore-postlist-btn:hover',
+            ]
+        );
+
+        $this->add_control(
+            'btn_transition_duration',
+            [
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['ms', 's'],
+                'range' => [
+                    's' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 0.1,
+                    ],
+                    'ms' => [
+                        'min' => 0,
+                        'step' => 1000,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 's',
+                    'size' => 0.3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-item-postlist .rkit-readmore-postlist-btn:hover' => 'transition: all {{SIZE}}{{UNIT}} ease-in-out;',
+                ],
             ]
         );
         $this->end_controls_tab();
@@ -1587,6 +1765,7 @@ class Postlist extends \Elementor\Widget_Base
         $category = !empty($settings['selected-category']) ? $settings['selected-category'] : '';
         $selected_post = !empty($settings['selected-pots']) ? $settings['selected-post'] : '';
 
+        $show_line_btn = $settings['readmore_line_btn'] === 'yes' ? 'show_line_btn' : '';
 
         // WP_Query arguments
         $args = [
@@ -1646,12 +1825,12 @@ class Postlist extends \Elementor\Widget_Base
             $divider_on = "";
         }
 
-        ?>
+?>
 
         <?php if ($query->have_posts()) {
             if ($settings['show_title_post_tlist'] == 'yes') { ?>
                 <div class="f-title">
-                    <p><?= esc_attr($settings['container_title']) ?></p>
+                    <p><?php echo  esc_attr($settings['container_title']) ?></p>
                 </div>
             <?php } ?>
             <div class="rkit-post-list widget-content popular-posts">
@@ -1660,9 +1839,9 @@ class Postlist extends \Elementor\Widget_Base
                     $query->the_post();
                     $title_trunscate_postlist = get_the_title();
                     $content_descripsonription = (get_the_excerpt()) ? get_the_excerpt() : get_the_content();
-                    $content_descripson = esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($content_descripsonription) : wp_trim_words(wp_strip_all_tags($content_descripsonription), $settings['truncate-content']), 'rometheme-for-elementor');
+                    $content_descripson = esc_html((empty($settings['truncate-content'])) ? wp_strip_all_tags($content_descripsonription) : wp_trim_words(wp_strip_all_tags($content_descripsonription), $settings['truncate-content']), 'rometheme-for-elementor');
                     $category_post = get_the_category();
-                    $post_title = esc_html__((empty($settings['truncate-title'])) ? wp_strip_all_tags($title_trunscate_postlist) : wp_trim_words(wp_strip_all_tags($title_trunscate_postlist), $settings['truncate-title']), 'rometheme-for-elementor');
+                    $post_title = esc_html((empty($settings['truncate-title'])) ? wp_strip_all_tags($title_trunscate_postlist) : wp_trim_words(wp_strip_all_tags($title_trunscate_postlist), $settings['truncate-title']), 'rometheme-for-elementor');
 
                     $post_url = get_the_permalink();
                     $thumbnail_url = get_the_post_thumbnail(
@@ -1678,61 +1857,61 @@ class Postlist extends \Elementor\Widget_Base
 
 
 
-                    ?>
+                ?>
                     <li class="<?php echo esc_attr($divider_on) ?>">
                         <div class="rkit-item-postlist">
                             <?php if ($settings['show_image_content'] == 'yes') { ?>
                                 <div class="rkit-item-thumbnail">
-                                    <a href="<?= esc_url($post_url) ?>" target="_blank">
-                                        <?php echo $thumbnail_url; ?>
+                                    <a href="<?php echo  esc_url($post_url) ?>" target="_blank">
+                                        <?php echo wp_kses_post($thumbnail_url ?? ''); ?>
                                     </a>
                                 </div>
                             <?php } ?>
 
                             <div class="rkit-item-content ">
                                 <?php if ($settings['show_category_box'] == 'yes') { ?>
-                                    <span class="category_post"> <?= esc_html($category_post[0]->name) ?></span>
+                                    <span class="category_post"> <?php echo  esc_html($category_post[0]->name) ?></span>
                                 <?php } ?>
                                 <?php if ($settings['title_position'] == 'yes') { ?>
-                                    <<?php echo esc_html($html_tager); ?> class="rkit-title-postlist"><a href="<?= esc_url($post_url) ?>"
-                                            class="title-item"><?= esc_html($post_title) ?></a></<?php echo esc_html($html_tager); ?>>
+                                    <<?php echo esc_html($html_tager); ?> class="rkit-title-postlist"><a href="<?php echo  esc_url($post_url) ?>"
+                                            class="title-item"><?php echo  esc_html($post_title) ?></a></<?php echo esc_html($html_tager); ?>>
                                     <div class="rkit-metadata-postlist-row">
                                         <?php
                                         if ($settings['metadata-select']) {
                                             foreach ($settings['metadata-select'] as $key => $meta) {
                                                 switch ($meta) {
                                                     case 'author':
-                                                        ?>
+                                        ?>
                                                         <div class="rkit-metadata-item-postlist">
                                                             <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
-                                                            <?php esc_html__(the_author_posts_link(), 'rometheme-for-elementor') ?>
+                                                            <?php wp_kses_post(the_author_posts_link() ?? '') ?>
                                                         </div>
-                                                        <?php
+                                                    <?php
                                                         break;
                                                     case 'date':
-                                                        ?>
+                                                    ?>
                                                         <div class="rkit-metadata-item-postlist">
                                                             <?php \Elementor\Icons_Manager::render_icon($settings['date-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                             <span><?php echo get_the_date($settings['date_format']) ?></span>
                                                         </div>
-                                                        <?php
+                                                    <?php
                                                         break;
                                                     case 'category':
-                                                        ?>
+                                                    ?>
                                                         <div class="rkit-metadata-item-postlist ">
                                                             <?php \Elementor\Icons_Manager::render_icon($settings['category-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                             <span class="cat_postlist"> <?php the_category(' | ') ?></span>
                                                         </div>
-                                                        <?php
+                                                    <?php
                                                         break;
                                                     case 'comment':
-                                                        ?>
+                                                    ?>
                                                         <div class="rkit-metadata-item-postlist">
                                                             <?php \Elementor\Icons_Manager::render_icon($settings['comment-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                             <a
                                                                 href="<?php echo esc_url(get_comments_link()) ?>"><?php echo esc_html(get_comments_number()) ?></a>
                                                         </div>
-                                                        <?php
+                                        <?php
                                                         break;
                                                 }
                                             }
@@ -1741,7 +1920,7 @@ class Postlist extends \Elementor\Widget_Base
                                     </div>
 
                                     <?php if ($settings['show_content_post_list'] == "yes") { ?>
-                                        <p class="content_descripson"><?= esc_html($content_descripson) ?></p>
+                                        <p class="content_descripson"><?php echo  esc_html($content_descripson) ?></p>
                                     <?php } ?>
 
                                 <?php } else { ?>
@@ -1752,48 +1931,48 @@ class Postlist extends \Elementor\Widget_Base
                                                 foreach ($settings['metadata-select'] as $key => $meta) {
                                                     switch ($meta) {
                                                         case 'author':
-                                                            ?>
+                                            ?>
                                                             <div class="rkit-metadata-item-postlist">
                                                                 <?php \Elementor\Icons_Manager::render_icon($settings['author-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
-                                                                <?php esc_html__(the_author_posts_link(), 'rometheme-for-elementor') ?>
+                                                                <?php wp_kses_post(the_author_posts_link() ?? '') ?>
                                                             </div>
-                                                            <?php
+                                                        <?php
                                                             break;
                                                         case 'date':
-                                                            ?>
+                                                        ?>
                                                             <div class="rkit-metadata-item-postlist">
                                                                 <?php \Elementor\Icons_Manager::render_icon($settings['date-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                                 <span><?php echo get_the_date($settings['date_format']) ?></span>
                                                             </div>
-                                                            <?php
+                                                        <?php
                                                             break;
                                                         case 'category':
-                                                            ?>
+                                                        ?>
                                                             <div class="rkit-metadata-item-postlist">
                                                                 <?php \Elementor\Icons_Manager::render_icon($settings['category-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                                 <?php the_category(' | ') ?>
                                                             </div>
-                                                            <?php
+                                                        <?php
                                                             break;
                                                         case 'comment':
-                                                            ?>
+                                                        ?>
                                                             <div class="rkit-metadata-item-postlist">
                                                                 <?php \Elementor\Icons_Manager::render_icon($settings['comment-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-meta-icon-postlist']); ?>
                                                                 <a
                                                                     href="<?php echo esc_url(get_comments_link()) ?>"><?php echo esc_html(get_comments_number()) ?></a>
                                                             </div>
-                                                            <?php
+                                            <?php
                                                             break;
                                                     }
                                                 }
                                             }
                                             ?>
                                         </div>
-                                        <<?php echo esc_html($html_tager); ?> class="rkit-title-postlist"><a href="<?= esc_url($post_url) ?>"
-                                                class="title-item"><?= esc_html($post_title) ?></a></<?php echo esc_html($html_tager); ?>>
+                                        <<?php echo esc_html($html_tager); ?> class="rkit-title-postlist"><a href="<?php echo  esc_url($post_url) ?>"
+                                                class="title-item"><?php echo  esc_html($post_title) ?></a></<?php echo esc_html($html_tager); ?>>
 
                                         <?php if ($settings['show_content_post_list'] == "yes") { ?>
-                                            <p class="content_descripson"><?= esc_html($content_descripson) ?></p>
+                                            <p class="content_descripson"><?php echo  esc_html($content_descripson) ?></p>
                                         <?php } ?>
                                     <?php } ?>
 
@@ -1803,7 +1982,9 @@ class Postlist extends \Elementor\Widget_Base
                                                 <?php if ('before' === $settings['icon_position']) {
                                                     \Elementor\Icons_Manager::render_icon($settings['icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore']);
                                                 } ?>
-                                                <?php echo esc_html__($settings['readmore-text'], 'rometheme-for-elementor') ?>
+                                                <span class="btn-text <?php echo  esc_attr($show_line_btn); ?>">
+                                                    <?php echo esc_html($settings['readmore-text']) ?>
+                                                </span>
                                                 <?php if ('after' === $settings['icon_position']) {
                                                     \Elementor\Icons_Manager::render_icon($settings['icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore']);
                                                 } ?>
@@ -1812,7 +1993,7 @@ class Postlist extends \Elementor\Widget_Base
                                     <?php endif; ?>
 
 
-                                </div>
+                                    </div>
                             </div>
                             <div style="clear: both;"></div>
                     </li>
@@ -1824,7 +2005,7 @@ class Postlist extends \Elementor\Widget_Base
         <?php } ?>
 
         <?php wp_reset_postdata(); ?>
-    <?php }
+<?php }
 
     // private function get_available_categories() {
     //     $categories = get_categories();

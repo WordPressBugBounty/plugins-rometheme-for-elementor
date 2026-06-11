@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class Accordion extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -65,7 +67,7 @@ class Accordion extends \Elementor\Widget_Base
         $list = [];
         if ($template) {
             foreach ($template as $template) {
-                $list[intval($template->ID)] = esc_html__($template->post_title, 'rometheme-for-elementor');
+                $list[intval($template->ID)] = esc_html($template->post_title);
             }
         }
         return $list;
@@ -1045,7 +1047,7 @@ class Accordion extends \Elementor\Widget_Base
     {
         if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
 ?>
-            <a href="<?php echo admin_url("post.php?post={$item}&action=elementor") ?>"
+            <a href="<?php echo esc_url(admin_url("post.php?post={$item}&action=elementor")) ?>"
                 class="accordion-edit-template-btn btn">
                 Edit Saved Template <i class="eicon-edit" aria-hidden="true"></i>
             </a>
@@ -1113,7 +1115,7 @@ class Accordion extends \Elementor\Widget_Base
                                 ?>
                             </<?php echo esc_attr($title_tag) ?>>
                             <?php if (!empty($settings['show_subheading'])) { ?>
-                                <span class="header-subtitle"><?php echo $item['accordion_sub_title'] ?></span>
+                                <span class="header-subtitle"><?php echo esc_html($item['accordion_sub_title']) ?></span>
                             <?php } ?>
                         </div>
                         <div class="rkit-accordion__icon">
@@ -1125,13 +1127,29 @@ class Accordion extends \Elementor\Widget_Base
                         <div class="rkit-accordion__content">
                             <?php
                             if ($item['description_type'] == 'description') {
-                                echo wp_kses_post($item['item_description']);
+                                echo wp_kses_post($item['item_description'] ?? '');
                             } else {
                                 $template = get_post($item['item_template']);
-                                if (!empty($template)) { ?>
-                                    <div class="rkit-custom-content-wrapper"  <?php echo (\Elementor\Plugin::$instance->editor->is_edit_mode()) ? 'saved-template="true"' : '' ?>>
+                                if (!empty($template)) {
+
+                                    if (!wp_style_is('elementor-frontend', 'registered')) {
+                                        wp_register_style(
+                                            'elementor-frontend',
+                                            ELEMENTOR_ASSETS_URL . 'css/frontend.min.css',
+                                            [],
+                                            ELEMENTOR_VERSION
+                                        );
+                                    }
+
+                                    if (!wp_style_is('elementor-frontend', 'enqueued')) {
+                                        wp_enqueue_style('elementor-frontend');
+                                    }
+                            ?>
+                                    <div class="rkit-custom-content-wrapper" <?php echo (\Elementor\Plugin::$instance->editor->is_edit_mode()) ? 'saved-template="true"' : '' ?>>
                                         <?php
-                                        echo \RTMKit\Modules\Widgets\WidgetModule::instance()->render_edit_template_button($item['item_template'], get_queried_object_id());
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo \RTMKit\Modules\Widgets\WidgetModule::instance()->render_edit_template_button(absint($item['item_template']), absint(get_queried_object_id()));
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($item['item_template']);
                                         ?>
                                     </div>

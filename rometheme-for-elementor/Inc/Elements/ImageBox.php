@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ImageBox extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -52,24 +54,24 @@ class ImageBox extends \Elementor\Widget_Base
         $this->add_control(
             'select_style',
             [
-                'label' => esc_html__('Style', 'textdomain'),
+                'label' => esc_html__('Style', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::VISUAL_CHOICE,
                 'label_block' => true,
                 'options' => [
                     'def-card' => [
-                        'title' => esc_attr__('Style 1.', 'textdomain'),
+                        'title' => esc_attr__('Style 1.', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/image-box-skin-1.svg'
                     ],
                     'default' => [
-                        'title' => esc_attr__('Style 2', 'textdomain'),
+                        'title' => esc_attr__('Style 2', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/image-box-skin-2.svg'
                     ],
                     'overlay' => [
-                        'title' => esc_attr__('Style 3.', 'textdomain'),
+                        'title' => esc_attr__('Style 3.', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/image-box-skin-3.svg'
                     ],
                     'float-card' => [
-                        'title' => esc_attr__('Style 4.', 'textdomain'),
+                        'title' => esc_attr__('Style 4.', 'rometheme-for-elementor'),
                         'image' => RTM_KIT_URL . 'Inc/Elements/assets/images/image-box-skin-4.svg'
                     ]
                 ],
@@ -285,7 +287,7 @@ class ImageBox extends \Elementor\Widget_Base
         $this->start_controls_section(
             'read-more-content',
             [
-                'label' => esc_html__('Read More Button'),
+                'label' => esc_html__('Read More Button','rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT
             ]
         );
@@ -597,7 +599,7 @@ class ImageBox extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
-                    '{{WRAPPER}}  .rkit-image_box_det ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}}  .rkit-image_box__detail' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1667,7 +1669,10 @@ class ImageBox extends \Elementor\Widget_Base
 
             <div class="rkit-image_box-card">
                 <div class="rkit-image_box__img">
-                    <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'imagebox_image'); ?>
+                    
+                    <?php 
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'imagebox_image'); ?>
                 </div>
 
 
@@ -1698,7 +1703,7 @@ class ImageBox extends \Elementor\Widget_Base
                             ?>
 
                         </div>
-                        <<?php echo $name_tag ?> class="rkit-image_box__title"><?php echo esc_html($settings['imagebox_title']) ?></<?php echo esc_html($name_tag) ?>>
+                        <<?php echo wp_kses_post($name_tag ?? 'h1') ?> class="rkit-image_box__title"><?php echo esc_html($settings['imagebox_title']) ?></<?php echo esc_html($name_tag) ?>>
                         <div class="image-box-item-desc <?php echo esc_html($wrapper_desc) ?> ">
                             <span class="rkit-image_box__description"><?php echo esc_html($settings['imagebox_description']) ?></span>
                             <?php
@@ -1709,7 +1714,7 @@ class ImageBox extends \Elementor\Widget_Base
                                             <?php
                                             \Elementor\Icons_Manager::render_icon($settings['imagebox_icon_readmore'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-ib']);
                                             ?>
-                                            <?php echo esc_html__($settings['imagebox_readmore_text'], 'rometheme-for-elementor') ?>
+                                            <?php echo esc_html($settings['imagebox_readmore_text']) ?>
                                         </a>
                                     </div>
                             <?php endif;

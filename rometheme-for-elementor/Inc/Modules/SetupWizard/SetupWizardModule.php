@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\SetupWizard;
 
+if (! defined('ABSPATH')) exit;
+
 class SetupWizardModule
 {
     public function init()
@@ -75,12 +77,14 @@ class SetupWizardModule
             return;
         }
 
+        $current_page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '';
         // Jangan redirect kalau sudah di halaman wizard
-        if (isset($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard') {
+        if ($current_page === 'rtmkit-setup-wizard') {
             if (get_option('rtmkit_wizard_setup_complete_2.0', false)) {
                 wp_safe_redirect(
                     admin_url('admin.php?page=rtmkit')
                 );
+                exit;
             } else {
                 return;
             }

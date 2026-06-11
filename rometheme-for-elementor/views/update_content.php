@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
 $isProActive = class_exists(\RTMKitPro\Modules\Licenses\LicenseStorage::class)
     && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();

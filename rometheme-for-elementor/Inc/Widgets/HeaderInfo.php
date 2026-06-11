@@ -1,6 +1,8 @@
 <?php
 namespace RTMKit\Widgets;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class HeaderInfo extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -410,7 +412,7 @@ class HeaderInfo extends \Elementor\Widget_Base
                 <div class="rkit-headerinfo-icon">
                     <?php \Elementor\Icons_Manager::render_icon($setting['rkit_headerinfo_icons'], ['aria-hidden' => 'true', 'class' => 'header-icon']); ?>
                 </div>
-                <a class="rkit-headerinfo-text" <?php $this->print_render_attribute_string('button-' . $key) ?>> <?php echo esc_html__($setting['rkit_headerinfo_text'], 'rometheme-for-elementor') ?></a>
+                <a class="rkit-headerinfo-text" <?php $this->print_render_attribute_string('button-' . $key) ?>> <?php echo esc_html($setting['rkit_headerinfo_text']) ?></a>
             </div>
 <?php endforeach;
         echo '</div>';

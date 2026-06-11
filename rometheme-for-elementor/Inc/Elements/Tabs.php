@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Tabs extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -60,7 +62,7 @@ class Tabs extends \Elementor\Widget_Base
         $list = [];
         if ($template) {
             foreach ($template as $template) {
-                $list[intval($template->ID)] = esc_html__($template->post_title, 'rometheme-for-elementor');
+                $list[intval($template->ID)] = esc_html($template->post_title);
             }
         }
         return $list;
@@ -878,7 +880,7 @@ class Tabs extends \Elementor\Widget_Base
         ?>
         <div class="rkit-tab-container <?php echo esc_attr($settings['layout']) ?>">
             <div class="rkit-tab-nav-container">
-                <ul class="rkit-tab-nav <?php echo $bordered ?>">
+                <ul class="rkit-tab-nav <?php echo esc_attr($bordered) ?>">
                     <?php foreach ($settings['tab_list'] as $key => $tab):
                         switch ($tab['title_tag']) {
                             case 'h1':
@@ -911,7 +913,7 @@ class Tabs extends \Elementor\Widget_Base
                         $shrink_tab = $settings['full_width'] === 'yes' ? '' : 'shrink';
                         $horizontal_lay = $settings['layout'] === 'horizontal' ? $shrink_tab : '';
                     ?>
-                        <li class="rkit-tab-btn-item <?php echo $active_default . ' ' . $horizontal_lay ?>" role="tab"
+                        <li class="rkit-tab-btn-item <?php echo esc_attr($active_default) . ' ' . esc_attr($horizontal_lay) ?>" role="tab"
                             data-tab="tab-<?php echo esc_attr($key) ?>">
                             <?php if ($settings['show_icon'] === 'yes') {
                                 \Elementor\Icons_Manager::render_icon($tab['icon_tab'], ['aria-hidden' => 'true', 'class' => 'tab-title-icon']);
@@ -930,13 +932,15 @@ class Tabs extends \Elementor\Widget_Base
                             class="rkit-tab-content <?php echo ($tab['active_default'] === 'yes') ? 'active' : ''; ?>">
                             <?php
                             if ($tab['content_type'] == 'content') {
-                                echo $tab['item_content'];
+                                echo wp_kses_post($tab['item_content']);
                             } else {
                                 $template = get_post($tab['item_template']);
                                 if (!empty($template)) { ?>
                                     <div class="rkit-custom-content-wrapper" <?php echo (\Elementor\Plugin::$instance->editor->is_edit_mode()) ? 'saved-template="true"' : '' ?>>
                                         <?php
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         echo \RTMKit\Modules\Widgets\WidgetModule::instance()->render_edit_template_button($tab['item_template'] , $this->get_current_id());
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($tab['item_template']);
                                         ?>
                                     </div>

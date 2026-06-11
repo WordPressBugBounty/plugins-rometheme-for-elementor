@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class HomeSlider extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -286,7 +288,7 @@ class HomeSlider extends \Elementor\Widget_Base
 
 
         $this->start_controls_section('content_button_new', [
-            'label' => esc_html__('Button'),
+            'label' => esc_html__('Button','rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
         $this->add_control(
@@ -476,7 +478,7 @@ class HomeSlider extends \Elementor\Widget_Base
                 'name' => 'container_box_shadow',
                 'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-hs-client ',
-                'description' => esc_html__('Give the container padding to see the results', 'text-domain'),
+                'description' => esc_html__('Give the container padding to see the results', 'rometheme-for-elementor'),
             ]
         );
 
@@ -613,7 +615,7 @@ class HomeSlider extends \Elementor\Widget_Base
 
         //content style
         $this->start_controls_section('content_style_section', [
-            'label' => esc_html__('Content', 'textdomdomain: ain'),
+            'label' => esc_html__('Content', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_STYLE,
         ]);
 
@@ -621,19 +623,19 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_align_horizontal',
             [
-                'label' => esc_html__('Horizontal Alignment', 'text-domain'),
+                'label' => esc_html__('Horizontal Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'text-domain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'text-domain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'text-domain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -648,19 +650,19 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'content_align_vertical',
             [
-                'label' => esc_html__('Vertical Alignment', 'text-domain'),
+                'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Top', 'text-domain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'text-domain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Bottom', 'text-domain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -755,7 +757,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_section_subtitle',
             [
-                'label' => esc_html__('Sub Title', 'text-domain'),
+                'label' => esc_html__('Sub Title', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -764,7 +766,7 @@ class HomeSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'subtitle_typography',
-                'label' => esc_html__('Typography', 'text-domain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hs-sub-title',
             ]
         );
@@ -773,7 +775,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_control(
             'subtitle_color_external',
             [
-                'label' => esc_html__('Color', 'text-domain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hs-sub-title' => 'color: {{VALUE}};'
@@ -811,7 +813,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'subtitle_icon_position',
             [
-                'label' => esc_html__('icon Position', 'text-domain'),
+                'label' => esc_html__('icon Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row-reverse' => [
@@ -949,7 +951,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_section',
             [
-                'label' => esc_html__('Title', 'text-domain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -993,7 +995,7 @@ class HomeSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'label' => esc_html__('Typography', 'text-domain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hs-title',
             ]
         );
@@ -1001,7 +1003,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_control(
             'title_color_external',
             [
-                'label' => esc_html__('Color', 'text-domain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hs-title' => 'color: {{VALUE}};'
@@ -1057,7 +1059,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->start_controls_section(
             'style_section_desc',
             [
-                'label' => esc_html__('Description', 'text-domain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -1101,7 +1103,7 @@ class HomeSlider extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'label' => esc_html__('Typography', 'text-domain'),
+                'label' => esc_html__('Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .hs-description',
             ]
         );
@@ -1109,7 +1111,7 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_control(
             'desc_color_external',
             [
-                'label' => esc_html__('Color', 'text-domain'),
+                'label' => esc_html__('Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .hs-description' => 'color: {{VALUE}};'
@@ -1846,19 +1848,19 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_align_horizontal',
             [
-                'label' => esc_html__('Horizontal Alignment', 'text-domain'),
+                'label' => esc_html__('Horizontal Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'text-domain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'text-domain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'text-domain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -1873,19 +1875,19 @@ class HomeSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'navigation_align_vertical',
             [
-                'label' => esc_html__('Vertical Alignment', 'text-domain'),
+                'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => esc_html__('Top', 'text-domain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'text-domain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'flex-end' => [
-                        'title' => esc_html__('Bottom', 'text-domain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -2185,9 +2187,10 @@ class HomeSlider extends \Elementor\Widget_Base
                             <div class="rkit-hs-client ">
                                 <div class="image-container-hsl">
                                     <?php
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     $image_html_url = \Elementor\Group_Control_Image_Size::get_attachment_image_html($li, 'thumbnail', 'image');
                                     $image_html_url = str_replace('<img ', '<img class="image-cover-hsl" ', $image_html_url);
-                                    echo $image_html_url;
+                                    echo wp_kses_post($image_html_url ?? '');
                                     ?>
                                     <div class="hs-content">
                                         <div class="hs-content-background"></div>

@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ClientGrid extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -153,15 +155,15 @@ class ClientGrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'choose_hover_style',
             [
-                'label' => esc_html__('Hover Mode', 'textdomain'),
+                'label' => esc_html__('Hover Mode', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'text' => [
-                        'title' => esc_html__('Text', 'textdomain'),
+                        'title' => esc_html__('Text', 'rometheme-for-elementor'),
                         'icon' => 'eicon-t-letter-bold',
                     ],
                     'image' => [
-                        'title' => esc_html__('Image', 'textdomain'),
+                        'title' => esc_html__('Image', 'rometheme-for-elementor'),
                         'icon' => 'eicon-e-image',
                     ],
                 ],
@@ -229,10 +231,10 @@ class ClientGrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'show_icons',
             [
-                'label' => esc_html__('Show Icon', 'textdomain'),
+                'label' => esc_html__('Show Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -241,7 +243,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $card_list->add_control(
             'client_icon',
             [
-                'label' => esc_html__('Client Icon', 'textdomain'),
+                'label' => esc_html__('Client Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-star',
@@ -327,7 +329,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'container_spacing_horizontal',
             [
-                'label' => esc_html__('Horizontal Spacing', 'textdomain'),
+                'label' => esc_html__('Horizontal Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -350,7 +352,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'container_spacing_vertical',
             [
-                'label' => esc_html__('Vertical Spacing', 'textdomain'),
+                'label' => esc_html__('Vertical Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -883,7 +885,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'position_options',
             [
-                'label' => esc_html__('Position', 'textdomain'),
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -892,15 +894,15 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icon_vertical_position',
             [
-                'label' => esc_html__('Vertical Position', 'textdomain'),
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'top' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'bottom' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ]
                 ],
@@ -913,15 +915,15 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icon_horizontal_position',
             [
-                'label' => esc_html__('Horizontal Position', 'textdomain'),
+                'label' => esc_html__('Horizontal Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ]
                 ],
@@ -934,7 +936,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'x_offset',
             [
-                'label' => esc_html__('Horizontal Offset', 'textdomain'),
+                'label' => esc_html__('Horizontal Offset', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -958,7 +960,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'y_offset',
             [
-                'label' => esc_html__('Vertical Offset', 'textdomain'),
+                'label' => esc_html__('Vertical Offset', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -982,7 +984,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icon_options',
             [
-                'label' => esc_html__('Icons', 'textdomain'),
+                'label' => esc_html__('Icons', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -991,7 +993,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -1018,7 +1020,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icons_color',
             [
-                'label' => esc_html__('Icon Color', 'textdomain'),
+                'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} i.client-icon' => 'color: {{VALUE}}',
@@ -1040,7 +1042,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icons_color_hover',
             [
-                'label' => esc_html__('Icon Color', 'textdomain'),
+                'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .rkit-card-client:hover i.client-icon' => 'color: {{VALUE}}',
@@ -1063,7 +1065,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_control(
             'icon_wrapper_options',
             [
-                'label' => esc_html__('Icon Wrapper', 'textdomain'),
+                'label' => esc_html__('Icon Wrapper', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1072,7 +1074,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icons_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -1084,7 +1086,7 @@ class ClientGrid extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icons_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [

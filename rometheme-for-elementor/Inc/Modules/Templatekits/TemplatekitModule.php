@@ -4,6 +4,8 @@ namespace RTMKit\Modules\Templatekits;
 
 use RTMKit\Modules\Templatekits\TemplatekitAPI;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class TemplatekitModule
 {
     private static ?TemplatekitModule $instance = null;
@@ -93,10 +95,12 @@ class TemplatekitModule
         // Cek apakah direktori sudah ada
         if (!file_exists($custom_dir)) {
             // Buat direktori
-            if (wp_mkdir_p($custom_dir)) {
-                // Atur izin direktori ke 0777
-                chmod($custom_dir, 0777);
-            }
+            // if (wp_mkdir_p($custom_dir)) {
+            //     // Atur izin direktori ke 0777
+            //     chmod($custom_dir, 0777);
+            // }
+
+            wp_mkdir_p( $custom_dir );
         }
     }
 

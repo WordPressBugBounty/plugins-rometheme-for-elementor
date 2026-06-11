@@ -1,4 +1,7 @@
 <?php
+
+if (! defined('ABSPATH')) exit;
+
 if (file_exists(WP_PLUGIN_DIR . '/romethemeform/rometheme-form.php')) {
     $btn['text'] = 'Activate RTMForm';
     $btn['action'] = 'Activating';
@@ -22,16 +25,16 @@ if (file_exists(WP_PLUGIN_DIR . '/romethemeform/rometheme-form.php')) {
                 <p class="m-0">
                     RTMForm powers all form functionality in RTMKit. Activate it to unlock full capabilities and ensure everything runs seamlessly.
                 <div class="d-flex gap-3">
-                    <a id="install-rtmform" data-action="<?php echo $btn['action']; ?>" class="btn btn-accent fw-bold px-4 py-3 gap-2" href="<?php 
-                    echo $btn['url']; 
-                    ?>">
-                        <?php echo $btn['text']; ?>
+                    <a id="install-rtmform" data-action="<?php echo esc_attr($btn['action']); ?>" class="btn btn-accent fw-bold px-4 py-3 gap-2" href="<?php echo esc_url($btn['url']);?>">
+                        <?php echo esc_html($btn['text']); ?>
                     </a>
                 </div>
             </div>
         </div>
         <div class="col col-lg-4">
-            <img src="<?php echo RTM_KIT_URL . 'assets/images/form.png'; ?>" alt="RTMForm Banner" class="img-fluid">
+            <img src="<?php
+             echo esc_url(RTM_KIT_URL . 'assets/images/form.png'); 
+             ?>" alt="RTMForm Banner" class="img-fluid">
         </div>
     </div>
 </div>

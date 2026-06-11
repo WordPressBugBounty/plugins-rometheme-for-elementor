@@ -1,3 +1,8 @@
+<?php
+
+ if ( ! defined( 'ABSPATH' ) ) exit;
+ ?>
+
 <style>
   .saved-template-modal {
     display: none;

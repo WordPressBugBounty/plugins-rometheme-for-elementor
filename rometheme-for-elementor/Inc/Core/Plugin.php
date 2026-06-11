@@ -13,6 +13,8 @@ namespace RTMKit\Core;
 use Dom\Element;
 use Exception;
 
+if (! defined('ABSPATH')) exit;
+
 class Plugin
 {
     protected $modules;
@@ -51,10 +53,12 @@ class Plugin
             return;
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['page'])) {
             return;
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $page = sanitize_key($_GET['page']);
 
         // Daftar page admin plugin yang VALID
@@ -85,16 +89,17 @@ class Plugin
             admin_url('admin.php?page=rtmkit-setup-wizard')
         );
 
-
-
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_GET['page']) && ($_GET['page'] === 'rtm-update' || $_GET['page'] === 'rtmkit' || $_GET['page'] === 'romethemekit') && $this->wizard_setup_check() === false) {
-            var_dump("here");
+            // var_dump("here");
             $url = admin_url('admin.php?page=rtmkit-setup-wizard');
             wp_safe_redirect($url);
             exit;
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!empty($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard' && $this->wizard_setup_check() !== false) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             wp_safe_redirect(admin_url('admin.php?page=rtmkit'));
             exit;
         }
@@ -148,11 +153,13 @@ class Plugin
             }
 
             // hindari redirect loop
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (!empty($_GET['rtmkit_redirected'])) {
                 return;
             }
 
             // jangan redirect kalau sudah di wizard
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (!empty($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard' && $this->wizard_setup_check() === false) {
                 return;
             }
@@ -164,18 +171,19 @@ class Plugin
             );
 
 
-
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (!empty($_GET['page']) && ($_GET['page'] === 'rtm-update' || $_GET['page'] === 'rtmkit' || $_GET['page'] === 'romethemekit') && $this->wizard_setup_check() === false) {
                 $url = admin_url('admin.php?page=rtmkit-setup-wizard');
                 wp_safe_redirect($url);
                 exit;
             }
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (!empty($_GET['page']) && $_GET['page'] === 'rtmkit-setup-wizard' && $this->wizard_setup_check() !== false) {
                 wp_safe_redirect(admin_url('admin.php?page=rtmkit'));
                 exit;
             }
-
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if ($this->wizard_setup_check() === false) {
                 wp_safe_redirect($url);
                 exit;
@@ -255,7 +263,7 @@ class Plugin
             new \RTMKit\Modules\Helper\Banner();
         } catch (Exception $e) {
             // Handle exceptions if necessary
-            error_log($e->getMessage());
+            // error_log($e->getMessage());
         }
     }
 

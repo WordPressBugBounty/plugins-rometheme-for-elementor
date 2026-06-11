@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\RTMIcons;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class RTMIconsModule
 {
     public function init()

@@ -4,6 +4,8 @@ namespace RTMKit\Elements;
 
 use WC_Product;
 
+if (! defined('ABSPATH')) exit;
+
 class WooProductGrid extends \Elementor\Widget_Base
 {
 
@@ -67,7 +69,11 @@ class WooProductGrid extends \Elementor\Widget_Base
     }
     private function get_product_categories()
     {
-        $categories = get_terms('product_cat', ['hide_empty' => false]);
+        $categories = get_terms([
+            'taxonomy' => 'product_cat',
+            'hide_empty' => false,
+        ]);
+
         $options = [];
         if (!empty($categories) && !is_wp_error($categories)) {
             foreach ($categories as $category) {
@@ -200,6 +206,11 @@ class WooProductGrid extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
+        $this->add_control('truncate-title', [
+            'label' => esc_html__('Crop Title By Word', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::NUMBER,
+        ]);
+
         $this->add_control(
             'product_count',
             [
@@ -213,7 +224,7 @@ class WooProductGrid extends \Elementor\Widget_Base
         //     'product_column',
         //     [
         //         'label' => __('Column', 'rometheme-for-elementor'),
-        //         'description' => esc_html__('*Setting for desktop Only', 'text-domain'),
+        //         'description' => esc_html__('*Setting for desktop Only', 'rometheme-for-elementor'),
         //         'type' => \Elementor\Controls_Manager::NUMBER,
         //         'min' => 1,
         //         'max' => 8, 
@@ -224,24 +235,23 @@ class WooProductGrid extends \Elementor\Widget_Base
         //     ]
         // );
 
-
-        $this->add_control(
+        $this->add_responsive_control(
             'product_columna',
             [
                 'label' => __('Column', 'rometheme-for-elementor'),
-                'description' => esc_html__('*Setting for desktop Only', 'text-domain'),
+                // 'description' => esc_html__('*Setting for desktop Only', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 8,
-                'default' => 3,
+                'desktop_default' => 3,
+                'tablet_default'  => 2,
+                'mobile_default'  => 1,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-product-grid-wpg' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    // '{{WRAPPER}} .rkit-product-grid-wpg' => 'grid-template-columns: repeat({{VALUE}}, 1fr);',
+                    '{{WRAPPER}} .rkit-product-grid-wpg' => '--jumlah-kolom: {{VALUE}};',
                 ],
             ]
         );
-
-
-
 
         $this->add_responsive_control(
             'card_spacing',
@@ -262,7 +272,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    ' {{WRAPPER}} .rkit-product-grid-wpg-prem, {{WRAPPER}} .rkit-product-grid-wpg-pro, {{WRAPPER}} .rkit-product-grid-wpg' => 'gap: {{SIZE}}{{UNIT}};',
+                    ' {{WRAPPER}} .rkit-product-grid-wpg-prem, {{WRAPPER}} .rkit-product-grid-wpg-pro, {{WRAPPER}} .rkit-product-grid-wpg' => 'gap: {{SIZE}}{{UNIT}}; --ukuran-gap:{{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -282,7 +292,7 @@ class WooProductGrid extends \Elementor\Widget_Base
         $this->add_control(
             'product_categories',
             [
-                'label' => __('Select Categories', 'text-domain'),
+                'label' => __('Select Categories', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'options' => $this->get_product_categories(),
                 'multiple' => true,
@@ -314,7 +324,7 @@ class WooProductGrid extends \Elementor\Widget_Base
 
         $this->add_control('truncate-content', [
             'label' => esc_html__('Crop Description Word', 'rometheme-for-elementor'),
-            'description' => esc_html__('Recomendation, use 10 - 15 word Only.', 'text-domain'),
+            'description' => esc_html__('Recomendation, use 10 - 15 word Only.', 'rometheme-for-elementor'),
             // 'type' => \Elementor\Controls_Manager::NUMBER,
             'type' => \Elementor\Controls_Manager::HIDDEN,
             'default' => 10,
@@ -324,7 +334,7 @@ class WooProductGrid extends \Elementor\Widget_Base
 
 
         $this->start_controls_section('content_button_wgp', [
-            'label' => esc_html__('Button'),
+            'label' => esc_html__('Button', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
 
@@ -635,6 +645,7 @@ class WooProductGrid extends \Elementor\Widget_Base
             'label' => esc_html__('Image Aspect Ratio', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
+                'auto' => esc_html__('auto', 'rometheme-for-elementor'),
                 '1/1' => esc_html__('1 : 1', 'rometheme-for-elementor'),
                 '3/2' => esc_html__('3 : 2', 'rometheme-for-elementor'),
                 '2/3' => esc_html__('2 : 3', 'rometheme-for-elementor'),
@@ -649,10 +660,57 @@ class WooProductGrid extends \Elementor\Widget_Base
                 '{{WRAPPER}} .rkit-product-image-wpg, .rkit-product-image-wpg img,
                 {{WRAPPER}} .rkit-product-image-wpg-pro, .rkit-product-image-wpg-pro img,
                 {{WRAPPER}} .rkit-product-image-wpg-prem, .rkit-product-image-wpg-prem img'
-
                 => 'aspect-ratio:{{VALUE}};'
             ]
         ]);
+
+        $this->add_responsive_control(
+            'image_object_fit_wpc',
+            [
+                'label' => esc_html__('Object Fit', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'cover' => esc_html__('Cover', 'rometheme-for-elementor'),
+                    'contain' => esc_html__('Contain', 'rometheme-for-elementor'),
+                    'fill' => esc_html__('Fill', 'rometheme-for-elementor'),
+                    'none' => esc_html__('None', 'rometheme-for-elementor'),
+                    'scale-down' => esc_html__('Scale Down', 'rometheme-for-elementor'),
+                ],
+                'default' => 'cover',
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-image-wpg, {{WRAPPER}} .rkit-product-image-wpg img,
+                        {{WRAPPER}} .rkit-product-image-wpg-pro, {{WRAPPER}} .rkit-product-image-wpg-pro img,
+                        {{WRAPPER}} .rkit-product-image-wpg-prem, {{WRAPPER}} .rkit-product-image-wpg-prem img'
+                    => 'object-fit: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_object_position_wpc',
+            [
+                'label' => esc_html__('Object Position', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'center center' => esc_html__('Center Center', 'rometheme-for-elementor'),
+                    'center top' => esc_html__('Center Top', 'rometheme-for-elementor'),
+                    'center bottom' => esc_html__('Center Bottom', 'rometheme-for-elementor'),
+                    'left top' => esc_html__('Left Top', 'rometheme-for-elementor'),
+                    'left center' => esc_html__('Left Center', 'rometheme-for-elementor'),
+                    'left bottom' => esc_html__('Left Bottom', 'rometheme-for-elementor'),
+                    'right top' => esc_html__('Right Top', 'rometheme-for-elementor'),
+                    'right center' => esc_html__('Right Center', 'rometheme-for-elementor'),
+                    'right bottom' => esc_html__('Right Bottom', 'rometheme-for-elementor'),
+                ],
+                'default' => 'center center',
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-product-image-wpg, .rkit-product-image-wpg img,
+                {{WRAPPER}} .rkit-product-image-wpg-pro, .rkit-product-image-wpg-pro img,
+                {{WRAPPER}} .rkit-product-image-wpg-prem, .rkit-product-image-wpg-prem img'
+                    => 'object-position: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'image_padding',
@@ -852,7 +910,7 @@ class WooProductGrid extends \Elementor\Widget_Base
         $this->add_control(
             'title_transition_duration',
             [
-                'label' => esc_html__('Transition Duration', 'romethemekitpro'),
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['ms', 's'],
                 'range' => [
@@ -1615,7 +1673,7 @@ class WooProductGrid extends \Elementor\Widget_Base
             ]
         );
 
-         $this->add_group_control(
+        $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'btn_box_shadow_normal',
@@ -1978,13 +2036,11 @@ class WooProductGrid extends \Elementor\Widget_Base
                     global $product;
 
                     $content_descripsonription_wpc =  $product->get_description();
-                    $content_descripson_wpc =  esc_html__((empty($settings['truncate-content'])) ? wp_strip_all_tags($content_descripsonription_wpc) : wp_trim_words(wp_strip_all_tags($content_descripsonription_wpc), $settings['truncate-content']), 'rometheme-for-elementor');
+                    $content_descripson_wpc =  esc_html((empty($settings['truncate-content'])) ? wp_strip_all_tags($content_descripsonription_wpc) : wp_trim_words(wp_strip_all_tags($content_descripsonription_wpc), $settings['truncate-content']), 'rometheme-for-elementor');
                     $average = $product->get_average_rating();
                     $btnLink = ($settings['button_function'] == 'add_to_cart') ? wc_get_cart_url() . '?add-to-cart=' . get_the_ID() : get_the_permalink();
             ?>
                     <div class="rkit-product-card-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                        <!-- <a href="<?php the_permalink(); ?>"> -->
-
                         <div class="rkit-product-image-wpg<?php echo esc_attr($settings['option_style']); ?>">
                             <?php
                             if ($settings['show_sale'] == 'yes') {
@@ -1993,13 +2049,13 @@ class WooProductGrid extends \Elementor\Widget_Base
                             <?php }
                             } ?>
                             <div class="rkit-product-image-container">
-                                <?php echo woocommerce_get_product_thumbnail(); ?>
+                                <?php echo wp_kses_post(woocommerce_get_product_thumbnail()); ?>
                             </div>
                             <?php if ($settings['option_style'] == '') { ?>
                                 <div class="rkit-addcart-wrap-button-wpg">
                                     <a class="rkit-addcart-button-wpg" href="<?php echo esc_url($btnLink) ?>">
 
-                                        <span> <?php echo esc_html__($settings['button_text_wgp'], 'rometheme-for-elementor') ?> </span>
+                                        <span> <?php echo esc_html($settings['button_text_wgp']) ?> </span>
                                         <?php
                                         \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
                                         ?>
@@ -2007,11 +2063,15 @@ class WooProductGrid extends \Elementor\Widget_Base
                                 </div>
                             <?php } ?>
                         </div>
-                        <!-- </a> -->
+
                         <div class="rkit-product-details-wpg<?php echo esc_attr($settings['option_style']); ?>">
                             <div class="rkit-product-info-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                 <a href="<?php the_permalink(); ?>">
-                                    <<?php echo esc_html($wpg_tag) ?> class="rkit-product-title-wpg<?php echo esc_attr($settings['option_style']); ?>"><?php the_title(); ?> </<?php echo esc_html($wpg_tag) ?>>
+                                    <<?php echo esc_html($wpg_tag) ?> class="rkit-product-title-wpg<?php echo esc_attr($settings['option_style']); ?>">
+                                        <?php
+                                        $post_title = get_the_title();
+                                        echo esc_html((empty($settings['truncate-title'])) ? wp_strip_all_tags($post_title) : wp_trim_words(wp_strip_all_tags($post_title), $settings['truncate-title'])) ?>
+                                    </<?php echo esc_html($wpg_tag) ?>>
                                 </a>
                                 <?php
                                 if ($settings['show_rating'] == 'yes') {
@@ -2019,7 +2079,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                                         <div class="rkit-product-rating-wpg">
                                             <div class="star-rating-wpg">
                                                 <?php if ($average > 0) : ?>
-                                                    <span style="width: <?php echo ($average / 5) * 100; ?>%;">★★★★★</span>
+                                                    <span style="width: <?php echo esc_attr(($average / 5) * 100); ?>%;">★★★★★</span>
                                                 <?php endif; ?>
                                                 ★★★★★
                                             </div>
@@ -2029,7 +2089,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                                 <?php
                                 if ($settings['show_category'] == 'yes') {
                                     if ($settings['option_style'] == '') { ?>
-                                        <p class="rkit-product-category-wpg<?php echo esc_attr($settings['option_style']); ?>"><?php echo  wc_get_product_category_list($product->get_id()); ?></p>
+                                        <p class="rkit-product-category-wpg<?php echo esc_attr($settings['option_style']); ?>"><?php echo  wp_kses_post(wc_get_product_category_list($product->get_id())); ?></p>
 
                                 <?php }
                                 } ?>
@@ -2038,32 +2098,32 @@ class WooProductGrid extends \Elementor\Widget_Base
                                 <?php if ($product->is_on_sale()) {  ?>
                                     <div class="if-sale-price-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                         <span class="rkit-product-sale-price-reguler-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                                            <?php echo wc_price($product->get_regular_price())  ?>
+                                            <?php echo wp_kses_post(wc_price($product->get_regular_price()))  ?>
                                         </span>
                                         <span class="rkit-product-sale-price-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                                            <?php echo wc_price($product->get_sale_price())  ?>
+                                            <?php echo wp_kses_post(wc_price($product->get_sale_price()))  ?>
                                         </span>
                                     </div>
                                 <?php } else { ?>
                                     <span class="rkit-product-price-reguler-wpg<?php echo esc_attr($settings['option_style']); ?>
-                                        <?= ($direction_tablet === 'row') ? 'align-end-tablet' : '' ?> 
-                                        <?= ($direction === 'row') ? 'align-end' : '' ?> 
-                                        <?= ($direction_mobile === 'row') ? 'align-end-mobile' : '' ?>
+                                        <?php echo ($direction_tablet === 'row') ? 'align-end-tablet' : '' ?> 
+                                        <?php echo ($direction === 'row') ? 'align-end' : '' ?> 
+                                        <?php echo ($direction_mobile === 'row') ? 'align-end-mobile' : '' ?>
                                     ">
-                                        <?php echo wc_price($product->get_price())  ?>
+                                        <?php echo wp_kses_post(wc_price($product->get_price()))  ?>
                                     </span>
                                 <?php } ?>
                                 <?php
                                 if ($settings['show_rating'] == 'yes') {
                                     if ($settings['option_style'] != '-prem') { ?>
                                         <div class="rkit-product-rating-wpg   
-                                        <?= ($direction_tablet === 'row') ? 'align-end-tablet' : '' ?> 
-                                        <?= ($direction === 'row') ? 'align-end' : '' ?> 
-                                        <?= ($direction_mobile === 'row') ? 'align-end-mobile' : '' ?>
+                                        <?php echo ($direction_tablet === 'row') ? 'align-end-tablet' : '' ?> 
+                                        <?php echo ($direction === 'row') ? 'align-end' : '' ?> 
+                                        <?php echo ($direction_mobile === 'row') ? 'align-end-mobile' : '' ?>
                                         ">
                                             <div class="star-rating-wpg">
                                                 <?php if ($average > 0) : ?>
-                                                    <span style="width: <?php echo ($average / 5) * 100; ?>%;">★★★★★</span>
+                                                    <span style="width: <?php echo esc_attr(($average / 5) * 100); ?>%;">★★★★★</span>
                                                 <?php endif; ?>
                                                 ★★★★★
                                             </div>
@@ -2073,12 +2133,10 @@ class WooProductGrid extends \Elementor\Widget_Base
                             </div>
                         </div>
 
-
-
                         <?php if ($settings['option_style'] == '-pro') { ?>
                             <div class="rkit-product-desc-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                 <span class="rkit-product-text-desc-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                                    <?php echo   $content_descripson_wpc; ?>
+                                    <?php echo esc_html($content_descripson_wpc); ?>
                                 </span>
                             </div>
                             <div class="rkit-addcart-wrap-button-wpg-all<?php echo esc_attr($settings['option_style']); ?>">
@@ -2088,7 +2146,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                                         <?php if ('before' === $settings['button_icon_position_wgp']) {
                                             \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
                                         } ?>
-                                        <span> <?php echo esc_html__($settings['button_text_wgp'], 'rometheme-for-elementor') ?> </span>
+                                        <span> <?php echo esc_html($settings['button_text_wgp']) ?> </span>
                                         <?php if ('after' === $settings['button_icon_position_wgp']) {
                                             \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
                                         } ?>
@@ -2101,7 +2159,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                             <div class="rkit-product-hov-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                 <div class="rkit-product-desc-wpg<?php echo esc_attr($settings['option_style']); ?>">
                                     <span class="rkit-product-text-desc-wpg<?php echo esc_attr($settings['option_style']); ?>">
-                                        <?php echo   $content_descripson_wpc; ?>
+                                        <?php echo esc_html($content_descripson_wpc); ?>
                                     </span>
                                 </div>
                                 <div class="rkit-addcart-wrap-button-wpg<?php echo esc_attr($settings['option_style']); ?>">
@@ -2109,7 +2167,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                                         <?php if ('before' === $settings['button_icon_position_wgp_prem']) {
                                             \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp_prem'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
                                         } ?>
-                                        <span> <?php echo esc_html__($settings['button_text_wgp'], 'rometheme-for-elementor') ?> </span>
+                                        <span> <?php echo esc_html($settings['button_text_wgp']) ?> </span>
                                         <?php if ('after' === $settings['button_icon_position_wgp_prem']) {
                                             \Elementor\Icons_Manager::render_icon($settings['button_icon_wgp_prem'], ['aria-hidden' => 'true', 'class' => 'rkit-icon-readmore-wpg']);
                                         } ?>
@@ -2130,7 +2188,7 @@ class WooProductGrid extends \Elementor\Widget_Base
 <?php
                 // echo '</div>';
             } else {
-                echo __('No products found', 'rometheme-for-elementor');
+                echo esc_html__('No products found', 'rometheme-for-elementor');
             }
 
             wp_reset_postdata();

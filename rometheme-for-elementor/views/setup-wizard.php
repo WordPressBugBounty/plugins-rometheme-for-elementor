@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $current_step = isset($_GET['step']) ? intval($_GET['step']) : 1;
 $proCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')['Version'] ?? null;
 $formCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemeform/rometheme-form.php')['Version'] ?? null;

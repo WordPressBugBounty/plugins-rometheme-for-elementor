@@ -1,6 +1,7 @@
 {
   "postcarousel": {
     "name": "Post Carousel",
+    "widget_name": "rkit-post_carousel",
     "icon": "rtmicon rtmicon-post-carousel",
     "class_name": "Rkit_Post_Carousel",
     "category": "post",
@@ -16,6 +17,7 @@
   },
   "pricingbox": {
     "name": "Pricing Image Box",
+    "widget_name": "rkit-pricebox",
     "icon": "rtmicon rtmicon-pricing-image-box",
     "class_name": "Rkit_Pricebox",
     "category": "marketing",
@@ -31,6 +33,7 @@
   },
   "pricelist": {
     "name": "Pricing List",
+    "widget_name": "rkit-price-list",
     "icon": "rtmicon rtmicon-price-list",
     "class_name": "Rkit_Price_List",
     "category": "marketing",
@@ -46,6 +49,7 @@
   },
   "imagemarquee": {
     "name": "Image Marquee",
+    "widget_name": "rkit-image_marquee",
     "icon": "rtmicon rtmicon-image-marquee",
     "class_name": "Rkit_Imagemarquee",
     "category": "showcase",
@@ -61,6 +65,7 @@
   },
   "textual_showcase": {
     "name": "Textual Showcase",
+    "widget_name": "rkit-textual_showcase",
     "icon": "eicon-animation-text",
     "class_name": "Rkit_Textual_Showcase",
     "category": "creative",
@@ -76,6 +81,7 @@
   },
   "advancedtoggle": {
     "name": "Advanced Toggle",
+    "widget_name": "rkit-advanced-toggle",
     "icon": "rtmicon rtmicon-advanced-toggle",
     "class_name": "Rkit_Advanced_Toggle",
     "category": "bussiness",
@@ -91,6 +97,7 @@
   },
   "interactivelinks": {
     "name": "Interactive Links",
+    "widget_name": "rkit-interactive_links",
     "icon": "rtmicon rtmicon-interactive-link",
     "class_name": "Rkit_Interactive_Links",
     "category": "creative",
@@ -106,6 +113,7 @@
   },
   "animated_circle_button": {
     "name": "Animated Circle Button",
+    "widget_name": "rtm-animated_circle_button",
     "icon": "rtmicon rtmicon-animated-circle-button",
     "class_name": "Rkit_Animated_Circle_Button",
     "category": "creative",
@@ -121,6 +129,7 @@
   },
   "image_stack": {
     "name": "Image Stack Info",
+    "widget_name": "rtm-image_stack",
     "icon": "rtmicon rtmicon-image-stack-info",
     "class_name": "Rkit_Image_Stack",
     "category": "showcase",
@@ -136,6 +145,7 @@
   },
   "rkit_breadcrumb": {
     "name": "Breadcrumb",
+    "widget_name": "rkit_breadcrumb",
     "icon": "rtmicon rtmicon-breadcumb",
     "class_name": "Rkit_Breadcrumb",
     "category": "header",
@@ -151,6 +161,7 @@
   },
   "imagehotspot": {
     "name": "Image Hotspot",
+    "widget_name": "rkit_image_hotspot",
     "icon": "rtmicon rtmicon-image-hotspot",
     "class_name": "Rkit_Image_Hotspot",
     "category": "showcase",
@@ -170,6 +181,7 @@
   },
   "client_carousel": {
     "name": "Client Carousel",
+    "widget_name": "rkit_client_carousel",
     "icon": "rtmicon rtmicon-client-carousel",
     "class_name": "Rkit_Logocaraosel",
     "category": "bussiness",
@@ -185,6 +197,7 @@
   },
   "team_carousel": {
     "name": "Team Carousel",
+    "widget_name": "rtm-team_carousel",
     "icon": "rtmicon rtmicon-team-carousel",
     "class_name": "TeamCarousel",
     "category": "bussiness",
@@ -202,6 +215,7 @@
   },
   "woo_product_carousel": {
     "name": "Woo Product Carousel",
+    "widget_name": "rkit-woo_product_carousel",
     "icon": "rtmicon rtmicon-product-carousel",
     "class_name": "ProductCarousel",
     "category": "marketing",
@@ -220,6 +234,7 @@
   },
   "background_switcher": {
     "name": "Background Switcher",
+    "widget_name": "rkit_background_switcher",
     "icon": "rtmicon rtmicon-image-accordion",
     "class_name": "Rkit_Background_Switcher",
     "category": "creative",
@@ -235,8 +250,27 @@
   },
   "advanced_category": {
     "name": "Advanced Categories",
+    "widget_name": "rkit-advanced_category",
     "icon": "rtmicon rtmicon-team-carousel",
     "class_name": "Rkit_Advanced_Category",
+    "category": "post",
+    "status": true,
+    "type": "pro",
+    "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/widget-pro-guidelines/advanced-categories/",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "link official cooming soon",
+    "is_new": true,
+    "scripts": {
+      "css": "advanced-category.css",
+      "js": "advanced-category.js"
+    }
+  },
+  "dynamic_field": {
+    "name": "Dynamic Field",
+    "widget_name": "rkit-dynamic_field",
+    "icon": "rtmicon rtmicon-team-carousel",
+    "class_name": "Rkit_Dynamic_Field",
     "category": "post",
     "status": true,
     "type": "pro",
@@ -246,8 +280,8 @@
     "notes": "link official cooming soon",
     "is_new": true,
     "scripts": {
-      "css": "advanced-category.css",
-      "js": "advanced-category.js"
+      "css": "dynamic-field.css",
+      "js": ""
     }
   }
 }

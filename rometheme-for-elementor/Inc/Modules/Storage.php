@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Storage
 {
     protected static $instance;
@@ -107,7 +109,11 @@ class Storage
 
         $rawInput = file_get_contents('php://input');
         $dataJson = json_decode($rawInput, true);
-        $plugin = sanitize_text_field($_GET['type']);
+        
+        $plugin = isset($_POST['type'])
+            ? sanitize_text_field(wp_unslash($_POST['type']))
+            : '';
+            
         // Validasi format JSON
         if (!is_array($dataJson)) {
             wp_send_json_error([
@@ -120,18 +126,18 @@ class Storage
 
         if ($update) {
             $message = sprintf(
+                /* translators: %s: plugin name. */
                 __('Modules options for %s have been successfully updated.', 'rometheme-for-elementor'),
                 ($plugin == 'free') ? 'RTMKit' : 'RTMKit Pro'
             );
             wp_send_json_success(['message' => $message]);
         } else {
             $message = sprintf(
+                /* translators: %s: plugin name. */
                 __('No changes were saved. %s Modules options are already current.', 'rometheme-for-elementor'),
                 ($plugin == 'free') ? 'RTMKit' : 'RTMKit Pro'
             );
-            wp_send_json_error([
-                'message' => __($message, 'rometheme-for-elementor')
-            ]);
+            wp_send_json_error(['message' => $message]);
         }
     }
 
@@ -244,7 +250,7 @@ class Storage
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
         $type    = isset($_POST['post_type']) ? sanitize_key($_POST['post_type']) : 'post';
-        $search  = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
+        $search  = isset($_POST['search']) ? sanitize_text_field(wp_unslash($_POST['search'])) : '';
         $paged   = isset($_POST['page']) ? absint($_POST['page']) : 1;
         $post_id = isset($_POST['post_id']) ? absint($_POST['post_id']) : 0;
 

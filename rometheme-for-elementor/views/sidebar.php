@@ -1,5 +1,7 @@
 <?php
 
+if (! defined('ABSPATH')) exit;
+
 $menus = \RTMKit\Modules\Menu::instance()->get_menus();
 $path = isset($_POST['path']) ? sanitize_text_field($_POST['path']) : 'dashboard';
 
@@ -44,7 +46,12 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                 <div class="menu-section">
 
                     <button class="btn btn-transparent menu-dropdown" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr($section) ?>" aria-expanded="<?php echo ($section == 'get_started') ? esc_attr("true") : esc_attr("false") ?>" aria-controls="<?php echo esc_attr($section) ?>">
-                        <h3 class="menu-section-title m-0"><?php echo $icons[$section] ?><?php echo esc_html(ucfirst(str_replace('_', ' ', $section))); ?></h3>
+                        <h3 class="menu-section-title m-0">
+                            <?php
+                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            echo ($icons[$section] ?? '')
+                            ?>
+                            <?php echo esc_html(ucfirst(str_replace('_', ' ', $section))); ?></h3>
                     </button>
                     <div class="collapse <?php echo ($section == 'get_started') ? esc_attr("show") : "" ?>" id="<?php echo esc_attr($section) ?>">
                         <ul class="menu-list">

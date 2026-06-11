@@ -2,6 +2,8 @@
 
 namespace RTMKit\Widgets;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class NavMenu extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -49,7 +51,7 @@ class NavMenu extends \Elementor\Widget_Base
         $list = [];
         $menus = wp_get_nav_menus();
         foreach ($menus as $menu) {
-            $list[$menu->slug] = esc_html__($menu->name, 'rometheme-for-elementor');
+            $list[$menu->slug] = esc_html($menu->name);
         }
 
 
@@ -165,13 +167,17 @@ class NavMenu extends \Elementor\Widget_Base
             'label' => esc_html__('Menu Select', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => $this->get_menus(),
-            'description' => sprintf(esc_html__('Go to the %sMenus screen%s to manage your menus.', 'rometheme-for-elementor'), '<a href="' . esc_url(admin_url('nav-menus.php')) . '">', '</a>'),
+            'description' => sprintf(
+                /* translators: 1: opening anchor tag, 2: closing anchor tag. */
+                 esc_html__('Go to the  %1$sMenus screen%2$s to manage your menus.', 'rometheme-for-elementor'), 
+                 '<a href="' . esc_url(admin_url('nav-menus.php')) . '">',
+                '</a>'),
             'default' => array_keys($this->get_menus())[0],
         ]);
 
 
         $this->add_control('submenu-open', [
-            'label' => esc_html__('Dropdown as open'),
+            'label' => esc_html__('Dropdown as open', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'hover' => esc_html__('Hover', 'rometheme-for-elementor'),
@@ -232,9 +238,8 @@ class NavMenu extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control('responsive-breakpoint', [
-            'label' => esc_html__('Responsive Breakpoint'),
+            'label' => esc_html__('Responsive Breakpoint', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => [
                 'tablet' => esc_html__('Tablet', 'rometheme-for-elementor'),
@@ -406,7 +411,7 @@ class NavMenu extends \Elementor\Widget_Base
 
         $this->end_controls_section();
         $this->start_controls_section('hamburger-content', [
-            'label' => esc_html__('Hamburger Setting'),
+            'label' => esc_html__('Hamburger Setting', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
         $this->add_control(
@@ -496,7 +501,7 @@ class NavMenu extends \Elementor\Widget_Base
 
 
         $this->add_responsive_control('menu-position', [
-            'label' => esc_html__('Menu Position'),
+            'label' => esc_html__('Menu Position', 'rometheme-for-elementor'),
             'type' => \Elementor\Controls_Manager::CHOOSE,
             'options' => [
                 'start' => [

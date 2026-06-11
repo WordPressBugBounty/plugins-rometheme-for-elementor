@@ -1,5 +1,7 @@
 <?php
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+ 
 use function ElementorDeps\str_contains;
 
 $upload_dir = wp_upload_dir();

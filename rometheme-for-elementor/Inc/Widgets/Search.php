@@ -4,6 +4,8 @@
 namespace RTMKit\Widgets;
 use Elementor\Conditions;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 class Search extends \Elementor\Widget_Base
 {
@@ -632,7 +634,7 @@ class Search extends \Elementor\Widget_Base
 ?>
         <form action="<?php echo esc_url(get_home_url()) ?>" method="get">
             <div class="rkit-search">
-                <input class="rkit-search-input" type="text" name="s" id="s" autocomplete="<?php echo esc_attr($autocomplete) ?>" placeholder="<?php echo esc_attr__($settings['input-placeholder'], 'rometheme-for-elementor'); ?>"></input>
+                <input class="rkit-search-input" type="text" name="s" id="s" autocomplete="<?php echo esc_attr($autocomplete) ?>" placeholder="<?php echo esc_attr($settings['input-placeholder']); ?>"></input>
                 <div class="rkit-container-button">
                     <button class="rkit-search-button " type="submit">
                         <?php \Elementor\Icons_Manager::render_icon($settings['search_icon'], ['aria-hidden' => 'true', 'class' => 'rkit-search-icon']); ?>

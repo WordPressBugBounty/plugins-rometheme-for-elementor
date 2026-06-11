@@ -2,6 +2,8 @@
 
 namespace RTMKit\Themebuilder;
 
+if (! defined('ABSPATH')) exit;
+
 class HeaderFooter
 {
     private static $instance = null;
@@ -76,6 +78,7 @@ class HeaderFooter
                         $headerHTML,
                         \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder_content($header_id)
                     );
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $fullHeader;
                 // break;
             }
@@ -100,6 +103,7 @@ class HeaderFooter
                         $footerHTML,
                         \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder_content($footer_id)
                     );
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo $fullFooter;
                 break;
             }

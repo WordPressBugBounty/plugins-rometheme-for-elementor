@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class PieChart extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -93,9 +95,9 @@ class PieChart extends \Elementor\Widget_Base
             'border-popover-toggle',
             [
                 'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
-                'label' => esc_html__('Border', 'textdomain'),
-                'label_off' => esc_html__('Default', 'textdomain'),
-                'label_on' => esc_html__('Custom', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Default', 'rometheme-for-elementor'),
+                'label_on' => esc_html__('Custom', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
             ]
         );
@@ -135,9 +137,9 @@ class PieChart extends \Elementor\Widget_Base
             'border-popover-toggle-hover',
             [
                 'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
-                'label' => esc_html__('Border', 'textdomain'),
-                'label_off' => esc_html__('Default', 'textdomain'),
-                'label_on' => esc_html__('Custom', 'textdomain'),
+                'label' => esc_html__('Border', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Default', 'rometheme-for-elementor'),
+                'label_on' => esc_html__('Custom', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
             ]
         );
@@ -219,10 +221,10 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'show_title',
             [
-                'label' => esc_html__('Show Title', 'textdomain'),
+                'label' => esc_html__('Show Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'textdomain'),
-                'label_off' => esc_html__('Hide', 'textdomain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -260,10 +262,10 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'show_description',
             [
-                'label' => esc_html__('Show Description', 'textdomain'),
+                'label' => esc_html__('Show Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'textdomain'),
-                'label_off' => esc_html__('Hide', 'textdomain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -300,7 +302,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'pie_width',
             [
-                'label' => esc_html__('Width', 'textdomain'),
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -382,10 +384,10 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'legend-typography-popover-toggle',
             [
-                'label' => esc_html__('Typhography', 'textdomain'),
+                'label' => esc_html__('Typhography', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => esc_html__('Default', 'textdomain'),
-                'label_on' => esc_html__('Custom', 'textdomain'),
+                'label_off' => esc_html__('Default', 'rometheme-for-elementor'),
+                'label_on' => esc_html__('Custom', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'condition' => [
                     'show_legend' => 'yes'
@@ -499,7 +501,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'wrapper_options',
             [
-                'label' => esc_html__('Wrapper', 'textdomain'),
+                'label' => esc_html__('Wrapper', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -508,23 +510,23 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'text_description_position',
             [
-                'label' => esc_html__('Position', 'textdomain'),
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'column-reverse' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'row-reverse' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'row' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                     'column' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -539,19 +541,19 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'text_description_vertical_position',
             [
-                'label' => esc_html__('Vertical Position', 'textdomain'),
+                'label' => esc_html__('Vertical Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-start-v',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-center-v',
                     ],
                     'end' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-end-v',
                     ]
                 ],
@@ -569,7 +571,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'margin_text_description',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -581,7 +583,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding_text_description',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -593,7 +595,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'radius_text_description',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -607,7 +609,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'text_description_wrapper_normal_tab',
             [
-                'label' => esc_html__('Normal', 'textdomain'),
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
             ]
         );
 
@@ -641,7 +643,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'text_description_wrapper_hover_tab',
             [
-                'label' => esc_html__('Hover', 'textdomain'),
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
 
@@ -677,7 +679,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'title_options',
             [
-                'label' => esc_html__('Title', 'textdomain'),
+                'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -706,7 +708,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'title_color_normal_tab',
             [
-                'label' => esc_html__('Normal', 'textdomain'),
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
             ]
         );
 
@@ -739,7 +741,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'title_color_hover_tab',
             [
-                'label' => esc_html__('Hover', 'textdomain'),
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
 
@@ -774,7 +776,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->add_control(
             'description_options',
             [
-                'label' => esc_html__('Description', 'textdomain'),
+                'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
                 'condition' => [
@@ -803,7 +805,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'description_color_normal_tab',
             [
-                'label' => esc_html__('Normal', 'textdomain'),
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
             ]
         );
 
@@ -836,7 +838,7 @@ class PieChart extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'description_color_hover_tab',
             [
-                'label' => esc_html__('Hover', 'textdomain'),
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
 

@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class CardSlider extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -84,10 +86,10 @@ class CardSlider extends \Elementor\Widget_Base
         $this->add_control(
             'show_subheading',
             [
-                'label' => esc_html__('Show Sub Heading', 'textdomain'),
+                'label' => esc_html__('Show Sub Heading', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'textdomain'),
-                'label_off' => esc_html__('Hide', 'textdomain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -617,7 +619,7 @@ class CardSlider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'card_body_opacity',
             [
-                'label' => esc_html__('Opacity'),
+                'label' => esc_html__('Opacity', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -709,7 +711,7 @@ class CardSlider extends \Elementor\Widget_Base
                 'default' => 'center',
                 'toggle' => true,
                 'selectors' => [
-                    '{{WRAPPER}} .rkit-card .card-heading' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-card .card-heading' => 'align-items: {{VALUE}};text-align: {{VALUE}}',
                 ],
             ]
         );
@@ -1953,31 +1955,31 @@ class CardSlider extends \Elementor\Widget_Base
         );
 
         $this->add_control(
-			'navigation_transition_duration',
-			[
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Transition Duration', 'rometheme-for-elementor' ),
-				'size_units' => [ 's', 'ms' ],
-				'range' => [
-					's' => [
-						'min' => 1,
-						'max' => 5,
-					],
+            'navigation_transition_duration',
+            [
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+                'size_units' => ['s', 'ms'],
+                'range' => [
+                    's' => [
+                        'min' => 1,
+                        'max' => 5,
+                    ],
                     'ms' => [
                         'min' => 100,
                         'max' => 5000,
                         'step' => 100,
                     ],
-				],
-				'default' => [
-					'unit' => 'ms',
-					'size' => 200,
-				],
+                ],
+                'default' => [
+                    'unit' => 'ms',
+                    'size' => 200,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .rkit-swiper-button-prev , {{WRAPPER}} .rkit-swiper-button-next' => 'transition-duration: {{SIZE}}{{UNIT}};',
                 ],
-			]
-		);
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -2067,7 +2069,7 @@ class CardSlider extends \Elementor\Widget_Base
         }
 
 ?>
-        <div class="rkit-card-slider <?= $showAnimationNavigation ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
+        <div class="rkit-card-slider <?php echo  esc_attr($showAnimationNavigation) ?>" data-config="<?php echo esc_attr(json_encode($config)) ?>">
             <!-- Slider main container -->
             <div class="rkit-swiper">
                 <?php if ($settings['dots_position'] == 'top') : ?>
@@ -2087,6 +2089,7 @@ class CardSlider extends \Elementor\Widget_Base
                                     $this->add_render_attribute('image', 'src', $li['image']['url']);
                                     $this->add_render_attribute('image', 'alt', \Elementor\Control_Media::get_image_alt($li['image']));
                                     $this->add_render_attribute('image', 'title', \Elementor\Control_Media::get_image_title($li['image']));
+                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($li, 'thumbnail', 'image');
                                     ?>
                                 </div>

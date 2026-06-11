@@ -1,3 +1,8 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+?>
 <div class="px-4 mb-5 scroll-behavior-smooth scrollspy" data-scrollspy="#system-category" data-rootMargin="-30% 0px -70% 0px" tabindex="0">
     <div class="d-flex flex-column gap-3">
         <div class="d-flex justify-content-between align-items-center">
@@ -12,7 +17,7 @@
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
                         } else {
                             echo 'Free';
                         }

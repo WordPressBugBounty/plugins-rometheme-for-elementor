@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Themebuilder;
 
+if (! defined('ABSPATH')) exit;
+
 class ThemebuilderAPI
 {
     private static $instance = null;
@@ -87,6 +89,18 @@ class ThemebuilderAPI
     {
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
+        if (! current_user_can('manage_options')) {
+            wp_send_json_error('access denied', 403);
+        }
+
+        $post_id = absint($_POST['themebuilder_id']);
+
+        $post = get_post($post_id);
+
+        if (!$post || $post->post_type !== 'rometheme_template') {
+            wp_send_json_error('invalid template', 404);
+        }
+
         if (! current_user_can('edit_posts')) {
             wp_send_json_error('access denied', 403);
         }
@@ -134,7 +148,7 @@ class ThemebuilderAPI
             wp_die();
         }
 
-         check_ajax_referer('rtmkit_nonce', 'nonce');
+        check_ajax_referer('rtmkit_nonce', 'nonce');
 
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
         include_once ABSPATH . 'wp-admin/includes/file.php';

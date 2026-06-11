@@ -17,8 +17,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: auto;
-  height: auto;
+  width: fit-content;
+  height: max-content;
   text-align: left;
   content: attr(data-background-text);
   background-clip: text;

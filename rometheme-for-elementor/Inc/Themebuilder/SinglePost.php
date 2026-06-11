@@ -2,6 +2,8 @@
 
 namespace RTMKit\Themebuilder;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class SinglePost
 {
     public static function instance()

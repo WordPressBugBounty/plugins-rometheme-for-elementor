@@ -6,7 +6,7 @@ class APIHandler
 {
     private static ?APIHandler $instance = null;
 
-    private $url = 'https://api.rtmwp.com/';
+    private $url = 'https://api.rometheme.pro/';
 
     public static function instance(): APIHandler
     {

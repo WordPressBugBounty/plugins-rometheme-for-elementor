@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class Counter extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -39,12 +41,12 @@ class Counter extends \Elementor\Widget_Base
 
     public function get_style_depends()
     {
-        return ['rtmkit-element-counter' , 'rtmkit-lib-odometer.min'];
+        return ['rtmkit-element-counter', 'rtmkit-lib-odometer.min'];
     }
 
     public function get_script_depends()
     {
-        return ['rtmkit-element-counter' , 'rtmkit-lib-odometer.min'];
+        return ['rtmkit-element-counter', 'rtmkit-lib-odometer.min'];
     }
 
     protected function register_controls()
@@ -165,10 +167,10 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'show_icon',
             [
-                'label' => esc_html__('Use Icon', 'textdomain'),
+                'label' => esc_html__('Use Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -177,7 +179,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'icon',
             [
-                'label' => esc_html__('Icon', 'textdomain'),
+                'label' => esc_html__('Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-users',
@@ -199,19 +201,19 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'wrapper_position',
             [
-                'label' => esc_html__('Position', 'textdomain'),
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -226,19 +228,19 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'alignment',
             [
-                'label' => esc_html__('Alignment', 'textdomain'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-start-h',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-center-h',
                     ],
                     'end' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-align-end-h',
                     ],
                 ],
@@ -260,7 +262,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding_wrapper',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -271,7 +273,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'margin_wrapper',
             [
-                'label' => esc_html__('Margin', 'textdomain'),
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -283,7 +285,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'radius_wrapper',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -327,7 +329,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'wrapper_blur_effect',
             [
-                'label' => esc_html__('Blur Effect', 'textdomain'),
+                'label' => esc_html__('Blur Effect', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -392,15 +394,15 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_position',
             [
-                'label' => esc_html__('Position', 'textdomain'),
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'column-reverse' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'column' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -447,7 +449,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'title_spacing',
             [
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -481,23 +483,23 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_position',
             [
-                'label' => esc_html__('Position', 'textdomain'),
+                'label' => esc_html__('Position', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'row' => [
-                        'title' => esc_html__('Left', 'textdomain'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'column' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'column-reverse' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                     'row-reverse' => [
-                        'title' => esc_html__('Right', 'textdomain'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -512,19 +514,19 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'icon_align',
             [
-                'label' => esc_html__('Vertical Alignment', 'textdomain'),
+                'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'title' => esc_html__('Top', 'textdomain'),
+                        'title' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'end' => [
-                        'title' => esc_html__('Bottom', 'textdomain'),
+                        'title' => esc_html__('Bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -560,7 +562,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'textdomain'),
+                'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -584,7 +586,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'icon_spacing',
             [
-                'label' => esc_html__('Icon Spacing', 'textdomain'),
+                'label' => esc_html__('Icon Spacing', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -607,7 +609,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_control(
             'icon_wrapper_options',
             [
-                'label' => esc_html__('Icons Wrapper', 'textdomain'),
+                'label' => esc_html__('Icons Wrapper', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -625,7 +627,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_wrapper_padding',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -637,7 +639,7 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'icon_wrapper_radius',
             [
-                'label' => esc_html__('Border Radius', 'textdomain'),
+                'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -683,19 +685,19 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'prefix_vertical_align',
             [
-                'label' => esc_html__('Vertical Alignment', 'textdomain'),
+                'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'start' => esc_html__('Top', 'textdomain'),
+                        'start' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'end' => [
-                        'title' => esc_html__('bottom', 'textdomain'),
+                        'title' => esc_html__('bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -735,7 +737,7 @@ class Counter extends \Elementor\Widget_Base
             'prefix_spacing',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -747,6 +749,20 @@ class Counter extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->add_responsive_control(
+            'prefix_margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .prefix_number' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
 
         $this->end_controls_section();
 
@@ -769,19 +785,19 @@ class Counter extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'suffix_vertical_align',
             [
-                'label' => esc_html__('Vertical Alignment', 'textdomain'),
+                'label' => esc_html__('Vertical Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'start' => [
-                        'start' => esc_html__('Top', 'textdomain'),
+                        'start' => esc_html__('Top', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'textdomain'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'end' => [
-                        'title' => esc_html__('bottom', 'textdomain'),
+                        'title' => esc_html__('bottom', 'rometheme-for-elementor'),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -821,7 +837,7 @@ class Counter extends \Elementor\Widget_Base
             'suffix_spacing',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Spacing', 'textdomain'),
+                'label' => esc_html__('Spacing', 'rometheme-for-elementor'),
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -830,6 +846,18 @@ class Counter extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .suffix_number' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'suffix_margin',
+            [
+                'label' => esc_html__('Margin', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'selectors' => [
+                    '{{WRAPPER}} .suffix_number' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );

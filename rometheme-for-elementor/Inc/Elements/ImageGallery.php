@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ImageGallery extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -45,7 +47,9 @@ class ImageGallery extends \Elementor\Widget_Base
 
     public function get_script_depends()
     {
-        return ['rtmkit-element-image_gallery' , 'rtmkit-lib-masonry.pkgd.min' , 'rtmkit-lib-imagesloaded.pkgd.min' , 'rtmkit-lib-glightbox.min'];
+        return ['rtmkit-element-image_gallery' , 
+        // 'rtmkit-lib-masonry.pkgd.min' , 
+        'rtmkit-lib-imagesloaded.pkgd.min' , 'rtmkit-lib-glightbox.min'];
     }
     protected function register_controls()
     {
@@ -128,10 +132,10 @@ class ImageGallery extends \Elementor\Widget_Base
         $this->add_control(
             'lazy_load_ig',
             [
-                'label' => esc_html__('Lazy Load', 'text-domain'),
+                'label' => esc_html__('Lazy Load', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'text-domain'),
-                'label_off' => esc_html__('No', 'text-domain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]

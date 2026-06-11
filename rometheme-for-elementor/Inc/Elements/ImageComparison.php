@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ImageComparison extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -82,10 +84,10 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->add_control(
             'show_icon',
             [
-                'label' => esc_html__('Show Icon', 'text-domain'),
+                'label' => esc_html__('Show Icon', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -105,10 +107,10 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->add_control(
             'show_caption_before',
             [
-                'label' => esc_html__('Show Caption', 'text-domain'),
+                'label' => esc_html__('Show Caption', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -163,10 +165,10 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->add_control(
             'show_caption_after',
             [
-                'label' => esc_html__('Show Caption', 'text-domain'),
+                'label' => esc_html__('Show Caption', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -229,7 +231,7 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->start_controls_section(
             'caption_section',
             [
-                'label' => esc_html__('Caption Style', 'text-domain'),
+                'label' => esc_html__('Caption Style', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -238,7 +240,7 @@ class ImageComparison extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'caption_typography',
-                'label' => esc_html__('Caption Typography', 'text-domain'),
+                'label' => esc_html__('Caption Typography', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .caption-img-comp',
             ]
         );
@@ -246,7 +248,7 @@ class ImageComparison extends \Elementor\Widget_Base
          $this->add_control(
             'caption_color',
             [
-                'label' => esc_html__('Caption Color', 'text-domain'),
+                'label' => esc_html__('Caption Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .caption-img-comp' => 'color: {{VALUE}};'
@@ -335,7 +337,7 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->start_controls_section(
             'slider_section',
             [
-                'label' => esc_html__('Slider Style', 'text-domain'),
+                'label' => esc_html__('Slider Style', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -343,7 +345,7 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->add_control(
             'slider_color',
             [
-                'label' => esc_html__('Circle Color', 'text-domain'),
+                'label' => esc_html__('Circle Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .img-comp-slider' => ' box-shadow: 0 0 0 2px {{VALUE}};'
@@ -417,7 +419,7 @@ class ImageComparison extends \Elementor\Widget_Base
         $this->start_controls_section(
             'image_section',
             [
-                'label' => esc_html__('Image Style', 'text-domain'),
+                'label' => esc_html__('Image Style', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );

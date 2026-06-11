@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Themebuilder;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if (!class_exists('WP_List_Table')) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
@@ -68,7 +70,7 @@ class Themebuilder_List_Table extends \WP_List_Table
         $singular = $this->_args['singular'];
         $this->screen->render_screen_reader_content('heading_list');
         ?>
-        <table class="wp-list-table <?php echo implode(' ', $this->get_table_classes()); ?>">
+        <table class="wp-list-table <?php echo esc_attr(implode(' ', $this->get_table_classes())); ?>">
             <?php $this->print_table_description(); ?>
             <thead>
                 <tr>
@@ -78,7 +80,8 @@ class Themebuilder_List_Table extends \WP_List_Table
 
             <tbody id="the-list" <?php
             if ($singular) {
-                echo " data-wp-lists='list:$singular'";
+                // echo " data-wp-lists='list:$singular'";
+                 echo ' data-wp-lists="list:' . esc_attr( $singular ) . '"';
             }
             ?>>
                 <?php $this->display_rows_or_placeholder(); ?>
@@ -284,7 +287,7 @@ class Themebuilder_List_Table extends \WP_List_Table
             ];
         }
 
-        if ($_POST['themebuilder'] === 'form') {
+        if (isset($_POST['themebuilder']) && $_POST['themebuilder'] === 'form') {
             $badge = '<span class="badge rounded-pill text-bg-success mx-2">Active</span>';
         } else {
             $badge = ($item['active'] === 'true')

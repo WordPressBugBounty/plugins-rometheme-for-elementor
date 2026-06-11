@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class AnimatedHeading extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -232,7 +234,7 @@ class AnimatedHeading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'padding_text',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -305,7 +307,7 @@ class AnimatedHeading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'animated_padding_text',
             [
-                'label' => esc_html__('Padding', 'textdomain'),
+                'label' => esc_html__('Padding', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'selectors' => [
@@ -443,7 +445,7 @@ class AnimatedHeading extends \Elementor\Widget_Base
         <a <?php echo esc_attr($this->print_render_attribute_string('_link')) ?>>
             <<?php echo esc_html($html_tag) ?> class="rkit-animated-heading" data-duration="<?php echo esc_attr($settings['duration']) ?>">
                 <?php
-                echo $newString;
+                echo wp_kses_post($newString ?? '');
                 ?>
             </<?php echo esc_html($html_tag) ?>>
         </a>

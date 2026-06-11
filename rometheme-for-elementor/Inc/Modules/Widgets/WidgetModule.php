@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Widgets;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class WidgetModule
 {
     private static $instance;
@@ -136,7 +138,7 @@ class WidgetModule
     {
         if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
 ?>
-            <a href="<?php echo admin_url("post.php?post={$template_id}&action=elementor&parent_id={$parent_id}&ref=rtmkit") ?>"
+            <a href="<?php echo esc_url(admin_url("post.php?post={$template_id}&action=elementor&parent_id={$parent_id}&ref=rtmkit")) ?>"
                 class="rtmkit-edit-template-btn">
                 Edit Saved Template <i class="eicon-edit" aria-hidden="true"></i>
             </a>

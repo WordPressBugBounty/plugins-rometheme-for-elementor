@@ -1,6 +1,9 @@
 <?php
 
 namespace RTMKit\Widgets;
+
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class SiteLogo extends \Elementor\Widget_Base
 {
     public function get_name()
@@ -285,7 +288,7 @@ class SiteLogo extends \Elementor\Widget_Base
             <a class="rkit-image" <?php $this->print_render_attribute_string('website_link') ?> style="text-decoration: none; border-bottom:none">
                 <?php echo wp_get_attachment_image( $image_id, $image_size ); ?>
                 <?php if ($settings['show_caption'] === 'yes') : ?>
-                    <div class="site-caption"><?php echo $image_caption ?> </div>
+                    <div class="site-caption"><?php echo wp_kses_post($image_caption ?? '') ?> </div>
                 <?php endif; ?>
             </a>
         </div>

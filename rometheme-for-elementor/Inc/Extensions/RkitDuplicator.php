@@ -103,7 +103,7 @@ class RkitDuplicator
         }
 
         // Redirect ke list, atau bisa ganti ke Elementor editor 
-        wp_redirect(admin_url('edit.php?post_type=' . $post->post_type));
+        wp_safe_redirect(admin_url('edit.php?post_type=' . $post->post_type));
         exit;
     }
 }

@@ -27,7 +27,7 @@ class SubmissionTable extends \WP_List_Table
         $singular = $this->_args['singular'];
         $this->screen->render_screen_reader_content('heading_list');
 ?>
-        <table class="wp-list-table <?php echo implode(' ', $this->get_table_classes()); ?>">
+        <table class="wp-list-table <?php echo esc_attr(implode(' ', $this->get_table_classes())); ?>">
             <thead>
                 <tr><?php $this->print_column_headers(); ?></tr>
             </thead>
@@ -35,7 +35,8 @@ class SubmissionTable extends \WP_List_Table
             <tbody id="the-list"
                 <?php
                 if ($singular) {
-                    echo " data-wp-lists='list:$singular'";
+                    // echo " data-wp-lists='list:$singular'";
+                     echo ' data-wp-lists="list:' . esc_attr( $singular ) . '"';
                 }
                 ?>>
                 <?php $this->display_rows_or_placeholder(); ?>
@@ -73,7 +74,7 @@ class SubmissionTable extends \WP_List_Table
             $args['meta_query'] = [
                 [
                     'key'   => 'rform-entri-form-id',
-                    'value' => sanitize_text_field($_POST['rform_id']),
+                    'value' => sanitize_text_field(wp_unslash($_POST['rform_id'])),
                 ]
             ];
         }
@@ -131,7 +132,7 @@ class SubmissionTable extends \WP_List_Table
 
     protected function get_views()
     {
-        $current = isset($_POST['status']) ? sanitize_text_field($_POST['status']) : 'all';
+        $current = isset($_POST['status']) ? sanitize_text_field(wp_unslash($_POST['status'])) : 'all';
 
         $counts = wp_count_posts('romethemeform_entry');
         $all_count   = count(get_posts(['post_type' => 'romethemeform_entry', 'post_per_page' => -1 ,  'post_status'    => ['publish', 'draft'],]));

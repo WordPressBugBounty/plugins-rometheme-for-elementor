@@ -2,6 +2,8 @@
 
 namespace RTMKit\Extensions;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class BlurEffects
 {
 	public function init()

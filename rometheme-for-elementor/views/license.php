@@ -12,7 +12,7 @@
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
                         } else {
                             echo 'Free';
                         }

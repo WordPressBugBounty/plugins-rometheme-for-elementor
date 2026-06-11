@@ -1,4 +1,7 @@
 <?php
+
+if (! defined('ABSPATH')) exit;
+
 $whats_new = [
     'interface' => [
         'title' => 'New Interface',
@@ -55,15 +58,15 @@ $current_user = wp_get_current_user();
             <span class="license-status">
                 <?php
                 if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                    echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                    echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
                 } else {
                     echo 'Free';
                 }
                 ?>
             </span>
         </div>
-        <?php  if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
-        <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+        <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+            <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
         <?php endif; ?>
         <div class="divider"></div>
         <div class="d-flex flex-column gap-3 mt-2">
@@ -159,9 +162,10 @@ $current_user = wp_get_current_user();
                                 <div class="col-7">
                                     <div class="yt-container overflow-hidden">
                                         <div class="thumbnail">
-                                            <img src="https://i1.ytimg.com/vi/z27RYQVGaYE/maxresdefault.jpg" alt="" class="img-fluid">
+                                            <?php // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion ?>
+                                            <img src="<?php echo esc_url('https://i1.ytimg.com/vi/z27RYQVGaYE/maxresdefault.jpg') ?>" alt="" class="img-fluid">
                                             <div class="overlay">
-                                                <a href="https://youtu.be/z27RYQVGaYE?feature=shared" target="_blank" class="fs-1">
+                                                <a href="<?php echo esc_url('https://youtu.be/z27RYQVGaYE?feature=shared')?>" target="_blank" class="fs-1">
                                                     <i class="fa-solid fa-circle-play"></i>
                                                 </a>
                                             </div>
@@ -227,7 +231,9 @@ $current_user = wp_get_current_user();
                     <div class="card rounded-4 flex-column justify-content-between gap-3  h-100">
                         <h4 class="fw-bold">Recommended WP Themes</h4>
                         <a class="btn p-0" href="https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551" target="_blank">
-                            <img src="https://themes.rometheme.net/luminex/wp-content/uploads/sites/23/2026/01/luminex.png" alt="" class="img-fluid">
+                            <?php // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion 
+                            ?>
+                            <img src="<?php echo esc_url('https://themes.rometheme.net/luminex/wp-content/uploads/sites/23/2026/01/luminex.png')?>" alt="" class="img-fluid">
                         </a>
                         <a href="https://rometheme.net/wordpress-themes/" target="_blank" class="btn btn-secondary px-4 py-3">
                             <i class="rtmicon rtmicon-image-accordion fs-3"></i>

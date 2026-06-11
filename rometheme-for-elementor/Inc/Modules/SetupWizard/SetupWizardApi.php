@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\SetupWizard;
 
+if (! defined('ABSPATH')) exit;
+
 class SetupWizardApi
 {
     protected static $instance;
@@ -26,8 +28,14 @@ class SetupWizardApi
 
     public function plugin_status_check()
     {
-        $plugin_slug = $_POST['plugin_slug'];
+        // $plugin_slug = $_POST['plugin_slug'];
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
+
+        $plugin_slug = '';
+        if (isset($_POST['plugin_slug'])) {
+            $plugin_slug = sanitize_key(wp_unslash($_POST['plugin_slug']));
+        }
+
         $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
         if ($plugin_slug === 'rtmkitpro' && file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
             $proCurrentVersion = get_plugin_data(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')['Version'] ?? null;
@@ -78,7 +86,11 @@ class SetupWizardApi
     public function newsletter_subscribe()
     {
         check_ajax_referer('rtmkit_wizard_nonce', 'nonce');
-        $email = sanitize_text_field($_POST['email']);
+        
+        $email = isset($_POST['email'])
+            ? sanitize_text_field(wp_unslash($_POST['email']))
+            : '';
+
         $url = "https://www.rometheme.net/wp-content/plugins/newsletter-api/add.php?nk=c49c06ac22bb6f00df99f832bbd597b2eddc4cc2&ne=" . $email . "&nn=" . $email;
         if (file_exists(WP_PLUGIN_DIR . '/romethemekit-pro/RomeTheme_pro.php')) {
             $url .= "&nl=2";

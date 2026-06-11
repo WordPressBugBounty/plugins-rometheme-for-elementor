@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class BarChart extends \Elementor\Widget_Base
 {
     private function get_widget_data()

@@ -1,3 +1,6 @@
+<?php
+if (! defined('ABSPATH')) exit;
+?>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
     <?php foreach ($datas['matches'] as $data) : ?>
         <div class="col">
@@ -12,15 +15,13 @@
 
                             <a href="<?php echo esc_url($data['url']) ?>" target="_blank" class="btn btn-secondary rounded-2 text-white btn-install-click"
                                 data-template-id="<?php echo esc_attr($data['id']) ?>"
-                                data-template-name="<?php echo esc_attr($data['name']) ?>"
-                            >
+                                data-template-name="<?php echo esc_attr($data['name']) ?>">
                                 <i class="fas fa-plus"></i>
                                 Install
                             </a>
                             <a href="<?php echo esc_url($data['previews']['live_site']['url']) ?>" target="_blank" class="btn btn-link rounded-2 btn-preview-click"
                                 data-template-id="<?php echo esc_attr($data['id']) ?>"
-                                data-template-name="<?php echo esc_attr($data['name']) ?>"
-                            >
+                                data-template-name="<?php echo esc_attr($data['name']) ?>">
                                 <i class="fas fa-eye"></i>
                                 Preview
                             </a>
@@ -47,8 +48,8 @@ $window       = 2; // jumlah halaman kiri-kanan current
         <ul class="pagination">
 
             <!-- Previous -->
-            <li class="page-item <?= $current_page == 1 ? 'disabled' : '' ?>">
-                <button class="page-link" data-paged="<?= $current_page - 1 ?>">&laquo;</button>
+            <li class="page-item <?php echo  $current_page == 1 ? 'disabled' : '' ?>">
+                <button class="page-link" data-paged="<?php echo esc_attr($current_page - 1) ?>">&laquo;</button>
             </li>
 
             <?php
@@ -61,23 +62,28 @@ $window       = 2; // jumlah halaman kiri-kanan current
             // Middle pages
             for ($i = max(1, $current_page - $window); $i <= min($total_pages, $current_page + $window); $i++) {
                 $active = $i == $current_page ? 'active' : '';
-                echo "<li class='page-item $active'>
-                        <button class='page-link' data-paged='$i'>$i</button>
-                      </li>";
+                echo '<li class="page-item ' . esc_attr($active) . '">
+                        <button class="page-link" data-paged="' . esc_attr($i) . '">'
+                    . esc_html($i) .
+                    '</button>
+                    </li>';
             }
 
             // Last page
             if ($current_page < ($total_pages - $window - 1)) {
                 echo '<li class="page-item disabled"><button class="page-link">...</button></li>';
-                echo "<li class='page-item'>
-                        <button class='page-link' data-paged='$total_pages'>$total_pages</button>
-                      </li>";
+
+                echo '<li class="page-item">
+            <button class="page-link" data-paged="' . esc_attr($total_pages) . '">'
+                    . esc_html($total_pages) .
+                    '</button>
+          </li>';
             }
             ?>
 
             <!-- Next -->
-            <li class="page-item <?= $current_page == $total_pages ? 'disabled' : '' ?>">
-                <button class="page-link" data-paged="<?= $current_page + 1 ?>">&raquo;</button>
+            <li class="page-item <?php echo  $current_page == $total_pages ? 'disabled' : '' ?>">
+                <button class="page-link" data-paged="<?php echo  esc_attr($current_page + 1) ?>">&raquo;</button>
             </li>
 
         </ul>

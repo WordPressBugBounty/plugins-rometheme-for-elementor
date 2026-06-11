@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Themebuilder;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class ThemebuilderModule
 {
     private static $instance = null;

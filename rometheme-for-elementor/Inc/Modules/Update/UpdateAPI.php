@@ -4,6 +4,8 @@ namespace RTMKit\Modules\Update;
 
 use Plugin_Upgrader;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class UpdateAPI
 {
     protected static $instance;

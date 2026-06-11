@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $active_themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_active_themebuilder();
 $active_themebuilder_key = ['all' => ['name' => 'All']];
 
@@ -44,7 +46,7 @@ if (!$has_woocommerce) {
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
                         } else {
                             echo 'Free';
                         }
@@ -545,7 +547,7 @@ if (!$has_woocommerce) {
                         <path d="M17.0005 12.0029C14.2325 12.0029 11.9805 14.2549 11.9805 17.0229C11.9805 19.7909 14.2325 22.0429 17.0005 22.0429C19.7685 22.0429 22.0205 19.7909 22.0205 17.0229C22.0205 14.2549 19.7685 12.0029 17.0005 12.0029ZM19.6275 15.0169C19.8565 15.2379 19.9035 15.5769 19.7645 15.8459C19.7345 15.9049 19.6945 15.9609 19.6455 16.0109L16.7555 19.0109C16.6245 19.1469 16.4445 19.2249 16.2555 19.2269H16.2485C16.0615 19.2269 15.8835 19.1529 15.7515 19.0209L14.3635 17.6339C14.0895 17.3589 14.0895 16.9139 14.3635 16.6389C14.6385 16.3639 15.0835 16.3639 15.3585 16.6389L16.2395 17.5199L18.6325 15.0359C18.7475 14.9159 18.8945 14.8469 19.0475 14.8269C19.2515 14.7999 19.4665 14.8629 19.6265 15.0169H19.6275Z" fill="currentColor" />
                     </svg>
 
-                    <?php echo esc_html__('SAVE & CLOSE', 'romethemeform') ?></button>
+                    <?php echo esc_html__('SAVE & CLOSE', 'rometheme-for-elementor') ?></button>
             </div>
             <div class="elementor-editor-container">
                 <iframe class="ifr-editor" id="rform-elementor-editor" src="" frameborder="0"></iframe>

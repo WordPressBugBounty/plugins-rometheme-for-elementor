@@ -2,9 +2,9 @@
 Contributors: dickoandrean 
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.8
-Tested up to: 6.9.1
+Tested up to: 7.0.0
 Requires PHP: 8.2
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,20 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.0.8 - June 11, 2026
+Fixed : alignment bugs affecting the Background Text and HTML Tags in the "Advanced Heading" Widget 
+Fixed : an issue where the box-shadow did not follow the border-radius in the "Card Carousel" Widget
+Fixed : a text-clipping bug where the number “0” was cut off when using Google Fonts in the "Counter" Widget
+Fixed : a spacing issue with the Content Padding in the "Image Box" Widget
+Fixed : a border-radius clipping bug on the Social Icons Style during hover states in the "Team Member" Widget
+Fixed : bugs related to the Floating Date configuration in the "Post Block" Widget
+Fixed : a query limitation bug, allowing users to successfully select and display more than 5 posts in the "Post List" Widget
+Improve : Control Button (Animation, Transition, and new styling option) in the "Post Block" Widget
+Improve : Control Button (Animation, Transition, and new styling option) in the "Post List" Widget
+Improve : “Crop Title by Word” control to easily maintain uniform product card heights in the "Woo Product Grid" 
+Improve : a new Spacing control between the Author Name and the Description in the "Testimonial Carousel" Widget
+Improve : a new Vertical Margin control for suffix and prefix positions in the "Counter" Widget
+
 Version 2.0.7 - April 20, 2026
 Update api url
 

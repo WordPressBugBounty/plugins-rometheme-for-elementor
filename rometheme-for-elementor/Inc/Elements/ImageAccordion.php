@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class ImageAccordion extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -80,7 +82,6 @@ class ImageAccordion extends \Elementor\Widget_Base
             'default' => '-hover'
         ]);
 
-
         $this->add_control('direction', [
             'label' => esc_html('Direction'),
             'type' => \Elementor\Controls_Manager::SELECT,
@@ -101,10 +102,10 @@ class ImageAccordion extends \Elementor\Widget_Base
         $image_accordion->add_control(
             'default_image_open',
             [
-                'label' => esc_html__('Default Open', 'text-domain'),
+                'label' => esc_html__('Default Open', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -152,7 +153,7 @@ class ImageAccordion extends \Elementor\Widget_Base
         $image_accordion->add_control(
             'badge_options',
             [
-                'label' => esc_html__('Badge', 'textdomain'),
+                'label' => esc_html__('Badge', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -161,10 +162,10 @@ class ImageAccordion extends \Elementor\Widget_Base
         $image_accordion->add_control(
             'badge_show',
             [
-                'label' => esc_html__('Show Badge', 'text-domain'),
+                'label' => esc_html__('Show Badge', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'text-domain'),
-                'label_off' => esc_html__('Hide', 'text-domain'),
+                'label_on' => esc_html__('Show', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('Hide', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -245,7 +246,7 @@ class ImageAccordion extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section('content_button_new', [
-            'label' => esc_html__('Button'),
+            'label' => esc_html__('Button', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT
         ]);
         $this->add_control(
@@ -466,7 +467,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                 'selector' => '{{WRAPPER}}  .background-item-text',
                 'fields_options' => [
                     'color' => [
-                        'label' => esc_html__('Overlay Color', 'elementor-pro'),
+                        'label' => esc_html__('Overlay Color', 'rometheme-for-elementor'),
                     ],
                 ],
             ]
@@ -527,6 +528,19 @@ class ImageAccordion extends \Elementor\Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_STYLE
         ]);
 
+        // $this->add_control(
+        //     'reverse_z_index',
+        //     [
+        //         'label'        => esc_html__('Reverse Z-Index Stack', 'rometheme-for-elementor'),
+        //         'type'         => \Elementor\Controls_Manager::SWITCHER,
+        //         'label_on'     => esc_html__('Yes', 'rometheme-for-elementor'),
+        //         'label_off'    => esc_html__('No', 'rometheme-for-elementor'),
+        //         'return_value' => 'yes',
+        //         'default'      => 'no', // Default: normal bawaan HTML
+        //         'description'  => esc_html__('If active, the first item will dynamically stack on top of the next item.', 'rometheme-for-elementor'),
+        //     ]
+        // );
+
         $this->add_responsive_control(
             'spacebetween',
             [
@@ -559,6 +573,13 @@ class ImageAccordion extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow',
+                'selector' => '{{WRAPPER}}  .item-ia-hover, {{WRAPPER}}  .item-ia-click',
+            ]
+        );
 
         $this->add_responsive_control(
             'border_radius',
@@ -661,7 +682,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .item-text' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
-                'description' => esc_html__('Wait or click Image to see changes', 'text-domain'),
+                'description' => esc_html__('Wait or click Image to see changes', 'rometheme-for-elementor'),
             ]
         );
 
@@ -1116,7 +1137,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                 'notice_type' => 'info',
                 'dismissible' => false,
                 'heading' => esc_html__('Notice', 'rometheme-for-elementor'),
-                'content' => esc_html__('The badge style will only take effect if the "Show Badge" option is enabled in the List content.'),
+                'content' => esc_html__('The badge style will only take effect if the "Show Badge" option is enabled in the List content.', 'rometheme-for-elementor'),
             ]
         );
 
@@ -1314,7 +1335,6 @@ class ImageAccordion extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
-
     }
 
 
@@ -1348,15 +1368,18 @@ class ImageAccordion extends \Elementor\Widget_Base
                 break;
         }
 
+        // $is_reversed = isset($settings['reverse_z_index']) && $settings['reverse_z_index'] === 'yes';
+        $total_items = !empty($settings['list']) ? count($settings['list']) : 0;
 
 
-        ?>
+
+?>
 
         <div class="container-image-accordion">
-            <div class="gallery-wrap" data-animate="<?php echo $settings['container_animation'] ?>">
+            <div class="gallery-wrap" data-animate="<?php echo esc_attr($settings['container_animation']) ?>">
                 <?php
                 $tab = 1;
-                foreach ($settings['list'] as $li):
+                foreach ($settings['list'] as $key  => $li):
                     if ($li['default_image_open'] == 'yes') {
                         $open_image = "active";
                     } else {
@@ -1367,17 +1390,27 @@ class ImageAccordion extends \Elementor\Widget_Base
                     if (!empty($li['ia_card_link']['url'])) {
                         $this->add_link_attributes('ia_card_link_' . $li['_id'], $li['ia_card_link']);
                     }
-                    ?>
+
+                    // if ($is_reversed) {
+                        // $dynamic_z_index = $total_items - $key;
+                        // $style_z_index   = "position: relative; z-index: " . $dynamic_z_index . ";";
+                    // } else {
+                        $style_z_index   = ""; 
+                    // }
+                ?>
                     <?php
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     $image_html_url = \Elementor\Group_Control_Image_Size::get_attachment_image_html($li, 'thumbnail', 'image_acc');
                     $image_html_url = str_replace('<img ', '<img class="" ', $image_html_url);
                     ?>
-                    <div class="item-ia<?php echo esc_attr($settings['hover_mode']) ?> <?php echo esc_attr($open_image) ?> <?php echo $tab++ ?>"
-                        style="background-image:url(<?php echo esc_url($li['image_acc']['url']) ?>)">
+                    <div class="item-ia<?php echo esc_attr($settings['hover_mode']) ?> <?php echo esc_attr($open_image) ?> <?php echo esc_html($tab++) ?>"
+                        style="background-image:url(<?php echo esc_url($li['image_acc']['url']) ?>); 
+                         <?php echo esc_attr($style_z_index); ?>;
+                         ">
                         <?php if (!empty($li['badge_show'])): ?>
                             <div class="item-badge">
                                 <?php \Elementor\Icons_Manager::render_icon($li['badge_icon'], ['aria-hidden' => 'true', 'class' => "badge-icon"]); ?>
-                                <span><?php echo $li['badge_title'] ?></span>
+                                <span><?php echo esc_html($li['badge_title']) ?></span>
                             </div>
                         <?php endif ?>
                         <div class="item-text">
@@ -1406,7 +1439,7 @@ class ImageAccordion extends \Elementor\Widget_Base
                                         </a>
                                     <?php } ?>
                                 </div>
-                                <?php
+                            <?php
                             } ?>
                         </div>
                     </div>
@@ -1417,7 +1450,7 @@ class ImageAccordion extends \Elementor\Widget_Base
 
 
 
-        <?php
+<?php
     }
 }
 ?>

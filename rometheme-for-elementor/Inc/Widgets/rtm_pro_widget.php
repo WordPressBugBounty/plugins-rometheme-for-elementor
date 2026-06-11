@@ -2,6 +2,8 @@
 
 namespace RomethemeKit\Widget;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Pro_Widget_Promotion extends \Elementor\Widget_Base
 {
 
@@ -69,19 +71,20 @@ class Pro_Widget_Promotion extends \Elementor\Widget_Base
     {
 ?>
         <div class="e-container">
-            <span class="e-badge"><i class="eicon-lock" aria-hidden="true"></i> <?php echo esc_html__('Pro', 'elementor'); ?></span>
+            <span class="e-badge"><i class="eicon-lock" aria-hidden="true"></i> <?php echo esc_html__('Pro', 'rometheme-for-elementor'); ?></span>
             <p>
                 <img src="<?php echo esc_url($this->get_promotion_image_url()); ?>" loading="lazy" alt="Go Pro">
                 <?php
                 echo sprintf(
-                    esc_html__('This result includes the Elementor Pro %s widget. Upgrade now to unlock it and grow your web creation toolkit.', 'elementor'),
+                    /* translators: description. */
+                    esc_html__('This result includes the Elementor Pro %s widget. Upgrade now to unlock it and grow your web creation toolkit.', 'rometheme-for-elementor'),
                     esc_html($this->widget_data['widget_title'])
                 );
                 ?>
             </p>
             <div class="e-actions">
-                <a href="#" class="e-btn e-btn-txt e-promotion-delete"><?php echo esc_html__('Remove', 'elementor'); ?></a>
-                <a href="https://go.elementor.com/go-pro-element-pro/" rel="noreferrer" target="_blank" class="e-btn go-pro elementor-clickable e-promotion-go-pro"><?php echo esc_html__('Go Pro', 'elementor'); ?></a>
+                <a href="#" class="e-btn e-btn-txt e-promotion-delete"><?php echo esc_html__('Remove', 'rometheme-for-elementor'); ?></a>
+                <a href="https://go.elementor.com/go-pro-element-pro/" rel="noreferrer" target="_blank" class="e-btn go-pro elementor-clickable e-promotion-go-pro"><?php echo esc_html__('Go Pro', 'rometheme-for-elementor'); ?></a>
             </div>
         </div>
 <?php

@@ -2,6 +2,7 @@
 
 namespace RTMKit\Modules\Widgets;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class WidgetStorage
 {
@@ -25,16 +26,61 @@ class WidgetStorage
         $this->update_widgets_options();
     }
 
+    // public function get_active_widgets($type = null)
+    // {
+    //     $all_widgets = $this->get_widget_options();
+    //     $active_widgets = [];
+
+    //     foreach ($all_widgets as $key => $widget) {
+    //         if ($widget['status']) {
+    //             $active_widgets[$key] = $widget;
+    //         }
+    //     }
+
+    //     if ($type) {
+    //         $filtered = [];
+    //         foreach ($active_widgets as $key => $widget) {
+    //             $widgetData = $this->get_widget_data_by_key($key);
+    //             if (isset($widgetData['type']) && $widgetData['type'] === $type) {
+    //                 $filtered[$key] = $widget;
+    //             }
+    //         }
+    //         return $filtered;
+    //     }
+
+    //     return $active_widgets;
+    // }
+
     public function get_active_widgets($type = null)
     {
         $all_widgets = $this->get_widget_options();
         $active_widgets = [];
 
         foreach ($all_widgets as $key => $widget) {
-            if ($widget['status']) {
+            if (isset($widget['status']) && $widget['status']) {
                 $active_widgets[$key] = $widget;
             }
         }
+
+        // ==========================================
+        // PERBAIKAN: JIKA PRO MATI, PAKSA WIDGET PRO DI JSON JADI AKTIF
+        // ==========================================
+        if (!class_exists('RTMKitPro\Core\Plugin')) {
+            $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
+            if (file_exists($json_path)) {
+                $pro_widgets = json_decode(file_get_contents($json_path), true);
+                if (!empty($pro_widgets) && is_array($pro_widgets)) {
+                    foreach ($pro_widgets as $key => $data) {
+                        // Paksa masuk ke daftar active_widgets agar dibaca Elementor saat render
+                        $active_widgets[$key] = [
+                            'status' => true,
+                            'type'   => 'pro'
+                        ];
+                    }
+                }
+            }
+        }
+        // ==========================================
 
         if ($type) {
             $filtered = [];
@@ -61,21 +107,81 @@ class WidgetStorage
 
         foreach ($active_widgets as $key => $widget) {
 
-            if ($widget['type'] === 'pro') {
+            if (isset($widget['type']) && $widget['type'] === 'pro') {
                 continue;
             }
 
-            if ($widget['type'] === 'form') {
+            if (isset($widget['type']) && $widget['type'] === 'form') {
                 continue;
             }
-            $className = ($widget_data[$key]['category'] === 'header') ? 'RTMKit\Widgets\\' . $widget_data[$key]['class_name'] : 'RTMKit\Elements\\' . $widget_data[$key]['class_name'];
+
+            if (!isset($widget_data[$key])) {
+                continue;
+            }
+
+            $className = ($widget_data[$key]['category'] === 'header')
+                ? 'RTMKit\Widgets\\' . $widget_data[$key]['class_name']
+                : 'RTMKit\Elements\\' . $widget_data[$key]['class_name'];
 
             if (isset($widget_data[$key]['plugin_required']) && $widget_data[$key]['plugin_required'] === 'woocommerce') {
                 if (class_exists('WooCommerce')) {
                     $widgets_manager->register(new $className());
                 }
             } else {
-                $widgets_manager->register(new $className());
+                if (class_exists($className)) {
+                    $widgets_manager->register(new $className());
+                }
+                // $widgets_manager->register(new $className());
+            }
+        }
+
+        if (class_exists('RTMKitPro\Core\Plugin')) {
+            return;
+        }
+
+        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
+    
+        $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
+        // error_log($json_path);
+        if (! file_exists($json_path)) {
+            return;
+        }
+
+        $pro_widgets = json_decode(file_get_contents($json_path), true);
+
+        if (! empty($pro_widgets) && is_array($pro_widgets)) {
+            foreach ($pro_widgets as $key => $data) {
+
+                
+                if (! is_array($data)) continue;
+
+                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
+                    'widget_key'  => $key,
+                    'widget_data' => $data,
+                    'is_pro_active' => false
+                ]));
+            }
+        }
+
+        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
+        $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
+        // error_log($json_path);
+        if (! file_exists($json_path)) {
+            return;
+        }
+
+        $pro_widgets = json_decode(file_get_contents($json_path), true);
+
+        if (! empty($pro_widgets) && is_array($pro_widgets)) {
+            foreach ($pro_widgets as $key => $data) {
+
+                if (! is_array($data)) continue;
+
+                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
+                    'widget_key'  => $key,
+                    'widget_data' => $data,
+                    'is_pro_active' => false
+                ]));
             }
         }
     }
@@ -204,18 +310,18 @@ class WidgetStorage
         $update = $this->save_widget_options($plugin, $dataJson);
         if ($update) {
             $message = sprintf(
+                /* translators: %s: plugin name. */
                 __('Widget options for %s have been successfully updated.', 'rometheme-for-elementor'),
                 $this->get_plugin_name($plugin)
             );
             wp_send_json_success(['message' => $message]);
         } else {
             $message = sprintf(
+                /* translators: %s: plugin name. */
                 __('No changes were saved. %s Widget options are already current.', 'rometheme-for-elementor'),
                 $this->get_plugin_name($plugin)
             );
-            wp_send_json_error([
-                'message' => __($message, 'rometheme-for-elementor')
-            ]);
+            wp_send_json_error(['message' => $message]);
         }
 
         // wp_send_json($dataJson);

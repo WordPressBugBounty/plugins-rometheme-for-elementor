@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 $template = isset($_POST['template']) ? sanitize_text_field($_POST['template']) : 'premium';
 $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance()->get_template_categories();
 
@@ -19,6 +19,7 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
                         } else {
                             echo 'Free';

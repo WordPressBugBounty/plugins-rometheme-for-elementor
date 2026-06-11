@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Countdown extends \Elementor\Widget_Base
 {
 
@@ -51,7 +53,7 @@ class Countdown extends \Elementor\Widget_Base
     }
     public function get_next_date()
     {
-        $nextDate = date('Y-m-d H:i:s', strtotime('+30 days'));
+        $nextDate = gmdate('Y-m-d H:i:s', strtotime('+30 days'));
         return $nextDate;
     }
 
@@ -246,7 +248,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Days', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Days', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
                 'condition' => [
                     'show_days' => 'yes',
                     'show_label' => 'yes',
@@ -261,7 +263,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Hours', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Hours', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
                 'condition' => [
                     'show_hours' => 'yes',
                     'show_label' => 'yes',
@@ -277,7 +279,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Minutes', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Minutes', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
                 'condition' => [
                     'show_minutes' => 'yes',
                     'show_label' => 'yes',
@@ -292,7 +294,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Seconds', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Seconds', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
                 'condition' => [
                     'show_seconds' => 'yes',
                     'show_label' => 'yes',
@@ -322,7 +324,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Title', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('FINISH!', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
             ]
         );
 
@@ -346,7 +348,7 @@ class Countdown extends \Elementor\Widget_Base
                 'label' => esc_html__('Description', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'default' => esc_html__('Description', 'rometheme-for-elementor'),
-                'placeholder' => esc_html__('', 'rometheme-for-elementor'),
+                'placeholder' => '',
             ]
         );
 
@@ -605,7 +607,7 @@ class Countdown extends \Elementor\Widget_Base
         // $this->add_responsive_control(
         //     'flip_clock_card_border_radius',
         //     [
-        //         'label' => esc_html__('Border Radius', 'textdomain'),
+        //         'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
         //         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         //         'size_units' => ['px', '%'],
         //         'selectors' => [
@@ -1011,7 +1013,7 @@ class Countdown extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $title = $settings['title'];
+        $title = esc_html($settings['title']);
         $date = (!empty($settings['date'])) ? $settings['date'] : '';
 
         switch ($settings['html_tag_1']) {
@@ -1080,7 +1082,7 @@ class Countdown extends \Elementor\Widget_Base
                 <?php if ($settings['show_title'] === 'yes'): ?>
                     <div class="countdown-title-wrapper" style="width:100%">
                         <<?php echo esc_html($html_tag); ?> class="countdown-title">
-                            <?php echo esc_html__($title, 'rometheme-for-elementor'); ?>
+                            <?php echo esc_html($title); ?>
                         </<?php echo esc_html($html_tag); ?>>
                     </div>
                 <?php endif; ?>
@@ -1095,13 +1097,13 @@ class Countdown extends \Elementor\Widget_Base
                                     <b class="card__bottom" data-value="00"></b>
                                     <b class="card__back"><b class="card__bottom" data-value="00"></b></b>
                                 </b>
-                                <span class="flip-clock__slot countdown-label label_days"><?php echo esc_html__($settings['label_days']); ?></span>
+                                <span class="flip-clock__slot countdown-label label_days"><?php echo esc_html($settings['label_days']); ?></span>
                             </span>
                         <?php else: ?>
                             <div class="countdown-section-container">
                                 <div class="countdown-section days-section">
                                     <span class="countdown-days time_sett">00</span>
-                                    <span class="countdown-label label_days"><?php echo esc_html__($settings['label_days']); ?></span>
+                                    <span class="countdown-label label_days"><?php echo esc_html($settings['label_days']); ?></span>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -1114,13 +1116,13 @@ class Countdown extends \Elementor\Widget_Base
                                     <b class="card__bottom" data-value="00"></b>
                                     <b class="card__back"><b class="card__bottom" data-value="00"></b></b>
                                 </b>
-                                <span class="flip-clock__slot countdown-label label_hours"><?php echo esc_html__($settings['label_hours']); ?></span>
+                                <span class="flip-clock__slot countdown-label label_hours"><?php echo esc_html($settings['label_hours']); ?></span>
                             </span>
                         <?php else: ?>
                             <div class="countdown-section-container">
                                 <div class="countdown-section hours-section">
                                     <span class="countdown-hours time_sett">00</span>
-                                    <span class="countdown-label label_hours"><?php echo esc_html__($settings['label_hours']); ?></span>
+                                    <span class="countdown-label label_hours"><?php echo esc_html($settings['label_hours']); ?></span>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -1133,14 +1135,14 @@ class Countdown extends \Elementor\Widget_Base
                                     <b class="card__bottom" data-value="00"></b>
                                     <b class="card__back"><b class="card__bottom" data-value="00"></b></b>
                                 </b>
-                                <span class="flip-clock__slot countdown-label label_minutes"><?php echo esc_html__($settings['label_minutes']); ?></span>
+                                <span class="flip-clock__slot countdown-label label_minutes"><?php echo esc_html($settings['label_minutes']); ?></span>
                             </span>
                         <?php else: ?>
                             <div class="countdown-section-container">
                                 <div class="countdown-section minutes-section">
                                     <span class="countdown-minutes time_sett">00</span>
                                     <span
-                                        class="countdown-label label_minutes"><?php echo esc_html__($settings['label_minutes']); ?></span>
+                                        class="countdown-label label_minutes"><?php echo esc_html($settings['label_minutes']); ?></span>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -1153,14 +1155,14 @@ class Countdown extends \Elementor\Widget_Base
                                     <b class="card__bottom" data-value="00"></b>
                                     <b class="card__back"><b class="card__bottom" data-value="00"></b></b>
                                 </b>
-                                <span class="flip-clock__slot countdown-label label_second"><?php echo esc_html__($settings['label_seconds']); ?></span>
+                                <span class="flip-clock__slot countdown-label label_second"><?php echo esc_html($settings['label_seconds']); ?></span>
                             </span>
                         <?php else: ?>
                             <div class="countdown-section-container">
                                 <div class="countdown-section seconds-section">
                                     <span class="countdown-seconds time_sett">01</span>
                                     <span
-                                        class="countdown-label label_second"><?php echo esc_html__($settings['label_seconds']); ?></span>
+                                        class="countdown-label label_second"><?php echo esc_html($settings['label_seconds']); ?></span>
                                 </div>
                             </div>
                         <?php endif; ?>

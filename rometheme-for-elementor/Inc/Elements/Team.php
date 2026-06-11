@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class Team extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -1239,7 +1241,9 @@ class Team extends \Elementor\Widget_Base
         <div class="rkit-team rkit-team__<?php echo ($settings['select_style'] != 'social_on_hover') ? esc_attr($settings['select_style']) : esc_attr($settings['select_style'] . '_' . $settings['social_media_position']) ?>">
             <div class="rkit-team-card <?php echo esc_attr($settings['pointer_effect']) ?>">
                 <div class="rkit-team__img <?php echo esc_attr($settings['image_hover_effect']) ?>">
-                    <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'member_image'); ?>
+                    <?php
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                    echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'member_image'); ?>
                 </div>
                 <div class="rkit-team__detail">
                     <<?php echo esc_html($name_tag) ?> class="rkit-team__name"><?php echo esc_html($settings['member_name']) ?></<?php echo esc_html($name_tag) ?>>

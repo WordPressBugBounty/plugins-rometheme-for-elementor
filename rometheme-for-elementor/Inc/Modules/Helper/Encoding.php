@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Helper;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Encoding
 {
 

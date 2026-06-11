@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class VideoButton extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -117,7 +119,7 @@ class VideoButton extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Link Vimeo', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('', 'rometheme-for-elementor'),
+                'default' => '',
                 'placeholder' => esc_html__('Paste link here', 'rometheme-for-elementor'),
                 'show_label' => true,
                 'condition' => [
@@ -633,7 +635,7 @@ class VideoButton extends \Elementor\Widget_Base
         $poster = !empty($settings['image_poster']['url']) ? $settings['image_poster']['url'] : '';
 ?>
         <div class="rkit-video-button-wrapper">
-            <div class="rkit-video-button-container <?= $hoverAnimation ?> ">
+            <div class="rkit-video-button-container <?php echo esc_attr($hoverAnimation) ?> ">
                 <svg viewBox="0 0 100 100" class="rkit-video-button " width="100%" height=" 100%">
                     <defs>
                         <path id="circlePath" d="M50,50 m-35,0 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0" />
@@ -641,15 +643,15 @@ class VideoButton extends \Elementor\Widget_Base
                     <text class="rkit-animated-text">
                     </text>
                 </svg>
-                <a class="rkit-animated-icon-container glightbox <?= $showAnimationBackgroundIcon ?>"
-                    style="--pulse-width:<?= $pulseWidth ?>; --duration-pulse:<?= $durationAnimation ?>;"
-                    href="<?= esc_url($linkButton) ?>"
+                <a class="rkit-animated-icon-container glightbox <?php echo esc_attr($showAnimationBackgroundIcon) ?>"
+                    style="--pulse-width:<?php echo  esc_attr($pulseWidth) ?>; --duration-pulse:<?php echo  esc_attr($durationAnimation) ?>;"
+                    href="<?php echo  esc_url($linkButton) ?>"
                     id="video-button"
                     data-type="video"
-                    data-autoplay="<?= esc_attr($autoPlay ? 'yes' : 'no') ?>"
-                    data-muted="<?= esc_attr($muted ? 'yes' : 'no') ?>"
-                    data-loop="<?= esc_attr($loop ? 'yes' : 'no') ?>"
-                    data-player-control="<?= esc_attr($playerControl ? 'yes' : 'no') ?>">
+                    data-autoplay="<?php echo  esc_attr($autoPlay ? 'yes' : 'no') ?>"
+                    data-muted="<?php echo  esc_attr($muted ? 'yes' : 'no') ?>"
+                    data-loop="<?php echo  esc_attr($loop ? 'yes' : 'no') ?>"
+                    data-player-control="<?php echo  esc_attr($playerControl ? 'yes' : 'no') ?>">
                     <?php
                     \Elementor\Icons_Manager::render_icon($settings['button_content'], [
                         'aria-hidden' => 'true',

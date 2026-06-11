@@ -2,6 +2,8 @@
 
 namespace RTMKit\Core;
 
+if (! defined('ABSPATH')) exit;
+
 class PluginApi
 {
     /**
@@ -55,14 +57,27 @@ class PluginApi
 
     public function get_content()
     {
-        check_ajax_referer('rtmkit_nonce', 'nonce');
+        $nonce = isset($_POST['nonce'])
+            ? sanitize_text_field(wp_unslash($_POST['nonce']))
+            : '';
+
+        if (! wp_verify_nonce($nonce, 'rtmkit_nonce')) {
+            die(__('Security check', 'rometheme-for-elementor'));
+        }
+        
+        // check_ajax_referer('rtmkit_nonce', 'nonce');
         if (!current_user_can('manage_options')) {
             wp_send_json_error('Access Denied.');
             wp_die();
         }
-        $path = sanitize_text_field($_POST['path']);
-        $menus = \RTMKit\Modules\Menu::instance()->get_menu_by_path($_POST['path']);
 
+        $path = isset($_POST['path'])
+            ? sanitize_text_field(wp_unslash($_POST['path']))
+            : '';
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $menus = \RTMKit\Modules\Menu::instance()->get_menu_by_path($path);
+
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_POST['path'])) {
             wp_send_json_error('Path not specified.');
             return;
@@ -89,7 +104,11 @@ class PluginApi
             wp_die();
         }
 
-        $idKit = sanitize_text_field($_POST['idKit']);
+        // $idKit = sanitize_text_field($_POST['idKit']);
+        $idKit = isset($_POST['idKit'])
+            ? sanitize_text_field(wp_unslash($_POST['idKit']))
+            : '';
+
         $update = update_option('elementor_active_kit', $idKit);
         if ($update) {
             wp_send_json_success('Global Site Settings updated successfully.');

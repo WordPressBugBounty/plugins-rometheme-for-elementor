@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Menu
 {
     /**
@@ -167,7 +169,7 @@ class Menu
                 'manage_options',
                 'rtmkit-upgrade-to-pro',
                 function () {
-                    wp_redirect('https://rometheme.net/plugins/rtmkit/pricing/');
+                    wp_safe_redirect('https://rometheme.net/plugins/rtmkit/pricing/');
                     exit;
                 },
                 null // posisi atas
@@ -321,55 +323,112 @@ class Menu
     public function feature_drawer()
     {
         if (current_user_can('edit_posts')):
+            $newsRSS = $this->get_rss_data('https://rometheme.net/blog/category/news/feed/');
+            $upsaleRSS = $this->get_rss_data('https://rometheme.net/blog/category/upsale/feed/');
+
 ?>
             <div id="custom-drawer-overlay"></div>
 
             <div id="custom-admin-drawer">
                 <div class="drawer-header">
-                    What's new on RTMKit 2.0
+                    What's new on RTMKit
                 </div>
                 <div class="drawer-content">
-                    <div class="content-info">
-                        <div style="position: relative; display: inline-block;">
-                            <a href="https://www.youtube.com/watch?v=-jRhhPu6w2M" target="_blank">
-                                <img src="https://img.youtube.com/vi/-jRhhPu6w2M/hqdefault.jpg" style="width: 100%" alt="Video">
-                                <!-- Simple Play Button Overlay -->
-                                <div
-                                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; color: white; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px;">
-                                    ▶</div>
-                            </a>
+                    <?php if (isset($newsRSS[0])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($newsRSS[0]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($newsRSS[0]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($newsRSS[0]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($newsRSS[0]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url($newsRSS[0]['link']); ?>" target="_blank" class="read-more">Learn More</a>
+                            </div>
                         </div>
-                        <h4>Version 2.0.0 – February 10, 2026</h4>
-                        <ul>
-                            <li>New: Improve the user experience by updating the visual interface.</li>
-                            <li>Improved widget controls and UI consistency</li>
-                            <li>Enhanced responsive and editor preview behavior</li>
-                            <li>Fixed various widget, style, and control issues</li>
-                            <li>Resolved minor rendering and PHP warnings</li>
-                            <li>Performance and asset loading improvements</li>
-                            <li>Internal refactor for better stability and compatibility</li>
-                            <li>Security Update</li>
-                        </ul>
-                    </div>
-                    <div class="content-info">
-                        <h4>Resolve error after upgrade to 2.0</h4>
-                        <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 24px;">
-                            <li style="margin:0;">
-                                <div style="width: 100%; display: flex ; justify-content:space-between; align-items:center;">
-                                    RTMkit
-                                    <a class="link-btn-accent" href="https://support.rometheme.net/docs/romethemekit/migration-v-2-0-0/"
-                                        target="_blank">Read This Guide</a>
-                                </div>
-                            </li>
-                            <li style="margin:0;">
-                                <div style="width: 100%; display: flex ; justify-content:space-between; align-items:center;">
-                                    RTMkit PRO
-                                    <a class="link-btn-accent" href="https://support.rometheme.net/docs/romethemekit-pro-for-elementor/migration-v-2-0-0/"
-                                        target="_blank">Read This Guide</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <?php endif; ?>
+                    <?php if (isset($newsRSS[1])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($newsRSS[1]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($newsRSS[1]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($newsRSS[1]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($newsRSS[1]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url($newsRSS[1]['link']); ?>" target="_blank" class="read-more">Learn More</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($upsaleRSS[0])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($upsaleRSS[0]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($upsaleRSS[0]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($upsaleRSS[0]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($upsaleRSS[0]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url('https://rometheme.net/plugins/rtmkit/pricing/'); ?>" target="_blank" class="upgrade-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.49698 9.00236L4.78398 19.9374H19.227L20.513 9.00236L16.503 11.6754L12.005 5.37836L7.50698 11.6754L3.49698 9.00236ZM2.80598 6.13736L7.00498 8.93736L11.191 3.07636C11.2835 2.94673 11.4056 2.84107 11.5472 2.76816C11.6888 2.69526 11.8457 2.65723 12.005 2.65723C12.1642 2.65723 12.3212 2.69526 12.4628 2.76816C12.6044 2.84107 12.7265 2.94673 12.819 3.07636L17.005 8.93636L21.205 6.13736C21.3639 6.03169 21.5497 5.97368 21.7404 5.97019C21.9312 5.96669 22.119 6.01785 22.2817 6.11762C22.4443 6.2174 22.575 6.36163 22.6584 6.53328C22.7417 6.70493 22.7742 6.89684 22.752 7.08636L21.11 21.0534C21.0816 21.2968 20.9647 21.5213 20.7817 21.6843C20.5986 21.8472 20.3621 21.9373 20.117 21.9374H3.89398C3.6489 21.9373 3.41236 21.8472 3.22931 21.6843C3.04625 21.5213 2.92941 21.2968 2.90098 21.0534L1.25798 7.08736C1.2354 6.89761 1.26767 6.70536 1.35095 6.53337C1.43424 6.36138 1.56506 6.21686 1.72792 6.11691C1.89079 6.01696 2.07889 5.96576 2.26995 5.96939C2.461 5.97301 2.64702 6.0313 2.80598 6.13736ZM12.006 15.9374C11.7433 15.9374 11.4833 15.8858 11.2406 15.7853C10.9979 15.6849 10.7774 15.5376 10.5916 15.3519C10.4059 15.1663 10.2585 14.9458 10.1579 14.7032C10.0573 14.4606 10.0055 14.2005 10.0055 13.9379C10.0054 13.6752 10.0571 13.4151 10.1575 13.1725C10.258 12.9298 10.4052 12.7093 10.5909 12.5235C10.7766 12.3377 10.997 12.1904 11.2397 12.0898C11.4823 11.9892 11.7423 11.9374 12.005 11.9374C12.5354 11.9374 13.0441 12.1481 13.4192 12.5231C13.7943 12.8982 14.005 13.4069 14.005 13.9374C14.005 14.4678 13.7943 14.9765 13.4192 15.3516C13.0441 15.7266 12.5364 15.9374 12.006 15.9374Z" fill="#121416"></path>
+                                    </svg>Upgrade Now</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($newsRSS[2])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($newsRSS[2]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($newsRSS[2]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($newsRSS[2]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($newsRSS[2]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url($newsRSS[2]['link']); ?>" target="_blank" class="read-more">Learn More</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($upsaleRSS[1])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($upsaleRSS[1]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($upsaleRSS[1]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($upsaleRSS[1]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($upsaleRSS[1]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url('https://rometheme.net/plugins/rtmkit/pricing/'); ?>" target="_blank" class="upgrade-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.49698 9.00236L4.78398 19.9374H19.227L20.513 9.00236L16.503 11.6754L12.005 5.37836L7.50698 11.6754L3.49698 9.00236ZM2.80598 6.13736L7.00498 8.93736L11.191 3.07636C11.2835 2.94673 11.4056 2.84107 11.5472 2.76816C11.6888 2.69526 11.8457 2.65723 12.005 2.65723C12.1642 2.65723 12.3212 2.69526 12.4628 2.76816C12.6044 2.84107 12.7265 2.94673 12.819 3.07636L17.005 8.93636L21.205 6.13736C21.3639 6.03169 21.5497 5.97368 21.7404 5.97019C21.9312 5.96669 22.119 6.01785 22.2817 6.11762C22.4443 6.2174 22.575 6.36163 22.6584 6.53328C22.7417 6.70493 22.7742 6.89684 22.752 7.08636L21.11 21.0534C21.0816 21.2968 20.9647 21.5213 20.7817 21.6843C20.5986 21.8472 20.3621 21.9373 20.117 21.9374H3.89398C3.6489 21.9373 3.41236 21.8472 3.22931 21.6843C3.04625 21.5213 2.92941 21.2968 2.90098 21.0534L1.25798 7.08736C1.2354 6.89761 1.26767 6.70536 1.35095 6.53337C1.43424 6.36138 1.56506 6.21686 1.72792 6.11691C1.89079 6.01696 2.07889 5.96576 2.26995 5.96939C2.461 5.97301 2.64702 6.0313 2.80598 6.13736ZM12.006 15.9374C11.7433 15.9374 11.4833 15.8858 11.2406 15.7853C10.9979 15.6849 10.7774 15.5376 10.5916 15.3519C10.4059 15.1663 10.2585 14.9458 10.1579 14.7032C10.0573 14.4606 10.0055 14.2005 10.0055 13.9379C10.0054 13.6752 10.0571 13.4151 10.1575 13.1725C10.258 12.9298 10.4052 12.7093 10.5909 12.5235C10.7766 12.3377 10.997 12.1904 11.2397 12.0898C11.4823 11.9892 11.7423 11.9374 12.005 11.9374C12.5354 11.9374 13.0441 12.1481 13.4192 12.5231C13.7943 12.8982 14.005 13.4069 14.005 13.9374C14.005 14.4678 13.7943 14.9765 13.4192 15.3516C13.0441 15.7266 12.5364 15.9374 12.006 15.9374Z" fill="#121416"></path>
+                                    </svg>Upgrade Now</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($newsRSS[3])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($newsRSS[3]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($newsRSS[3]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($newsRSS[3]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($newsRSS[3]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url($newsRSS[3]['link']); ?>" target="_blank" class="read-more">Learn More</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (isset($newsRSS[4])): ?>
+                        <div class="news-item">
+                            <h4 class="news-title"><?php echo esc_html($newsRSS[4]['title']); ?></h4>
+                            <div class="featured-image">
+                                <img src="<?php echo esc_url($newsRSS[3]['image']); ?>" alt="">
+                                <span class="news-category"><?php echo esc_html($newsRSS[3]['category']); ?></span>
+                            </div>
+                            <div class="news-description"><?php echo esc_html($newsRSS[3]['excerpt']); ?></div>
+                            <div>
+                                <a href="<?php echo esc_url($newsRSS[3]['link']); ?>" target="_blank" class="read-more">Learn More</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 <?php
@@ -409,5 +468,137 @@ class Menu
     {
         $menus = $this->get_menus();
         return $this->findByKey($menus, $path);
+    }
+
+    private function get_rss_data($url)
+    {
+        $response = wp_remote_get($url, [
+            'timeout' => 15,
+            'sslverify' => false,
+        ]);
+
+        if (is_wp_error($response)) {
+            return [];
+        }
+
+        $body = wp_remote_retrieve_body($response);
+
+        if (empty($body)) {
+            return [];
+        }
+
+        libxml_use_internal_errors(true);
+
+        $xml = simplexml_load_string(
+            $body,
+            'SimpleXMLElement',
+            LIBXML_NOCDATA
+        );
+
+        if (!$xml) {
+            return [];
+        }
+
+        $data = [];
+
+        // register namespace media rss
+        $namespaces = $xml->getNamespaces(true);
+
+        $items = $xml->channel->item ?? [];
+
+        $count = 0;
+
+        foreach ($items as $item) {
+
+            if ($count >= 5) {
+                break;
+            }
+
+            // media namespace
+            $media = $item->children(
+                'http://search.yahoo.com/mrss/'
+            );
+
+            // enclosure
+            $enclosure = null;
+
+            if (isset($item->enclosure)) {
+
+                $enclosure_attr = $item->enclosure->attributes();
+
+                $enclosure = [
+                    'url' => (string) ($enclosure_attr['url'] ?? ''),
+                    'type' => (string) ($enclosure_attr['type'] ?? ''),
+                    'length' => (string) ($enclosure_attr['length'] ?? ''),
+                ];
+            }
+
+            // media image
+            $media_url = '';
+
+            if (isset($media->content)) {
+
+                $media_attr = $media->content->attributes();
+
+                $media_url = (string) ($media_attr['url'] ?? '');
+            }
+
+            // content encoded
+            $content = '';
+
+            $content_ns = $item->children(
+                'http://purl.org/rss/1.0/modules/content/'
+            );
+
+            if (isset($content_ns->encoded)) {
+                $content = (string) $content_ns->encoded;
+            }
+
+            // fallback image from html
+            $image = $media_url;
+
+            if (empty($image) && !empty($enclosure['url'])) {
+                $image = $enclosure['url'];
+            }
+
+            if (empty($image) && preg_match(
+                '/<img.*?src=["\'](.*?)["\']/i',
+                $content,
+                $match
+            )) {
+                $image = $match[1];
+            }
+
+            $description = (string) $item->description;
+
+            $data[] = [
+                'title' => (string) $item->title,
+                'link' => (string) $item->link,
+                'image' => $image,
+                'description' => $description,
+                'excerpt' => wp_trim_words(
+                    wp_strip_all_tags($description),
+                    30,
+                    '...'
+                ),
+                'date' => gmdate(
+                    'F j, Y',
+                    strtotime((string) $item->pubDate)
+                ),
+                'content' => $content,
+
+                // debug
+                'media' => $media_url,
+                'enclosure' => $enclosure,
+                'raw_data' => htmlspecialchars($body),
+                'namespaces' => $namespaces,
+                'category' => (is_array($item->category) && count($item->category) > 0) ? (string) $item->category[0] : (string) $item->category,
+
+            ];
+
+            $count++;
+        }
+
+        return $data;
     }
 }

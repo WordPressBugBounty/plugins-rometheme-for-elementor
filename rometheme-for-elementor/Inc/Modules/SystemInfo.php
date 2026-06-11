@@ -28,12 +28,14 @@ class SystemInfo
             // Informasi tambahan yang mungkin Anda perlukan
         ];
 
+        $server_software = isset( $_SERVER['SERVER_SOFTWARE']) ? sanitize_key(wp_unslash($_SERVER['SERVER_SOFTWARE'])) : '';
+
         $php_info = [
             'PHP_version' => phpversion(),
             'PHP_OS' => PHP_OS,
             'PHP_memory_limit' => ini_get('memory_limit'),
             'PHP_max_execution_time' => ini_get('max_execution_time'),
-            'server_software' => $_SERVER['SERVER_SOFTWARE'],
+            'server_software' => $server_software,
             'max_input_vars' => ini_get('max_input_vars'),
             'post_max_size' =>  ini_get('post_max_size')
         ];
@@ -49,7 +51,15 @@ class SystemInfo
 
         if (false === $mysql_info_cached) {
             // Jika data tidak ada di cache, ambil dari database dan simpan ke cache
-            $query = "SELECT version() as version, @@version_comment as comment";
+            // $query = "SELECT version() as version, @@version_comment as comment";
+            // $mysql_info = $wpdb->get_results($query, ARRAY_A);
+
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            $query = $wpdb->prepare(
+                "SELECT VERSION() as version, @@version_comment as comment",
+                []
+            );
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             $mysql_info = $wpdb->get_results($query, ARRAY_A);
 
             // Simpan data ke cache
@@ -65,6 +75,7 @@ class SystemInfo
 
         $uploads_dir = wp_upload_dir();
         $upload_path = $uploads_dir['basedir'];
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
         $is_writable = is_writable($upload_path) ? 'Writeable' : 'Not Writeable';
 
         $active_theme = wp_get_theme();

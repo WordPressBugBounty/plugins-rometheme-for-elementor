@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 $datas = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder_data('single_post');
 ?>
 
@@ -28,7 +29,7 @@ $datas = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_theme
                     $edit_elementor = str_replace('action=edit', 'action=elementor', $edit_link);
                     $status = (get_post_status($id_post) == 'publish') ? 'Published' : 'Draft';
                     echo '<tr>';
-                    echo '<td class="text-center">' . esc_html__($index) . '</td>';
+                    echo '<td class="text-center">' . esc_html($index) . '</td>';
                     echo '<td><div>' . esc_html(get_the_title());
 
                     echo ($active == 'true') ? '<span class="badge rounded-pill text-bg-success mx-3">Active</span>' : '<span class="badge rounded-pill mx-3 text-bg-secondary">Inactive</span>';
@@ -46,7 +47,7 @@ $datas = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_theme
 
                     echo '</td>';
                     echo '<td>' . get_the_author() . '</td>';
-                    echo '<td>' . esc_html__(ucwords(str_replace('_' , ' ' , $type)), 'rometheme-for-elementor') . '</td>';
+                    echo '<td>' . esc_html(ucwords(str_replace('_' , ' ' , $type)), 'rometheme-for-elementor') . '</td>';
                     echo '<td><small>' . esc_html($status) . '</small><br><small>' . esc_html(get_the_date('Y/m/h') . ' at ' . get_the_date('H:i a')) . '</small></td>';
                     echo '</tr>';
                 }

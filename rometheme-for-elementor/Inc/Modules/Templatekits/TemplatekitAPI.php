@@ -4,6 +4,8 @@ namespace RTMKit\Modules\Templatekits;
 
 use WP;
 
+if (! defined('ABSPATH')) exit;
+
 class TemplatekitAPI
 {
     private static ?TemplatekitAPI $instance = null;
@@ -32,6 +34,11 @@ class TemplatekitAPI
     public function render_templates()
     {
         check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Insufficient permissions', 403);
+        }
+
         if (isset($_POST['template'])) {
             $template = sanitize_text_field($_POST['template']);
             ob_start();
@@ -203,7 +210,7 @@ class TemplatekitAPI
         $response = $api_handler->remote($url, [], null, false, false, 'POST');
 
         if (is_wp_error($response)) {
-            error_log('Download update failed: ' . $response->get_error_message());
+            // error_log('Download update failed: ' . $response->get_error_message());
             return;
         }
         // Jika perlu, bisa ditambahkan logika pemrosesan hasil
@@ -253,7 +260,8 @@ class TemplatekitAPI
         $extract = $this->template_extract_secure($tempFile, $id, true);
 
         if ($extract) {
-            @unlink($tempFile);
+            // @unlink($tempFile);
+            wp_delete_file($tempFile);
             if ($return) {
                 return true;
             } else {
@@ -261,7 +269,8 @@ class TemplatekitAPI
                 wp_send_json_success(["message" => 'Template extracted successfully.', "template" => $hashId]);
             }
         } else {
-            @unlink($tempFile);
+            // @unlink($tempFile);
+            wp_delete_file($tempFile);
             if ($return) {
                 return false;
             } else {
@@ -328,20 +337,20 @@ class TemplatekitAPI
             // block traversal / absolute
             if (strpos($normalized, '../') !== false || substr($normalized, 0, 1) === '/' || preg_match('/^[A-Za-z]:\\\\/', $entry)) {
                 $zip->close();
-                error_log("[rtm] rejected: traversal ($entry)");
+                // error_log("[rtm] rejected: traversal ($entry)");
                 return $return ? false : wp_send_json_error(['message' => 'Zip contains invalid paths.'], 400);
             }
 
             $entry_ext = strtolower(pathinfo($entry, PATHINFO_EXTENSION));
             if (empty($entry_ext) || in_array($entry_ext, ['php', 'phtml', 'phar', 'exe', 'sh', 'pl', 'cgi'], true)) {
                 $zip->close();
-                error_log("[rtm] rejected: bad extension ($entry)");
+                // error_log("[rtm] rejected: bad extension ($entry)");
                 return $return ? false : wp_send_json_error(['message' => 'Zip contains disallowed file types.'], 400);
             }
 
             if (! in_array($entry_ext, $allowed_ext, true)) {
                 $zip->close();
-                error_log("[rtm] rejected: unsupported ext $entry_ext ($entry)");
+                // error_log("[rtm] rejected: unsupported ext $entry_ext ($entry)");
                 return $return ? false : wp_send_json_error(['message' => "Unsupported file type: $entry_ext"], 400);
             }
         }
@@ -365,7 +374,10 @@ class TemplatekitAPI
 
             $stream = $zip->getStream($entry);
             if ($stream === false) continue;
-
+            // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
+            // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fwrite
+            // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fread
+            // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fclose
             $out = fopen($target_path, 'w');
             if ($out === false) {
                 fclose($stream);
@@ -376,19 +388,23 @@ class TemplatekitAPI
             fclose($out);
             fclose($stream);
 
+            // phpcs:enable
+
             // detect embedded php
             $head = @file_get_contents($target_path, false, null, 0, 512);
             if ($head !== false && stripos($head, '<?php') !== false) {
-                @unlink($target_path);
-                error_log("[rtm] removed suspicious file ($target_path)");
+                wp_delete_file($target_path);
+                // @unlink($target_path);
+                // error_log("[rtm] removed suspicious file ($target_path)");
                 continue;
             }
 
             // sanity check → skip mismatch untuk json agar manifest.json tidak kehapus
             $check = wp_check_filetype_and_ext($target_path, $safe_name);
             if ($entry_ext !== 'json' && $check && isset($check['ext']) && $check['ext'] !== $entry_ext) {
-                @unlink($target_path);
-                error_log("[rtm] removed mismatch file ($target_path)");
+                wp_delete_file($target_path);
+                // @unlink($target_path);
+                // error_log("[rtm] removed mismatch file ($target_path)");
                 continue;
             }
         }
@@ -442,6 +458,7 @@ class TemplatekitAPI
         $tmp_zip_path = $tmp_dir . 'upload_' . $unique . '.zip';
 
         // Simpan file upload ke lokasi aman
+        // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found
         if (! move_uploaded_file($file['tmp_name'], $tmp_zip_path)) {
             wp_send_json_error(
                 array('message' => 'Failed save temporary file.'),
@@ -454,7 +471,8 @@ class TemplatekitAPI
 
         // Hapus zip sementara
         if (file_exists($tmp_zip_path)) {
-            @unlink($tmp_zip_path);
+            // @unlink($tmp_zip_path);
+            wp_delete_file($tmp_zip_path);
         }
 
         if ($res) {
@@ -474,7 +492,10 @@ class TemplatekitAPI
         require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
         $file_system_direct = new \WP_Filesystem_Direct(false);
 
-        $template = $_GET['template'];
+        // $template = $_GET['template'];
+        $template = sanitize_text_field(
+            wp_unslash($_GET['template'] ?? '')
+        );
 
         $upload_dir = wp_upload_dir();
         $custom_dir = $upload_dir['basedir'] . '/rometheme_template';
@@ -558,7 +579,7 @@ class TemplatekitAPI
                 set_transient($transient_id, ['progress' => 40, 'message' => 'Importing template...'], 60);
                 $result = $local_source->import_template(basename($temp_template), $temp_template);
 
-                if (file_exists($temp_template)) unlink($temp_template);
+                if (file_exists($temp_template)) wp_delete_file($temp_template);
 
                 if (is_wp_error($result)) {
                     set_transient($transient_id, ['progress' => 100, 'message' => 'Failed to import.'], 60);
@@ -751,8 +772,12 @@ class TemplatekitAPI
             wp_send_json_error('Insufficient permissions', 403);
         }
 
-        $id = $_POST['template_id'];
-        $template = $_POST['template'];
+        // $id = $_POST['template_id'];
+        $id = absint($_POST['template_id'] ?? 0);
+        // $template = $_POST['template'];
+        $template = sanitize_text_field(
+            wp_unslash($_POST['template'] ?? '')
+        );
         $op = get_option('rtm_import_template_' . $template, []);
 
         foreach ($op as $k => $v) {

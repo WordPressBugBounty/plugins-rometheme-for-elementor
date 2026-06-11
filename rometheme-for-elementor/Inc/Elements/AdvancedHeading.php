@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+if (! defined('ABSPATH')) exit;
+
 class AdvancedHeading extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -52,17 +54,17 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'rometheme-kit'),
+                'label' => esc_html__('Content', 'rometheme-for-elementor'),
             ]
         );
 
         $this->add_control(
             'use_boxed_hedading',
             [
-                'label' => esc_html__('Boxed Heading', 'textdomain'),
+                'label' => esc_html__('Boxed Heading', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'enabled',
                 'default' => '',
                 'prefix_class' => 'use-boxed-heading-',
@@ -121,10 +123,10 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_control(
             'show_background_text',
             [
-                'label' => esc_html__('Use Background Text', 'textdomain'),
+                'label' => esc_html__('Use Background Text', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -144,7 +146,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->start_controls_section(
             'wrapper_style',
             [
-                'label' => esc_html__('Wrapper', 'rometheme-kit'),
+                'label' => esc_html__('Wrapper', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -152,19 +154,19 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'alignment',
             [
-                'label' => esc_html__('Alignment', 'rometheme-kit'),
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'rometheme-kit'),
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'rometheme-kit'),
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'rometheme-kit'),
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -191,7 +193,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'name' => 'container_box_shadow_ah',
                 'label' => __('Box Shadow', 'rometheme-for-elementor'),
                 'selector' => '{{WRAPPER}} .rkit-advanced-heading-wrapper',
-                'description' => esc_html__('Put 0 for no box shadow ', 'text-domain'),
+                'description' => esc_html__('Put 0 for no box shadow ', 'rometheme-for-elementor'),
             ]
         );
 
@@ -224,7 +226,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->start_controls_section(
             'heading_style_section',
             [
-                'label' => esc_html__('Text', 'rometheme-kit'),
+                'label' => esc_html__('Text', 'rometheme-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -257,10 +259,10 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_control(
             'animation_heading_gradient',
             [
-                'label' => esc_html__('Animation Gradient', 'textdomain'),
+                'label' => esc_html__('Animation Gradient', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'enabled',
                 'default' => '',
                 'prefix_class' => 'animation-heading-gradient-'
@@ -271,7 +273,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
             'heading_animation_speed',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Animation Speed', 'textdomain'),
+                'label' => esc_html__('Animation Speed', 'rometheme-for-elementor'),
                 'size_units' => ['s', 'ms'],
                 'range' => [
                     's' => [
@@ -479,10 +481,10 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_control(
             'animation_headline_gradient',
             [
-                'label' => esc_html__('Animation Gradient', 'textdomain'),
+                'label' => esc_html__('Animation Gradient', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'textdomain'),
-                'label_off' => esc_html__('No', 'textdomain'),
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
                 'return_value' => 'enabled',
                 'default' => '',
                 'prefix_class' => 'animation-headline-gradient-'
@@ -493,7 +495,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
             'headline_animation_speed',
             [
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'label' => esc_html__('Animation Speed', 'textdomain'),
+                'label' => esc_html__('Animation Speed', 'rometheme-for-elementor'),
                 'size_units' => ['s', 'ms'],
                 'range' => [
                     's' => [
@@ -756,10 +758,50 @@ class AdvancedHeading extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'adjust_background_text',
+            [
+                'label' => esc_html__('Adjust Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+                'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'background_text_alignment',
+            [
+                'label' => esc_html__('Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'margin-right:auto; text-align:start; ' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'margin:0 auto; text-align:center;' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'margin-left:auto; text-align:end;' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-advanced-heading-wrapper::before' => ' {{VALUE}} inset:0;',
+                ],
+                'condition' => [
+                    'adjust_background_text' => ''
+                ]
+            ]
+        );
+
         $this->add_responsive_control(
             'x_offset',
             [
-                'label' => esc_html__('Horizontal Offset', 'textdomain'),
+                'label' => esc_html__('Horizontal Offset', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -788,13 +830,16 @@ class AdvancedHeading extends \Elementor\Widget_Base
                 'selectors' => [
                     '{{WRAPPER}} .rkit-advanced-heading-wrapper::before' => 'left: {{SIZE}}{{UNIT}};',
                 ],
+                'condition' => [
+                    'adjust_background_text!' => ''
+                ],
             ]
         );
 
         $this->add_responsive_control(
             'y_offset',
             [
-                'label' => esc_html__('Vertical Offset', 'textdomain'),
+                'label' => esc_html__('Vertical Offset', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'em', 'rem', 'custom'],
                 'range' => [
@@ -829,7 +874,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'bg_text_rotate',
             [
-                'label' => esc_html__('Rotate (degrees)', 'textdomain'),
+                'label' => esc_html__('Rotate (degrees)', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -879,7 +924,7 @@ class AdvancedHeading extends \Elementor\Widget_Base
         $this->add_control(
             'bg_text_index',
             [
-                'label' => esc_html__('Z-Index', 'textdomain'),
+                'label' => esc_html__('Z-Index', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => -10,
                 'max' => 1000,
@@ -957,10 +1002,16 @@ class AdvancedHeading extends \Elementor\Widget_Base
             $text
         );
 
-        $bgText = ($settings['show_background_text'] === 'yes') ? 'data-background-text="' . $settings['background_text_heading'] . '"' : '';
+        $bgText = ($settings['show_background_text'] === 'yes') ? 'data-background-text="' . esc_attr($settings['background_text_heading']) . '"' : '';
 
-        echo sprintf('<div class="rkit-advanced-heading-wrapper" %s>', $bgText);
+        echo sprintf(
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            '<div class="rkit-advanced-heading-wrapper" %s>',
+            $bgText
+        );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<' . esc_html($html_tag) . ' class="rkit-advanced-heading">' . $link_start . wp_kses_post($animated_text) . $link_end . '</' . esc_html($html_tag) . '>';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '</div>';
     }
 }

@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Helper;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Banner
 {
     public function __construct()
@@ -59,7 +61,7 @@ class Banner
                     // =========================
                     // SANITASI & OUTPUT
                     // =========================
-                    echo $value['content_html'];
+                    echo wp_kses_post($value['content_html']);
                 });
             }
         }

@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-.rkit-post-block-card{
+.rkit-post-block-card {
     background-color: #F7F7F7;
 }
 
@@ -34,19 +34,19 @@
 
 .rkit-image-container {
     position: relative;
-} 
+}
 
 .rkit-post-grid-img {
     transition: all 0.5s;
     object-fit: cover;
     object-position: center;
-    width: 100% !important  ;
+    width: 100% !important;
     height: 100% !important;
 }
 
 .rkit-post-grid-card:hover .rkit-post-grid-img {
     transform: scale(1.1);
-    overflow:   hidden ;
+    overflow: hidden;
 }
 
 .rkit-metadata,
@@ -95,21 +95,121 @@
     gap: 0.5rem;
 }
 
-
-.rkit-post-block-card .rkit-floating-category-btn {
-    background-color: #535353;
-    padding-inline: 15px;
-    border-radius: 0;
-    color: #ffffff;
-    border: none;
+.rkit-readmore-div {
+    display: flex;
 }
 
-.rkit-post-block-card .rkit-floating-category-btn:hover {
+.rkit-readmore-div .rkit-readmore-btn .rkit-icon-readmore {
+    width: unset;
+    height: unset;
+    margin: 0;
+}
+
+.rkit-post-grid .has-animation {
+    overflow: hidden;
+    position: relative;
+}
+
+.rkit-post-grid .has-animation::before {
+    transition: all 0.3s ease;
+}
+
+
+/* 1.hover-filled-slide-down */
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-down::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0%;
+    width: 100%;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-down:hover::before {
+    height: 100%;
+}
+
+/* 2.hover-filled-slide-up */
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-up::before {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0%;
+    width: 100%;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-up:hover::before {
+    height: 100%;
+}
+
+/* 3.hover-filled-slide-left */
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-left::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-left:hover::before {
+    width: 100%;
+}
+
+/* 4. hover-filled-slide-right */
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-right::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 0%;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-slide-right:hover::before {
+    width: 100%;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-opacity::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+}
+
+.rkit-post-grid .rkit-readmore-btn.hover-filled-opacity:hover::before {
+    opacity: 0;
+}
+
+.rkit-post-grid .has-animation .btn-text,
+.rkit-post-grid .has-animation .rkit-icon-readmore  {
+    position: relative;
+    z-index: 2;
+}
+
+
+.rkit-post-grid .btn-text,
+.rkit-post-grid .rkit-icon-readmore  {
+    transition: inherit;
+}
+
+.rkit-post-grid .rkit-readmore-btn:not(.has-animation):hover
+/* , .rkit-post-grid [type=button].rkit-readmore-btn:not(.has-animation):hover  */
+{
     background-color: #00cea6;
     color: black;
 }
 
-.rkit-post-block-card .rkit-readmore-btn {
+.rkit-post-grid .rkit-readmore-btn {
     background-color: #535353;
     border-radius: 0;
     padding: 16px 32px 16px 32px;
@@ -121,22 +221,14 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
 }
 
-.rkit-post-block-card .rkit-readmore-btn:hover {
+.rkit-post-grid .rkit-readmore-btn.has-animation::before {
     background-color: #00cea6;
     color: black;
 }
 
-.rkit-readmore-div {
-    display: flex;
-}
-
-.rkit-readmore-div .rkit-readmore-btn .rkit-icon-readmore{
-    width: unset;
-    height: unset;
-    margin: 0;
-}
 
 .rkit-metadata-item {
     display: flex;
@@ -160,13 +252,13 @@
 }
 
 .rkit-post-grid-title-container {
-    margin : 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
-.rkit-post-grid-title{
+.rkit-post-grid-title {
     font-size: 20px;
     font-weight: 700;
-    color :black;
+    color: black;
 }
 
 .rkit-post-grid-paragraph {

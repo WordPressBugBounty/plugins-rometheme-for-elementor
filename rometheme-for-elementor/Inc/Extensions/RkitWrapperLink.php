@@ -2,6 +2,8 @@
 
 namespace RTMKit\Extensions;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class RkitWrapperLink
 {
 
@@ -95,7 +97,7 @@ class RkitWrapperLink
     public function add_container_options($container)
     {
         $container->start_controls_section('rtmkit_wrapper_link_container', [
-            'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Wrapper Link'),
+            'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Wrapper Link', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_LAYOUT
         ]);
 
@@ -136,7 +138,7 @@ class RkitWrapperLink
     public function add_widget_options($widgets)
     {
         $widgets->start_controls_section('rtmkit_wrapper_link_container', [
-            'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Wrapper Link'),
+            'label' => \RTMKit\Modules\Extensions\ExtensionStorage::get_logo() . esc_html__('Wrapper Link', 'rometheme-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_ADVANCED
         ]);
 

@@ -2,6 +2,8 @@
 
 namespace RTMKit\Elements;
 
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
 class RunningText extends \Elementor\Widget_Base
 {
     private function get_widget_data()
@@ -94,7 +96,7 @@ class RunningText extends \Elementor\Widget_Base
                     ],
                 ],
                 'default' => 'none',
-                'description' => esc_html__('Choose Image or Icon', 'text-domain'),
+                'description' => esc_html__('Choose Image or Icon', 'rometheme-for-elementor'),
             ]
         );
 
@@ -149,6 +151,16 @@ class RunningText extends \Elementor\Widget_Base
                 ]
             ]
         );
+
+        $this->add_control('container_layout', [
+            'label' => esc_html('Layout'),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'options' => [
+                '' => esc_html('Horizontal'),
+                'vertical-direction' => esc_html('Vertical')
+            ],
+            'default' => ''
+        ]);
 
         $this->add_control(
             'direction',
@@ -262,17 +274,7 @@ class RunningText extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        $this->start_controls_section('container_style', ['label' => esc_html('Container'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);
-
-        $this->add_control('container_layout', [
-            'label' => esc_html('Layout'),
-            'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => [
-                '' => esc_html('Horizontal'),
-                'vertical-direction' => esc_html('Vertical')
-            ],
-            'default' => ''
-        ]);
+        $this->start_controls_section('container_style', ['label' => esc_html('Container'), 'tab' => \Elementor\Controls_Manager::TAB_STYLE]);        
 
         $this->add_control(
             'item_type',
@@ -566,7 +568,7 @@ class RunningText extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'text_color_tab_normal',
             [
-                'label' => esc_html__('Normal', 'textdomain'),
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
             ]
         );
 
@@ -589,7 +591,7 @@ class RunningText extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'text_color_tab_hover',
             [
-                'label' => esc_html__('Hover', 'textdomain'),
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
 
@@ -673,7 +675,7 @@ class RunningText extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'icons_color_tab_normal',
             [
-                'label' => esc_html__('Normal', 'textdomain'),
+                'label' => esc_html__('Normal', 'rometheme-for-elementor'),
             ]
         );
 
@@ -693,7 +695,7 @@ class RunningText extends \Elementor\Widget_Base
         $this->start_controls_tab(
             'icons_color_tab_hover',
             [
-                'label' => esc_html__('Hover', 'textdomain'),
+                'label' => esc_html__('Hover', 'rometheme-for-elementor'),
             ]
         );
 
@@ -901,8 +903,9 @@ class RunningText extends \Elementor\Widget_Base
                                         <?php
                                         $this->add_render_attribute('item_image', 'src', $text['item_image']['url']);
                                         $this->add_render_attribute('item_image', 'alt', \Elementor\Control_Media::get_image_alt($text['item_image']));
-                                        attachment:
+                                        // attachment:
                                         $this->add_render_attribute('item_image', 'title', \Elementor\Control_Media::get_image_title($text['item_image']));
+                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($text, 'thumbnail', 'item_image');
                                         ?>
                                     </div>

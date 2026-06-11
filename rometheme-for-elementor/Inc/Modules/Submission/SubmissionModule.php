@@ -2,6 +2,8 @@
 
 namespace RTMKit\Modules\Submission;
 
+if (! defined('ABSPATH')) exit;
+
 class SubmissionModule
 {
     protected static $instance;
@@ -28,6 +30,10 @@ class SubmissionModule
 
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
+        if (! current_user_can('manage_options')) {
+            wp_send_json_error('Unauthorized', 403);
+        }
+
         if (!class_exists('RomeThemeForm')) {
             ob_start();
             require_once RTM_KIT_DIR . 'views/rtmform-not-active.php';
@@ -53,11 +59,12 @@ class SubmissionModule
     {
         $submissionTable = new \RTMKit\Modules\Submission\SubmissionTable();
         $submissionTable->prepare_items();
+        $request_page = isset($_REQUEST['page']) ? sanitize_key(wp_unslash($_REQUEST['page'])) : '';
 ?>
         <div class="card rounded-4">
             <div id="rtmtable">
                 <form method="post">
-                    <input type="hidden" name="page" value="<?php echo esc_attr($_REQUEST['page']); ?>" />
+                    <input type="hidden" name="page" value="<?php echo esc_attr($request_page); ?>" />
                     <div class="d-flex flex-row justify-content-between mb-3">
                         <?php
                         $submissionTable->views();

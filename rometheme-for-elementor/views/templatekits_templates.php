@@ -1,3 +1,6 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
     <?php foreach ($datas['data_template'] as $data) : ?>
         <div class="col">
