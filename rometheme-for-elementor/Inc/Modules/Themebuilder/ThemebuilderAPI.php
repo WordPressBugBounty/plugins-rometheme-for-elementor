@@ -47,7 +47,7 @@ class ThemebuilderAPI
     {
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
-        if (! current_user_can('publish_posts')) {
+        if (! current_user_can('manage_options')) {
             wp_send_json_error('access denied', 403);
         }
 

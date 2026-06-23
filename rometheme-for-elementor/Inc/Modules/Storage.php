@@ -268,7 +268,7 @@ class Storage
                 // 🟩 Jika ada post_id, ambil langsung
                 if ($post_id) {
                     $post = get_post($post_id);
-                    if ($post && $post->post_type === $type) {
+                    if ($post && $post->post_type === $type && current_user_can('read_post', $post->ID)) {
                         $results[] = [
                             'id'   => $post->ID,
                             'text' => html_entity_decode(get_the_title($post)),
@@ -280,6 +280,7 @@ class Storage
                 // 🟦 Jika tidak ada post_id, lakukan pencarian normal
                 $query = new \WP_Query([
                     'post_type'      => $type,
+                    'post_status'    => 'publish',
                     's'              => $search,
                     'posts_per_page' => 10,
                     'paged'          => $paged,

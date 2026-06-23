@@ -110,7 +110,7 @@ class EditorCanvas
         }
 
         // $hashId = $_POST['template'];
-        $path = isset($_POST['template'])
+        $hashId = isset($_POST['template'])
             ? sanitize_text_field(wp_unslash($_POST['template']))
             : '';
 
@@ -158,7 +158,7 @@ class EditorCanvas
         <script type="text/javascript">
             var rkitLO = {
                 "btnIcon": "<?php echo esc_url(RTM_KIT_URL . '/assets/images/romethemekit.svg'); ?>",
-                "api_url": "<?php echo esc_url("https://api.rometheme.pro/") ?>",
+                "api_url": "<?php echo esc_url("https://api.rtmwp.com/") ?>",
                 "default_tab": "template"
             };
         </script>
@@ -220,7 +220,7 @@ class EditorCanvas
             wp_send_json_error('Access Denied');
         }
 
-        $url = 'https://api.rometheme.pro/wp-json/public/get_layout_api/';
+        $url = 'https://api.rtmwp.com//wp-json/public/get_layout_api/';
 
         $id = sanitize_text_field(
             wp_unslash($_GET['id'] ?? '')

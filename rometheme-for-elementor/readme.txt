@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor widgets, elementor templates, eleme
 Requires at least: 6.8
 Tested up to: 7.0.0
 Requires PHP: 8.2
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,9 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.0.9 - June 23, 2026
+Security issue fixed
+
 Version 2.0.8 - June 11, 2026
 Fixed : alignment bugs affecting the Background Text and HTML Tags in the "Advanced Heading" Widget 
 Fixed : an issue where the box-shadow did not follow the border-radius in the "Card Carousel" Widget
