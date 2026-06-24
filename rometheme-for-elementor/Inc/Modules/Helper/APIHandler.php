@@ -63,7 +63,7 @@ class APIHandler
         }
 
         if (is_wp_error($response)) {
-            wp_send_json_error('Error: ' . $response->get_error_message());
+            return $response;
         }
         $body = wp_remote_retrieve_body($response);
         if (!$json) {
@@ -92,7 +92,7 @@ class APIHandler
                 'method' => 'POST',
             ];
             $response = $this->remote('wp-json/auth/register-client', $args);
-            if ($response && isset($response['token'])) {
+            if (!is_wp_error($response) && isset($response['token'])) {
                 update_user_meta(get_current_user_id(), 'rtm_token_access', $response['token']['_access']);
                 update_user_meta(get_current_user_id(), 'rtm_token_refresh', $response['token']['_refresh']);
                 return $response['token']['_access'];
@@ -116,7 +116,7 @@ class APIHandler
             'method' => 'POST',
         ];
         $response = $this->remote('wp-json/auth/refresh-token', $args);
-        if ($response && isset($response['token'])) {
+        if (!is_wp_error($response) && isset($response['token'])) {
             update_user_meta(get_current_user_id(), 'rtm_token_access', $response['token']['_access']);
             update_user_meta(get_current_user_id(), 'rtm_token_refresh', $response['token']['_refresh']);
             return $response['token']['_access'];

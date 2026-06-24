@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           2.0.9
+ * Version:           2.1.0
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License: 		   GPLv2 or later
@@ -17,7 +17,7 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly 
 }
-defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.0.9');
+defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.1.0');
 defined('RTM_KIT_DIR') || define('RTM_KIT_DIR', plugin_dir_path(__FILE__));
 defined('RTM_KIT_URL') || define('RTM_KIT_URL', plugin_dir_url(__FILE__));
 defined('RTM_KIT_FILE') || define('RTM_KIT_FILE', __FILE__);

@@ -15,15 +15,34 @@ class Banner
     {
         $api_handler = \RTMKit\Modules\Helper\APIHandler::instance();
         $active_banner = $api_handler->remote('/wp-json/rtm/v1/banner?active' , [], null , false, true, 'GET');
-        if (is_wp_error($active_banner)) {
-            return null;
-        }
         return $active_banner;
     }
 
     public function call()
     {
         $banner = $this->get_active_banner();
+
+        if (is_wp_error($banner)) {
+            // API server unreachable — tampilkan notice agar user tidak panik
+            add_action('admin_notices', function () {
+                $screen = get_current_screen();
+
+                // Jangan tampilkan di editor post/page
+                if ($screen && in_array($screen->base, ['post', 'edit'], true)) {
+                    return;
+                }
+
+                ?>
+                <div class="notice notice-warning is-dismissible">
+                    <p>
+                        <strong>RTMKit:</strong>
+                        <?php esc_html_e('Unable to connect to the Rometheme API server. Some features like template library and updates may be temporarily unavailable. Please try again later.', 'rometheme-for-elementor'); ?>
+                    </p>
+                </div>
+                <?php
+            });
+            return;
+        }
 
         if ($banner) {
             add_action('admin_head', [$this, 'enqueue_scripts']);

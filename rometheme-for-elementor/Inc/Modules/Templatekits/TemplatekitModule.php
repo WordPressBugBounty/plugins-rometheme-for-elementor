@@ -45,6 +45,9 @@ class TemplatekitModule
         $url = 'wp-json/public/template_lib?id=' . urlencode($id);
 
         $response = $api_handler->remote($url, [], null, true , true);
+        if (is_wp_error($response)) {
+            return null;
+        }
         return $response;
     }
     public function get_template_description($id)

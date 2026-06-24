@@ -181,7 +181,10 @@ class TemplatekitAPI
     {
         $api_handler = \RTMKit\Modules\Helper\APIHandler::instance();
         $data = $api_handler->remote('wp-json/public/template_lib_cat');
-        return $data['rtm_templatekit_category'] ?? 'Data tidak ditemukan';
+        if (is_wp_error($data)) {
+            return [];
+        }
+        return $data['rtm_templatekit_category'] ?? [];
     }
 
     public function download_template()

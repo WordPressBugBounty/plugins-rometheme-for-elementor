@@ -66,6 +66,10 @@ class UpdateModule
         $apiHandler = \RTMKit\Modules\Helper\APIHandler::instance();
         $json = $apiHandler->remote($endpoint, [], null, true, true);
 
+        if (is_wp_error($json) || empty($json['data']['product']['version'])) {
+            return null;
+        }
+
         $version = json_decode($json['data']['product']['version'], TRUE);
         if (!isset($version['current'], $version['versions'])) return null;
 
