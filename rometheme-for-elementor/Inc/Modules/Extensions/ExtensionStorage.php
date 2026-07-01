@@ -27,23 +27,9 @@ class ExtensionStorage
 
     public function get_extension()
     {
-        $extensionsFileJson     = file_get_contents(RTM_KIT_DIR . '/metadata/extensions.json');
-        $extensionsProFileJson  = file_exists(RTM_KIT_DIR . '/metadata/extensions-pro.json')
-            ? file_get_contents(RTM_KIT_DIR . '/metadata/extensions-pro.json')
-            : '{}';
-
-        $extensions    = json_decode($extensionsFileJson, true);
-        $extensionsPro = json_decode($extensionsProFileJson, true);
-
-        // Gabungkan dua array tanpa overwrite jika key sama
-        $merged = array_merge($extensions, array_diff_key($extensionsPro, $extensions));
-
-        // Sorting berdasarkan nama
-        uasort($merged, function ($a, $b) {
-            return strcasecmp($a['name'], $b['name']);
-        });
-
-        return $merged;
+        // Use cached version to avoid repeated file reads
+        $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
+        return $cache_manager->get_extensions_cached();
     }
 
     public function register_extension()

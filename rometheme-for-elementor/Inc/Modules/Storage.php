@@ -125,6 +125,9 @@ class Storage
         $update = $this->save_modules_options($plugin, $dataJson);
 
         if ($update) {
+            // OPTIMIZATION: Clear cache when modules are updated
+            \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
+            
             $message = sprintf(
                 /* translators: %s: plugin name. */
                 __('Modules options for %s have been successfully updated.', 'rometheme-for-elementor'),
@@ -187,6 +190,9 @@ class Storage
         }
 
         if ($success) {
+            // OPTIMIZATION: Clear cache when modules are reset
+            \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
+            
             wp_send_json_success([
                 'message' => __('All Modules have been reset to default settings.', 'rometheme-for-elementor')
             ]);
@@ -197,19 +203,9 @@ class Storage
 
     public function get_modules()
     {
-        $modules = [];
-
-        // Load main modules
-        $modules_file = RTM_KIT_DIR . 'metadata/modules.json';
-        $extensions_file = RTM_KIT_DIR . 'metadata/extensions.json';
-        if (file_exists($modules_file) && file_exists($extensions_file)) {
-            $modules_json = file_get_contents($modules_file);
-            $extensions_json = file_get_contents($extensions_file);
-            $main_modules = json_decode($modules_json, true);
-            $extensions_modules = json_decode($extensions_json, true);
-            $modules = array_merge($main_modules, $extensions_modules);
-        }
-        return $modules;
+        // Use cached version instead of direct file read
+        $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
+        return $cache_manager->get_modules_cached();
     }
 
     public function get_modules_with_extension()
@@ -228,13 +224,9 @@ class Storage
 
     public function get_pro_modules()
     {
-        $pro_modules_file = RTM_KIT_DIR . 'metadata/pro_modules.json';
-        if (file_exists($pro_modules_file)) {
-            $pro_modules_json = file_get_contents($pro_modules_file);
-            $pro_modules = json_decode($pro_modules_json, true);
-            return $pro_modules;
-        }
-        return [];
+        // Use cached version
+        $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
+        return $cache_manager->get_pro_modules_cached();
     }
 
     public function get_all_modules()

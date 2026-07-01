@@ -313,6 +313,11 @@ class Plugin
         if (!$wizardComplete) {
             add_option('rtmkit_redirect_wizard', true);
         }
+
+        // OPTIMIZATION: Clear all RTMKit caches on plugin update/activation
+        if (class_exists('\RTMKit\Modules\Helper\CacheManager')) {
+            \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
+        }
     }
 
     public function pro_version_compatible_check()

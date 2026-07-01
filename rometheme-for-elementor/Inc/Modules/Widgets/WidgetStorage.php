@@ -62,25 +62,13 @@ class WidgetStorage
             }
         }
 
-        // ==========================================
-        // PERBAIKAN: JIKA PRO MATI, PAKSA WIDGET PRO DI JSON JADI AKTIF
-        // ==========================================
-        if (!class_exists('RTMKitPro\Core\Plugin')) {
-            $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
-            if (file_exists($json_path)) {
-                $pro_widgets = json_decode(file_get_contents($json_path), true);
-                if (!empty($pro_widgets) && is_array($pro_widgets)) {
-                    foreach ($pro_widgets as $key => $data) {
-                        // Paksa masuk ke daftar active_widgets agar dibaca Elementor saat render
-                        $active_widgets[$key] = [
-                            'status' => true,
-                            'type'   => 'pro'
-                        ];
-                    }
-                }
-            }
+        // OPTIMIZATION: Only load pro widgets if Pro plugin is ACTIVE
+        // Removed: Lazy-loading of pro widgets when Pro is inactive
+        // This was causing unnecessary memory usage and performance issues
+        if (class_exists('RTMKitPro\Core\Plugin')) {
+            // Pro plugin is active, pro widgets will be handled by Pro plugin
+            // No need to load them here
         }
-        // ==========================================
 
         if ($type) {
             $filtered = [];
@@ -309,6 +297,9 @@ class WidgetStorage
 
         $update = $this->save_widget_options($plugin, $dataJson);
         if ($update) {
+            // OPTIMIZATION: Clear cache when widgets are updated
+            \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
+            
             $message = sprintf(
                 /* translators: %s: plugin name. */
                 __('Widget options for %s have been successfully updated.', 'rometheme-for-elementor'),
@@ -409,6 +400,9 @@ class WidgetStorage
 
         // Reset widget options
         $this->update_widgets_options();
+
+        // OPTIMIZATION: Clear cache when widgets are reset
+        \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
 
         // Kirim respons sukses
         wp_send_json_success([

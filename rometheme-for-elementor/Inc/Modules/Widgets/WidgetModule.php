@@ -51,8 +51,12 @@ class WidgetModule
 
     public function register_widget_scripts()
     {
-        $widgets_css = scandir(RTM_KIT_DIR . 'Inc/Widgets/assets/css');
-        $widget_js = scandir(RTM_KIT_DIR . 'Inc/Widgets/assets/js');
+        // OPTIMIZATION: Use cached file listings instead of scandir()
+        $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
+        
+        $widgets_css = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Widgets/assets/css');
+        $widget_js = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Widgets/assets/js');
+        
         foreach ($widgets_css as $css_file) {
             if (pathinfo($css_file, PATHINFO_EXTENSION) === 'css') {
                 wp_enqueue_style(
@@ -79,11 +83,13 @@ class WidgetModule
 
     public function enqueue_widget_style()
     {
-
-        $element_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css');
-        $element_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js');
-        $lib_js = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/js/lib');
-        $lib_css = scandir(RTM_KIT_DIR . 'Inc/Elements/assets/css/lib');
+        // OPTIMIZATION: Use cached file listings instead of multiple scandir() calls
+        $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
+        
+        $element_css = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Elements/assets/css');
+        $element_js = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Elements/assets/js');
+        $lib_js = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Elements/assets/js/lib');
+        $lib_css = $cache_manager->get_asset_manifest_cached(RTM_KIT_DIR . 'Inc/Elements/assets/css/lib');
 
         $this->register_widget_scripts();
 
