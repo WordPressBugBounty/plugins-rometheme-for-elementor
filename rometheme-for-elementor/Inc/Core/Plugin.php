@@ -212,6 +212,12 @@ class Plugin
             'update' => \RTMKit\Modules\Update\UpdateModule::class,
             'editor_canvas' => \RTMKit\Modules\Helper\EditorCanvas::class
         ];
+
+        // Register WP-CLI cache commands if available
+        if (defined('WP_CLI') && WP_CLI) {
+            \WP_CLI::add_command('rtmkit cache', 'RTMKit\Commands\CacheCommand');
+        }
+
         add_action('rtmkit_loaded', [$this, 'load']);
         add_action('admin_enqueue_scripts', function () {
             wp_enqueue_style('rtmkit-system-panel', RTM_KIT_URL . 'assets/css/panel_system.css', [], RTM_KIT_VERSION);

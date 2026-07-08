@@ -3,6 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
 $isProActive = class_exists(\RTMKitPro\Modules\Licenses\LicenseStorage::class)
     && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();
+
+$isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
 ?>
 
 <div class="card rounded-4  flex-column gap-3">
@@ -26,6 +28,11 @@ $isProActive = class_exists(\RTMKitPro\Modules\Licenses\LicenseStorage::class)
                     if (!$isProActive) {
                         continue;
                     }
+
+                    if($isRTMEssential !== null) {
+                        continue;
+                    }
+
                     $plugin_name = 'RTMKit Pro';
                     $plugin_current_version = RTMPRO_PLUGIN_VERSION;
                 } else {
@@ -37,7 +44,6 @@ $isProActive = class_exists(\RTMKitPro\Modules\Licenses\LicenseStorage::class)
                     $plugin_current_version = $plugin_data['Version'] ?? null;
                     unset($versions['trunk']);
                 }
-                // var_dump($plugin_info->version);
                 $updateAvailable = version_compare($plugin_current_version, $plugin_info->version, '<');
                 $length = count($versions);
             ?>

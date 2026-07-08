@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) exit;
 class CacheManager
 {
     private static $instance = null;
+    private static $debug_mode = false;
     
     // Cache keys
     const CACHE_MODULES = 'rtm_cache_modules';
@@ -36,6 +37,38 @@ class CacheManager
     }
 
     /**
+     * Enable debug mode for cache logging
+     */
+    public static function enable_debug()
+    {
+        self::$debug_mode = true;
+    }
+
+    /**
+     * Disable debug mode
+     */
+    public static function disable_debug()
+    {
+        self::$debug_mode = false;
+    }
+
+    /**
+     * Log cache activity
+     */
+    private function log_cache_activity($action, $key, $details = '')
+    {
+        if (!self::$debug_mode) {
+            return;
+        }
+
+        $message = "[RTMKit Cache] $action - Key: $key";
+        if ($details) {
+            $message .= " - $details";
+        }
+        error_log($message);
+    }
+
+    /**
      * Get cached value or execute callback
      */
     public function get($key, $callback, $ttl = 0)
@@ -44,15 +77,22 @@ class CacheManager
         $cached = get_transient($key);
         
         if ($cached !== false) {
+            $this->log_cache_activity('CACHE HIT', $key, 'TTL: ' . $ttl);
             return $cached;
         }
+
+        $this->log_cache_activity('CACHE MISS', $key, 'Executing callback');
 
         // Execute callback if not cached
         $value = call_user_func($callback);
 
-        // Store in cache if callback returned something
-        if ($value !== null && $value !== false) {
-            set_transient($key, $value, $ttl);
+        // Store in cache - allow empty arrays and other falsy values except null
+        if ($value !== null) {
+            $result = set_transient($key, $value, $ttl);
+            $status = $result ? 'SET SUCCESS' : 'SET FAILED';
+            $this->log_cache_activity($status, $key, 'TTL: ' . $ttl . ' seconds');
+        } else {
+            $this->log_cache_activity('SKIP CACHE', $key, 'Value is null');
         }
 
         return $value;
@@ -63,10 +103,13 @@ class CacheManager
      */
     public function set($key, $value, $ttl = 0)
     {
-        if ($value !== null && $value !== false) {
-            set_transient($key, $value, $ttl);
-            return true;
+        if ($value !== null) {
+            $result = set_transient($key, $value, $ttl);
+            $status = $result ? 'SET SUCCESS' : 'SET FAILED';
+            $this->log_cache_activity($status, $key, 'TTL: ' . $ttl . ' seconds');
+            return $result;
         }
+        $this->log_cache_activity('SKIP CACHE', $key, 'Value is null');
         return false;
     }
 
@@ -228,5 +271,130 @@ class CacheManager
             },
             self::TTL_ASSETS
         );
+    }
+
+    /**
+     * Get diagnostic info about cache storage
+     */
+    public function get_cache_diagnostics()
+    {
+        global $wpdb;
+
+        $diagnostics = [
+            'transient_storage' => $this->check_transient_storage(),
+            'rtm_transients_count' => $this->count_rtm_transients(),
+            'all_rtm_cache_keys' => $this->get_all_rtm_cache_keys(),
+            'sample_transient_test' => $this->test_set_transient(),
+            'debug_mode' => self::$debug_mode ? 'ENABLED' : 'DISABLED'
+        ];
+
+        return $diagnostics;
+    }
+
+    /**
+     * Check if transient storage is working
+     */
+    private function check_transient_storage()
+    {
+        $test_key = 'rtm_test_transient_' . time();
+        $test_value = ['test' => 'value', 'timestamp' => current_time('mysql')];
+
+        // Try to set
+        $set_result = set_transient($test_key, $test_value, 5 * MINUTE_IN_SECONDS);
+        
+        // Try to get
+        $get_result = get_transient($test_key);
+
+        // Clean up
+        delete_transient($test_key);
+
+        return [
+            'set_result' => $set_result,
+            'get_result' => $get_result === false ? 'FAILED' : 'SUCCESS',
+            'value_matches' => $get_result === $test_value ? 'YES' : 'NO'
+        ];
+    }
+
+    /**
+     * Count RTM transients in database
+     */
+    private function count_rtm_transients()
+    {
+        global $wpdb;
+
+        $count = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s",
+                '%rtm_cache%'
+            )
+        );
+
+        return intval($count);
+    }
+
+    /**
+     * Get all RTM cache keys from database
+     */
+    private function get_all_rtm_cache_keys()
+    {
+        global $wpdb;
+
+        $results = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s ORDER BY option_id DESC LIMIT 20",
+                '%rtm_cache%'
+            )
+        );
+
+        return $results ?: [];
+    }
+
+    /**
+     * Test setting and getting a transient
+     */
+    private function test_set_transient()
+    {
+        $test_key = 'rtm_test_' . uniqid();
+        $test_data = [
+            'test' => true,
+            'timestamp' => current_time('mysql'),
+            'value' => 'Test Value ' . rand(1000, 9999)
+        ];
+
+        // Set
+        $set_result = set_transient($test_key, $test_data, 10 * MINUTE_IN_SECONDS);
+        $this->log_cache_activity('TEST SET', $test_key, 'Result: ' . ($set_result ? 'SUCCESS' : 'FAILED'));
+
+        // Get immediately
+        $get_result = get_transient($test_key);
+        $this->log_cache_activity('TEST GET', $test_key, 'Result: ' . ($get_result !== false ? 'SUCCESS' : 'FAILED'));
+
+        // Verify
+        $verified = $get_result === $test_data ? 'YES' : 'NO';
+
+        // Clean up
+        delete_transient($test_key);
+
+        return [
+            'set' => $set_result ? 'SUCCESS' : 'FAILED',
+            'get' => $get_result !== false ? 'SUCCESS' : 'FAILED',
+            'verified' => $verified,
+            'test_key' => $test_key
+        ];
+    }
+
+    /**
+     * Get cache status for specific key
+     */
+    public function get_cache_status($key)
+    {
+        $value = get_transient($key);
+        
+        return [
+            'key' => $key,
+            'exists' => $value !== false ? 'YES' : 'NO',
+            'value' => $value !== false ? 'Cached' : 'Not in cache',
+            'type' => $value !== false ? gettype($value) : 'N/A'
+        ];
     }
 }

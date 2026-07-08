@@ -31,6 +31,8 @@ class PluginApi
             add_action('wp_ajax_get_sidebar_content', [$this, 'get_sidebar_content']);
             add_action('wp_ajax_get_content', [$this, 'get_content']);
             add_action('wp_ajax_set_global_site', [$this, 'set_global_site']);
+            add_action('wp_ajax_rtmkit_cache_diagnostic', [$this, 'cache_diagnostic']);
+            add_action('wp_ajax_rtmkit_cache_clear', [$this, 'cache_clear']);
         }
     }
 
@@ -115,5 +117,60 @@ class PluginApi
         } else {
             wp_send_json_error('No changes were made.');
         }
+    }
+
+    /**
+     * AJAX endpoint for cache diagnostics
+     */
+    public function cache_diagnostic()
+    {
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Access Denied.']);
+            wp_die();
+        }
+
+        try {
+            $debugger = \RTMKit\Modules\Helper\CacheDebugger::instance();
+            $report = $debugger->generate_report();
+
+            wp_send_json_success([
+                'status' => 'success',
+                'report' => $report
+            ]);
+        } catch (\Exception $e) {
+            wp_send_json_error([
+                'message' => 'Error generating diagnostic report',
+                'error' => $e->getMessage()
+            ]);
+        }
+        wp_die();
+    }
+
+    /**
+     * AJAX endpoint to clear cache
+     */
+    public function cache_clear()
+    {
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Access Denied.']);
+            wp_die();
+        }
+
+        try {
+            $debugger = \RTMKit\Modules\Helper\CacheDebugger::instance();
+            $result = $debugger->clear_all_cache();
+
+            wp_send_json_success($result);
+        } catch (\Exception $e) {
+            wp_send_json_error([
+                'message' => 'Error clearing cache',
+                'error' => $e->getMessage()
+            ]);
+        }
+        wp_die();
     }
 }
