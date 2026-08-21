@@ -74,13 +74,13 @@ class Menu
                     'function' => [$this, 'rtmkit_root_page'],
                     'render_view' => RTM_KIT_DIR . 'views/themebuilder.php',
                 ],
-                'templates' => [
-                    'title' => __('Template Kits', 'rometheme-for-elementor'),
-                    'capability' => 'manage_options',
-                    'menu_slug' => 'rtmkit&path=templates',
-                    'function' => [$this, 'rtmkit_root_page'],
-                    'render_view' => RTM_KIT_DIR . 'views/templates.php',
-                ],
+                // 'templates' => [
+                //     'title' => __('Template Kits', 'rometheme-for-elementor'),
+                //     'capability' => 'manage_options',
+                //     'menu_slug' => 'rtmkit&path=templates',
+                //     'function' => [$this, 'rtmkit_root_page'],
+                //     'render_view' => RTM_KIT_DIR . 'views/templates.php',
+                // ],
             ],
 
             'settings' => [
@@ -161,7 +161,7 @@ class Menu
                 }
             }
         }
-        if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+        if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
             add_submenu_page(
                 'rtmkit',
                 'Upgrade to Pro',
@@ -195,10 +195,13 @@ class Menu
         $screen = get_current_screen();
         if (str_contains($screen->id, 'rtmkit')) {
             wp_enqueue_style('rtmkit-style', RTM_KIT_URL . 'assets/css/rtmkit.min.css', [], RTM_KIT_VERSION);
+            wp_enqueue_style('rtmkit-style-v3', RTM_KIT_URL . 'assets/css/rtmkit.v3.css', [], RTM_KIT_VERSION);
             wp_enqueue_style('select2.min.css', RTM_KIT_URL . 'assets/css/select2.min.css', [], RTM_KIT_VERSION);
             wp_enqueue_script('select2.min.js', RTM_KIT_URL . 'assets/js/select2.min.js', ['jquery'], RTM_KIT_VERSION, false);
             wp_enqueue_script('bootstrap-js', RTM_KIT_URL . 'assets/js/bootstrap/bootstrap.min.js', [], RTM_KIT_VERSION, false);
             wp_enqueue_script('scripts-js', RTM_KIT_URL . 'assets/js/scripts.js', ['jquery'], RTM_KIT_VERSION, true);
+            wp_enqueue_script('account-js', RTM_KIT_URL . 'assets/js/account.js', ['jquery'], RTM_KIT_VERSION, true);
+            wp_enqueue_script('addons-js', RTM_KIT_URL . 'assets/js/addons.js', ['jquery'], RTM_KIT_VERSION, true);
             wp_enqueue_script('scrollspy-js', RTM_KIT_URL . 'assets/js/Scrollspy.js', [], RTM_KIT_VERSION, true);
             wp_enqueue_script('rtmkit-admin-js', RTM_KIT_URL . 'build/index.js', ['wp-element'], RTM_KIT_VERSION);
             wp_localize_script('rtmkit-admin-js', 'rtmkit_ajax', [
@@ -295,7 +298,7 @@ class Menu
             ]
         ]);
 
-        if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+        if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
             $wp_admin_bar->add_node([
                 'id' => 'rtmkit_upgrade',
                 'parent' => 'rtmkit_menu_bar',

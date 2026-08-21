@@ -74,7 +74,7 @@ const initTabSlider = () => {
     tabSlider(el, (e) => {
       let activeType = e.dataset.type;
       const freeWidgets = document.querySelectorAll(
-        '[data-widget-type="free"]'
+        '[data-widget-type="free"]',
       );
       const proWidgets = document.querySelectorAll('[data-widget-type="pro"]');
       const allWidgets = document.querySelectorAll("[data-widget-type]");
@@ -204,7 +204,7 @@ const App = () => {
       });
 
     const links = document.querySelectorAll(
-      ".toplevel_page_rtmkit > ul.wp-submenu a , .rtmkit-app__sidebar .menu-link"
+      ".toplevel_page_rtmkit > ul.wp-submenu a , .rtmkit-app__sidebar .menu-link",
     );
     links.forEach((link) => {
       const url = new URL(link.href, window.location.origin);
@@ -229,10 +229,10 @@ const App = () => {
   // Highlight the active menu item
   useEffect(() => {
     const all = document.querySelectorAll(
-      ".toplevel_page_rtmkit > ul.wp-submenu .current"
+      ".toplevel_page_rtmkit > ul.wp-submenu .current",
     );
     const all1 = document.querySelectorAll(
-      ".rtmkit-app__sidebar .menu-link.current"
+      ".rtmkit-app__sidebar .menu-link.current",
     );
 
     all.forEach((el) => el.classList.remove("current"));
@@ -326,7 +326,7 @@ const App = () => {
         Searching("search-widget", ".widgets");
         switcher(
           document.querySelector("input#enable-all"),
-          document.querySelectorAll(".switch-status")
+          document.querySelectorAll(".switch-status"),
         );
         saveWidgetsOption();
         resetAllWidgets();
@@ -335,7 +335,7 @@ const App = () => {
         initTabSliderModule();
         switcher(
           document.querySelector("input#enable-all"),
-          document.querySelectorAll(".switch-status")
+          document.querySelectorAll(".switch-status"),
         );
         Searching("search-modules", ".modules");
         saveModules();

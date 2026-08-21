@@ -57,7 +57,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         <ul class="menu-list">
                             <?php foreach ($items as $key => $item): ?>
                                 <li class="menu-item">
-                                    <a target="<?php echo esc_attr($item['target']) ?>" href="<?php echo (isset($item['target'])) ? esc_url($item['menu_slug']) : esc_url('admin.php?page=' . $item['menu_slug']); ?>" class="menu-link <?php echo $path === str_replace('_', '-', $key) ? 'current' : ''; ?>">
+                                    <a <?php echo isset($item['target']) ? 'target="' . esc_attr($item['target']) . '"' : ''; ?> href="<?php echo (isset($item['target'])) ? esc_url($item['menu_slug']) : esc_url('admin.php?page=' . $item['menu_slug']); ?>" class="menu-link <?php echo $path === str_replace('_', '-', $key) ? 'current' : ''; ?>">
                                         <?php echo esc_html($item['title']); ?>
                                     </a>
                                 </li>

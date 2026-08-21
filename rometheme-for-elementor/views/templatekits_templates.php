@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                                 </button>
                             <?php else : ?>
                                 <?php if ($data['type'] === 'pro') : ?>
-                                    <?php if (class_exists('\\RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                                    <?php if (\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                                         <button class="btn btn-secondary rounded-2 btn-install-template" data-template="<?php echo esc_attr($data['id']) ?>">
                                             <i class="fas fa-plus"></i>
                                             Install

@@ -1,8 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 $plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
-$isProActive = class_exists(\RTMKitPro\Modules\Licenses\LicenseStorage::class)
-    && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();
+$isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 
 $isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
 ?>
@@ -23,7 +22,7 @@ $isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
                 $file = $data['file'];
                 $plugin_info = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info($plugin);
                 $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $file);
-                $versions = $plugin_info->versions;
+                $versions = isset($plugin_info->versions) ? $plugin_info->versions : [];
                 if ($plugin === 'rtmkitpro') {
                     if (!$isProActive) {
                         continue;

@@ -19,15 +19,16 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
                         } else {
                             echo 'Free';
                         }
                         ?>
                     </span>
                 </div>
-                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>

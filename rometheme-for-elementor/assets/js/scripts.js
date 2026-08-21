@@ -158,9 +158,8 @@ function saveWidgetsOption() {
               const activeWidgets = document.querySelectorAll(
                 `[data-widget-type] input.switch-status:checked`,
               );
-              document.querySelector(
-                "#active-widgets",
-              ).textContent = `${activeWidgets.length} Active Widgets`;
+              document.querySelector("#active-widgets").textContent =
+                `${activeWidgets.length} Active Widgets`;
             } else {
               window.reactToast.error(response.data.message, {
                 position: "bottom-right",
@@ -2157,14 +2156,17 @@ function installRequiredPlugin() {
 
       function installPlugin(index) {
         if (index >= total) {
-          window.reactToast.success("All Required plugins installed successfully.", {
-            position: "bottom-right",
-            autoClose: 5000,
-            className: "rtmkit-toast",
-            theme: "dark",
-          });
+          window.reactToast.success(
+            "All Required plugins installed successfully.",
+            {
+              position: "bottom-right",
+              autoClose: 5000,
+              className: "rtmkit-toast",
+              theme: "dark",
+            },
+          );
 
-          btn.closest('.alert').remove();
+          btn.closest(".alert").remove();
           return;
         }
 
@@ -2285,7 +2287,7 @@ function installRTMForm() {
       thisBtn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
         <span role="status">${action}...</span>`;
       thisBtn.disabled = true;
-// console.log("Installing RTMForm...");
+      // console.log("Installing RTMForm...");
     };
   }
 }

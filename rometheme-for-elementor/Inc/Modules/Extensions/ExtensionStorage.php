@@ -2,11 +2,12 @@
 
 namespace RTMKit\Modules\Extensions;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) exit;
 
 class ExtensionStorage
 {
     private static $instance = null;
+    public $extensions;
 
     public static function instance()
     {
@@ -32,6 +33,38 @@ class ExtensionStorage
         return $cache_manager->get_extensions_cached();
     }
 
+    private function default_extension()
+    {
+        $ext = [
+            'duplicator' => [
+                'name' => 'duplicator',
+                'title' => 'Duplicator'
+            ],
+            'glasseffect' => [
+                'name' => 'glasseffect',
+                'title' => 'Glass Effect'
+            ],
+            'tooltip' => [
+                'name' => 'tooltip',
+                'title' => 'Tooltip'
+            ],
+            'wrapperlink' => [
+                'name' => 'wrapperlink',
+                'title' => 'Wrapper Link'
+            ]
+        ];
+        return $ext;
+    }
+
+    public function get_available_extensions()
+    {
+        if (!isset($this->extensions)) {
+            $this->extensions = apply_filters('rtmkit_extensions', $this->default_extension());
+        }
+        return $this->extensions;
+    }
+
+
     public function register_extension()
     {
         $exts = \RTMKit\Modules\Storage::instance()->get_active_modules(['category' => 'extension']);
@@ -49,10 +82,10 @@ class ExtensionStorage
 
     public function update_option_pro()
     {
-       $currentOptions = get_option('rtm_extensions');
-       if($currentOptions == false) {
-        update_option('rtm_extensions' , $this->get_extension());
-       }
+        $currentOptions = get_option('rtm_extensions');
+        if ($currentOptions == false) {
+            update_option('rtm_extensions', $this->get_extension());
+        }
     }
 
     public function get_extension_options()
@@ -61,7 +94,8 @@ class ExtensionStorage
         return $options;
     }
 
-    public static function get_logo(){
+    public static function get_logo()
+    {
         $logo = '
 		<svg
           xmlns="http://www.w3.org/2000/svg"

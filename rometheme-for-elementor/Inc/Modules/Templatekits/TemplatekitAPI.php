@@ -643,7 +643,7 @@ class TemplatekitAPI
                                 ]);
                                 break;
                             case 'single-404':
-                                if (class_exists('RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                                if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
                                     wp_update_post([
                                         'ID' => $imported_template_id,
                                         'post_type' => 'rometheme_template',
@@ -657,7 +657,7 @@ class TemplatekitAPI
                             case 'single-product':
                                 break;
                             case 'archive-blog':
-                                if (class_exists('RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                                if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
                                     wp_update_post([
                                         'ID' => $imported_template_id,
                                         'post_type' => 'rometheme_template',
@@ -669,7 +669,7 @@ class TemplatekitAPI
                                 }
                                 break;
                             case 'archive-search':
-                                if (class_exists('RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                                if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
                                     wp_update_post([
                                         'ID' => $imported_template_id,
                                         'post_type' => 'rometheme_template',

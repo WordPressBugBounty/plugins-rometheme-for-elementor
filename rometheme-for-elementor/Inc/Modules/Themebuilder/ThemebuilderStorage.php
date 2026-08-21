@@ -6,6 +6,8 @@ class ThemebuilderStorage
 {
     private static ?ThemebuilderStorage $instance = null;
 
+    private $themebuilder;
+
     public static function instance(): ThemebuilderStorage
     {
         if (self::$instance === null) {
@@ -17,8 +19,29 @@ class ThemebuilderStorage
     public function init()
     {
         if (wp_doing_ajax()) {
-            
         }
+    }
+
+    public function get_themebuilder()
+    {
+        if (!isset($this->themebuilder)) {
+            $this->themebuilder = apply_filters('rtmkit_themebuilder', $this->default_themebuilder());
+        }
+        return $this->themebuilder;
+    }
+
+    public function default_themebuilder()
+    {
+        return [
+            'header' => [
+                'name' => 'header',
+                'title' => 'Header'
+            ],
+            'footer' => [
+                'name' => 'footer',
+                'title' => 'Footer'
+            ]
+        ];
     }
 
     public function get_active_themebuilder()
@@ -38,15 +61,13 @@ class ThemebuilderStorage
 
             if ($arg['themebuilder'] == 'form') {
                 $args['post_type'] = 'romethemeform_form';
-            } 
-            else if($arg['themebuilder'] == 'archive_post'){
+            } else if ($arg['themebuilder'] == 'archive_post') {
                 $args['meta_query']['meta_value'] = [
                     'key' => 'rometheme_template_type',
                     'value' => ['archive_post', 'archive'],
                     'compare' => 'IN'
                 ];
-            }
-            else {
+            } else {
                 $args['meta_query']['meta_value'] = [
                     'key' => 'rometheme_template_type',
                     'value' => $arg['themebuilder'],
@@ -112,7 +133,8 @@ class ThemebuilderStorage
         return $url;
     }
 
-    public function get_themebuilder_template($themebuilder) {
+    public function get_themebuilder_template($themebuilder)
+    {
         $args = [
             'post_type' => 'rometheme_template',
             'post_status' => 'publish',
@@ -132,12 +154,13 @@ class ThemebuilderStorage
         return $template;
     }
 
-    public function get_themebuilder_content($post_id) {
+    public function get_themebuilder_content($post_id)
+    {
         if (empty($post_id)) {
             return '';
         }
         $is_edit = \Elementor\Plugin::$instance->editor->is_edit_mode();
-        $content = \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($post_id , $is_edit);
+        $content = \Elementor\Plugin::instance()->frontend->get_builder_content_for_display($post_id, $is_edit);
         return $content;
     }
 }

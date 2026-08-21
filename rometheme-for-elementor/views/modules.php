@@ -1,17 +1,19 @@
 <?php
 
- if ( ! defined( 'ABSPATH' ) ) exit;
- 
+if (! defined('ABSPATH')) exit;
+
 $extensionStorage = \RTMKit\Modules\Extensions\ExtensionStorage::instance();
 $moduleManager = \RTMKit\Modules\Manager::instance();
 $moduleWithExtension = \RTMKit\Modules\Storage::instance()->get_all_modules();
-$category = ["themebuilder", "extension", "gsap" , "other"];
+$category = ["themebuilder", "extension", "gsap", "other"];
 $options = \RTMKit\Modules\Storage::instance()->get_module_option();
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 $totalmodules = count($moduleWithExtension);
 $activemodules = count(array_filter($options, function ($module) {
     return $module['status'] === true;
-}))
+}));
+$available_extensions = \RTMKit\Modules\Extensions\ExtensionStorage::instance()->get_available_extensions();
+$themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder();
 ?>
 
 <div class="px-4 mb-5 scroll-behavior-smooth scrollspy" tabindex="0">
@@ -42,15 +44,16 @@ $activemodules = count(array_filter($options, function ($module) {
                     <span class="license-status">
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                            echo \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
                         } else {
                             echo 'Free';
                         }
                         ?>
                     </span>
                 </div>
-                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
@@ -117,12 +120,16 @@ $activemodules = count(array_filter($options, function ($module) {
 
                             $is_disabled = false;
 
-                            if ($module['type'] === 'pro') {
-                                if (! $isProActive) {
-                                    $is_disabled = true;
-                                } elseif (! $required_another) {
-                                    $is_disabled = true;
-                                }
+                            // if ($module['type'] === 'pro') {
+                            //     if (! $isProActive) {
+                            //         $is_disabled = true;
+                            //     } elseif (! $required_another) {
+                            //         $is_disabled = true;
+                            //     }
+                            // }
+
+                            if (($c == 'extension' && !in_array($key, array_column($available_extensions, 'name'))) || ($c == "themebuilder" && !in_array($key, array_column($themebuilder, 'name')))) {
+                                $is_disabled = true;
                             }
 
                             if ($module['type'] == 'pro') {

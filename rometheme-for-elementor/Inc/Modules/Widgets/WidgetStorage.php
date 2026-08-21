@@ -89,7 +89,8 @@ class WidgetStorage
 
         $widget_lists = get_option('rkit-widget-options');
         $active_widgets = $this->get_active_widgets();
-        $widget_data = $this->get_widget_data('free');
+        // Gunakan data yang sudah difilter sehingga widget dari plugin lain ikut terdaftar
+        $widget_data = $this->get_widget_data();
 
         ksort($active_widgets);
 
@@ -111,6 +112,20 @@ class WidgetStorage
                 ? 'RTMKit\Widgets\\' . $widget_data[$key]['class_name']
                 : 'RTMKit\Elements\\' . $widget_data[$key]['class_name'];
 
+            /**
+             * Filter nama kelas widget sebelum diregistrasi ke Elementor.
+             *
+             * Memungkinkan plugin lain mengganti/menentukan namespace kelas
+             * untuk widget yang mereka tambahkan.
+             *
+             * @since 1.0.0
+             *
+             * @param string $className    Nama kelas widget (dengan namespace).
+             * @param string $key          Slug widget.
+             * @param array  $widget_data  Metadata widget.
+             */
+            $className = apply_filters('rtmkit_widget_class_name', $className, $key, $widget_data[$key]);
+
             if (isset($widget_data[$key]['plugin_required']) && $widget_data[$key]['plugin_required'] === 'woocommerce') {
                 if (class_exists('WooCommerce')) {
                     $widgets_manager->register(new $className());
@@ -123,55 +138,67 @@ class WidgetStorage
             }
         }
 
-        if (class_exists('RTMKitPro\Core\Plugin')) {
-            return;
-        }
+        /**
+         * Action setelah widget RTMKit diregistrasi ke Elementor.
+         *
+         * Memungkinkan plugin lain meregistrasi widget tambahannya sendiri
+         * setelah widget bawaan RTMKit terdaftar.
+         *
+         * @since 1.0.0
+         *
+         * @param \Elementor\Widgets_Manager $widgets_manager Widget manager Elementor.
+         */
+        do_action('rtmkit_after_register_widgets', $widgets_manager);
+
+        // if (class_exists('RTMKitPro\Core\Plugin')) {
+        //     return;
+        // }
 
         // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
     
-        $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
-        // error_log($json_path);
-        if (! file_exists($json_path)) {
-            return;
-        }
+        // $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
+        // // error_log($json_path);
+        // if (! file_exists($json_path)) {
+        //     return;
+        // }
 
-        $pro_widgets = json_decode(file_get_contents($json_path), true);
+        // $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        if (! empty($pro_widgets) && is_array($pro_widgets)) {
-            foreach ($pro_widgets as $key => $data) {
+        // if (! empty($pro_widgets) && is_array($pro_widgets)) {
+        //     foreach ($pro_widgets as $key => $data) {
 
                 
-                if (! is_array($data)) continue;
+        //         if (! is_array($data)) continue;
 
-                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
-                    'widget_key'  => $key,
-                    'widget_data' => $data,
-                    'is_pro_active' => false
-                ]));
-            }
-        }
+        //         $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
+        //             'widget_key'  => $key,
+        //             'widget_data' => $data,
+        //             'is_pro_active' => false
+        //         ]));
+        //     }
+        // }
 
-        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
-        $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
-        // error_log($json_path);
-        if (! file_exists($json_path)) {
-            return;
-        }
+        // // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
+        // $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
+        // // error_log($json_path);
+        // if (! file_exists($json_path)) {
+        //     return;
+        // }
 
-        $pro_widgets = json_decode(file_get_contents($json_path), true);
+        // $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        if (! empty($pro_widgets) && is_array($pro_widgets)) {
-            foreach ($pro_widgets as $key => $data) {
+        // if (! empty($pro_widgets) && is_array($pro_widgets)) {
+        //     foreach ($pro_widgets as $key => $data) {
 
-                if (! is_array($data)) continue;
+        //         if (! is_array($data)) continue;
 
-                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
-                    'widget_key'  => $key,
-                    'widget_data' => $data,
-                    'is_pro_active' => false
-                ]));
-            }
-        }
+        //         $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
+        //             'widget_key'  => $key,
+        //             'widget_data' => $data,
+        //             'is_pro_active' => false
+        //         ]));
+        //     }
+        // }
     }
 
     protected function update_widgets_options()
@@ -208,14 +235,51 @@ class WidgetStorage
         $widgetsPro = file_exists($widgetsProFileJson) ? json_decode(file_get_contents($widgetsProFileJson), true) : [];
 
         if ($type === 'free') {
-            return $widgetsFree;
+            /**
+             * Filter daftar widget free.
+             *
+             * Memungkinkan plugin lain menambahkan/memodifikasi widget free
+             * yang tersedia di Widget Switcher.
+             *
+             * @since 1.0.0
+             *
+             * @param array $widgetsFree Daftar widget free dari metadata/widgets.json.
+             */
+            return apply_filters('rtmkit_widget_data_free', $widgetsFree);
         } elseif ($type === 'pro') {
-            return $widgetsPro;
+            /**
+             * Filter daftar widget pro.
+             *
+             * @since 1.0.0
+             *
+             * @param array $widgetsPro Daftar widget pro dari metadata/rtmwp.json.
+             */
+            return apply_filters('rtmkit_widget_data_pro', $widgetsPro);
         } elseif ($type === 'form') {
-            return $formWidgets;
+            /**
+             * Filter daftar widget form.
+             *
+             * @since 1.0.0
+             *
+             * @param array $formWidgets Daftar widget form dari metadata/form_widgets.json.
+             */
+            return apply_filters('rtmkit_widget_data_form', $formWidgets);
         }
 
-        return array_merge($widgetsFree, $widgetsPro ?? [], $formWidgets ?? []);
+        $all_widgets = array_merge($widgetsFree, $widgetsPro ?? [], $formWidgets ?? []);
+
+        /**
+         * Filter daftar semua widget (free + pro + form).
+         *
+         * Memungkinkan plugin lain menambahkan widget baru ke Widget Switcher
+         * tanpa harus mengedit file metadata JSON.
+         *
+         * @since 1.0.0
+         *
+         * @param array $all_widgets Daftar lengkap widget.
+         * @param string|null $type  Tipe widget yang diminta (free/pro/form/null).
+         */
+        return apply_filters('rtmkit_widget_data', $all_widgets, $type);
     }
 
     public function get_widget_data_by_key($key)
@@ -352,19 +416,28 @@ class WidgetStorage
     public function get_widget_options()
     {
         $widgetsFree = get_option('rkit-widget-options', []);
-
-        if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage')) {
-            if (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                $widgetsPro = get_option('rkit-widget-pro-options', []);
-                $widgetsFree = array_merge($widgetsFree, $widgetsPro);
-            }
+       
+        if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            $widgetsPro = get_option('rkit-widget-pro-options', []);
+            $widgetsFree = array_merge($widgetsFree, $widgetsPro);
         }
-
+        
         if (class_exists('RomethemeForm')) {
             $formWidgets = get_option('rform-widget-options', []);
             $widgetsFree = array_merge($widgetsFree, $formWidgets);
         }
-        return $widgetsFree;
+
+        /**
+         * Filter daftar widget options (status aktif) yang dibaca dari database.
+         *
+         * Memungkinkan plugin lain menambahkan widget beserta statusnya ke
+         * Widget Switcher tanpa menyimpannya ke option database.
+         *
+         * @since 1.0.0
+         *
+         * @param array $widgetsFree Daftar widget beserta status aktifnya.
+         */
+        return apply_filters('rtmkit_widget_options', $widgetsFree);
     }
 
     private function get_plugin_name($plugin)

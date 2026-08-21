@@ -1,9 +1,13 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) exit;
 
-$active_themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_active_themebuilder();
+$themeBuilderStorage = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance();
+
+$active_themebuilder = $themeBuilderStorage->get_active_themebuilder();
 $active_themebuilder_key = ['all' => ['name' => 'All']];
+
+$rtm_themebuilder = $themeBuilderStorage->get_themebuilder();
 
 // Pecah khusus header & footer
 if (isset($active_themebuilder['header_footer'])) {
@@ -18,7 +22,7 @@ foreach ($active_themebuilder as $key => $item) {
 }
 
 // if (class_exists('RomeThemeForm')) {
-    $active_themebuilder_key['form'] = ['name' => 'Form '];
+$active_themebuilder_key['form'] = ['name' => 'Form '];
 // }
 
 $active_tabs = (isset($_POST['themebuilder'])) ? sanitize_text_field($_POST['themebuilder']) : 'all';
@@ -70,7 +74,7 @@ if (!$has_woocommerce) {
                 <div class="themebuilder tabs">
                     <nav class="tab-nav gap-2">
                         <?php foreach ($active_themebuilder_key as $key => $item):
-                            if ($active_themebuilder[$key]['type'] === 'pro' && ! $isLicenseActive) {
+                            if (!in_array($key, array_column($rtm_themebuilder, 'name'))) {
                                 continue;
                             }
                         ?>
@@ -126,16 +130,11 @@ if (!$has_woocommerce) {
                             <div class="mb-3">
                                 <label for="inputType" class="form-label">Type</label>
                                 <select name="type" class="form-select select-type" id="inputType">
-                                    <option value="header"><?php esc_html_e('Header', 'rometheme-for-elementor') ?></option>
-                                    <option value="footer"><?php esc_html_e('Footer', 'rometheme-for-elementor') ?></option>
-                                    <option value="error_404"><?php esc_html_e('404 Page', 'rometheme-for-elementor') ?></option>
-                                    <option value="single_post"><?php esc_html_e('Single Post', 'rometheme-for-elementor') ?></option>
-                                    <option value="archive_post"><?php esc_html_e('Archive Post', 'rometheme-for-elementor') ?></option>
-                                    <option value="search"><?php esc_html_e('Search Result', 'rometheme-for-elementor') ?></option>
-                                    <?php if ($has_woocommerce && $isLicenseActive): ?>
-                                        <option value="archive_product"><?php esc_html_e('Archive Product', 'rometheme-for-elementor') ?></option>
-                                        <option value="single_product"><?php esc_html_e('Single Product', 'rometheme-for-elementor') ?></option>
-                                    <?php endif; ?>
+                                    <?php foreach ($active_themebuilder_key as $key => $themebuilder) :  
+                                        if(in_array($key , ['all' , 'form' , 'rtm_shop'])) continue;
+                                        ?>
+                                        <option value="<?php echo esc_attr($key); ?>" <?php echo (!in_array($key, array_column($rtm_themebuilder, 'name'))) ? 'disabled' : '' ?>><?php esc_html_e($themebuilder['name'], 'rometheme-for-elementor') ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="d-flex flex-column gap-3 option">

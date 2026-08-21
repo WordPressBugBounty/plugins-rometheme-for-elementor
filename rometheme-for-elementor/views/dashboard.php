@@ -19,26 +19,33 @@ $whats_new = [
 
 $sysInfo = \RTMKit\Modules\SystemInfo::instance()->get_system_info();
 
+// Ensure array keys exist with defaults
+$sysInfo = wp_parse_args($sysInfo, [
+    'elementor' => false,
+    'php' => ['PHP_version' => '0', 'post_max_size' => '0'],
+    'wordpress' => ['memory_limit' => 0]
+]);
+
 $systems = [
     'elementor' => [
         'title' => 'Plugin Required',
         'desc' => 'Elementor',
-        'value' => $sysInfo['elementor']
+        'value' => $sysInfo['elementor'] ?? false
     ],
     'min_php' => [
         'title' => 'Minimum PHP',
-        'desc' => $sysInfo['php']['PHP_version'],
-        'value' => version_compare($sysInfo['php']['PHP_version'], '7.4.5') != -1
+        'desc' => $sysInfo['php']['PHP_version'] ?? '0',
+        'value' => version_compare($sysInfo['php']['PHP_version'] ?? '0', '7.4.5') >= 0
     ],
     'post_size' => [
         'title' => 'Max. Post Size',
-        'desc' => $sysInfo['php']['post_max_size'],
-        'value' => intval($php_info['post_max_size']) <= 40
+        'desc' => $sysInfo['php']['post_max_size'] ?? '0',
+        'value' => intval($sysInfo['php']['post_max_size'] ?? 0) >= 40
     ],
     'wp_memory_limit' => [
         'title' => 'WP Memory Limit',
-        'desc' => $sysInfo['wordpress']['memory_limit'],
-        'value' => $sysInfo['wordpress']['memory_limit'] >= 256
+        'desc' => $sysInfo['wordpress']['memory_limit'] ?? '0',
+        'value' => intval($sysInfo['wordpress']['memory_limit'] ?? 0) >= 256
     ]
 ];
 
@@ -59,13 +66,15 @@ $current_user = wp_get_current_user();
                 <?php
                 if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
                     echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                    echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
                 } else {
                     echo 'Free';
                 }
                 ?>
             </span>
         </div>
-        <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+        <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
             <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
         <?php endif; ?>
         <div class="divider"></div>

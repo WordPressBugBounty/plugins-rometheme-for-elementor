@@ -40,9 +40,20 @@ class Storage
         $modules = get_option('rtm_modules', []);
 
         if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
-            return array_merge($modules, get_option('rtm_modules_pro', []));
+            $modules = array_merge($modules, get_option('rtm_modules_pro', []));
         }
-        return $modules;
+
+        /**
+         * Filter daftar module options (status aktif) yang dibaca dari database.
+         *
+         * Memungkinkan plugin lain menambahkan modul beserta statusnya ke
+         * Module Switcher tanpa menyimpannya ke option database.
+         *
+         * @since 1.0.0
+         *
+         * @param array $modules Daftar modul beserta status aktifnya.
+         */
+        return apply_filters('rtmkit_module_options', $modules);
     }
 
     public function get_active_modules(array $args = [])
@@ -205,7 +216,19 @@ class Storage
     {
         // Use cached version instead of direct file read
         $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
-        return $cache_manager->get_modules_cached();
+        $modules = $cache_manager->get_modules_cached();
+
+        /**
+         * Filter daftar modul free.
+         *
+         * Memungkinkan plugin lain menambahkan/memodifikasi modul free
+         * yang tersedia di Module Switcher.
+         *
+         * @since 1.0.0
+         *
+         * @param array $modules Daftar modul free dari metadata/modules.json.
+         */
+        return apply_filters('rtmkit_modules_data', $modules);
     }
 
     public function get_modules_with_extension()
@@ -219,14 +242,30 @@ class Storage
             array_diff_key($extensions, $modules)
         );
 
-        return $modules;
+        /**
+         * Filter daftar modul free + ekstensi.
+         *
+         * @since 1.0.0
+         *
+         * @param array $modules Daftar modul free + ekstensi.
+         */
+        return apply_filters('rtmkit_modules_with_extension', $modules);
     }
 
     public function get_pro_modules()
     {
         // Use cached version
         $cache_manager = \RTMKit\Modules\Helper\CacheManager::instance();
-        return $cache_manager->get_pro_modules_cached();
+        $pro_modules = $cache_manager->get_pro_modules_cached();
+
+        /**
+         * Filter daftar modul pro.
+         *
+         * @since 1.0.0
+         *
+         * @param array $pro_modules Daftar modul pro dari metadata/pro_modules.json.
+         */
+        return apply_filters('rtmkit_modules_data_pro', $pro_modules);
     }
 
     public function get_all_modules()
@@ -234,7 +273,19 @@ class Storage
         $modules = $this->get_modules_with_extension();
         $pro_modules = $this->get_pro_modules();
 
-        return array_merge($modules, $pro_modules);
+        $all_modules = array_merge($modules, $pro_modules);
+
+        /**
+         * Filter daftar semua modul (free + pro).
+         *
+         * Memungkinkan plugin lain menambahkan modul baru ke Module Switcher
+         * tanpa harus mengedit file metadata JSON.
+         *
+         * @since 1.0.0
+         *
+         * @param array $all_modules Daftar lengkap modul.
+         */
+        return apply_filters('rtmkit_modules', $all_modules);
     }
 
     public function get_specific_posts()

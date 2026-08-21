@@ -7,7 +7,7 @@ use function ElementorDeps\str_contains;
 $upload_dir = wp_upload_dir();
 $rtmTemplateDir = $upload_dir['basedir'] . '/rometheme_template';
 $rtmTemplateUrl = $upload_dir['baseurl'] . '/rometheme_template';
-$isProActive = class_exists('\RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();
+$isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 ?>
 
 

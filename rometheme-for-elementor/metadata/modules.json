@@ -31,7 +31,7 @@
     "name": "Single Post",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\SinglePost"
+    "class": "RTMBlog\\Themebuilder\\SinglePost"
   },
   "error_404": {
     "type": "pro",
@@ -39,7 +39,7 @@
     "name": "404 Error Page",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\Kit404"
+    "class": "RTMBlog\\Themebuilder\\Kit404"
   },
   "archive_post": {
     "type": "pro",
@@ -47,7 +47,7 @@
     "name": "Archive Post",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\Archive"
+    "class": "RTMBlog\\Themebuilder\\Archive"
   },
   "search": {
     "type": "pro",
@@ -55,17 +55,7 @@
     "name": "Search Results",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\SearchResult"
-  },
-  "rtm_shop": {
-    "type": "pro",
-    "icon": "rtmicon rtmicon-woo-product",
-    "name": "RTM Shop",
-    "status": true,
-    "category": "themebuilder",
-    "class": "RTMWoo\\Core\\Init",
-    "required" : "woocommerce/woocommerce.php",
-    "is_show": false
+    "class": "RTMBlog\\Themebuilder\\SearchResult"
   },
   "archive_product": {
     "type": "pro",
@@ -73,7 +63,7 @@
     "name": "Archive Product",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\ArchiveProduct",
+    "class": "RTMWoo\\Themebuilder\\ArchiveProduct",
     "required" : "woocommerce/woocommerce.php"
   },
   "single_product": {
@@ -82,7 +72,7 @@
     "name": "Single Product",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMKitPro\\Modules\\Themebuilder\\SingleProduct",
+    "class": "RTMWoo\\Themebuilder\\SingleProduct",
     "required" : "woocommerce/woocommerce.php"
   }
 }

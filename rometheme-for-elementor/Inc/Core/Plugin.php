@@ -206,11 +206,13 @@ class Plugin
             'widget_module' => \RTMKit\Modules\Widgets\WidgetModule::class,
             'extensions' => \RTMKit\Modules\Extensions\ExtensionModule::class,
             'themebuilder' => \RTMKit\Modules\Themebuilder\ThemebuilderModule::class,
-            'templatekits' => \RTMKit\Modules\Templatekits\TemplatekitModule::class,
+            // 'templatekits' => \RTMKit\Modules\Templatekits\TemplatekitModule::class,
             'icons' => \RTMKit\Modules\RTMIcons\RTMIconsModule::class,
             'submission' => \RTMKit\Modules\Submission\SubmissionModule::class,
             'update' => \RTMKit\Modules\Update\UpdateModule::class,
-            'editor_canvas' => \RTMKit\Modules\Helper\EditorCanvas::class
+            'editor_canvas' => \RTMKit\Modules\Helper\EditorCanvas::class,
+            'connector' => \RTMKit\Modules\Connector\ConnectorModule::class,
+            'addons' => \RTMKit\Modules\Addons\AddonsModule::class
         ];
 
         // Register WP-CLI cache commands if available
@@ -307,7 +309,42 @@ class Plugin
             return \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();
         }
 
+        if (get_option('rtm_connector_last_payload') !== false) {
+            return true;
+        }
+
         return false;
+    }
+
+    public function is_linked_account(): bool
+    {
+        if (get_option('rtm_connector_last_payload') !== false) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function get_linked_account_info(string|null $key = null): array|string|null
+    {
+        $payload = get_option('rtm_connector_last_payload', true);
+        if ($payload === false) {
+            return null;
+        }
+        if ($key === null) {
+            return $payload;
+        }
+        $value = $payload;
+        foreach (explode('.', $key) as $segment) {
+            if (is_array($value) && isset($value[$segment])) {
+                $value = $value[$segment];
+            } elseif (is_object($value) && isset($value->{$segment})) {
+                $value = $value->{$segment};
+            } else {
+                return null;
+            }
+        }
+        return $value;
     }
 
     public function rtm_handle_install_upgrade()
@@ -329,7 +366,7 @@ class Plugin
     public function pro_version_compatible_check()
     {
         $pro_plugin = 'romethemekit-pro/RomeTheme_pro.php';
-        $pro_path   = WP_PLUGIN_DIR . '/' . $pro_plugin;
+        $pro_path = WP_PLUGIN_DIR . '/' . $pro_plugin;
 
         if (file_exists($pro_path)) {
 

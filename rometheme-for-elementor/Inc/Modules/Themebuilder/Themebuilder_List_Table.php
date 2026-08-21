@@ -132,7 +132,7 @@ class Themebuilder_List_Table extends \WP_List_Table
                 $type = get_post_meta($id_post, 'rometheme_template_type', true);
                 $no++;
                 if (in_array($type, $pro_types, true)) {
-                    if (class_exists('\\RTMKitPro\\Core\\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                    if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
                         //do nothing
                     } else {
                         continue;
@@ -140,8 +140,7 @@ class Themebuilder_List_Table extends \WP_List_Table
                 }
                 if (in_array($type, $woo_types, true)) {
                     if (
-                        class_exists('\\RTMKitPro\\Core\\Plugin') &&
-                        \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive() &&
+                        \RTMKit\Core\Plugin::instance()->pro_is_active() &&
                         $has_woocommerce
                     ) {
                         //do nothing
