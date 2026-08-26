@@ -74,13 +74,13 @@ class Menu
                     'function' => [$this, 'rtmkit_root_page'],
                     'render_view' => RTM_KIT_DIR . 'views/themebuilder.php',
                 ],
-                // 'templates' => [
-                //     'title' => __('Template Kits', 'rometheme-for-elementor'),
-                //     'capability' => 'manage_options',
-                //     'menu_slug' => 'rtmkit&path=templates',
-                //     'function' => [$this, 'rtmkit_root_page'],
-                //     'render_view' => RTM_KIT_DIR . 'views/templates.php',
-                // ],
+                'templates' => [
+                    'title' => __('Template Kits', 'rometheme-for-elementor'),
+                    'capability' => 'manage_options',
+                    'menu_slug' => 'rtmkit&path=templates',
+                    'function' => [$this, 'rtmkit_root_page'],
+                    'render_view' => RTM_KIT_DIR . 'views/templates.php',
+                ],
             ],
 
             'settings' => [

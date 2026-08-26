@@ -1,0 +1,3345 @@
+# Copyright (C) 2026 Rometheme
+# This file is distributed under the same license as the RTMKit Addons for Elementor plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: RTMKit Addons for Elementor 2.1.2\n"
+"Report-Msgid-Bugs-To: https://rometheme.net/\n"
+"POT-Creation-Date: 2026-07-31 09:52+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: tools/translate-pot.js (Gemini)\n"
+"X-Domain: rometheme-for-elementor\n"
+"PO-Revision-Date: 2026-07-31 09:52+0000\n"
+
+msgid "Security check"
+msgstr ""
+
+msgid "No"
+msgstr "STT"
+
+msgid "Description"
+msgstr ""
+
+msgid "Type your description here"
+msgstr ""
+
+msgid "Title Icon"
+msgstr ""
+
+msgid "Show Index Number"
+msgstr ""
+
+msgid "Use Index with Zero-Pad"
+msgstr ""
+
+msgid "Show Title Icon"
+msgstr ""
+
+msgid "Show Sub Title"
+msgstr ""
+
+msgid "Icon Position"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Icon Active"
+msgstr ""
+
+msgid "Spacing"
+msgstr ""
+
+msgid "Alignment"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Border Radius"
+msgstr ""
+
+msgid "Sub Title"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Box Width"
+msgstr ""
+
+msgid "Box height"
+msgstr ""
+
+msgid "Margin"
+msgstr ""
+
+msgid "Justify"
+msgstr ""
+
+msgid "Default Open ?"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "https://your-link.com"
+msgstr ""
+
+msgid "Use Background Text"
+msgstr ""
+
+msgid "Wrapper"
+msgstr ""
+
+msgid "Box Shadow"
+msgstr ""
+
+msgid "Put 0 for no box shadow "
+msgstr ""
+
+msgid "Animation Gradient"
+msgstr ""
+
+msgid "Animation Speed"
+msgstr ""
+
+msgid "Container"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Container Color"
+msgstr ""
+
+msgid "Boxed Heading"
+msgstr ""
+
+msgid "Adjust Alignment"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Example {{Headline Text}} for this {{Faster}} Page"
+msgstr ""
+
+msgid "Horizontal Offset"
+msgstr ""
+
+msgid "Type your text here"
+msgstr ""
+
+msgid "Vertical Offset"
+msgstr ""
+
+msgid "Rotate (degrees)"
+msgstr ""
+
+msgid "Z-Index"
+msgstr ""
+
+msgid "Duration (ms)"
+msgstr ""
+
+msgid "Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page"
+msgstr ""
+
+msgid "Animated Text"
+msgstr ""
+
+msgid "Bring to Front"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Hide Button on Scroll"
+msgstr ""
+
+msgid "Button Width"
+msgstr ""
+
+msgid "Button Height"
+msgstr ""
+
+msgid "Button Size"
+msgstr ""
+
+msgid "Icon Size"
+msgstr ""
+
+msgid "Display Type"
+msgstr ""
+
+msgid "Button Text"
+msgstr ""
+
+msgid "Global Color Not Working"
+msgstr ""
+
+msgid "Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element."
+msgstr ""
+
+msgid "Border Width"
+msgstr ""
+
+msgid "Scale X"
+msgstr ""
+
+msgid "Show Scale X"
+msgstr ""
+
+msgid "Font Family"
+msgstr ""
+
+msgid "Scale Y"
+msgstr ""
+
+msgid "Show Scale Y"
+msgstr ""
+
+msgid "Grid X"
+msgstr ""
+
+msgid "Show Grid X"
+msgstr ""
+
+msgid "Grid Y"
+msgstr ""
+
+msgid "Show Grid Y"
+msgstr ""
+
+msgid "Show Legend"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Author Gap"
+msgstr ""
+
+msgid "Top Margin"
+msgstr ""
+
+msgid "Holder Padding"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices erat ut ante fermentum, sed molestie tellus luctus. Donec et dignissim nunc. Morbi aliquet risus eu odio efficitur vehicula. Duis ac scelerisque quam, at placerat diam."
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Icon Spacing"
+msgstr ""
+
+msgid "Show Featured Image"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Icon Color"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Image Aspect Ratio"
+msgstr ""
+
+msgid "1 : 1"
+msgstr ""
+
+msgid "3 : 2"
+msgstr ""
+
+msgid "2 : 3"
+msgstr ""
+
+msgid "5 : 4"
+msgstr ""
+
+msgid "Hover Color"
+msgstr ""
+
+msgid "4 : 5"
+msgstr ""
+
+msgid "16 : 9"
+msgstr ""
+
+msgid "9 : 16"
+msgstr ""
+
+msgid "Show Highlight"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Top Bottom Position"
+msgstr ""
+
+msgid "Left Right Position"
+msgstr ""
+
+msgid "Show Title"
+msgstr ""
+
+msgid "Transition"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Icon Size    "
+msgstr ""
+
+msgid "Icon Spacing    "
+msgstr ""
+
+msgid "Crop Title By Word"
+msgstr ""
+
+msgid "Show Content"
+msgstr ""
+
+msgid "Transition Duration"
+msgstr ""
+
+msgid "Crop Content By Word"
+msgstr ""
+
+msgid "Floating Date"
+msgstr ""
+
+msgid "Show Read More"
+msgstr ""
+
+msgid "Query"
+msgstr ""
+
+msgid "Floating Category"
+msgstr ""
+
+msgid "Post Count"
+msgstr ""
+
+msgid "Select Post By"
+msgstr ""
+
+msgid "Recent Post"
+msgstr ""
+
+msgid "Selected Post"
+msgstr ""
+
+msgid "Category Post"
+msgstr ""
+
+msgid "Search and Select"
+msgstr ""
+
+msgid "Select Categories"
+msgstr ""
+
+msgid "Offset"
+msgstr ""
+
+msgid "Order By"
+msgstr ""
+
+msgid "Date"
+msgstr "Ngày"
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Author"
+msgstr "Tác giả"
+
+msgid "Modified"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "ASC"
+msgstr ""
+
+msgid "DESC"
+msgstr ""
+
+msgid "Meta Data"
+msgstr ""
+
+msgid "Show Floating Date"
+msgstr ""
+
+msgid "Show Floating Category"
+msgstr ""
+
+msgid "Show Meta Data"
+msgstr ""
+
+msgid "Meta Position"
+msgstr ""
+
+msgid "Before Title"
+msgstr ""
+
+msgid "After Title"
+msgstr ""
+
+msgid "After Content"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Date Format"
+msgstr ""
+
+msgid "January 01 , 2023"
+msgstr ""
+
+msgid "01 January 2023"
+msgstr ""
+
+msgid "Jan 01, 2023"
+msgstr ""
+
+msgid "01 Jan 2023"
+msgstr ""
+
+msgid "January 1st, 2023"
+msgstr ""
+
+msgid "(Day/Month/Year) - 01/01/2023"
+msgstr ""
+
+msgid "(Month/Day/Year) - 01/01/2023"
+msgstr ""
+
+msgid "Read More Button"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Read More"
+msgstr ""
+
+msgid "Type your label button here"
+msgstr ""
+
+msgid "Button Animation"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Filled Slide Down"
+msgstr ""
+
+msgid "Filled Slide Up"
+msgstr ""
+
+msgid "Filled Slide Left"
+msgstr ""
+
+msgid "Filled Slide Right"
+msgstr ""
+
+msgid "Add Icon ?"
+msgstr ""
+
+msgid "After"
+msgstr ""
+
+msgid "Before"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Hover"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Hover Animation"
+msgstr ""
+
+msgid "Content Wrapper "
+msgstr ""
+
+msgid "Min Height"
+msgstr ""
+
+msgid "Featured Image"
+msgstr ""
+
+msgid "Min Width"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Max Width"
+msgstr ""
+
+msgid "Show Post Per Row"
+msgstr ""
+
+msgid "Item Spacing"
+msgstr ""
+
+msgid "Initial Slide ?"
+msgstr ""
+
+msgid "Type your title here"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "Sub Heading"
+msgstr ""
+
+msgid "Dot Wrapper Margin"
+msgstr ""
+
+msgid "Choose Image"
+msgstr ""
+
+msgid "Navigation Spacing"
+msgstr ""
+
+msgid "Repeater List"
+msgstr ""
+
+msgid "Title #1"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+msgstr ""
+
+msgid "Title #2"
+msgstr ""
+
+msgid "Title #3"
+msgstr ""
+
+msgid "Title #4"
+msgstr ""
+
+msgid "Show Button ?"
+msgstr ""
+
+msgid "Show Navigation"
+msgstr ""
+
+msgid "Show Animation"
+msgstr ""
+
+msgid "Next Icon"
+msgstr ""
+
+msgid "Previous Icon"
+msgstr ""
+
+msgid "Autoplay"
+msgstr ""
+
+msgid "Show Dots"
+msgstr ""
+
+msgid "Pause On Hover"
+msgstr ""
+
+msgid "Loop"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Border"
+msgstr ""
+
+msgid "Card Image"
+msgstr ""
+
+msgid "Opacity"
+msgstr ""
+
+msgid "Justified"
+msgstr ""
+
+msgid "Show Sub Heading"
+msgstr ""
+
+msgid "Icon Wrapper"
+msgstr ""
+
+msgid "Show title"
+msgstr ""
+
+msgid "Choose Client Image"
+msgstr ""
+
+msgid "Hover Mode"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Hover Title"
+msgstr ""
+
+msgid "Awesome Partner"
+msgstr ""
+
+msgid "Hover Description"
+msgstr ""
+
+msgid "The Best Partners in the World."
+msgstr ""
+
+msgid "Short Description Only"
+msgstr ""
+
+msgid "Choose Image Hover"
+msgstr ""
+
+msgid "Show Icon"
+msgstr ""
+
+msgid "Client Icon"
+msgstr ""
+
+msgid "Example Title 1"
+msgstr ""
+
+msgid "Example Title 2"
+msgstr ""
+
+msgid "Example Title 3"
+msgstr ""
+
+msgid "Example Title 4"
+msgstr ""
+
+msgid "Horizontal Spacing"
+msgstr ""
+
+msgid "Vertical Spacing"
+msgstr ""
+
+msgid "Use For Transparent background & PNG format"
+msgstr ""
+
+msgid "Border  "
+msgstr ""
+
+msgid "Object Fit Image"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Contain"
+msgstr ""
+
+msgid "Fill"
+msgstr ""
+
+msgid "Scale Down"
+msgstr ""
+
+msgid "Section Title"
+msgstr ""
+
+msgid "Use For Title section"
+msgstr ""
+
+msgid "Grid Number"
+msgstr ""
+
+msgid "Typography"
+msgstr ""
+
+msgid "Hover Text Style"
+msgstr ""
+
+msgid "Vertical Alignment"
+msgstr ""
+
+msgid "Vertical Position"
+msgstr ""
+
+msgid " Hover Style"
+msgstr ""
+
+msgid "Horizontal Position"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
+msgid "Hover function ready to use except at default mode"
+msgstr ""
+
+msgid "Countdown Timer"
+msgstr ""
+
+msgid "Enter your title"
+msgstr ""
+
+msgid "Hey! If you dont want the title, you can leave it blank."
+msgstr ""
+
+msgid "Date due"
+msgstr ""
+
+msgid "Time Control"
+msgstr ""
+
+msgid "Show Days"
+msgstr ""
+
+msgid "Show Hours"
+msgstr ""
+
+msgid "Show Minutes"
+msgstr ""
+
+msgid "Show Seconds"
+msgstr ""
+
+msgid "Show Label"
+msgstr ""
+
+msgid "Label Potition"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "Seconds"
+msgstr ""
+
+msgid "Expired Action"
+msgstr ""
+
+msgid "FINISH!"
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Title Style"
+msgstr ""
+
+msgid "Time Style"
+msgstr ""
+
+msgid "Text Stroke"
+msgstr ""
+
+msgid "Background Time"
+msgstr ""
+
+msgid "Background time Color"
+msgstr ""
+
+msgid "Container Time"
+msgstr ""
+
+msgid "Separator"
+msgstr ""
+
+msgid "Label Style"
+msgstr ""
+
+msgid "Expired Style"
+msgstr ""
+
+msgid "Show Separator"
+msgstr ""
+
+msgid "Use Icon"
+msgstr ""
+
+msgid "Blur Effect"
+msgstr ""
+
+msgid "Icons Wrapper"
+msgstr ""
+
+msgid "bottom"
+msgstr ""
+
+msgid "Graphic Element"
+msgstr ""
+
+msgid "MIddle"
+msgstr ""
+
+msgid "Distance"
+msgstr ""
+
+msgid "HTML Tag"
+msgstr ""
+
+msgid "This is the heading"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+msgstr ""
+
+msgid "Click Here"
+msgstr ""
+
+msgid "Fullwidth ?"
+msgstr ""
+
+msgid "no"
+msgstr ""
+
+msgid "Add Icon"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Button 1"
+msgstr ""
+
+msgid "Rometheme "
+msgstr ""
+
+msgid "Delay Time"
+msgstr ""
+
+msgid "Button 2"
+msgstr ""
+
+msgid "Studio "
+msgstr ""
+
+msgid "Middle Button"
+msgstr ""
+
+msgid "Middle Text Button"
+msgstr ""
+
+msgid "or "
+msgstr ""
+
+msgid "Effect"
+msgstr ""
+
+msgid "Ripple"
+msgstr ""
+
+msgid "Pulse"
+msgstr ""
+
+msgid " Alignment"
+msgstr ""
+
+msgid "Border Button"
+msgstr ""
+
+msgid "vertical"
+msgstr ""
+
+msgid "Your Title"
+msgstr ""
+
+msgid "Your Sub Title"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Inline"
+msgstr ""
+
+msgid "Description For Your Home Slider."
+msgstr ""
+
+msgid "Manual adjustments Navigation"
+msgstr ""
+
+msgid "Slide Title #1"
+msgstr ""
+
+msgid "Your slide Description #1"
+msgstr ""
+
+msgid "Slide Title #2"
+msgstr ""
+
+msgid "Your slide Description #2"
+msgstr ""
+
+msgid "Slide Title #3"
+msgstr ""
+
+msgid "Your slide Description #3"
+msgstr ""
+
+msgid "Slide Title #4"
+msgstr ""
+
+msgid "Your slide Description #4"
+msgstr ""
+
+msgid "Show Button"
+msgstr ""
+
+msgid "Buy Now"
+msgstr ""
+
+msgid "Show Button Icon"
+msgstr ""
+
+msgid "Button Icon"
+msgstr ""
+
+msgid "Before Text"
+msgstr ""
+
+msgid "After Text"
+msgstr ""
+
+msgid "Give the container padding to see the results"
+msgstr ""
+
+msgid "Horizontal Alignment"
+msgstr ""
+
+msgid "Slide Style"
+msgstr ""
+
+msgid "Slide"
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "icon Position"
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Word Staggered"
+msgstr ""
+
+msgid "Default Open"
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "The badge style will only take effect if the \"Show Badge\" option is enabled in the List content."
+msgstr ""
+
+msgid "Image Accordion Title"
+msgstr ""
+
+msgid "Image Accordion content here!"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Show Badge"
+msgstr ""
+
+msgid "Badge Title"
+msgstr ""
+
+msgid "Image 1"
+msgstr ""
+
+msgid "Image Accordion 1"
+msgstr ""
+
+msgid "Image 2"
+msgstr ""
+
+msgid "Image Accordion 2"
+msgstr ""
+
+msgid "Image 3"
+msgstr ""
+
+msgid "Image Accordion 3"
+msgstr ""
+
+msgid "Image 4"
+msgstr ""
+
+msgid "Image Accordion 4"
+msgstr ""
+
+msgid "Accordion"
+msgstr ""
+
+msgid "Alignment Vertical"
+msgstr ""
+
+msgid "Overlay Color"
+msgstr ""
+
+msgid "Text Style"
+msgstr ""
+
+msgid "Wait or click Image to see changes"
+msgstr ""
+
+msgid "Content Position"
+msgstr ""
+
+msgid "Button Control"
+msgstr ""
+
+msgid "Example Title"
+msgstr ""
+
+msgid "Type Title here"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+msgstr ""
+
+msgid "Hover Image"
+msgstr ""
+
+msgid "Button Position"
+msgstr ""
+
+msgid "Container Background"
+msgstr ""
+
+msgid "Image Filter"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Overlay"
+msgstr ""
+
+msgid "Style 1."
+msgstr ""
+
+msgid "Background Opacity"
+msgstr ""
+
+msgid "Style 2"
+msgstr ""
+
+msgid "Style 3."
+msgstr ""
+
+msgid "Style 4."
+msgstr ""
+
+msgid "Control Before Image"
+msgstr ""
+
+msgid "Show Caption"
+msgstr ""
+
+msgid "Caption"
+msgstr ""
+
+msgid "Type your Caption here"
+msgstr ""
+
+msgid "Caption position"
+msgstr ""
+
+msgid "Image Before"
+msgstr ""
+
+msgid "Control After Image"
+msgstr ""
+
+msgid "Image After"
+msgstr ""
+
+msgid "Caption Style"
+msgstr ""
+
+msgid "Caption Typography"
+msgstr ""
+
+msgid "Caption Color"
+msgstr ""
+
+msgid "Border Caption"
+msgstr ""
+
+msgid "Slider Style"
+msgstr ""
+
+msgid "Circle Color"
+msgstr ""
+
+msgid "Line Color"
+msgstr ""
+
+msgid "circle Background"
+msgstr ""
+
+msgid "Image Style"
+msgstr ""
+
+msgid "Border Type"
+msgstr ""
+
+msgid "Image Filter Before"
+msgstr ""
+
+msgid "Image Filter After"
+msgstr ""
+
+msgid "Slider Position"
+msgstr ""
+
+msgid "horizontal"
+msgstr ""
+
+msgid "Lazy Load"
+msgstr ""
+
+msgid "Add Images"
+msgstr ""
+
+msgid "Lightbox"
+msgstr ""
+
+msgid "Fill Background ?"
+msgstr ""
+
+msgid "Tension"
+msgstr ""
+
+msgid "Point Size"
+msgstr ""
+
+msgid "Tabs. Open items with Enter or Space, close with Escape and navigate using the Arrow keys."
+msgstr ""
+
+msgid "Tabs"
+msgstr ""
+
+msgid "Tab Title"
+msgstr ""
+
+msgid "Active Icon"
+msgstr ""
+
+msgid "CSS ID"
+msgstr ""
+
+msgid "Add your custom id WITHOUT the Pound key. e.g: my-id"
+msgstr ""
+
+msgid "Tabs Items"
+msgstr ""
+
+msgid "Tab #1"
+msgstr ""
+
+msgid "Tab #2"
+msgstr ""
+
+msgid "Tab #3"
+msgstr ""
+
+msgid "Add Tab"
+msgstr ""
+
+msgid "Above"
+msgstr ""
+
+msgid "Below"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Stretch"
+msgstr ""
+
+msgid "Align Title"
+msgstr ""
+
+msgid "RTM Test Nested Tabs"
+msgstr ""
+
+msgid "Additional Settings"
+msgstr ""
+
+msgid "Horizontal Scroll"
+msgstr ""
+
+msgid "Note: Scroll tabs if they don’t fit into their parent container."
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "%1$s (%2$s %3$dpx)"
+msgstr ""
+
+msgid "Breakpoint"
+msgstr ""
+
+msgid "Note: Choose at which breakpoint tabs will automatically switch to a vertical (“accordion”) layout."
+msgstr ""
+
+msgid "Gap between tabs"
+msgstr ""
+
+msgid "Distance from content"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Tab #%s"
+msgstr ""
+
+msgid "Titles"
+msgstr ""
+
+msgid "Tab #%d"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Show Description"
+msgstr ""
+
+msgid "Typhography"
+msgstr ""
+
+msgid "Image Position"
+msgstr ""
+
+msgid "Title Post"
+msgstr ""
+
+msgid "Content Post"
+msgstr ""
+
+msgid "left"
+msgstr ""
+
+msgid "right"
+msgstr ""
+
+msgid "Button Line Color"
+msgstr ""
+
+msgid "Type your Title here"
+msgstr ""
+
+msgid "Show Category"
+msgstr ""
+
+msgid "Show Divider"
+msgstr ""
+
+msgid "Title Position"
+msgstr ""
+
+msgid "Posts Per Page"
+msgstr ""
+
+msgid "Show Line Button"
+msgstr ""
+
+msgid "Title Container"
+msgstr ""
+
+msgid "Header Background"
+msgstr ""
+
+msgid "Subheading"
+msgstr ""
+
+msgid "Text  Color"
+msgstr ""
+
+msgid "Type your Sub Heading here"
+msgstr ""
+
+msgid "Currency Typography"
+msgstr ""
+
+msgid "Text Currency Color"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Select Currency"
+msgstr ""
+
+msgid "$ - USD"
+msgstr ""
+
+msgid "€ - EUR"
+msgstr ""
+
+msgid "¥ - JPY"
+msgstr ""
+
+msgid "¢ - CENT"
+msgstr ""
+
+msgid "₹ - INDIA"
+msgstr ""
+
+msgid "₽ - RUS"
+msgstr ""
+
+msgid "¥ - CNY"
+msgstr ""
+
+msgid "₠ - EUR"
+msgstr ""
+
+msgid "₣ - FRANC"
+msgstr ""
+
+msgid "₤ - LIRA"
+msgstr ""
+
+msgid "₥ - Mill"
+msgstr ""
+
+msgid "₱ - PESO"
+msgstr ""
+
+msgid "₩ - WON"
+msgstr ""
+
+msgid "฿ - BATH"
+msgstr ""
+
+msgid "﷼ - Saudi Arabian"
+msgstr ""
+
+msgid "Rp - IDR"
+msgstr ""
+
+msgid "Custom Currency"
+msgstr ""
+
+msgid "Feature Background"
+msgstr ""
+
+msgid "The result will affected if your text more than 1 row"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "icon Color"
+msgstr ""
+
+msgid "show"
+msgstr ""
+
+msgid "hide"
+msgstr ""
+
+msgid "Currency Position"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "List Gap"
+msgstr ""
+
+msgid "Period Potition"
+msgstr ""
+
+msgid "Button Container"
+msgstr ""
+
+msgid "Button Background"
+msgstr ""
+
+msgid "Period Potition Alignment"
+msgstr ""
+
+msgid "Button Border Radius"
+msgstr ""
+
+msgid " Ribbon Style"
+msgstr ""
+
+msgid "Offset X"
+msgstr ""
+
+msgid "Offset Y"
+msgstr ""
+
+msgid "Background Ribbon"
+msgstr ""
+
+msgid "Ribbon Background"
+msgstr ""
+
+msgid "Type your Price here"
+msgstr ""
+
+msgid "Badge Style"
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "Type your subtitle here"
+msgstr ""
+
+msgid "Footer Background"
+msgstr ""
+
+msgid "Sale Price"
+msgstr ""
+
+msgid "Show Sale Price"
+msgstr ""
+
+msgid "Sale Price Position"
+msgstr ""
+
+msgid "inline"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "Description Item"
+msgstr ""
+
+msgid "Type your description item here"
+msgstr ""
+
+msgid "Description Icon"
+msgstr ""
+
+msgid "Individual Icon Color"
+msgstr ""
+
+msgid "Description Source"
+msgstr ""
+
+msgid "Plain Text"
+msgstr ""
+
+msgid "Lists"
+msgstr ""
+
+msgid "Description Text"
+msgstr ""
+
+msgid "Description List"
+msgstr ""
+
+msgid "Description Item #1."
+msgstr ""
+
+msgid "Description Item #2 "
+msgstr ""
+
+msgid "Description Item #3 "
+msgstr ""
+
+msgid "Description Item #4 "
+msgstr ""
+
+msgid "Show Button As"
+msgstr ""
+
+msgid "Purchase Now"
+msgstr ""
+
+msgid "Show Underline"
+msgstr ""
+
+msgid "Header"
+msgstr "Header"
+
+msgid "Ribbon"
+msgstr ""
+
+msgid "Enable Ribbon"
+msgstr ""
+
+msgid "Show Ribbon As"
+msgstr ""
+
+msgid "Ribbon Type 1"
+msgstr ""
+
+msgid "Ribbon Type 2"
+msgstr ""
+
+msgid "Ribbon Text"
+msgstr ""
+
+msgid "Best Seller"
+msgstr ""
+
+msgid "Enter badge text"
+msgstr ""
+
+msgid "Show Header Icon"
+msgstr ""
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Show Footer"
+msgstr ""
+
+msgid "Type your  Footer here"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Show Percentage"
+msgstr ""
+
+msgid "Animation Duration (ms)"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Half Circle"
+msgstr ""
+
+msgid "Stroke Width"
+msgstr ""
+
+msgid "Left Padding"
+msgstr ""
+
+msgid "Right Padding"
+msgstr ""
+
+msgid "Percentage"
+msgstr ""
+
+msgid "Enable Individual Color"
+msgstr ""
+
+msgid "Up"
+msgstr ""
+
+msgid "Down"
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Enable Edge Fading"
+msgstr ""
+
+msgid "Fading Color"
+msgstr ""
+
+msgid "Fading Size"
+msgstr ""
+
+msgid "Rometheme Text Running"
+msgstr ""
+
+msgid "Type your Text here"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "Item Type"
+msgstr ""
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Choose Image or Icon"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "GitHub"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Linkedin"
+msgstr ""
+
+msgid "Pinterest"
+msgstr ""
+
+msgid "Quora"
+msgstr ""
+
+msgid "Reddit"
+msgstr ""
+
+msgid "Snapchat"
+msgstr ""
+
+msgid "Telegram"
+msgstr ""
+
+msgid "Threads"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+msgid "Viber"
+msgstr ""
+
+msgid "Whatsapp"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "Dribbble"
+msgstr ""
+
+msgid "Behance"
+msgstr ""
+
+msgid "Pointer Size"
+msgstr ""
+
+msgid "Border Size"
+msgstr ""
+
+msgid "Icon "
+msgstr ""
+
+msgid "Choose Style"
+msgstr ""
+
+msgid "More Options"
+msgstr ""
+
+msgid "Choose Skin"
+msgstr ""
+
+msgid "Social Media"
+msgstr "Mạng xã hội"
+
+msgid "Discord"
+msgstr ""
+
+msgid "Enable Icon"
+msgstr ""
+
+msgid "Icon Alignment"
+msgstr ""
+
+msgid "Bordered Navigation"
+msgstr ""
+
+msgid "Active Default"
+msgstr ""
+
+msgid "Icon Margin"
+msgstr ""
+
+msgid "Job Title"
+msgstr ""
+
+msgid "Developer"
+msgstr ""
+
+msgid "Type member position here"
+msgstr ""
+
+msgid "Choose Member    Image"
+msgstr ""
+
+msgid "X - Twitter"
+msgstr ""
+
+msgid "Tiktok"
+msgstr ""
+
+msgid "Youtube"
+msgstr ""
+
+msgid "Github"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Image Width"
+msgstr ""
+
+msgid "Pointer Effect"
+msgstr ""
+
+msgid "Member Name"
+msgstr ""
+
+msgid "Jon Doe"
+msgstr ""
+
+msgid "Social Alignment"
+msgstr ""
+
+msgid "Type member name here"
+msgstr ""
+
+msgid "Social Media Position"
+msgstr ""
+
+msgid "Show Quote Icon"
+msgstr ""
+
+msgid "Quote Icon"
+msgstr ""
+
+msgid "Client Avatar"
+msgstr ""
+
+msgid "Show Rating ?"
+msgstr ""
+
+msgid "Custom Rating Icon"
+msgstr ""
+
+msgid "Rating Icon"
+msgstr ""
+
+msgid "Prev Icon"
+msgstr ""
+
+msgid "Slide To Show"
+msgstr ""
+
+msgid "Slide To Scroll"
+msgstr ""
+
+msgid "Edge Fading"
+msgstr ""
+
+msgid "Use the slide below the color options to adjust the opacity"
+msgstr ""
+
+msgid "Layout Style"
+msgstr ""
+
+msgid "Style 1"
+msgstr ""
+
+msgid "Author Name"
+msgstr ""
+
+msgid "Author Occupation"
+msgstr ""
+
+msgid "Author Avatar"
+msgstr ""
+
+msgid "Style 3"
+msgstr ""
+
+msgid "Style 4"
+msgstr ""
+
+msgid "Style 5"
+msgstr ""
+
+msgid "Link Youtube"
+msgstr ""
+
+msgid "https://youtu.be/j4AC-g6CPxg"
+msgstr ""
+
+msgid "Paste link here"
+msgstr ""
+
+msgid "Link Vimeo"
+msgstr ""
+
+msgid "Auto Play"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Player Control"
+msgstr ""
+
+msgid "Show Animation Pulse"
+msgstr ""
+
+msgid "Rotate Icon"
+msgstr ""
+
+msgid "Hover Animation Style"
+msgstr ""
+
+msgid "Grow"
+msgstr ""
+
+msgid "Shrink"
+msgstr ""
+
+msgid "Wobble"
+msgstr ""
+
+msgid "Skew"
+msgstr ""
+
+msgid "Rotate"
+msgstr ""
+
+msgid "Slide Up"
+msgstr ""
+
+msgid "Slide Down"
+msgstr ""
+
+msgid "Slide Left"
+msgstr ""
+
+msgid "Slide Right"
+msgstr ""
+
+msgid "Bounce"
+msgstr ""
+
+msgid "Flip X"
+msgstr ""
+
+msgid "Flip Y"
+msgstr ""
+
+msgid "Zoom In"
+msgstr ""
+
+msgid "Zoom Out"
+msgstr ""
+
+msgid "Float"
+msgstr ""
+
+msgid "Tada"
+msgstr ""
+
+msgid "Shake"
+msgstr ""
+
+msgid "Rubber Band"
+msgstr ""
+
+msgid "Width Animated Pulse"
+msgstr ""
+
+msgid "Duration Animated Pulse (s)"
+msgstr ""
+
+msgid "Video Type"
+msgstr ""
+
+msgid "Self Hosted"
+msgstr ""
+
+msgid "Vimeo"
+msgstr ""
+
+msgid "Choose Video File"
+msgstr ""
+
+msgid "Price Reguler"
+msgstr ""
+
+msgid "Reguler Sale Price"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Rating Size"
+msgstr ""
+
+msgid "Rating Color"
+msgstr ""
+
+msgid "No Rating Color"
+msgstr ""
+
+msgid "Column Reverse"
+msgstr ""
+
+msgid "Content Alignment"
+msgstr ""
+
+msgid "Border Gradient Color 1"
+msgstr ""
+
+msgid "Border Gradient Color 2"
+msgstr ""
+
+msgid "Show Rating"
+msgstr ""
+
+msgid "Vertical Distance"
+msgstr ""
+
+msgid "Horizontal Distance"
+msgstr ""
+
+msgid "Show Ribbon"
+msgstr ""
+
+msgid "Number of Products"
+msgstr ""
+
+msgid "No products found"
+msgstr ""
+
+msgid "Items Spacing"
+msgstr ""
+
+msgid "Crop Description Word"
+msgstr ""
+
+msgid "Recomendation, use 10 - 15 word Only."
+msgstr ""
+
+msgid "Add To Cart"
+msgstr ""
+
+msgid "Gap"
+msgstr ""
+
+msgid "auto"
+msgstr ""
+
+msgid "Object Fit"
+msgstr ""
+
+msgid "Object Position"
+msgstr ""
+
+msgid "Center Center"
+msgstr ""
+
+msgid "Center Top"
+msgstr ""
+
+msgid "Center Bottom"
+msgstr ""
+
+msgid "Left Top"
+msgstr ""
+
+msgid "Left Center"
+msgstr ""
+
+msgid "Left Bottom"
+msgstr ""
+
+msgid "Right Top"
+msgstr ""
+
+msgid "Right Center"
+msgstr ""
+
+msgid "Right Bottom"
+msgstr ""
+
+msgid "Title Color"
+msgstr ""
+
+msgid "Title Line Color"
+msgstr ""
+
+msgid "Enable Glass Effect ?"
+msgstr ""
+
+msgid "yes"
+msgstr ""
+
+msgid "Blur (px)"
+msgstr ""
+
+msgid "Enable Blur Effect ?"
+msgstr ""
+
+msgid "Y Offset"
+msgstr ""
+
+msgid "Wrapper Width"
+msgstr ""
+
+msgid "Tooltip"
+msgstr ""
+
+msgid "Enable Tooltip ?"
+msgstr ""
+
+msgid "Tooltip Text"
+msgstr ""
+
+msgid "X Offset"
+msgstr ""
+
+msgid "Wrapper Link"
+msgstr ""
+
+msgid "Enable Wrapper Link ?"
+msgstr ""
+
+msgid "Unable to connect to the Rometheme API server. Some features like template library and updates may be temporarily unavailable. Please try again later."
+msgstr "Không thể kết nối đến máy chủ API của Rometheme. Một số tính năng như thư viện mẫu và cập nhật có thể tạm thời không khả dụng. Vui lòng thử lại sau."
+
+msgid "%s is a Premium Widget"
+msgstr "%s là widget trả phí"
+
+msgid "Unlock this widget and get access to advanced features to power up your website."
+msgstr "Mở khóa widget này để dùng các tính năng nâng cao cho website của bạn."
+
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên Pro"
+
+msgid "Submissions"
+msgstr "Lượt gửi"
+
+msgid "System Info"
+msgstr "Thông tin hệ thống"
+
+msgid "Help & Center"
+msgstr "Trung tâm trợ giúp"
+
+msgid "RTMKit Dashboard"
+msgstr "Bảng điều khiển RTMKit"
+
+msgid "RTMKit"
+msgstr "RTMKit"
+
+msgid "Templates Kits"
+msgstr "Template Kits"
+
+msgid "Documentation"
+msgstr "Tài liệu"
+
+msgid "Welcome"
+msgstr "Chào mừng"
+
+msgid "Widgets"
+msgstr "Widget"
+
+msgid "Modules"
+msgstr "Mô-đun"
+
+msgid "Theme Builder"
+msgstr "Theme Builder"
+
+msgid "Template Kits"
+msgstr "Template Kits"
+
+msgid "Global Kit Setup"
+msgstr "Thiết lập bộ kit toàn cục"
+
+msgid "Version Controls"
+msgstr "Quản lý phiên bản"
+
+msgid "RTM Icon - Regular"
+msgstr "RTM Icon - Regular"
+
+msgid "RTM Icon - Thin"
+msgstr "RTM Icon - Thin"
+
+msgid "Modules options for %s have been successfully updated."
+msgstr "Đã cập nhật thành công tùy chọn mô-đun của %s."
+
+msgid "No changes were saved. %s Modules options are already current."
+msgstr "Không có thay đổi nào được lưu. Tùy chọn mô-đun của %s đã là mới nhất."
+
+msgid "Unauthorized"
+msgstr "Không có quyền"
+
+msgid "Reset failed due to an unexpected error. Please try again, or contact support if the issue persists."
+msgstr "Đặt lại thất bại do lỗi không mong muốn. Vui lòng thử lại hoặc liên hệ bộ phận hỗ trợ nếu sự cố vẫn tiếp diễn."
+
+msgid "All Modules have been reset to default settings."
+msgstr "Tất cả mô-đun đã được đặt lại về cài đặt mặc định."
+
+msgid "Form Name"
+msgstr "Tên biểu mẫu"
+
+msgid "Referal Page"
+msgstr "Trang giới thiệu"
+
+msgid "All"
+msgstr "Tất cả"
+
+msgid "Trash"
+msgstr "Thùng rác"
+
+msgid "Submission"
+msgstr "Lượt gửi"
+
+msgid "Restore"
+msgstr "Khôi phục"
+
+msgid "Delete Permanently"
+msgstr "Xóa vĩnh viễn"
+
+msgid "View"
+msgstr "Xem"
+
+msgid "Themebuilder"
+msgstr "Themebuilder"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Entries"
+msgstr "Mục nhập"
+
+msgid "Themebuilders"
+msgstr "Themebuilder"
+
+msgid "Type"
+msgstr "Loại"
+
+msgid "Display"
+msgstr "Hiển thị"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+msgid "Edit with Elementor"
+msgstr "Chỉnh sửa bằng Elementor"
+
+msgid "Entire Site"
+msgstr "Toàn bộ trang"
+
+msgid "Front Page"
+msgstr "Trang chủ"
+
+msgid "404 Page"
+msgstr "Trang 404"
+
+msgid "All Archives"
+msgstr "Tất cả lưu trữ"
+
+msgid "Author Archive"
+msgstr "Lưu trữ tác giả"
+
+msgid "Search Results"
+msgstr "Kết quả tìm kiếm"
+
+msgid "Post Archive"
+msgstr "Lưu trữ bài viết"
+
+msgid "Categories"
+msgstr "Danh mục"
+
+msgid "Tags"
+msgstr "Thẻ"
+
+msgid "All Singular"
+msgstr "Tất cả trang đơn"
+
+msgid "Posts"
+msgstr "Bài viết"
+
+msgid "Post Category"
+msgstr "Danh mục bài viết"
+
+msgid "Post Tag"
+msgstr "Thẻ bài viết"
+
+msgid "Post Author"
+msgstr "Tác giả bài viết"
+
+msgid "Pages"
+msgstr "Trang"
+
+msgid "Page by Author"
+msgstr "Trang theo tác giả"
+
+msgid "By Author"
+msgstr "Theo tác giả"
+
+msgid "Shop Page"
+msgstr "Trang cửa hàng"
+
+msgid "Product Archive"
+msgstr "Lưu trữ sản phẩm"
+
+msgid "Single Product"
+msgstr "Sản phẩm đơn"
+
+msgid "Product Categories"
+msgstr "Danh mục sản phẩm"
+
+msgid "Product Tags"
+msgstr "Thẻ sản phẩm"
+
+msgid "Product by Author"
+msgstr "Sản phẩm theo tác giả"
+
+msgid "Rometheme Templates"
+msgstr "Mẫu Rometheme"
+
+msgid "Templates"
+msgstr "Mẫu"
+
+msgid "Add New"
+msgstr "Thêm mới"
+
+msgid "Add New Template"
+msgstr "Thêm mẫu mới"
+
+msgid "New Template"
+msgstr "Mẫu mới"
+
+msgid "Edit Template"
+msgstr "Chỉnh sửa mẫu"
+
+msgid "View Template"
+msgstr "Xem mẫu"
+
+msgid "All Templates"
+msgstr "Tất cả mẫu"
+
+msgid "Search Templates"
+msgstr "Tìm mẫu"
+
+msgid "Parent Templates:"
+msgstr "Mẫu cha:"
+
+msgid "No Templates found."
+msgstr "Không tìm thấy mẫu nào."
+
+msgid "No Templates found in Trash."
+msgstr "Không có mẫu nào trong thùng rác."
+
+msgid "RTMKit Header & Footer"
+msgstr "RTMKit Header & Footer"
+
+msgid "RTMKit General"
+msgstr "RTMKit Chung"
+
+msgid "RTMKit Pro"
+msgstr "RTMKit Pro"
+
+msgid "Widget options for %s have been successfully updated."
+msgstr "Đã cập nhật thành công tùy chọn widget của %s."
+
+msgid "No changes were saved. %s Widget options are already current."
+msgstr "Không có thay đổi nào được lưu. Tùy chọn widget của %s đã là mới nhất."
+
+msgid "All widgets have been reset to default settings."
+msgstr "Tất cả widget đã được đặt lại về cài đặt mặc định."
+
+msgid "Info"
+msgstr ""
+
+msgid "Pekanbaru, Indonesia"
+msgstr ""
+
+msgid "Header Info"
+msgstr ""
+
+msgid "Info Row Spacing"
+msgstr ""
+
+msgid "Info Column Spacing"
+msgstr ""
+
+msgid "example: https://your-link.com"
+msgstr ""
+
+msgid "Hamburger Style"
+msgstr ""
+
+msgid "Menu Icon Alignment"
+msgstr ""
+
+msgid "Menu Setting"
+msgstr ""
+
+msgid "Menu Select"
+msgstr ""
+
+msgid "Go to the  %1$sMenus screen%2$s to manage your menus."
+msgstr ""
+
+msgid "Dropdown as open"
+msgstr ""
+
+msgid "Click"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Overline"
+msgstr ""
+
+msgid "Double Line"
+msgstr ""
+
+msgid "Framed"
+msgstr ""
+
+msgid "Pointer Width"
+msgstr ""
+
+msgid "Mobile Options"
+msgstr ""
+
+msgid "Responsive Breakpoint"
+msgstr ""
+
+msgid "Tablet"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Menu Distance"
+msgstr ""
+
+msgid "Full Width"
+msgstr ""
+
+msgid "Menu Order Position"
+msgstr ""
+
+msgid "From Left"
+msgstr ""
+
+msgid "From Right"
+msgstr ""
+
+msgid "Menu Width"
+msgstr ""
+
+msgid "Submenu Content"
+msgstr ""
+
+msgid "Sub Menu Icon"
+msgstr ""
+
+msgid "Sub Menu Icon Spacing"
+msgstr ""
+
+msgid "Hamburger Setting"
+msgstr ""
+
+msgid "Hamburger Icon Open"
+msgstr ""
+
+msgid "Hamburger Icon Close"
+msgstr ""
+
+msgid "Menu Wrapper"
+msgstr ""
+
+msgid "Menu Wrapper Background"
+msgstr ""
+
+msgid "Menu Style"
+msgstr ""
+
+msgid "Menu Position"
+msgstr ""
+
+msgid "Horizontal Padding"
+msgstr ""
+
+msgid "Vertical Padding"
+msgstr ""
+
+msgid "Space Between"
+msgstr ""
+
+msgid "Item Border Radius"
+msgstr ""
+
+msgid "Submenu Style"
+msgstr ""
+
+msgid "Submenu Icon Style"
+msgstr ""
+
+msgid "Icon Color Hover"
+msgstr ""
+
+msgid "Submenu Icon Size"
+msgstr ""
+
+msgid "Style Setting"
+msgstr ""
+
+msgid "Offcanvas Setting"
+msgstr ""
+
+msgid "Offcanvas Position"
+msgstr ""
+
+msgid "Width Offcanvas Menu"
+msgstr ""
+
+msgid "Offcanvas Close Button"
+msgstr ""
+
+msgid "border-close-normal"
+msgstr ""
+
+msgid "border-close-hover"
+msgstr ""
+
+msgid "Menu Content"
+msgstr ""
+
+msgid "Select Template"
+msgstr ""
+
+msgid "**You create from elementor template first"
+msgstr ""
+
+msgid "Menu Icon"
+msgstr ""
+
+msgid "Pro"
+msgstr "Pro"
+
+msgid "This result includes the Elementor Pro %s widget. Upgrade now to unlock it and grow your web creation toolkit."
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Go Pro"
+msgstr ""
+
+msgid "Submit Icon"
+msgstr ""
+
+msgid "Search Icon"
+msgstr ""
+
+msgid "Search Button Position"
+msgstr ""
+
+msgid "Direction Button"
+msgstr ""
+
+msgid "Placeholder Color"
+msgstr ""
+
+msgid "Input Padding"
+msgstr ""
+
+msgid "Gap between input and button"
+msgstr ""
+
+msgid "box-shadow-field"
+msgstr ""
+
+msgid "box-shadow-focus"
+msgstr ""
+
+msgid "Submit Button"
+msgstr ""
+
+msgid "Search Field"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Submit Text"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Autocomplete"
+msgstr ""
+
+msgid "Search Button"
+msgstr ""
+
+msgid "Logo Type"
+msgstr ""
+
+msgid "Custom Logo"
+msgstr ""
+
+msgid "Site Logo"
+msgstr ""
+
+msgid "You can set a global site logo in Elementor: Site Settings > Site Identity."
+msgstr ""
+
+msgid "Watch a Guide"
+msgstr "Xem hướng dẫn"
+
+msgid "New Theme Builder"
+msgstr "Theme Builder mới"
+
+msgid "UPGRADE TO PRO"
+msgstr "NÂNG CẤP LÊN PRO"
+
+msgid "Hi-End Power"
+msgstr "Sức mạnh cao cấp"
+
+msgid "Unlock Now"
+msgstr "Mở khóa ngay"
+
+msgid "Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+ icons, extensions, and priority support. Only in RTMkit Pro."
+msgstr "Khai phá toàn bộ sức mạnh quy trình làm việc của bạn. Truy cập hơn 70 widget, hơn 25 mẫu, 9 tính năng theme builder, hơn 1200 biểu tượng, tiện ích mở rộng và hỗ trợ ưu tiên. Chỉ có trong RTMkit Pro."
+
+msgid "Added Search Results Builder and WooBuilder. Improved template conditions."
+msgstr "Bổ sung Search Results Builder và WooBuilder. Cải thiện điều kiện mẫu."
+
+msgid "What's New"
+msgstr "Có gì mới"
+
+msgid "New Features"
+msgstr "Tính năng mới"
+
+msgid "Changelog"
+msgstr "Nhật ký thay đổi"
+
+msgid "Added Module Switcher and inline edit for Saved Templates. Performance and stability improvements."
+msgstr "Bổ sung công tắc mô-đun và chỉnh sửa tại chỗ cho mẫu đã lưu. Cải thiện hiệu suất và độ ổn định."
+
+msgid "Master RTMKit Addons - Fast Easy!"
+msgstr "Thành thạo RTMKit Addons — nhanh và dễ!"
+
+msgid "Get started with ease by watching our step-by-step beginner's tutorial on Elementor."
+msgstr "Bắt đầu dễ dàng với hướng dẫn Elementor từng bước dành cho người mới."
+
+msgid "Watch Now"
+msgstr "Xem ngay"
+
+msgid "System Requirement"
+msgstr "Yêu cầu hệ thống"
+
+msgid "See All"
+msgstr "Xem tất cả"
+
+msgid "Request Feature"
+msgstr "Đề xuất tính năng"
+
+msgid "Please feel free to give any suggestions to include any features about RTMKit Addons for Elementor."
+msgstr "Đừng ngần ngại gửi cho chúng tôi đề xuất về các tính năng cho RTMKit Addons for Elementor."
+
+msgid "Check Our Roadmap"
+msgstr "Xem lộ trình của chúng tôi"
+
+msgid "Plugin Required"
+msgstr "Plugin bắt buộc"
+
+msgid "Recommended WP Themes"
+msgstr "Giao diện WP được đề xuất"
+
+msgid "Browse WP Themes"
+msgstr "Duyệt giao diện WP"
+
+msgid "Show your Love"
+msgstr "Ủng hộ chúng tôi"
+
+msgid "Please take 2 minutes to review us and show some love."
+msgstr "Dành 2 phút để đánh giá và ủng hộ chúng tôi."
+
+msgid "Rate RTMKit"
+msgstr "Đánh giá RTMKit"
+
+msgid "Rate RTMForm"
+msgstr "Đánh giá RTMForm"
+
+msgid "Community & Support"
+msgstr "Cộng đồng và hỗ trợ"
+
+msgid "Facebook Community"
+msgstr "Cộng đồng Facebook"
+
+msgid "/groups/rometheme"
+msgstr ""
+
+msgid "Minimum PHP"
+msgstr "PHP tối thiểu"
+
+msgid "Mail"
+msgstr "Email"
+
+msgid "cs.rometheme@gmail.com"
+msgstr ""
+
+msgid "We’re active on"
+msgstr "Chúng tôi có mặt tại"
+
+msgid "Max. Post Size"
+msgstr "Kích thước POST tối đa"
+
+msgid "WP Memory Limit"
+msgstr "Giới hạn bộ nhớ WP"
+
+msgid "Hello, %s"
+msgstr "Xin chào, %s"
+
+msgid "Welcome to RTMKit Dashboard"
+msgstr "Chào mừng đến với bảng điều khiển RTMKit"
+
+msgid "License :"
+msgstr "Giấy phép:"
+
+msgid "New Interface"
+msgstr "Giao diện mới"
+
+msgid "Free"
+msgstr "Miễn phí"
+
+msgid "Upgrade Now"
+msgstr "Nâng cấp ngay"
+
+msgid "Upgrade premium to unlock all features"
+msgstr "Nâng cấp lên bản trả phí để mở khóa mọi tính năng"
+
+msgid "Redesigned admin UI with cleaner layout and better navigation."
+msgstr "Thiết kế lại giao diện quản trị với bố cục gọn gàng hơn và điều hướng tốt hơn."
+
+msgid "Everything you need in one place"
+msgstr "Mọi thứ bạn cần ở cùng một nơi"
+
+msgid "The Ultimate Addons for Elementor-WordPress Website"
+msgstr "Bộ tiện ích hoàn hảo cho website Elementor và WordPress"
+
+msgid "We're excited to help you supercharge your website-building experience. Effortlessly design stunning websites with our comprehensive range of free and premium widgets and features."
+msgstr "Chúng tôi rất vui được giúp bạn nâng tầm trải nghiệm xây dựng website. Thiết kế những trang web ấn tượng một cách dễ dàng với bộ widget và tính năng miễn phí lẫn trả phí đầy đủ của chúng tôi."
+
+msgid "Read Documentation"
+msgstr "Đọc tài liệu"
+
+msgid "Submit Support Form"
+msgstr "Gửi biểu mẫu hỗ trợ"
+
+msgid "rometheme.net/support"
+msgstr ""
+
+msgid "Support & Get Help"
+msgstr "Hỗ trợ và trợ giúp"
+
+msgid "Explore help articles or contact us directly for faster support."
+msgstr "Xem các bài viết trợ giúp hoặc liên hệ trực tiếp với chúng tôi để được hỗ trợ nhanh hơn."
+
+msgid "Instagram Rometheme Studio"
+msgstr "Instagram Rometheme Studio"
+
+msgid "Instagram RTMkit"
+msgstr "Instagram RTMkit"
+
+msgid "Tiktok Rometheme"
+msgstr "Tiktok Rometheme"
+
+msgid "Youtube Rometheme"
+msgstr "Youtube Rometheme"
+
+msgid "Behance Rometheme Studio"
+msgstr "Behance Rometheme Studio"
+
+msgid "Knowledge Base"
+msgstr "Kho kiến thức"
+
+msgid "Explore our documentation to help guided about our product and installation."
+msgstr "Xem tài liệu của chúng tôi để được hướng dẫn về sản phẩm và cách cài đặt."
+
+msgid "Product Documentation"
+msgstr "Tài liệu sản phẩm"
+
+msgid "Support"
+msgstr "Hỗ trợ"
+
+msgid "Get in touch or visit our community to get guided about wordpress, elementor and RTMkit Plugin"
+msgstr "Liên hệ với chúng tôi hoặc ghé thăm cộng đồng để được hướng dẫn về WordPress, Elementor và plugin RTMkit"
+
+msgid "Import As Page"
+msgstr "Nhập dưới dạng trang"
+
+msgid "Import Without Image"
+msgstr "Nhập không kèm hình ảnh"
+
+msgid "Please do not refresh or close this page until the process is complete."
+msgstr "Vui lòng không tải lại hoặc đóng trang này cho đến khi quá trình hoàn tất."
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "Import All Template"
+msgstr "Nhập tất cả mẫu"
+
+msgid "Full Import"
+msgstr "Nhập đầy đủ"
+
+msgid "Demo Content Only"
+msgstr "Chỉ nội dung demo"
+
+msgid "Global Style Only"
+msgstr "Chỉ kiểu toàn cục"
+
+msgid "Drop Template Kit ZIP here or click to upload"
+msgstr "Thả tệp ZIP Template Kit vào đây hoặc nhấp để tải lên"
+
+msgid "View Kit"
+msgstr "Xem bộ kit"
+
+msgid "Attention!"
+msgstr "Lưu ý!"
+
+msgid "Install Requirements"
+msgstr "Cài đặt các yêu cầu"
+
+msgid "Delete"
+msgstr "Xóa"
+
+msgid "Import"
+msgstr "Nhập"
+
+msgid "Preview"
+msgstr "Xem trước"
+
+msgid "Import Template"
+msgstr "Nhập mẫu"
+
+msgid "License Manager"
+msgstr "Quản lý giấy phép"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "Popular"
+msgstr "Phổ biến"
+
+msgid "%s Total Modules"
+msgstr "Tổng %s mô-đun"
+
+msgid "%s Active Modules"
+msgstr "%s mô-đun đang bật"
+
+msgid "Save Changes"
+msgstr "Lưu thay đổi"
+
+msgid "Enable All"
+msgstr "Bật tất cả"
+
+msgid "Reset All"
+msgstr "Đặt lại tất cả"
+
+msgid "All Modules"
+msgstr "Tất cả mô-đun"
+
+msgid "Free Modules"
+msgstr "Mô-đun miễn phí"
+
+msgid "Pro Modules"
+msgstr "Mô-đun Pro"
+
+msgid "Search module name..."
+msgstr "Tìm tên mô-đun..."
+
+msgid "Advanced Forms Engine"
+msgstr "Bộ máy biểu mẫu nâng cao"
+
+msgid "RTMForm"
+msgstr "RTMForm"
+
+msgid "Unlock Full Form Functionality"
+msgstr "Mở khóa toàn bộ chức năng biểu mẫu"
+
+msgid "with"
+msgstr "cùng"
+
+msgid "RTMForm powers all form functionality in RTMKit. Activate it to unlock full capabilities and ensure everything runs seamlessly."
+msgstr "RTMForm vận hành toàn bộ chức năng biểu mẫu trong RTMKit. Hãy kích hoạt để mở khóa đầy đủ khả năng và đảm bảo mọi thứ chạy mượt mà."
+
+msgid "RTMForm Banner"
+msgstr "Banner RTMForm"
+
+msgid "Saved Template Editor"
+msgstr "Trình chỉnh sửa mẫu đã lưu"
+
+msgid "SAVE & CLOSE"
+msgstr "LƯU VÀ ĐÓNG"
+
+msgid "Global Kit Style"
+msgstr "Kiểu bộ kit toàn cục"
+
+msgid "Adjust your website settings to achieve the best performance. Customizing will enhance your site's efficiency & provide an improved user experience."
+msgstr "Điều chỉnh cài đặt website để đạt hiệu suất tốt nhất. Việc tùy chỉnh sẽ nâng cao hiệu quả của trang và mang lại trải nghiệm người dùng tốt hơn."
+
+msgid "When used, the \"Global Site Settings\" that some Template Kits contain can affect your entire website."
+msgstr "Khi được sử dụng, \"Global Site Settings\" có trong một số Template Kits có thể ảnh hưởng đến toàn bộ website của bạn."
+
+msgid "The Elementor Hamburger Menu » Site Settings is where you can change the Site Settings. The global site settings that are applied to your website can be altered below."
+msgstr "Bạn có thể thay đổi cài đặt trang trong menu Elementor » Site Settings. Các cài đặt toàn cục đang áp dụng cho website có thể được chỉnh sửa bên dưới."
+
+msgid "1. Get Started"
+msgstr "1. Bắt đầu"
+
+msgid "Begin the setup process and configure the basic settings to get started with RTMkit."
+msgstr "Bắt đầu quá trình thiết lập và cấu hình các cài đặt cơ bản để dùng RTMkit."
+
+msgid "2. Modules"
+msgstr "2. Mô-đun"
+
+msgid "Customize Your Experience with Module Switching, Letting You Enable or Disable Features Based on Your Workflow."
+msgstr "Tùy chỉnh trải nghiệm của bạn bằng công tắc mô-đun, cho phép bật hoặc tắt tính năng theo quy trình làm việc."
+
+msgid "3. Luminex Theme"
+msgstr "3. Giao diện Luminex"
+
+msgid "Upgrade Your Website with Luminex a\r\n                                                    High-End WordPress Theme"
+msgstr "Nâng tầm website của bạn với Luminex,\r\n                                                    giao diện WordPress cao cấp"
+
+msgid "4. Finalizing"
+msgstr "4. Hoàn tất"
+
+msgid "Everything is set. Your plugin is ready and you can access the dashboard."
+msgstr "Mọi thứ đã sẵn sàng. Plugin của bạn đã được thiết lập và bạn có thể vào bảng điều khiển."
+
+msgid "Next"
+msgstr "Tiếp theo"
+
+msgid "[&emsp;STEP 02&emsp;]"
+msgstr "[&emsp;BƯỚC 02&emsp;]"
+
+msgid "upgrade your website"
+msgstr "nâng cấp website của bạn"
+
+msgid "with a complete modules"
+msgstr "với bộ mô-đun đầy đủ"
+
+msgid "Back"
+msgstr "Quay lại"
+
+msgid "Luminex Logo"
+msgstr "Logo Luminex"
+
+msgid "official themes"
+msgstr "giao diện chính thức"
+
+msgid "support, by rtmkit"
+msgstr "hỗ trợ, bởi rtmkit"
+
+msgid "Included with your purchase"
+msgstr "Đã bao gồm khi mua"
+
+msgid "50+ Niche Business WordPress Themes"
+msgstr "Hơn 50 giao diện WordPress cho các ngành đặc thù"
+
+msgid "320+ Premium Blocks & Layouts"
+msgstr "Hơn 320 khối và bố cục cao cấp"
+
+msgid "Lifetime Access to RTMkit PRO"
+msgstr "Truy cập trọn đời RTMkit PRO"
+
+msgid "Lifetime Updates"
+msgstr "Cập nhật trọn đời"
+
+msgid "6 Months of Dedicated Support"
+msgstr "6 tháng hỗ trợ riêng"
+
+msgid "GET LUMINEX"
+msgstr "NHẬN LUMINEX"
+
+msgid "[&emsp;STEP 04&emsp;]"
+msgstr "[&emsp;BƯỚC 04&emsp;]"
+
+msgid "and announcements."
+msgstr "và thông báo."
+
+msgid "Get the latest updates"
+msgstr "Nhận thông tin mới nhất"
+
+msgid "newsletter."
+msgstr "bản tin."
+
+msgid "Subscribe to our"
+msgstr "Đăng ký nhận"
+
+msgid "Your E-mail"
+msgstr "Email của bạn"
+
+msgid "Subscribe"
+msgstr "Đăng ký"
+
+msgid "Skip"
+msgstr "Bỏ qua"
+
+msgid "[&emsp;STEP 05&emsp;]"
+msgstr "[&emsp;BƯỚC 05&emsp;]"
+
+msgid "finally,"
+msgstr "cuối cùng,"
+
+msgid "Setup Completed\r\n                                    Successfully."
+msgstr "Thiết lập đã hoàn tất\r\n                                    thành công."
+
+msgid "Enjoy ! Your Plugin"
+msgstr "Chúc bạn dùng vui! Plugin của bạn"
+
+msgid "Is Ready to Use"
+msgstr "đã sẵn sàng sử dụng"
+
+msgid "Visit Dashboard"
+msgstr "Vào bảng điều khiển"
+
+msgid "Getting Started"
+msgstr "Bắt đầu"
+
+msgid "Luminex Theme"
+msgstr "Giao diện Luminex"
+
+msgid "Get Update"
+msgstr "Nhận bản cập nhật"
+
+msgid "Finalizing"
+msgstr "Hoàn tất"
+
+msgid "RTMKit Logo"
+msgstr "Logo RTMKit"
+
+msgid "[&emsp;STEP 01&emsp;]"
+msgstr "[&emsp;BƯỚC 01&emsp;]"
+
+msgid "it's easy to"
+msgstr "thật dễ dàng để"
+
+msgid "get started on rtmkit"
+msgstr "bắt đầu với rtmkit"
+
+msgid "basic settings to get started with RTMkit."
+msgstr "các cài đặt cơ bản để bắt đầu với RTMkit."
+
+msgid "Begin the setup process and configure"
+msgstr "Bắt đầu thiết lập và cấu hình"
+
+msgid "Go to Pro"
+msgstr "Chuyển sang Pro"
+
+msgid "Get started"
+msgstr "Bắt đầu"
+
+msgid "Features"
+msgstr "Tính năng"
+
+msgid "Builders"
+msgstr "Builders"
+
+msgid "Information"
+msgstr "Thông tin"
+
+msgid "Incompatible"
+msgstr "Không tương thích"
+
+msgid "Compatible"
+msgstr "Tương thích"
+
+msgid "PHP Version"
+msgstr "Phiên bản PHP"
+
+msgid "Writable"
+msgstr "Có thể ghi"
+
+msgid "Not Writable"
+msgstr "Không thể ghi"
+
+msgid "PHP Memory Limit"
+msgstr "Giới hạn bộ nhớ PHP"
+
+msgid "PHP Max Input Vars"
+msgstr "Số biến đầu vào tối đa của PHP"
+
+msgid "PHP Max Post Size"
+msgstr "Kích thước POST tối đa của PHP"
+
+msgid "GD Installed"
+msgstr "Đã cài GD"
+
+msgid "ZIP Installed"
+msgstr "Đã cài ZIP"
+
+msgid "Wordpres Info"
+msgstr "Thông tin WordPress"
+
+msgid "Site URL"
+msgstr "URL trang"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Time Zone"
+msgstr "Múi giờ"
+
+msgid "WP Multisite"
+msgstr "WP Multisite"
+
+msgid "WordPress Version"
+msgstr "Phiên bản WordPress"
+
+msgid "Check System Status"
+msgstr "Kiểm tra trạng thái hệ thống"
+
+msgid "Memory Limit"
+msgstr "Giới hạn bộ nhớ"
+
+msgid "Max Memory Limit"
+msgstr "Giới hạn bộ nhớ tối đa"
+
+msgid "Max Upload Size"
+msgstr "Kích thước tải lên tối đa"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Version"
+msgstr "Phiên bản"
+
+msgid "Server Status"
+msgstr "Trạng thái máy chủ"
+
+msgid "Wordpress Info"
+msgstr "Thông tin WordPress"
+
+msgid "Theme Active"
+msgstr "Giao diện đang dùng"
+
+msgid "Plugin Active"
+msgstr "Plugin đang bật"
+
+msgid "Operating System"
+msgstr "Hệ điều hành"
+
+msgid "Software"
+msgstr "Phần mềm"
+
+msgid "Write Permissions"
+msgstr "Quyền ghi"
+
+msgid "MySQL Version"
+msgstr "Phiên bản MySQL"
+
+msgid "Install"
+msgstr "Cài đặt"
+
+msgid "Themeforest Template"
+msgstr "Mẫu Themeforest"
+
+msgid "Installed Template"
+msgstr "Mẫu đã cài"
+
+msgid "All Categories"
+msgstr "Tất cả danh mục"
+
+msgid "Search Template Kit..."
+msgstr "Tìm Template Kit..."
+
+msgid "Delete All Installed Template"
+msgstr "Xóa tất cả mẫu đã cài"
+
+msgid "General"
+msgstr "Chung"
+
+msgid "Condition"
+msgstr "Điều kiện"
+
+msgid "Theme Builder Title"
+msgstr "Tiêu đề Theme Builder"
+
+msgid "Single Post"
+msgstr "Bài viết đơn"
+
+msgid "Archive Post"
+msgstr "Lưu trữ bài viết"
+
+msgid "Search Result"
+msgstr "Kết quả tìm kiếm"
+
+msgid "Archive Product"
+msgstr "Lưu trữ sản phẩm"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "Enabling or Disabling Templates"
+msgstr "Bật hoặc tắt mẫu"
+
+msgid "Set the conditions that determine where your template is used."
+msgstr "Đặt các điều kiện xác định nơi mẫu của bạn được sử dụng."
+
+msgid "Add Condition"
+msgstr "Thêm điều kiện"
+
+msgid "Save\r\n                        changes"
+msgstr "Lưu\r\n                        thay đổi"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Form"
+msgstr "Biểu mẫu"
+
+msgid "Confirmation"
+msgstr "Xác nhận"
+
+msgid "Notification"
+msgstr "Thông báo"
+
+msgid "Enter Form Name"
+msgstr "Nhập tên biểu mẫu"
+
+msgid "Success Message"
+msgstr "Thông báo thành công"
+
+msgid "Entry Title"
+msgstr "Tiêu đề mục nhập"
+
+msgid "To set a custom entry title, enclose the input name in {{ }}."
+msgstr "Để đặt tiêu đề tùy chỉnh, hãy đặt tên trường trong {{ }}."
+
+msgid "Require Login"
+msgstr "Yêu cầu đăng nhập"
+
+msgid "Without login, user can't submit the form."
+msgstr "Nếu không đăng nhập, người dùng không thể gửi biểu mẫu."
+
+msgid "Confirmation mail to user"
+msgstr "Email xác nhận gửi người dùng"
+
+msgid "Active this one."
+msgstr "Hãy bật tùy chọn này."
+
+msgid "The form must have at least one Email widget and it should be required."
+msgstr "Biểu mẫu phải có ít nhất một widget Email và widget đó phải là bắt buộc."
+
+msgid "Want to send a submission copy to user by email?"
+msgstr "Bạn muốn gửi bản sao lượt gửi cho người dùng qua email?"
+
+msgid "Email Subject"
+msgstr "Tiêu đề email"
+
+msgid "Enter Email Subject Here"
+msgstr "Nhập tiêu đề email tại đây"
+
+msgid "Email From"
+msgstr "Email người gửi"
+
+msgid "mail@example.com"
+msgstr ""
+
+msgid "Email Reply To"
+msgstr "Email nhận phản hồi"
+
+msgid "Thankyou Message"
+msgstr "Lời cảm ơn"
+
+msgid "Notification mail to Admin"
+msgstr "Email thông báo cho quản trị viên"
+
+msgid "Want to send a submission copy to admin by email?"
+msgstr "Bạn muốn gửi bản sao lượt gửi cho quản trị viên qua email?"
+
+msgid "Email To"
+msgstr "Email người nhận"
+
+msgid "Enter admin email where you want to send mail."
+msgstr "Nhập email quản trị viên mà bạn muốn gửi thư đến."
+
+msgid "for multiple email addresses please use \",\" separator."
+msgstr "với nhiều địa chỉ email, hãy dùng dấu phân cách \",\"."
+
+msgid "Admin Note"
+msgstr "Ghi chú của quản trị viên"
+
+msgid "Save & Edit"
+msgstr "Lưu và chỉnh sửa"
+
+msgid "Active this one.The form must have at least one Email widget and it should be required."
+msgstr "Hãy bật tùy chọn này. Biểu mẫu phải có ít nhất một widget Email và widget đó phải là bắt buộc."
+
+msgid "Page navigation"
+msgstr "Điều hướng trang"
+
+msgid "Rollback to Previous Version"
+msgstr "Quay lại phiên bản trước"
+
+msgid "Reinstall"
+msgstr "Cài đặt lại"
+
+msgid "Update to New Version or Rollback to Previous Version"
+msgstr "Cập nhật lên phiên bản mới hoặc quay lại phiên bản trước"
+
+msgid "Update"
+msgstr "Cập nhật"
+
+msgid "Update & Version Control"
+msgstr "Cập nhật và quản lý phiên bản"
+
+msgid "Post"
+msgstr "Bài viết"
+
+msgid "All Widget"
+msgstr "Tất cả widget"
+
+msgid "Free Widget"
+msgstr "Widget miễn phí"
+
+msgid "Pro Widget"
+msgstr "Widget Pro"
+
+msgid "Search widget name..."
+msgstr "Tìm tên widget..."
+
+msgid "Docs"
+msgstr "Tài liệu"
+
+msgid "Demo"
+msgstr "Demo"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Widgets Manager"
+msgstr "Trình quản lý widget"
+
+msgid "Creative"
+msgstr "Sáng tạo"
+
+msgid "%s Total Widgets"
+msgstr "Tổng %s widget"
+
+msgid "Showcase"
+msgstr "Trưng bày"
+
+msgid "%s Active Widgets"
+msgstr "%s widget đang bật"
+
+msgid "Business"
+msgstr "Doanh nghiệp"
+
+msgid "Header & Footer"
+msgstr "Header & Footer"
+
+msgid "Marketing"
+msgstr "Tiếp thị"
+
+msgid "Infographic"
+msgstr "Infographic"

@@ -1338,7 +1338,7 @@ function Templates() {
 function renderTemplates(templates) {
   const categoriesSelect = document.getElementById("free-categories");
   const search = document.querySelector(".search-container");
-  if (templates === "templatekits" && categoriesSelect) {
+  if ((templates === "templatekits" || templates === "themeforest") && categoriesSelect) {
     categoriesSelect.style.display = "flex";
     setupCategoryFilter();
   } else {
@@ -1375,7 +1375,7 @@ function renderTemplates(templates) {
           content.innerHTML = json.data;
           // console.log(json.data);
           paginationTemplates();
-          if (templates === "templatekits") {
+          if (templates === "templatekits" || templates === "themeforest") {
             downloadTemplate();
             viewTemplateDetails();
           } else if (templates === "installed") {
@@ -1385,8 +1385,6 @@ function renderTemplates(templates) {
             importTemplates();
             deleteInstalledTemplate();
             installRequiredPlugin();
-          } else if (templates === "themeforest") {
-            themeforestStats();
           }
         }
       })

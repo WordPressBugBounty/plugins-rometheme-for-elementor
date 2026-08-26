@@ -1,0 +1,5701 @@
+# Copyright (C) 2026 Rometheme
+# This file is distributed under the same license as the RTMKit Addons for Elementor plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: RTMKit Addons for Elementor 2.1.2\n"
+"Report-Msgid-Bugs-To: https://rometheme.net/\n"
+"POT-Creation-Date: 2026-07-31 10:07+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: tools/make-pot.js\n"
+"X-Domain: rometheme-for-elementor\n"
+
+#: Inc/Core/PluginApi.php:67
+msgid "Security check"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:100 Inc/Elements/Accordion.php:154
+#: Inc/Elements/Accordion.php:166 Inc/Elements/Accordion.php:181
+#: Inc/Elements/Accordion.php:193 Inc/Elements/AdvancedHeading.php:67
+#: Inc/Elements/AdvancedHeading.php:129 Inc/Elements/AdvancedHeading.php:265
+#: Inc/Elements/AdvancedHeading.php:487 Inc/Elements/AdvancedHeading.php:767
+#: Inc/Elements/AnimatedHeading.php:336 Inc/Elements/BackToTop.php:180
+#: Inc/Elements/BarChart.php:212 Inc/Elements/BarChart.php:296
+#: Inc/Elements/BarChart.php:379 Inc/Elements/BarChart.php:409
+#: Inc/Elements/BarChart.php:438 Inc/Elements/BlogPost.php:114
+#: Inc/Elements/BlogPost.php:155 Inc/Elements/BlogPost.php:172
+#: Inc/Elements/BlogPost.php:190 Inc/Elements/BlogPost.php:281
+#: Inc/Elements/BlogPost.php:290 Inc/Elements/BlogPost.php:300
+#: Inc/Elements/BlogPost.php:451 Inc/Elements/CardSlider.php:242
+#: Inc/Elements/CardSlider.php:302 Inc/Elements/CardSlider.php:314
+#: Inc/Elements/CardSlider.php:386 Inc/Elements/CardSlider.php:408
+#: Inc/Elements/CardSlider.php:433 Inc/Elements/CardSlider.php:445
+#: Inc/Elements/ClientGrid.php:237 Inc/Elements/Countdown.php:100
+#: Inc/Elements/Counter.php:173 Inc/Elements/DualButton.php:161
+#: Inc/Elements/DualButton.php:257 Inc/Elements/DualButton.php:341
+#: Inc/Elements/HomeSlider.php:248 Inc/Elements/HomeSlider.php:300
+#: Inc/Elements/HomeSlider.php:392 Inc/Elements/HomeSlider.php:416
+#: Inc/Elements/HomeSlider.php:431 Inc/Elements/HomeSlider.php:444
+#: Inc/Elements/HomeSlider.php:1908 Inc/Elements/ImageAccordion.php:258
+#: Inc/Elements/ImageBox.php:261 Inc/Elements/ImageBox.php:301
+#: Inc/Elements/ImageBox.php:358 Inc/Elements/ImageGallery.php:138
+#: Inc/Elements/LineChart.php:128 Inc/Elements/LineChart.php:264
+#: Inc/Elements/LineChart.php:347 Inc/Elements/LineChart.php:430
+#: Inc/Elements/LineChart.php:460 Inc/Elements/LineChart.php:489
+#: Inc/Elements/PieChart.php:378 Inc/Elements/PostBlock.php:94
+#: Inc/Elements/PostBlock.php:177 Inc/Elements/PostBlock.php:194
+#: Inc/Elements/PostBlock.php:212 Inc/Elements/PostBlock.php:303
+#: Inc/Elements/PostBlock.php:312 Inc/Elements/PostBlock.php:322
+#: Inc/Elements/PostBlock.php:472 Inc/Elements/Postlist.php:385
+#: Inc/Elements/Postlist.php:496 Inc/Elements/Postlist.php:530
+#: Inc/Elements/PricingTable.php:594 Inc/Elements/ProgressBar.php:122
+#: Inc/Elements/RunningText.php:134 Inc/Elements/RunningText.php:255
+#: Inc/Elements/RunningText.php:426 Inc/Elements/SocialIcon.php:291
+#: Inc/Elements/SocialShare.php:298 Inc/Elements/Tabs.php:153
+#: Inc/Elements/Tabs.php:167 Inc/Elements/Tabs.php:223
+#: Inc/Elements/Tabs.php:244 Inc/Elements/Team.php:71
+#: Inc/Elements/TestimonialCarousel.php:235
+#: Inc/Elements/TestimonialCarousel.php:247
+#: Inc/Elements/TestimonialCarousel.php:408
+#: Inc/Elements/TestimonialCarousel.php:420
+#: Inc/Elements/TestimonialCarousel.php:432
+#: Inc/Elements/TestimonialCarousel.php:444
+#: Inc/Elements/TestimonialCarousel.php:499 Inc/Extensions/RkitToolTips.php:57
+#: Inc/Extensions/RkitToolTips.php:260
+#: Inc/Modules/Submission/SubmissionTable.php:120
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:196
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:205
+#: Inc/Widgets/Search.php:210 views/tab-footer.php:11 views/tab-header.php:10
+#: views/tab-single_post.php:10
+msgid "No"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:118 Inc/Elements/CardSlider.php:146
+#: Inc/Elements/CardSlider.php:845 Inc/Elements/CardSlider.php:1001
+#: Inc/Elements/ClientGrid.php:816 Inc/Elements/Countdown.php:348
+#: Inc/Elements/Countdown.php:350 Inc/Elements/Countdown.php:914
+#: Inc/Elements/Cta.php:216 Inc/Elements/Cta.php:1087
+#: Inc/Elements/HomeSlider.php:144 Inc/Elements/HomeSlider.php:1062
+#: Inc/Elements/ImageAccordion.php:137 Inc/Elements/ImageAccordion.php:755
+#: Inc/Elements/ImageAccordion.php:764 Inc/Elements/ImageBox.php:239
+#: Inc/Elements/ImageBox.php:752 Inc/Elements/PieChart.php:779
+#: Inc/Elements/PricingTable.php:322 Inc/Elements/Team.php:114
+msgid "Description"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:120 Inc/Elements/CardSlider.php:149
+#: Inc/Elements/Cta.php:220 Inc/Elements/ImageBox.php:243
+#: Inc/Elements/Tabs.php:298 Inc/Elements/Team.php:118
+msgid "Type your description here"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:139
+msgid "Title Icon"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:151
+msgid "Show Index Number"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:163
+msgid "Use Index with Zero-Pad"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:178
+msgid "Show Title Icon"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:190
+msgid "Show Sub Title"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:257 Inc/Elements/BlogPost.php:473
+#: Inc/Elements/Cta.php:321 Inc/Elements/DualButton.php:183
+#: Inc/Elements/DualButton.php:279 Inc/Elements/ImageBox.php:384
+#: Inc/Elements/PostBlock.php:494 Inc/Elements/Postlist.php:555
+#: Inc/Elements/WooProductGrid.php:408 Inc/Widgets/Search.php:411
+msgid "Icon Position"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:261 Inc/Elements/Accordion.php:341
+#: Inc/Elements/Accordion.php:953 Inc/Elements/AdvancedHeading.php:161
+#: Inc/Elements/AdvancedHeading.php:780 Inc/Elements/AnimatedHeading.php:172
+#: Inc/Elements/BackToTop.php:200 Inc/Elements/Blockquote.php:161
+#: Inc/Elements/Blockquote.php:237 Inc/Elements/BlogPost.php:952
+#: Inc/Elements/BlogPost.php:982 Inc/Elements/BlogPost.php:1247
+#: Inc/Elements/BlogPost.php:1349 Inc/Elements/BlogPost.php:1560
+#: Inc/Elements/BlogPost.php:1899 Inc/Elements/BlogPost.php:2061
+#: Inc/Elements/CardSlider.php:699 Inc/Elements/CardSlider.php:858
+#: Inc/Elements/CardSlider.php:1052 Inc/Elements/CardSlider.php:1337
+#: Inc/Elements/ClientGrid.php:580 Inc/Elements/ClientGrid.php:772
+#: Inc/Elements/ClientGrid.php:829 Inc/Elements/ClientGrid.php:922
+#: Inc/Elements/Countdown.php:398 Inc/Elements/Countdown.php:849
+#: Inc/Elements/Countdown.php:927 Inc/Elements/Counter.php:208
+#: Inc/Elements/Counter.php:235 Inc/Elements/Counter.php:490
+#: Inc/Elements/Cta.php:67 Inc/Elements/Cta.php:325 Inc/Elements/Cta.php:383
+#: Inc/Elements/Cta.php:418 Inc/Elements/Cta.php:450 Inc/Elements/Cta.php:807
+#: Inc/Elements/Cta.php:1200 Inc/Elements/Cta.php:1236
+#: Inc/Elements/DualButton.php:187 Inc/Elements/DualButton.php:283
+#: Inc/Elements/DualButton.php:395 Inc/Elements/DualButton.php:522
+#: Inc/Elements/DualButton.php:822 Inc/Elements/HomeSlider.php:630
+#: Inc/Elements/HomeSlider.php:1855 Inc/Elements/ImageAccordion.php:378
+#: Inc/Elements/ImageAccordion.php:647 Inc/Elements/ImageAccordion.php:777
+#: Inc/Elements/ImageAccordion.php:876 Inc/Elements/ImageAccordion.php:1151
+#: Inc/Elements/ImageAccordion.php:1291 Inc/Elements/ImageBox.php:388
+#: Inc/Elements/ImageBox.php:687 Inc/Elements/ImageBox.php:774
+#: Inc/Elements/ImageBox.php:1129 Inc/Elements/ImageBox.php:1240
+#: Inc/Elements/PieChart.php:521 Inc/Elements/PostBlock.php:122
+#: Inc/Elements/PostBlock.php:977 Inc/Elements/PostBlock.php:1007
+#: Inc/Elements/PostBlock.php:1259 Inc/Elements/PostBlock.php:1361
+#: Inc/Elements/PostBlock.php:1573 Inc/Elements/PostBlock.php:1860
+#: Inc/Elements/PostBlock.php:2067 Inc/Elements/Postlist.php:92
+#: Inc/Elements/Postlist.php:941 Inc/Elements/Postlist.php:1018
+#: Inc/Elements/Postlist.php:1134 Inc/Elements/Postlist.php:1297
+#: Inc/Elements/Postlist.php:1380 Inc/Elements/Postlist.php:1436
+#: Inc/Elements/PricingTable.php:219 Inc/Elements/PricingTable.php:638
+#: Inc/Elements/PricingTable.php:662 Inc/Elements/PricingTable.php:733
+#: Inc/Elements/PricingTable.php:858 Inc/Elements/PricingTable.php:962
+#: Inc/Elements/PricingTable.php:1077 Inc/Elements/PricingTable.php:1284
+#: Inc/Elements/PricingTable.php:1312 Inc/Elements/PricingTable.php:1472
+#: Inc/Elements/PricingTable.php:1524 Inc/Elements/PricingTable.php:1858
+#: Inc/Elements/PricingTable.php:1915 Inc/Elements/PricingTable.php:2504
+#: Inc/Elements/ProgressBar.php:179 Inc/Elements/RunningText.php:172
+#: Inc/Elements/RunningText.php:286 Inc/Elements/SocialIcon.php:185
+#: Inc/Elements/SocialIcon.php:215 Inc/Elements/SocialShare.php:191
+#: Inc/Elements/SocialShare.php:221 Inc/Elements/Tabs.php:101
+#: Inc/Elements/Tabs.php:197 Inc/Elements/Tabs.php:411
+#: Inc/Elements/Team.php:586 Inc/Elements/Team.php:972
+#: Inc/Elements/Team.php:1003 Inc/Elements/TestimonialCarousel.php:698
+#: Inc/Elements/TestimonialCarousel.php:752
+#: Inc/Elements/TestimonialCarousel.php:985
+#: Inc/Elements/TestimonialCarousel.php:1041
+#: Inc/Elements/TestimonialCarousel.php:1158
+#: Inc/Elements/TestimonialCarousel.php:1284 Inc/Elements/VideoButton.php:221
+#: Inc/Elements/WooProductGrid.php:1477 Inc/Elements/WooProductGrid.php:1797
+#: Inc/Extensions/RkitToolTips.php:147 Inc/Extensions/RkitToolTips.php:347
+#: Inc/Widgets/HeaderInfo.php:143 Inc/Widgets/NavMenu.php:508
+#: Inc/Widgets/NavMenu.php:798 Inc/Widgets/NavMenu.php:1095
+#: Inc/Widgets/Offcanvas.php:113 Inc/Widgets/Search.php:180
+#: Inc/Widgets/Search.php:415 Inc/Widgets/SiteLogo.php:158
+#: Inc/Widgets/SiteLogo.php:210
+msgid "Left"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:265 Inc/Elements/Accordion.php:349
+#: Inc/Elements/Accordion.php:961 Inc/Elements/AdvancedHeading.php:169
+#: Inc/Elements/AdvancedHeading.php:788 Inc/Elements/AnimatedHeading.php:180
+#: Inc/Elements/BackToTop.php:208 Inc/Elements/Blockquote.php:169
+#: Inc/Elements/Blockquote.php:245 Inc/Elements/BlogPost.php:960
+#: Inc/Elements/BlogPost.php:990 Inc/Elements/BlogPost.php:1255
+#: Inc/Elements/BlogPost.php:1357 Inc/Elements/BlogPost.php:1568
+#: Inc/Elements/BlogPost.php:1903 Inc/Elements/BlogPost.php:2065
+#: Inc/Elements/CardSlider.php:707 Inc/Elements/CardSlider.php:866
+#: Inc/Elements/CardSlider.php:1060 Inc/Elements/CardSlider.php:1345
+#: Inc/Elements/ClientGrid.php:588 Inc/Elements/ClientGrid.php:780
+#: Inc/Elements/ClientGrid.php:837 Inc/Elements/ClientGrid.php:926
+#: Inc/Elements/Countdown.php:406 Inc/Elements/Countdown.php:857
+#: Inc/Elements/Countdown.php:935 Inc/Elements/Counter.php:216
+#: Inc/Elements/Counter.php:243 Inc/Elements/Counter.php:502
+#: Inc/Elements/Cta.php:75 Inc/Elements/Cta.php:329 Inc/Elements/Cta.php:391
+#: Inc/Elements/Cta.php:426 Inc/Elements/Cta.php:815 Inc/Elements/Cta.php:1204
+#: Inc/Elements/Cta.php:1244 Inc/Elements/DualButton.php:191
+#: Inc/Elements/DualButton.php:287 Inc/Elements/DualButton.php:403
+#: Inc/Elements/DualButton.php:530 Inc/Elements/DualButton.php:830
+#: Inc/Elements/HomeSlider.php:638 Inc/Elements/HomeSlider.php:1863
+#: Inc/Elements/ImageAccordion.php:386 Inc/Elements/ImageAccordion.php:655
+#: Inc/Elements/ImageAccordion.php:785 Inc/Elements/ImageAccordion.php:884
+#: Inc/Elements/ImageAccordion.php:1155 Inc/Elements/ImageAccordion.php:1295
+#: Inc/Elements/ImageBox.php:392 Inc/Elements/ImageBox.php:695
+#: Inc/Elements/ImageBox.php:782 Inc/Elements/ImageBox.php:1137
+#: Inc/Elements/ImageBox.php:1248 Inc/Elements/PieChart.php:525
+#: Inc/Elements/PostBlock.php:123 Inc/Elements/PostBlock.php:985
+#: Inc/Elements/PostBlock.php:1015 Inc/Elements/PostBlock.php:1267
+#: Inc/Elements/PostBlock.php:1369 Inc/Elements/PostBlock.php:1581
+#: Inc/Elements/PostBlock.php:1864 Inc/Elements/PostBlock.php:2071
+#: Inc/Elements/Postlist.php:97 Inc/Elements/Postlist.php:949
+#: Inc/Elements/Postlist.php:1026 Inc/Elements/Postlist.php:1142
+#: Inc/Elements/Postlist.php:1305 Inc/Elements/Postlist.php:1388
+#: Inc/Elements/Postlist.php:1444 Inc/Elements/PricingTable.php:223
+#: Inc/Elements/PricingTable.php:642 Inc/Elements/PricingTable.php:666
+#: Inc/Elements/PricingTable.php:741 Inc/Elements/PricingTable.php:866
+#: Inc/Elements/PricingTable.php:970 Inc/Elements/PricingTable.php:1085
+#: Inc/Elements/PricingTable.php:1292 Inc/Elements/PricingTable.php:1320
+#: Inc/Elements/PricingTable.php:1480 Inc/Elements/PricingTable.php:1532
+#: Inc/Elements/PricingTable.php:1866 Inc/Elements/PricingTable.php:1923
+#: Inc/Elements/PricingTable.php:2512 Inc/Elements/ProgressBar.php:187
+#: Inc/Elements/RunningText.php:176 Inc/Elements/RunningText.php:294
+#: Inc/Elements/SocialIcon.php:193 Inc/Elements/SocialIcon.php:223
+#: Inc/Elements/SocialShare.php:199 Inc/Elements/SocialShare.php:229
+#: Inc/Elements/Tabs.php:109 Inc/Elements/Tabs.php:201
+#: Inc/Elements/Tabs.php:419 Inc/Elements/Team.php:594
+#: Inc/Elements/Team.php:980 Inc/Elements/Team.php:1007
+#: Inc/Elements/TestimonialCarousel.php:706
+#: Inc/Elements/TestimonialCarousel.php:760
+#: Inc/Elements/TestimonialCarousel.php:993
+#: Inc/Elements/TestimonialCarousel.php:1045
+#: Inc/Elements/TestimonialCarousel.php:1166
+#: Inc/Elements/TestimonialCarousel.php:1292 Inc/Elements/VideoButton.php:229
+#: Inc/Elements/WooProductGrid.php:1485 Inc/Elements/WooProductGrid.php:1801
+#: Inc/Extensions/RkitToolTips.php:155 Inc/Extensions/RkitToolTips.php:355
+#: Inc/Widgets/HeaderInfo.php:151 Inc/Widgets/NavMenu.php:516
+#: Inc/Widgets/NavMenu.php:806 Inc/Widgets/NavMenu.php:1103
+#: Inc/Widgets/Offcanvas.php:121 Inc/Widgets/Search.php:153
+#: Inc/Widgets/Search.php:188 Inc/Widgets/Search.php:419
+#: Inc/Widgets/SiteLogo.php:166 Inc/Widgets/SiteLogo.php:218
+msgid "Right"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:280 Inc/Elements/BackToTop.php:84
+#: Inc/Elements/BackToTop.php:133 Inc/Elements/Blockquote.php:101
+#: Inc/Elements/BlogPost.php:460 Inc/Elements/CardSlider.php:261
+#: Inc/Elements/Counter.php:182 Inc/Elements/Cta.php:129
+#: Inc/Elements/Cta.php:168 Inc/Elements/Cta.php:349
+#: Inc/Elements/DualButton.php:170 Inc/Elements/DualButton.php:266
+#: Inc/Elements/DualButton.php:350 Inc/Elements/HomeSlider.php:177
+#: Inc/Elements/ImageAccordion.php:190 Inc/Elements/ImageAccordion.php:1278
+#: Inc/Elements/ImageBox.php:258 Inc/Elements/ImageBox.php:271
+#: Inc/Elements/ImageBox.php:370 Inc/Elements/ImageBox.php:1113
+#: Inc/Elements/ImageComparison.php:78
+#: Inc/Elements/NestedElementExample.php:150
+#: Inc/Elements/NestedElementExample.php:871 Inc/Elements/PostBlock.php:481
+#: Inc/Elements/Postlist.php:542 Inc/Elements/PricingTable.php:77
+#: Inc/Elements/PricingTable.php:842 Inc/Elements/PricingTable.php:1618
+#: Inc/Elements/RunningText.php:90 Inc/Elements/RunningText.php:106
+#: Inc/Elements/SocialIcon.php:89 Inc/Elements/SocialShare.php:93
+#: Inc/Elements/Tabs.php:252 Inc/Elements/Team.php:175
+#: Inc/Elements/VideoButton.php:301 Inc/Widgets/HeaderInfo.php:71
+#: Inc/Widgets/NavMenu.php:402 Inc/Widgets/Offcanvas.php:285
+msgid "Icon"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:292
+msgid "Icon Active"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:311 Inc/Elements/BlogPost.php:1037
+#: Inc/Elements/CardSlider.php:364 Inc/Elements/CardSlider.php:730
+#: Inc/Elements/CardSlider.php:822 Inc/Elements/CardSlider.php:917
+#: Inc/Elements/CardSlider.php:1123 Inc/Elements/CardSlider.php:1360
+#: Inc/Elements/ClientGrid.php:415 Inc/Elements/ClientGrid.php:603
+#: Inc/Elements/ClientGrid.php:707 Inc/Elements/Countdown.php:572
+#: Inc/Elements/Countdown.php:761 Inc/Elements/Counter.php:452
+#: Inc/Elements/Counter.php:740 Inc/Elements/Counter.php:840
+#: Inc/Elements/Cta.php:1048 Inc/Elements/Cta.php:1096
+#: Inc/Elements/DualButton.php:140 Inc/Elements/DualButton.php:236
+#: Inc/Elements/DualButton.php:418 Inc/Elements/DualButton.php:443
+#: Inc/Elements/HomeSlider.php:680 Inc/Elements/HomeSlider.php:1188
+#: Inc/Elements/HomeSlider.php:1534 Inc/Elements/HomeSlider.php:1917
+#: Inc/Elements/ImageAccordion.php:547 Inc/Elements/ImageAccordion.php:668
+#: Inc/Elements/ImageAccordion.php:898 Inc/Elements/ImageAccordion.php:925
+#: Inc/Elements/ImageAccordion.php:1181 Inc/Elements/ImageBox.php:710
+#: Inc/Elements/ImageBox.php:856 Inc/Elements/ImageGallery.php:235
+#: Inc/Elements/NestedElementExample.php:939 Inc/Elements/PostBlock.php:1062
+#: Inc/Elements/Postlist.php:582 Inc/Elements/Postlist.php:1725
+#: Inc/Elements/PricingTable.php:983 Inc/Elements/PricingTable.php:1158
+#: Inc/Elements/PricingTable.php:1336 Inc/Elements/RunningText.php:363
+#: Inc/Elements/RunningText.php:850 Inc/Elements/SocialIcon.php:265
+#: Inc/Elements/SocialShare.php:271 Inc/Elements/Team.php:659
+#: Inc/Elements/Team.php:694 Inc/Elements/Team.php:737
+#: Inc/Elements/Team.php:945 Inc/Elements/TestimonialCarousel.php:342
+#: Inc/Elements/TestimonialCarousel.php:1207
+#: Inc/Elements/TestimonialCarousel.php:1307
+msgid "Spacing"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:337 Inc/Elements/Accordion.php:949
+#: Inc/Elements/AdvancedHeading.php:157 Inc/Elements/AdvancedHeading.php:776
+#: Inc/Elements/AnimatedHeading.php:168 Inc/Elements/BackToTop.php:196
+#: Inc/Elements/Blockquote.php:157 Inc/Elements/Blockquote.php:233
+#: Inc/Elements/BlogPost.php:948 Inc/Elements/BlogPost.php:978
+#: Inc/Elements/BlogPost.php:1243 Inc/Elements/BlogPost.php:1345
+#: Inc/Elements/BlogPost.php:1556 Inc/Elements/CardSlider.php:695
+#: Inc/Elements/CardSlider.php:854 Inc/Elements/CardSlider.php:1048
+#: Inc/Elements/CardSlider.php:1333 Inc/Elements/ClientGrid.php:576
+#: Inc/Elements/ClientGrid.php:768 Inc/Elements/ClientGrid.php:825
+#: Inc/Elements/Countdown.php:394 Inc/Elements/Countdown.php:665
+#: Inc/Elements/Countdown.php:845 Inc/Elements/Countdown.php:923
+#: Inc/Elements/Counter.php:231 Inc/Elements/Cta.php:379
+#: Inc/Elements/Cta.php:414 Inc/Elements/Cta.php:803 Inc/Elements/Cta.php:833
+#: Inc/Elements/Cta.php:1232 Inc/Elements/Cta.php:1262
+#: Inc/Elements/DualButton.php:518 Inc/Elements/DualButton.php:818
+#: Inc/Elements/ImageAccordion.php:374 Inc/Elements/ImageAccordion.php:643
+#: Inc/Elements/ImageAccordion.php:773 Inc/Elements/ImageAccordion.php:872
+#: Inc/Elements/ImageBox.php:683 Inc/Elements/ImageBox.php:770
+#: Inc/Elements/ImageBox.php:1125 Inc/Elements/ImageBox.php:1236
+#: Inc/Elements/PostBlock.php:973 Inc/Elements/PostBlock.php:1003
+#: Inc/Elements/PostBlock.php:1255 Inc/Elements/PostBlock.php:1357
+#: Inc/Elements/PostBlock.php:1569 Inc/Elements/Postlist.php:937
+#: Inc/Elements/Postlist.php:1014 Inc/Elements/Postlist.php:1130
+#: Inc/Elements/Postlist.php:1293 Inc/Elements/Postlist.php:1376
+#: Inc/Elements/Postlist.php:1432 Inc/Elements/PricingTable.php:729
+#: Inc/Elements/PricingTable.php:854 Inc/Elements/PricingTable.php:958
+#: Inc/Elements/PricingTable.php:1073 Inc/Elements/PricingTable.php:1280
+#: Inc/Elements/PricingTable.php:1308 Inc/Elements/PricingTable.php:1468
+#: Inc/Elements/PricingTable.php:1854 Inc/Elements/PricingTable.php:1911
+#: Inc/Elements/PricingTable.php:2500 Inc/Elements/ProgressBar.php:175
+#: Inc/Elements/RunningText.php:282 Inc/Elements/SocialIcon.php:181
+#: Inc/Elements/SocialIcon.php:211 Inc/Elements/SocialShare.php:187
+#: Inc/Elements/SocialShare.php:217 Inc/Elements/Tabs.php:407
+#: Inc/Elements/Team.php:582 Inc/Elements/TestimonialCarousel.php:694
+#: Inc/Elements/TestimonialCarousel.php:748
+#: Inc/Elements/TestimonialCarousel.php:852
+#: Inc/Elements/TestimonialCarousel.php:981
+#: Inc/Elements/TestimonialCarousel.php:1154
+#: Inc/Elements/TestimonialCarousel.php:1280 Inc/Elements/VideoButton.php:217
+#: Inc/Extensions/RkitToolTips.php:143 Inc/Extensions/RkitToolTips.php:343
+#: Inc/Widgets/HeaderInfo.php:139 Inc/Widgets/NavMenu.php:794
+#: Inc/Widgets/Offcanvas.php:109 Inc/Widgets/Search.php:176
+#: Inc/Widgets/SiteLogo.php:153 Inc/Widgets/SiteLogo.php:206
+msgid "Alignment"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:345 Inc/Elements/Accordion.php:957
+#: Inc/Elements/AdvancedHeading.php:165 Inc/Elements/AdvancedHeading.php:784
+#: Inc/Elements/AnimatedHeading.php:176 Inc/Elements/BackToTop.php:204
+#: Inc/Elements/Blockquote.php:165 Inc/Elements/Blockquote.php:241
+#: Inc/Elements/Blockquote.php:271 Inc/Elements/BlogPost.php:956
+#: Inc/Elements/BlogPost.php:986 Inc/Elements/BlogPost.php:1251
+#: Inc/Elements/BlogPost.php:1353 Inc/Elements/BlogPost.php:1564
+#: Inc/Elements/CardSlider.php:703 Inc/Elements/CardSlider.php:862
+#: Inc/Elements/CardSlider.php:1056 Inc/Elements/CardSlider.php:1341
+#: Inc/Elements/ClientGrid.php:584 Inc/Elements/ClientGrid.php:689
+#: Inc/Elements/ClientGrid.php:776 Inc/Elements/ClientGrid.php:833
+#: Inc/Elements/Countdown.php:230 Inc/Elements/Countdown.php:402
+#: Inc/Elements/Countdown.php:673 Inc/Elements/Countdown.php:853
+#: Inc/Elements/Countdown.php:931 Inc/Elements/Counter.php:212
+#: Inc/Elements/Counter.php:239 Inc/Elements/Counter.php:525
+#: Inc/Elements/Counter.php:696 Inc/Elements/Counter.php:796
+#: Inc/Elements/Cta.php:387 Inc/Elements/Cta.php:422 Inc/Elements/Cta.php:811
+#: Inc/Elements/Cta.php:1240 Inc/Elements/DualButton.php:399
+#: Inc/Elements/DualButton.php:526 Inc/Elements/DualButton.php:826
+#: Inc/Elements/HomeSlider.php:634 Inc/Elements/HomeSlider.php:661
+#: Inc/Elements/HomeSlider.php:1859 Inc/Elements/HomeSlider.php:1886
+#: Inc/Elements/ImageAccordion.php:382 Inc/Elements/ImageAccordion.php:411
+#: Inc/Elements/ImageAccordion.php:651 Inc/Elements/ImageAccordion.php:781
+#: Inc/Elements/ImageAccordion.php:880 Inc/Elements/ImageBox.php:120
+#: Inc/Elements/ImageBox.php:691 Inc/Elements/ImageBox.php:778
+#: Inc/Elements/ImageBox.php:1133 Inc/Elements/ImageBox.php:1244
+#: Inc/Elements/ImageComparison.php:138 Inc/Elements/ImageComparison.php:196
+#: Inc/Elements/NestedElementExample.php:262
+#: Inc/Elements/NestedElementExample.php:304
+#: Inc/Elements/NestedElementExample.php:374 Inc/Elements/PieChart.php:552
+#: Inc/Elements/PostBlock.php:981 Inc/Elements/PostBlock.php:1011
+#: Inc/Elements/PostBlock.php:1263 Inc/Elements/PostBlock.php:1365
+#: Inc/Elements/PostBlock.php:1577 Inc/Elements/Postlist.php:147
+#: Inc/Elements/Postlist.php:746 Inc/Elements/Postlist.php:777
+#: Inc/Elements/Postlist.php:945 Inc/Elements/Postlist.php:1022
+#: Inc/Elements/Postlist.php:1138 Inc/Elements/Postlist.php:1301
+#: Inc/Elements/Postlist.php:1384 Inc/Elements/Postlist.php:1440
+#: Inc/Elements/PricingTable.php:205 Inc/Elements/PricingTable.php:737
+#: Inc/Elements/PricingTable.php:862 Inc/Elements/PricingTable.php:966
+#: Inc/Elements/PricingTable.php:1081 Inc/Elements/PricingTable.php:1136
+#: Inc/Elements/PricingTable.php:1220 Inc/Elements/PricingTable.php:1288
+#: Inc/Elements/PricingTable.php:1316 Inc/Elements/PricingTable.php:1427
+#: Inc/Elements/PricingTable.php:1431 Inc/Elements/PricingTable.php:1476
+#: Inc/Elements/PricingTable.php:1528 Inc/Elements/PricingTable.php:1636
+#: Inc/Elements/PricingTable.php:1862 Inc/Elements/PricingTable.php:1919
+#: Inc/Elements/PricingTable.php:2508 Inc/Elements/ProgressBar.php:183
+#: Inc/Elements/RunningText.php:290 Inc/Elements/SocialIcon.php:189
+#: Inc/Elements/SocialIcon.php:219 Inc/Elements/SocialShare.php:195
+#: Inc/Elements/SocialShare.php:225 Inc/Elements/Tabs.php:105
+#: Inc/Elements/Tabs.php:415 Inc/Elements/Team.php:590
+#: Inc/Elements/Team.php:976 Inc/Elements/TestimonialCarousel.php:702
+#: Inc/Elements/TestimonialCarousel.php:756
+#: Inc/Elements/TestimonialCarousel.php:860
+#: Inc/Elements/TestimonialCarousel.php:989
+#: Inc/Elements/TestimonialCarousel.php:1162
+#: Inc/Elements/TestimonialCarousel.php:1288 Inc/Elements/VideoButton.php:225
+#: Inc/Elements/WooProductGrid.php:1481 Inc/Extensions/RkitToolTips.php:151
+#: Inc/Extensions/RkitToolTips.php:351 Inc/Widgets/HeaderInfo.php:147
+#: Inc/Widgets/NavMenu.php:512 Inc/Widgets/NavMenu.php:802
+#: Inc/Widgets/NavMenu.php:1099 Inc/Widgets/Offcanvas.php:117
+#: Inc/Widgets/Search.php:184 Inc/Widgets/SiteLogo.php:162
+#: Inc/Widgets/SiteLogo.php:214
+msgid "Center"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:372 Inc/Elements/Accordion.php:611
+#: Inc/Elements/Accordion.php:1034 Inc/Elements/AdvancedHeading.php:215
+#: Inc/Elements/AdvancedHeading.php:430 Inc/Elements/AdvancedHeading.php:668
+#: Inc/Elements/AnimatedHeading.php:237 Inc/Elements/AnimatedHeading.php:310
+#: Inc/Elements/BlogPost.php:499 Inc/Elements/BlogPost.php:638
+#: Inc/Elements/BlogPost.php:833 Inc/Elements/BlogPost.php:1096
+#: Inc/Elements/BlogPost.php:1282 Inc/Elements/BlogPost.php:1641
+#: Inc/Elements/CardSlider.php:476 Inc/Elements/CardSlider.php:550
+#: Inc/Elements/CardSlider.php:644 Inc/Elements/CardSlider.php:1193
+#: Inc/Elements/ClientGrid.php:319 Inc/Elements/ClientGrid.php:479
+#: Inc/Elements/ClientGrid.php:740 Inc/Elements/ClientGrid.php:1077
+#: Inc/Elements/Countdown.php:440 Inc/Elements/Countdown.php:637
+#: Inc/Elements/Countdown.php:893 Inc/Elements/Countdown.php:970
+#: Inc/Elements/Counter.php:265 Inc/Elements/Counter.php:630
+#: Inc/Elements/Cta.php:944 Inc/Elements/Cta.php:1363
+#: Inc/Elements/DualButton.php:490 Inc/Elements/DualButton.php:553
+#: Inc/Elements/DualButton.php:853 Inc/Elements/HomeSlider.php:488
+#: Inc/Elements/HomeSlider.php:738 Inc/Elements/HomeSlider.php:937
+#: Inc/Elements/HomeSlider.php:1046 Inc/Elements/HomeSlider.php:1153
+#: Inc/Elements/HomeSlider.php:1265 Inc/Elements/HomeSlider.php:1970
+#: Inc/Elements/ImageAccordion.php:607 Inc/Elements/ImageAccordion.php:714
+#: Inc/Elements/ImageAccordion.php:822 Inc/Elements/ImageAccordion.php:989
+#: Inc/Elements/ImageAccordion.php:1224 Inc/Elements/ImageBox.php:432
+#: Inc/Elements/ImageBox.php:559 Inc/Elements/ImageBox.php:598
+#: Inc/Elements/ImageBox.php:796 Inc/Elements/ImageBox.php:811
+#: Inc/Elements/ImageBox.php:1357 Inc/Elements/ImageBox.php:1507
+#: Inc/Elements/ImageComparison.php:317
+#: Inc/Elements/NestedElementExample.php:725
+#: Inc/Elements/NestedElementExample.php:1075 Inc/Elements/PieChart.php:586
+#: Inc/Elements/PostBlock.php:520 Inc/Elements/PostBlock.php:667
+#: Inc/Elements/PostBlock.php:860 Inc/Elements/PostBlock.php:1101
+#: Inc/Elements/PostBlock.php:1294 Inc/Elements/PostBlock.php:1654
+#: Inc/Elements/Postlist.php:613 Inc/Elements/Postlist.php:902
+#: Inc/Elements/Postlist.php:993 Inc/Elements/Postlist.php:1050
+#: Inc/Elements/Postlist.php:1166 Inc/Elements/Postlist.php:1340
+#: Inc/Elements/Postlist.php:1413 Inc/Elements/Postlist.php:1520
+#: Inc/Elements/PricingTable.php:774 Inc/Elements/PricingTable.php:927
+#: Inc/Elements/PricingTable.php:1039 Inc/Elements/PricingTable.php:1395
+#: Inc/Elements/PricingTable.php:1497 Inc/Elements/PricingTable.php:1605
+#: Inc/Elements/PricingTable.php:1879 Inc/Elements/PricingTable.php:1945
+#: Inc/Elements/PricingTable.php:1960 Inc/Elements/PricingTable.php:2058
+#: Inc/Elements/PricingTable.php:2452 Inc/Elements/PricingTable.php:2563
+#: Inc/Elements/ProgressBar.php:280 Inc/Elements/ProgressBar.php:461
+#: Inc/Elements/ProgressBar.php:586 Inc/Elements/RunningText.php:411
+#: Inc/Elements/RunningText.php:519 Inc/Elements/SocialIcon.php:355
+#: Inc/Elements/SocialShare.php:363 Inc/Elements/Tabs.php:376
+#: Inc/Elements/Tabs.php:536 Inc/Elements/Tabs.php:851
+#: Inc/Elements/Team.php:261 Inc/Elements/Team.php:613
+#: Inc/Elements/Team.php:1065 Inc/Elements/TestimonialCarousel.php:460
+#: Inc/Elements/TestimonialCarousel.php:619
+#: Inc/Elements/TestimonialCarousel.php:675
+#: Inc/Elements/TestimonialCarousel.php:940
+#: Inc/Elements/TestimonialCarousel.php:1120
+#: Inc/Elements/TestimonialCarousel.php:1246
+#: Inc/Elements/WooProductGrid.php:514 Inc/Elements/WooProductGrid.php:718
+#: Inc/Elements/WooProductGrid.php:838 Inc/Elements/WooProductGrid.php:1568
+#: Inc/Elements/WooProductGrid.php:1949 Inc/Extensions/RkitToolTips.php:170
+#: Inc/Extensions/RkitToolTips.php:370 Inc/Widgets/HeaderInfo.php:204
+#: Inc/Widgets/HeaderInfo.php:253 Inc/Widgets/NavMenu.php:1119
+#: Inc/Widgets/Offcanvas.php:154 Inc/Widgets/Offcanvas.php:333
+#: Inc/Widgets/Search.php:493
+msgid "Padding"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:427 Inc/Elements/Accordion.php:490
+#: Inc/Elements/Accordion.php:553 Inc/Elements/Accordion.php:881
+#: Inc/Elements/Accordion.php:1022 Inc/Elements/AdvancedHeading.php:203
+#: Inc/Elements/AdvancedHeading.php:415 Inc/Elements/AdvancedHeading.php:653
+#: Inc/Elements/BackToTop.php:374 Inc/Elements/BarChart.php:125
+#: Inc/Elements/Blockquote.php:130 Inc/Elements/BlogPost.php:600
+#: Inc/Elements/BlogPost.php:756 Inc/Elements/BlogPost.php:932
+#: Inc/Elements/BlogPost.php:1157 Inc/Elements/BlogPost.php:1211
+#: Inc/Elements/BlogPost.php:1784 Inc/Elements/BlogPost.php:1967
+#: Inc/Elements/BlogPost.php:2206 Inc/Elements/CardSlider.php:530
+#: Inc/Elements/CardSlider.php:594 Inc/Elements/CardSlider.php:671
+#: Inc/Elements/CardSlider.php:1311 Inc/Elements/CardSlider.php:1685
+#: Inc/Elements/CardSlider.php:1999 Inc/Elements/ClientGrid.php:459
+#: Inc/Elements/ClientGrid.php:1089 Inc/Elements/Countdown.php:622
+#: Inc/Elements/Counter.php:288 Inc/Elements/Counter.php:642
+#: Inc/Elements/Cta.php:997 Inc/Elements/Cta.php:1471
+#: Inc/Elements/DualButton.php:467 Inc/Elements/DualButton.php:747
+#: Inc/Elements/DualButton.php:770 Inc/Elements/DualButton.php:1038
+#: Inc/Elements/DualButton.php:1077 Inc/Elements/DualButton.php:1212
+#: Inc/Elements/HomeSlider.php:596 Inc/Elements/HomeSlider.php:923
+#: Inc/Elements/HomeSlider.php:1405 Inc/Elements/HomeSlider.php:1822
+#: Inc/Elements/HomeSlider.php:2115 Inc/Elements/ImageAccordion.php:587
+#: Inc/Elements/ImageAccordion.php:1117 Inc/Elements/ImageAccordion.php:1212
+#: Inc/Elements/ImageBox.php:420 Inc/Elements/ImageBox.php:547
+#: Inc/Elements/ImageBox.php:826 Inc/Elements/ImageBox.php:841
+#: Inc/Elements/ImageBox.php:1348 Inc/Elements/ImageBox.php:1601
+#: Inc/Elements/ImageComparison.php:297 Inc/Elements/ImageComparison.php:439
+#: Inc/Elements/ImageGallery.php:211 Inc/Elements/NestedElementExample.php:712
+#: Inc/Elements/NestedElementExample.php:1052 Inc/Elements/PieChart.php:598
+#: Inc/Elements/PostBlock.php:629 Inc/Elements/PostBlock.php:783
+#: Inc/Elements/PostBlock.php:957 Inc/Elements/PostBlock.php:1240
+#: Inc/Elements/PostBlock.php:1801 Inc/Elements/PostBlock.php:1962
+#: Inc/Elements/PostBlock.php:2224 Inc/Elements/Postlist.php:704
+#: Inc/Elements/Postlist.php:882 Inc/Elements/Postlist.php:1687
+#: Inc/Elements/PricingTable.php:804 Inc/Elements/PricingTable.php:1051
+#: Inc/Elements/PricingTable.php:2246 Inc/Elements/PricingTable.php:2467
+#: Inc/Elements/PricingTable.php:2583 Inc/Elements/ProgressBar.php:295
+#: Inc/Elements/ProgressBar.php:640 Inc/Elements/RunningText.php:391
+#: Inc/Elements/RunningText.php:499 Inc/Elements/RunningText.php:807
+#: Inc/Elements/SocialIcon.php:597 Inc/Elements/SocialShare.php:584
+#: Inc/Elements/Tabs.php:356 Inc/Elements/Tabs.php:759
+#: Inc/Elements/Tabs.php:831 Inc/Elements/Team.php:468
+#: Inc/Elements/Team.php:563 Inc/Elements/Team.php:899
+#: Inc/Elements/Team.php:1053 Inc/Elements/TestimonialCarousel.php:591
+#: Inc/Elements/TestimonialCarousel.php:655
+#: Inc/Elements/TestimonialCarousel.php:917
+#: Inc/Elements/TestimonialCarousel.php:1108
+#: Inc/Elements/TestimonialCarousel.php:1608
+#: Inc/Elements/TestimonialCarousel.php:1928
+#: Inc/Elements/WooProductGrid.php:625 Inc/Elements/WooProductGrid.php:789
+#: Inc/Elements/WooProductGrid.php:1768 Inc/Elements/WooProductGrid.php:1928
+#: Inc/Extensions/RkitToolTips.php:182 Inc/Extensions/RkitToolTips.php:382
+#: Inc/Widgets/HeaderInfo.php:241 Inc/Widgets/NavMenu.php:921
+#: Inc/Widgets/NavMenu.php:1136 Inc/Widgets/Offcanvas.php:163
+#: Inc/Widgets/Offcanvas.php:319 Inc/Widgets/Search.php:251
+#: Inc/Widgets/Search.php:503
+msgid "Border Radius"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:577 Inc/Elements/HomeSlider.php:135
+#: Inc/Elements/HomeSlider.php:760 Inc/Elements/PricingTable.php:118
+msgid "Sub Title"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:633 Inc/Elements/Accordion.php:903
+#: Inc/Elements/Blockquote.php:293 Inc/Elements/Countdown.php:696
+#: Inc/Elements/Cta.php:921 Inc/Elements/ImageAccordion.php:1321
+#: Inc/Elements/ImageBox.php:1155 Inc/Elements/ImageBox.php:1463
+#: Inc/Elements/NestedElementExample.php:919
+#: Inc/Elements/PricingTable.php:1995 Inc/Elements/ProgressBar.php:245
+#: Inc/Elements/RunningText.php:651 Inc/Elements/RunningText.php:729
+#: Inc/Elements/VideoButton.php:308 Inc/Elements/WooProductGrid.php:1588
+msgid "Size"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:656
+msgid "Box Width"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:679
+msgid "Box height"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:702 Inc/Elements/AdvancedHeading.php:445
+#: Inc/Elements/AdvancedHeading.php:683 Inc/Elements/Blockquote.php:329
+#: Inc/Elements/BlogPost.php:508 Inc/Elements/BlogPost.php:671
+#: Inc/Elements/BlogPost.php:845 Inc/Elements/BlogPost.php:1108
+#: Inc/Elements/BlogPost.php:1294 Inc/Elements/BlogPost.php:1408
+#: Inc/Elements/BlogPost.php:1990 Inc/Elements/BlogPost.php:2083
+#: Inc/Elements/CardSlider.php:656 Inc/Elements/Countdown.php:452
+#: Inc/Elements/Countdown.php:731 Inc/Elements/Counter.php:276
+#: Inc/Elements/Counter.php:756 Inc/Elements/Counter.php:856
+#: Inc/Elements/Cta.php:1020 Inc/Elements/ImageAccordion.php:734
+#: Inc/Elements/ImageAccordion.php:842 Inc/Elements/ImageAccordion.php:1236
+#: Inc/Elements/PieChart.php:574 Inc/Elements/PostBlock.php:529
+#: Inc/Elements/PostBlock.php:700 Inc/Elements/PostBlock.php:872
+#: Inc/Elements/PostBlock.php:1113 Inc/Elements/PostBlock.php:1306
+#: Inc/Elements/PostBlock.php:1420 Inc/Elements/PostBlock.php:1977
+#: Inc/Elements/PostBlock.php:2101 Inc/Elements/PricingTable.php:1975
+#: Inc/Elements/ProgressBar.php:494 Inc/Elements/ProgressBar.php:625
+#: Inc/Elements/Tabs.php:388 Inc/Elements/Tabs.php:548
+#: Inc/Elements/Tabs.php:863 Inc/Elements/Team.php:625
+#: Inc/Elements/Team.php:1077 Inc/Elements/TestimonialCarousel.php:955
+#: Inc/Elements/TestimonialCarousel.php:1132
+#: Inc/Elements/TestimonialCarousel.php:1258
+#: Inc/Elements/WooProductGrid.php:850 Inc/Elements/WooProductGrid.php:1961
+#: Inc/Widgets/HeaderInfo.php:214 Inc/Widgets/Offcanvas.php:310
+msgid "Margin"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:965 Inc/Elements/Blockquote.php:173
+#: Inc/Elements/BlogPost.php:1259 Inc/Elements/BlogPost.php:1361
+#: Inc/Elements/Cta.php:395 Inc/Elements/NestedElementExample.php:254
+#: Inc/Elements/NestedElementExample.php:296 Inc/Elements/PostBlock.php:1271
+#: Inc/Elements/PostBlock.php:1373 Inc/Elements/TestimonialCarousel.php:710
+msgid "Justify"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:97
+msgid "Default Open ?"
+msgstr ""
+
+#: Inc/Elements/Accordion.php:99 Inc/Elements/Accordion.php:153
+#: Inc/Elements/Accordion.php:165 Inc/Elements/Accordion.php:180
+#: Inc/Elements/Accordion.php:192 Inc/Elements/AdvancedHeading.php:66
+#: Inc/Elements/AdvancedHeading.php:128 Inc/Elements/AdvancedHeading.php:264
+#: Inc/Elements/AdvancedHeading.php:486 Inc/Elements/AdvancedHeading.php:766
+#: Inc/Elements/AnimatedHeading.php:335 Inc/Elements/BackToTop.php:179
+#: Inc/Elements/BarChart.php:211 Inc/Elements/BarChart.php:295
+#: Inc/Elements/BarChart.php:378 Inc/Elements/BarChart.php:408
+#: Inc/Elements/BarChart.php:437 Inc/Elements/BlogPost.php:113
+#: Inc/Elements/BlogPost.php:154 Inc/Elements/BlogPost.php:171
+#: Inc/Elements/BlogPost.php:189 Inc/Elements/BlogPost.php:280
+#: Inc/Elements/BlogPost.php:289 Inc/Elements/BlogPost.php:299
+#: Inc/Elements/BlogPost.php:450 Inc/Elements/CardSlider.php:241
+#: Inc/Elements/CardSlider.php:301 Inc/Elements/CardSlider.php:313
+#: Inc/Elements/CardSlider.php:385 Inc/Elements/CardSlider.php:407
+#: Inc/Elements/CardSlider.php:432 Inc/Elements/CardSlider.php:444
+#: Inc/Elements/ClientGrid.php:236 Inc/Elements/Countdown.php:99
+#: Inc/Elements/Counter.php:172 Inc/Elements/Cta.php:291
+#: Inc/Elements/DualButton.php:160 Inc/Elements/DualButton.php:256
+#: Inc/Elements/DualButton.php:340 Inc/Elements/HomeSlider.php:247
+#: Inc/Elements/HomeSlider.php:299 Inc/Elements/HomeSlider.php:391
+#: Inc/Elements/HomeSlider.php:415 Inc/Elements/HomeSlider.php:430
+#: Inc/Elements/HomeSlider.php:443 Inc/Elements/HomeSlider.php:1907
+#: Inc/Elements/ImageAccordion.php:257 Inc/Elements/ImageBox.php:260
+#: Inc/Elements/ImageBox.php:300 Inc/Elements/ImageBox.php:357
+#: Inc/Elements/ImageGallery.php:137 Inc/Elements/LineChart.php:127
+#: Inc/Elements/LineChart.php:263 Inc/Elements/LineChart.php:346
+#: Inc/Elements/LineChart.php:429 Inc/Elements/LineChart.php:459
+#: Inc/Elements/LineChart.php:488 Inc/Elements/PieChart.php:377
+#: Inc/Elements/PostBlock.php:93 Inc/Elements/PostBlock.php:176
+#: Inc/Elements/PostBlock.php:193 Inc/Elements/PostBlock.php:211
+#: Inc/Elements/PostBlock.php:302 Inc/Elements/PostBlock.php:311
+#: Inc/Elements/PostBlock.php:321 Inc/Elements/PostBlock.php:471
+#: Inc/Elements/Postlist.php:384 Inc/Elements/Postlist.php:495
+#: Inc/Elements/Postlist.php:529 Inc/Elements/PricingTable.php:593
+#: Inc/Elements/ProgressBar.php:121 Inc/Elements/RunningText.php:133
+#: Inc/Elements/RunningText.php:254 Inc/Elements/RunningText.php:425
+#: Inc/Elements/SocialIcon.php:290 Inc/Elements/SocialShare.php:297
+#: Inc/Elements/Tabs.php:152 Inc/Elements/Tabs.php:166
+#: Inc/Elements/Tabs.php:222 Inc/Elements/Tabs.php:243
+#: Inc/Elements/Team.php:70 Inc/Elements/TestimonialCarousel.php:234
+#: Inc/Elements/TestimonialCarousel.php:246
+#: Inc/Elements/TestimonialCarousel.php:284
+#: Inc/Elements/TestimonialCarousel.php:407
+#: Inc/Elements/TestimonialCarousel.php:419
+#: Inc/Elements/TestimonialCarousel.php:431
+#: Inc/Elements/TestimonialCarousel.php:443
+#: Inc/Elements/TestimonialCarousel.php:498 Inc/Extensions/RkitToolTips.php:56
+#: Inc/Extensions/RkitToolTips.php:259 Inc/Widgets/NavMenu.php:290
+#: Inc/Widgets/Search.php:209
+msgid "Yes"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:103 Inc/Elements/AnimatedHeading.php:144
+#: Inc/Elements/CardSlider.php:178 Inc/Elements/ClientGrid.php:224
+#: Inc/Elements/Cta.php:268 Inc/Elements/DualButton.php:130
+#: Inc/Elements/DualButton.php:226 Inc/Elements/HomeSlider.php:153
+#: Inc/Elements/ImageAccordion.php:146 Inc/Elements/ImageBox.php:343
+#: Inc/Elements/PricingTable.php:428 Inc/Elements/PricingTable.php:547
+#: Inc/Elements/SocialIcon.php:126 Inc/Elements/Team.php:196
+#: Inc/Widgets/HeaderInfo.php:97 Inc/Widgets/SiteLogo.php:106
+msgid "Link"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:105 Inc/Elements/AnimatedHeading.php:146
+#: Inc/Elements/Cta.php:270 Inc/Elements/Team.php:198
+#: Inc/Extensions/RkitWrapperLink.php:123
+#: Inc/Extensions/RkitWrapperLink.php:162 Inc/Widgets/SiteLogo.php:108
+msgid "https://your-link.com"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:126
+msgid "Use Background Text"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:149 Inc/Elements/BlogPost.php:487
+#: Inc/Elements/DualButton.php:384 Inc/Elements/ImageBox.php:413
+#: Inc/Elements/PieChart.php:504 Inc/Elements/PostBlock.php:508
+#: Inc/Widgets/Search.php:142
+msgid "Wrapper"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:194 Inc/Elements/ClientGrid.php:311
+#: Inc/Elements/DualButton.php:482 Inc/Elements/HomeSlider.php:479
+#: Inc/Elements/ImageBox.php:472 Inc/Elements/ImageBox.php:508
+#: Inc/Elements/ImageBox.php:944 Inc/Elements/ImageBox.php:983
+#: Inc/Elements/ImageBox.php:1058 Inc/Elements/ImageBox.php:1097
+#: Inc/Elements/PricingTable.php:825 Inc/Elements/PricingTable.php:2432
+#: Inc/Elements/RunningText.php:829 Inc/Elements/WooProductGrid.php:555
+#: Inc/Elements/WooProductGrid.php:602 Inc/Elements/WooProductGrid.php:1941
+#: Inc/Extensions/RkitToolTips.php:203 Inc/Extensions/RkitToolTips.php:403
+msgid "Box Shadow"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:196 Inc/Elements/PricingTable.php:827
+msgid "Put 0 for no box shadow "
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:262 Inc/Elements/AdvancedHeading.php:484
+msgid "Animation Gradient"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:276 Inc/Elements/AdvancedHeading.php:498
+#: Inc/Elements/Counter.php:144
+msgid "Animation Speed"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:386 Inc/Elements/ClientGrid.php:293
+#: Inc/Elements/HomeSlider.php:453 Inc/Elements/ImageAccordion.php:350
+#: Inc/Elements/ImageGallery.php:193 Inc/Elements/PricingTable.php:722
+#: Inc/Elements/WooProductGrid.php:483
+msgid "Container"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:57 Inc/Elements/BlogPost.php:1340
+#: Inc/Elements/Countdown.php:66 Inc/Elements/HomeSlider.php:618
+#: Inc/Elements/ImageBox.php:591 Inc/Elements/NestedElementExample.php:1014
+#: Inc/Elements/PostBlock.php:1352 Inc/Elements/Postlist.php:81
+#: Inc/Elements/Tabs.php:296 Inc/Elements/WooProductGrid.php:806
+#: Inc/Extensions/RkitToolTips.php:75 Inc/Extensions/RkitToolTips.php:275
+msgid "Content"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:624
+msgid "Container Color"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:64
+msgid "Boxed Heading"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:764
+msgid "Adjust Alignment"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:77 Inc/Elements/AdvancedHeading.php:229
+#: Inc/Elements/AdvancedHeading.php:467 Inc/Elements/AnimatedHeading.php:132
+#: Inc/Elements/BackToTop.php:80 Inc/Elements/Blockquote.php:90
+#: Inc/Elements/ClientGrid.php:162 Inc/Elements/RunningText.php:62
+#: Inc/Elements/RunningText.php:536 Inc/Widgets/HeaderInfo.php:85
+msgid "Text"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:80
+msgid "Example {{Headline Text}} for this {{Faster}} Page"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:804 Inc/Elements/ClientGrid.php:939
+msgid "Horizontal Offset"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:81 Inc/Elements/AnimatedHeading.php:136
+#: Inc/Elements/Blockquote.php:94 Inc/Elements/Cta.php:258
+#: Inc/Elements/DualButton.php:123 Inc/Elements/DualButton.php:219
+#: Inc/Elements/DualButton.php:327
+msgid "Type your text here"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:842 Inc/Elements/ClientGrid.php:963
+msgid "Vertical Offset"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:877
+msgid "Rotate (degrees)"
+msgstr ""
+
+#: Inc/Elements/AdvancedHeading.php:927
+msgid "Z-Index"
+msgstr ""
+
+#: Inc/Elements/AnimatedHeading.php:108
+msgid "Duration (ms)"
+msgstr ""
+
+#: Inc/Elements/AnimatedHeading.php:135
+msgid "Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page"
+msgstr ""
+
+#: Inc/Elements/AnimatedHeading.php:249
+msgid "Animated Text"
+msgstr ""
+
+#: Inc/Elements/AnimatedHeading.php:333
+msgid "Bring to Front"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:101 Inc/Elements/Blockquote.php:267
+#: Inc/Elements/BlogPost.php:1873 Inc/Elements/BlogPost.php:2035
+#: Inc/Elements/ClientGrid.php:684 Inc/Elements/ClientGrid.php:901
+#: Inc/Elements/Countdown.php:231 Inc/Elements/Countdown.php:669
+#: Inc/Elements/Counter.php:401 Inc/Elements/Counter.php:494
+#: Inc/Elements/Counter.php:521 Inc/Elements/Counter.php:692
+#: Inc/Elements/Counter.php:792 Inc/Elements/Cta.php:71
+#: Inc/Elements/Cta.php:472 Inc/Elements/Cta.php:503 Inc/Elements/Cta.php:837
+#: Inc/Elements/Cta.php:1266 Inc/Elements/HomeSlider.php:657
+#: Inc/Elements/HomeSlider.php:1882 Inc/Elements/ImageAccordion.php:407
+#: Inc/Elements/ImageBox.php:116 Inc/Elements/ImageBox.php:312
+#: Inc/Elements/ImageComparison.php:137 Inc/Elements/ImageComparison.php:195
+#: Inc/Elements/PieChart.php:517 Inc/Elements/PieChart.php:548
+#: Inc/Elements/PostBlock.php:1834 Inc/Elements/PostBlock.php:2041
+#: Inc/Elements/Postlist.php:101 Inc/Elements/Postlist.php:281
+#: Inc/Elements/Postlist.php:741 Inc/Elements/Postlist.php:772
+#: Inc/Elements/PricingTable.php:296 Inc/Elements/PricingTable.php:1131
+#: Inc/Elements/PricingTable.php:1215 Inc/Elements/PricingTable.php:1422
+#: Inc/Elements/PricingTable.php:1631 Inc/Elements/ProgressBar.php:564
+#: Inc/Elements/Tabs.php:128 Inc/Elements/Team.php:1011
+#: Inc/Elements/TestimonialCarousel.php:856
+#: Inc/Elements/TestimonialCarousel.php:1015
+msgid "Top"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:177
+msgid "Hide Button on Scroll"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:223 Inc/Elements/DualButton.php:61
+msgid "Button Width"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:249
+msgid "Button Height"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:275
+msgid "Button Size"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:301 Inc/Elements/BlogPost.php:1046
+#: Inc/Elements/CardSlider.php:1146 Inc/Elements/CardSlider.php:1760
+#: Inc/Elements/ClientGrid.php:996 Inc/Elements/Counter.php:565
+#: Inc/Elements/Cta.php:1304 Inc/Elements/DualButton.php:585
+#: Inc/Elements/DualButton.php:665 Inc/Elements/DualButton.php:885
+#: Inc/Elements/DualButton.php:965 Inc/Elements/DualButton.php:1147
+#: Inc/Elements/HomeSlider.php:838 Inc/Elements/HomeSlider.php:1215
+#: Inc/Elements/HomeSlider.php:1946 Inc/Elements/ImageBox.php:1267
+#: Inc/Elements/ImageBox.php:1486 Inc/Elements/PostBlock.php:1071
+#: Inc/Elements/Postlist.php:1470 Inc/Elements/PricingTable.php:882
+#: Inc/Elements/PricingTable.php:1656 Inc/Elements/SocialIcon.php:379
+#: Inc/Elements/SocialShare.php:387 Inc/Elements/Tabs.php:469
+#: Inc/Elements/Team.php:922 Inc/Elements/TestimonialCarousel.php:1063
+#: Inc/Elements/TestimonialCarousel.php:1184
+#: Inc/Elements/TestimonialCarousel.php:1684
+#: Inc/Elements/WooProductGrid.php:1447 Inc/Widgets/HeaderInfo.php:326
+#: Inc/Widgets/NavMenu.php:1146 Inc/Widgets/Offcanvas.php:134
+#: Inc/Widgets/Offcanvas.php:291 Inc/Widgets/Search.php:468
+msgid "Icon Size"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:76
+msgid "Display Type"
+msgstr ""
+
+#: Inc/Elements/BackToTop.php:99 Inc/Elements/Cta.php:255
+#: Inc/Elements/HomeSlider.php:318 Inc/Elements/ImageAccordion.php:267
+#: Inc/Elements/PricingTable.php:515 Inc/Elements/WooProductGrid.php:472
+msgid "Button Text"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:117
+msgid "Global Color Not Working"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:118
+msgid "Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element."
+msgstr ""
+
+#: Inc/Elements/BarChart.php:146 Inc/Elements/BarChart.php:174
+#: Inc/Elements/LineChart.php:197 Inc/Elements/LineChart.php:232
+#: Inc/Elements/NestedElementExample.php:549
+#: Inc/Elements/NestedElementExample.php:607
+#: Inc/Elements/NestedElementExample.php:691
+#: Inc/Elements/NestedElementExample.php:1043 Inc/Elements/PieChart.php:110
+#: Inc/Elements/PieChart.php:152
+msgid "Border Width"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:200 Inc/Elements/LineChart.php:252
+msgid "Scale X"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:209 Inc/Elements/LineChart.php:261
+msgid "Show Scale X"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:239 Inc/Elements/BarChart.php:322
+#: Inc/Elements/BarChart.php:479 Inc/Elements/LineChart.php:281
+#: Inc/Elements/LineChart.php:364 Inc/Elements/LineChart.php:513
+#: Inc/Elements/PieChart.php:403
+msgid "Font Family"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:284 Inc/Elements/LineChart.php:335
+msgid "Scale Y"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:293 Inc/Elements/LineChart.php:344
+msgid "Show Scale Y"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:367 Inc/Elements/LineChart.php:418
+msgid "Grid X"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:376 Inc/Elements/LineChart.php:427
+msgid "Show Grid X"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:397 Inc/Elements/LineChart.php:448
+msgid "Grid Y"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:406 Inc/Elements/LineChart.php:457
+msgid "Show Grid Y"
+msgstr ""
+
+#: Inc/Elements/BarChart.php:435 Inc/Elements/LineChart.php:486
+#: Inc/Elements/PieChart.php:375
+msgid "Show Legend"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:263 Inc/Elements/ClientGrid.php:888
+#: Inc/Elements/Counter.php:204 Inc/Elements/Counter.php:397
+#: Inc/Elements/Counter.php:486 Inc/Elements/Cta.php:63
+#: Inc/Elements/Cta.php:1196 Inc/Elements/HomeSlider.php:357
+#: Inc/Elements/ImageAccordion.php:319 Inc/Elements/ImageAccordion.php:1147
+#: Inc/Elements/ImageAccordion.php:1287
+#: Inc/Elements/NestedElementExample.php:881 Inc/Elements/PieChart.php:513
+#: Inc/Elements/PricingTable.php:488 Inc/Elements/PricingTable.php:634
+#: Inc/Elements/PricingTable.php:658 Inc/Elements/ProgressBar.php:560
+#: Inc/Elements/WooProductGrid.php:435 Inc/Elements/WooProductGrid.php:1793
+msgid "Position"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:275 Inc/Elements/BlogPost.php:1877
+#: Inc/Elements/BlogPost.php:2039 Inc/Elements/ClientGrid.php:693
+#: Inc/Elements/ClientGrid.php:905 Inc/Elements/Countdown.php:232
+#: Inc/Elements/Countdown.php:677 Inc/Elements/Counter.php:405
+#: Inc/Elements/Counter.php:498 Inc/Elements/Counter.php:529
+#: Inc/Elements/Cta.php:454 Inc/Elements/Cta.php:480 Inc/Elements/Cta.php:511
+#: Inc/Elements/Cta.php:845 Inc/Elements/Cta.php:1274
+#: Inc/Elements/HomeSlider.php:665 Inc/Elements/HomeSlider.php:1890
+#: Inc/Elements/ImageAccordion.php:415 Inc/Elements/ImageBox.php:124
+#: Inc/Elements/ImageBox.php:316 Inc/Elements/ImageComparison.php:139
+#: Inc/Elements/ImageComparison.php:197 Inc/Elements/PieChart.php:529
+#: Inc/Elements/PieChart.php:556 Inc/Elements/PostBlock.php:1838
+#: Inc/Elements/PostBlock.php:2045 Inc/Elements/Postlist.php:282
+#: Inc/Elements/Postlist.php:750 Inc/Elements/Postlist.php:781
+#: Inc/Elements/PricingTable.php:206 Inc/Elements/PricingTable.php:1140
+#: Inc/Elements/PricingTable.php:1224 Inc/Elements/PricingTable.php:1640
+#: Inc/Elements/ProgressBar.php:568 Inc/Elements/Tabs.php:136
+#: Inc/Elements/Team.php:1015 Inc/Elements/TestimonialCarousel.php:1019
+#: Inc/Widgets/Search.php:157
+msgid "Bottom"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:348
+msgid "Author Gap"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:371
+msgid "Top Margin"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:394
+msgid "Holder Padding"
+msgstr ""
+
+#: Inc/Elements/Blockquote.php:93
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices erat ut ante fermentum, sed molestie tellus luctus. Donec et dignissim nunc. Morbi aliquet risus eu odio efficitur vehicula. Duis ac scelerisque quam, at placerat diam."
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1008 Inc/Elements/Cta.php:446
+#: Inc/Elements/HomeSlider.php:1438 Inc/Elements/ImageBox.php:86
+#: Inc/Elements/NestedElementExample.php:215 Inc/Elements/PostBlock.php:1033
+#: Inc/Elements/RunningText.php:168 Inc/Elements/RunningText.php:194
+#: Inc/Elements/SocialIcon.php:242 Inc/Elements/SocialShare.php:248
+#: Inc/Elements/WooProductGrid.php:126
+msgid "Direction"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1012 Inc/Elements/ImageBox.php:94
+#: Inc/Elements/PostBlock.php:1037 Inc/Elements/WooProductGrid.php:134
+msgid "Row"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1016 Inc/Elements/ImageBox.php:90
+#: Inc/Elements/ImageGallery.php:96 Inc/Elements/ImageGallery.php:116
+#: Inc/Elements/PostBlock.php:1041 Inc/Elements/WooProductGrid.php:130
+#: Inc/Elements/WooProductGrid.php:241
+msgid "Column"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1076 Inc/Elements/CardSlider.php:1170
+#: Inc/Elements/Counter.php:589 Inc/Elements/Cta.php:1325
+#: Inc/Elements/HomeSlider.php:874 Inc/Elements/HomeSlider.php:1238
+#: Inc/Elements/ImageAccordion.php:963 Inc/Elements/ImageBox.php:1316
+#: Inc/Elements/PostBlock.php:1081 Inc/Elements/PricingTable.php:1679
+#: Inc/Elements/PricingTable.php:2022 Inc/Elements/SocialIcon.php:409
+#: Inc/Elements/SocialShare.php:417 Inc/Elements/Tabs.php:495
+#: Inc/Elements/WooProductGrid.php:1542 Inc/Widgets/HeaderInfo.php:347
+#: Inc/Widgets/Search.php:438
+msgid "Icon Spacing"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:111 Inc/Elements/PostBlock.php:91
+#: Inc/Elements/Postlist.php:253
+msgid "Show Featured Image"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1128 Inc/Elements/BlogPost.php:1182
+#: Inc/Elements/BlogPost.php:1652 Inc/Elements/BlogPost.php:1697
+#: Inc/Elements/BlogPost.php:1933 Inc/Elements/BlogPost.php:2115
+#: Inc/Elements/BlogPost.php:2156 Inc/Elements/HomeSlider.php:1339
+#: Inc/Elements/ImageBox.php:1368 Inc/Elements/ImageBox.php:1402
+#: Inc/Elements/ImageBox.php:1518 Inc/Elements/ImageBox.php:1552
+#: Inc/Elements/PostBlock.php:1133 Inc/Elements/PostBlock.php:1180
+#: Inc/Elements/PostBlock.php:1665 Inc/Elements/PostBlock.php:1710
+#: Inc/Elements/PostBlock.php:2007 Inc/Elements/PostBlock.php:2126
+#: Inc/Elements/PostBlock.php:2168 Inc/Elements/Postlist.php:1531
+#: Inc/Elements/Postlist.php:1590 Inc/Elements/PricingTable.php:1016
+#: Inc/Elements/PricingTable.php:1374 Inc/Elements/PricingTable.php:1582
+#: Inc/Elements/PricingTable.php:2286 Inc/Elements/WooProductGrid.php:1070
+#: Inc/Elements/WooProductGrid.php:1103 Inc/Elements/WooProductGrid.php:1135
+#: Inc/Elements/WooProductGrid.php:1168 Inc/Elements/WooProductGrid.php:1888
+#: Inc/Extensions/RkitToolTips.php:209 Inc/Extensions/RkitToolTips.php:409
+#: Inc/Widgets/HeaderInfo.php:266 Inc/Widgets/NavMenu.php:646
+#: Inc/Widgets/NavMenu.php:693 Inc/Widgets/NavMenu.php:738
+#: Inc/Widgets/NavMenu.php:983 Inc/Widgets/NavMenu.php:1014
+#: Inc/Widgets/NavMenu.php:1045 Inc/Widgets/Search.php:314
+#: Inc/Widgets/Search.php:349 Inc/Widgets/Search.php:522
+#: Inc/Widgets/Search.php:575
+msgid "Text Color"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1135 Inc/Elements/BlogPost.php:1189
+#: Inc/Elements/ClientGrid.php:1023 Inc/Elements/ClientGrid.php:1045
+#: Inc/Elements/HomeSlider.php:1357 Inc/Elements/ImageComparison.php:374
+#: Inc/Elements/PostBlock.php:1147 Inc/Elements/PostBlock.php:1194
+#: Inc/Elements/Postlist.php:1202 Inc/Elements/Postlist.php:1234
+#: Inc/Widgets/HeaderInfo.php:373 Inc/Widgets/HeaderInfo.php:388
+#: Inc/Widgets/NavMenu.php:944 Inc/Widgets/NavMenu.php:1181
+#: Inc/Widgets/NavMenu.php:1214 Inc/Widgets/Offcanvas.php:184
+#: Inc/Widgets/Offcanvas.php:214 Inc/Widgets/Offcanvas.php:345
+#: Inc/Widgets/Offcanvas.php:372 Inc/Widgets/Search.php:535
+#: Inc/Widgets/Search.php:588
+msgid "Icon Color"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1306 Inc/Elements/BlogPost.php:1322
+#: Inc/Elements/BlogPost.php:1382 Inc/Elements/ClientGrid.php:636
+#: Inc/Elements/ClientGrid.php:805 Inc/Elements/ClientGrid.php:861
+#: Inc/Elements/Countdown.php:429 Inc/Elements/Countdown.php:494
+#: Inc/Elements/Countdown.php:808 Inc/Elements/Countdown.php:882
+#: Inc/Elements/Countdown.php:959 Inc/Elements/HomeSlider.php:778
+#: Inc/Elements/HomeSlider.php:1006 Inc/Elements/HomeSlider.php:1114
+#: Inc/Elements/ImageAccordion.php:703 Inc/Elements/ImageAccordion.php:811
+#: Inc/Elements/ImageAccordion.php:1267 Inc/Elements/ImageAccordion.php:1310
+#: Inc/Elements/ImageBox.php:724 Inc/Elements/ImageBox.php:736
+#: Inc/Elements/ImageBox.php:882 Inc/Elements/ImageBox.php:996
+#: Inc/Elements/ImageBox.php:1185 Inc/Elements/ImageBox.php:1205
+#: Inc/Elements/NestedElementExample.php:768
+#: Inc/Elements/NestedElementExample.php:804
+#: Inc/Elements/NestedElementExample.php:840
+#: Inc/Elements/NestedElementExample.php:966
+#: Inc/Elements/NestedElementExample.php:983
+#: Inc/Elements/NestedElementExample.php:1000 Inc/Elements/PostBlock.php:1318
+#: Inc/Elements/PostBlock.php:1334 Inc/Elements/PostBlock.php:1394
+#: Inc/Elements/Postlist.php:973 Inc/Elements/Postlist.php:1066
+#: Inc/Elements/Postlist.php:1080 Inc/Elements/Postlist.php:1191
+#: Inc/Elements/Postlist.php:1223 Inc/Elements/Postlist.php:1329
+#: Inc/Elements/Postlist.php:1402 Inc/Elements/Postlist.php:1749
+#: Inc/Elements/PricingTable.php:913 Inc/Elements/PricingTable.php:1108
+#: Inc/Elements/PricingTable.php:1457 Inc/Elements/PricingTable.php:1796
+#: Inc/Elements/PricingTable.php:2540 Inc/Elements/RunningText.php:143
+#: Inc/Elements/RunningText.php:685 Inc/Elements/RunningText.php:705
+msgid "Color"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:133 Inc/Elements/ImageBox.php:209
+#: Inc/Elements/ImageGallery.php:72 Inc/Elements/PostBlock.php:150
+#: Inc/Elements/Postlist.php:826 Inc/Elements/RunningText.php:750
+#: Inc/Elements/WooProductGrid.php:645
+msgid "Image Aspect Ratio"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:136 Inc/Elements/ImageBox.php:212
+#: Inc/Elements/ImageGallery.php:75 Inc/Elements/PostBlock.php:153
+#: Inc/Elements/Postlist.php:829 Inc/Elements/RunningText.php:754
+#: Inc/Elements/WooProductGrid.php:649
+msgid "1 : 1"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:137 Inc/Elements/ImageBox.php:213
+#: Inc/Elements/ImageGallery.php:76 Inc/Elements/PostBlock.php:154
+#: Inc/Elements/Postlist.php:830 Inc/Elements/RunningText.php:755
+#: Inc/Elements/WooProductGrid.php:650
+msgid "3 : 2"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:138 Inc/Elements/ImageBox.php:214
+#: Inc/Elements/ImageGallery.php:77 Inc/Elements/PostBlock.php:155
+#: Inc/Elements/Postlist.php:831 Inc/Elements/RunningText.php:756
+#: Inc/Elements/WooProductGrid.php:651
+msgid "2 : 3"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:139 Inc/Elements/ImageBox.php:215
+#: Inc/Elements/ImageGallery.php:78 Inc/Elements/PostBlock.php:156
+#: Inc/Elements/Postlist.php:832 Inc/Elements/RunningText.php:757
+#: Inc/Elements/WooProductGrid.php:652
+msgid "5 : 4"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1390 Inc/Elements/PostBlock.php:1402
+msgid "Hover Color"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:140 Inc/Elements/ImageBox.php:216
+#: Inc/Elements/ImageGallery.php:79 Inc/Elements/PostBlock.php:157
+#: Inc/Elements/Postlist.php:833 Inc/Elements/RunningText.php:758
+#: Inc/Elements/WooProductGrid.php:653
+msgid "4 : 5"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:141 Inc/Elements/ImageBox.php:217
+#: Inc/Elements/ImageGallery.php:80 Inc/Elements/PostBlock.php:158
+#: Inc/Elements/Postlist.php:834 Inc/Elements/RunningText.php:759
+#: Inc/Elements/WooProductGrid.php:654
+msgid "16 : 9"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:142 Inc/Elements/ImageBox.php:218
+#: Inc/Elements/ImageGallery.php:81 Inc/Elements/PostBlock.php:159
+#: Inc/Elements/Postlist.php:835 Inc/Elements/RunningText.php:760
+#: Inc/Elements/WooProductGrid.php:655
+msgid "9 : 16"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1425 Inc/Elements/PostBlock.php:1437
+msgid "Show Highlight"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1427 Inc/Elements/CardSlider.php:91
+#: Inc/Elements/CardSlider.php:119 Inc/Elements/ClientGrid.php:125
+#: Inc/Elements/Countdown.php:86 Inc/Elements/Countdown.php:157
+#: Inc/Elements/Countdown.php:171 Inc/Elements/Countdown.php:183
+#: Inc/Elements/Countdown.php:194 Inc/Elements/Countdown.php:217
+#: Inc/Elements/Cta.php:245 Inc/Elements/Cta.php:307
+#: Inc/Elements/DualButton.php:313 Inc/Elements/HomeSlider.php:166
+#: Inc/Elements/HomeSlider.php:329 Inc/Elements/ImageAccordion.php:107
+#: Inc/Elements/ImageAccordion.php:167 Inc/Elements/ImageAccordion.php:290
+#: Inc/Elements/ImageComparison.php:89 Inc/Elements/ImageComparison.php:112
+#: Inc/Elements/ImageComparison.php:170 Inc/Elements/PieChart.php:226
+#: Inc/Elements/PieChart.php:267 Inc/Elements/PostBlock.php:1439
+#: Inc/Elements/Postlist.php:185 Inc/Elements/Postlist.php:210
+#: Inc/Elements/Postlist.php:231 Inc/Elements/Postlist.php:243
+#: Inc/Elements/Postlist.php:255 Inc/Elements/Postlist.php:519
+#: Inc/Elements/PricingTable.php:67 Inc/Elements/PricingTable.php:269
+#: Inc/Elements/PricingTable.php:458 Inc/Elements/PricingTable.php:559
+#: Inc/Elements/PricingTable.php:692 Inc/Elements/TestimonialCarousel.php:107
+#: Inc/Elements/VideoButton.php:136 Inc/Elements/VideoButton.php:148
+#: Inc/Elements/VideoButton.php:160 Inc/Elements/VideoButton.php:172
+#: Inc/Elements/VideoButton.php:191 Inc/Elements/WooProductGrid.php:167
+#: Inc/Elements/WooProductGrid.php:182 Inc/Elements/WooProductGrid.php:194
+#: Inc/Elements/WooProductGrid.php:346 Inc/Elements/WooProductGrid.php:361
+#: Inc/Widgets/Search.php:84 Inc/Widgets/Search.php:104
+#: Inc/Widgets/SiteLogo.php:128
+msgid "Show"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1428 Inc/Elements/CardSlider.php:92
+#: Inc/Elements/CardSlider.php:120 Inc/Elements/ClientGrid.php:124
+#: Inc/Elements/Countdown.php:87 Inc/Elements/Countdown.php:158
+#: Inc/Elements/Countdown.php:172 Inc/Elements/Countdown.php:184
+#: Inc/Elements/Countdown.php:195 Inc/Elements/Countdown.php:218
+#: Inc/Elements/Cta.php:246 Inc/Elements/Cta.php:308
+#: Inc/Elements/DualButton.php:314 Inc/Elements/HomeSlider.php:167
+#: Inc/Elements/HomeSlider.php:330 Inc/Elements/ImageAccordion.php:108
+#: Inc/Elements/ImageAccordion.php:168 Inc/Elements/ImageAccordion.php:291
+#: Inc/Elements/ImageComparison.php:90 Inc/Elements/ImageComparison.php:113
+#: Inc/Elements/ImageComparison.php:171 Inc/Elements/PieChart.php:227
+#: Inc/Elements/PieChart.php:268 Inc/Elements/PostBlock.php:1440
+#: Inc/Elements/Postlist.php:186 Inc/Elements/Postlist.php:211
+#: Inc/Elements/Postlist.php:232 Inc/Elements/Postlist.php:244
+#: Inc/Elements/Postlist.php:256 Inc/Elements/Postlist.php:520
+#: Inc/Elements/PricingTable.php:68 Inc/Elements/PricingTable.php:270
+#: Inc/Elements/PricingTable.php:459 Inc/Elements/PricingTable.php:560
+#: Inc/Elements/PricingTable.php:693 Inc/Elements/TestimonialCarousel.php:108
+#: Inc/Elements/VideoButton.php:137 Inc/Elements/VideoButton.php:149
+#: Inc/Elements/VideoButton.php:161 Inc/Elements/VideoButton.php:173
+#: Inc/Elements/VideoButton.php:192 Inc/Elements/WooProductGrid.php:168
+#: Inc/Elements/WooProductGrid.php:183 Inc/Elements/WooProductGrid.php:195
+#: Inc/Elements/WooProductGrid.php:347 Inc/Elements/WooProductGrid.php:362
+#: Inc/Widgets/Search.php:85 Inc/Widgets/Search.php:105
+#: Inc/Widgets/SiteLogo.php:129
+msgid "Hide"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1434 Inc/Elements/BlogPost.php:1835
+#: Inc/Elements/CardSlider.php:1449 Inc/Elements/CardSlider.php:1532
+#: Inc/Elements/CardSlider.php:1618 Inc/Elements/CardSlider.php:1737
+#: Inc/Elements/ClientGrid.php:387 Inc/Elements/Cta.php:529
+#: Inc/Elements/Cta.php:675 Inc/Elements/HomeSlider.php:545
+#: Inc/Elements/HomeSlider.php:1600 Inc/Elements/HomeSlider.php:1675
+#: Inc/Elements/HomeSlider.php:1757 Inc/Elements/ImageAccordion.php:434
+#: Inc/Elements/PostBlock.php:1462 Inc/Elements/PostBlock.php:1916
+#: Inc/Elements/ProgressBar.php:310 Inc/Elements/ProgressBar.php:336
+#: Inc/Elements/RunningText.php:332 Inc/Elements/TestimonialCarousel.php:535
+#: Inc/Elements/TestimonialCarousel.php:1357
+#: Inc/Elements/TestimonialCarousel.php:1440
+#: Inc/Elements/TestimonialCarousel.php:1534
+#: Inc/Elements/TestimonialCarousel.php:1661
+msgid "Height"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1449 Inc/Elements/BlogPost.php:1801
+#: Inc/Elements/CardSlider.php:1079 Inc/Elements/CardSlider.php:1422
+#: Inc/Elements/CardSlider.php:1505 Inc/Elements/CardSlider.php:1591
+#: Inc/Elements/CardSlider.php:1714 Inc/Elements/Countdown.php:549
+#: Inc/Elements/Cta.php:651 Inc/Elements/DualButton.php:1124
+#: Inc/Elements/HomeSlider.php:517 Inc/Elements/HomeSlider.php:1573
+#: Inc/Elements/HomeSlider.php:1648 Inc/Elements/HomeSlider.php:1730
+#: Inc/Elements/NestedElementExample.php:336 Inc/Elements/PieChart.php:305
+#: Inc/Elements/PostBlock.php:1446 Inc/Elements/PostBlock.php:1882
+#: Inc/Elements/Postlist.php:799 Inc/Elements/Postlist.php:1706
+#: Inc/Elements/PricingTable.php:1740 Inc/Elements/PricingTable.php:2297
+#: Inc/Elements/RunningText.php:310 Inc/Elements/Tabs.php:443
+#: Inc/Elements/TestimonialCarousel.php:883
+#: Inc/Elements/TestimonialCarousel.php:1330
+#: Inc/Elements/TestimonialCarousel.php:1413
+#: Inc/Elements/TestimonialCarousel.php:1507
+#: Inc/Elements/TestimonialCarousel.php:1638 Inc/Elements/VideoButton.php:242
+#: Inc/Elements/WooProductGrid.php:945
+msgid "Width"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1465 Inc/Elements/BlogPost.php:1869
+#: Inc/Elements/BlogPost.php:2031 Inc/Elements/PostBlock.php:1478
+#: Inc/Elements/PostBlock.php:1830 Inc/Elements/PostBlock.php:2037
+#: Inc/Elements/TestimonialCarousel.php:1011
+#: Inc/Elements/TestimonialCarousel.php:1037
+msgid "Top Bottom Position"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1481 Inc/Elements/BlogPost.php:1895
+#: Inc/Elements/BlogPost.php:2057 Inc/Elements/PostBlock.php:1494
+#: Inc/Elements/PostBlock.php:1856 Inc/Elements/PostBlock.php:2063
+msgid "Left Right Position"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:152 Inc/Elements/Countdown.php:84
+#: Inc/Elements/PieChart.php:224 Inc/Elements/PostBlock.php:174
+#: Inc/Elements/Postlist.php:183
+msgid "Show Title"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1524 Inc/Elements/PostBlock.php:1537
+msgid "Transition"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1551 Inc/Elements/Cta.php:234
+#: Inc/Elements/HomeSlider.php:291 Inc/Elements/HomeSlider.php:1168
+#: Inc/Elements/ImageAccordion.php:249 Inc/Elements/ImageAccordion.php:862
+#: Inc/Elements/ImageAccordion.php:1109 Inc/Elements/ImageBox.php:1225
+#: Inc/Elements/ImageBox.php:1444 Inc/Elements/PostBlock.php:1564
+#: Inc/Elements/Postlist.php:1427 Inc/Elements/PricingTable.php:407
+#: Inc/Elements/PricingTable.php:415 Inc/Elements/PricingTable.php:427
+#: Inc/Elements/PricingTable.php:1904 Inc/Elements/VideoButton.php:65
+#: Inc/Elements/VideoButton.php:208 Inc/Elements/WooProductGrid.php:337
+#: Inc/Elements/WooProductGrid.php:1430
+msgid "Button"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1583 Inc/Elements/PostBlock.php:1604
+msgid "Icon Size    "
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1609 Inc/Elements/ImageBox.php:1290
+#: Inc/Elements/PostBlock.php:1630 Inc/Elements/Postlist.php:1496
+msgid "Icon Spacing    "
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:161 Inc/Elements/PostBlock.php:183
+#: Inc/Elements/Postlist.php:289 Inc/Elements/WooProductGrid.php:210
+msgid "Crop Title By Word"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:169 Inc/Elements/PostBlock.php:191
+#: Inc/Elements/Postlist.php:208
+msgid "Show Content"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1747 Inc/Elements/CardSlider.php:1961
+#: Inc/Elements/NestedElementExample.php:633 Inc/Elements/PostBlock.php:1763
+#: Inc/Elements/Postlist.php:1090 Inc/Elements/Postlist.php:1245
+#: Inc/Elements/Postlist.php:1653 Inc/Elements/TestimonialCarousel.php:1891
+#: Inc/Elements/WooProductGrid.php:913
+msgid "Transition Duration"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:178 Inc/Elements/PostBlock.php:200
+#: Inc/Elements/Postlist.php:218
+msgid "Crop Content By Word"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:1794 Inc/Elements/PostBlock.php:1811
+msgid "Floating Date"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:187 Inc/Elements/PostBlock.php:209
+#: Inc/Elements/Postlist.php:493
+msgid "Show Read More"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:198 Inc/Elements/PostBlock.php:220
+#: Inc/Elements/Postlist.php:297 Inc/Elements/WooProductGrid.php:285
+msgid "Query"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:2012 Inc/Elements/PostBlock.php:2030
+msgid "Floating Category"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:203 Inc/Elements/PostBlock.php:225
+msgid "Post Count"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:209 Inc/Elements/PostBlock.php:231
+#: Inc/Elements/Postlist.php:312
+msgid "Select Post By"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:212 Inc/Elements/PostBlock.php:234
+#: Inc/Elements/Postlist.php:315
+msgid "Recent Post"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:213 Inc/Elements/PostBlock.php:235
+#: Inc/Elements/Postlist.php:316
+msgid "Selected Post"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:214 Inc/Elements/PostBlock.php:236
+#: Inc/Elements/Postlist.php:317
+msgid "Category Post"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:220 Inc/Elements/PostBlock.php:242
+#: Inc/Elements/Postlist.php:323
+msgid "Search and Select"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:231 Inc/Elements/PostBlock.php:253
+#: Inc/Elements/Postlist.php:334 Inc/Elements/WooProductGrid.php:295
+msgid "Select Categories"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:242 Inc/Elements/PostBlock.php:264
+#: Inc/Elements/Postlist.php:345
+msgid "Offset"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:248 Inc/Elements/PostBlock.php:270
+#: Inc/Elements/Postlist.php:351 Inc/Elements/WooProductGrid.php:304
+msgid "Order By"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:251 Inc/Elements/BlogPost.php:326
+#: Inc/Elements/BlogPost.php:354 Inc/Elements/PostBlock.php:273
+#: Inc/Elements/PostBlock.php:348 Inc/Elements/PostBlock.php:376
+#: Inc/Elements/Postlist.php:354 Inc/Elements/Postlist.php:398
+#: Inc/Elements/Postlist.php:426 Inc/Elements/WooProductGrid.php:308
+#: Inc/Modules/Submission/SubmissionTable.php:124
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:201
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:210
+#: views/tab-footer.php:15 views/tab-header.php:14
+#: views/tab-single_post.php:14
+msgid "Date"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:252 Inc/Elements/BlogPost.php:1238
+#: Inc/Elements/CardSlider.php:128 Inc/Elements/CardSlider.php:686
+#: Inc/Elements/ClientGrid.php:133 Inc/Elements/ClientGrid.php:760
+#: Inc/Elements/Countdown.php:110 Inc/Elements/Countdown.php:324
+#: Inc/Elements/Countdown.php:836 Inc/Elements/Cta.php:183
+#: Inc/Elements/Cta.php:206 Inc/Elements/Cta.php:1039
+#: Inc/Elements/HomeSlider.php:126 Inc/Elements/HomeSlider.php:954
+#: Inc/Elements/ImageAccordion.php:128 Inc/Elements/ImageAccordion.php:178
+#: Inc/Elements/ImageAccordion.php:635 Inc/Elements/ImageAccordion.php:1248
+#: Inc/Elements/ImageBox.php:229 Inc/Elements/ImageBox.php:664
+#: Inc/Elements/NestedElementExample.php:137 Inc/Elements/PieChart.php:682
+#: Inc/Elements/PostBlock.php:274 Inc/Elements/PostBlock.php:1250
+#: Inc/Elements/Postlist.php:195 Inc/Elements/Postlist.php:355
+#: Inc/Elements/PricingTable.php:107 Inc/Elements/WooProductGrid.php:309
+#: Inc/Elements/WooProductGrid.php:862
+#: Inc/Modules/Submission/SubmissionTable.php:121
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:197
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:206
+#: views/tab-footer.php:12 views/tab-header.php:11
+#: views/tab-single_post.php:11
+msgid "Title"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:253 Inc/Elements/BlogPost.php:325
+#: Inc/Elements/BlogPost.php:339 Inc/Elements/PostBlock.php:275
+#: Inc/Elements/PostBlock.php:347 Inc/Elements/PostBlock.php:361
+#: Inc/Elements/Postlist.php:356 Inc/Elements/Postlist.php:397
+#: Inc/Elements/Postlist.php:411
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:200
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:209
+#: views/system-status.php:392 views/tab-footer.php:13 views/tab-header.php:12
+#: views/tab-single_post.php:12
+msgid "Author"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:254 Inc/Elements/PostBlock.php:276
+#: Inc/Elements/Postlist.php:357
+msgid "Modified"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:255 Inc/Elements/BlogPost.php:403
+#: Inc/Elements/PostBlock.php:277 Inc/Elements/PostBlock.php:425
+#: Inc/Elements/Postlist.php:358 Inc/Elements/Postlist.php:475
+msgid "Comments"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:261 Inc/Elements/PostBlock.php:283
+#: Inc/Elements/Postlist.php:364 Inc/Elements/WooProductGrid.php:315
+msgid "Order"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:264 Inc/Elements/PostBlock.php:286
+#: Inc/Elements/Postlist.php:367 Inc/Elements/WooProductGrid.php:319
+msgid "ASC"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:265 Inc/Elements/PostBlock.php:287
+#: Inc/Elements/Postlist.php:368 Inc/Elements/WooProductGrid.php:320
+msgid "DESC"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:273 Inc/Elements/BlogPost.php:320
+#: Inc/Elements/BlogPost.php:943 Inc/Elements/PostBlock.php:295
+#: Inc/Elements/PostBlock.php:342 Inc/Elements/PostBlock.php:968
+#: Inc/Elements/Postlist.php:376 Inc/Elements/Postlist.php:392
+#: Inc/Elements/Postlist.php:1122
+msgid "Meta Data"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:278 Inc/Elements/PostBlock.php:300
+msgid "Show Floating Date"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:287 Inc/Elements/PostBlock.php:309
+msgid "Show Floating Category"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:297 Inc/Elements/PostBlock.php:319
+#: Inc/Elements/Postlist.php:382
+msgid "Show Meta Data"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:306 Inc/Elements/PostBlock.php:328
+msgid "Meta Position"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:309 Inc/Elements/PostBlock.php:331
+msgid "Before Title"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:310 Inc/Elements/PostBlock.php:332
+msgid "After Title"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:311 Inc/Elements/PostBlock.php:333
+msgid "After Content"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:327 Inc/Elements/BlogPost.php:388
+#: Inc/Elements/PostBlock.php:349 Inc/Elements/PostBlock.php:410
+#: Inc/Elements/Postlist.php:399 Inc/Elements/Postlist.php:460
+#: Inc/Elements/Postlist.php:1354 Inc/Elements/WooProductGrid.php:1049
+msgid "Category"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:328 Inc/Elements/PostBlock.php:350
+#: Inc/Elements/Postlist.php:400
+msgid "Comment"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:367 Inc/Elements/PostBlock.php:389
+#: Inc/Elements/Postlist.php:439
+msgid "Date Format"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:370 Inc/Elements/PostBlock.php:392
+#: Inc/Elements/Postlist.php:442
+msgid "January 01 , 2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:371 Inc/Elements/PostBlock.php:393
+#: Inc/Elements/Postlist.php:443
+msgid "01 January 2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:372 Inc/Elements/PostBlock.php:394
+#: Inc/Elements/Postlist.php:444
+msgid "Jan 01, 2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:373 Inc/Elements/PostBlock.php:395
+#: Inc/Elements/Postlist.php:445
+msgid "01 Jan 2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:374 Inc/Elements/PostBlock.php:396
+#: Inc/Elements/Postlist.php:446
+msgid "January 1st, 2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:375 Inc/Elements/PostBlock.php:397
+#: Inc/Elements/Postlist.php:447
+msgid "(Day/Month/Year) - 01/01/2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:376 Inc/Elements/PostBlock.php:398
+#: Inc/Elements/Postlist.php:448
+msgid "(Month/Day/Year) - 01/01/2023"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:417 Inc/Elements/ImageBox.php:290
+#: Inc/Elements/PostBlock.php:439 Inc/Elements/Postlist.php:489
+msgid "Read More Button"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:422 Inc/Elements/Countdown.php:205
+#: Inc/Elements/ImageBox.php:331 Inc/Elements/PostBlock.php:444
+#: Inc/Elements/Postlist.php:504 Inc/Elements/SocialIcon.php:122
+#: Inc/Elements/SocialShare.php:147
+msgid "Label"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:424 Inc/Elements/ImageBox.php:333
+#: Inc/Elements/PostBlock.php:446 Inc/Elements/Postlist.php:506
+msgid "Read More"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:425 Inc/Elements/ImageBox.php:334
+#: Inc/Elements/PostBlock.php:447 Inc/Elements/Postlist.php:507
+msgid "Type your label button here"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:432 Inc/Elements/PostBlock.php:454
+#: Inc/Elements/PricingTable.php:437
+msgid "Button Animation"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:435 Inc/Elements/HomeSlider.php:905
+#: Inc/Elements/HomeSlider.php:1037 Inc/Elements/HomeSlider.php:1144
+#: Inc/Elements/PieChart.php:99 Inc/Elements/PieChart.php:141
+#: Inc/Elements/PieChart.php:389 Inc/Elements/PostBlock.php:457
+#: Inc/Elements/PricingTable.php:440 Inc/Elements/PricingTable.php:607
+#: Inc/Elements/WooProductGrid.php:307 Inc/Elements/WooProductGrid.php:318
+msgid "Default"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:436 Inc/Elements/PostBlock.php:458
+#: Inc/Elements/PricingTable.php:441
+msgid "Filled Slide Down"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:437 Inc/Elements/PostBlock.php:459
+#: Inc/Elements/PricingTable.php:442
+msgid "Filled Slide Up"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:438 Inc/Elements/PostBlock.php:460
+#: Inc/Elements/PricingTable.php:443
+msgid "Filled Slide Left"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:439 Inc/Elements/PostBlock.php:461
+#: Inc/Elements/PricingTable.php:444
+msgid "Filled Slide Right"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:448 Inc/Elements/DualButton.php:158
+#: Inc/Elements/DualButton.php:254 Inc/Elements/DualButton.php:338
+#: Inc/Elements/ImageBox.php:355 Inc/Elements/PostBlock.php:469
+#: Inc/Elements/Postlist.php:527
+msgid "Add Icon ?"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:476 Inc/Elements/NestedElementExample.php:227
+#: Inc/Elements/NestedElementExample.php:889 Inc/Elements/PostBlock.php:497
+#: Inc/Elements/Postlist.php:558
+msgid "After"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:477 Inc/Elements/NestedElementExample.php:231
+#: Inc/Elements/NestedElementExample.php:897 Inc/Elements/PostBlock.php:498
+#: Inc/Elements/Postlist.php:559
+msgid "Before"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:518 Inc/Elements/BlogPost.php:681
+#: Inc/Elements/BlogPost.php:1126 Inc/Elements/BlogPost.php:1304
+#: Inc/Elements/BlogPost.php:1501 Inc/Elements/BlogPost.php:1650
+#: Inc/Elements/BlogPost.php:2103 Inc/Elements/ClientGrid.php:502
+#: Inc/Elements/ImageBox.php:1366 Inc/Elements/ImageBox.php:1516
+#: Inc/Elements/NestedElementExample.php:517
+#: Inc/Elements/NestedElementExample.php:761
+#: Inc/Elements/NestedElementExample.php:961 Inc/Elements/PieChart.php:612
+#: Inc/Elements/PieChart.php:711 Inc/Elements/PieChart.php:808
+#: Inc/Elements/PostBlock.php:539 Inc/Elements/PostBlock.php:710
+#: Inc/Elements/PostBlock.php:1131 Inc/Elements/PostBlock.php:1316
+#: Inc/Elements/PostBlock.php:1514 Inc/Elements/PostBlock.php:1663
+#: Inc/Elements/PostBlock.php:2121 Inc/Elements/Postlist.php:637
+#: Inc/Elements/Postlist.php:1184 Inc/Elements/Postlist.php:1529
+#: Inc/Elements/RunningText.php:571 Inc/Elements/RunningText.php:678
+#: Inc/Elements/VideoButton.php:363 Inc/Elements/VideoButton.php:567
+#: Inc/Elements/WooProductGrid.php:529 Inc/Widgets/HeaderInfo.php:264
+#: Inc/Widgets/NavMenu.php:641 Inc/Widgets/NavMenu.php:981
+#: Inc/Widgets/Offcanvas.php:172 Inc/Widgets/Offcanvas.php:343
+#: Inc/Widgets/Search.php:309 Inc/Widgets/Search.php:515
+msgid "Normal"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:546 Inc/Elements/BlogPost.php:709
+#: Inc/Elements/BlogPost.php:1180 Inc/Elements/BlogPost.php:1320
+#: Inc/Elements/BlogPost.php:1512 Inc/Elements/BlogPost.php:1695
+#: Inc/Elements/BlogPost.php:2144 Inc/Elements/ClientGrid.php:528
+#: Inc/Elements/ImageBox.php:1400 Inc/Elements/ImageBox.php:1550
+#: Inc/Elements/NestedElementExample.php:569
+#: Inc/Elements/NestedElementExample.php:797
+#: Inc/Elements/NestedElementExample.php:978 Inc/Elements/PieChart.php:646
+#: Inc/Elements/PieChart.php:744 Inc/Elements/PieChart.php:841
+#: Inc/Elements/PostBlock.php:576 Inc/Elements/PostBlock.php:738
+#: Inc/Elements/PostBlock.php:1178 Inc/Elements/PostBlock.php:1332
+#: Inc/Elements/PostBlock.php:1525 Inc/Elements/PostBlock.php:1708
+#: Inc/Elements/PostBlock.php:2163 Inc/Elements/Postlist.php:664
+#: Inc/Elements/Postlist.php:1216 Inc/Elements/Postlist.php:1588
+#: Inc/Elements/RunningText.php:594 Inc/Elements/RunningText.php:698
+#: Inc/Elements/VideoButton.php:416 Inc/Elements/VideoButton.php:589
+#: Inc/Elements/WooProductGrid.php:565 Inc/Widgets/HeaderInfo.php:290
+#: Inc/Widgets/NavMenu.php:183 Inc/Widgets/NavMenu.php:688
+#: Inc/Widgets/NavMenu.php:1012 Inc/Widgets/NavMenu.php:1201
+#: Inc/Widgets/Offcanvas.php:201 Inc/Widgets/Offcanvas.php:370
+#: Inc/Widgets/Search.php:570
+msgid "Hover"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:561 Inc/Elements/BlogPost.php:724
+#: Inc/Elements/BlogPost.php:890 Inc/Elements/BlogPost.php:1728
+#: Inc/Elements/BlogPost.php:2171 Inc/Elements/DualButton.php:714
+#: Inc/Elements/DualButton.php:1005 Inc/Elements/HomeSlider.php:1377
+#: Inc/Elements/HomeSlider.php:1711 Inc/Elements/HomeSlider.php:1794
+#: Inc/Elements/HomeSlider.php:2086 Inc/Elements/ImageAccordion.php:1083
+#: Inc/Elements/ImageBox.php:1571 Inc/Elements/NestedElementExample.php:546
+#: Inc/Elements/NestedElementExample.php:604
+#: Inc/Elements/NestedElementExample.php:688
+#: Inc/Elements/NestedElementExample.php:1040 Inc/Elements/PostBlock.php:590
+#: Inc/Elements/PostBlock.php:752 Inc/Elements/PostBlock.php:916
+#: Inc/Elements/PostBlock.php:1212 Inc/Elements/PostBlock.php:1741
+#: Inc/Elements/PostBlock.php:2191 Inc/Elements/Postlist.php:681
+#: Inc/Elements/Postlist.php:1631 Inc/Elements/PricingTable.php:2210
+#: Inc/Elements/SocialIcon.php:563 Inc/Elements/SocialShare.php:550
+#: Inc/Elements/Team.php:356 Inc/Elements/Team.php:870
+#: Inc/Elements/VideoButton.php:447 Inc/Elements/WooProductGrid.php:585
+#: Inc/Elements/WooProductGrid.php:766 Inc/Elements/WooProductGrid.php:1735
+msgid "Border Color"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:583 Inc/Elements/NestedElementExample.php:625
+#: Inc/Elements/PostBlock.php:612
+msgid "Hover Animation"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:610 Inc/Elements/PostBlock.php:639
+msgid "Content Wrapper "
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:621 Inc/Elements/PostBlock.php:650
+msgid "Min Height"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:766 Inc/Elements/PostBlock.php:793
+msgid "Featured Image"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:771 Inc/Elements/PostBlock.php:798
+msgid "Min Width"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:79 Inc/Elements/DualButton.php:84
+#: Inc/Elements/PostBlock.php:69 Inc/Widgets/HeaderInfo.php:47
+msgid "Layout"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:802 Inc/Elements/HomeSlider.php:962
+#: Inc/Elements/HomeSlider.php:1070 Inc/Elements/PostBlock.php:829
+#: Inc/Widgets/SiteLogo.php:179
+msgid "Max Width"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:84
+msgid "Show Post Per Row"
+msgstr ""
+
+#: Inc/Elements/BlogPost.php:95 Inc/Elements/PostBlock.php:75
+#: Inc/Elements/PricingTable.php:1545
+msgid "Item Spacing"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:117
+msgid "Initial Slide ?"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:130 Inc/Elements/CardSlider.php:139
+#: Inc/Elements/ClientGrid.php:135 Inc/Elements/Cta.php:209
+#: Inc/Elements/PricingTable.php:109
+msgid "Type your title here"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:1303 Inc/Elements/CardSlider.php:1677
+#: Inc/Elements/CardSlider.php:1991 Inc/Elements/HomeSlider.php:1397
+#: Inc/Elements/HomeSlider.php:1814 Inc/Elements/HomeSlider.php:2106
+#: Inc/Elements/Postlist.php:697 Inc/Elements/PricingTable.php:1719
+msgid "Divider"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:137 Inc/Elements/CardSlider.php:781
+#: Inc/Elements/CardSlider.php:968
+msgid "Sub Heading"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:1383 Inc/Elements/HomeSlider.php:1557
+msgid "Dot Wrapper Margin"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:156 Inc/Elements/Cta.php:93
+#: Inc/Elements/Cta.php:141 Inc/Elements/HomeSlider.php:115
+#: Inc/Elements/ImageAccordion.php:117 Inc/Elements/ImageBox.php:190
+#: Inc/Elements/RunningText.php:117 Inc/Widgets/SiteLogo.php:80
+msgid "Choose Image"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:1784 Inc/Elements/CardSlider.php:1827
+#: Inc/Elements/TestimonialCarousel.php:1708
+#: Inc/Elements/TestimonialCarousel.php:1752
+msgid "Navigation Spacing"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:188 Inc/Elements/ClientGrid.php:261
+#: Inc/Elements/HomeSlider.php:193 Inc/Elements/ImageAccordion.php:206
+msgid "Repeater List"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:193
+msgid "Title #1"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:195 Inc/Elements/CardSlider.php:203
+#: Inc/Elements/CardSlider.php:211 Inc/Elements/CardSlider.php:219
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:201
+msgid "Title #2"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:209
+msgid "Title #3"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:217
+msgid "Title #4"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:239 Inc/Elements/Cta.php:243
+msgid "Show Button ?"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:299 Inc/Elements/HomeSlider.php:245
+#: Inc/Elements/TestimonialCarousel.php:282
+msgid "Show Navigation"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:311
+msgid "Show Animation"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:327 Inc/Elements/HomeSlider.php:258
+#: Inc/Elements/TestimonialCarousel.php:307
+msgid "Next Icon"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:342 Inc/Elements/HomeSlider.php:274
+msgid "Previous Icon"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:383 Inc/Elements/HomeSlider.php:389
+#: Inc/Elements/TestimonialCarousel.php:405
+msgid "Autoplay"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:405 Inc/Elements/HomeSlider.php:413
+#: Inc/Elements/TestimonialCarousel.php:417
+msgid "Show Dots"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:430 Inc/Elements/HomeSlider.php:428
+#: Inc/Elements/RunningText.php:252 Inc/Elements/TestimonialCarousel.php:429
+msgid "Pause On Hover"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:442 Inc/Elements/HomeSlider.php:441
+#: Inc/Elements/TestimonialCarousel.php:441 Inc/Elements/VideoButton.php:158
+msgid "Loop"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:495 Inc/Elements/ClientGrid.php:439
+#: Inc/Elements/Countdown.php:990 Inc/Elements/ImageAccordion.php:1170
+#: Inc/Elements/ImageBox.php:894 Inc/Elements/ImageBox.php:914
+#: Inc/Elements/ImageBox.php:957 Inc/Elements/ImageBox.php:1008
+#: Inc/Elements/ImageBox.php:1028 Inc/Elements/ImageBox.php:1071
+#: Inc/Elements/PricingTable.php:1386 Inc/Elements/WooProductGrid.php:536
+#: Inc/Elements/WooProductGrid.php:572 Inc/Extensions/RkitToolTips.php:227
+#: Inc/Extensions/RkitToolTips.php:427 Inc/Widgets/HeaderInfo.php:274
+#: Inc/Widgets/HeaderInfo.php:299 Inc/Widgets/NavMenu.php:200
+#: Inc/Widgets/NavMenu.php:992 Inc/Widgets/NavMenu.php:1023
+#: Inc/Widgets/NavMenu.php:1054 Inc/Widgets/NavMenu.php:1172
+#: Inc/Widgets/NavMenu.php:1205 Inc/Widgets/Offcanvas.php:354
+#: Inc/Widgets/Offcanvas.php:380
+msgid "Background"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:513 Inc/Elements/Countdown.php:591
+#: Inc/Elements/HomeSlider.php:915 Inc/Elements/PieChart.php:98
+#: Inc/Elements/PieChart.php:140 Inc/Elements/Postlist.php:654
+#: Inc/Elements/Postlist.php:1682 Inc/Elements/RunningText.php:799
+#: Inc/Elements/WooProductGrid.php:546
+msgid "Border"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:563
+msgid "Card Image"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:622 Inc/Elements/Cta.php:1579
+#: Inc/Elements/Cta.php:1617 Inc/Elements/HomeSlider.php:716
+#: Inc/Elements/ImageAccordion.php:479 Inc/Elements/ImageAccordion.php:503
+#: Inc/Elements/Team.php:402 Inc/Elements/WooProductGrid.php:1008
+msgid "Opacity"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:870 Inc/Widgets/NavMenu.php:520
+#: Inc/Widgets/NavMenu.php:810
+msgid "Justified"
+msgstr ""
+
+#: Inc/Elements/CardSlider.php:89
+msgid "Show Sub Heading"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:1068
+msgid "Icon Wrapper"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:122
+msgid "Show title"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:147
+msgid "Choose Client Image"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:158
+msgid "Hover Mode"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:166 Inc/Elements/Cta.php:125
+#: Inc/Elements/RunningText.php:94 Inc/Elements/RunningText.php:720
+#: Inc/Elements/WooProductGrid.php:640 Inc/Widgets/SiteLogo.php:48
+msgid "Image"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:179
+msgid "Hover Title"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:181
+msgid "Awesome Partner"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:193
+msgid "Hover Description"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:195
+msgid "The Best Partners in the World."
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:200
+msgid "Short Description Only"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:208
+msgid "Choose Image Hover"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:234 Inc/Elements/HomeSlider.php:164
+#: Inc/Elements/ImageComparison.php:87
+msgid "Show Icon"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:246
+msgid "Client Icon"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:266
+msgid "Example Title 1"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:270
+msgid "Example Title 2"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:275
+msgid "Example Title 3"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:279
+msgid "Example Title 4"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:332
+msgid "Horizontal Spacing"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:355
+msgid "Vertical Spacing"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:443
+msgid "Use For Transparent background & PNG format"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:451 Inc/Elements/HomeSlider.php:588
+#: Inc/Elements/ImageAccordion.php:570 Inc/Elements/ImageBox.php:460
+#: Inc/Elements/ImageBox.php:496 Inc/Elements/ImageBox.php:539
+#: Inc/Elements/ImageGallery.php:202 Inc/Elements/Postlist.php:874
+#: Inc/Elements/PricingTable.php:2420 Inc/Elements/WooProductGrid.php:744
+#: Inc/Elements/WooProductGrid.php:1920
+msgid "Border  "
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:507 Inc/Elements/ClientGrid.php:533
+#: Inc/Elements/Cta.php:698 Inc/Elements/HomeSlider.php:570
+#: Inc/Elements/Postlist.php:844 Inc/Elements/RunningText.php:770
+msgid "Object Fit Image"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:511 Inc/Elements/ClientGrid.php:537
+#: Inc/Elements/Cta.php:702 Inc/Elements/HomeSlider.php:574
+#: Inc/Elements/Postlist.php:848 Inc/Elements/RunningText.php:774
+#: Inc/Elements/WooProductGrid.php:673
+msgid "Cover"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:512 Inc/Elements/ClientGrid.php:538
+#: Inc/Elements/Cta.php:703 Inc/Elements/HomeSlider.php:575
+#: Inc/Elements/Postlist.php:849 Inc/Elements/RunningText.php:775
+#: Inc/Elements/WooProductGrid.php:674
+msgid "Contain"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:513 Inc/Elements/ClientGrid.php:539
+#: Inc/Elements/Cta.php:704 Inc/Elements/HomeSlider.php:576
+#: Inc/Elements/Postlist.php:850 Inc/Elements/RunningText.php:776
+#: Inc/Elements/WooProductGrid.php:675
+msgid "Fill"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:514 Inc/Elements/ClientGrid.php:540
+#: Inc/Elements/Cta.php:705 Inc/Elements/HomeSlider.php:577
+#: Inc/Elements/Postlist.php:851 Inc/Elements/RunningText.php:777
+#: Inc/Elements/WooProductGrid.php:677
+msgid "Scale Down"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:558
+msgid "Section Title"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:560
+msgid "Use For Title section"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:59
+msgid "Grid Number"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:627 Inc/Elements/ClientGrid.php:795
+#: Inc/Elements/ClientGrid.php:852 Inc/Elements/Countdown.php:421
+#: Inc/Elements/Countdown.php:476 Inc/Elements/Countdown.php:800
+#: Inc/Elements/Countdown.php:874 Inc/Elements/Countdown.php:951
+#: Inc/Elements/DualButton.php:545 Inc/Elements/DualButton.php:845
+#: Inc/Elements/DualButton.php:1178 Inc/Elements/HomeSlider.php:769
+#: Inc/Elements/HomeSlider.php:998 Inc/Elements/HomeSlider.php:1106
+#: Inc/Elements/HomeSlider.php:1180 Inc/Elements/ImageAccordion.php:694
+#: Inc/Elements/ImageAccordion.php:802 Inc/Elements/ImageAccordion.php:954
+#: Inc/Elements/ImageAccordion.php:1258 Inc/Elements/ImageBox.php:675
+#: Inc/Elements/ImageBox.php:762 Inc/Elements/Postlist.php:964
+#: Inc/Elements/Postlist.php:1041 Inc/Elements/Postlist.php:1157
+#: Inc/Elements/Postlist.php:1320 Inc/Elements/Postlist.php:1367
+#: Inc/Elements/PricingTable.php:1007 Inc/Elements/PricingTable.php:1099
+#: Inc/Elements/PricingTable.php:1182 Inc/Elements/PricingTable.php:1360
+#: Inc/Elements/PricingTable.php:1448 Inc/Elements/PricingTable.php:1573
+#: Inc/Elements/PricingTable.php:1937 Inc/Elements/PricingTable.php:2278
+#: Inc/Elements/PricingTable.php:2526 Inc/Elements/WooProductGrid.php:872
+#: Inc/Elements/WooProductGrid.php:1059 Inc/Elements/WooProductGrid.php:1093
+#: Inc/Elements/WooProductGrid.php:1125 Inc/Elements/WooProductGrid.php:1158
+#: Inc/Elements/WooProductGrid.php:1439 Inc/Elements/WooProductGrid.php:1880
+msgid "Typography"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:664
+msgid "Hover Text Style"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:680 Inc/Elements/Counter.php:517
+#: Inc/Elements/Counter.php:688 Inc/Elements/Counter.php:788
+#: Inc/Elements/HomeSlider.php:653 Inc/Elements/HomeSlider.php:1878
+msgid "Vertical Alignment"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:897 Inc/Elements/Cta.php:468
+#: Inc/Elements/Cta.php:499 Inc/Elements/HomeSlider.php:1462
+#: Inc/Elements/PieChart.php:544 Inc/Elements/Postlist.php:138
+#: Inc/Elements/Postlist.php:737 Inc/Elements/PricingTable.php:1127
+#: Inc/Elements/PricingTable.php:1211 Inc/Elements/PricingTable.php:1418
+#: Inc/Elements/PricingTable.php:1627
+msgid "Vertical Position"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:90
+msgid " Hover Style"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:918 Inc/Elements/HomeSlider.php:1498
+#: Inc/Elements/Postlist.php:768
+msgid "Horizontal Position"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:93 Inc/Elements/ClientGrid.php:510
+#: Inc/Elements/ClientGrid.php:536 Inc/Elements/Cta.php:121
+#: Inc/Elements/Cta.php:701 Inc/Elements/DualButton.php:369
+#: Inc/Elements/HomeSlider.php:573 Inc/Elements/NestedElementExample.php:430
+#: Inc/Elements/Postlist.php:847 Inc/Elements/RunningText.php:86
+#: Inc/Elements/RunningText.php:773 Inc/Elements/VideoButton.php:480
+#: Inc/Elements/WooProductGrid.php:676 Inc/Widgets/NavMenu.php:195
+msgid "None"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:94 Inc/Elements/DualButton.php:92
+#: Inc/Elements/SocialIcon.php:246 Inc/Elements/SocialShare.php:252
+msgid "Horizontal"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:95 Inc/Elements/SocialIcon.php:250
+#: Inc/Elements/SocialShare.php:256
+msgid "Vertical"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:96 Inc/Elements/VideoButton.php:492
+msgid "Flip"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:987 Inc/Elements/RunningText.php:642
+msgid "Icons"
+msgstr ""
+
+#: Inc/Elements/ClientGrid.php:99
+msgid "Hover function ready to use except at default mode"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:112
+msgid "Countdown Timer"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:113
+msgid "Enter your title"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:114
+msgid "Hey! If you dont want the title, you can leave it blank."
+msgstr ""
+
+#: Inc/Elements/Countdown.php:138
+msgid "Date due"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:148
+msgid "Time Control"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:155
+msgid "Show Days"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:169
+msgid "Show Hours"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:181
+msgid "Show Minutes"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:192
+msgid "Show Seconds"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:215
+msgid "Show Label"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:227
+msgid "Label Potition"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:248 Inc/Elements/Countdown.php:250
+msgid "Days"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:263 Inc/Elements/Countdown.php:265
+msgid "Hours"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:279 Inc/Elements/Countdown.php:281
+msgid "Minutes"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:294 Inc/Elements/Countdown.php:296
+msgid "Seconds"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:316
+msgid "Expired Action"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:326
+msgid "FINISH!"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:364
+msgid "Box"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:371 Inc/Elements/Countdown.php:526
+#: Inc/Elements/Countdown.php:999 Inc/Elements/NestedElementExample.php:530
+#: Inc/Elements/NestedElementExample.php:588
+#: Inc/Elements/NestedElementExample.php:672
+#: Inc/Elements/NestedElementExample.php:1027
+#: Inc/Elements/PricingTable.php:2405
+msgid "Background Color"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:382
+msgid "Title Style"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:467
+msgid "Time Style"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:485
+msgid "Text Stroke"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:505
+msgid "Background Time"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:513
+msgid "Background time Color"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:540
+msgid "Container Time"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:652 Inc/Elements/DualButton.php:1117
+msgid "Separator"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:750
+msgid "Label Style"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:827
+msgid "Expired Style"
+msgstr ""
+
+#: Inc/Elements/Countdown.php:97
+msgid "Show Separator"
+msgstr ""
+
+#: Inc/Elements/Counter.php:170
+msgid "Use Icon"
+msgstr ""
+
+#: Inc/Elements/Counter.php:332
+msgid "Blur Effect"
+msgstr ""
+
+#: Inc/Elements/Counter.php:612
+msgid "Icons Wrapper"
+msgstr ""
+
+#: Inc/Elements/Counter.php:700 Inc/Elements/Counter.php:800
+msgid "bottom"
+msgstr ""
+
+#: Inc/Elements/Cta.php:117
+msgid "Graphic Element"
+msgstr ""
+
+#: Inc/Elements/Cta.php:1270
+msgid "MIddle"
+msgstr ""
+
+#: Inc/Elements/Cta.php:1518 Inc/Elements/PricingTable.php:2369
+msgid "Distance"
+msgstr ""
+
+#: Inc/Elements/Cta.php:190
+msgid "HTML Tag"
+msgstr ""
+
+#: Inc/Elements/Cta.php:208
+msgid "This is the heading"
+msgstr ""
+
+#: Inc/Elements/Cta.php:219
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+msgstr ""
+
+#: Inc/Elements/Cta.php:257
+msgid "Click Here"
+msgstr ""
+
+#: Inc/Elements/Cta.php:289 Inc/Elements/SocialIcon.php:288
+#: Inc/Elements/SocialShare.php:295
+msgid "Fullwidth ?"
+msgstr ""
+
+#: Inc/Elements/Cta.php:292 Inc/Elements/TestimonialCarousel.php:285
+#: Inc/Extensions/BlurEffects.php:43 Inc/Extensions/BlurEffects.php:93
+#: Inc/Extensions/RkitWrapperLink.php:111
+#: Inc/Extensions/RkitWrapperLink.php:151
+msgid "no"
+msgstr ""
+
+#: Inc/Elements/Cta.php:305
+msgid "Add Icon"
+msgstr ""
+
+#: Inc/Elements/Cta.php:476 Inc/Elements/Cta.php:507 Inc/Elements/Cta.php:841
+#: Inc/Elements/Tabs.php:132
+msgid "Middle"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:119 Inc/Elements/DualButton.php:511
+msgid "Button 1"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:122
+msgid "Rometheme "
+msgstr ""
+
+#: Inc/Elements/DualButton.php:1255
+msgid "Delay Time"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:215 Inc/Elements/DualButton.php:811
+msgid "Button 2"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:218
+msgid "Studio "
+msgstr ""
+
+#: Inc/Elements/DualButton.php:311
+msgid "Middle Button"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:323
+msgid "Middle Text Button"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:326
+msgid "or "
+msgstr ""
+
+#: Inc/Elements/DualButton.php:365 Inc/Elements/DualButton.php:1232
+msgid "Effect"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:370
+msgid "Ripple"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:371 Inc/Elements/VideoButton.php:483
+msgid "Pulse"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:391
+msgid " Alignment"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:636 Inc/Elements/DualButton.php:936
+#: Inc/Elements/DualButton.php:1204 Inc/Elements/HomeSlider.php:1328
+#: Inc/Elements/ImageAccordion.php:1035 Inc/Elements/ImageBox.php:932
+#: Inc/Elements/ImageBox.php:971 Inc/Elements/ImageBox.php:1046
+#: Inc/Elements/ImageBox.php:1085 Inc/Elements/PricingTable.php:796
+#: Inc/Elements/PricingTable.php:2139
+msgid "Border Button"
+msgstr ""
+
+#: Inc/Elements/DualButton.php:88 Inc/Elements/ImageComparison.php:69
+msgid "vertical"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:128
+msgid "Your Title"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:137
+msgid "Your Sub Title"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:1442
+msgid "List"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:1446
+msgid "Inline"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:146
+msgid "Description For Your Home Slider."
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:1905
+msgid "Manual adjustments Navigation"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:198
+msgid "Slide Title #1"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:199
+msgid "Your slide Description #1"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:207
+msgid "Slide Title #2"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:208
+msgid "Your slide Description #2"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:214
+msgid "Slide Title #3"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:215
+msgid "Your slide Description #3"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:221
+msgid "Slide Title #4"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:222
+msgid "Your slide Description #4"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:297 Inc/Elements/ImageAccordion.php:255
+#: Inc/Elements/ImageBox.php:298
+msgid "Show Button"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:320
+msgid "Buy Now"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:327 Inc/Elements/ImageAccordion.php:288
+#: Inc/Elements/PricingTable.php:456 Inc/Elements/WooProductGrid.php:344
+#: Inc/Elements/WooProductGrid.php:359
+msgid "Show Button Icon"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:340 Inc/Elements/ImageAccordion.php:303
+#: Inc/Elements/PricingTable.php:471 Inc/Elements/WooProductGrid.php:374
+#: Inc/Elements/WooProductGrid.php:391
+msgid "Button Icon"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:361 Inc/Elements/HomeSlider.php:820
+#: Inc/Elements/ImageAccordion.php:323 Inc/Elements/PricingTable.php:181
+#: Inc/Elements/PricingTable.php:492 Inc/Elements/WooProductGrid.php:412
+#: Inc/Elements/WooProductGrid.php:439
+msgid "Before Text"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:365 Inc/Elements/HomeSlider.php:824
+#: Inc/Elements/ImageAccordion.php:327 Inc/Elements/PricingTable.php:185
+#: Inc/Elements/PricingTable.php:496 Inc/Elements/WooProductGrid.php:416
+#: Inc/Elements/WooProductGrid.php:443
+msgid "After Text"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:481
+msgid "Give the container padding to see the results"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:626 Inc/Elements/HomeSlider.php:1851
+msgid "Horizontal Alignment"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:73
+msgid "Slide Style"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:76
+msgid "Slide"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:77
+msgid "Fade"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:816
+msgid "icon Position"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:901 Inc/Elements/HomeSlider.php:1033
+#: Inc/Elements/HomeSlider.php:1140
+msgid "Animation"
+msgstr ""
+
+#: Inc/Elements/HomeSlider.php:906 Inc/Elements/HomeSlider.php:1038
+#: Inc/Elements/HomeSlider.php:1145
+msgid "Word Staggered"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:105
+msgid "Default Open"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:1139
+msgid "Notice"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:1140
+msgid "The badge style will only take effect if the \"Show Badge\" option is enabled in the List content."
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:130
+msgid "Image Accordion Title"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:139
+msgid "Image Accordion content here!"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:156 Inc/Elements/PricingTable.php:608
+msgid "Badge"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:165
+msgid "Show Badge"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:180
+msgid "Badge Title"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:211
+msgid "Image 1"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:212
+msgid "Image Accordion 1"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:219
+msgid "Image 2"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:220
+msgid "Image Accordion 2"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:227
+msgid "Image 3"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:228
+msgid "Image Accordion 3"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:235
+msgid "Image 4"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:236
+msgid "Image Accordion 4"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:269
+msgid "Accordion"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:403
+msgid "Alignment Vertical"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:470
+msgid "Overlay Color"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:628
+msgid "Text Style"
+msgstr ""
+
+#: Inc/Elements/ImageAccordion.php:685
+msgid "Wait or click Image to see changes"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:112 Inc/Elements/PricingTable.php:1520
+msgid "Content Position"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:1595
+msgid "Button Control"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:231
+msgid "Example Title"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:232
+msgid "Type Title here"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:242 Inc/Elements/Team.php:117
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:250 Inc/Elements/ImageGallery.php:169
+msgid "Hover Image"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:308
+msgid "Button Position"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:450 Inc/Elements/ImageBox.php:486
+#: Inc/Elements/ImageBox.php:624 Inc/Elements/ImageGallery.php:226
+#: Inc/Elements/PricingTable.php:763
+msgid "Container Background"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:529 Inc/Elements/Postlist.php:864
+#: Inc/Elements/RunningText.php:789
+msgid "Image Filter"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:57 Inc/Extensions/RkitToolTips.php:135
+#: Inc/Extensions/RkitToolTips.php:336
+msgid "Style"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:610 Inc/Elements/Team.php:378
+msgid "Overlay"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:62
+msgid "Style 1."
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:639
+msgid "Background Opacity"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:66 Inc/Elements/TestimonialCarousel.php:81
+msgid "Style 2"
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:70
+msgid "Style 3."
+msgstr ""
+
+#: Inc/Elements/ImageBox.php:74
+msgid "Style 4."
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:101
+msgid "Control Before Image"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:110 Inc/Elements/ImageComparison.php:168
+#: Inc/Widgets/SiteLogo.php:126
+msgid "Show Caption"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:121 Inc/Elements/ImageComparison.php:179
+msgid "Caption"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:123 Inc/Elements/ImageComparison.php:181
+msgid "Type your Caption here"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:134 Inc/Elements/ImageComparison.php:192
+msgid "Caption position"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:148
+msgid "Image Before"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:159
+msgid "Control After Image"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:206
+msgid "Image After"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:234
+msgid "Caption Style"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:243
+msgid "Caption Typography"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:251
+msgid "Caption Color"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:289
+msgid "Border Caption"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:340
+msgid "Slider Style"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:348
+msgid "Circle Color"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:362
+msgid "Line Color"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:386
+msgid "circle Background"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:422
+msgid "Image Style"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:431
+msgid "Border Type"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:465
+msgid "Image Filter Before"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:478
+msgid "Image Filter After"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:65
+msgid "Slider Position"
+msgstr ""
+
+#: Inc/Elements/ImageComparison.php:68
+msgid "horizontal"
+msgstr ""
+
+#: Inc/Elements/ImageGallery.php:135
+msgid "Lazy Load"
+msgstr ""
+
+#: Inc/Elements/ImageGallery.php:148
+msgid "Add Images"
+msgstr ""
+
+#: Inc/Elements/ImageGallery.php:178
+msgid "Lightbox"
+msgstr ""
+
+#: Inc/Elements/LineChart.php:125
+msgid "Fill Background ?"
+msgstr ""
+
+#: Inc/Elements/LineChart.php:137
+msgid "Tension"
+msgstr ""
+
+#: Inc/Elements/LineChart.php:177 Inc/Elements/LineChart.php:212
+msgid "Point Size"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:1200
+#: Inc/Elements/NestedElementExample.php:1268
+msgid "Tabs. Open items with Enter or Space, close with Escape and navigate using the Arrow keys."
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:131
+#: Inc/Elements/NestedElementExample.php:468
+msgid "Tabs"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:139
+#: Inc/Elements/NestedElementExample.php:140
+msgid "Tab Title"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:161
+msgid "Active Icon"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:175
+msgid "CSS ID"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:184
+msgid "Add your custom id WITHOUT the Pound key. e.g: my-id"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:191
+msgid "Tabs Items"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:196
+msgid "Tab #1"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:199
+msgid "Tab #2"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:202
+msgid "Tab #3"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:206
+msgid "Add Tab"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:219
+#: Inc/Elements/NestedElementExample.php:885
+msgid "Above"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:223
+#: Inc/Elements/NestedElementExample.php:893
+msgid "Below"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:258
+#: Inc/Elements/NestedElementExample.php:300
+#: Inc/Elements/NestedElementExample.php:370
+msgid "Start"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:266
+#: Inc/Elements/NestedElementExample.php:308
+#: Inc/Elements/NestedElementExample.php:378
+#: Inc/Elements/TestimonialCarousel.php:864
+msgid "End"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:270
+#: Inc/Elements/NestedElementExample.php:312
+msgid "Stretch"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:366
+msgid "Align Title"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:38
+msgid "RTM Test Nested Tabs"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:395
+msgid "Additional Settings"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:401
+msgid "Horizontal Scroll"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:403
+msgid "Note: Scroll tabs if they don’t fit into their parent container."
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:405
+msgid "Disable"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:406
+msgid "Enable"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:446
+msgid "%1$s (%2$s %3$dpx)"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:456
+msgid "Breakpoint"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:458
+msgid "Note: Choose at which breakpoint tabs will automatically switch to a vertical (“accordion”) layout."
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:473
+msgid "Gap between tabs"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:493
+msgid "Distance from content"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:653
+#: Inc/Elements/NestedElementExample.php:833
+#: Inc/Elements/NestedElementExample.php:995 Inc/Widgets/NavMenu.php:734
+#: Inc/Widgets/NavMenu.php:1043
+msgid "Active"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:73
+msgid "Tab #%s"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:737
+msgid "Titles"
+msgstr ""
+
+#: Inc/Elements/NestedElementExample.php:98
+msgid "Tab #%d"
+msgstr ""
+
+#: Inc/Elements/PieChart.php:100 Inc/Elements/PieChart.php:142
+#: Inc/Elements/PieChart.php:390 Inc/Widgets/NavMenu.php:291
+msgid "Custom"
+msgstr ""
+
+#: Inc/Elements/PieChart.php:265
+msgid "Show Description"
+msgstr ""
+
+#: Inc/Elements/PieChart.php:387
+msgid "Typhography"
+msgstr ""
+
+#: Inc/Elements/PostBlock.php:100 Inc/Elements/PostBlock.php:119
+#: Inc/Elements/Postlist.php:88
+msgid "Image Position"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:1006
+msgid "Title Post"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:1282
+msgid "Content Post"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:142
+msgid "left"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:151
+msgid "right"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:1552 Inc/Elements/Postlist.php:1611
+msgid "Button Line Color"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:197
+msgid "Type your Title here"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:229 Inc/Elements/WooProductGrid.php:165
+msgid "Show Category"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:241 Inc/Elements/PricingTable.php:1728
+msgid "Show Divider"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:278
+msgid "Title Position"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:304
+msgid "Posts Per Page"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:517
+msgid "Show Line Button"
+msgstr ""
+
+#: Inc/Elements/Postlist.php:926
+msgid "Title Container"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1029
+msgid "Header Background"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1063
+msgid "Subheading"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1191
+msgid "Text  Color"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:120
+msgid "Type your Sub Heading here"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1241
+msgid "Currency Typography"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1256
+msgid "Text Currency Color"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:129 Inc/Elements/PricingTable.php:240
+#: Inc/Elements/PricingTable.php:1203 Inc/Elements/PricingTable.php:1269
+msgid "Price"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:136
+msgid "Select Currency"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:140
+msgid "$ - USD"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:141
+msgid "€ - EUR"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:142
+msgid "¥ - JPY"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:143
+msgid "¢ - CENT"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:144
+msgid "₹ - INDIA"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:145
+msgid "₽ - RUS"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:146
+msgid "¥ - CNY"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:147
+msgid "₠ - EUR"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:148
+msgid "₣ - FRANC"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:149
+msgid "₤ - LIRA"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:150
+msgid "₥ - Mill"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:151
+msgid "₱ - PESO"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:152
+msgid "₩ - WON"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:153
+msgid "฿ - BATH"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:154
+msgid "﷼ - Saudi Arabian"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:155
+msgid "Rp - IDR"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:156
+msgid "Custom Currency"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1595
+msgid "Feature Background"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1649
+msgid "The result will affected if your text more than 1 row"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:165 Inc/Elements/PricingTable.php:167
+msgid "Currency"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1706
+msgid "icon Color"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1730
+msgid "show"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1731
+msgid "hide"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:177
+msgid "Currency Position"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1770
+msgid "Weight"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:1811
+msgid "List Gap"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:202
+msgid "Period Potition"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2048
+msgid "Button Container"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2074 Inc/Elements/PricingTable.php:2106
+#: Inc/Elements/PricingTable.php:2178
+msgid "Button Background"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:215
+msgid "Period Potition Alignment"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2238
+msgid "Button Border Radius"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2269 Inc/Elements/WooProductGrid.php:1785
+msgid " Ribbon Style"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2318
+msgid "Offset X"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2339
+msgid "Offset Y"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2360 Inc/Elements/WooProductGrid.php:1899
+msgid "Background Ribbon"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2393 Inc/Elements/WooProductGrid.php:1910
+msgid "Ribbon Background"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:242 Inc/Elements/PricingTable.php:281
+msgid "Type your Price here"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2440
+msgid "Badge Style"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:250 Inc/Elements/PricingTable.php:1407
+msgid "Period"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:252
+msgid "Type your subtitle here"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:2553
+msgid "Footer Background"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:260 Inc/Elements/PricingTable.php:279
+#: Inc/Elements/PricingTable.php:1120 Inc/Elements/WooProductGrid.php:1114
+msgid "Sale Price"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:267
+msgid "Show Sale Price"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:293
+msgid "Sale Price Position"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:297
+msgid "inline"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:312 Inc/Elements/PricingTable.php:1510
+#: Inc/Elements/PricingTable.php:1843
+msgid "Feature"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:330
+msgid "Description Item"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:332
+msgid "Type your description item here"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:339
+msgid "Description Icon"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:352
+msgid "Individual Icon Color"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:363
+msgid "Description Source"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:366
+msgid "Plain Text"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:367
+msgid "Lists"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:376
+msgid "Description Text"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:388
+msgid "Description List"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:392
+msgid "Description Item #1."
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:393
+msgid "Description Item #2 "
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:394
+msgid "Description Item #3 "
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:395
+msgid "Description Item #4 "
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:424
+msgid "Show Button As"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:517
+msgid "Purchase Now"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:557
+msgid "Show Underline"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:56 Inc/Elements/PricingTable.php:835
+#: views/themebuilder.php:10 views/themebuilder.php:129
+#: views/themebuilder.php:218
+msgid "Header"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:575 Inc/Elements/PricingTable.php:582
+msgid "Ribbon"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:591
+msgid "Enable Ribbon"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:603
+msgid "Show Ribbon As"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:609
+msgid "Ribbon Type 1"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:610
+msgid "Ribbon Type 2"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:621
+msgid "Ribbon Text"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:623
+msgid "Best Seller"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:624
+msgid "Enter badge text"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:65
+msgid "Show Header Icon"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:683 Inc/Elements/PricingTable.php:703
+#: Inc/Elements/PricingTable.php:2489 views/themebuilder.php:11
+#: views/themebuilder.php:130 views/themebuilder.php:219
+msgid "Footer"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:690
+msgid "Show Footer"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:705
+msgid "Type your  Footer here"
+msgstr ""
+
+#: Inc/Elements/PricingTable.php:949
+msgid "Heading"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:119
+msgid "Show Percentage"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:131
+msgid "Animation Duration (ms)"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:268 Inc/Elements/SocialIcon.php:103
+#: Inc/Elements/SocialShare.php:107 Inc/Elements/Team.php:167
+msgid "Line"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:366
+msgid "Circle"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:378
+msgid "Half Circle"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:390
+msgid "Stroke Width"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:475
+msgid "Left Padding"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:601
+msgid "Right Padding"
+msgstr ""
+
+#: Inc/Elements/ProgressBar.php:82
+msgid "Percentage"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:131
+msgid "Enable Individual Color"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:198
+msgid "Up"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:202
+msgid "Down"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:264
+msgid "Speed"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:423
+msgid "Enable Edge Fading"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:435
+msgid "Fading Color"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:449 Inc/Elements/TestimonialCarousel.php:510
+msgid "Fading Size"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:64
+msgid "Rometheme Text Running"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:65
+msgid "Type your Text here"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:753
+msgid "none"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:82
+msgid "Item Type"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:841 views/sidebar.php:68
+#: views/themebuilder.php:306 views/themebuilder.php:434
+msgid "Settings"
+msgstr ""
+
+#: Inc/Elements/RunningText.php:99
+msgid "Choose Image or Icon"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:100 Inc/Elements/SocialShare.php:104
+#: Inc/Elements/Team.php:152
+msgid "Facebook"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:101 Inc/Elements/SocialShare.php:105
+msgid "GitHub"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:102 Inc/Elements/SocialShare.php:106
+#: Inc/Elements/Team.php:154
+msgid "Instagram"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:104 Inc/Elements/SocialShare.php:108
+#: Inc/Elements/Team.php:161
+msgid "Linkedin"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:105 Inc/Elements/SocialShare.php:109
+#: Inc/Elements/Team.php:160
+msgid "Pinterest"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:106 Inc/Elements/SocialShare.php:110
+#: Inc/Elements/Team.php:162
+msgid "Quora"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:107 Inc/Elements/SocialShare.php:111
+#: Inc/Elements/Team.php:163
+msgid "Reddit"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:108 Inc/Elements/SocialShare.php:112
+msgid "Snapchat"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:109 Inc/Elements/SocialShare.php:113
+#: Inc/Elements/Team.php:164
+msgid "Telegram"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:110 Inc/Elements/SocialShare.php:114
+msgid "Threads"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:111 Inc/Elements/SocialShare.php:115
+msgid "TikTok"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:112 Inc/Elements/SocialShare.php:116
+msgid "Twitter"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:113 Inc/Elements/SocialShare.php:117
+#: Inc/Elements/Team.php:165
+msgid "Viber"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:114 Inc/Elements/SocialShare.php:118
+#: Inc/Elements/Team.php:166
+msgid "Whatsapp"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:115 Inc/Elements/SocialShare.php:119
+msgid "YouTube"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:116 Inc/Elements/Team.php:158
+msgid "Dribbble"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:117 Inc/Elements/Team.php:159
+msgid "Behance"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:311 Inc/Elements/SocialShare.php:318
+#: Inc/Elements/Team.php:239
+msgid "Pointer Size"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:333 Inc/Elements/SocialShare.php:341
+msgid "Border Size"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:367 Inc/Elements/SocialShare.php:375
+msgid "Icon "
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:57 Inc/Elements/SocialShare.php:61
+msgid "Choose Style"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:589
+msgid "More Options"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:68 Inc/Elements/SocialShare.php:72
+msgid "Choose Skin"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:95 Inc/Elements/SocialShare.php:99
+#: views/help.php:34
+msgid "Social Media"
+msgstr ""
+
+#: Inc/Elements/SocialIcon.php:99 Inc/Elements/SocialShare.php:103
+msgid "Discord"
+msgstr ""
+
+#: Inc/Elements/Tabs.php:164
+msgid "Enable Icon"
+msgstr ""
+
+#: Inc/Elements/Tabs.php:193
+msgid "Icon Alignment"
+msgstr ""
+
+#: Inc/Elements/Tabs.php:220
+msgid "Bordered Navigation"
+msgstr ""
+
+#: Inc/Elements/Tabs.php:241
+msgid "Active Default"
+msgstr ""
+
+#: Inc/Elements/Tabs.php:521
+msgid "Icon Margin"
+msgstr ""
+
+#: Inc/Elements/Team.php:104
+msgid "Job Title"
+msgstr ""
+
+#: Inc/Elements/Team.php:106
+msgid "Developer"
+msgstr ""
+
+#: Inc/Elements/Team.php:107
+msgid "Type member position here"
+msgstr ""
+
+#: Inc/Elements/Team.php:125
+msgid "Choose Member    Image"
+msgstr ""
+
+#: Inc/Elements/Team.php:153
+msgid "X - Twitter"
+msgstr ""
+
+#: Inc/Elements/Team.php:155
+msgid "Tiktok"
+msgstr ""
+
+#: Inc/Elements/Team.php:156 Inc/Elements/VideoButton.php:82
+msgid "Youtube"
+msgstr ""
+
+#: Inc/Elements/Team.php:157
+msgid "Github"
+msgstr ""
+
+#: Inc/Elements/Team.php:308 Inc/Elements/Team.php:424
+#: Inc/Widgets/NavMenu.php:192
+msgid "Pointer"
+msgstr ""
+
+#: Inc/Elements/Team.php:525
+msgid "Image Width"
+msgstr ""
+
+#: Inc/Elements/Team.php:68
+msgid "Pointer Effect"
+msgstr ""
+
+#: Inc/Elements/Team.php:94
+msgid "Member Name"
+msgstr ""
+
+#: Inc/Elements/Team.php:96
+msgid "Jon Doe"
+msgstr ""
+
+#: Inc/Elements/Team.php:968
+msgid "Social Alignment"
+msgstr ""
+
+#: Inc/Elements/Team.php:97
+msgid "Type member name here"
+msgstr ""
+
+#: Inc/Elements/Team.php:999
+msgid "Social Media Position"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:105
+msgid "Show Quote Icon"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:117
+msgid "Quote Icon"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:165
+msgid "Client Avatar"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:232
+msgid "Show Rating ?"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:244
+msgid "Custom Rating Icon"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:260
+msgid "Rating Icon"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:322
+msgid "Prev Icon"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:368
+msgid "Slide To Show"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:382
+msgid "Slide To Scroll"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:496
+msgid "Edge Fading"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:575
+msgid "Use the slide below the color options to adjust the opacity"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:72
+msgid "Layout Style"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:77
+msgid "Style 1"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:775
+msgid "Author Name"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:809
+msgid "Author Occupation"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:843
+msgid "Author Avatar"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:85
+msgid "Style 3"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:89
+msgid "Style 4"
+msgstr ""
+
+#: Inc/Elements/TestimonialCarousel.php:93
+msgid "Style 5"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:106
+msgid "Link Youtube"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:108
+msgid "https://youtu.be/j4AC-g6CPxg"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:109 Inc/Elements/VideoButton.php:123
+msgid "Paste link here"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:120
+msgid "Link Vimeo"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:134
+msgid "Auto Play"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:146
+msgid "Mute"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:170
+msgid "Player Control"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:189
+msgid "Show Animation Pulse"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:341
+msgid "Rotate Icon"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:477
+msgid "Hover Animation Style"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:481
+msgid "Grow"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:482
+msgid "Shrink"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:484
+msgid "Wobble"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:485
+msgid "Skew"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:486
+msgid "Rotate"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:487
+msgid "Slide Up"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:488
+msgid "Slide Down"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:489
+msgid "Slide Left"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:490
+msgid "Slide Right"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:491
+msgid "Bounce"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:493
+msgid "Flip X"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:494
+msgid "Flip Y"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:495
+msgid "Zoom In"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:496
+msgid "Zoom Out"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:497
+msgid "Float"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:498
+msgid "Tada"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:499
+msgid "Shake"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:500
+msgid "Rubber Band"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:521
+msgid "Width Animated Pulse"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:541
+msgid "Duration Animated Pulse (s)"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:77
+msgid "Video Type"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:81
+msgid "Self Hosted"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:83
+msgid "Vimeo"
+msgstr ""
+
+#: Inc/Elements/VideoButton.php:91
+msgid "Choose Video File"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1084
+msgid "Price Reguler"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1147
+msgid "Reguler Sale Price"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1179
+msgid "Rating"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1189
+msgid "Rating Size"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1212
+msgid "Rating Color"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1223
+msgid "No Rating Color"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:138
+msgid "Column Reverse"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1473
+msgid "Content Alignment"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1502
+msgid "Border Gradient Color 1"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1518
+msgid "Border Gradient Color 2"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:180
+msgid "Show Rating"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1816
+msgid "Vertical Distance"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:1835 Inc/Elements/WooProductGrid.php:1857
+msgid "Horizontal Distance"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:192
+msgid "Show Ribbon"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:217
+msgid "Number of Products"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:2203
+msgid "No products found"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:259
+msgid "Items Spacing"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:326
+msgid "Crop Description Word"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:327
+msgid "Recomendation, use 10 - 15 word Only."
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:474
+msgid "Add To Cart"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:490 Inc/Elements/WooProductGrid.php:813
+msgid "Gap"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:648
+msgid "auto"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:670
+msgid "Object Fit"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:692
+msgid "Object Position"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:695
+msgid "Center Center"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:696
+msgid "Center Top"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:697
+msgid "Center Bottom"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:698
+msgid "Left Top"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:699
+msgid "Left Center"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:700
+msgid "Left Bottom"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:701
+msgid "Right Top"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:702
+msgid "Right Center"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:703
+msgid "Right Bottom"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:886 Inc/Elements/WooProductGrid.php:902
+msgid "Title Color"
+msgstr ""
+
+#: Inc/Elements/WooProductGrid.php:977
+msgid "Title Line Color"
+msgstr ""
+
+#: Inc/Extensions/BlurEffects.php:40
+msgid "Enable Glass Effect ?"
+msgstr ""
+
+#: Inc/Extensions/BlurEffects.php:42 Inc/Extensions/BlurEffects.php:92
+#: Inc/Extensions/RkitWrapperLink.php:110
+#: Inc/Extensions/RkitWrapperLink.php:150
+msgid "yes"
+msgstr ""
+
+#: Inc/Extensions/BlurEffects.php:53 Inc/Extensions/BlurEffects.php:103
+msgid "Blur (px)"
+msgstr ""
+
+#: Inc/Extensions/BlurEffects.php:90
+msgid "Enable Blur Effect ?"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:104 Inc/Extensions/RkitToolTips.php:305
+msgid "Y Offset"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:118 Inc/Extensions/RkitToolTips.php:319
+msgid "Wrapper Width"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:47 Inc/Extensions/RkitToolTips.php:250
+msgid "Tooltip"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:54 Inc/Extensions/RkitToolTips.php:257
+msgid "Enable Tooltip ?"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:80 Inc/Extensions/RkitToolTips.php:281
+msgid "Tooltip Text"
+msgstr ""
+
+#: Inc/Extensions/RkitToolTips.php:90 Inc/Extensions/RkitToolTips.php:291
+msgid "X Offset"
+msgstr ""
+
+#: Inc/Extensions/RkitWrapperLink.php:100
+#: Inc/Extensions/RkitWrapperLink.php:121
+#: Inc/Extensions/RkitWrapperLink.php:141
+#: Inc/Extensions/RkitWrapperLink.php:160
+msgid "Wrapper Link"
+msgstr ""
+
+#: Inc/Extensions/RkitWrapperLink.php:108
+#: Inc/Extensions/RkitWrapperLink.php:148
+msgid "Enable Wrapper Link ?"
+msgstr ""
+
+#: Inc/Modules/Helper/Banner.php:103
+msgid "Unable to connect to the Rometheme API server. Some features like template library and updates may be temporarily unavailable. Please try again later."
+msgstr ""
+
+#: Inc/Modules/Helper/Pro_Widget_Base.php:81
+msgid "%s is a Premium Widget"
+msgstr ""
+
+#: Inc/Modules/Helper/Pro_Widget_Base.php:84
+msgid "Unlock this widget and get access to advanced features to power up your website."
+msgstr ""
+
+#: Inc/Modules/Helper/Pro_Widget_Base.php:87 views/dashboard.php:119
+#: views/installed_templates.php:118 views/installed_templates.php:196
+#: views/templatekits_templates.php:45 views/templates.php:37
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: Inc/Modules/Menu.php:105 Inc/Modules/Menu.php:272
+#: Inc/Modules/Submission/SubmissionTable.php:17
+msgid "Submissions"
+msgstr ""
+
+#: Inc/Modules/Menu.php:112
+msgid "System Info"
+msgstr ""
+
+#: Inc/Modules/Menu.php:119
+msgid "Help & Center"
+msgstr ""
+
+#: Inc/Modules/Menu.php:139 Inc/Modules/SetupWizard/SetupWizardModule.php:57
+msgid "RTMKit Dashboard"
+msgstr ""
+
+#: Inc/Modules/Menu.php:140 Inc/Modules/SetupWizard/SetupWizardModule.php:58
+msgid "RTMKit"
+msgstr ""
+
+#: Inc/Modules/Menu.php:265
+msgid "Templates Kits"
+msgstr ""
+
+#: Inc/Modules/Menu.php:287
+msgid "Documentation"
+msgstr ""
+
+#: Inc/Modules/Menu.php:45
+msgid "Welcome"
+msgstr ""
+
+#: Inc/Modules/Menu.php:57 Inc/Modules/Menu.php:251
+msgid "Widgets"
+msgstr ""
+
+#: Inc/Modules/Menu.php:64 views/modules.php:23 views/setup-wizard.php:66
+msgid "Modules"
+msgstr ""
+
+#: Inc/Modules/Menu.php:71 Inc/Modules/Menu.php:258 views/themebuilder.php:41
+#: views/themebuilder.php:107 views/themebuilder.php:196
+#: views/themebuilder.php:283 views/themebuilder.php:410
+msgid "Theme Builder"
+msgstr ""
+
+#: Inc/Modules/Menu.php:78 views/templates.php:14 views/templates.php:46
+msgid "Template Kits"
+msgstr ""
+
+#: Inc/Modules/Menu.php:88 views/settings.php:23
+msgid "Global Kit Setup"
+msgstr ""
+
+#: Inc/Modules/Menu.php:95
+msgid "Version Controls"
+msgstr ""
+
+#: Inc/Modules/RTMIcons/RTMIconsModule.php:25
+msgid "RTM Icon - Regular"
+msgstr ""
+
+#: Inc/Modules/RTMIcons/RTMIconsModule.php:36
+msgid "RTM Icon - Thin"
+msgstr ""
+
+#: Inc/Modules/Storage.php:133
+msgid "Modules options for %s have been successfully updated."
+msgstr ""
+
+#: Inc/Modules/Storage.php:140
+msgid "No changes were saved. %s Modules options are already current."
+msgstr ""
+
+#: Inc/Modules/Storage.php:167
+msgid "Unauthorized"
+msgstr ""
+
+#: Inc/Modules/Storage.php:170
+msgid "Reset failed due to an unexpected error. Please try again, or contact support if the issue persists."
+msgstr ""
+
+#: Inc/Modules/Storage.php:197
+msgid "All Modules have been reset to default settings."
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:122 views/themebuilder.php:304
+#: views/themebuilder.php:432
+msgid "Form Name"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:123
+msgid "Referal Page"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:149 views/themebuilder.php:6
+msgid "All"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:157
+#: Inc/Modules/Submission/SubmissionTable.php:202
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:285
+msgid "Trash"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:16 views/submission.php:12
+msgid "Submission"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:183
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:240
+msgid "Restore"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:188
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:245
+msgid "Delete Permanently"
+msgstr ""
+
+#: Inc/Modules/Submission/SubmissionTable.php:197
+#: views/templatekits_templates.php:33
+msgid "View"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:19
+msgid "Themebuilder"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:198
+msgid "Shortcode"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:199
+msgid "Entries"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:20
+msgid "Themebuilders"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:207
+#: views/tab-footer.php:14 views/tab-header.php:13
+#: views/tab-single_post.php:13 views/themebuilder.php:127
+#: views/themebuilder.php:216
+msgid "Type"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:208
+msgid "Display"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:275
+msgid "Edit"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:280
+msgid "Edit with Elementor"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:347
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:348
+msgid "Entire Site"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:349
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:361
+msgid "Front Page"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:350
+#: views/themebuilder.php:131 views/themebuilder.php:220
+msgid "404 Page"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:352
+msgid "All Archives"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:353
+msgid "Author Archive"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:354
+msgid "Search Results"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:355
+msgid "Post Archive"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:356
+msgid "Categories"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:357
+msgid "Tags"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:360
+msgid "All Singular"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:362
+msgid "Posts"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:363
+msgid "Post Category"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:364
+msgid "Post Tag"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:365
+msgid "Post Author"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:366
+msgid "Pages"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:367
+msgid "Page by Author"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:368
+msgid "By Author"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:371
+msgid "Shop Page"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:372
+msgid "Product Archive"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:373
+#: views/themebuilder.php:137 views/themebuilder.php:226
+msgid "Single Product"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:374
+msgid "Product Categories"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:375
+msgid "Product Tags"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/Themebuilder_List_Table.php:376
+msgid "Product by Author"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:33
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:35
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:36
+msgid "Rometheme Templates"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:34
+msgid "Templates"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:37
+msgid "Add New"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:38
+#: views/themebuilder.php:63
+msgid "Add New Template"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:39
+msgid "New Template"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:40
+msgid "Edit Template"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:41
+#: views/installed_templates.php:66
+msgid "View Template"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:42
+msgid "All Templates"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:43
+msgid "Search Templates"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:44
+msgid "Parent Templates:"
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:45
+msgid "No Templates found."
+msgstr ""
+
+#: Inc/Modules/Themebuilder/ThemebuilderModule.php:46
+msgid "No Templates found in Trash."
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetModule.php:33
+msgid "RTMKit Header & Footer"
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetModule.php:40
+msgid "RTMKit General"
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetModule.php:47
+msgid "RTMKit Pro"
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetStorage.php:305
+msgid "Widget options for %s have been successfully updated."
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetStorage.php:312
+msgid "No changes were saved. %s Widget options are already current."
+msgstr ""
+
+#: Inc/Modules/Widgets/WidgetStorage.php:409
+msgid "All widgets have been reset to default settings."
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:115
+msgid "Info"
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:120
+msgid "Pekanbaru, Indonesia"
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:131
+msgid "Header Info"
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:164
+msgid "Info Row Spacing"
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:184
+msgid "Info Column Spacing"
+msgstr ""
+
+#: Inc/Widgets/HeaderInfo.php:99
+msgid "example: https://your-link.com"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:1083
+msgid "Hamburger Style"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:1091
+msgid "Menu Icon Alignment"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:161
+msgid "Menu Setting"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:167
+msgid "Menu Select"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:172
+msgid "Go to the  %1$sMenus screen%2$s to manage your menus."
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:180
+msgid "Dropdown as open"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:184
+msgid "Click"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:196
+msgid "Underline"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:197
+msgid "Overline"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:198
+msgid "Double Line"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:199
+msgid "Framed"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:207
+msgid "Pointer Width"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:235
+msgid "Mobile Options"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:242
+msgid "Responsive Breakpoint"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:245
+msgid "Tablet"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:246
+msgid "Mobile"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:255
+msgid "Menu Distance"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:288 Inc/Widgets/Search.php:207
+msgid "Full Width"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:300
+msgid "Menu Order Position"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:304
+msgid "From Left"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:308
+msgid "From Right"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:324
+msgid "Menu Width"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:358
+msgid "Submenu Content"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:364
+msgid "Sub Menu Icon"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:374
+msgid "Sub Menu Icon Spacing"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:414
+msgid "Hamburger Setting"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:420
+msgid "Hamburger Icon Open"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:431
+msgid "Hamburger Icon Close"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:443
+msgid "Menu Wrapper"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:451
+msgid "Menu Wrapper Background"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:489
+msgid "Menu Style"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:504
+msgid "Menu Position"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:534 Inc/Widgets/NavMenu.php:844
+msgid "Horizontal Padding"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:562 Inc/Widgets/NavMenu.php:872
+msgid "Vertical Padding"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:590 Inc/Widgets/NavMenu.php:900
+msgid "Space Between"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:616
+msgid "Item Border Radius"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:786
+msgid "Submenu Style"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:936
+msgid "Submenu Icon Style"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:954
+msgid "Icon Color Hover"
+msgstr ""
+
+#: Inc/Widgets/NavMenu.php:962
+msgid "Submenu Icon Size"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:102 Inc/Widgets/SiteLogo.php:138
+msgid "Style Setting"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:235
+msgid "Offcanvas Setting"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:249
+msgid "Offcanvas Position"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:259
+msgid "Width Offcanvas Menu"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:280
+msgid "Offcanvas Close Button"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:364
+msgid "border-close-normal"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:390
+msgid "border-close-hover"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:77
+msgid "Menu Content"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:81
+msgid "Select Template"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:90
+msgid "**You create from elementor template first"
+msgstr ""
+
+#: Inc/Widgets/Offcanvas.php:95
+msgid "Menu Icon"
+msgstr ""
+
+#: Inc/Widgets/rtm_pro_widget.php:74 views/modules.php:153
+#: views/setup-wizard.php:212 views/templatekits_templates.php:15
+#: views/widgets.php:164
+msgid "Pro"
+msgstr ""
+
+#: Inc/Widgets/rtm_pro_widget.php:80
+msgid "This result includes the Elementor Pro %s widget. Upgrade now to unlock it and grow your web creation toolkit."
+msgstr ""
+
+#: Inc/Widgets/rtm_pro_widget.php:86
+msgid "Remove"
+msgstr ""
+
+#: Inc/Widgets/rtm_pro_widget.php:87
+msgid "Go Pro"
+msgstr ""
+
+#: Inc/Widgets/Search.php:102
+msgid "Submit Icon"
+msgstr ""
+
+#: Inc/Widgets/Search.php:112
+msgid "Search Icon"
+msgstr ""
+
+#: Inc/Widgets/Search.php:124
+msgid "Search Button Position"
+msgstr ""
+
+#: Inc/Widgets/Search.php:149
+msgid "Direction Button"
+msgstr ""
+
+#: Inc/Widgets/Search.php:241
+msgid "Placeholder Color"
+msgstr ""
+
+#: Inc/Widgets/Search.php:261
+msgid "Input Padding"
+msgstr ""
+
+#: Inc/Widgets/Search.php:273
+msgid "Gap between input and button"
+msgstr ""
+
+#: Inc/Widgets/Search.php:333
+msgid "box-shadow-field"
+msgstr ""
+
+#: Inc/Widgets/Search.php:370
+msgid "box-shadow-focus"
+msgstr ""
+
+#: Inc/Widgets/Search.php:391
+msgid "Submit Button"
+msgstr ""
+
+#: Inc/Widgets/Search.php:57 Inc/Widgets/Search.php:228
+msgid "Search Field"
+msgstr ""
+
+#: Inc/Widgets/Search.php:62
+msgid "Placeholder"
+msgstr ""
+
+#: Inc/Widgets/Search.php:72
+msgid "Submit Text"
+msgstr ""
+
+#: Inc/Widgets/Search.php:74
+msgid "Search"
+msgstr ""
+
+#: Inc/Widgets/Search.php:81
+msgid "Autocomplete"
+msgstr ""
+
+#: Inc/Widgets/Search.php:93
+msgid "Search Button"
+msgstr ""
+
+#: Inc/Widgets/SiteLogo.php:55
+msgid "Logo Type"
+msgstr ""
+
+#: Inc/Widgets/SiteLogo.php:58
+msgid "Custom Logo"
+msgstr ""
+
+#: Inc/Widgets/SiteLogo.php:59
+msgid "Site Logo"
+msgstr ""
+
+#: Inc/Widgets/SiteLogo.php:70
+msgid "You can set a global site logo in Elementor: Site Settings > Site Identity."
+msgstr ""
+
+#: views/dashboard.php:103
+msgid "Watch a Guide"
+msgstr ""
+
+#: views/dashboard.php:11
+msgid "New Theme Builder"
+msgstr ""
+
+#: views/dashboard.php:110
+msgid "UPGRADE TO PRO"
+msgstr ""
+
+#: views/dashboard.php:111
+msgid "Hi-End Power"
+msgstr ""
+
+#: views/dashboard.php:111
+msgid "Unlock Now"
+msgstr ""
+
+#: views/dashboard.php:113
+msgid "Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+ icons, extensions, and priority support. Only in RTMkit Pro."
+msgstr ""
+
+#: views/dashboard.php:12
+msgid "Added Search Results Builder and WooBuilder. Improved template conditions."
+msgstr ""
+
+#: views/dashboard.php:127
+msgid "What's New"
+msgstr ""
+
+#: views/dashboard.php:15
+msgid "New Features"
+msgstr ""
+
+#: views/dashboard.php:150
+msgid "Changelog"
+msgstr ""
+
+#: views/dashboard.php:16
+msgid "Added Module Switcher and inline edit for Saved Templates. Performance and stability improvements."
+msgstr ""
+
+#: views/dashboard.php:160
+msgid "Master RTMKit Addons - Fast Easy!"
+msgstr ""
+
+#: views/dashboard.php:162
+msgid "Get started with ease by watching our step-by-step beginner's tutorial on Elementor."
+msgstr ""
+
+#: views/dashboard.php:168
+msgid "Watch Now"
+msgstr ""
+
+#: views/dashboard.php:191
+msgid "System Requirement"
+msgstr ""
+
+#: views/dashboard.php:193
+msgid "See All"
+msgstr ""
+
+#: views/dashboard.php:221 views/dashboard.php:230
+msgid "Request Feature"
+msgstr ""
+
+#: views/dashboard.php:222
+msgid "Please feel free to give any suggestions to include any features about RTMKit Addons for Elementor."
+msgstr ""
+
+#: views/dashboard.php:226
+msgid "Check Our Roadmap"
+msgstr ""
+
+#: views/dashboard.php:24
+msgid "Plugin Required"
+msgstr ""
+
+#: views/dashboard.php:242
+msgid "Recommended WP Themes"
+msgstr ""
+
+#: views/dashboard.php:250
+msgid "Browse WP Themes"
+msgstr ""
+
+#: views/dashboard.php:257
+msgid "Show your Love"
+msgstr ""
+
+#: views/dashboard.php:259
+msgid "Please take 2 minutes to review us and show some love."
+msgstr ""
+
+#: views/dashboard.php:265
+msgid "Rate RTMKit"
+msgstr ""
+
+#: views/dashboard.php:269
+msgid "Rate RTMForm"
+msgstr ""
+
+#: views/dashboard.php:277 views/system-status.php:424
+msgid "Community & Support"
+msgstr ""
+
+#: views/dashboard.php:283 views/help.php:124 views/system-status.php:430
+msgid "Facebook Community"
+msgstr ""
+
+#: views/dashboard.php:284 views/help.php:125 views/system-status.php:431
+msgid "/groups/rometheme"
+msgstr ""
+
+#: views/dashboard.php:29
+msgid "Minimum PHP"
+msgstr ""
+
+#: views/dashboard.php:292 views/help.php:115 views/system-status.php:439
+msgid "Mail"
+msgstr ""
+
+#: views/dashboard.php:293 views/help.php:116 views/system-status.php:440
+msgid "cs.rometheme@gmail.com"
+msgstr ""
+
+#: views/dashboard.php:299 views/system-status.php:446
+msgid "We’re active on"
+msgstr ""
+
+#: views/dashboard.php:34
+msgid "Max. Post Size"
+msgstr ""
+
+#: views/dashboard.php:39
+msgid "WP Memory Limit"
+msgstr ""
+
+#: views/dashboard.php:59
+msgid "Hello, %s"
+msgstr ""
+
+#: views/dashboard.php:63
+msgid "Welcome to RTMKit Dashboard"
+msgstr ""
+
+#: views/dashboard.php:67 views/help.php:16 views/license.php:11
+#: views/modules.php:49 views/settings.php:27 views/submission.php:16
+#: views/system-status.php:34 views/templates.php:18 views/themebuilder.php:45
+#: views/updates.php:15 views/widgets.php:60
+msgid "License :"
+msgstr ""
+
+#: views/dashboard.php:7
+msgid "New Interface"
+msgstr ""
+
+#: views/dashboard.php:73 views/help.php:22 views/license.php:17
+#: views/modules.php:56 views/settings.php:34 views/submission.php:22
+#: views/system-status.php:41 views/templatekits_templates.php:21
+#: views/templates.php:25 views/themebuilder.php:51 views/updates.php:21
+#: views/widgets.php:66
+msgid "Free"
+msgstr ""
+
+#: views/dashboard.php:79 views/license.php:23 views/modules.php:62
+#: views/settings.php:39 views/submission.php:28 views/system-status.php:47
+#: views/templates.php:31 views/themebuilder.php:57 views/updates.php:27
+#: views/widgets.php:72
+msgid "Upgrade Now"
+msgstr ""
+
+#: views/dashboard.php:79 views/license.php:23 views/modules.php:62
+#: views/settings.php:39 views/submission.php:28 views/system-status.php:47
+#: views/templates.php:31 views/themebuilder.php:57 views/updates.php:27
+#: views/widgets.php:72
+msgid "Upgrade premium to unlock all features"
+msgstr ""
+
+#: views/dashboard.php:8
+msgid "Redesigned admin UI with cleaner layout and better navigation."
+msgstr ""
+
+#: views/dashboard.php:87
+msgid "Everything you need in one place"
+msgstr ""
+
+#: views/dashboard.php:88
+msgid "The Ultimate Addons for Elementor-WordPress Website"
+msgstr ""
+
+#: views/dashboard.php:90
+msgid "We're excited to help you supercharge your website-building experience. Effortlessly design stunning websites with our comprehensive range of free and premium widgets and features."
+msgstr ""
+
+#: views/dashboard.php:97
+msgid "Read Documentation"
+msgstr ""
+
+#: views/help.php:106
+msgid "Submit Support Form"
+msgstr ""
+
+#: views/help.php:107
+msgid "rometheme.net/support"
+msgstr ""
+
+#: views/help.php:12
+msgid "Support & Get Help"
+msgstr ""
+
+#: views/help.php:27
+msgid "Explore help articles or contact us directly for faster support."
+msgstr ""
+
+#: views/help.php:38
+msgid "Instagram Rometheme Studio"
+msgstr ""
+
+#: views/help.php:44
+msgid "Instagram RTMkit"
+msgstr ""
+
+#: views/help.php:50
+msgid "Tiktok Rometheme"
+msgstr ""
+
+#: views/help.php:56
+msgid "Youtube Rometheme"
+msgstr ""
+
+#: views/help.php:62
+msgid "Behance Rometheme Studio"
+msgstr ""
+
+#: views/help.php:71
+msgid "Knowledge Base"
+msgstr ""
+
+#: views/help.php:73
+msgid "Explore our documentation to help guided about our product and installation."
+msgstr ""
+
+#: views/help.php:78
+msgid "Product Documentation"
+msgstr ""
+
+#: views/help.php:85
+msgid "Support"
+msgstr ""
+
+#: views/help.php:87
+msgid "Get in touch or visit our community to get guided about wordpress, elementor and RTMkit Plugin"
+msgstr ""
+
+#: views/installed_templates.php:101 views/installed_templates.php:179
+msgid "Import As Page"
+msgstr ""
+
+#: views/installed_templates.php:123 views/installed_templates.php:201
+msgid "Import Without Image"
+msgstr ""
+
+#: views/installed_templates.php:146 views/installed_templates.php:224
+msgid "Please do not refresh or close this page until the process is complete."
+msgstr ""
+
+#: views/installed_templates.php:151 views/installed_templates.php:229
+msgid "Cancel"
+msgstr ""
+
+#: views/installed_templates.php:166 views/templates.php:96
+msgid "Import All Template"
+msgstr ""
+
+#: views/installed_templates.php:174
+msgid "Full Import"
+msgstr ""
+
+#: views/installed_templates.php:175
+msgid "Demo Content Only"
+msgstr ""
+
+#: views/installed_templates.php:176
+msgid "Global Style Only"
+msgstr ""
+
+#: views/installed_templates.php:249
+msgid "Drop Template Kit ZIP here or click to upload"
+msgstr ""
+
+#: views/installed_templates.php:265
+msgid "View Kit"
+msgstr ""
+
+#: views/installed_templates.php:33
+msgid "Attention!"
+msgstr ""
+
+#: views/installed_templates.php:35
+msgid "Install Requirements"
+msgstr ""
+
+#: views/installed_templates.php:69 views/installed_templates.php:266
+msgid "Delete"
+msgstr ""
+
+#: views/installed_templates.php:77 views/installed_templates.php:155
+#: views/installed_templates.php:234
+msgid "Import"
+msgstr ""
+
+#: views/installed_templates.php:79 views/templatekits_templates.php:57
+#: views/themeforest_templates.php:26
+msgid "Preview"
+msgstr ""
+
+#: views/installed_templates.php:93
+msgid "Import Template"
+msgstr ""
+
+#: views/license.php:7
+msgid "License Manager"
+msgstr ""
+
+#: views/modules.php:157 views/widgets.php:168
+msgid "New"
+msgstr ""
+
+#: views/modules.php:161 views/widgets.php:172
+msgid "Popular"
+msgstr ""
+
+#: views/modules.php:31
+msgid "%s Total Modules"
+msgstr ""
+
+#: views/modules.php:41
+msgid "%s Active Modules"
+msgstr ""
+
+#: views/modules.php:68 views/settings.php:78 views/themebuilder.php:520
+#: views/widgets.php:78
+msgid "Save Changes"
+msgstr ""
+
+#: views/modules.php:80 views/widgets.php:90
+msgid "Enable All"
+msgstr ""
+
+#: views/modules.php:84 views/widgets.php:94
+msgid "Reset All"
+msgstr ""
+
+#: views/modules.php:90
+msgid "All Modules"
+msgstr ""
+
+#: views/modules.php:91
+msgid "Free Modules"
+msgstr ""
+
+#: views/modules.php:92
+msgid "Pro Modules"
+msgstr ""
+
+#: views/modules.php:97
+msgid "Search module name..."
+msgstr ""
+
+#: views/rtmform-not-active.php:21
+msgid "Advanced Forms Engine"
+msgstr ""
+
+#: views/rtmform-not-active.php:23 views/themebuilder.php:542
+msgid "RTMForm"
+msgstr ""
+
+#: views/rtmform-not-active.php:23
+msgid "Unlock Full Form Functionality"
+msgstr ""
+
+#: views/rtmform-not-active.php:23
+msgid "with"
+msgstr ""
+
+#: views/rtmform-not-active.php:26
+msgid "RTMForm powers all form functionality in RTMKit. Activate it to unlock full capabilities and ensure everything runs seamlessly."
+msgstr ""
+
+#: views/rtmform-not-active.php:37
+msgid "RTMForm Banner"
+msgstr ""
+
+#: views/saved-template-editor-view.php:35
+msgid "Saved Template Editor"
+msgstr ""
+
+#: views/saved-template-editor-view.php:38 views/themebuilder.php:550
+msgid "SAVE & CLOSE"
+msgstr ""
+
+#: views/settings.php:48
+msgid "Global Kit Style"
+msgstr ""
+
+#: views/settings.php:51
+msgid "Adjust your website settings to achieve the best performance. Customizing will enhance your site's efficiency & provide an improved user experience."
+msgstr ""
+
+#: views/settings.php:88
+msgid "When used, the \"Global Site Settings\" that some Template Kits contain can affect your entire website."
+msgstr ""
+
+#: views/settings.php:89
+msgid "The Elementor Hamburger Menu » Site Settings is where you can change the Site Settings. The global site settings that are applied to your website can be altered below."
+msgstr ""
+
+#: views/setup-wizard.php:112
+msgid "1. Get Started"
+msgstr ""
+
+#: views/setup-wizard.php:114
+msgid "Begin the setup process and configure the basic settings to get started with RTMkit."
+msgstr ""
+
+#: views/setup-wizard.php:127
+msgid "2. Modules"
+msgstr ""
+
+#: views/setup-wizard.php:129
+msgid "Customize Your Experience with Module Switching, Letting You Enable or Disable Features Based on Your Workflow."
+msgstr ""
+
+#: views/setup-wizard.php:141
+msgid "3. Luminex Theme"
+msgstr ""
+
+#: views/setup-wizard.php:143
+msgid "Upgrade Your Website with Luminex a\r\n"
+"                                                    High-End WordPress Theme"
+msgstr ""
+
+#: views/setup-wizard.php:157
+msgid "4. Finalizing"
+msgstr ""
+
+#: views/setup-wizard.php:159
+msgid "Everything is set. Your plugin is ready and you can access the dashboard."
+msgstr ""
+
+#: views/setup-wizard.php:170 views/setup-wizard.php:226
+#: views/setup-wizard.php:294
+msgid "Next"
+msgstr ""
+
+#: views/setup-wizard.php:184
+msgid "[&emsp;STEP 02&emsp;]"
+msgstr ""
+
+#: views/setup-wizard.php:185
+msgid "upgrade your website"
+msgstr ""
+
+#: views/setup-wizard.php:186
+msgid "with a complete modules"
+msgstr ""
+
+#: views/setup-wizard.php:225 views/setup-wizard.php:293
+#: views/setup-wizard.php:328 views/setup-wizard.php:356
+msgid "Back"
+msgstr ""
+
+#: views/setup-wizard.php:236
+msgid "Luminex Logo"
+msgstr ""
+
+#: views/setup-wizard.php:241
+msgid "official themes"
+msgstr ""
+
+#: views/setup-wizard.php:241
+msgid "support, by rtmkit"
+msgstr ""
+
+#: views/setup-wizard.php:243
+msgid "Included with your purchase"
+msgstr ""
+
+#: views/setup-wizard.php:248
+msgid "50+ Niche Business WordPress Themes"
+msgstr ""
+
+#: views/setup-wizard.php:254
+msgid "320+ Premium Blocks & Layouts"
+msgstr ""
+
+#: views/setup-wizard.php:260
+msgid "Lifetime Access to RTMkit PRO"
+msgstr ""
+
+#: views/setup-wizard.php:266
+msgid "Lifetime Updates"
+msgstr ""
+
+#: views/setup-wizard.php:272
+msgid "6 Months of Dedicated Support"
+msgstr ""
+
+#: views/setup-wizard.php:279
+msgid "GET LUMINEX"
+msgstr ""
+
+#: views/setup-wizard.php:306
+msgid "[&emsp;STEP 04&emsp;]"
+msgstr ""
+
+#: views/setup-wizard.php:309
+msgid "and announcements."
+msgstr ""
+
+#: views/setup-wizard.php:309
+msgid "Get the latest updates"
+msgstr ""
+
+#: views/setup-wizard.php:312
+msgid "newsletter."
+msgstr ""
+
+#: views/setup-wizard.php:312
+msgid "Subscribe to our"
+msgstr ""
+
+#: views/setup-wizard.php:316
+msgid "Your E-mail"
+msgstr ""
+
+#: views/setup-wizard.php:317
+msgid "Subscribe"
+msgstr ""
+
+#: views/setup-wizard.php:329
+msgid "Skip"
+msgstr ""
+
+#: views/setup-wizard.php:341
+msgid "[&emsp;STEP 05&emsp;]"
+msgstr ""
+
+#: views/setup-wizard.php:343
+msgid "finally,"
+msgstr ""
+
+#: views/setup-wizard.php:344
+msgid "Setup Completed\r\n"
+"                                    Successfully."
+msgstr ""
+
+#: views/setup-wizard.php:348
+msgid "Enjoy ! Your Plugin"
+msgstr ""
+
+#: views/setup-wizard.php:349
+msgid "Is Ready to Use"
+msgstr ""
+
+#: views/setup-wizard.php:357
+msgid "Visit Dashboard"
+msgstr ""
+
+#: views/setup-wizard.php:62
+msgid "Getting Started"
+msgstr ""
+
+#: views/setup-wizard.php:70
+msgid "Luminex Theme"
+msgstr ""
+
+#: views/setup-wizard.php:74
+msgid "Get Update"
+msgstr ""
+
+#: views/setup-wizard.php:78
+msgid "Finalizing"
+msgstr ""
+
+#: views/setup-wizard.php:86 views/setup-wizard.php:177
+#: views/setup-wizard.php:301 views/sidebar.php:79 views/themebuilder.php:104
+#: views/themebuilder.php:193 views/themebuilder.php:280
+#: views/themebuilder.php:407
+msgid "RTMKit Logo"
+msgstr ""
+
+#: views/setup-wizard.php:93
+msgid "[&emsp;STEP 01&emsp;]"
+msgstr ""
+
+#: views/setup-wizard.php:95
+msgid "it's easy to"
+msgstr ""
+
+#: views/setup-wizard.php:96
+msgid "get started on rtmkit"
+msgstr ""
+
+#: views/setup-wizard.php:99
+msgid "basic settings to get started with RTMkit."
+msgstr ""
+
+#: views/setup-wizard.php:99
+msgid "Begin the setup process and configure"
+msgstr ""
+
+#: views/sidebar.php:118
+msgid "Go to Pro"
+msgstr ""
+
+#: views/sidebar.php:65
+msgid "Get started"
+msgstr ""
+
+#: views/sidebar.php:66
+msgid "Features"
+msgstr ""
+
+#: views/sidebar.php:67
+msgid "Builders"
+msgstr ""
+
+#: views/sidebar.php:69
+msgid "Information"
+msgstr ""
+
+#: views/system-status.php:108 views/system-status.php:131
+#: views/system-status.php:154 views/system-status.php:176
+#: views/system-status.php:199 views/system-status.php:222
+#: views/system-status.php:245 views/system-status.php:293
+#: views/system-status.php:316 views/system-status.php:338
+#: views/system-status.php:361
+msgid "Incompatible"
+msgstr ""
+
+#: views/system-status.php:115 views/system-status.php:138
+#: views/system-status.php:160 views/system-status.php:183
+#: views/system-status.php:206 views/system-status.php:229
+#: views/system-status.php:252 views/system-status.php:300
+#: views/system-status.php:322 views/system-status.php:345
+#: views/system-status.php:368
+msgid "Compatible"
+msgstr ""
+
+#: views/system-status.php:122
+msgid "PHP Version"
+msgstr ""
+
+#: views/system-status.php:13
+msgid "Writable"
+msgstr ""
+
+#: views/system-status.php:14
+msgid "Not Writable"
+msgstr ""
+
+#: views/system-status.php:145
+msgid "PHP Memory Limit"
+msgstr ""
+
+#: views/system-status.php:167
+msgid "PHP Max Input Vars"
+msgstr ""
+
+#: views/system-status.php:190
+msgid "PHP Max Post Size"
+msgstr ""
+
+#: views/system-status.php:213
+msgid "GD Installed"
+msgstr ""
+
+#: views/system-status.php:236
+msgid "ZIP Installed"
+msgstr ""
+
+#: views/system-status.php:263
+msgid "Wordpres Info"
+msgstr ""
+
+#: views/system-status.php:268
+msgid "Site URL"
+msgstr ""
+
+#: views/system-status.php:272
+msgid "Language"
+msgstr ""
+
+#: views/system-status.php:276
+msgid "Time Zone"
+msgstr ""
+
+#: views/system-status.php:280
+msgid "WP Multisite"
+msgstr ""
+
+#: views/system-status.php:284
+msgid "WordPress Version"
+msgstr ""
+
+#: views/system-status.php:30
+msgid "Check System Status"
+msgstr ""
+
+#: views/system-status.php:307
+msgid "Memory Limit"
+msgstr ""
+
+#: views/system-status.php:329
+msgid "Max Memory Limit"
+msgstr ""
+
+#: views/system-status.php:352
+msgid "Max Upload Size"
+msgstr ""
+
+#: views/system-status.php:384
+msgid "Name"
+msgstr ""
+
+#: views/system-status.php:388
+msgid "Version"
+msgstr ""
+
+#: views/system-status.php:56 views/system-status.php:82
+msgid "Server Status"
+msgstr ""
+
+#: views/system-status.php:61
+msgid "Wordpress Info"
+msgstr ""
+
+#: views/system-status.php:66 views/system-status.php:379
+msgid "Theme Active"
+msgstr ""
+
+#: views/system-status.php:71 views/system-status.php:400
+msgid "Plugin Active"
+msgstr ""
+
+#: views/system-status.php:87
+msgid "Operating System"
+msgstr ""
+
+#: views/system-status.php:91
+msgid "Software"
+msgstr ""
+
+#: views/system-status.php:95
+msgid "Write Permissions"
+msgstr ""
+
+#: views/system-status.php:99
+msgid "MySQL Version"
+msgstr ""
+
+#: views/templatekits_templates.php:40 views/templatekits_templates.php:51
+#: views/themeforest_templates.php:20
+msgid "Install"
+msgstr ""
+
+#: views/templates.php:47
+msgid "Themeforest Template"
+msgstr ""
+
+#: views/templates.php:48
+msgid "Installed Template"
+msgstr ""
+
+#: views/templates.php:69 views/templates.php:77
+msgid "All Categories"
+msgstr ""
+
+#: views/templates.php:92
+msgid "Search Template Kit..."
+msgstr ""
+
+#: views/templates.php:95
+msgid "Delete All Installed Template"
+msgstr ""
+
+#: views/themebuilder.php:114 views/themebuilder.php:203
+#: views/themebuilder.php:292 views/themebuilder.php:420
+msgid "General"
+msgstr ""
+
+#: views/themebuilder.php:117 views/themebuilder.php:206
+msgid "Condition"
+msgstr ""
+
+#: views/themebuilder.php:123 views/themebuilder.php:212
+msgid "Theme Builder Title"
+msgstr ""
+
+#: views/themebuilder.php:132 views/themebuilder.php:221
+msgid "Single Post"
+msgstr ""
+
+#: views/themebuilder.php:133 views/themebuilder.php:222
+msgid "Archive Post"
+msgstr ""
+
+#: views/themebuilder.php:134 views/themebuilder.php:223
+msgid "Search Result"
+msgstr ""
+
+#: views/themebuilder.php:136 views/themebuilder.php:225
+msgid "Archive Product"
+msgstr ""
+
+#: views/themebuilder.php:143 views/themebuilder.php:157
+#: views/themebuilder.php:232 views/themebuilder.php:246
+msgid "Status"
+msgstr ""
+
+#: views/themebuilder.php:144 views/themebuilder.php:233
+msgid "Enabling or Disabling Templates"
+msgstr ""
+
+#: views/themebuilder.php:158 views/themebuilder.php:247
+msgid "Set the conditions that determine where your template is used."
+msgstr ""
+
+#: views/themebuilder.php:163 views/themebuilder.php:252
+msgid "Add Condition"
+msgstr ""
+
+#: views/themebuilder.php:175 views/themebuilder.php:264
+msgid "Save\r\n"
+"                        changes"
+msgstr ""
+
+#: views/themebuilder.php:177 views/themebuilder.php:266
+#: views/themebuilder.php:393 views/themebuilder.php:521
+msgid "Close"
+msgstr ""
+
+#: views/themebuilder.php:21 views/widgets.php:14
+msgid "Form"
+msgstr ""
+
+#: views/themebuilder.php:295 views/themebuilder.php:423
+msgid "Confirmation"
+msgstr ""
+
+#: views/themebuilder.php:298 views/themebuilder.php:426
+msgid "Notification"
+msgstr ""
+
+#: views/themebuilder.php:305 views/themebuilder.php:433
+msgid "Enter Form Name"
+msgstr ""
+
+#: views/themebuilder.php:309 views/themebuilder.php:437
+msgid "Success Message"
+msgstr ""
+
+#: views/themebuilder.php:313 views/themebuilder.php:441
+msgid "Entry Title"
+msgstr ""
+
+#: views/themebuilder.php:315 views/themebuilder.php:443
+msgid "To set a custom entry title, enclose the input name in {{ }}."
+msgstr ""
+
+#: views/themebuilder.php:319 views/themebuilder.php:447
+msgid "Require Login"
+msgstr ""
+
+#: views/themebuilder.php:320 views/themebuilder.php:448
+msgid "Without login, user can't submit the form."
+msgstr ""
+
+#: views/themebuilder.php:331 views/themebuilder.php:459
+msgid "Confirmation mail to user"
+msgstr ""
+
+#: views/themebuilder.php:338 views/themebuilder.php:368
+#: views/themebuilder.php:496
+msgid "Active this one."
+msgstr ""
+
+#: views/themebuilder.php:338
+msgid "The form must have at least one Email widget and it should be required."
+msgstr ""
+
+#: views/themebuilder.php:338 views/themebuilder.php:466
+msgid "Want to send a submission copy to user by email?"
+msgstr ""
+
+#: views/themebuilder.php:341 views/themebuilder.php:371
+#: views/themebuilder.php:469 views/themebuilder.php:499
+msgid "Email Subject"
+msgstr ""
+
+#: views/themebuilder.php:342 views/themebuilder.php:372
+#: views/themebuilder.php:470 views/themebuilder.php:500
+msgid "Enter Email Subject Here"
+msgstr ""
+
+#: views/themebuilder.php:345 views/themebuilder.php:375
+#: views/themebuilder.php:473 views/themebuilder.php:503
+msgid "Email From"
+msgstr ""
+
+#: views/themebuilder.php:346 views/themebuilder.php:350
+#: views/themebuilder.php:376 views/themebuilder.php:380
+#: views/themebuilder.php:474 views/themebuilder.php:478
+#: views/themebuilder.php:504 views/themebuilder.php:508
+msgid "mail@example.com"
+msgstr ""
+
+#: views/themebuilder.php:349 views/themebuilder.php:477
+msgid "Email Reply To"
+msgstr ""
+
+#: views/themebuilder.php:353 views/themebuilder.php:481
+msgid "Thankyou Message"
+msgstr ""
+
+#: views/themebuilder.php:361 views/themebuilder.php:489
+msgid "Notification mail to Admin"
+msgstr ""
+
+#: views/themebuilder.php:368 views/themebuilder.php:496
+msgid "Want to send a submission copy to admin by email?"
+msgstr ""
+
+#: views/themebuilder.php:379 views/themebuilder.php:507
+msgid "Email To"
+msgstr ""
+
+#: views/themebuilder.php:381 views/themebuilder.php:509
+msgid "Enter admin email where you want to send mail."
+msgstr ""
+
+#: views/themebuilder.php:381 views/themebuilder.php:509
+msgid "for multiple email addresses please use \",\" separator."
+msgstr ""
+
+#: views/themebuilder.php:384 views/themebuilder.php:512
+msgid "Admin Note"
+msgstr ""
+
+#: views/themebuilder.php:392
+msgid "Save & Edit"
+msgstr ""
+
+#: views/themebuilder.php:466
+msgid "Active this one.The form must have at least one Email widget and it should be required."
+msgstr ""
+
+#: views/themeforest_templates.php:47
+msgid "Page navigation"
+msgstr ""
+
+#: views/update_content.php:100
+msgid "Rollback to Previous Version"
+msgstr ""
+
+#: views/update_content.php:124
+msgid "Reinstall"
+msgstr ""
+
+#: views/update_content.php:13
+msgid "Update to New Version or Rollback to Previous Version"
+msgstr ""
+
+#: views/update_content.php:92
+msgid "Update"
+msgstr ""
+
+#: views/updates.php:11
+msgid "Update & Version Control"
+msgstr ""
+
+#: views/widgets.php:10
+msgid "Post"
+msgstr ""
+
+#: views/widgets.php:100
+msgid "All Widget"
+msgstr ""
+
+#: views/widgets.php:101
+msgid "Free Widget"
+msgstr ""
+
+#: views/widgets.php:102
+msgid "Pro Widget"
+msgstr ""
+
+#: views/widgets.php:107
+msgid "Search widget name..."
+msgstr ""
+
+#: views/widgets.php:176
+msgid "Docs"
+msgstr ""
+
+#: views/widgets.php:177
+msgid "Demo"
+msgstr ""
+
+#: views/widgets.php:178
+msgid "Video"
+msgstr ""
+
+#: views/widgets.php:34
+msgid "Widgets Manager"
+msgstr ""
+
+#: views/widgets.php:4
+msgid "Creative"
+msgstr ""
+
+#: views/widgets.php:42
+msgid "%s Total Widgets"
+msgstr ""
+
+#: views/widgets.php:5
+msgid "Showcase"
+msgstr ""
+
+#: views/widgets.php:52
+msgid "%s Active Widgets"
+msgstr ""
+
+#: views/widgets.php:6
+msgid "Business"
+msgstr ""
+
+#: views/widgets.php:7
+msgid "Header & Footer"
+msgstr ""
+
+#: views/widgets.php:8
+msgid "Marketing"
+msgstr ""
+
+#: views/widgets.php:9
+msgid "Infographic"
+msgstr ""

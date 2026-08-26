@@ -43,7 +43,11 @@ class TemplatekitAPI
             $template = sanitize_text_field($_POST['template']);
             ob_start();
             $datas = $this->get_template_data($template);
-            require_once RTM_KIT_DIR . 'views/' . $template . '_templates.php';
+
+            // Allow addons (e.g. Template Kit Pro) to override the view file.
+            $view = apply_filters('rtmkit_templatekit_view', $template, $template, $datas);
+
+            require_once RTM_KIT_DIR . 'views/' . $view . '_templates.php';
             $render = ob_get_clean();
             wp_send_json_success($render);
         } else {
@@ -55,9 +59,9 @@ class TemplatekitAPI
 
     private function get_template_data($template)
     {
-        // Contoh data statis, ganti dengan data dinamis sesuai kebutuhan
+        // Contoh data statis, ganti dengan data yang dinamik sesuai kebutuhan
         $endpoint = [
-            'themeforest' => 'wp-json/public/templatekits/themeforest?',
+            'themeforest' => 'wp-json/public/templatekits',
             'templatekits' => 'wp-json/public/templatekits',
             'installed' => '',
         ];
@@ -65,7 +69,7 @@ class TemplatekitAPI
         if ($template !== 'installed') {
             $api_handler = \RTMKit\Modules\Helper\APIHandler::instance();
 
-            if ($template === 'templatekits') {
+            if ($template === 'templatekits' || $template === 'themeforest') {
                 $response = $api_handler->remote($endpoint[$template], [], null, true);
                 $templates = $response;
 
@@ -91,18 +95,19 @@ class TemplatekitAPI
                     });
                 }
 
-                // Pisahkan free dan pro
-                $free = [];
-                $pro = [];
-                foreach ($templates as $k => $v) {
-                    if ($v['type'] === 'free') {
-                        $free[$k] = $v;
-                    } else {
-                        $pro[$k] = $v;
-                    }
-                }
+                // Default: tampilkan semua. Addon (Pro) bisa filter via hook.
+                $sortData = array_values($templates);
 
-                $sortData = array_merge($free, $pro);
+                // Core default: Template Kit Free tab hanya tampilkan free.
+                if ($template === 'templatekits') {
+                    $free = [];
+                    foreach ($sortData as $k => $v) {
+                        if (isset($v['type']) && $v['type'] === 'free') {
+                            $free[$k] = $v;
+                        }
+                    }
+                    $sortData = $free;
+                }
 
                 // Pagination
                 $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
@@ -130,7 +135,7 @@ class TemplatekitAPI
                     ];
                 }
 
-                return [
+                $result = [
                     'data_template' => $data,
                     'pagination' => [
                         'current_page' => $paged,
@@ -138,6 +143,9 @@ class TemplatekitAPI
                     ],
                     'template_url' => admin_url('admin.php?page=rtmkit-templates')
                 ];
+
+                // Allow addons (e.g. Template Kit Pro) to modify the template data.
+                return apply_filters('rtmkit_templatekit_data', $result, $template);
             } else {
                 $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
                 $uri = $endpoint[$template] . '&paged=' . $paged;

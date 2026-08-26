@@ -58,7 +58,7 @@ $available_addons  = $addonModule->get_addons_available();
                                     <div class="position-relative">
                                         <img
                                             class="img-fluid"
-                                            src="<?php echo esc_url('http://localhost:8000' . $image); ?>"
+                                            src="<?php echo esc_url($image); ?>"
                                             alt="<?php echo esc_attr($name); ?>">
                                         <?php if ($coming_soon) : ?>
                                             <div class="position-absolute top-0 end-0 me-3 mt-3 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
@@ -78,10 +78,10 @@ $available_addons  = $addonModule->get_addons_available();
                                             </p>
                                         </div>
                                         <?php if (!$is_available || $coming_soon) : ?>
-                                            <button class="btn btn-secondary rounded-2 px-4 py-2 gap-2">
+                                            <a href="https://store.rometheme.net/pricing" target="_blank" class="btn btn-secondary rounded-2 px-4 py-2 gap-2">
                                                 <i class="fa-solid fa-lock"></i>
                                                 Upgrade Plan
-                                            </button>
+                                            </a>
                                         <?php elseif (!$is_installed) : ?>
                                             <button
                                                 data-addon="<?php echo esc_attr($slug); ?>"

@@ -1,0 +1,3345 @@
+# Copyright (C) 2026 Rometheme
+# This file is distributed under the same license as the RTMKit Addons for Elementor plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: RTMKit Addons for Elementor 2.1.2\n"
+"Report-Msgid-Bugs-To: https://rometheme.net/\n"
+"POT-Creation-Date: 2026-07-31 09:29+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+"X-Generator: tools/translate-pot.js (Gemini)\n"
+"X-Domain: rometheme-for-elementor\n"
+"PO-Revision-Date: 2026-07-31 09:29+0000\n"
+
+msgid "Security check"
+msgstr ""
+
+msgid "No"
+msgstr "رقم"
+
+msgid "Description"
+msgstr ""
+
+msgid "Type your description here"
+msgstr ""
+
+msgid "Title Icon"
+msgstr ""
+
+msgid "Show Index Number"
+msgstr ""
+
+msgid "Use Index with Zero-Pad"
+msgstr ""
+
+msgid "Show Title Icon"
+msgstr ""
+
+msgid "Show Sub Title"
+msgstr ""
+
+msgid "Icon Position"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Icon Active"
+msgstr ""
+
+msgid "Spacing"
+msgstr ""
+
+msgid "Alignment"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Border Radius"
+msgstr ""
+
+msgid "Sub Title"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Box Width"
+msgstr ""
+
+msgid "Box height"
+msgstr ""
+
+msgid "Margin"
+msgstr ""
+
+msgid "Justify"
+msgstr ""
+
+msgid "Default Open ?"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "https://your-link.com"
+msgstr ""
+
+msgid "Use Background Text"
+msgstr ""
+
+msgid "Wrapper"
+msgstr ""
+
+msgid "Box Shadow"
+msgstr ""
+
+msgid "Put 0 for no box shadow "
+msgstr ""
+
+msgid "Animation Gradient"
+msgstr ""
+
+msgid "Animation Speed"
+msgstr ""
+
+msgid "Container"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Container Color"
+msgstr ""
+
+msgid "Boxed Heading"
+msgstr ""
+
+msgid "Adjust Alignment"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Example {{Headline Text}} for this {{Faster}} Page"
+msgstr ""
+
+msgid "Horizontal Offset"
+msgstr ""
+
+msgid "Type your text here"
+msgstr ""
+
+msgid "Vertical Offset"
+msgstr ""
+
+msgid "Rotate (degrees)"
+msgstr ""
+
+msgid "Z-Index"
+msgstr ""
+
+msgid "Duration (ms)"
+msgstr ""
+
+msgid "Example {{Heading 1, Heading 2, Heading 3}} for this {{ Faster , Bigger, Better}} page"
+msgstr ""
+
+msgid "Animated Text"
+msgstr ""
+
+msgid "Bring to Front"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Hide Button on Scroll"
+msgstr ""
+
+msgid "Button Width"
+msgstr ""
+
+msgid "Button Height"
+msgstr ""
+
+msgid "Button Size"
+msgstr ""
+
+msgid "Icon Size"
+msgstr ""
+
+msgid "Display Type"
+msgstr ""
+
+msgid "Button Text"
+msgstr ""
+
+msgid "Global Color Not Working"
+msgstr ""
+
+msgid "Global color is not working or has no effect on this element, possibly due to unsupported settings or limitations of the element."
+msgstr ""
+
+msgid "Border Width"
+msgstr ""
+
+msgid "Scale X"
+msgstr ""
+
+msgid "Show Scale X"
+msgstr ""
+
+msgid "Font Family"
+msgstr ""
+
+msgid "Scale Y"
+msgstr ""
+
+msgid "Show Scale Y"
+msgstr ""
+
+msgid "Grid X"
+msgstr ""
+
+msgid "Show Grid X"
+msgstr ""
+
+msgid "Grid Y"
+msgstr ""
+
+msgid "Show Grid Y"
+msgstr ""
+
+msgid "Show Legend"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Author Gap"
+msgstr ""
+
+msgid "Top Margin"
+msgstr ""
+
+msgid "Holder Padding"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices erat ut ante fermentum, sed molestie tellus luctus. Donec et dignissim nunc. Morbi aliquet risus eu odio efficitur vehicula. Duis ac scelerisque quam, at placerat diam."
+msgstr ""
+
+msgid "Direction"
+msgstr ""
+
+msgid "Row"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Icon Spacing"
+msgstr ""
+
+msgid "Show Featured Image"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Icon Color"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Image Aspect Ratio"
+msgstr ""
+
+msgid "1 : 1"
+msgstr ""
+
+msgid "3 : 2"
+msgstr ""
+
+msgid "2 : 3"
+msgstr ""
+
+msgid "5 : 4"
+msgstr ""
+
+msgid "Hover Color"
+msgstr ""
+
+msgid "4 : 5"
+msgstr ""
+
+msgid "16 : 9"
+msgstr ""
+
+msgid "9 : 16"
+msgstr ""
+
+msgid "Show Highlight"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Top Bottom Position"
+msgstr ""
+
+msgid "Left Right Position"
+msgstr ""
+
+msgid "Show Title"
+msgstr ""
+
+msgid "Transition"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Icon Size    "
+msgstr ""
+
+msgid "Icon Spacing    "
+msgstr ""
+
+msgid "Crop Title By Word"
+msgstr ""
+
+msgid "Show Content"
+msgstr ""
+
+msgid "Transition Duration"
+msgstr ""
+
+msgid "Crop Content By Word"
+msgstr ""
+
+msgid "Floating Date"
+msgstr ""
+
+msgid "Show Read More"
+msgstr ""
+
+msgid "Query"
+msgstr ""
+
+msgid "Floating Category"
+msgstr ""
+
+msgid "Post Count"
+msgstr ""
+
+msgid "Select Post By"
+msgstr ""
+
+msgid "Recent Post"
+msgstr ""
+
+msgid "Selected Post"
+msgstr ""
+
+msgid "Category Post"
+msgstr ""
+
+msgid "Search and Select"
+msgstr ""
+
+msgid "Select Categories"
+msgstr ""
+
+msgid "Offset"
+msgstr ""
+
+msgid "Order By"
+msgstr ""
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Author"
+msgstr "الكاتب"
+
+msgid "Modified"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "ASC"
+msgstr ""
+
+msgid "DESC"
+msgstr ""
+
+msgid "Meta Data"
+msgstr ""
+
+msgid "Show Floating Date"
+msgstr ""
+
+msgid "Show Floating Category"
+msgstr ""
+
+msgid "Show Meta Data"
+msgstr ""
+
+msgid "Meta Position"
+msgstr ""
+
+msgid "Before Title"
+msgstr ""
+
+msgid "After Title"
+msgstr ""
+
+msgid "After Content"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Date Format"
+msgstr ""
+
+msgid "January 01 , 2023"
+msgstr ""
+
+msgid "01 January 2023"
+msgstr ""
+
+msgid "Jan 01, 2023"
+msgstr ""
+
+msgid "01 Jan 2023"
+msgstr ""
+
+msgid "January 1st, 2023"
+msgstr ""
+
+msgid "(Day/Month/Year) - 01/01/2023"
+msgstr ""
+
+msgid "(Month/Day/Year) - 01/01/2023"
+msgstr ""
+
+msgid "Read More Button"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Read More"
+msgstr ""
+
+msgid "Type your label button here"
+msgstr ""
+
+msgid "Button Animation"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Filled Slide Down"
+msgstr ""
+
+msgid "Filled Slide Up"
+msgstr ""
+
+msgid "Filled Slide Left"
+msgstr ""
+
+msgid "Filled Slide Right"
+msgstr ""
+
+msgid "Add Icon ?"
+msgstr ""
+
+msgid "After"
+msgstr ""
+
+msgid "Before"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Hover"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Hover Animation"
+msgstr ""
+
+msgid "Content Wrapper "
+msgstr ""
+
+msgid "Min Height"
+msgstr ""
+
+msgid "Featured Image"
+msgstr ""
+
+msgid "Min Width"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Max Width"
+msgstr ""
+
+msgid "Show Post Per Row"
+msgstr ""
+
+msgid "Item Spacing"
+msgstr ""
+
+msgid "Initial Slide ?"
+msgstr ""
+
+msgid "Type your title here"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "Sub Heading"
+msgstr ""
+
+msgid "Dot Wrapper Margin"
+msgstr ""
+
+msgid "Choose Image"
+msgstr ""
+
+msgid "Navigation Spacing"
+msgstr ""
+
+msgid "Repeater List"
+msgstr ""
+
+msgid "Title #1"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+msgstr ""
+
+msgid "Title #2"
+msgstr ""
+
+msgid "Title #3"
+msgstr ""
+
+msgid "Title #4"
+msgstr ""
+
+msgid "Show Button ?"
+msgstr ""
+
+msgid "Show Navigation"
+msgstr ""
+
+msgid "Show Animation"
+msgstr ""
+
+msgid "Next Icon"
+msgstr ""
+
+msgid "Previous Icon"
+msgstr ""
+
+msgid "Autoplay"
+msgstr ""
+
+msgid "Show Dots"
+msgstr ""
+
+msgid "Pause On Hover"
+msgstr ""
+
+msgid "Loop"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Border"
+msgstr ""
+
+msgid "Card Image"
+msgstr ""
+
+msgid "Opacity"
+msgstr ""
+
+msgid "Justified"
+msgstr ""
+
+msgid "Show Sub Heading"
+msgstr ""
+
+msgid "Icon Wrapper"
+msgstr ""
+
+msgid "Show title"
+msgstr ""
+
+msgid "Choose Client Image"
+msgstr ""
+
+msgid "Hover Mode"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Hover Title"
+msgstr ""
+
+msgid "Awesome Partner"
+msgstr ""
+
+msgid "Hover Description"
+msgstr ""
+
+msgid "The Best Partners in the World."
+msgstr ""
+
+msgid "Short Description Only"
+msgstr ""
+
+msgid "Choose Image Hover"
+msgstr ""
+
+msgid "Show Icon"
+msgstr ""
+
+msgid "Client Icon"
+msgstr ""
+
+msgid "Example Title 1"
+msgstr ""
+
+msgid "Example Title 2"
+msgstr ""
+
+msgid "Example Title 3"
+msgstr ""
+
+msgid "Example Title 4"
+msgstr ""
+
+msgid "Horizontal Spacing"
+msgstr ""
+
+msgid "Vertical Spacing"
+msgstr ""
+
+msgid "Use For Transparent background & PNG format"
+msgstr ""
+
+msgid "Border  "
+msgstr ""
+
+msgid "Object Fit Image"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Contain"
+msgstr ""
+
+msgid "Fill"
+msgstr ""
+
+msgid "Scale Down"
+msgstr ""
+
+msgid "Section Title"
+msgstr ""
+
+msgid "Use For Title section"
+msgstr ""
+
+msgid "Grid Number"
+msgstr ""
+
+msgid "Typography"
+msgstr ""
+
+msgid "Hover Text Style"
+msgstr ""
+
+msgid "Vertical Alignment"
+msgstr ""
+
+msgid "Vertical Position"
+msgstr ""
+
+msgid " Hover Style"
+msgstr ""
+
+msgid "Horizontal Position"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
+msgid "Hover function ready to use except at default mode"
+msgstr ""
+
+msgid "Countdown Timer"
+msgstr ""
+
+msgid "Enter your title"
+msgstr ""
+
+msgid "Hey! If you dont want the title, you can leave it blank."
+msgstr ""
+
+msgid "Date due"
+msgstr ""
+
+msgid "Time Control"
+msgstr ""
+
+msgid "Show Days"
+msgstr ""
+
+msgid "Show Hours"
+msgstr ""
+
+msgid "Show Minutes"
+msgstr ""
+
+msgid "Show Seconds"
+msgstr ""
+
+msgid "Show Label"
+msgstr ""
+
+msgid "Label Potition"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "Seconds"
+msgstr ""
+
+msgid "Expired Action"
+msgstr ""
+
+msgid "FINISH!"
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Title Style"
+msgstr ""
+
+msgid "Time Style"
+msgstr ""
+
+msgid "Text Stroke"
+msgstr ""
+
+msgid "Background Time"
+msgstr ""
+
+msgid "Background time Color"
+msgstr ""
+
+msgid "Container Time"
+msgstr ""
+
+msgid "Separator"
+msgstr ""
+
+msgid "Label Style"
+msgstr ""
+
+msgid "Expired Style"
+msgstr ""
+
+msgid "Show Separator"
+msgstr ""
+
+msgid "Use Icon"
+msgstr ""
+
+msgid "Blur Effect"
+msgstr ""
+
+msgid "Icons Wrapper"
+msgstr ""
+
+msgid "bottom"
+msgstr ""
+
+msgid "Graphic Element"
+msgstr ""
+
+msgid "MIddle"
+msgstr ""
+
+msgid "Distance"
+msgstr ""
+
+msgid "HTML Tag"
+msgstr ""
+
+msgid "This is the heading"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
+msgstr ""
+
+msgid "Click Here"
+msgstr ""
+
+msgid "Fullwidth ?"
+msgstr ""
+
+msgid "no"
+msgstr ""
+
+msgid "Add Icon"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Button 1"
+msgstr ""
+
+msgid "Rometheme "
+msgstr ""
+
+msgid "Delay Time"
+msgstr ""
+
+msgid "Button 2"
+msgstr ""
+
+msgid "Studio "
+msgstr ""
+
+msgid "Middle Button"
+msgstr ""
+
+msgid "Middle Text Button"
+msgstr ""
+
+msgid "or "
+msgstr ""
+
+msgid "Effect"
+msgstr ""
+
+msgid "Ripple"
+msgstr ""
+
+msgid "Pulse"
+msgstr ""
+
+msgid " Alignment"
+msgstr ""
+
+msgid "Border Button"
+msgstr ""
+
+msgid "vertical"
+msgstr ""
+
+msgid "Your Title"
+msgstr ""
+
+msgid "Your Sub Title"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Inline"
+msgstr ""
+
+msgid "Description For Your Home Slider."
+msgstr ""
+
+msgid "Manual adjustments Navigation"
+msgstr ""
+
+msgid "Slide Title #1"
+msgstr ""
+
+msgid "Your slide Description #1"
+msgstr ""
+
+msgid "Slide Title #2"
+msgstr ""
+
+msgid "Your slide Description #2"
+msgstr ""
+
+msgid "Slide Title #3"
+msgstr ""
+
+msgid "Your slide Description #3"
+msgstr ""
+
+msgid "Slide Title #4"
+msgstr ""
+
+msgid "Your slide Description #4"
+msgstr ""
+
+msgid "Show Button"
+msgstr ""
+
+msgid "Buy Now"
+msgstr ""
+
+msgid "Show Button Icon"
+msgstr ""
+
+msgid "Button Icon"
+msgstr ""
+
+msgid "Before Text"
+msgstr ""
+
+msgid "After Text"
+msgstr ""
+
+msgid "Give the container padding to see the results"
+msgstr ""
+
+msgid "Horizontal Alignment"
+msgstr ""
+
+msgid "Slide Style"
+msgstr ""
+
+msgid "Slide"
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "icon Position"
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Word Staggered"
+msgstr ""
+
+msgid "Default Open"
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "The badge style will only take effect if the \"Show Badge\" option is enabled in the List content."
+msgstr ""
+
+msgid "Image Accordion Title"
+msgstr ""
+
+msgid "Image Accordion content here!"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Show Badge"
+msgstr ""
+
+msgid "Badge Title"
+msgstr ""
+
+msgid "Image 1"
+msgstr ""
+
+msgid "Image Accordion 1"
+msgstr ""
+
+msgid "Image 2"
+msgstr ""
+
+msgid "Image Accordion 2"
+msgstr ""
+
+msgid "Image 3"
+msgstr ""
+
+msgid "Image Accordion 3"
+msgstr ""
+
+msgid "Image 4"
+msgstr ""
+
+msgid "Image Accordion 4"
+msgstr ""
+
+msgid "Accordion"
+msgstr ""
+
+msgid "Alignment Vertical"
+msgstr ""
+
+msgid "Overlay Color"
+msgstr ""
+
+msgid "Text Style"
+msgstr ""
+
+msgid "Wait or click Image to see changes"
+msgstr ""
+
+msgid "Content Position"
+msgstr ""
+
+msgid "Button Control"
+msgstr ""
+
+msgid "Example Title"
+msgstr ""
+
+msgid "Type Title here"
+msgstr ""
+
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+msgstr ""
+
+msgid "Hover Image"
+msgstr ""
+
+msgid "Button Position"
+msgstr ""
+
+msgid "Container Background"
+msgstr ""
+
+msgid "Image Filter"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Overlay"
+msgstr ""
+
+msgid "Style 1."
+msgstr ""
+
+msgid "Background Opacity"
+msgstr ""
+
+msgid "Style 2"
+msgstr ""
+
+msgid "Style 3."
+msgstr ""
+
+msgid "Style 4."
+msgstr ""
+
+msgid "Control Before Image"
+msgstr ""
+
+msgid "Show Caption"
+msgstr ""
+
+msgid "Caption"
+msgstr ""
+
+msgid "Type your Caption here"
+msgstr ""
+
+msgid "Caption position"
+msgstr ""
+
+msgid "Image Before"
+msgstr ""
+
+msgid "Control After Image"
+msgstr ""
+
+msgid "Image After"
+msgstr ""
+
+msgid "Caption Style"
+msgstr ""
+
+msgid "Caption Typography"
+msgstr ""
+
+msgid "Caption Color"
+msgstr ""
+
+msgid "Border Caption"
+msgstr ""
+
+msgid "Slider Style"
+msgstr ""
+
+msgid "Circle Color"
+msgstr ""
+
+msgid "Line Color"
+msgstr ""
+
+msgid "circle Background"
+msgstr ""
+
+msgid "Image Style"
+msgstr ""
+
+msgid "Border Type"
+msgstr ""
+
+msgid "Image Filter Before"
+msgstr ""
+
+msgid "Image Filter After"
+msgstr ""
+
+msgid "Slider Position"
+msgstr ""
+
+msgid "horizontal"
+msgstr ""
+
+msgid "Lazy Load"
+msgstr ""
+
+msgid "Add Images"
+msgstr ""
+
+msgid "Lightbox"
+msgstr ""
+
+msgid "Fill Background ?"
+msgstr ""
+
+msgid "Tension"
+msgstr ""
+
+msgid "Point Size"
+msgstr ""
+
+msgid "Tabs. Open items with Enter or Space, close with Escape and navigate using the Arrow keys."
+msgstr ""
+
+msgid "Tabs"
+msgstr ""
+
+msgid "Tab Title"
+msgstr ""
+
+msgid "Active Icon"
+msgstr ""
+
+msgid "CSS ID"
+msgstr ""
+
+msgid "Add your custom id WITHOUT the Pound key. e.g: my-id"
+msgstr ""
+
+msgid "Tabs Items"
+msgstr ""
+
+msgid "Tab #1"
+msgstr ""
+
+msgid "Tab #2"
+msgstr ""
+
+msgid "Tab #3"
+msgstr ""
+
+msgid "Add Tab"
+msgstr ""
+
+msgid "Above"
+msgstr ""
+
+msgid "Below"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Stretch"
+msgstr ""
+
+msgid "Align Title"
+msgstr ""
+
+msgid "RTM Test Nested Tabs"
+msgstr ""
+
+msgid "Additional Settings"
+msgstr ""
+
+msgid "Horizontal Scroll"
+msgstr ""
+
+msgid "Note: Scroll tabs if they don’t fit into their parent container."
+msgstr ""
+
+msgid "Disable"
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "%1$s (%2$s %3$dpx)"
+msgstr ""
+
+msgid "Breakpoint"
+msgstr ""
+
+msgid "Note: Choose at which breakpoint tabs will automatically switch to a vertical (“accordion”) layout."
+msgstr ""
+
+msgid "Gap between tabs"
+msgstr ""
+
+msgid "Distance from content"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Tab #%s"
+msgstr ""
+
+msgid "Titles"
+msgstr ""
+
+msgid "Tab #%d"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Show Description"
+msgstr ""
+
+msgid "Typhography"
+msgstr ""
+
+msgid "Image Position"
+msgstr ""
+
+msgid "Title Post"
+msgstr ""
+
+msgid "Content Post"
+msgstr ""
+
+msgid "left"
+msgstr ""
+
+msgid "right"
+msgstr ""
+
+msgid "Button Line Color"
+msgstr ""
+
+msgid "Type your Title here"
+msgstr ""
+
+msgid "Show Category"
+msgstr ""
+
+msgid "Show Divider"
+msgstr ""
+
+msgid "Title Position"
+msgstr ""
+
+msgid "Posts Per Page"
+msgstr ""
+
+msgid "Show Line Button"
+msgstr ""
+
+msgid "Title Container"
+msgstr ""
+
+msgid "Header Background"
+msgstr ""
+
+msgid "Subheading"
+msgstr ""
+
+msgid "Text  Color"
+msgstr ""
+
+msgid "Type your Sub Heading here"
+msgstr ""
+
+msgid "Currency Typography"
+msgstr ""
+
+msgid "Text Currency Color"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Select Currency"
+msgstr ""
+
+msgid "$ - USD"
+msgstr ""
+
+msgid "€ - EUR"
+msgstr ""
+
+msgid "¥ - JPY"
+msgstr ""
+
+msgid "¢ - CENT"
+msgstr ""
+
+msgid "₹ - INDIA"
+msgstr ""
+
+msgid "₽ - RUS"
+msgstr ""
+
+msgid "¥ - CNY"
+msgstr ""
+
+msgid "₠ - EUR"
+msgstr ""
+
+msgid "₣ - FRANC"
+msgstr ""
+
+msgid "₤ - LIRA"
+msgstr ""
+
+msgid "₥ - Mill"
+msgstr ""
+
+msgid "₱ - PESO"
+msgstr ""
+
+msgid "₩ - WON"
+msgstr ""
+
+msgid "฿ - BATH"
+msgstr ""
+
+msgid "﷼ - Saudi Arabian"
+msgstr ""
+
+msgid "Rp - IDR"
+msgstr ""
+
+msgid "Custom Currency"
+msgstr ""
+
+msgid "Feature Background"
+msgstr ""
+
+msgid "The result will affected if your text more than 1 row"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "icon Color"
+msgstr ""
+
+msgid "show"
+msgstr ""
+
+msgid "hide"
+msgstr ""
+
+msgid "Currency Position"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "List Gap"
+msgstr ""
+
+msgid "Period Potition"
+msgstr ""
+
+msgid "Button Container"
+msgstr ""
+
+msgid "Button Background"
+msgstr ""
+
+msgid "Period Potition Alignment"
+msgstr ""
+
+msgid "Button Border Radius"
+msgstr ""
+
+msgid " Ribbon Style"
+msgstr ""
+
+msgid "Offset X"
+msgstr ""
+
+msgid "Offset Y"
+msgstr ""
+
+msgid "Background Ribbon"
+msgstr ""
+
+msgid "Ribbon Background"
+msgstr ""
+
+msgid "Type your Price here"
+msgstr ""
+
+msgid "Badge Style"
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "Type your subtitle here"
+msgstr ""
+
+msgid "Footer Background"
+msgstr ""
+
+msgid "Sale Price"
+msgstr ""
+
+msgid "Show Sale Price"
+msgstr ""
+
+msgid "Sale Price Position"
+msgstr ""
+
+msgid "inline"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "Description Item"
+msgstr ""
+
+msgid "Type your description item here"
+msgstr ""
+
+msgid "Description Icon"
+msgstr ""
+
+msgid "Individual Icon Color"
+msgstr ""
+
+msgid "Description Source"
+msgstr ""
+
+msgid "Plain Text"
+msgstr ""
+
+msgid "Lists"
+msgstr ""
+
+msgid "Description Text"
+msgstr ""
+
+msgid "Description List"
+msgstr ""
+
+msgid "Description Item #1."
+msgstr ""
+
+msgid "Description Item #2 "
+msgstr ""
+
+msgid "Description Item #3 "
+msgstr ""
+
+msgid "Description Item #4 "
+msgstr ""
+
+msgid "Show Button As"
+msgstr ""
+
+msgid "Purchase Now"
+msgstr ""
+
+msgid "Show Underline"
+msgstr ""
+
+msgid "Header"
+msgstr "Header"
+
+msgid "Ribbon"
+msgstr ""
+
+msgid "Enable Ribbon"
+msgstr ""
+
+msgid "Show Ribbon As"
+msgstr ""
+
+msgid "Ribbon Type 1"
+msgstr ""
+
+msgid "Ribbon Type 2"
+msgstr ""
+
+msgid "Ribbon Text"
+msgstr ""
+
+msgid "Best Seller"
+msgstr ""
+
+msgid "Enter badge text"
+msgstr ""
+
+msgid "Show Header Icon"
+msgstr ""
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Show Footer"
+msgstr ""
+
+msgid "Type your  Footer here"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Show Percentage"
+msgstr ""
+
+msgid "Animation Duration (ms)"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Half Circle"
+msgstr ""
+
+msgid "Stroke Width"
+msgstr ""
+
+msgid "Left Padding"
+msgstr ""
+
+msgid "Right Padding"
+msgstr ""
+
+msgid "Percentage"
+msgstr ""
+
+msgid "Enable Individual Color"
+msgstr ""
+
+msgid "Up"
+msgstr ""
+
+msgid "Down"
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Enable Edge Fading"
+msgstr ""
+
+msgid "Fading Color"
+msgstr ""
+
+msgid "Fading Size"
+msgstr ""
+
+msgid "Rometheme Text Running"
+msgstr ""
+
+msgid "Type your Text here"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "Item Type"
+msgstr ""
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Choose Image or Icon"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "GitHub"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Linkedin"
+msgstr ""
+
+msgid "Pinterest"
+msgstr ""
+
+msgid "Quora"
+msgstr ""
+
+msgid "Reddit"
+msgstr ""
+
+msgid "Snapchat"
+msgstr ""
+
+msgid "Telegram"
+msgstr ""
+
+msgid "Threads"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+msgid "Viber"
+msgstr ""
+
+msgid "Whatsapp"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "Dribbble"
+msgstr ""
+
+msgid "Behance"
+msgstr ""
+
+msgid "Pointer Size"
+msgstr ""
+
+msgid "Border Size"
+msgstr ""
+
+msgid "Icon "
+msgstr ""
+
+msgid "Choose Style"
+msgstr ""
+
+msgid "More Options"
+msgstr ""
+
+msgid "Choose Skin"
+msgstr ""
+
+msgid "Social Media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "Discord"
+msgstr ""
+
+msgid "Enable Icon"
+msgstr ""
+
+msgid "Icon Alignment"
+msgstr ""
+
+msgid "Bordered Navigation"
+msgstr ""
+
+msgid "Active Default"
+msgstr ""
+
+msgid "Icon Margin"
+msgstr ""
+
+msgid "Job Title"
+msgstr ""
+
+msgid "Developer"
+msgstr ""
+
+msgid "Type member position here"
+msgstr ""
+
+msgid "Choose Member    Image"
+msgstr ""
+
+msgid "X - Twitter"
+msgstr ""
+
+msgid "Tiktok"
+msgstr ""
+
+msgid "Youtube"
+msgstr ""
+
+msgid "Github"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Image Width"
+msgstr ""
+
+msgid "Pointer Effect"
+msgstr ""
+
+msgid "Member Name"
+msgstr ""
+
+msgid "Jon Doe"
+msgstr ""
+
+msgid "Social Alignment"
+msgstr ""
+
+msgid "Type member name here"
+msgstr ""
+
+msgid "Social Media Position"
+msgstr ""
+
+msgid "Show Quote Icon"
+msgstr ""
+
+msgid "Quote Icon"
+msgstr ""
+
+msgid "Client Avatar"
+msgstr ""
+
+msgid "Show Rating ?"
+msgstr ""
+
+msgid "Custom Rating Icon"
+msgstr ""
+
+msgid "Rating Icon"
+msgstr ""
+
+msgid "Prev Icon"
+msgstr ""
+
+msgid "Slide To Show"
+msgstr ""
+
+msgid "Slide To Scroll"
+msgstr ""
+
+msgid "Edge Fading"
+msgstr ""
+
+msgid "Use the slide below the color options to adjust the opacity"
+msgstr ""
+
+msgid "Layout Style"
+msgstr ""
+
+msgid "Style 1"
+msgstr ""
+
+msgid "Author Name"
+msgstr ""
+
+msgid "Author Occupation"
+msgstr ""
+
+msgid "Author Avatar"
+msgstr ""
+
+msgid "Style 3"
+msgstr ""
+
+msgid "Style 4"
+msgstr ""
+
+msgid "Style 5"
+msgstr ""
+
+msgid "Link Youtube"
+msgstr ""
+
+msgid "https://youtu.be/j4AC-g6CPxg"
+msgstr ""
+
+msgid "Paste link here"
+msgstr ""
+
+msgid "Link Vimeo"
+msgstr ""
+
+msgid "Auto Play"
+msgstr ""
+
+msgid "Mute"
+msgstr ""
+
+msgid "Player Control"
+msgstr ""
+
+msgid "Show Animation Pulse"
+msgstr ""
+
+msgid "Rotate Icon"
+msgstr ""
+
+msgid "Hover Animation Style"
+msgstr ""
+
+msgid "Grow"
+msgstr ""
+
+msgid "Shrink"
+msgstr ""
+
+msgid "Wobble"
+msgstr ""
+
+msgid "Skew"
+msgstr ""
+
+msgid "Rotate"
+msgstr ""
+
+msgid "Slide Up"
+msgstr ""
+
+msgid "Slide Down"
+msgstr ""
+
+msgid "Slide Left"
+msgstr ""
+
+msgid "Slide Right"
+msgstr ""
+
+msgid "Bounce"
+msgstr ""
+
+msgid "Flip X"
+msgstr ""
+
+msgid "Flip Y"
+msgstr ""
+
+msgid "Zoom In"
+msgstr ""
+
+msgid "Zoom Out"
+msgstr ""
+
+msgid "Float"
+msgstr ""
+
+msgid "Tada"
+msgstr ""
+
+msgid "Shake"
+msgstr ""
+
+msgid "Rubber Band"
+msgstr ""
+
+msgid "Width Animated Pulse"
+msgstr ""
+
+msgid "Duration Animated Pulse (s)"
+msgstr ""
+
+msgid "Video Type"
+msgstr ""
+
+msgid "Self Hosted"
+msgstr ""
+
+msgid "Vimeo"
+msgstr ""
+
+msgid "Choose Video File"
+msgstr ""
+
+msgid "Price Reguler"
+msgstr ""
+
+msgid "Reguler Sale Price"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Rating Size"
+msgstr ""
+
+msgid "Rating Color"
+msgstr ""
+
+msgid "No Rating Color"
+msgstr ""
+
+msgid "Column Reverse"
+msgstr ""
+
+msgid "Content Alignment"
+msgstr ""
+
+msgid "Border Gradient Color 1"
+msgstr ""
+
+msgid "Border Gradient Color 2"
+msgstr ""
+
+msgid "Show Rating"
+msgstr ""
+
+msgid "Vertical Distance"
+msgstr ""
+
+msgid "Horizontal Distance"
+msgstr ""
+
+msgid "Show Ribbon"
+msgstr ""
+
+msgid "Number of Products"
+msgstr ""
+
+msgid "No products found"
+msgstr ""
+
+msgid "Items Spacing"
+msgstr ""
+
+msgid "Crop Description Word"
+msgstr ""
+
+msgid "Recomendation, use 10 - 15 word Only."
+msgstr ""
+
+msgid "Add To Cart"
+msgstr ""
+
+msgid "Gap"
+msgstr ""
+
+msgid "auto"
+msgstr ""
+
+msgid "Object Fit"
+msgstr ""
+
+msgid "Object Position"
+msgstr ""
+
+msgid "Center Center"
+msgstr ""
+
+msgid "Center Top"
+msgstr ""
+
+msgid "Center Bottom"
+msgstr ""
+
+msgid "Left Top"
+msgstr ""
+
+msgid "Left Center"
+msgstr ""
+
+msgid "Left Bottom"
+msgstr ""
+
+msgid "Right Top"
+msgstr ""
+
+msgid "Right Center"
+msgstr ""
+
+msgid "Right Bottom"
+msgstr ""
+
+msgid "Title Color"
+msgstr ""
+
+msgid "Title Line Color"
+msgstr ""
+
+msgid "Enable Glass Effect ?"
+msgstr ""
+
+msgid "yes"
+msgstr ""
+
+msgid "Blur (px)"
+msgstr ""
+
+msgid "Enable Blur Effect ?"
+msgstr ""
+
+msgid "Y Offset"
+msgstr ""
+
+msgid "Wrapper Width"
+msgstr ""
+
+msgid "Tooltip"
+msgstr ""
+
+msgid "Enable Tooltip ?"
+msgstr ""
+
+msgid "Tooltip Text"
+msgstr ""
+
+msgid "X Offset"
+msgstr ""
+
+msgid "Wrapper Link"
+msgstr ""
+
+msgid "Enable Wrapper Link ?"
+msgstr ""
+
+msgid "Unable to connect to the Rometheme API server. Some features like template library and updates may be temporarily unavailable. Please try again later."
+msgstr "تعذّر الاتصال بخادم واجهة Rometheme البرمجية. قد تكون بعض الميزات مثل مكتبة القوالب والتحديثات غير متاحة مؤقتًا. يرجى المحاولة لاحقًا."
+
+msgid "%s is a Premium Widget"
+msgstr "%s عنصر واجهة مدفوع"
+
+msgid "Unlock this widget and get access to advanced features to power up your website."
+msgstr "افتح هذا العنصر واحصل على ميزات متقدمة لتعزيز موقعك."
+
+msgid "Upgrade to Pro"
+msgstr "الترقية إلى Pro"
+
+msgid "Submissions"
+msgstr "الإرسالات"
+
+msgid "System Info"
+msgstr "معلومات النظام"
+
+msgid "Help & Center"
+msgstr "مركز المساعدة"
+
+msgid "RTMKit Dashboard"
+msgstr "لوحة تحكم RTMKit"
+
+msgid "RTMKit"
+msgstr "RTMKit"
+
+msgid "Templates Kits"
+msgstr "Template Kits"
+
+msgid "Documentation"
+msgstr "التوثيق"
+
+msgid "Welcome"
+msgstr "مرحبًا"
+
+msgid "Widgets"
+msgstr "عناصر الواجهة"
+
+msgid "Modules"
+msgstr "الوحدات"
+
+msgid "Theme Builder"
+msgstr "Theme Builder"
+
+msgid "Template Kits"
+msgstr "Template Kits"
+
+msgid "Global Kit Setup"
+msgstr "الإعداد العام للحزمة"
+
+msgid "Version Controls"
+msgstr "إدارة الإصدارات"
+
+msgid "RTM Icon - Regular"
+msgstr "RTM Icon - Regular"
+
+msgid "RTM Icon - Thin"
+msgstr "RTM Icon - Thin"
+
+msgid "Modules options for %s have been successfully updated."
+msgstr "تم تحديث خيارات وحدات %s بنجاح."
+
+msgid "No changes were saved. %s Modules options are already current."
+msgstr "لم يتم حفظ أي تغييرات. خيارات وحدات %s محدَّثة بالفعل."
+
+msgid "Unauthorized"
+msgstr "غير مصرَّح"
+
+msgid "Reset failed due to an unexpected error. Please try again, or contact support if the issue persists."
+msgstr "فشلت إعادة التعيين بسبب خطأ غير متوقع. يرجى المحاولة مجددًا، أو التواصل مع الدعم إذا استمرت المشكلة."
+
+msgid "All Modules have been reset to default settings."
+msgstr "تمت إعادة جميع الوحدات إلى الإعدادات الافتراضية."
+
+msgid "Form Name"
+msgstr "اسم النموذج"
+
+msgid "Referal Page"
+msgstr "صفحة الإحالة"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Trash"
+msgstr "المهملات"
+
+msgid "Submission"
+msgstr "الإرسال"
+
+msgid "Restore"
+msgstr "استعادة"
+
+msgid "Delete Permanently"
+msgstr "حذف نهائي"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Themebuilder"
+msgstr "Themebuilder"
+
+msgid "Shortcode"
+msgstr "الكود المختصر"
+
+msgid "Entries"
+msgstr "الإدخالات"
+
+msgid "Themebuilders"
+msgstr "Themebuilder"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Display"
+msgstr "العرض"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Edit with Elementor"
+msgstr "التحرير باستخدام Elementor"
+
+msgid "Entire Site"
+msgstr "الموقع بالكامل"
+
+msgid "Front Page"
+msgstr "الصفحة الرئيسية"
+
+msgid "404 Page"
+msgstr "صفحة 404"
+
+msgid "All Archives"
+msgstr "جميع الأرشيفات"
+
+msgid "Author Archive"
+msgstr "أرشيف الكاتب"
+
+msgid "Search Results"
+msgstr "نتائج البحث"
+
+msgid "Post Archive"
+msgstr "أرشيف المقالات"
+
+msgid "Categories"
+msgstr "التصنيفات"
+
+msgid "Tags"
+msgstr "الوسوم"
+
+msgid "All Singular"
+msgstr "جميع الصفحات المفردة"
+
+msgid "Posts"
+msgstr "المقالات"
+
+msgid "Post Category"
+msgstr "تصنيف المقالة"
+
+msgid "Post Tag"
+msgstr "وسم المقالة"
+
+msgid "Post Author"
+msgstr "كاتب المقالة"
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Page by Author"
+msgstr "الصفحة حسب الكاتب"
+
+msgid "By Author"
+msgstr "حسب الكاتب"
+
+msgid "Shop Page"
+msgstr "صفحة المتجر"
+
+msgid "Product Archive"
+msgstr "أرشيف المنتجات"
+
+msgid "Single Product"
+msgstr "منتج مفرد"
+
+msgid "Product Categories"
+msgstr "تصنيفات المنتجات"
+
+msgid "Product Tags"
+msgstr "وسوم المنتجات"
+
+msgid "Product by Author"
+msgstr "المنتج حسب الكاتب"
+
+msgid "Rometheme Templates"
+msgstr "قوالب Rometheme"
+
+msgid "Templates"
+msgstr "القوالب"
+
+msgid "Add New"
+msgstr "إضافة جديد"
+
+msgid "Add New Template"
+msgstr "إضافة قالب جديد"
+
+msgid "New Template"
+msgstr "قالب جديد"
+
+msgid "Edit Template"
+msgstr "تحرير القالب"
+
+msgid "View Template"
+msgstr "عرض القالب"
+
+msgid "All Templates"
+msgstr "جميع القوالب"
+
+msgid "Search Templates"
+msgstr "البحث في القوالب"
+
+msgid "Parent Templates:"
+msgstr "القوالب الأصل:"
+
+msgid "No Templates found."
+msgstr "لم يتم العثور على قوالب."
+
+msgid "No Templates found in Trash."
+msgstr "لا توجد قوالب في المهملات."
+
+msgid "RTMKit Header & Footer"
+msgstr "RTMKit Header & Footer"
+
+msgid "RTMKit General"
+msgstr "RTMKit عام"
+
+msgid "RTMKit Pro"
+msgstr "RTMKit Pro"
+
+msgid "Widget options for %s have been successfully updated."
+msgstr "تم تحديث خيارات عنصر %s بنجاح."
+
+msgid "No changes were saved. %s Widget options are already current."
+msgstr "لم يتم حفظ أي تغييرات. خيارات عنصر %s محدَّثة بالفعل."
+
+msgid "All widgets have been reset to default settings."
+msgstr "تمت إعادة جميع العناصر إلى الإعدادات الافتراضية."
+
+msgid "Info"
+msgstr ""
+
+msgid "Pekanbaru, Indonesia"
+msgstr ""
+
+msgid "Header Info"
+msgstr ""
+
+msgid "Info Row Spacing"
+msgstr ""
+
+msgid "Info Column Spacing"
+msgstr ""
+
+msgid "example: https://your-link.com"
+msgstr ""
+
+msgid "Hamburger Style"
+msgstr ""
+
+msgid "Menu Icon Alignment"
+msgstr ""
+
+msgid "Menu Setting"
+msgstr ""
+
+msgid "Menu Select"
+msgstr ""
+
+msgid "Go to the  %1$sMenus screen%2$s to manage your menus."
+msgstr ""
+
+msgid "Dropdown as open"
+msgstr ""
+
+msgid "Click"
+msgstr ""
+
+msgid "Underline"
+msgstr ""
+
+msgid "Overline"
+msgstr ""
+
+msgid "Double Line"
+msgstr ""
+
+msgid "Framed"
+msgstr ""
+
+msgid "Pointer Width"
+msgstr ""
+
+msgid "Mobile Options"
+msgstr ""
+
+msgid "Responsive Breakpoint"
+msgstr ""
+
+msgid "Tablet"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Menu Distance"
+msgstr ""
+
+msgid "Full Width"
+msgstr ""
+
+msgid "Menu Order Position"
+msgstr ""
+
+msgid "From Left"
+msgstr ""
+
+msgid "From Right"
+msgstr ""
+
+msgid "Menu Width"
+msgstr ""
+
+msgid "Submenu Content"
+msgstr ""
+
+msgid "Sub Menu Icon"
+msgstr ""
+
+msgid "Sub Menu Icon Spacing"
+msgstr ""
+
+msgid "Hamburger Setting"
+msgstr ""
+
+msgid "Hamburger Icon Open"
+msgstr ""
+
+msgid "Hamburger Icon Close"
+msgstr ""
+
+msgid "Menu Wrapper"
+msgstr ""
+
+msgid "Menu Wrapper Background"
+msgstr ""
+
+msgid "Menu Style"
+msgstr ""
+
+msgid "Menu Position"
+msgstr ""
+
+msgid "Horizontal Padding"
+msgstr ""
+
+msgid "Vertical Padding"
+msgstr ""
+
+msgid "Space Between"
+msgstr ""
+
+msgid "Item Border Radius"
+msgstr ""
+
+msgid "Submenu Style"
+msgstr ""
+
+msgid "Submenu Icon Style"
+msgstr ""
+
+msgid "Icon Color Hover"
+msgstr ""
+
+msgid "Submenu Icon Size"
+msgstr ""
+
+msgid "Style Setting"
+msgstr ""
+
+msgid "Offcanvas Setting"
+msgstr ""
+
+msgid "Offcanvas Position"
+msgstr ""
+
+msgid "Width Offcanvas Menu"
+msgstr ""
+
+msgid "Offcanvas Close Button"
+msgstr ""
+
+msgid "border-close-normal"
+msgstr ""
+
+msgid "border-close-hover"
+msgstr ""
+
+msgid "Menu Content"
+msgstr ""
+
+msgid "Select Template"
+msgstr ""
+
+msgid "**You create from elementor template first"
+msgstr ""
+
+msgid "Menu Icon"
+msgstr ""
+
+msgid "Pro"
+msgstr "Pro"
+
+msgid "This result includes the Elementor Pro %s widget. Upgrade now to unlock it and grow your web creation toolkit."
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Go Pro"
+msgstr ""
+
+msgid "Submit Icon"
+msgstr ""
+
+msgid "Search Icon"
+msgstr ""
+
+msgid "Search Button Position"
+msgstr ""
+
+msgid "Direction Button"
+msgstr ""
+
+msgid "Placeholder Color"
+msgstr ""
+
+msgid "Input Padding"
+msgstr ""
+
+msgid "Gap between input and button"
+msgstr ""
+
+msgid "box-shadow-field"
+msgstr ""
+
+msgid "box-shadow-focus"
+msgstr ""
+
+msgid "Submit Button"
+msgstr ""
+
+msgid "Search Field"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Submit Text"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Autocomplete"
+msgstr ""
+
+msgid "Search Button"
+msgstr ""
+
+msgid "Logo Type"
+msgstr ""
+
+msgid "Custom Logo"
+msgstr ""
+
+msgid "Site Logo"
+msgstr ""
+
+msgid "You can set a global site logo in Elementor: Site Settings > Site Identity."
+msgstr ""
+
+msgid "Watch a Guide"
+msgstr "مشاهدة دليل"
+
+msgid "New Theme Builder"
+msgstr "Theme Builder جديد"
+
+msgid "UPGRADE TO PRO"
+msgstr "الترقية إلى PRO"
+
+msgid "Hi-End Power"
+msgstr "أداء من الطراز الرفيع"
+
+msgid "Unlock Now"
+msgstr "افتح الآن"
+
+msgid "Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+ icons, extensions, and priority support. Only in RTMkit Pro."
+msgstr "أطلق العنان لكامل إمكانات سير عملك. احصل على أكثر من 70 عنصر واجهة، وأكثر من 25 قالبًا، و9 ميزات في theme builder، وأكثر من 1200 أيقونة، وإضافات، ودعم ذي أولوية. حصريًا في RTMkit Pro."
+
+msgid "Added Search Results Builder and WooBuilder. Improved template conditions."
+msgstr "إضافة Search Results Builder وWooBuilder، مع تحسين شروط القوالب."
+
+msgid "What's New"
+msgstr "الجديد"
+
+msgid "New Features"
+msgstr "ميزات جديدة"
+
+msgid "Changelog"
+msgstr "سجل التغييرات"
+
+msgid "Added Module Switcher and inline edit for Saved Templates. Performance and stability improvements."
+msgstr "إضافة مبدّل الوحدات والتحرير المباشر للقوالب المحفوظة، مع تحسينات في الأداء والاستقرار."
+
+msgid "Master RTMKit Addons - Fast Easy!"
+msgstr "أتقن RTMKit Addons — بسرعة وسهولة!"
+
+msgid "Get started with ease by watching our step-by-step beginner's tutorial on Elementor."
+msgstr "ابدأ بسهولة عبر مشاهدة شرحنا التفصيلي للمبتدئين حول Elementor."
+
+msgid "Watch Now"
+msgstr "شاهد الآن"
+
+msgid "System Requirement"
+msgstr "متطلبات النظام"
+
+msgid "See All"
+msgstr "عرض الكل"
+
+msgid "Request Feature"
+msgstr "طلب ميزة"
+
+msgid "Please feel free to give any suggestions to include any features about RTMKit Addons for Elementor."
+msgstr "لا تتردد في إرسال اقتراحاتك بشأن أي ميزات تودّ إضافتها إلى RTMKit Addons for Elementor."
+
+msgid "Check Our Roadmap"
+msgstr "اطّلع على خطتنا المستقبلية"
+
+msgid "Plugin Required"
+msgstr "إضافة مطلوبة"
+
+msgid "Recommended WP Themes"
+msgstr "قوالب WP الموصى بها"
+
+msgid "Browse WP Themes"
+msgstr "تصفح قوالب WP"
+
+msgid "Show your Love"
+msgstr "أظهر دعمك"
+
+msgid "Please take 2 minutes to review us and show some love."
+msgstr "خصّص دقيقتين لتقييمنا وإظهار دعمك."
+
+msgid "Rate RTMKit"
+msgstr "قيّم RTMKit"
+
+msgid "Rate RTMForm"
+msgstr "قيّم RTMForm"
+
+msgid "Community & Support"
+msgstr "المجتمع والدعم"
+
+msgid "Facebook Community"
+msgstr "مجتمع فيسبوك"
+
+msgid "/groups/rometheme"
+msgstr ""
+
+msgid "Minimum PHP"
+msgstr "أدنى إصدار PHP"
+
+msgid "Mail"
+msgstr "البريد الإلكتروني"
+
+msgid "cs.rometheme@gmail.com"
+msgstr ""
+
+msgid "We’re active on"
+msgstr "نحن متواجدون على"
+
+msgid "Max. Post Size"
+msgstr "أقصى حجم POST"
+
+msgid "WP Memory Limit"
+msgstr "حد ذاكرة WP"
+
+msgid "Hello, %s"
+msgstr "مرحبًا، %s"
+
+msgid "Welcome to RTMKit Dashboard"
+msgstr "مرحبًا بك في لوحة تحكم RTMKit"
+
+msgid "License :"
+msgstr "الترخيص:"
+
+msgid "New Interface"
+msgstr "واجهة جديدة"
+
+msgid "Free"
+msgstr "مجاني"
+
+msgid "Upgrade Now"
+msgstr "ترقية الآن"
+
+msgid "Upgrade premium to unlock all features"
+msgstr "قم بالترقية إلى النسخة المدفوعة لفتح جميع الميزات"
+
+msgid "Redesigned admin UI with cleaner layout and better navigation."
+msgstr "إعادة تصميم واجهة الإدارة بتخطيط أوضح وتنقل أفضل."
+
+msgid "Everything you need in one place"
+msgstr "كل ما تحتاجه في مكان واحد"
+
+msgid "The Ultimate Addons for Elementor-WordPress Website"
+msgstr "الإضافات المثالية لمواقع Elementor وWordPress"
+
+msgid "We're excited to help you supercharge your website-building experience. Effortlessly design stunning websites with our comprehensive range of free and premium widgets and features."
+msgstr "يسعدنا مساعدتك في الارتقاء بتجربة بناء موقعك. صمّم مواقع مذهلة بسهولة عبر مجموعتنا الشاملة من عناصر الواجهة والميزات المجانية والمدفوعة."
+
+msgid "Read Documentation"
+msgstr "قراءة التوثيق"
+
+msgid "Submit Support Form"
+msgstr "إرسال نموذج الدعم"
+
+msgid "rometheme.net/support"
+msgstr ""
+
+msgid "Support & Get Help"
+msgstr "الدعم والمساعدة"
+
+msgid "Explore help articles or contact us directly for faster support."
+msgstr "تصفح مقالات المساعدة أو تواصل معنا مباشرة للحصول على دعم أسرع."
+
+msgid "Instagram Rometheme Studio"
+msgstr "Instagram Rometheme Studio"
+
+msgid "Instagram RTMkit"
+msgstr "Instagram RTMkit"
+
+msgid "Tiktok Rometheme"
+msgstr "Tiktok Rometheme"
+
+msgid "Youtube Rometheme"
+msgstr "Youtube Rometheme"
+
+msgid "Behance Rometheme Studio"
+msgstr "Behance Rometheme Studio"
+
+msgid "Knowledge Base"
+msgstr "قاعدة المعرفة"
+
+msgid "Explore our documentation to help guided about our product and installation."
+msgstr "تصفح توثيقنا للحصول على إرشادات حول المنتج وطريقة التثبيت."
+
+msgid "Product Documentation"
+msgstr "توثيق المنتج"
+
+msgid "Support"
+msgstr "الدعم"
+
+msgid "Get in touch or visit our community to get guided about wordpress, elementor and RTMkit Plugin"
+msgstr "تواصل معنا أو زر مجتمعنا للحصول على إرشادات حول WordPress وElementor وإضافة RTMkit"
+
+msgid "Import As Page"
+msgstr "استيراد كصفحة"
+
+msgid "Import Without Image"
+msgstr "استيراد بدون صور"
+
+msgid "Please do not refresh or close this page until the process is complete."
+msgstr "يرجى عدم تحديث هذه الصفحة أو إغلاقها حتى تكتمل العملية."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Import All Template"
+msgstr "استيراد جميع القوالب"
+
+msgid "Full Import"
+msgstr "استيراد كامل"
+
+msgid "Demo Content Only"
+msgstr "المحتوى التجريبي فقط"
+
+msgid "Global Style Only"
+msgstr "الأنماط العامة فقط"
+
+msgid "Drop Template Kit ZIP here or click to upload"
+msgstr "أفلت ملف ZIP الخاص بـ Template Kit هنا أو انقر للرفع"
+
+msgid "View Kit"
+msgstr "عرض الحزمة"
+
+msgid "Attention!"
+msgstr "تنبيه!"
+
+msgid "Install Requirements"
+msgstr "تثبيت المتطلبات"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Import"
+msgstr "استيراد"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Import Template"
+msgstr "استيراد القالب"
+
+msgid "License Manager"
+msgstr "إدارة التراخيص"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "Popular"
+msgstr "شائع"
+
+msgid "%s Total Modules"
+msgstr "%s إجمالي الوحدات"
+
+msgid "%s Active Modules"
+msgstr "%s وحدة مفعَّلة"
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "Enable All"
+msgstr "تفعيل الكل"
+
+msgid "Reset All"
+msgstr "إعادة تعيين الكل"
+
+msgid "All Modules"
+msgstr "جميع الوحدات"
+
+msgid "Free Modules"
+msgstr "الوحدات المجانية"
+
+msgid "Pro Modules"
+msgstr "وحدات Pro"
+
+msgid "Search module name..."
+msgstr "ابحث عن اسم الوحدة..."
+
+msgid "Advanced Forms Engine"
+msgstr "محرك نماذج متقدم"
+
+msgid "RTMForm"
+msgstr "RTMForm"
+
+msgid "Unlock Full Form Functionality"
+msgstr "افتح كامل إمكانات النماذج"
+
+msgid "with"
+msgstr "مع"
+
+msgid "RTMForm powers all form functionality in RTMKit. Activate it to unlock full capabilities and ensure everything runs seamlessly."
+msgstr "يشغّل RTMForm جميع وظائف النماذج في RTMKit. فعّله لفتح كامل الإمكانات وضمان عمل كل شيء بسلاسة."
+
+msgid "RTMForm Banner"
+msgstr "لافتة RTMForm"
+
+msgid "Saved Template Editor"
+msgstr "محرر القوالب المحفوظة"
+
+msgid "SAVE & CLOSE"
+msgstr "حفظ وإغلاق"
+
+msgid "Global Kit Style"
+msgstr "النمط العام للحزمة"
+
+msgid "Adjust your website settings to achieve the best performance. Customizing will enhance your site's efficiency & provide an improved user experience."
+msgstr "اضبط إعدادات موقعك للحصول على أفضل أداء. التخصيص يعزز كفاءة موقعك ويوفر تجربة استخدام أفضل."
+
+msgid "When used, the \"Global Site Settings\" that some Template Kits contain can affect your entire website."
+msgstr "عند استخدام «Global Site Settings» الموجودة في بعض حزم Template Kits، قد تؤثر على موقعك بالكامل."
+
+msgid "The Elementor Hamburger Menu » Site Settings is where you can change the Site Settings. The global site settings that are applied to your website can be altered below."
+msgstr "يمكنك تغيير إعدادات الموقع من قائمة Elementor » Site Settings. أما الإعدادات العامة المطبَّقة على موقعك فيمكن تعديلها أدناه."
+
+msgid "1. Get Started"
+msgstr "1. البداية"
+
+msgid "Begin the setup process and configure the basic settings to get started with RTMkit."
+msgstr "ابدأ عملية الإعداد واضبط الإعدادات الأساسية للانطلاق مع RTMkit."
+
+msgid "2. Modules"
+msgstr "2. الوحدات"
+
+msgid "Customize Your Experience with Module Switching, Letting You Enable or Disable Features Based on Your Workflow."
+msgstr "خصّص تجربتك عبر مبدّل الوحدات، الذي يتيح لك تفعيل الميزات أو تعطيلها حسب سير عملك."
+
+msgid "3. Luminex Theme"
+msgstr "3. قالب Luminex"
+
+msgid "Upgrade Your Website with Luminex a\r\n                                                    High-End WordPress Theme"
+msgstr "ارتقِ بموقعك مع Luminex،\r\n                                                    قالب WordPress من الطراز الرفيع"
+
+msgid "4. Finalizing"
+msgstr "4. الإنهاء"
+
+msgid "Everything is set. Your plugin is ready and you can access the dashboard."
+msgstr "اكتمل كل شيء. الإضافة جاهزة ويمكنك الوصول إلى لوحة التحكم."
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "[&emsp;STEP 02&emsp;]"
+msgstr "[&emsp;الخطوة 02&emsp;]"
+
+msgid "upgrade your website"
+msgstr "ارتقِ بموقعك"
+
+msgid "with a complete modules"
+msgstr "بوحدات متكاملة"
+
+msgid "Back"
+msgstr "رجوع"
+
+msgid "Luminex Logo"
+msgstr "شعار Luminex"
+
+msgid "official themes"
+msgstr "القوالب الرسمية"
+
+msgid "support, by rtmkit"
+msgstr "الدعم، من rtmkit"
+
+msgid "Included with your purchase"
+msgstr "مشمول في عملية الشراء"
+
+msgid "50+ Niche Business WordPress Themes"
+msgstr "أكثر من 50 قالب WordPress لقطاعات متخصصة"
+
+msgid "320+ Premium Blocks & Layouts"
+msgstr "أكثر من 320 كتلة وتخطيطًا مدفوعًا"
+
+msgid "Lifetime Access to RTMkit PRO"
+msgstr "وصول مدى الحياة إلى RTMkit PRO"
+
+msgid "Lifetime Updates"
+msgstr "تحديثات مدى الحياة"
+
+msgid "6 Months of Dedicated Support"
+msgstr "6 أشهر من الدعم المخصص"
+
+msgid "GET LUMINEX"
+msgstr "احصل على LUMINEX"
+
+msgid "[&emsp;STEP 04&emsp;]"
+msgstr "[&emsp;الخطوة 04&emsp;]"
+
+msgid "and announcements."
+msgstr "والإعلانات."
+
+msgid "Get the latest updates"
+msgstr "احصل على آخر التحديثات"
+
+msgid "newsletter."
+msgstr "النشرة البريدية."
+
+msgid "Subscribe to our"
+msgstr "اشترك في"
+
+msgid "Your E-mail"
+msgstr "بريدك الإلكتروني"
+
+msgid "Subscribe"
+msgstr "اشتراك"
+
+msgid "Skip"
+msgstr "تخطٍّ"
+
+msgid "[&emsp;STEP 05&emsp;]"
+msgstr "[&emsp;الخطوة 05&emsp;]"
+
+msgid "finally,"
+msgstr "وأخيرًا،"
+
+msgid "Setup Completed\r\n                                    Successfully."
+msgstr "اكتمل الإعداد\r\n                                    بنجاح."
+
+msgid "Enjoy ! Your Plugin"
+msgstr "بالتوفيق! إضافتك"
+
+msgid "Is Ready to Use"
+msgstr "جاهزة للاستخدام"
+
+msgid "Visit Dashboard"
+msgstr "الانتقال إلى لوحة التحكم"
+
+msgid "Getting Started"
+msgstr "البداية"
+
+msgid "Luminex Theme"
+msgstr "قالب Luminex"
+
+msgid "Get Update"
+msgstr "الحصول على التحديث"
+
+msgid "Finalizing"
+msgstr "الإنهاء"
+
+msgid "RTMKit Logo"
+msgstr "شعار RTMKit"
+
+msgid "[&emsp;STEP 01&emsp;]"
+msgstr "[&emsp;الخطوة 01&emsp;]"
+
+msgid "it's easy to"
+msgstr "من السهل أن"
+
+msgid "get started on rtmkit"
+msgstr "تبدأ مع rtmkit"
+
+msgid "basic settings to get started with RTMkit."
+msgstr "الإعدادات الأساسية للانطلاق مع RTMkit."
+
+msgid "Begin the setup process and configure"
+msgstr "ابدأ عملية الإعداد واضبط"
+
+msgid "Go to Pro"
+msgstr "الانتقال إلى Pro"
+
+msgid "Get started"
+msgstr "البداية"
+
+msgid "Features"
+msgstr "الميزات"
+
+msgid "Builders"
+msgstr "Builders"
+
+msgid "Information"
+msgstr "معلومات"
+
+msgid "Incompatible"
+msgstr "غير متوافق"
+
+msgid "Compatible"
+msgstr "متوافق"
+
+msgid "PHP Version"
+msgstr "إصدار PHP"
+
+msgid "Writable"
+msgstr "قابل للكتابة"
+
+msgid "Not Writable"
+msgstr "غير قابل للكتابة"
+
+msgid "PHP Memory Limit"
+msgstr "حد ذاكرة PHP"
+
+msgid "PHP Max Input Vars"
+msgstr "أقصى عدد متغيرات إدخال PHP"
+
+msgid "PHP Max Post Size"
+msgstr "أقصى حجم POST في PHP"
+
+msgid "GD Installed"
+msgstr "GD مثبَّت"
+
+msgid "ZIP Installed"
+msgstr "ZIP مثبَّت"
+
+msgid "Wordpres Info"
+msgstr "معلومات WordPress"
+
+msgid "Site URL"
+msgstr "رابط الموقع"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Time Zone"
+msgstr "المنطقة الزمنية"
+
+msgid "WP Multisite"
+msgstr "WP Multisite"
+
+msgid "WordPress Version"
+msgstr "إصدار WordPress"
+
+msgid "Check System Status"
+msgstr "فحص حالة النظام"
+
+msgid "Memory Limit"
+msgstr "حد الذاكرة"
+
+msgid "Max Memory Limit"
+msgstr "أقصى حد للذاكرة"
+
+msgid "Max Upload Size"
+msgstr "أقصى حجم للرفع"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Server Status"
+msgstr "حالة الخادم"
+
+msgid "Wordpress Info"
+msgstr "معلومات WordPress"
+
+msgid "Theme Active"
+msgstr "القالب المفعَّل"
+
+msgid "Plugin Active"
+msgstr "الإضافات المفعَّلة"
+
+msgid "Operating System"
+msgstr "نظام التشغيل"
+
+msgid "Software"
+msgstr "البرمجيات"
+
+msgid "Write Permissions"
+msgstr "صلاحيات الكتابة"
+
+msgid "MySQL Version"
+msgstr "إصدار MySQL"
+
+msgid "Install"
+msgstr "تثبيت"
+
+msgid "Themeforest Template"
+msgstr "قالب Themeforest"
+
+msgid "Installed Template"
+msgstr "القوالب المثبتة"
+
+msgid "All Categories"
+msgstr "جميع التصنيفات"
+
+msgid "Search Template Kit..."
+msgstr "ابحث عن Template Kit..."
+
+msgid "Delete All Installed Template"
+msgstr "حذف جميع القوالب المثبتة"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Condition"
+msgstr "الشرط"
+
+msgid "Theme Builder Title"
+msgstr "عنوان Theme Builder"
+
+msgid "Single Post"
+msgstr "مقالة مفردة"
+
+msgid "Archive Post"
+msgstr "أرشيف المقالات"
+
+msgid "Search Result"
+msgstr "نتائج البحث"
+
+msgid "Archive Product"
+msgstr "أرشيف المنتجات"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Enabling or Disabling Templates"
+msgstr "تفعيل القوالب أو تعطيلها"
+
+msgid "Set the conditions that determine where your template is used."
+msgstr "حدد الشروط التي تُحدد أين يُستخدم قالبك."
+
+msgid "Add Condition"
+msgstr "إضافة شرط"
+
+msgid "Save\r\n                        changes"
+msgstr "حفظ\r\n                        التغييرات"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Form"
+msgstr "نموذج"
+
+msgid "Confirmation"
+msgstr "التأكيد"
+
+msgid "Notification"
+msgstr "الإشعار"
+
+msgid "Enter Form Name"
+msgstr "أدخل اسم النموذج"
+
+msgid "Success Message"
+msgstr "رسالة النجاح"
+
+msgid "Entry Title"
+msgstr "عنوان الإدخال"
+
+msgid "To set a custom entry title, enclose the input name in {{ }}."
+msgstr "لتعيين عنوان مخصص للإدخال، ضع اسم الحقل بين {{ }}."
+
+msgid "Require Login"
+msgstr "يتطلب تسجيل الدخول"
+
+msgid "Without login, user can't submit the form."
+msgstr "بدون تسجيل الدخول، لا يمكن للمستخدم إرسال النموذج."
+
+msgid "Confirmation mail to user"
+msgstr "رسالة تأكيد إلى المستخدم"
+
+msgid "Active this one."
+msgstr "فعّل هذا الخيار."
+
+msgid "The form must have at least one Email widget and it should be required."
+msgstr "يجب أن يحتوي النموذج على عنصر بريد إلكتروني واحد على الأقل، وأن يكون حقلاً مطلوبًا."
+
+msgid "Want to send a submission copy to user by email?"
+msgstr "هل تريد إرسال نسخة من الإرسال إلى المستخدم عبر البريد الإلكتروني؟"
+
+msgid "Email Subject"
+msgstr "موضوع الرسالة"
+
+msgid "Enter Email Subject Here"
+msgstr "أدخل موضوع الرسالة هنا"
+
+msgid "Email From"
+msgstr "البريد المُرسِل"
+
+msgid "mail@example.com"
+msgstr ""
+
+msgid "Email Reply To"
+msgstr "الرد على"
+
+msgid "Thankyou Message"
+msgstr "رسالة الشكر"
+
+msgid "Notification mail to Admin"
+msgstr "رسالة إشعار إلى المدير"
+
+msgid "Want to send a submission copy to admin by email?"
+msgstr "هل تريد إرسال نسخة من الإرسال إلى المدير عبر البريد الإلكتروني؟"
+
+msgid "Email To"
+msgstr "البريد المُستقبِل"
+
+msgid "Enter admin email where you want to send mail."
+msgstr "أدخل بريد المدير الذي تريد إرسال الرسالة إليه."
+
+msgid "for multiple email addresses please use \",\" separator."
+msgstr "لإدخال عدة عناوين بريد، استخدم «،» كفاصل."
+
+msgid "Admin Note"
+msgstr "ملاحظة المدير"
+
+msgid "Save & Edit"
+msgstr "حفظ وتحرير"
+
+msgid "Active this one.The form must have at least one Email widget and it should be required."
+msgstr "فعّل هذا الخيار. يجب أن يحتوي النموذج على عنصر بريد إلكتروني واحد على الأقل، وأن يكون حقلاً مطلوبًا."
+
+msgid "Page navigation"
+msgstr "تنقل الصفحات"
+
+msgid "Rollback to Previous Version"
+msgstr "الرجوع إلى الإصدار السابق"
+
+msgid "Reinstall"
+msgstr "إعادة التثبيت"
+
+msgid "Update to New Version or Rollback to Previous Version"
+msgstr "التحديث إلى إصدار جديد أو الرجوع إلى الإصدار السابق"
+
+msgid "Update"
+msgstr "تحديث"
+
+msgid "Update & Version Control"
+msgstr "التحديث وإدارة الإصدارات"
+
+msgid "Post"
+msgstr "مقالة"
+
+msgid "All Widget"
+msgstr "جميع العناصر"
+
+msgid "Free Widget"
+msgstr "العناصر المجانية"
+
+msgid "Pro Widget"
+msgstr "عناصر Pro"
+
+msgid "Search widget name..."
+msgstr "ابحث عن اسم العنصر..."
+
+msgid "Docs"
+msgstr "التوثيق"
+
+msgid "Demo"
+msgstr "عرض توضيحي"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Widgets Manager"
+msgstr "إدارة عناصر الواجهة"
+
+msgid "Creative"
+msgstr "إبداعي"
+
+msgid "%s Total Widgets"
+msgstr "%s إجمالي العناصر"
+
+msgid "Showcase"
+msgstr "عرض الأعمال"
+
+msgid "%s Active Widgets"
+msgstr "%s عنصرًا مفعَّلًا"
+
+msgid "Business"
+msgstr "الأعمال"
+
+msgid "Header & Footer"
+msgstr "Header & Footer"
+
+msgid "Marketing"
+msgstr "التسويق"
+
+msgid "Infographic"
+msgstr "إنفوجرافيك"

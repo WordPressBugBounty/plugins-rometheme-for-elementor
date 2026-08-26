@@ -206,7 +206,7 @@ class Plugin
             'widget_module' => \RTMKit\Modules\Widgets\WidgetModule::class,
             'extensions' => \RTMKit\Modules\Extensions\ExtensionModule::class,
             'themebuilder' => \RTMKit\Modules\Themebuilder\ThemebuilderModule::class,
-            // 'templatekits' => \RTMKit\Modules\Templatekits\TemplatekitModule::class,
+            'templatekits' => \RTMKit\Modules\Templatekits\TemplatekitModule::class,
             'icons' => \RTMKit\Modules\RTMIcons\RTMIconsModule::class,
             'submission' => \RTMKit\Modules\Submission\SubmissionModule::class,
             'update' => \RTMKit\Modules\Update\UpdateModule::class,
