@@ -76,12 +76,11 @@ class RkitDuplicator
                             update_post_meta($new_post_id, '_elementor_data', $encoded);
                         }
                     } else {
-                        add_post_meta($new_post_id, $meta_key, maybe_unserialize($meta_value));
+                        add_post_meta($new_post_id, $meta_key, $meta_value);
                     }
                 }
             }
         }
-
         // Elementor flags
         // update_post_meta( $new_post_id, '_elementor_edit_mode', 'builder' );
         // update_post_meta( $new_post_id, '_wp_page_template', get_post_meta( $post_id, '_wp_page_template', true ) );

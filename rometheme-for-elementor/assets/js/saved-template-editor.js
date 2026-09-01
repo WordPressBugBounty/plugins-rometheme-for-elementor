@@ -62,6 +62,16 @@ window.addEventListener("message", function (event) {
   const data = event.data || {};
 
   if (data.action === "open-saved-template-editor" && data.url) {
+    try {
+      const parsedUrl = new URL(data.url);
+      if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+        console.warn("Invalid URL scheme");
+        return;
+      }
+    } catch (e) {
+      console.warn("Invalid URL");
+      return;
+    }
     const modal = jQuery("#saved-template-editor-modal");
     if (!modal.length) {
       console.warn("Modal not found in parent.");

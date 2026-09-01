@@ -4,16 +4,16 @@ if (! defined('ABSPATH')) exit;
 
 $whats_new = [
     'interface' => [
-        'title' => 'New Interface',
-        'description' => 'Redesigned admin UI with cleaner layout and better navigation.',
+        'title' => 'RTM Mega Menu Builder',
+        'description' => 'Design mega menu panels with Elementor and attach them to any navigation menu — on classic themes and in Elementor headers alike.',
     ],
     'themebuilder' => [
-        'title' => 'New Theme Builder',
-        'description' => 'Added Search Results Builder and WooBuilder. Improved template conditions.',
+        'title' => 'RTM Popup Builder',
+        'description' => 'Popup Builder for the RTM ecosystem. Design popups with Elementor, then control what opens them, which pages they appear on, who sees them and how often.',
     ],
     'features' => [
-        'title' => 'New Features',
-        'description' => 'Added Module Switcher and inline edit for Saved Templates. Performance and stability improvements.',
+        'title' => 'RTM Core',
+        'description' => 'Get full feature access to Post Type, Metabox, Taxonomy Builder and Preloader for the RTM ecosystem. Create custom post types, taxonomies, and meta boxes with a simple interface.',
     ]
 ];
 

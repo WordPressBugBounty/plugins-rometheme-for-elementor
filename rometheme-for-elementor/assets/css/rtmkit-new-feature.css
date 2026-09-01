@@ -1,12 +1,12 @@
 #custom-admin-drawer {
   position: fixed;
   top: 32px;
-  right: -400px;
+  inset-inline-end: -400px;
   width: 400px;
   height: calc(100% - 32px);
   background: #1e2124;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
+  transition: inset-inline-end 0.3s ease;
   z-index: 9999;
   overflow-y: auto;
   font-size: 13px;
@@ -21,8 +21,37 @@
   width: 20px;
   height: 20px;
   display: inline-block;
-  margin-right: 3px;
+  margin-inline-end: 3px;
   vertical-align: middle;
+}
+
+/* Red dot indicator for new feeds */
+.rtmkit-new-feed-dot {
+  position: absolute !important;
+  top: 5px;
+  left: 5px;
+  inset-inline-end: 0;
+  width: 8px !important;
+  height: 8px !important;
+  background: #d63638;
+  border: 1.5px solid #d63638;
+  pointer-events: none;
+  border-radius: 50% !important;
+  animation: rtmkit-dot-pulse 3s ease-in-out infinite;
+}
+
+@keyframes rtmkit-dot-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 184, 186, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(214, 54, 56, 0);
+  }
+}
+
+#wp-admin-bar-rtmkit_whats_new_bar {
+  position: relative;
 }
 
 #custom-admin-drawer h4 {
@@ -31,7 +60,7 @@
 }
 
 #custom-admin-drawer.open {
-  right: 0;
+  inset-inline-end: 0;
 }
 
 #custom-admin-drawer .drawer-header {
@@ -68,11 +97,11 @@
 
 #custom-admin-drawer .drawer-content ul {
   list-style: disc;
-  padding-left: 0;
+  padding-inline-start: 0;
 }
 
 #custom-admin-drawer .drawer-content ul li {
-  margin-left: 1.5rem;
+  margin-inline-start: 1.5rem;
 }
 
 #custom-admin-drawer .drawer-content ul li a {
@@ -118,7 +147,7 @@
   margin-bottom: 10px;
   position: absolute;
   top: 10px;
-  right: 10px;
+  inset-inline-end: 10px;
 }
 
 #custom-admin-drawer .news-description {
@@ -131,7 +160,12 @@
   padding-bottom: 32px;
 }
 
-#custom-admin-drawer h1 , #custom-admin-drawer h2 , #custom-admin-drawer h3 , #custom-admin-drawer h4 , #custom-admin-drawer h5 , #custom-admin-drawer h6 {
+#custom-admin-drawer h1,
+#custom-admin-drawer h2,
+#custom-admin-drawer h3,
+#custom-admin-drawer h4,
+#custom-admin-drawer h5,
+#custom-admin-drawer h6 {
   margin: 0;
 }
 
@@ -172,7 +206,12 @@
 .rtmkit-skeleton-title,
 .rtmkit-skeleton-image,
 .rtmkit-skeleton-text {
-  background: linear-gradient(90deg, #424242b2 25%, #747474b2 50%, #424242b2 75%);
+  background: linear-gradient(
+    90deg,
+    #424242b2 25%,
+    #747474b2 50%,
+    #424242b2 75%
+  );
   background-size: 200% 100%;
   animation: rtmkit-skeleton-pulse 1.4s ease-in-out infinite;
   border-radius: 4px;
@@ -232,4 +271,18 @@
 
 .rtmkit-drawer-retry:hover {
   background: #135e96;
+}
+
+/* rtl-mirror-gradients: generated, do not edit by hand */
+/* A gradient angle has no logical form, so RTL needs it spelled out.
+   Regenerate with: node tools/rtl-mirror-gradients.js <path> --fix */
+[dir="rtl"] .rtmkit-skeleton-title,
+.rtmkit-skeleton-image,
+.rtmkit-skeleton-text {
+  background: linear-gradient(
+    270deg,
+    #424242b2 25%,
+    #747474b2 50%,
+    #424242b2 75%
+  );
 }

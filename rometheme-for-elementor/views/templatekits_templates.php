@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3">
     <?php foreach ($datas['data_template'] as $data) : ?>
         <div class="col">
             <div class="card rounded-4 shadow-sm p-3 h-100 gap-3">

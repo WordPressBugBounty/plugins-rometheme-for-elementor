@@ -1,13 +1,9 @@
 <?php
 
 $uri = urlencode(home_url());
-$baseLink = 'https://login.rometheme.net/';
-$link = $baseLink . '?reference=connector&source=wordpress&domain=' . $uri;
+$link = RTMHUB_LOGIN_URL . '?reference=connector&source=wordpress&domain=' . $uri;
 
 $payload = get_option('rtm_connector_last_payload');
-
-
-
 
 ?>
 

@@ -39,9 +39,9 @@ $available_addons  = $addonModule->get_addons_available();
             </div>
         </div>
         <div class="divider"></div>
-        <div class="scrollspy-content gap-3" style="margin-bottom:9rem;">
+        <div class="scrollspy-content gap-3 rtm-addons" style="margin-bottom:9rem;">
             <div class="card rounded-4 flex-column gap-3">
-                <div class="row row-cols-xl-3 row-cols-2 g-3">
+                <div class="row row-cols-xl-4 row-cols-2 g-3">
                     <?php foreach ($addon_list as $addon) :
                         $name         = $addon['name'] ?? '';
                         $slug         = $addon['slug'] ?? '';
@@ -74,7 +74,7 @@ $available_addons  = $addonModule->get_addons_available();
                                                 <?php echo esc_html($name); ?>
                                             </h5>
                                             <p class="lh-1">
-                                                <?php echo esc_html($description); ?>
+                                                <?php echo $description; ?>
                                             </p>
                                         </div>
                                         <?php if (!$is_available || $coming_soon) : ?>

@@ -50,6 +50,10 @@ class ConnectorModule
             wp_die('Missing callback token.');
         }
 
+        if (!current_user_can('manage_options')) {
+            wp_die('access_denied');
+        }
+
         $callback_token = sanitize_text_field(wp_unslash($_GET['callback']));
         $result = $this->exchange_callback_token($callback_token);
 
@@ -89,7 +93,7 @@ class ConnectorModule
 
     private function exchange_callback_token(string $token)
     {
-        $endpoint = trailingslashit(untrailingslashit('https://api.rometheme.net/')) . 'connector/v1/auth/callback/exchange';
+        $endpoint = trailingslashit(untrailingslashit(RTMHUB_API_URL)) . 'connector/v1/auth/callback/exchange';
 
         if (! filter_var($endpoint, FILTER_VALIDATE_URL)) {
             return new \WP_Error('rtm_invalid_endpoint', 'RTM Hub URL is invalid.');

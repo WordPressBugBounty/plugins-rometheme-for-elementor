@@ -198,7 +198,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         <?php endif; ?>
                     </div>
                     <div class="rounded-3 p-3 d-flex flex-row gap-2 align-items-center justify-content-between" style="background-color: var(--hover-color);">
-                        <h6 class="m-0">Import Without Image</h6>
+                        <h6 class="m-0">Import With Image</h6>
                         <label class="switch gap-3">
                             <input name="without-image"
                                 id="import-without-images"

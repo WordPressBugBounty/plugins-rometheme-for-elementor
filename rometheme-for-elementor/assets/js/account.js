@@ -20,6 +20,9 @@ window.addEventListener("DOMContentLoaded", function () {
     if (event.origin !== window.location.origin) {
       return;
     }
+
+    
+
     if (event.data?.type === "rtmhub-connected") {
       if (popup && !popup.closed) {
         popup.close();

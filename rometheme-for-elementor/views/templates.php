@@ -52,13 +52,23 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                         $buttons = apply_filters('rtmkit_templatekit_buttons', [
                             [
                                 'id' => 'templatekits',
-                                'title' => 'Template Kit Free',
+                                'title' => 'Free',
                             ],
                             [
                                 'id' => 'installed',
-                                'title' => 'Installed Template',
+                                'title' => 'Installed',
                             ],
                         ]);
+
+                        if(\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+                            $pro_button = [
+                                'id' => 'themeforest',
+                                'title' => 'Pro',
+                            ];
+    
+                            array_splice($buttons, 1, 0, [$pro_button]);
+                        }
+
 
                         foreach ($buttons as $button):
                             $active = ($template === $button['id']) ? 'active' : '';

@@ -7,7 +7,7 @@ use RTMKit\Modules\Connector\ConnectorStorage;
 class APIHandlerV2
 {
     private static ?APIHandlerV2 $instance = null;
-    private string $url = 'https://api.rometheme.net/';
+    private string $url = RTMHUB_API_URL;
 
     public static function instance(): APIHandlerV2
     {

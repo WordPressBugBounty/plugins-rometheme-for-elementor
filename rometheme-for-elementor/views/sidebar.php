@@ -53,7 +53,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                             ?>
                             <?php echo esc_html(ucfirst(str_replace('_', ' ', $section))); ?></h3>
                     </button>
-                    <div class="collapse <?php echo ($section == 'get_started') ? esc_attr("show") : "" ?>" id="<?php echo esc_attr($section) ?>">
+                    <div class="collapse <?php echo ($section == 'get_started' || $section == 'features') ? esc_attr("show") : "" ?>" id="<?php echo esc_attr($section) ?>">
                         <ul class="menu-list">
                             <?php foreach ($items as $key => $item): ?>
                                 <li class="menu-item">

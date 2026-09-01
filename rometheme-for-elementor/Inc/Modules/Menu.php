@@ -194,8 +194,22 @@ class Menu
     {
         $screen = get_current_screen();
         if (str_contains($screen->id, 'rtmkit')) {
-            wp_enqueue_style('rtmkit-style', RTM_KIT_URL . 'assets/css/rtmkit.min.css', [], RTM_KIT_VERSION);
-            wp_enqueue_style('rtmkit-style-v3', RTM_KIT_URL . 'assets/css/rtmkit.v3.css', [], RTM_KIT_VERSION);
+            // Bootstrap names its spacing and position utilities logically
+            // (ms-, pe-, start-) but implements them physically, so the default
+            // build never mirrors. Upstream ships a full RTL build for exactly
+            // this; serving it is the whole fix, and it costs LTR visitors
+            // nothing because only one of the two ever loads.
+            //
+            // rtmkit.min.css used to pull Bootstrap in with a CSS `@import`,
+            // which cannot make this choice. It is a dependency now instead,
+            // which keeps the same cascade order and drops a serial request.
+            wp_enqueue_style(
+                'rtmkit-bootstrap',
+                RTM_KIT_URL . 'assets/css/' . (is_rtl() ? 'bootstrap.rtl.min.css' : 'bootstrap.min.css'),
+                [],
+                '5.2.2'
+            );
+            wp_enqueue_style('rtmkit-style', RTM_KIT_URL . 'assets/css/rtmkit.min.css', ['rtmkit-bootstrap'], RTM_KIT_VERSION);
             wp_enqueue_style('select2.min.css', RTM_KIT_URL . 'assets/css/select2.min.css', [], RTM_KIT_VERSION);
             wp_enqueue_script('select2.min.js', RTM_KIT_URL . 'assets/js/select2.min.js', ['jquery'], RTM_KIT_VERSION, false);
             wp_enqueue_script('bootstrap-js', RTM_KIT_URL . 'assets/js/bootstrap/bootstrap.min.js', [], RTM_KIT_VERSION, false);
@@ -204,6 +218,11 @@ class Menu
             wp_enqueue_script('addons-js', RTM_KIT_URL . 'assets/js/addons.js', ['jquery'], RTM_KIT_VERSION, true);
             wp_enqueue_script('scrollspy-js', RTM_KIT_URL . 'assets/js/Scrollspy.js', [], RTM_KIT_VERSION, true);
             wp_enqueue_script('rtmkit-admin-js', RTM_KIT_URL . 'build/index.js', ['wp-element'], RTM_KIT_VERSION);
+            wp_enqueue_script('scrollspy-js', RTM_KIT_URL . 'assets/js/Scrollspy.js', [], RTM_KIT_VERSION, true);
+            wp_enqueue_script('rtmkit-admin-js', RTM_KIT_URL . 'build/index.js', ['wp-element', 'wp-i18n'], RTM_KIT_VERSION);
+            // The admin app carries one translatable string; this is what makes
+            // its .json catalogue reachable from JS.
+            wp_set_script_translations('rtmkit-admin-js', 'rometheme-for-elementor', RTM_KIT_DIR . 'languages');
             wp_localize_script('rtmkit-admin-js', 'rtmkit_ajax', [
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('rtmkit_nonce'),
@@ -233,28 +252,28 @@ class Menu
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_widgets',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Widgets',
+            'title' => esc_html__('Widgets', 'rometheme-for-elementor'),
             'href' => admin_url('admin.php?page=rtmkit&path=widgets'),
         ]);
 
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_themebuilder',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Theme Builder',
+            'title' => esc_html__('Theme Builder', 'rometheme-for-elementor'),
             'href' => admin_url('admin.php?page=rtmkit&path=themebuilder'),
         ]);
 
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_templates',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Templates Kits',
+            'title' => esc_html__('Templates Kits', 'rometheme-for-elementor'),
             'href' => admin_url('admin.php?page=rtmkit&path=templates'),
         ]);
 
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_submission',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Submissions',
+            'title' => esc_html__('Submissions', 'rometheme-for-elementor'),
             'href' => admin_url('admin.php?page=rtmkit&path=submission'),
         ]);
 
@@ -269,7 +288,7 @@ class Menu
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_documentation',
             'parent' => 'rtmkit_menu_bar',
-            'title' => 'Documentation',
+            'title' => esc_html__('Documentation', 'rometheme-for-elementor'),
             'href' => 'https://support.rometheme.net/docs/romethemekit/',
             'meta' => [
                 'target' => '_blank',
@@ -380,6 +399,7 @@ class Menu
         }
 
         $html = '';
+        $structuredItems = [];
         foreach ($items as $item) {
             // Cek apakah item dari upsale RSS
             $isUpsale = in_array($item, $upsaleRSS, true);
@@ -399,9 +419,23 @@ class Menu
             $html .= '<a href="' . esc_url($buttonLink) . '" target="_blank" class="' . esc_attr($buttonClass) . '">' . wp_kses_post($buttonIcon) . esc_html($buttonText) . '</a>';
             $html .= '</div>';
             $html .= '</div>';
+
+            // Data terstruktur untuk disimpan di localStorage oleh JS
+            $structuredItems[] = [
+                'title' => $item['title'],
+                'link' => $item['link'],
+                'image' => $item['image'],
+                'excerpt' => $item['excerpt'],
+                'date' => $item['date'],
+                'category' => $item['category'],
+                'isUpsale' => $isUpsale,
+            ];
         }
 
-        wp_send_json_success(['html' => $html]);
+        wp_send_json_success([
+            'html' => $html,
+            'items' => $structuredItems,
+        ]);
     }
 
     public function feature_drawer_script()

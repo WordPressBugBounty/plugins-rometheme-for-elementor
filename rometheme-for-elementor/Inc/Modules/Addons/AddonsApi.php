@@ -215,6 +215,8 @@ class AddonsApi
         check_ajax_referer('rtmkit_nonce', 'nonce');
         $addons = APIHandler::instance()->remote('addons/list', [], null, false, true);
 
+        error_log('Sync Addons Response: ' . print_r($addons, true));
+
         delete_transient('rtmkit_addons_list');
         $transient = set_transient('rtmkit_addons_list', $addons, DAY_IN_SECONDS);
 
