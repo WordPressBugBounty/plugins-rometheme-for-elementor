@@ -7,7 +7,8 @@ $widgetCategory = [
     'header' => "Header & Footer",
     'marketing' => 'Marketing',
     'infographic' => 'Infographic',
-    'post' => 'Post'
+    'post' => 'Post',
+    'woocommerce' => 'Woo',
 ];
 
 if (class_exists('RomethemeForm')) {
@@ -91,9 +92,9 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                 <div class="d-flex gap-3 align-items-stretch">
                     <div class="toggle-container border">
                         <div class="menu-switcher">
-                            <button class="menu-switch btn active" data-type="all">All Widget</button>
-                            <button class="menu-switch btn" data-type="free">Free Widget</button>
-                            <button class="menu-switch btn" data-type="pro">Pro Widget</button>
+                            <button class="menu-switch btn active" data-type="all">All</button>
+                            <button class="menu-switch btn" data-type="free">Free</button>
+                            <button class="menu-switch btn" data-type="pro">Pro</button>
                         </div>
                     </div>
                     <div class="search-container border gap-2">
@@ -124,15 +125,23 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         <?php
                         $widgets = $widgetStorage->get_widget_by_category($k);
                         foreach ($widgets as $key => $widget) :
+                            $disabled = false;
+                            
                             if ($widget['type'] == 'pro') {
                                 if ($isProActive) {
-                                    $disabled = '';
+                                    $disabled = false;
                                 } else {
-                                    $disabled = 'disabled';
+                                    $disabled = true;
                                 }
-                            } else {
-                                $disabled = '';
                             }
+                            
+                            // Disable if category is woocommerce and WooCommerce or rtm-woo plugins are not active
+                            if ($k === 'woocommerce') {
+                                if (!is_plugin_active('woocommerce/woocommerce.php') || !is_plugin_active('rtm-woo/rtm-woo.php')) {
+                                    $disabled = true;
+                                }
+                            }
+                            
                             $status = $widgetOptions[$key]['status'] ? 'checked' : '';
                         ?>
                             <div class="col">
@@ -164,15 +173,29 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                                 </div>
                                             </div>
                                         </div>
-                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3">
+                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $module['name'])) ?>" data-bs-toggle="<?php echo $disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo $disabled ? '#moduleLockedModal' : ''; ?>">
                                             <input name="<?php echo esc_attr($key) ?>"
                                                 class="switch-input switch-status"
                                                 type="checkbox" value="true"
                                                 hidden
                                                 <?php echo esc_attr($status) ?>
-                                                <?php echo esc_attr($disabled) ?>>
+                                                <?php echo $disabled ? 'disabled' : '' ?>>
                                             <span class="slider round">
-                                                <?php if ($widget['type'] == 'pro' && ! $isProActive) : ?>
+                                                <?php 
+                                                    $isLocked = false;
+                                                    
+                                                    // Lock if WooCommerce widget and either WooCommerce or rtm-woo not active
+                                                    if ($k === 'woocommerce' && (!is_plugin_active('woocommerce/woocommerce.php') || !is_plugin_active('rtm-woo/rtm-woo.php'))) {
+                                                        $isLocked = true;
+                                                    }
+
+                                                    // Lock if Pro widget and Pro not active
+                                                    if ($widget['type'] == 'pro' && !$isProActive) {
+                                                        $isLocked = true;
+                                                    }
+                                                    
+                                                    if ($isLocked) : 
+                                                ?>
                                                     <i class="fa-solid fa-lock"></i>
                                                 <?php endif; ?>
                                             </span>
@@ -187,3 +210,8 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
         </div>
     </div>
 </div>
+
+<?php
+require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
+rtmkit_render_pro_upgrade_modal();
+?>

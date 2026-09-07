@@ -1,10 +1,10 @@
 === RTMKit ===
 Contributors: dickoandrean 
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
-Requires at least: 6.8
+Requires at least: 7.0
 Tested up to: 7.0.4
 Requires PHP: 8.3
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,12 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.1.7 - September 7, 2026
+- Version control adjustment for RTMKit Addons Pro
+- SSO Login to RTMHUB
+- Addons enhancement and optimization
+- Bug fixes
+
 Version 2.1.6 - September 1, 2026
 - Minor fixes
 - Security fixes

@@ -36,10 +36,11 @@ class Plugin
 
     public function init()
     {
-        if (! $this->wizard_setup_check()) {
-            (new \RTMKit\Modules\SetupWizard\SetupWizardModule())->init();
-            // return;
-        }
+        update_option('rtmkit_wizard_setup_complete_2.0', 'completed');
+        // if (! $this->wizard_setup_check()) {
+        //     (new \RTMKit\Modules\SetupWizard\SetupWizardModule())->init();
+        //     // return;
+        // }
         $this->runner();
     }
 

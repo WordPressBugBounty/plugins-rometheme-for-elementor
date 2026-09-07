@@ -208,6 +208,55 @@ function getType(selector) {
   return allTypes;
 }
 
+function showLockedModuleModal(message) {
+  const modalEl = document.querySelector("#moduleLockedModal");
+  const textEl = document.querySelector("#moduleLockedModalText");
+
+  if (!modalEl || !textEl) return;
+
+  textEl.textContent = message || "Module locked.";
+
+  if (typeof bootstrap !== "undefined") {
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
+    return;
+  }
+
+  alert(message || "Module locked.");
+}
+
+function bindLockedModulePopup() {
+  document.querySelectorAll(".switch.is-disabled").forEach((label) => {
+    if (label.dataset.lockPopupBound === "true") return;
+    label.dataset.lockPopupBound = "true";
+
+    const triggerPopup = (event) => {
+      const input = label.querySelector(".switch-status");
+      if (!input || !input.disabled) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      showLockedModuleModal(
+        label.dataset.disabledMessage || "Module locked.",
+      );
+    };
+
+    label.addEventListener("click", triggerPopup, true);
+    label.addEventListener("pointerdown", triggerPopup, true);
+    label.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        triggerPopup(event);
+      }
+    });
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindLockedModulePopup);
+} else {
+  bindLockedModulePopup();
+}
+
 function saveModules() {
   const saveBtn = document.querySelector("#save-modules");
 
@@ -350,6 +399,8 @@ function tabs() {
 
           const targetSelector = btn.getAttribute("data-tabs");
 
+          if(!targetSelector) return;
+
           // update tab
           activateTab(targetSelector);
 
@@ -399,6 +450,7 @@ const ThemebuilderTabs = () => {
     el.addEventListener("click", async function (e) {
       e.preventDefault();
       let tab = e.currentTarget.getAttribute("data-tabs");
+      if(!tab) return;
       const url = new URL(window.location);
       url.searchParams.set("themebuilder", tab);
       window.history.pushState({ tab: tab }, "", url);
@@ -1338,7 +1390,7 @@ function Templates() {
 function renderTemplates(templates) {
   const categoriesSelect = document.getElementById("free-categories");
   const search = document.querySelector(".search-container");
-  if ((templates === "templatekits" || templates === "themeforest") && categoriesSelect) {
+  if ((templates === "templatekits" || templates === "templatekitpro" || templates === "all") && categoriesSelect) {
     categoriesSelect.style.display = "flex";
     setupCategoryFilter();
   } else {
@@ -1359,6 +1411,15 @@ function renderTemplates(templates) {
   const loading = `<div class="d-flex justify-content-center align-items-center" style="min-height:20rem">${window.RTMLoader}</>`;
   content.innerHTML = loading;
   if (content) {
+    // abort any previous in-flight request for renderTemplates
+    if (renderTemplates._controller) {
+      try {
+        renderTemplates._controller.abort();
+      } catch (e) {}
+    }
+    renderTemplates._controller = new AbortController();
+    const signal = renderTemplates._controller.signal;
+
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("action", "render_templates");
     urlParams.set("nonce", rtmkit_ajax.nonce);
@@ -1367,9 +1428,12 @@ function renderTemplates(templates) {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: urlParams.toString(),
+      signal,
     })
       .then((res) => res.json())
       .then((json) => {
+        // clear controller because request completed
+        renderTemplates._controller = null;
         if (json.success) {
           content.innerHTML = "";
           content.innerHTML = json.data;
@@ -1389,7 +1453,15 @@ function renderTemplates(templates) {
         }
       })
       .catch((error) => {
+        // ignore abort errors (expected when a new call cancels the previous)
+        if (error.name === "AbortError") return;
         console.error("Error fetching content:", error);
+      })
+      .finally(() => {
+        // ensure controller is cleared if this was the active request
+        if (renderTemplates._controller && renderTemplates._controller.signal === signal) {
+          renderTemplates._controller = null;
+        }
       });
   }
 }
@@ -2068,6 +2140,90 @@ function paginationTemplates() {
       });
     });
   }
+
+  const autoPagination = document.querySelector(".rtmkit-auto-pagination");
+  if (!autoPagination || autoPagination.dataset.bound === "true") return;
+
+  autoPagination.dataset.bound = "true";
+
+  const loadMore = async () => {
+    if (!autoPagination.dataset.hasMore || autoPagination.dataset.hasMore === "0") return;
+    if (autoPagination.dataset.loading === "true") return;
+
+    const currentPage = Number(autoPagination.dataset.currentPage || 1);
+    const urlParams = new URLSearchParams(window.location.search);
+    const template = urlParams.get("template") ?? "templatekits";
+
+    autoPagination.dataset.loading = "true";
+
+    urlParams.set("action", "render_templates");
+    urlParams.set("nonce", rtmkit_ajax.nonce);
+    urlParams.set("template", template);
+    urlParams.set("paged", String(currentPage + 1));
+
+    try {
+      const res = await fetch(rtmkit_ajax.ajax_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: urlParams.toString(),
+      });
+      const json = await res.json();
+
+      if (!json.success) {
+        throw new Error(json.data || "Failed to load more templates");
+      }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(json.data, "text/html");
+      const nextRow = doc.querySelector(".row");
+      const currentRow = document.querySelector("#template_container .row");
+
+      if (currentRow && nextRow) {
+        currentRow.insertAdjacentHTML("beforeend", nextRow.innerHTML);
+      } else {
+        const container = document.getElementById("template_container");
+        if (container) {
+          container.innerHTML = json.data;
+        }
+      }
+
+      const nextMeta = doc.querySelector(".rtmkit-auto-pagination");
+      if (nextMeta) {
+        autoPagination.dataset.currentPage = nextMeta.dataset.currentPage || String(currentPage + 1);
+        autoPagination.dataset.hasMore = nextMeta.dataset.hasMore || "0";
+      } else {
+        autoPagination.dataset.hasMore = "0";
+      }
+
+      const url = new URL(window.location);
+      url.searchParams.set("paged", String(currentPage + 1));
+      window.history.pushState({ paged: String(currentPage + 1) }, "", url);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      autoPagination.dataset.loading = "false";
+    }
+  };
+
+  const templateContainer = document.getElementById("template_container");
+  if (!templateContainer) return;
+
+  const triggerOnScroll = () => {
+    if (autoPagination.dataset.hasMore !== "1") return;
+    if (autoPagination.dataset.loading === "true") return;
+
+    const threshold = window.innerHeight * 0.25;
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const pageBottom = document.documentElement.scrollHeight;
+    const reachedBottom = scrollBottom >= pageBottom - threshold;
+
+    if (reachedBottom) {
+      loadMore();
+    }
+  };
+
+  window.addEventListener("scroll", triggerOnScroll, { passive: true });
+  window.addEventListener("resize", triggerOnScroll, { passive: true });
 }
 
 function themeforestStats() {
@@ -2368,6 +2524,7 @@ function render_update_content() {
           updateContainer.innerHTML = res.data;
           update_plugin();
           reinstall_plugin();
+          update_addons_plugin();
         }
       });
   }
@@ -2452,5 +2609,175 @@ function reinstall_plugin() {
         }
       };
     });
+  }
+}
+
+function update_addons_plugin() {
+  const updateBtns = document.querySelectorAll(".btn-addon-update");
+  const rollbackBtns = document.querySelectorAll(".btn-addon-rollback");
+  const syncBtn = document.querySelector(".btn-sync-addon-releases");
+
+  updateBtns.forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      const thisBtn = e.currentTarget;
+      const addon = thisBtn.dataset.addon;
+      const addonName = thisBtn.dataset.addonName;
+      const container = thisBtn.closest(".card");
+      const select = container ? container.querySelector(".addon-release-select") : null;
+      const version = select ? select.value : thisBtn.dataset.addonVersion;
+
+      if (confirm(`Update ${addonName} to version ${version} ?`)) {
+        thisBtn.disabled = true;
+        const oldText = thisBtn.innerHTML;
+        thisBtn.innerHTML = "Updating...";
+        fetch(rtmkit_ajax.ajax_url, {
+          method: "POST",
+          body: new URLSearchParams({
+            action: "rtmkit_addon_update",
+            addon: addon,
+            version: version,
+            nonce: rtmkit_ajax.nonce,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.success) {
+              window.reactToast.success(res.data?.message || "Addon updated successfully.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                className: "rtmkit-toast",
+                theme: "dark",
+              });
+              window.location.reload();
+            } else {
+              window.reactToast.error(res.data?.message || "Addon update failed.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                className: "rtmkit-toast",
+                theme: "dark",
+              });
+              thisBtn.disabled = false;
+              thisBtn.innerHTML = oldText;
+            }
+          })
+          .catch(() => {
+            window.reactToast.error("Addon update failed.", {
+              position: "bottom-right",
+              autoClose: 5000,
+              className: "rtmkit-toast",
+              theme: "dark",
+            });
+            thisBtn.disabled = false;
+            thisBtn.innerHTML = oldText;
+          });
+      }
+    };
+  });
+
+  rollbackBtns.forEach((btn) => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      const thisBtn = e.currentTarget;
+      const addon = thisBtn.dataset.addon;
+      const addonName = thisBtn.dataset.addonName;
+      const container = thisBtn.closest(".card");
+      const select = container ? container.querySelector(".addon-release-select") : null;
+      const version = select ? select.value : "latest";
+
+      if (confirm(`Rollback ${addonName} to version ${version} ?`)) {
+        thisBtn.disabled = true;
+        const oldText = thisBtn.innerHTML;
+        thisBtn.innerHTML = "Rolling back...";
+        fetch(rtmkit_ajax.ajax_url, {
+          method: "POST",
+          body: new URLSearchParams({
+            action: "rtmkit_addon_rollback",
+            addon: addon,
+            version: version,
+            nonce: rtmkit_ajax.nonce,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.success) {
+              window.reactToast.success(res.data?.message || "Addon rolled back successfully.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                className: "rtmkit-toast",
+                theme: "dark",
+              });
+              window.location.reload();
+            } else {
+              window.reactToast.error(res.data?.message || "Addon rollback failed.", {
+                position: "bottom-right",
+                autoClose: 5000,
+                className: "rtmkit-toast",
+                theme: "dark",
+              });
+              thisBtn.disabled = false;
+              thisBtn.innerHTML = oldText;
+            }
+          })
+          .catch(() => {
+            window.reactToast.error("Addon rollback failed.", {
+              position: "bottom-right",
+              autoClose: 5000,
+              className: "rtmkit-toast",
+              theme: "dark",
+            });
+            thisBtn.disabled = false;
+            thisBtn.innerHTML = oldText;
+          });
+      }
+    };
+  });
+
+  if (syncBtn) {
+    syncBtn.onclick = (e) => {
+      e.preventDefault();
+      const oldText = syncBtn.innerHTML;
+      syncBtn.disabled = true;
+      syncBtn.innerHTML = "Checking...";
+
+      fetch(rtmkit_ajax.ajax_url, {
+        method: "POST",
+        body: new URLSearchParams({
+          action: "sync_addon_releases",
+          nonce: rtmkit_ajax.nonce,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.success) {
+            window.reactToast.success(res.data?.message || "Addon releases refreshed.", {
+              position: "bottom-right",
+              autoClose: 5000,
+              className: "rtmkit-toast",
+              theme: "dark",
+            });
+            window.location.reload();
+          } else {
+            window.reactToast.error(res.data?.message || "Sync failed.", {
+              position: "bottom-right",
+              autoClose: 5000,
+              className: "rtmkit-toast",
+              theme: "dark",
+            });
+            syncBtn.disabled = false;
+            syncBtn.innerHTML = oldText;
+          }
+        })
+        .catch(() => {
+          window.reactToast.error("Sync failed.", {
+            position: "bottom-right",
+            autoClose: 5000,
+            className: "rtmkit-toast",
+            theme: "dark",
+          });
+          syncBtn.disabled = false;
+          syncBtn.innerHTML = oldText;
+        });
+    };
   }
 }

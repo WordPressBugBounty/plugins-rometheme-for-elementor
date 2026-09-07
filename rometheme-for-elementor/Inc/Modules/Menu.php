@@ -14,6 +14,7 @@ class Menu
     protected static $instance;
 
     protected $menus;
+    protected $menus_by_path;
 
     public static function instance(): self
     {
@@ -236,7 +237,23 @@ class Menu
         if (!isset($this->menus)) {
             $this->menus = apply_filters('rtmkit_menus', $this->default_menus());
         }
+
         return $this->menus;
+    }
+
+    protected function get_menus_by_path()
+    {
+        if (!isset($this->menus_by_path)) {
+            $this->menus_by_path = [];
+
+            foreach ($this->get_menus() as $group) {
+                foreach ($group as $path => $menu) {
+                    $this->menus_by_path[$path] = $menu;
+                }
+            }
+        }
+
+        return $this->menus_by_path;
     }
 
     public function top_bar_menu($wp_admin_bar)
@@ -514,31 +531,10 @@ class Menu
 JS;
     }
 
-    protected function findByKey(array $array, string $searchKey)
-    {
-        foreach ($array as $key => $value) {
-
-            // Kalau key ketemu
-            if ($key === $searchKey) {
-                return $value;
-            }
-
-            // Kalau value masih array, lanjut cari ke dalam
-            if (is_array($value)) {
-                $result = $this->findByKey($value, $searchKey);
-                if ($result !== null) {
-                    return $result;
-                }
-            }
-        }
-
-        return null;
-    }
-
     public function get_menu_by_path(string $path)
     {
-        $menus = $this->get_menus();
-        return $this->findByKey($menus, $path);
+        $menus = $this->get_menus_by_path();
+        return $menus[$path] ?? null;
     }
 
     private function get_rss_data($url)

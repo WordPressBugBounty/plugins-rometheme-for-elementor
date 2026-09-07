@@ -82,9 +82,9 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                 <div class="d-flex gap-3 align-items-stretch">
                     <div class="toggle-container border">
                         <div class="menu-switcher">
-                            <button class="menu-switch btn active" data-type="all">All Modules</button>
-                            <button class="menu-switch btn" data-type="free">Free Modules</button>
-                            <button class="menu-switch btn" data-type="pro">Pro Modules</button>
+                            <button class="menu-switch btn active" data-type="all">All</button>
+                            <button class="menu-switch btn" data-type="free">Free</button>
+                            <button class="menu-switch btn" data-type="pro">Pro</button>
                         </div>
                     </div>
                     <div class="search-container border gap-2">
@@ -169,7 +169,7 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                                                 </h5>
                                             </div>
                                         </div>
-                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3">
+                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $is_disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $module['name'])) ?>" data-bs-toggle="<?php echo $is_disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo $is_disabled ? '#moduleLockedModal' : ''; ?>">
                                             <input name="<?php echo esc_attr($key) ?>"
                                                 class="switch-input switch-status"
                                                 type="checkbox" value="true"
@@ -192,3 +192,8 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
         </div>
     </div>
 </div>
+
+<?php
+require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
+rtmkit_render_pro_upgrade_modal();
+?>

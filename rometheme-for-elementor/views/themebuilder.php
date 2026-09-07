@@ -3,6 +3,7 @@
 if (! defined('ABSPATH')) exit;
 
 $themeBuilderStorage = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance();
+$isLicenseActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 
 $active_themebuilder = $themeBuilderStorage->get_active_themebuilder();
 $active_themebuilder_key = ['all' => ['name' => 'All']];
@@ -26,7 +27,6 @@ $active_themebuilder_key['form'] = ['name' => 'Form '];
 // }
 
 $active_tabs = (isset($_POST['themebuilder'])) ? sanitize_text_field($_POST['themebuilder']) : 'all';
-$isLicenseActive = class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && (\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive());
 $has_woocommerce = is_plugin_active('woocommerce/woocommerce.php');
 
 
@@ -51,13 +51,15 @@ if (!$has_woocommerce) {
                         <?php
                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
                             echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
                         } else {
                             echo 'Free';
                         }
                         ?>
                     </span>
                 </div>
-                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
@@ -82,8 +84,43 @@ if (!$has_woocommerce) {
                                 <button class="nav-link rounded-3 <?php echo ($active_tabs == $key) ? 'active' : '' ?>" data-tabs="<?php echo esc_attr($key) ?>">
                                     <?php echo esc_html($item['name']) . (isset($item['type']) && $item['type'] === 'pro' ? ' <span class="badge bg-danger">Pro</span>' : ''); ?>
                                 </button>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
+                            <?php 
+                                endif;  
+                            endforeach;
+
+                            if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+                                $button_placeholder = [
+                                    'single_post' => [
+                                        'name' => 'Single Post',
+                                        'type' => 'pro'
+                                    ],
+                                    'archive_post' => [
+                                        'name' => 'Archive Post',
+                                        'type' => 'pro'
+                                    ],
+                                    'search_result' => [
+                                        'name' => 'Search Result',
+                                        'type' => 'pro'
+                                    ],
+                                    'error_404' => [
+                                        'name' => '404 Error Page',
+                                        'type' => 'pro'
+                                    ],
+                                     'single_product' => [
+                                        'name' => 'Single Product',
+                                        'type' => 'pro'
+                                    ],
+                                     'archive_product' => [
+                                        'name' => 'Archive Product',
+                                        'type' => 'pro'
+                                    ],
+                                ];
+    
+                                foreach ($button_placeholder as $key => $item) {
+                                    echo '<button class="nav-link rounded-3 is-pro" data-bs-toggle="modal" data-bs-target="#moduleLockedModal">' . esc_html($item['name']) . ' <i class="ms-1 text-muted fa-solid fa-lock"></i></button>';
+                                }
+                            }
+                        ?>
                     </nav>
                 </div>
             </div>
@@ -661,3 +698,8 @@ if (!$has_woocommerce) {
         }
     </style>
 <?php endif; ?>
+
+<?php
+require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
+rtmkit_render_pro_upgrade_modal();
+?>

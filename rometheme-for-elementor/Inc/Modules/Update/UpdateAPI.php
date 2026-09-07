@@ -24,6 +24,7 @@ class UpdateAPI
             add_action('wp_ajax_update_plugin', [$this, 'update_plugin']);
             add_action('wp_ajax_rollback_plugin', [$this, 'rollback_plugin']);
             add_action('wp_ajax_get_update_content', [$this, 'get_update_content']);
+            add_action('wp_ajax_sync_addon_releases', [$this, 'sync_addon_releases']);
         }
     }
 
@@ -137,5 +138,21 @@ class UpdateAPI
         require RTM_KIT_DIR . 'views/update_content.php';
         $content = ob_get_clean();
         wp_send_json_success($content);
+    }
+
+    public function sync_addon_releases()
+    {
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => __('You do not have permission.', 'rtmkit')], 403);
+        }
+
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        $releases = \RTMKit\Modules\Update\UpdateModule::instance()->sync_addon_releases();
+
+        wp_send_json_success([
+            'message' => __('Addon releases refreshed.', 'rtmkit'),
+            'releases' => $releases,
+        ]);
     }
 }

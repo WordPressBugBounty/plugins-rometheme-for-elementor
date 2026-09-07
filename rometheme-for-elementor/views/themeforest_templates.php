@@ -101,6 +101,12 @@ if (\RTMKit\Core\Plugin::instance()->pro_is_active()) :
 
 endif;
 
+$has_more = $current_page < $total_pages;
+?>
+
+<div class="rtmkit-auto-pagination d-none" data-current-page="<?php echo esc_attr($current_page); ?>" data-has-more="<?php echo $has_more ? '1' : '0'; ?>"></div>
+
+<?php
 if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
     $img_placeholder = RTM_KIT_URL . 'assets/images/tkit-pro.webp';
     ?>

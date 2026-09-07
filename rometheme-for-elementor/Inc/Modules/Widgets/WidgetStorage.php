@@ -150,77 +150,110 @@ class WidgetStorage
          */
         do_action('rtmkit_after_register_widgets', $widgets_manager);
 
-        // if (class_exists('RTMKitPro\Core\Plugin')) {
-        //     return;
-        // }
+        if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            return;
+        }
 
         // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
     
-        // $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
-        // // error_log($json_path);
-        // if (! file_exists($json_path)) {
-        //     return;
-        // }
+        $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
+        // error_log($json_path);
+        if (! file_exists($json_path)) {
+            return;
+        }
 
-        // $pro_widgets = json_decode(file_get_contents($json_path), true);
+        $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        // if (! empty($pro_widgets) && is_array($pro_widgets)) {
-        //     foreach ($pro_widgets as $key => $data) {
+        if (! empty($pro_widgets) && is_array($pro_widgets)) {
+            foreach ($pro_widgets as $key => $data) {
 
                 
-        //         if (! is_array($data)) continue;
+                if (! is_array($data)) continue;
 
-        //         $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
-        //             'widget_key'  => $key,
-        //             'widget_data' => $data,
-        //             'is_pro_active' => false
-        //         ]));
-        //     }
-        // }
+                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
+                    'widget_key'  => $key,
+                    'widget_data' => $data,
+                    'is_pro_active' => false
+                ]));
+            }
+        }
 
-        // // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
-        // $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
-        // // error_log($json_path);
-        // if (! file_exists($json_path)) {
-        //     return;
-        // }
+        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
+        $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
+        // error_log($json_path);
+        if (! file_exists($json_path)) {
+            return;
+        }
 
-        // $pro_widgets = json_decode(file_get_contents($json_path), true);
+        $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        // if (! empty($pro_widgets) && is_array($pro_widgets)) {
-        //     foreach ($pro_widgets as $key => $data) {
+        if (! empty($pro_widgets) && is_array($pro_widgets)) {
+            foreach ($pro_widgets as $key => $data) {
 
-        //         if (! is_array($data)) continue;
+                if (! is_array($data)) continue;
 
-        //         $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
-        //             'widget_key'  => $key,
-        //             'widget_data' => $data,
-        //             'is_pro_active' => false
-        //         ]));
-        //     }
-        // }
+                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
+                    'widget_key'  => $key,
+                    'widget_data' => $data,
+                    'is_pro_active' => false
+                ]));
+            }
+        }
     }
 
     protected function update_widgets_options()
     {
-        $freeWidgetOption = get_option('rkit-widget-options');
+        $freeWidgetData = $this->get_widget_by_type('free');
+        $freeWidgetOption = get_option('rkit-widget-options', []);
 
-        if ($freeWidgetOption == false) {
-            update_option('rkit-widget-options', $this->get_widget_by_type('free'));
-        } else {
-            if (count($freeWidgetOption) !== count($this->get_widget_by_type('free'))) {
-                update_option('rkit-widget-options', $this->get_widget_by_type('free'));
-            }
+        // Build new options structure from metadata
+        $newFreeOptions = [];
+        foreach ($freeWidgetData as $key => $widget) {
+            // Preserve existing status, default to true for new widgets
+            $newFreeOptions[$key] = [
+                'status' => isset($freeWidgetOption[$key]) ? $freeWidgetOption[$key]['status'] : true
+            ];
+        }
+
+        // Update if structure changed
+        if ($freeWidgetOption !== $newFreeOptions) {
+            update_option('rkit-widget-options', $newFreeOptions);
+        }
+
+        // Initialize pro widgets from rtmwp.json
+        $proWidgetData = $this->get_widget_by_type('pro');
+        $proWidgetOption = get_option('rkit-widget-pro-options', []);
+
+        // Build new options structure from metadata
+        $newProOptions = [];
+        foreach ($proWidgetData as $key => $widget) {
+            // Preserve existing status, default to true for new widgets
+            $newProOptions[$key] = [
+                'status' => isset($proWidgetOption[$key]) ? $proWidgetOption[$key]['status'] : true
+            ];
+        }
+
+        // Update if structure changed
+        if ($proWidgetOption !== $newProOptions) {
+            update_option('rkit-widget-pro-options', $newProOptions);
         }
 
         if (\RTMKit\Core\Plugin::instance()->has_rtmform()) {
-            $formWidgetOption = get_option('rform-widget-options');
-            if ($formWidgetOption == false) {
-                update_option('rform-widget-options', $this->get_widget_by_type('form'));
-            } else {
-                if (count($formWidgetOption) !== count($this->get_widget_by_type('form'))) {
-                    update_option('rform-widget-options', $this->get_widget_by_type('form'));
-                }
+            $formWidgetData = $this->get_widget_by_type('form');
+            $formWidgetOption = get_option('rform-widget-options', []);
+
+            // Build new options structure from metadata
+            $newFormOptions = [];
+            foreach ($formWidgetData as $key => $widget) {
+                // Preserve existing status, default to true for new widgets
+                $newFormOptions[$key] = [
+                    'status' => isset($formWidgetOption[$key]) ? $formWidgetOption[$key]['status'] : true
+                ];
+            }
+
+            // Update if structure changed
+            if ($formWidgetOption !== $newFormOptions) {
+                update_option('rform-widget-options', $newFormOptions);
             }
         }
     }
@@ -233,7 +266,7 @@ class WidgetStorage
         $formWidgets = file_exists($formWidgetsFileJson) ? json_decode(file_get_contents($formWidgetsFileJson), true) : [];
         $widgetsFree = file_exists($widgetsFreeFileJson) ? json_decode(file_get_contents($widgetsFreeFileJson), true) : [];
         $widgetsPro = file_exists($widgetsProFileJson) ? json_decode(file_get_contents($widgetsProFileJson), true) : [];
-
+        
         if ($type === 'free') {
             /**
              * Filter daftar widget free.
@@ -417,10 +450,10 @@ class WidgetStorage
     {
         $widgetsFree = get_option('rkit-widget-options', []);
        
-        if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
-            $widgetsPro = get_option('rkit-widget-pro-options', []);
-            $widgetsFree = array_merge($widgetsFree, $widgetsPro);
-        }
+        // Always include pro widgets from rtmwp.json for Widgets Manager display
+        // Even if Pro plugin is not active, pro widgets should be visible (locked with crown icon)
+        $widgetsPro = get_option('rkit-widget-pro-options', []);
+        $widgetsFree = array_merge($widgetsFree, $widgetsPro);
         
         if (class_exists('RomethemeForm')) {
             $formWidgets = get_option('rform-widget-options', []);

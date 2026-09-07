@@ -1,12 +1,20 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
-$plugins = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugins();
+$updateModule = \RTMKit\Modules\Update\UpdateModule::instance();
+$plugins = $updateModule->get_plugins();
+$addons = \RTMKit\Modules\Addons\AddonsModule::instance()->get_addons_list();
+$addonAvailable = \RTMKit\Modules\Addons\AddonsModule::instance()->get_addons_available();
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 
 $isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
 ?>
-
-<div class="card rounded-4  flex-column gap-3">
+<style>
+    #rtmkit-root select {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+</style>
+<div class="card rounded-4 flex-column gap-3">
     <div class="pb-3 pt-1 border-bottom d-flex flex-column gap-3">
         <div class="d-flex align-items-center gap-3">
             <h4 class="m-0">Update to New Version or Rollback to Previous Version</h4>
@@ -127,5 +135,128 @@ $isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
                 </li>
             <?php endforeach; ?>
         </ul>
+      
     </div>
 </div>
+<?php if(\RTMKit\Core\Plugin::instance()->pro_is_active()) :?>                            
+    <div class="pt-4 card d-flex flex-column gap-3">
+        <div class="d-flex align-items-center justify-content-between gap-3">
+            <div>
+                <h4 class="m-0">Addon Updates</h4>
+                <span>Latest update list for addons according to your plan.</span>
+            </div>
+            <button type="button" class="btn btn-accent btn-sync-addon-releases">Check Update</button>
+        </div>
+
+        <div class="row row-cols-xl-3 row-cols-1 g-3">
+            <?php foreach ($addons as $addon) :
+                $slug = $addon['slug'] ?? '';
+                $name = $addon['name'] ?? $slug;
+
+                if (empty($slug) || !in_array($slug, $addonAvailable, true)) {
+                    continue;
+                }
+
+                $installed = is_dir(WP_PLUGIN_DIR . '/' . $slug);
+                $active = $installed && is_plugin_active($slug . '/' . $slug . '.php');
+                $currentVersion = '';
+                if ($installed) {
+                    if (! function_exists('get_plugin_data')) {
+                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+                    }
+                    $pluginData = get_plugin_data(WP_PLUGIN_DIR . '/' . $slug . '/' . $slug . '.php', false, false);
+                    $currentVersion = $pluginData['Version'] ?? '';
+                }
+                $releases = $updateModule->get_addon_releases($slug);
+                $latest = is_array($releases) ? ($releases[0] ?? null) : null;
+                $latestVersion = is_array($latest)
+                    ? ($latest['version_available'][0] ?? $latest['tag_name'] ?? $latest['name'] ?? $latest['version'] ?? $latest['title'] ?? '')
+                    : '';
+                $normalizeVersion = static function ($value) {
+                    $value = trim((string) $value);
+                    $value = ltrim($value, "vV");
+                    return $value;
+                };
+                $currentVersionNormalized = $normalizeVersion($currentVersion);
+                $latestVersionNormalized = $normalizeVersion($latestVersion);
+                $showAddonUpdate = '' !== $latestVersionNormalized && ('' === $currentVersionNormalized || version_compare($currentVersionNormalized, $latestVersionNormalized, '<'));
+            ?>
+                <div class="col">
+                    <div class="card modules h-100 p-3 gap-3 justify-content-between h-100">
+                        <div class="d-flex flex-column gap-2">
+                            <h5 class="m-0 align-items-center d-flex w-100 justify-content-between"><?php echo esc_html($name); ?>
+                                <?php if ($showAddonUpdate) : ?>
+                                    <span class="badge accent-color">Update available</span>
+                                <?php endif; ?>
+                            </h5>
+                            <span>Slug: <?php echo esc_html($slug); ?></span>
+                            <?php if ($installed) : ?>
+                                <div class="d-flex justify-content-between align-items-center gap-2">
+                                    <span>Current: <?php echo esc_html($currentVersion ?: '-'); ?></span>
+                                    <span>Latest: <?php echo esc_html($latestVersion ?: '-'); ?></span>
+                                    <span><?php echo $active ? esc_html__('Active', 'rometheme-for-elementor') : esc_html__('Inactive', 'rometheme-for-elementor'); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if (!$installed) : ?>
+                            <button class="btn btn-accent install-addon" data-addon="<?php echo esc_attr($slug); ?>">Install</button>
+                        <?php else : ?>
+                            <div class="d-flex flex-column gap-2">                                    
+                                <select class="form-select addon-release-select" data-addon="<?php echo esc_attr($slug); ?>" >
+                                    <?php
+                                    $releaseItems = [];
+                                    if (is_string($releases)) {
+                                        $decoded = json_decode($releases, true);
+                                        $releaseItems = is_array($decoded) ? $decoded : [];
+                                    } elseif (is_object($releases)) {
+                                        $releaseItems = (array) $releases;
+                                    } elseif (is_array($releases)) {
+                                        $releaseItems = $releases;
+                                    }
+
+                                    $options = [];
+                                    if (!empty($releaseItems)) :
+                                        foreach ($releaseItems as $release) :
+                                            $versions = [];
+                                            if (is_array($release)) {
+                                                $versions = $release['version_available'] ?? [];
+                                                if (empty($versions)) {
+                                                    $versions = [
+                                                        $release['tag_name'] ?? $release['name'] ?? $release['version'] ?? $release['title'] ?? ''
+                                                    ];
+                                                }
+                                            }
+
+                                            foreach ((array) $versions as $version) :
+                                                if ('' === $version) {
+                                                    continue;
+                                                }
+                                                $options[] = $version;
+                                    ?>
+                                        <option value="<?php echo esc_attr($version); ?>"<?php echo ($version === $currentVersion) ? ' selected' : ''; ?>><?php echo esc_html($version); ?></option>
+                                    <?php
+                                            endforeach;
+                                        endforeach;
+                                    endif;
+
+                                    if (empty($options)) :
+                                    ?>
+                                        <option value="">No releases found</option>
+                                    <?php endif; ?>
+                                </select>
+
+                                <?php if ($showAddonUpdate) : ?>
+                                    <button class="btn btn-accent btn-addon-update" data-addon="<?php echo esc_attr($slug); ?>" data-addon-name="<?php echo esc_attr($name); ?>" data-addon-version="<?php echo esc_attr($latestVersion); ?>">Update</button>
+                                <?php else : ?>
+                                    <button class="btn btn-secondary btn-addon-rollback" data-addon="<?php echo esc_attr($slug); ?>" data-addon-name="<?php echo esc_attr($name); ?>">Rollback</button>
+                                <?php endif; ?>
+
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>

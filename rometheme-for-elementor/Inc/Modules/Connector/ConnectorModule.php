@@ -25,6 +25,7 @@ class ConnectorModule
     {
         add_filter('rtmkit_menus', [$this, 'add_account_menu']);
         add_action('admin_post_rtmhub_callback', [$this, 'callback_handler']);
+        add_action( 'admin_post_rtmhub_my_account', [$this, 'rtmhub_handle_my_account_redirect'] );
 
         if (wp_doing_ajax()) {
             add_action('wp_ajax_connect_sync', [$this, 'connect_sync']);
@@ -60,7 +61,7 @@ class ConnectorModule
         if (is_wp_error($result)) {
             update_option('rtm_connector_last_error', $result->get_error_message());
             update_option('rtm_connector_last_payload', []);
-            return new \WP_Error('connect_failed',  $result->get_error_message());
+            return new \WP_Error('connect_failed', $result->get_error_message());
         }
 
         update_option('rtm_connector_last_error', '');
@@ -75,18 +76,18 @@ class ConnectorModule
 
         set_transient('rtmkit_connector_last_sync', current_time('timestamp'), WEEK_IN_SECONDS);
 
-?>
+        ?>
         <!doctype html>
         <script>
             window.opener.postMessage({
-                    type: "rtmhub-connected"
-                },
+                type: "rtmhub-connected"
+            },
                 <?php echo wp_json_encode(home_url()); ?>
             );
 
             window.close();
         </script>
-<?php
+        <?php
 
         exit;
     }
@@ -95,7 +96,7 @@ class ConnectorModule
     {
         $endpoint = trailingslashit(untrailingslashit(RTMHUB_API_URL)) . 'connector/v1/auth/callback/exchange';
 
-        if (! filter_var($endpoint, FILTER_VALIDATE_URL)) {
+        if (!filter_var($endpoint, FILTER_VALIDATE_URL)) {
             return new \WP_Error('rtm_invalid_endpoint', 'RTM Hub URL is invalid.');
         }
 
@@ -145,7 +146,7 @@ class ConnectorModule
         $body = wp_remote_retrieve_body($response);
         $decoded = json_decode($body, true);
 
-        if ($code < 200 || $code >= 300 || ! is_array($decoded)) {
+        if ($code < 200 || $code >= 300 || !is_array($decoded)) {
             $message = $decoded['message'] ?? 'Unable to exchange callback token.';
             return new \WP_Error('rtm_exchange_invalid', $message);
         }
@@ -171,4 +172,85 @@ class ConnectorModule
             wp_send_json_success($sync);
         }
     }
+
+    public function rtmhub_request_sso_login_url()
+    {
+        $token = ConnectorStorage::instance()->get_access_token();
+
+        if (empty($token)) {
+            return new WP_Error(
+                'rtmhub_no_token',
+                __('RTMHub is not connected. Please reconnect.', 'rtmkit')
+            );
+        }
+
+        $response = wp_remote_post(
+            trailingslashit(RTMHUB_API_URL) . 'sso/token',
+            array(
+                'timeout' => 10,
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $token,
+                    'Accept' => 'application/json',
+                ),
+            )
+        );
+
+        if (is_wp_error($response)) {
+            return $response;
+        }
+
+        $status_code = wp_remote_retrieve_response_code($response);
+
+        if ($status_code === 401) {
+            return new \WP_Error(
+                'rtmhub_unauthorized',
+                __('Connection to RTMHub is not valid. Please reconnect from the account page.', 'rtmkit')
+            );
+        }
+
+        if ($status_code !== 200) {
+            return new \WP_Error(
+                'rtmhub_request_failed',
+                sprintf(
+                    __('Failed to contact RTMHub (status %d). Please try again later.', 'rtmkit'),
+                    $status_code
+                )
+            );
+        }
+
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+
+        if (empty($body['login_url'])) {
+            return new \WP_Error(
+                'rtmhub_invalid_response',
+                __('Invalid response from RTMHub.', 'rtmkit')
+            );
+        }
+
+        return esc_url_raw($body['login_url']);
+    }
+
+    public function rtmhub_handle_my_account_redirect(): void
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to perform this action.', 'rtmkit'));
+        }
+
+        $login_url = $this->rtmhub_request_sso_login_url();
+
+        if (is_wp_error($login_url)) {
+            set_transient(
+                'rtmhub_sso_error_' . get_current_user_id(),
+                $login_url->get_error_message(),
+                30
+            );
+
+            wp_safe_redirect(admin_url('admin.php?page=rtmkit-connector&rtmhub_sso_error=1'));
+            exit;
+        }
+
+        wp_redirect($login_url);
+        exit;
+    }
+
 }

@@ -143,6 +143,11 @@ $current_user = wp_get_current_user();
                                 <?php endforeach; ?>
                             </ul>
                         </div>
+                        <a href="<?php echo admin_url('admin.php?page=rtmkit&path=addons') ?>" class="btn btn-accent px-4 py-3">
+                            <i class="rtmicon rtmicon-rocket"></i>
+                            </i>
+                            Check Our New Addons
+                        </a>
                         <a href="https://rometheme.net/plugins/rtmkit/releases/" target="_blank" class="btn btn-secondary px-4 py-3">
                             <i class="rtmicon rtmicon-arrow-up-right"></i>
                             </i>
@@ -274,6 +279,15 @@ $current_user = wp_get_current_user();
                     <div class="card rounded-4 flex-column justify-content-between gap-3 h-100">
                         <div class="d-flex flex-column gap-3">
                             <h4 class="fw-bold">Community & Support</h4>
+                            <a href="https://my.rometheme.net" target="_blank" class="social-container d-flex flex-row gap-3 align-items-center">
+                                <div class="social-icon">
+                                    <i class="rtmicon rtmicon-romethemekit"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h5 class="m-0">RTMHub</h5>
+                                    <span>my.rometheme.net</span>
+                                </div>
+                            </a>
                             <a href="https://www.facebook.com/groups/rometheme" target="_blank" class="social-container d-flex flex-row gap-3 align-items-center">
                                 <div class="social-icon">
                                     <i class="rtmicon rtmicon-facebook"></i>

@@ -17,13 +17,9 @@ class UpdateModule
             'file' => 'romethemeform/rometheme-form.php',
             'class' => 'RomeTheme',
             'min_version' => '1.2.5'
-        ],
-        'rtmkitpro' => [
-            'file' => 'romethemekit-pro/RomeTheme_pro.php',
-            'class' => 'RomethemePro',
-            'min_version' => '1.2.0'
         ]
     ];
+    private $addons = [];
     public static function instance(): self
     {
         if (!self::$instance) {
@@ -117,6 +113,66 @@ class UpdateModule
         }
 
         return false;
+    }
+
+    public function get_addon_releases(string $addonSlug)
+    {
+        $cached = $this->get_all_addon_releases();
+
+        if (!is_array($cached)) {
+            return [];
+        }
+
+        foreach ($cached as $addon) {
+            if (!is_array($addon)) {
+                continue;
+            }
+
+            if (($addon['slug'] ?? '') === $addonSlug) {
+                return [$addon];
+            }
+        }
+
+        return [];
+    }
+
+    public function get_all_addon_releases(): array
+    {
+        $cache_key = 'rtmkit_addon_releases_all';
+        $cached = get_transient($cache_key);
+        if (false === $cached) {
+            $apiHandler = \RTMKit\Modules\Helper\APIHandlerV2::instance();
+            $cached = $apiHandler->remote('/repos/releases/');
+
+            if (is_wp_error($cached) || empty($cached)) {
+                return [];
+            }
+
+            set_transient($cache_key, $cached, 12 * HOUR_IN_SECONDS);
+        }
+
+        if (is_string($cached)) {
+            $decoded = json_decode($cached, true);
+            $cached = is_array($decoded) ? $decoded : [];
+        }
+
+        return is_array($cached) ? $cached : [];
+    }
+
+    public function sync_addon_releases(): array
+    {
+        delete_transient('rtmkit_addon_releases_all');
+        return $this->get_all_addon_releases();
+    }
+
+    public function get_addon_latest_release(string $addonSlug)
+    {
+        $releases = $this->get_addon_releases($addonSlug);
+        if (empty($releases) || !is_array($releases)) {
+            return null;
+        }
+
+        return $releases[0] ?? null;
     }
 
     public function get_plugins()

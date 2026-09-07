@@ -3,6 +3,17 @@
 $addonModule = \RTMKit\Modules\Addons\AddonsModule::instance();
 $addon_list        = $addonModule->get_addons_list();
 $available_addons  = $addonModule->get_addons_available();
+
+usort($addon_list, function ($a, $b) {
+    $aComingSoon = !empty($a['is_coming_soon']);
+    $bComingSoon = !empty($b['is_coming_soon']);
+
+    if ($aComingSoon === $bComingSoon) {
+        return 0;
+    }
+
+    return $aComingSoon ? 1 : -1;
+});
 ?>
 <div class="px-4 mb-5 scroll-behavior-smooth scrollspy"
     data-scrollspy="#widget-category"
@@ -12,12 +23,41 @@ $available_addons  = $addonModule->get_addons_available();
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex flex-column gap-2">
                 <h1>RTMKit Addons</h1>
-                <p class="m-0">
-                    Upgrade premium to unlock all features
-                    <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">
-                        Upgrade Now
-                    </a>
-                </p>
+                <div class="d-flex align-items-center gap-3">
+                    License :
+                    <span class="license-status">
+                        <?php
+                        if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
+                        } else {
+                            echo 'Free';
+                        }
+                        ?>
+                    </span>
+                    <?php if (\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit&path=updates')); ?>" class="btn btn-outline-accent rounded-2 px-4 py-2 gap-2" style="border:1px solid var(--accent-color);color:var(--accent-color)!important;">
+                            <svg class="icon" width="14" height="14" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1696_11964)">
+                                    <path d="M18.6321 1.20117V6.11315L13.4512 6.1131" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.68262 22.7988V17.8869H8.86359" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M20.4634 9.6886C20.6631 10.4482 20.7693 11.2445 20.7693 12.0649C20.7693 17.3308 16.3954 21.5997 10.9999 21.5997C8.08203 21.5997 5.46292 20.3511 3.67285 18.3716" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M1.51966 14.3769C1.33076 13.6367 1.23047 12.8622 1.23047 12.0649C1.23047 6.79905 5.60433 2.53021 10.9998 2.53021C14.0768 2.53021 16.8217 3.91869 18.6124 6.08869" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1696_11964">
+                                        <rect width="22" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>    
+                            Check Updates
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                <?php endif; ?>
             </div>
             <div>
                 <button class="btn btn-accent btn-update-plugin" id="sync-addons">

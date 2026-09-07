@@ -34,7 +34,7 @@ if (!defined('ABSPATH'))
         <div class="divider"></div>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1">
             <div class="col">
-                <div class="card">
+                <div class="card h-100">
                     <h5 class="fw-semibold">Social Media</h5>
                     <ul class="list d-flex flex-column gap-2 mt-2 mb-0">
                         <li class="list-item border-bottom">
@@ -98,7 +98,17 @@ if (!defined('ABSPATH'))
                     <div class="d-flex flex-column justify-content-between h-100">
                         <span>Get in touch or visit our community to get guided about wordpress, elementor and RTMkit
                             Plugin</span>
-                        <div class="d-flex flex-column gap-3">
+                        <div class="d-flex flex-column gap-3 mt-3">
+                            <a href="https://my.rometheme.net/ticket"
+                                class="social-container d-flex flex-row gap-3 align-items-center">
+                                <div class="social-icon">
+                                    <i class="rtmicon rtmicon-romethemekit"></i>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h5 class="m-0">RTMHub Support Ticket</h5>
+                                    <span>my.rometheme.net/ticket</span>
+                                </div>
+                            </a>
                             <a href="https://rometheme.net/support" target="_blank"
                                 class="social-container d-flex flex-row gap-3 align-items-center">
                                 <div class="social-icon">

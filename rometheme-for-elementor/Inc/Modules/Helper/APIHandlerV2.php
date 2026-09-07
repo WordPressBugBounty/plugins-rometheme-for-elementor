@@ -42,7 +42,7 @@ class APIHandlerV2
 
         $defaults = [
             'method'      => strtoupper($method),
-            'timeout'     => 15,
+            'timeout'     => 30,
             'redirection' => 5,
             'httpversion' => '1.1',
             'sslverify'   => true,

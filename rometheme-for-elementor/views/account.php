@@ -4,7 +4,6 @@ $uri = urlencode(home_url());
 $link = RTMHUB_LOGIN_URL . '?reference=connector&source=wordpress&domain=' . $uri;
 
 $payload = get_option('rtm_connector_last_payload');
-
 ?>
 
 
@@ -17,7 +16,21 @@ $payload = get_option('rtm_connector_last_payload');
                         <h1>RTMKit Account Manager </h1>
                     </div>
                 </div>
-                <?php if (!class_exists('RTMKitPro\Core\Plugin') || !\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) : ?>
+                <div class="d-flex align-items-center gap-3">
+                    License :
+                    <span class="license-status">
+                        <?php
+                        if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
+                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
+                        } else {
+                            echo 'Free';
+                        }
+                        ?>
+                    </span>
+                </div>
+                <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
@@ -50,7 +63,7 @@ $payload = get_option('rtm_connector_last_payload');
                     </div>
                 <?php else :
                     $token = explode('|', $payload['access_token'], 2)[1];
-                    $connectedAccount = $payload['connected_account'];
+                    $connectedAccount = $payload['payload']['connected_account'];
                     $data = $payload['payload'];
                     $plan = $data['plan'];
                     $addons = $data['features'];
@@ -125,7 +138,7 @@ $payload = get_option('rtm_connector_last_payload');
                             </div>
                         </div>
                         <div class="d-flex align-items-center pb-2 mb-3 gap-2">
-                            <a href="https://my.rometheme.net" target="_blank" class="btn btn-secondary rounded-2 py-2 text-nowrap text-white gap-2 h-100 ">
+                            <a href="<?php echo esc_url( admin_url( 'admin-post.php?action=rtmhub_my_account' ) ); ?>" target="_blank" class="btn btn-secondary rounded-2 py-2 text-nowrap text-white gap-2 h-100 ">
                                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                                     <path d="M224 248a120 120 0 1 0 0-240 120 120 0 1 0 0 240zm-29.7 56C95.8 304 16 383.8 16 482.3 16 498.7 29.3 512 45.7 512l356.6 0c16.4 0 29.7-13.3 29.7-29.7 0-98.5-79.8-178.3-178.3-178.3l-59.4 0z" />
                                 </svg>

@@ -59,42 +59,67 @@ class PluginApi
 
     public function get_content()
     {
-        $nonce = isset($_POST['nonce'])
-            ? sanitize_text_field(wp_unslash($_POST['nonce']))
-            : '';
+        check_ajax_referer('rtmkit_nonce', 'nonce');
 
-        if (! wp_verify_nonce($nonce, 'rtmkit_nonce')) {
-            die(__('Security check', 'rometheme-for-elementor'));
-        }
-        
-        // check_ajax_referer('rtmkit_nonce', 'nonce');
         if (!current_user_can('manage_options')) {
             wp_send_json_error('Access Denied.');
             wp_die();
         }
 
         $path = isset($_POST['path'])
-            ? sanitize_text_field(wp_unslash($_POST['path']))
+            ? sanitize_key(wp_unslash($_POST['path']))
             : '';
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $menus = \RTMKit\Modules\Menu::instance()->get_menu_by_path($path);
 
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if (!isset($_POST['path'])) {
+        if ('' === $path) {
             wp_send_json_error('Path not specified.');
-            return;
+            wp_die();
         }
 
-        if (isset($menus['render_view']) && file_exists($menus['render_view'])) {
-            $file = $menus['render_view'];
-        } else {
+        $menu = \RTMKit\Modules\Menu::instance()->get_menu_by_path($path);
+        if (!is_array($menu) || empty($menu['render_view'])) {
             wp_send_json_error('View file not found for the specified path.');
-            return;
+            wp_die();
         }
+
+        $file = $menu['render_view'];
+        if (!file_exists($file)) {
+            wp_send_json_error('View file not found for the specified path.');
+            wp_die();
+        }
+
+        // $cache_path = $this->get_content_cache_path($path, $file);
+        // if ($cache_path && file_exists($cache_path) && (time() - filemtime($cache_path) < 12 * HOUR_IN_SECONDS)) {
+        //     $cached_content = file_get_contents($cache_path);
+        //     if (false !== $cached_content) {
+        //         wp_send_json_success($cached_content);
+        //         wp_die();
+        //     }
+        // }
+
         ob_start();
-        require_once $file;
+        require $file;
         $content = ob_get_clean();
+
+        if ($cache_path) {
+            $cache_dir = dirname($cache_path);
+            if (!is_dir($cache_dir)) {
+                wp_mkdir_p($cache_dir);
+            }
+            file_put_contents($cache_path, $content, LOCK_EX);
+        }
+
         wp_send_json_success($content);
+    }
+
+    private function get_content_cache_path(string $path, string $file): string
+    {
+        $uploads = wp_upload_dir();
+        if (!empty($uploads['error']) || empty($uploads['basedir'])) {
+            return '';
+        }
+
+        $cache_dir = trailingslashit($uploads['basedir']) . 'rtmkit-cache/content';
+        return trailingslashit($cache_dir) . md5($path . '|' . $file) . '.html';
     }
 
     public function set_global_site()

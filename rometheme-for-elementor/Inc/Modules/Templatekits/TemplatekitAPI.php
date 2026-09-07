@@ -47,6 +47,10 @@ class TemplatekitAPI
             // Allow addons (e.g. Template Kit Pro) to override the view file.
             $view = apply_filters('rtmkit_templatekit_view', $template, $template, $datas);
 
+            if ($template === 'all') {
+                $view = 'templatekits';
+            }
+
             require_once RTM_KIT_DIR . 'views/' . $view . '_templates.php';
             $render = ob_get_clean();
             wp_send_json_success($render);
@@ -60,17 +64,15 @@ class TemplatekitAPI
     private function get_template_data($template)
     {
         // Contoh data statis, ganti dengan data yang dinamik sesuai kebutuhan
-        $endpoint = [
-            'themeforest' => 'wp-json/public/templatekits',
-            'templatekits' => 'wp-json/public/templatekits',
-            'installed' => '',
-        ];
+        $endpoint = $template !== 'installed' ? 'wp-json/public/templatekits' : '';
+
+        error_log('Endpoint: ' . $endpoint . ' for template: ' . $template);
 
         if ($template !== 'installed') {
             $api_handler = \RTMKit\Modules\Helper\APIHandler::instance();
 
-            if ($template === 'templatekits' || $template === 'themeforest') {
-                $response = $api_handler->remote($endpoint[$template], [], null, true);
+            if ($template === 'templatekits' || $template === 'templatekitpro' || $template === 'all') {
+                $response = $api_handler->remote($endpoint, [], null, true);
                 $templates = $response;
 
                 if (!is_array($templates)) {
@@ -98,11 +100,14 @@ class TemplatekitAPI
                 // Default: tampilkan semua. Addon (Pro) bisa filter via hook.
                 $sortData = array_values($templates);
 
-                // Core default: Template Kit Free tab hanya tampilkan free.
-                if ($template === 'templatekits') {
+                error_log($sortData ? 'Get template data for ' . $template . ': ' . print_r($sortData, true) : 'No template data found for ' . $template);
+
+                if($template !== 'all') {
+                    $type = $template === 'templatekitpro' ? 'pro' : 'free';
+    
                     $free = [];
                     foreach ($sortData as $k => $v) {
-                        if (isset($v['type']) && $v['type'] === 'free') {
+                        if (isset($v['type']) && $v['type'] === $type) {
                             $free[$k] = $v;
                         }
                     }
@@ -144,11 +149,13 @@ class TemplatekitAPI
                     'template_url' => admin_url('admin.php?page=rtmkit-templates')
                 ];
 
+                error_log('Template data for ' . $template . ': ' . print_r($result, true));
+
                 // Allow addons (e.g. Template Kit Pro) to modify the template data.
                 return apply_filters('rtmkit_templatekit_data', $result, $template);
             } else {
                 $paged = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
-                $uri = $endpoint[$template] . '&paged=' . $paged;
+                $uri = $endpoint . '&paged=' . $paged;
 
                 if (!empty($_POST['search'])) {
                     $search = urlencode(trim($_POST['search']));
@@ -176,8 +183,6 @@ class TemplatekitAPI
                 'template_url' => admin_url('admin.php?page=rtmkit-templates')
             ];
         }
-
-        return $endpoint[$template] ?? 'Data tidak ditemukan';
     }
 
     public function _get_template_data($template)

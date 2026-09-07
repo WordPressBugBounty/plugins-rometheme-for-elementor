@@ -1507,3 +1507,29 @@ a.wp-has-submenu.wp-has-current-submenu.wp-menu-open.menu-top.toplevel_page_rtmk
     }
   }
 }
+
+#moduleLockedModal {
+  h3 {
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  p {    
+    font-weight: 200;
+  }
+
+  .btn, p {
+    font-size: 16px;
+  }
+}
+
+.card-templatekit .download-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+#rtmkit-root .card .rounded-top-4 {
+  border-top-left-radius: var(--bs-border-radius-xl) !important;
+  border-top-right-radius: var(--bs-border-radius-xl) !important;
+}

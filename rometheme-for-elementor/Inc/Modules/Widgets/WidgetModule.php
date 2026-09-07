@@ -30,14 +30,14 @@ class WidgetModule
         $elements_manager->add_category(
             'romethemekit_header_footer',
             [
-                'title' => esc_html__('RTMKit Header & Footer', 'rometheme-for-elementor')
+                'title' => esc_html__('RTM Header & Footer', 'rometheme-for-elementor')
             ]
         );
 
         $elements_manager->add_category(
             'romethemekit_widgets',
             [
-                'title' => esc_html__('RTMKit General', 'rometheme-for-elementor')
+                'title' => esc_html__('RTM Widget General', 'rometheme-for-elementor')
             ]
         );
 

@@ -35,12 +35,14 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                             href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
-            <div class="mb-4">
-                <button id="add-themebuilder" class="btn btn-accent fw-bold px-4 py-3 gap-2">
-                    <i class="rtmicon rtmicon-plus fs-5"></i>
-                    Upgrade to Pro
-                </button>
-            </div>
+            <!-- <div class="mb-4">
+                <div class="mb-4">
+                    <button id="add-themebuilder" class="btn btn-accent fw-bold px-4 py-3 gap-2">
+                        <i class="rtmicon rtmicon-plus fs-5"></i>
+                        Global Kit Setting
+                    </button>
+                </div>
+            </div> -->
         </div>
         <div class="divider"></div>
         <div class="position-sticky d-flex flex-column gap-3"
@@ -51,24 +53,22 @@ $freeTemplateCategories = \RTMKit\Modules\Templatekits\TemplatekitAPI::instance(
                         <?php
                         $buttons = apply_filters('rtmkit_templatekit_buttons', [
                             [
+                                'id' => 'all',
+                                'title' => 'All',
+                            ],
+                            [
                                 'id' => 'templatekits',
                                 'title' => 'Free',
+                            ],
+                            [
+                                'id' => 'templatekitpro',
+                                'title' => 'Pro',
                             ],
                             [
                                 'id' => 'installed',
                                 'title' => 'Installed',
                             ],
                         ]);
-
-                        if(\RTMKit\Core\Plugin::instance()->pro_is_active()) {
-                            $pro_button = [
-                                'id' => 'themeforest',
-                                'title' => 'Pro',
-                            ];
-    
-                            array_splice($buttons, 1, 0, [$pro_button]);
-                        }
-
 
                         foreach ($buttons as $button):
                             $active = ($template === $button['id']) ? 'active' : '';
