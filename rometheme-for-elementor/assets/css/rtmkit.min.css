@@ -1515,11 +1515,12 @@ a.wp-has-submenu.wp-has-current-submenu.wp-menu-open.menu-top.toplevel_page_rtmk
     font-weight: 500;
   }
 
-  p {    
+  p {
     font-weight: 200;
   }
 
-  .btn, p {
+  .btn,
+  p {
     font-size: 16px;
   }
 }
@@ -1532,4 +1533,35 @@ a.wp-has-submenu.wp-has-current-submenu.wp-menu-open.menu-top.toplevel_page_rtmk
 #rtmkit-root .card .rounded-top-4 {
   border-top-left-radius: var(--bs-border-radius-xl) !important;
   border-top-right-radius: var(--bs-border-radius-xl) !important;
+}
+
+#rtmkit-root .rtmkit-auto-pagination {
+  width: 100%;
+  min-height: 1px; /* pastikan tetap punya layout box walau tidak ada konten terlihat */
+}
+
+#rtmkit-root .rtmkit-auto-pagination-loader {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
+#rtmkit-root .rtmkit-auto-pagination.is-loading .rtmkit-auto-pagination-loader {
+  display: flex;
+}
+
+#rtmkit-root .rtmkit-auto-pagination .spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--accent-color);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: rtmkit-spin 0.7s linear infinite;
+}
+
+@keyframes rtmkit-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

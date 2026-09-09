@@ -126,23 +126,37 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         $widgets = $widgetStorage->get_widget_by_category($k);
                         foreach ($widgets as $key => $widget) :
                             $disabled = false;
-                            
-                            if ($widget['type'] == 'pro') {
-                                if ($isProActive) {
-                                    $disabled = false;
-                                } else {
-                                    $disabled = true;
-                                }
-                            }
-                            
-                            // Disable if category is woocommerce and WooCommerce or rtm-woo plugins are not active
-                            if ($k === 'woocommerce') {
-                                if (!is_plugin_active('woocommerce/woocommerce.php') || !is_plugin_active('rtm-woo/rtm-woo.php')) {
-                                    $disabled = true;
-                                }
-                            }
-                            
                             $status = $widgetOptions[$key]['status'] ? 'checked' : '';
+
+                            if ($widget['type'] == 'pro' && !$isProActive) {
+                                $disabled = true;
+                                $status = '';
+                            }
+
+                            // Normalisasi: widget pro dengan plugin_required wajib semua plugin-nya aktif
+                            if ($widget['type'] === 'pro' && !empty($widget['plugin_required'])) {
+                                $requiredPlugins = (array) $widget['plugin_required'];
+
+                                foreach ($requiredPlugins as $requiredPlugin) {
+                                    $pluginFile = $requiredPlugin . '/' . $requiredPlugin . '.php';
+
+                                    if (!is_plugin_active($pluginFile)) {
+                                        $disabled = true;
+                                        $status = '';
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if ($k === 'woocommerce' && (
+                                !$isProActive
+                                || !is_plugin_active('woocommerce/woocommerce.php')
+                                || !is_plugin_active('rtm-woo/rtm-woo.php')
+                            )) {
+                                $disabled = true;
+                                $status = '';
+                            }
+                            
                         ?>
                             <div class="col">
                                 <div class="card widgets p-3" data-widget-type="<?php echo esc_attr($widget['type']) ?>">
@@ -181,21 +195,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                                 <?php echo esc_attr($status) ?>
                                                 <?php echo $disabled ? 'disabled' : '' ?>>
                                             <span class="slider round">
-                                                <?php 
-                                                    $isLocked = false;
-                                                    
-                                                    // Lock if WooCommerce widget and either WooCommerce or rtm-woo not active
-                                                    if ($k === 'woocommerce' && (!is_plugin_active('woocommerce/woocommerce.php') || !is_plugin_active('rtm-woo/rtm-woo.php'))) {
-                                                        $isLocked = true;
-                                                    }
-
-                                                    // Lock if Pro widget and Pro not active
-                                                    if ($widget['type'] == 'pro' && !$isProActive) {
-                                                        $isLocked = true;
-                                                    }
-                                                    
-                                                    if ($isLocked) : 
-                                                ?>
+                                                <?php if ($disabled) : ?>
                                                     <i class="fa-solid fa-lock"></i>
                                                 <?php endif; ?>
                                             </span>

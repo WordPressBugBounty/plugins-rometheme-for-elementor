@@ -2,7 +2,8 @@
 
 namespace RTMKit\Modules\Widgets;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH'))
+    exit;
 
 class WidgetStorage
 {
@@ -26,31 +27,6 @@ class WidgetStorage
         $this->update_widgets_options();
     }
 
-    // public function get_active_widgets($type = null)
-    // {
-    //     $all_widgets = $this->get_widget_options();
-    //     $active_widgets = [];
-
-    //     foreach ($all_widgets as $key => $widget) {
-    //         if ($widget['status']) {
-    //             $active_widgets[$key] = $widget;
-    //         }
-    //     }
-
-    //     if ($type) {
-    //         $filtered = [];
-    //         foreach ($active_widgets as $key => $widget) {
-    //             $widgetData = $this->get_widget_data_by_key($key);
-    //             if (isset($widgetData['type']) && $widgetData['type'] === $type) {
-    //                 $filtered[$key] = $widget;
-    //             }
-    //         }
-    //         return $filtered;
-    //     }
-
-    //     return $active_widgets;
-    // }
-
     public function get_active_widgets($type = null)
     {
         $all_widgets = $this->get_widget_options();
@@ -60,14 +36,6 @@ class WidgetStorage
             if (isset($widget['status']) && $widget['status']) {
                 $active_widgets[$key] = $widget;
             }
-        }
-
-        // OPTIMIZATION: Only load pro widgets if Pro plugin is ACTIVE
-        // Removed: Lazy-loading of pro widgets when Pro is inactive
-        // This was causing unnecessary memory usage and performance issues
-        if (class_exists('RTMKitPro\Core\Plugin')) {
-            // Pro plugin is active, pro widgets will be handled by Pro plugin
-            // No need to load them here
         }
 
         if ($type) {
@@ -86,10 +54,8 @@ class WidgetStorage
 
     public function register_widget($widgets_manager)
     {
-
         $widget_lists = get_option('rkit-widget-options');
         $active_widgets = $this->get_active_widgets();
-        // Gunakan data yang sudah difilter sehingga widget dari plugin lain ikut terdaftar
         $widget_data = $this->get_widget_data();
 
         ksort($active_widgets);
@@ -112,37 +78,17 @@ class WidgetStorage
                 ? 'RTMKit\Widgets\\' . $widget_data[$key]['class_name']
                 : 'RTMKit\Elements\\' . $widget_data[$key]['class_name'];
 
-            /**
-             * Filter nama kelas widget sebelum diregistrasi ke Elementor.
-             *
-             * Memungkinkan plugin lain mengganti/menentukan namespace kelas
-             * untuk widget yang mereka tambahkan.
-             *
-             * @since 1.0.0
-             *
-             * @param string $className    Nama kelas widget (dengan namespace).
-             * @param string $key          Slug widget.
-             * @param array  $widget_data  Metadata widget.
-             */
             $className = apply_filters('rtmkit_widget_class_name', $className, $key, $widget_data[$key]);
 
-            if (isset($widget_data[$key]['plugin_required']) && $widget_data[$key]['plugin_required'] === 'woocommerce') {
-                if (class_exists('WooCommerce')) {
-                    $widgets_manager->register(new $className());
-                }
-            } else {
-                if (class_exists($className)) {
-                    $widgets_manager->register(new $className());
-                }
-                // $widgets_manager->register(new $className());
+            $requiredPlugins = isset($widget_data[$key]['plugin_required']) ? $widget_data[$key]['plugin_required'] : null;
+
+            if ($this->is_required_plugins_active($requiredPlugins) && class_exists($className)) {
+                $widgets_manager->register(new $className());
             }
         }
 
         /**
          * Action setelah widget RTMKit diregistrasi ke Elementor.
-         *
-         * Memungkinkan plugin lain meregistrasi widget tambahannya sendiri
-         * setelah widget bawaan RTMKit terdaftar.
          *
          * @since 1.0.0
          *
@@ -150,110 +96,88 @@ class WidgetStorage
          */
         do_action('rtmkit_after_register_widgets', $widgets_manager);
 
-        if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
-            return;
+        // Kalau Pro aktif DAN salah satu companion aktif, tidak perlu load
+        // widget locked sama sekali di sini — tiap companion meregistrasi
+        // widget aslinya sendiri.
+        if (\RTMKit\Core\Plugin::instance()->pro_is_active() && $this->is_pro_with_companion_active()) {
+            // Tetap lanjut ke bawah untuk menangani widget yang companion-nya
+            // BELUM aktif (mixed state: salah satu companion aktif, satu lagi belum).
         }
 
-        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
-    
         $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
-        // error_log($json_path);
-        if (! file_exists($json_path)) {
-            return;
-        }
+        if (file_exists($json_path)) {
+            $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        $pro_widgets = json_decode(file_get_contents($json_path), true);
+            if (!empty($pro_widgets) && is_array($pro_widgets)) {
+                foreach ($pro_widgets as $key => $data) {
 
-        if (! empty($pro_widgets) && is_array($pro_widgets)) {
-            foreach ($pro_widgets as $key => $data) {
+                    if (!is_array($data))
+                        continue;
 
-                
-                if (! is_array($data)) continue;
+                    $companion = isset($data['plugin_required']) ? $data['plugin_required'] : null;
 
-                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
-                    'widget_key'  => $key,
-                    'widget_data' => $data,
-                    'is_pro_active' => false
-                ]));
+                    // Skip: kalau Pro aktif DAN companion widget ini spesifik sudah aktif,
+                    // widget aslinya akan diregistrasi oleh companion plugin itu sendiri,
+                    // jadi jangan daftarkan versi locked-nya di sini.
+                    if ($this->is_pro_with_companion_active($companion)) {
+                        continue;
+                    }
+
+                    $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
+                        'widget_key' => $key,
+                        'widget_data' => $data,
+                        'is_pro_active' => false
+                    ]));
+                }
             }
         }
 
-        // 2. Jika Pro TIDAK aktif, baca file rtmwp.json
         $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
-        // error_log($json_path);
-        if (! file_exists($json_path)) {
-            return;
-        }
+        if (file_exists($json_path)) {
+            $pro_widgets = json_decode(file_get_contents($json_path), true);
 
-        $pro_widgets = json_decode(file_get_contents($json_path), true);
+            if (!empty($pro_widgets) && is_array($pro_widgets)) {
+                foreach ($pro_widgets as $key => $data) {
 
-        if (! empty($pro_widgets) && is_array($pro_widgets)) {
-            foreach ($pro_widgets as $key => $data) {
+                    if (!is_array($data))
+                        continue;
 
-                if (! is_array($data)) continue;
+                    $companion = isset($data['plugin_required']) ? $data['plugin_required'] : null;
 
-                $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
-                    'widget_key'  => $key,
-                    'widget_data' => $data,
-                    'is_pro_active' => false
-                ]));
+                    if ($this->is_pro_with_companion_active($companion)) {
+                        continue;
+                    }
+
+                    $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetSinglePro([], [
+                        'widget_key' => $key,
+                        'widget_data' => $data,
+                        'is_pro_active' => false
+                    ]));
+                }
             }
         }
     }
 
     protected function update_widgets_options()
     {
-        $freeWidgetData = $this->get_widget_by_type('free');
-        $freeWidgetOption = get_option('rkit-widget-options', []);
+        $freeWidgetOption = get_option('rkit-widget-options');
 
-        // Build new options structure from metadata
-        $newFreeOptions = [];
-        foreach ($freeWidgetData as $key => $widget) {
-            // Preserve existing status, default to true for new widgets
-            $newFreeOptions[$key] = [
-                'status' => isset($freeWidgetOption[$key]) ? $freeWidgetOption[$key]['status'] : true
-            ];
-        }
-
-        // Update if structure changed
-        if ($freeWidgetOption !== $newFreeOptions) {
-            update_option('rkit-widget-options', $newFreeOptions);
-        }
-
-        // Initialize pro widgets from rtmwp.json
-        $proWidgetData = $this->get_widget_by_type('pro');
-        $proWidgetOption = get_option('rkit-widget-pro-options', []);
-
-        // Build new options structure from metadata
-        $newProOptions = [];
-        foreach ($proWidgetData as $key => $widget) {
-            // Preserve existing status, default to true for new widgets
-            $newProOptions[$key] = [
-                'status' => isset($proWidgetOption[$key]) ? $proWidgetOption[$key]['status'] : true
-            ];
-        }
-
-        // Update if structure changed
-        if ($proWidgetOption !== $newProOptions) {
-            update_option('rkit-widget-pro-options', $newProOptions);
+        if ($freeWidgetOption == false) {
+            update_option('rkit-widget-options', $this->get_widget_by_type('free'));
+        } else {
+            if (count($freeWidgetOption) !== count($this->get_widget_by_type('free'))) {
+                update_option('rkit-widget-options', $this->get_widget_by_type('free'));
+            }
         }
 
         if (\RTMKit\Core\Plugin::instance()->has_rtmform()) {
-            $formWidgetData = $this->get_widget_by_type('form');
-            $formWidgetOption = get_option('rform-widget-options', []);
-
-            // Build new options structure from metadata
-            $newFormOptions = [];
-            foreach ($formWidgetData as $key => $widget) {
-                // Preserve existing status, default to true for new widgets
-                $newFormOptions[$key] = [
-                    'status' => isset($formWidgetOption[$key]) ? $formWidgetOption[$key]['status'] : true
-                ];
-            }
-
-            // Update if structure changed
-            if ($formWidgetOption !== $newFormOptions) {
-                update_option('rform-widget-options', $newFormOptions);
+            $formWidgetOption = get_option('rform-widget-options');
+            if ($formWidgetOption == false) {
+                update_option('rform-widget-options', $this->get_widget_by_type('form'));
+            } else {
+                if (count($formWidgetOption) !== count($this->get_widget_by_type('form'))) {
+                    update_option('rform-widget-options', $this->get_widget_by_type('form'));
+                }
             }
         }
     }
@@ -266,52 +190,17 @@ class WidgetStorage
         $formWidgets = file_exists($formWidgetsFileJson) ? json_decode(file_get_contents($formWidgetsFileJson), true) : [];
         $widgetsFree = file_exists($widgetsFreeFileJson) ? json_decode(file_get_contents($widgetsFreeFileJson), true) : [];
         $widgetsPro = file_exists($widgetsProFileJson) ? json_decode(file_get_contents($widgetsProFileJson), true) : [];
-        
+
         if ($type === 'free') {
-            /**
-             * Filter daftar widget free.
-             *
-             * Memungkinkan plugin lain menambahkan/memodifikasi widget free
-             * yang tersedia di Widget Switcher.
-             *
-             * @since 1.0.0
-             *
-             * @param array $widgetsFree Daftar widget free dari metadata/widgets.json.
-             */
             return apply_filters('rtmkit_widget_data_free', $widgetsFree);
         } elseif ($type === 'pro') {
-            /**
-             * Filter daftar widget pro.
-             *
-             * @since 1.0.0
-             *
-             * @param array $widgetsPro Daftar widget pro dari metadata/rtmwp.json.
-             */
             return apply_filters('rtmkit_widget_data_pro', $widgetsPro);
         } elseif ($type === 'form') {
-            /**
-             * Filter daftar widget form.
-             *
-             * @since 1.0.0
-             *
-             * @param array $formWidgets Daftar widget form dari metadata/form_widgets.json.
-             */
             return apply_filters('rtmkit_widget_data_form', $formWidgets);
         }
 
         $all_widgets = array_merge($widgetsFree, $widgetsPro ?? [], $formWidgets ?? []);
 
-        /**
-         * Filter daftar semua widget (free + pro + form).
-         *
-         * Memungkinkan plugin lain menambahkan widget baru ke Widget Switcher
-         * tanpa harus mengedit file metadata JSON.
-         *
-         * @since 1.0.0
-         *
-         * @param array $all_widgets Daftar lengkap widget.
-         * @param string|null $type  Tipe widget yang diminta (free/pro/form/null).
-         */
         return apply_filters('rtmkit_widget_data', $all_widgets, $type);
     }
 
@@ -370,7 +259,6 @@ class WidgetStorage
 
     public function save_widget()
     {
-        // Cek keamanan nonce
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
         if (!current_user_can('manage_options')) {
@@ -378,15 +266,13 @@ class WidgetStorage
             wp_die();
         }
 
-        // Ambil body JSON
         $rawInput = file_get_contents('php://input');
         $dataJson = json_decode($rawInput, true);
 
-        // Validasi format JSON
         if (!is_array($dataJson)) {
             wp_send_json_error([
                 'message' => 'Invalid JSON format',
-                'raw'     => $rawInput
+                'raw' => $rawInput
             ], 400);
         }
 
@@ -394,9 +280,8 @@ class WidgetStorage
 
         $update = $this->save_widget_options($plugin, $dataJson);
         if ($update) {
-            // OPTIMIZATION: Clear cache when widgets are updated
             \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
-            
+
             $message = sprintf(
                 /* translators: %s: plugin name. */
                 __('Widget options for %s have been successfully updated.', 'rometheme-for-elementor'),
@@ -411,13 +296,19 @@ class WidgetStorage
             );
             wp_send_json_error(['message' => $message]);
         }
-
-        // wp_send_json($dataJson);
     }
 
     private function save_widget_options($plugin, $data)
     {
-        // Tentukan nama option
+        // Blok update ke option pro kalau Pro tidak aktif sama sekali.
+        // Catatan: di sini kita cek generik (tanpa companion tertentu) karena
+        // payload $data bisa berisi campuran widget dari companion berbeda;
+        // masing-masing key sudah tervalidasi dari sisi UI (switcher hanya
+        // menampilkan toggle untuk widget yang companion-nya aktif).
+        if ($plugin === 'pro' && !\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            return false;
+        }
+
         switch ($plugin) {
             case 'form':
                 $optionName = 'rform-widget-options';
@@ -432,29 +323,40 @@ class WidgetStorage
                 $optionName = 'rkit-widget-options';
         }
 
-        // Ambil data lama
         $currentOptions = get_option($optionName, []);
 
-        // Update status tiap widget
         foreach ($data as $key => $value) {
-            $widgetKey = sanitize_key($key); // pastikan aman
-            $currentOptions[$widgetKey]['status'] = (bool) $value; // simpan boolean
+            $widgetKey = sanitize_key($key);
+
+            // Untuk widget pro, hanya izinkan update kalau companion
+            // pemilik widget tersebut memang aktif.
+            if ($plugin === 'pro') {
+                $widgetMeta = $this->get_widget_data_by_key($widgetKey);
+                $companion = isset($widgetMeta['plugin_required']) ? $widgetMeta['plugin_required'] : null;
+
+                if (!$this->is_pro_with_companion_active($companion)) {
+                    continue;
+                }
+            }
+
+            $currentOptions[$widgetKey]['status'] = (bool) $value;
         }
 
-        // Simpan ke DB
         return update_option($optionName, $currentOptions);
     }
-
 
     public function get_widget_options()
     {
         $widgetsFree = get_option('rkit-widget-options', []);
-       
-        // Always include pro widgets from rtmwp.json for Widgets Manager display
-        // Even if Pro plugin is not active, pro widgets should be visible (locked with crown icon)
-        $widgetsPro = get_option('rkit-widget-pro-options', []);
-        $widgetsFree = array_merge($widgetsFree, $widgetsPro);
-        
+
+        // Pro widgets tetap ditampilkan di Widget Switcher (locked/crown)
+        // walau companion-nya belum aktif. Filtering "locked vs unlocked"
+        // dilakukan di level render widget (Pro_Widget_Base), bukan di sini.
+        if (\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            $widgetsPro = get_option('rkit-widget-pro-options', []);
+            $widgetsFree = array_merge($widgetsFree, $widgetsPro);
+        }
+
         if (class_exists('RomethemeForm')) {
             $formWidgets = get_option('rform-widget-options', []);
             $widgetsFree = array_merge($widgetsFree, $formWidgets);
@@ -463,14 +365,48 @@ class WidgetStorage
         /**
          * Filter daftar widget options (status aktif) yang dibaca dari database.
          *
-         * Memungkinkan plugin lain menambahkan widget beserta statusnya ke
-         * Widget Switcher tanpa menyimpannya ke option database.
-         *
          * @since 1.0.0
          *
          * @param array $widgetsFree Daftar widget beserta status aktifnya.
          */
         return apply_filters('rtmkit_widget_options', $widgetsFree);
+    }
+
+    /**
+     * Cek apakah Pro aktif DAN companion plugin terkait aktif.
+     *
+     * @param string|null $companion 'rtm-elements' | 'rtm-blog' | null.
+     *                                 null = cek generik (salah satu companion aktif).
+     */
+    public function is_pro_with_companion_active($companion = null)
+    {
+        $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
+
+        if (!$isProActive) {
+            return false;
+        }
+
+        if (!function_exists('is_plugin_active')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        if ($companion === 'rtm-elements') {
+            return is_plugin_active('rtm-elements/rtm-elements.php');
+        }
+
+        if ($companion === 'rtm-blog') {
+            return is_plugin_active('rtm-blog/rtm-blog.php');
+        }
+
+        // Companion 'woocommerce' bukan bagian dari pengecekan ini —
+        // widget woocommerce sudah digating terpisah lewat class_exists('WooCommerce').
+        if ($companion !== null) {
+            // Companion tidak dikenal / tidak butuh companion khusus
+            return false;
+        }
+
+        return is_plugin_active('rtm-elements/rtm-elements.php')
+            || is_plugin_active('rtm-blog/rtm-blog.php');
     }
 
     private function get_plugin_name($plugin)
@@ -486,7 +422,6 @@ class WidgetStorage
 
     public function reset_all_widgets()
     {
-        // Cek keamanan nonce
         check_ajax_referer('rtmkit_nonce', 'nonce');
         if (!current_user_can('manage_options')) {
             wp_send_json_error('Access Denied.');
@@ -504,15 +439,57 @@ class WidgetStorage
             delete_option('rform-widget-options');
         }
 
-        // Reset widget options
         $this->update_widgets_options();
 
-        // OPTIMIZATION: Clear cache when widgets are reset
         \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
 
-        // Kirim respons sukses
         wp_send_json_success([
             'message' => __('All widgets have been reset to default settings.', 'rometheme-for-elementor')
         ]);
+    }
+
+    protected function is_required_plugins_active($required)
+    {
+        if (empty($required)) {
+            return true; // tidak ada dependency, selalu boleh
+        }
+
+        if (!function_exists('is_plugin_active')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        $required = (array) $required; // dukung string tunggal maupun array
+
+        foreach ($required as $slug) {
+            $pluginFile = $this->get_plugin_file_by_slug($slug);
+
+            // Slug tidak dikenal di mapping → anggap tidak terpenuhi (fail-safe)
+            if ($pluginFile === null || !is_plugin_active($pluginFile)) {
+                return false;
+            }
+        }
+
+        return true; // semua required plugin aktif (AND, bukan OR)
+    }
+
+    protected function get_plugin_file_by_slug($slug)
+    {
+        $map = [
+            'woocommerce' => 'woocommerce/woocommerce.php',
+            'rtm-elements' => 'rtm-elements/rtm-elements.php',
+            'rtm-blog' => 'rtm-blog/rtm-blog.php',
+        ];
+
+        /**
+         * Filter mapping slug plugin_required ke path file plugin.
+         * Memungkinkan plugin lain (companion baru) mendaftarkan slug-nya sendiri.
+         *
+         * @since 1.0.0
+         *
+         * @param array $map Slug => plugin file path.
+         */
+        $map = apply_filters('rtmkit_plugin_required_map', $map);
+
+        return isset($map[$slug]) ? $map[$slug] : null;
     }
 }

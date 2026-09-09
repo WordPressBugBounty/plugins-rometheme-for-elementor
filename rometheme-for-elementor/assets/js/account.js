@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     
 
-    if (event.data?.type === "rtmhub-connected") {
+    if (event.data?.type === "rtmhub-connected" || event.data?.type === 'rtmhub-connect-failed') {
       if (popup && !popup.closed) {
         popup.close();
       }

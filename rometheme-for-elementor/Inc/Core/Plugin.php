@@ -13,7 +13,8 @@ namespace RTMKit\Core;
 use Dom\Element;
 use Exception;
 
-if (! defined('ABSPATH')) exit;
+if (!defined('ABSPATH'))
+    exit;
 
 class Plugin
 {
@@ -310,7 +311,8 @@ class Plugin
             return \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive();
         }
 
-        if (get_option('rtm_connector_last_payload') !== false) {
+        $payload = get_option('rtm_connector_last_payload');
+        if (!empty($payload)) {
             return true;
         }
 
@@ -319,7 +321,8 @@ class Plugin
 
     public function is_linked_account(): bool
     {
-        if (get_option('rtm_connector_last_payload') !== false) {
+        $payload = get_option('rtm_connector_last_payload');
+        if (!empty($payload)) {
             return true;
         }
 

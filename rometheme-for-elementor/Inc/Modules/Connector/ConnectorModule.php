@@ -25,12 +25,31 @@ class ConnectorModule
     {
         add_filter('rtmkit_menus', [$this, 'add_account_menu']);
         add_action('admin_post_rtmhub_callback', [$this, 'callback_handler']);
-        add_action( 'admin_post_rtmhub_my_account', [$this, 'rtmhub_handle_my_account_redirect'] );
+        add_action('admin_post_rtmhub_my_account', [$this, 'rtmhub_handle_my_account_redirect']);
+        add_action('admin_notices', [$this, 'render_connector_notice']);
 
         if (wp_doing_ajax()) {
             add_action('wp_ajax_connect_sync', [$this, 'connect_sync']);
         }
     }
+
+    public function render_connector_notice()
+    {
+        $error = get_option('rtm_connector_last_error');
+
+        if (empty($error)) {
+            return;
+        }
+
+        printf(
+            '<div class="notice notice-error is-dismissible"><p>%s: %s</p></div>',
+            esc_html__('RTMHub Connector', 'rtmkit'),
+            esc_html($error)
+        );
+
+        delete_option('rtm_connector_last_error');
+    }
+
 
     public function add_account_menu($menus)
     {
@@ -61,7 +80,25 @@ class ConnectorModule
         if (is_wp_error($result)) {
             update_option('rtm_connector_last_error', $result->get_error_message());
             update_option('rtm_connector_last_payload', []);
-            return new \WP_Error('connect_failed', $result->get_error_message());
+            update_option('rtm_connector_status', [
+                'connected' => false,
+                'updated_at' => current_time('mysql'),
+            ]);
+
+            ?>
+            <!doctype html>
+            <script>
+                window.opener.postMessage({
+                    type: "rtmhub-connect-failed",
+                    message: <?php echo wp_json_encode($result->get_error_message()); ?>
+                },
+                    <?php echo wp_json_encode(home_url()); ?>
+                );
+
+                window.close();
+            </script>
+            <?php
+            exit;
         }
 
         update_option('rtm_connector_last_error', '');

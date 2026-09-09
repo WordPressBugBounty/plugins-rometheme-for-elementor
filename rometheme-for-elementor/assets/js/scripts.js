@@ -399,7 +399,7 @@ function tabs() {
 
           const targetSelector = btn.getAttribute("data-tabs");
 
-          if(!targetSelector) return;
+          if (!targetSelector) return;
 
           // update tab
           activateTab(targetSelector);
@@ -450,7 +450,7 @@ const ThemebuilderTabs = () => {
     el.addEventListener("click", async function (e) {
       e.preventDefault();
       let tab = e.currentTarget.getAttribute("data-tabs");
-      if(!tab) return;
+      if (!tab) return;
       const url = new URL(window.location);
       url.searchParams.set("themebuilder", tab);
       window.history.pushState({ tab: tab }, "", url);
@@ -1415,7 +1415,7 @@ function renderTemplates(templates) {
     if (renderTemplates._controller) {
       try {
         renderTemplates._controller.abort();
-      } catch (e) {}
+      } catch (e) { }
     }
     renderTemplates._controller = new AbortController();
     const signal = renderTemplates._controller.signal;
@@ -1489,7 +1489,7 @@ function setupCategoryFilter() {
   categoryItems.forEach((item) => {
     // item.removeEventListener("click", function () {});
     item.addEventListener("click", function (e) {
-      categorySelect.removeEventListener("click", function () {});
+      categorySelect.removeEventListener("click", function () { });
       e.preventDefault();
       let category = e.currentTarget.getAttribute("data-category");
       const url = new URL(window.location);
@@ -1540,7 +1540,7 @@ function downloadTemplate() {
               renderTemplates("templatekits");
             }
           })
-          .finally(() => {});
+          .finally(() => { });
       });
     });
   }
@@ -2141,10 +2141,17 @@ function paginationTemplates() {
     });
   }
 
-  const autoPagination = document.querySelector(".rtmkit-auto-pagination");
+  let autoPagination = document.querySelector(".rtmkit-auto-pagination");
   if (!autoPagination || autoPagination.dataset.bound === "true") return;
 
   autoPagination.dataset.bound = "true";
+
+  let observer = null;
+
+  const setLoadingState = (isLoading) => {
+    autoPagination.dataset.loading = isLoading ? "true" : "false";
+    autoPagination.classList.toggle("is-loading", isLoading);
+  };
 
   const loadMore = async () => {
     if (!autoPagination.dataset.hasMore || autoPagination.dataset.hasMore === "0") return;
@@ -2154,7 +2161,7 @@ function paginationTemplates() {
     const urlParams = new URLSearchParams(window.location.search);
     const template = urlParams.get("template") ?? "templatekits";
 
-    autoPagination.dataset.loading = "true";
+    setLoadingState(true);
 
     urlParams.set("action", "render_templates");
     urlParams.set("nonce", rtmkit_ajax.nonce);
@@ -2184,6 +2191,16 @@ function paginationTemplates() {
         const container = document.getElementById("template_container");
         if (container) {
           container.innerHTML = json.data;
+
+          // Elemen lama sudah hilang karena innerHTML diganti total,
+          // perlu re-query dan re-observe elemen yang baru.
+          if (observer) observer.disconnect();
+          const newAutoPagination = document.querySelector(".rtmkit-auto-pagination");
+          if (newAutoPagination) {
+            autoPagination = newAutoPagination;
+            autoPagination.dataset.bound = "true";
+            observeAutoPagination();
+          }
         }
       }
 
@@ -2195,35 +2212,50 @@ function paginationTemplates() {
         autoPagination.dataset.hasMore = "0";
       }
 
+      autoPagination.classList.toggle("d-none", autoPagination.dataset.hasMore !== "1");
+
       const url = new URL(window.location);
       url.searchParams.set("paged", String(currentPage + 1));
       window.history.pushState({ paged: String(currentPage + 1) }, "", url);
+
+      // Kalau masih ada halaman berikutnya, cek ulang apakah elemen
+      // masih terlihat di viewport (mis. konten baru pendek, elemen
+      // langsung masuk viewport lagi) supaya auto-load berlanjut.
+      if (autoPagination.dataset.hasMore === "1" && observer) {
+        observer.unobserve(autoPagination);
+        observer.observe(autoPagination);
+      }
     } catch (error) {
       console.error(error);
     } finally {
-      autoPagination.dataset.loading = "false";
+      setLoadingState(false);
     }
   };
 
   const templateContainer = document.getElementById("template_container");
   if (!templateContainer) return;
 
-  const triggerOnScroll = () => {
-    if (autoPagination.dataset.hasMore !== "1") return;
-    if (autoPagination.dataset.loading === "true") return;
+  const observeAutoPagination = () => {
+    if (autoPagination.classList.contains("d-none")) return;
 
-    const threshold = window.innerHeight * 0.25;
-    const scrollBottom = window.innerHeight + window.scrollY;
-    const pageBottom = document.documentElement.scrollHeight;
-    const reachedBottom = scrollBottom >= pageBottom - threshold;
-
-    if (reachedBottom) {
-      loadMore();
-    }
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadMore();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1, // trigger saat 10% elemen sudah terlihat
+      }
+    );
+    observer.observe(autoPagination);
   };
 
-  window.addEventListener("scroll", triggerOnScroll, { passive: true });
-  window.addEventListener("resize", triggerOnScroll, { passive: true });
+  observeAutoPagination();
 }
 
 function themeforestStats() {
