@@ -81,7 +81,7 @@ abstract class Pro_Widget_Base extends Widget_Base
             <p style="margin: 0 0 20px 0; color: #646970; font-size: 14px;">
                 <?php esc_html_e('Unlock this widget and get access to advanced features to power up your website.', 'rometheme-for-elementor'); ?>
             </p>
-            <a href="https://store.rometheme.net/pricing/" target="_blank" class="rkit-btn-go-pro"
+            <a href="<?php echo esc_url(\RTMKit\Modules\Telemetry\UpgradeLink::url('pro_widget.editor', 'store')); ?>" target="_blank" class="rkit-btn-go-pro"
                 style="background: #00cea6;color: #23282d;padding: 10px 20px;border-radius: 4px;text-decoration: none;font-weight: bold;display: inline-flex;gap: 5px;font-size: 14px;">
                 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                     color="#000000">

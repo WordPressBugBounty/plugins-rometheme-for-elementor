@@ -214,7 +214,8 @@ class Plugin
             'update' => \RTMKit\Modules\Update\UpdateModule::class,
             'editor_canvas' => \RTMKit\Modules\Helper\EditorCanvas::class,
             'connector' => \RTMKit\Modules\Connector\ConnectorModule::class,
-            'addons' => \RTMKit\Modules\Addons\AddonsModule::class
+            'addons' => \RTMKit\Modules\Addons\AddonsModule::class,
+            'telemetry' => \RTMKit\Modules\Telemetry\TelemetryModule::class
         ];
 
         // Register WP-CLI cache commands if available
@@ -226,6 +227,11 @@ class Plugin
         add_action('admin_enqueue_scripts', function () {
             wp_enqueue_style('rtmkit-system-panel', RTM_KIT_URL . 'assets/css/panel_system.css', [], RTM_KIT_VERSION);
             wp_enqueue_script('rtmkit-system-panel', RTM_KIT_URL . 'assets/js/panel_system.js', ['jquery'], RTM_KIT_VERSION, true);
+            // Menu "Upgrade to Pro" di sidebar wp-admin dibuka lewat JS; URL-nya
+            // dibentuk di PHP karena memuat kode situs dan versi plugin.
+            wp_localize_script('rtmkit-system-panel', 'rtmkitPanel', [
+                'upgrade_url' => \RTMKit\Modules\Telemetry\UpgradeLink::url('admin_menu.upgrade'),
+            ]);
         });
         add_action('wp_enqueue_scripts', function () {
             wp_enqueue_style('elementor-icons');
@@ -365,6 +371,11 @@ class Plugin
         if (class_exists('\RTMKit\Modules\Helper\CacheManager')) {
             \RTMKit\Modules\Helper\CacheManager::instance()->clear_all();
         }
+
+        // Situs yang sudah connect sebelum versi ini belum punya kode situs di
+        // payload-nya, dan sync berikutnya baru seminggu lagi. Tanpa ini link
+        // "Upgrade to Pro" mereka tidak tertaut ke pelanggan mana pun.
+        \RTMKit\Modules\Telemetry\TelemetryModule::schedule_bootstrap_sync();
     }
 
     public function pro_version_compatible_check()

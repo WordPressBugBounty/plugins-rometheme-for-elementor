@@ -64,7 +64,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                     </span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
-                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.widgets')); ?>" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
             <div class="mb-4">
@@ -74,6 +74,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                 </button>
             </div>
         </div>
+        <?php \RTMKit\Modules\Telemetry\ConsentUi::instance()->render_notice(); ?>
         <div class="divider"></div>
         <div class="position-sticky d-flex flex-column gap-3" style="top: 0rem;z-index: 1;background: var(--primary-color);">
             <div class="d-flex bg-secondary justify-content-between border rounded-4 py-2 px-2">

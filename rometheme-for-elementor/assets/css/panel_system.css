@@ -86,3 +86,18 @@
   fill: #00cea6;
   width: 14px;
 }
+
+/**
+ * Tempat mendaratnya admin notice di halaman RTMKit.
+ *
+ * Kotaknya sendiri dibuat tanpa margin supaya tidak menyisakan celah di atas
+ * panel saat tidak ada notice; margin wp-admin dipindahkan ke notice-nya, yang
+ * hanya ada kalau memang ada yang perlu disampaikan.
+ */
+#wpbody-content .rtmkit-admin-notices {
+  margin: 0;
+}
+
+#wpbody-content .rtmkit-admin-notices .notice {
+  margin: 10px 20px 10px 2px;
+}

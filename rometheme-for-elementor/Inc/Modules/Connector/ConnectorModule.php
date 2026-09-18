@@ -30,6 +30,7 @@ class ConnectorModule
 
         if (wp_doing_ajax()) {
             add_action('wp_ajax_connect_sync', [$this, 'connect_sync']);
+            add_action('wp_ajax_disconnect_account', [$this, 'disconnect_account']);
         }
     }
 
@@ -202,12 +203,29 @@ class ConnectorModule
         if (!current_user_can('manage_options')) {
             wp_die('access_denied');
         }
+
+        error_log('ConnectorModule::connect_sync called');
         check_ajax_referer('rtmkit_nonce', 'nonce');
         $sync = ConnectorStorage::instance()->sync();
 
         if ($sync) {
             wp_send_json_success($sync);
         }
+    }
+
+    public function disconnect_account()
+    {
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error([
+                'message' => __('You do not have permission to perform this action.', 'rometheme-for-elementor'),
+            ], 403);
+        }
+
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        ConnectorStorage::instance()->clear();
+
+        wp_send_json_success();
     }
 
     public function rtmhub_request_sso_login_url()

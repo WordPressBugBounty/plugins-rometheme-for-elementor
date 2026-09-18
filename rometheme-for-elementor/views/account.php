@@ -31,7 +31,7 @@ $payload = get_option('rtm_connector_last_payload');
                     </span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
-                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.account')); ?>" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
         </div>
@@ -144,9 +144,17 @@ $payload = get_option('rtm_connector_last_payload');
                                 </svg>
                                 My Account
                             </a>
+                            <button type="button" id="disconnect-account" class="btn btn-danger rounded-2 py-2 text-nowrap gap-2 h-100">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                </svg>
+                                <span>Disconnect Account</span>
+                            </button>
                         </div>
                     </div>
                 <?php endif; ?>
+                <?php \RTMKit\Modules\Telemetry\ConsentUi::instance()->render_account_panel(); ?>
                 <div class="d-flex gap-2 align-items-center border p-3 rounded-3">
                     <svg width="24" height="24" viewBox="0 0 24 24" class="accent-color" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2.01709C6.477 2.01709 2 6.49409 2 12.0171C2 17.5401 6.477 22.0171 12 22.0171C17.523 22.0171 22 17.5401 22 12.0171C22 6.49409 17.523 2.01709 12 2.01709ZM17.646 17.6631C16.138 19.1711 14.133 20.0021 12 20.0021C9.867 20.0021 7.862 19.1711 6.354 17.6631C4.846 16.1551 4.015 14.1501 4.015 12.0171C4.015 9.88409 4.846 7.87909 6.354 6.37109C7.862 4.86309 9.867 4.03209 12 4.03209C14.133 4.03209 16.138 4.86309 17.646 6.37109C19.154 7.87909 19.985 9.88409 19.985 12.0171C19.985 14.1501 19.154 16.1551 17.646 17.6631Z" fill="currentColor" />

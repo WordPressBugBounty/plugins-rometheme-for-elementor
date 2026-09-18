@@ -24,8 +24,17 @@ class ConnectorStorage
     public function get_access_token()
     {
         $payload = $this->get_payload();
-        $access_token = explode('|', $payload['access_token'], 2)[1];
-        return $access_token;
+
+        // Situs yang belum pernah connect tidak punya payload sama sekali, dan
+        // exchange yang gagal menyimpan array kosong di option yang sama. Tanpa
+        // penjagaan ini setiap pemanggilan memunculkan warning PHP.
+        if (!is_array($payload) || empty($payload['access_token']) || !is_string($payload['access_token'])) {
+            return '';
+        }
+
+        $parts = explode('|', $payload['access_token'], 2);
+
+        return isset($parts[1]) ? $parts[1] : $parts[0];
     }
 
     public function sync_period()
@@ -54,5 +63,25 @@ class ConnectorStorage
         delete_transient('rtmkit_connector_last_sync');
         set_transient('rtmkit_connector_last_sync', current_time('timestamp'), WEEK_IN_SECONDS);
         return $data;
+    }
+
+    /**
+     * Hapus semua data koneksi RTMHub. Setelah ini situs kembali seperti belum
+     * pernah connect: tidak ada token, plan, maupun jadwal sync.
+     */
+    public function clear()
+    {
+        foreach (
+            [
+                'rtm_connector_last_payload',
+                'rtm_connector_last_error',
+                'rtm_connector_status',
+                'rtm_connector_callback_token',
+            ] as $option
+        ) {
+            delete_option($option);
+        }
+
+        delete_transient('rtmkit_connector_last_sync');
     }
 }

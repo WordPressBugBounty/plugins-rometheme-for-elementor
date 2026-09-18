@@ -13,7 +13,7 @@ jQuery(window).on("elementor:init", () => {
             const panelBtn = el.find(".elementor-panel-category-title");
             const proBadge =
               jQuery(`<span class="elementor-panel-heading-promotion">
-				<a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank" style="color: #00cea6;">
+				<a href="${rtmpro.upgrade_url.category}" target="_blank" style="color: #00cea6;">
 					<i class="eicon-upgrade-crown"></i>Upgrade</a>
 			</span>`);
             panelBtn.append(proBadge);
@@ -57,7 +57,7 @@ jQuery(window).on("elementor:init", () => {
                     },
                     targetElement: elWrapper,
                     actionButton: {
-                      url: "https://rometheme.net/plugins/rtmkit/pricing/",
+                      url: rtmpro.upgrade_url.dialog,
                       text: "Upgrade Now",
                       classes: ["elementor-button", "go-pro"],
                     },

@@ -54,7 +54,7 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                     </span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
-                    <p class="m-0">Upgrade premium to unlock all features <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank">Upgrade Now</a></p>
+                    <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.modules')); ?>" target="_blank">Upgrade Now</a></p>
                 <?php endif; ?>
             </div>
             <div class="mb-4">

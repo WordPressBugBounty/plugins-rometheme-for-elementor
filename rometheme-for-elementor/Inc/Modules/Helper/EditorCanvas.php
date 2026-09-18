@@ -147,7 +147,12 @@ class EditorCanvas
             'logo_url' => RTM_KIT_URL . '/assets/images/romethemekit.svg',
             'ajax_url' => admin_url('admin-ajax.php'),
             'template_nonce' => $template_nonce,
-            'rtmkit_nonce' => wp_create_nonce('rtmkit_nonce')
+            'rtmkit_nonce' => wp_create_nonce('rtmkit_nonce'),
+            // URL-nya dibentuk di PHP karena memuat kode situs dan versi plugin.
+            'upgrade_url' => \RTMKit\Modules\Telemetry\UpgradeLink::urls([
+                'go_pro'             => ['editor.go_pro', \RTMKit\Modules\Telemetry\UpgradeLink::TO_MAIN],
+                'templatekit_locked' => ['templatekit.locked'],
+            ])
         ]);
     }
 

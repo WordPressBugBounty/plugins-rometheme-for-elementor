@@ -5,6 +5,6 @@ const upgradeToProLink = document.querySelector(
 if (upgradeToProLink) {
   upgradeToProLink.onclick = (e) => {
     e.preventDefault();
-    window.open("https://rometheme.net/plugins/rtmkit/pricing/", "_blank");
+    window.open(rtmkitPanel.upgrade_url, "_blank");
   };
 }

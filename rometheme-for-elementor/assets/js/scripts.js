@@ -1439,7 +1439,7 @@ function renderTemplates(templates) {
           content.innerHTML = json.data;
           // console.log(json.data);
           paginationTemplates();
-          if (templates === "templatekits" || templates === "themeforest") {
+          if (templates === "templatekits" || templates === "templatekitpro" || templates === "all") {
             downloadTemplate();
             viewTemplateDetails();
           } else if (templates === "installed") {

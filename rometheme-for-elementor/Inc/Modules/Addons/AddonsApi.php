@@ -2,8 +2,6 @@
 
 namespace RTMKit\Modules\Addons;
 
-use RTMKit\Modules\Helper\APIHandlerV2 as APIHandler;
-
 class AddonsApi
 {
     private static $instance;
@@ -271,16 +269,18 @@ class AddonsApi
         }
 
         check_ajax_referer('rtmkit_nonce', 'nonce');
-        $addons = APIHandler::instance()->remote('addons/list', [], null, false, true);
 
-        error_log('Sync Addons Response: ' . print_r($addons, true));
+        $addons = AddonsModule::instance()->fetch_addons_list();
+
+        if (null === $addons) {
+            wp_send_json_error([
+                'message' => __('Could not reach the RTMHub addons service. Please check your connection and try again.', 'rtmkit'),
+            ], 502);
+        }
 
         delete_transient('rtmkit_addons_list');
-        $transient = set_transient('rtmkit_addons_list', $addons, DAY_IN_SECONDS);
+        set_transient('rtmkit_addons_list', $addons, DAY_IN_SECONDS);
 
-        if ($transient) {
-            wp_send_json_success($addons);
-        }
-        wp_send_json_error();
+        wp_send_json_success($addons);
     }
 }

@@ -15,13 +15,12 @@ window.addEventListener("DOMContentLoaded", function () {
     }
     return response;
   };
+
   let popup = null;
   window.addEventListener("message", (event) => {
     if (event.origin !== window.location.origin) {
       return;
     }
-
-    
 
     if (event.data?.type === "rtmhub-connected" || event.data?.type === 'rtmhub-connect-failed') {
       if (popup && !popup.closed) {
@@ -34,10 +33,10 @@ window.addEventListener("DOMContentLoaded", function () {
   function account() {
     const connectBtn = document.getElementById("connect-account");
     const syncBtn = document.getElementById("sync-account");
+    const disconnectBtn = document.getElementById("disconnect-account");
     if (connectBtn) {
       connectBtn.onclick = (e) => {
         e.preventDefault();
-
         popup = window.open(
           connectBtn.href,
           "rtmhub_connect",
@@ -45,6 +44,7 @@ window.addEventListener("DOMContentLoaded", function () {
         );
       };
     }
+
     if (syncBtn) {
       syncBtn.onclick = (e) => {
         e.preventDefault();
@@ -52,9 +52,7 @@ window.addEventListener("DOMContentLoaded", function () {
         const url = window.rtmkit_ajax.ajax_url;
 
         syncBtn.querySelector("span").innerHTML = "Synchronizing";
-
         syncBtn.classList.add("loading");
-
         syncBtn.disabled = true;
 
         fetch(url, {
@@ -72,5 +70,50 @@ window.addEventListener("DOMContentLoaded", function () {
           });
       };
     }
+
+    if (disconnectBtn) {
+      disconnectBtn.onclick = (e) => {
+        e.preventDefault();
+
+        if (
+          !confirm(
+            "Disconnect this site from your RTMHub account? Your plan features and addons will no longer be available on this site until you connect again.",
+          )
+        ) {
+          return;
+        }
+
+        const originalHtml = disconnectBtn.innerHTML;
+
+        disconnectBtn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Disconnecting...</span>`;
+
+        disconnectBtn.disabled = true;
+
+        fetch(window.rtmkit_ajax.ajax_url, {
+          method: "POST",
+          body: new URLSearchParams({
+            action: "disconnect_account",
+            nonce: window.rtmkit_ajax.nonce,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.success) {
+              window.location.reload();
+              return;
+            }
+
+            throw new Error(res.data?.message);
+          })
+          .catch((err) => {
+            alert(err.message || "Failed to disconnect account. Please try again.");
+
+            disconnectBtn.innerHTML = originalHtml;
+            disconnectBtn.disabled = false;
+          });
+      };
+    }
   }
 });
+

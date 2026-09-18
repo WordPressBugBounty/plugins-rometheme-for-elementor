@@ -276,6 +276,11 @@ class TemplatekitAPI
         $extract = $this->template_extract_secure($tempFile, $id, true);
 
         if ($extract) {
+            // Dihitung di sini, bukan di download_template(), supaya impor yang
+            // memakai template_extract() langsung juga ikut tercatat — dan hanya
+            // setelah ekstraksinya benar-benar berhasil.
+            \RTMKit\Modules\Telemetry\TelemetryModule::record_kit_download($id);
+
             // @unlink($tempFile);
             wp_delete_file($tempFile);
             if ($return) {

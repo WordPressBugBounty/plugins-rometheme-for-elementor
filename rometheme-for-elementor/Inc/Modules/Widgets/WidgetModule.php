@@ -160,7 +160,12 @@ class WidgetModule
             wp_enqueue_script('rtmprojs', RTM_KIT_URL . 'assets/js/rtmwp.js', ['jquery' , 'wp-i18n'], RTM_KIT_VERSION, true);
             wp_localize_script('rtmprojs', 'rtmpro', [
                 'is_pro' =>  \RTMKit\Core\Plugin::instance()->pro_is_active() ? 'true' : 'false',
-                'widgets' => $list_widgets_pro
+                'widgets' => $list_widgets_pro,
+                // URL-nya dibentuk di PHP karena memuat kode situs dan versi plugin.
+                'upgrade_url' => \RTMKit\Modules\Telemetry\UpgradeLink::urls([
+                    'category' => ['editor.pro_category'],
+                    'dialog'   => ['editor.pro_widget_dialog'],
+                ])
             ]);
         }
     }

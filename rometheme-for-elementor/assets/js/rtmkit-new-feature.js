@@ -154,7 +154,7 @@
     var html = "";
     items.forEach(function (item) {
       var buttonLink = item.isUpsale
-        ? "https://rometheme.net/plugins/rtmkit/pricing/"
+        ? rtmkit_ajax.upgrade_url
         : item.link;
       var buttonClass = item.isUpsale ? "upgrade-btn" : "read-more";
       var buttonText = item.isUpsale ? "Upgrade Now" : "Learn More";

@@ -1,0 +1,195 @@
+/**
+ * Modal quick feedback di halaman Plugins.
+ *
+ * Berdiri sendiri: halaman ini tidak memuat Bootstrap maupun stylesheet panel
+ * RTMKit, dan temanya terang, bukan gelap seperti panel. Warnanya mengikuti
+ * wp-admin supaya modal ini terasa bagian dari WordPress, bukan tempelan.
+ */
+
+.rtmkit-deact {
+  position: fixed;
+  inset: 0;
+  z-index: 160000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* display:flex di atas mengalahkan atribut hidden bawaan browser. */
+.rtmkit-deact[hidden] {
+  display: none;
+}
+
+body.rtmkit-deact-locked {
+  overflow: hidden;
+}
+
+.rtmkit-deact__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.rtmkit-deact__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Kepala ──────────────────────────────────────────────────────────── */
+
+.rtmkit-deact__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #f6f7f7;
+  border-bottom: 1px solid #dcdcde;
+  border-radius: 4px 4px 0 0;
+}
+
+.rtmkit-deact__eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #787c82;
+}
+
+.rtmkit-deact__close {
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: none;
+  color: #787c82;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rtmkit-deact__close:hover,
+.rtmkit-deact__close:focus {
+  color: #1d2327;
+}
+
+/* ── Badan ───────────────────────────────────────────────────────────── */
+
+.rtmkit-deact__body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+}
+
+.rtmkit-deact__title {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1d2327;
+}
+
+.rtmkit-deact__reasons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rtmkit-deact__reasons li {
+  margin: 0;
+}
+
+.rtmkit-deact__reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 8px;
+  margin-inline-start: -8px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2c3338;
+  cursor: pointer;
+}
+
+.rtmkit-deact__reason:hover {
+  background: #f6f7f7;
+}
+
+.rtmkit-deact__reason input {
+  margin: 2px 0 0;
+  flex-shrink: 0;
+}
+
+.rtmkit-deact__detail {
+  margin: 10px 0 0;
+}
+
+.rtmkit-deact__input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #8c8f94;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.rtmkit-deact__input:focus {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 1px #2271b1;
+  outline: 2px solid transparent;
+}
+
+.rtmkit-deact__note {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #f0f0f1;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #787c82;
+}
+
+/* ── Kaki ────────────────────────────────────────────────────────────── */
+
+.rtmkit-deact__foot {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 24px;
+  background: #f6f7f7;
+  border-top: 1px solid #dcdcde;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Saat terkirim, kursor menandai bahwa modalnya sedang menunggu. */
+.rtmkit-deact.is-busy .rtmkit-deact__dialog {
+  cursor: progress;
+}
+
+.rtmkit-deact.is-busy .rtmkit-deact__body {
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .rtmkit-deact__head,
+  .rtmkit-deact__body,
+  .rtmkit-deact__foot {
+    padding-inline: 16px;
+  }
+
+  .rtmkit-deact__foot {
+    justify-content: stretch;
+  }
+
+  .rtmkit-deact__foot .button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}

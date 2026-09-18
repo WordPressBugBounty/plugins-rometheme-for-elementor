@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           2.1.8
+ * Version:           2.1.9
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License: 		   GPLv2 or later
@@ -17,7 +17,7 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly 
 }
-defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.1.8');
+defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.1.9');
 defined('RTM_KIT_DIR') || define('RTM_KIT_DIR', plugin_dir_path(__FILE__));
 defined('RTM_KIT_URL') || define('RTM_KIT_URL', plugin_dir_url(__FILE__));
 defined('RTM_KIT_FILE') || define('RTM_KIT_FILE', __FILE__);
@@ -44,7 +44,27 @@ add_action('plugins_loaded', function () {
 require_once RTM_KIT_DIR . 'Inc/Core/Plugin.php';
 register_activation_hook(RTM_KIT_FILE, function () {
     \RTMKit\Core\Plugin::instance()->rtm_handle_install_upgrade();
+    \RTMKit\Modules\Telemetry\TelemetryModule::on_activate();
 });
+
+// WP-Cron tidak akan memanggil plugin ini lagi setelah dinonaktifkan, jadi
+// event terakhirnya harus dikirim di request yang sama.
+register_deactivation_hook(RTM_KIT_FILE, function () {
+    \RTMKit\Modules\Telemetry\TelemetryModule::on_deactivate();
+});
+
+if (!function_exists('rtmkit_upgrade_url')) {
+    /**
+     * URL tombol "Upgrade to Pro", lewat pencatat klik di RTMHub.
+     *
+     * @param string $placement Nama tombol, mis. `templatekit.import_modal`.
+     * @param string $to        Halaman tujuan: `rtmkit`, `store`, atau `main`.
+     */
+    function rtmkit_upgrade_url(string $placement, string $to = 'rtmkit'): string
+    {
+        return \RTMKit\Modules\Telemetry\UpgradeLink::url($placement, $to);
+    }
+}
 // \RTMKit\Core\Plugin::instance()->before_plugin_load();
 
 

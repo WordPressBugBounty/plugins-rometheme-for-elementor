@@ -119,7 +119,7 @@ if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
                 Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+
                 icons, extensions, and priority support. Only in RTMkit Pro.
             </span>
-            <a href="https://rometheme.net/plugins/rtmkit/pricing/" target="_blank"
+            <a href="<?php echo esc_url(rtmkit_upgrade_url('themeforest.card')); ?>" target="_blank"
                 class="btn btn-accent fw-bold align-items-center gap-2">
                 <svg width="30" height="30" viewBox="0 0 24 29" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path

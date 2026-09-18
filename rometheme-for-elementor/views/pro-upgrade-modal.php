@@ -10,8 +10,13 @@ if (! function_exists('rtmkit_render_pro_upgrade_modal')) {
         $heading = 'Unlock All Features with<br>the Pro Plan',
         $description = 'Upgrade and get access to every feature.',
         $cta_text = 'Upgrade to Pro',
-        $cta_url = 'https://store.rometheme.net/pricing/'
+        $cta_url = ''
     ) {
+        // Default-nya dihitung di sini, bukan di daftar parameter: URL-nya
+        // memuat kode situs, jadi bukan nilai konstan.
+        if ('' === $cta_url) {
+            $cta_url = rtmkit_upgrade_url('pro_modal.cta', 'store');
+        }
         ?>
         <div class="modal fade moduleLockedModal" id="<?php echo esc_attr($id); ?>" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 450px;">

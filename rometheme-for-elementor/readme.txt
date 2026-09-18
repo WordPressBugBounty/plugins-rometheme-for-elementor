@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor widgets, elementor templates, eleme
 Requires at least: 6.8
 Tested up to: 7.0.4
 Requires PHP: 8.3
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,7 +31,7 @@ Unlike relying on multiple WordPress plugins, RTMKit provides an all-in-one solu
 <iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Useful Links
-[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
+[Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://store.rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
 Elementor Website Builder is required for this plugin.
 
@@ -153,6 +153,26 @@ Watch our video tutorials and walkthroughs on YouTube and learn how to build stu
 ### ⭐ Found RTMKit Helpful?
 We’d love to hear your thoughts! Leave us a review on WordPress.org and help others discover RTMKit Addons.
 
+### 🔒 Privacy and Usage Data
+RTMKit can send usage data to RTMHub, a service operated by Rometheme (https://rometheme.net/), so we know which widgets, template kits, and add-ons are worth improving. **It is off until you turn it on.** Nothing leaves your site before you give consent, and that is true of every site — whether or not it is connected to an RTMHub account.
+
+RTMKit asks once, on the RTMKit → Widgets page. The full details sit behind a "What exactly is collected?" panel next to the consent switch, so you can read them before you decide. You can change or withdraw your consent at any time on the RTMKit → Account page, under Usage Analytics. Withdrawing consent stops the reports immediately and discards anything still queued. It never disconnects your account, and it never affects your license, add-ons, updates, or any RTMKit feature.
+
+**While usage analytics is on, RTMKit sends a usage report a few minutes after your published pages change, and at least once a week:**
+
+* Which RTMKit widgets your published pages use, and how many times — names and counts only.
+* Your WordPress version, Elementor version, and RTMKit version, and whether a Pro license is active.
+
+**If the site is also connected to an RTMHub account** (RTMKit → Account), the report additionally carries your site address so it can be matched to your account, and RTMKit also reports, a few minutes after they happen, the template kits you download through the plugin, when an RTM add-on is installed or removed, and when RTMKit or the RTM Templates add-on is activated, deactivated, or uninstalled.
+
+**If the site is not connected**, the report carries a random identifier generated on your site instead. Your site address is not sent, and the report is not tied to any account.
+
+**Never sent, in any case:** page or post content, media, form submissions, order or payment information, user accounts, email addresses, passwords, or anything about your visitors.
+
+Links in the plugin that point to our pricing pages go through https://api.rometheme.net/go/upgrade, which counts the click and forwards you on. If the site is connected, that link carries the identifier of your RTMHub site; this happens only at the moment you click such a link, and it is not affected by the usage analytics setting. Usage data is kept for 12 months.
+
+Privacy policy: https://rometheme.net/privacy-policy/
+
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the \'Plugins\' screen in WordPress
@@ -199,6 +219,10 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.1.9 - September 17, 2026
+- New : Telemetry implementation
+- Minor Fixes
+
 Version 2.1.8 - September 9, 2026
 - HOTFIX : Widget Update Error
 - Misc Updates

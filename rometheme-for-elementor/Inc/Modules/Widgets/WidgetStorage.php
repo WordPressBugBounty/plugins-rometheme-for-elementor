@@ -62,15 +62,18 @@ class WidgetStorage
 
         foreach ($active_widgets as $key => $widget) {
 
-            if (isset($widget['type']) && $widget['type'] === 'pro') {
-                continue;
-            }
-
-            if (isset($widget['type']) && $widget['type'] === 'form') {
-                continue;
-            }
-
             if (!isset($widget_data[$key])) {
+                continue;
+            }
+
+            // Tipe widget harus dibaca dari metadata (rtmwp.json), bukan dari
+            // $widget yang berasal dari option database, struktur option hanya
+            // menyimpan ['status' => bool] sehingga key 'type' tidak pernah ada.
+            if (isset($widget_data[$key]['type']) && $widget_data[$key]['type'] === 'pro') {
+                continue;
+            }
+
+            if (isset($widget_data[$key]['type']) && $widget_data[$key]['type'] === 'form') {
                 continue;
             }
 
