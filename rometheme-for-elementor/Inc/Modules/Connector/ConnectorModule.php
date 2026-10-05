@@ -192,10 +192,18 @@ class ConnectorModule
         return $decoded;
     }
 
-    private function get_current_domain(): string
+    public function get_current_domain(): string
     {
-        $host = wp_parse_url(home_url(), PHP_URL_HOST);
-        return strtolower((string) $host);
+        $parts = wp_parse_url(home_url());
+        $host = strtolower($parts['host'] ?? '');
+
+        if ($host === '') {
+            return '';
+        }
+
+        $path = trim($parts['path'] ?? '', '/');
+
+        return $path === '' ? $host : $host . '/' . $path;
     }
 
     public function connect_sync()
@@ -307,5 +315,4 @@ class ConnectorModule
         wp_redirect($login_url);
         exit;
     }
-
 }

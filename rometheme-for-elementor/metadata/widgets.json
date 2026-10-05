@@ -373,7 +373,7 @@
     "docsURL": "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-product-grid-widget/",
     "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/woo-product-grid/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L",
-    "is_new": true,
+    "is_new": false,
     "plugin_required": "woocommerce"
   },
 
@@ -387,7 +387,7 @@
     "docsURL": "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-client-grid-widget/",
     "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/client-grid/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L",
-    "is_new": true
+    "is_new": false
   },
   "backtotop": {
     "name": "Back To Top",
@@ -399,7 +399,7 @@
     "docsURL": "https://support.rometheme.net/docs/romethemekit/widgets/how-to-use-ezd_ampersand-customize-back-to-top-widget/",
     "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/back-to-top/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L",
-    "is_new": true
+    "is_new": false
   },
   "social_icon": {
     "name": "Social Icons",
@@ -412,7 +412,7 @@
     "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
     "notes": "link official cooming soon",
     "videoURL": "https://youtu.be/Y5FXKbMooUc?si=OvscGB_qz-joIUKC",
-    "is_new": true
+    "is_new": false
   },
   "video_button": {
     "name": "Video Button",
@@ -425,6 +425,6 @@
     "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
     "videoURL": "https://youtu.be/eBv7EnkF_Bk?si=ExMfDt6jhLU2VV1z",
     "notes": "link official cooming soon",
-    "is_new": true
+    "is_new": false
   }
 }

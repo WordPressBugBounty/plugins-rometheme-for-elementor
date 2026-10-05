@@ -167,19 +167,21 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                             <div class="d-flex flex-column gap-2">
                                                 <h5 class="m-0 d-flex align-items-center lh-1 gap-2 position-relative">
                                                     <?php echo esc_attr($widget['name']) ?>
-                                                    <?php if ($widget['type'] == 'pro'): ?>
-                                                        <span class="badge pro position-absolute" style="left: 110%;">
-                                                            <i class="fa-solid fa-crown"></i>
-                                                            Pro</span>
-                                                    <?php elseif (isset($widget['is_new']) and $widget['is_new']) : ?>
-                                                        <span class="badge new position-absolute" style="left: 110%;">
-                                                            <i class="fa-solid fa-gift"></i>
-                                                            New</span>
-                                                    <?php elseif (isset($widget['is_popular']) and $widget['is_popular']) : ?>
-                                                        <span class="badge popular position-absolute" style="left: 110%;">
-                                                            <i class="fa-solid fa-star"></i>
-                                                            Popular</span>
-                                                    <?php endif; ?>
+                                                    <div class="position-absolute d-flex gap-2" style="left: 110%;">
+                                                        <?php if (isset($widget['type']) && $widget['type'] === 'pro'): ?>
+                                                            <span class="badge pro">
+                                                                <i class="fa-solid fa-crown"></i>
+                                                                Pro</span>
+                                                        <?php endif; if (isset($widget['is_new']) and $widget['is_new']) : ?>
+                                                            <span class="badge new">
+                                                                <i class="fa-solid fa-gift"></i>
+                                                                New</span>
+                                                        <?php endif; if (isset($widget['is_popular']) and $widget['is_popular']) : ?>
+                                                            <span class="badge popular">
+                                                                <i class="fa-solid fa-star"></i>
+                                                                Popular</span>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </h5>
                                                 <div class="d-flex gap-2">
                                                     <a href="<?php echo esc_url($widget['docsURL']) ?>" target="_blank" class="link">Docs</a>

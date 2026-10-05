@@ -184,10 +184,7 @@
     "scripts": {
       "css": "image_hotspot.css",
       "js": "image_hotspot.js",
-      "lib": [
-        "popper.min.js",
-        "tippy-bundle.umd.min.js"
-      ]
+      "lib": ["popper.min.js", "tippy-bundle.umd.min.js"]
     }
   },
   "client_carousel": {
@@ -220,7 +217,7 @@
     "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/team-carousel/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L",
     "notes": "link official cooming soon",
-    "is_new": true,
+    "is_new": false,
     "scripts": {
       "css": "team_carousel.css",
       "js": "team_carousel.js"
@@ -238,7 +235,7 @@
     "previewURL": "https://rometheme.net/plugins/rtmkit/widgets/woo-product-carousel/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L",
     "notes": "link official cooming soon",
-    "is_new": true,
+    "is_new": false,
     "plugin_required": "woocommerce",
     "scripts": {
       "css": "woo_product_carousel.css",
@@ -559,5 +556,114 @@
     "docsURL": "https://support.rometheme.net/docs/romethemekit-pro-for-elementor/them-builder-guidelines/how-to-create-single-post-builder/",
     "previewURL": "https://rometheme.net/plugins/rtmkit/elements/",
     "videoURL": "https://www.youtube.com/playlist?list=PLiDcdRZHQZ651l9VnhbNG0lSvK-Nsah7L"
+  },
+  "lottie": {
+    "name": "Lottie",
+    "widget_name": "rkit-lottie",
+    "icon": "rtmicon rtmicon-lottie-animation",
+    "class_name": "Rkit_Lottie",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "plugin_required": "rtm-elements",
+    "notes": "link official cooming soon",
+    "is_new": true,
+    "scripts": {
+      "css": "lottie.css",
+      "js": "lottie.js"
+    }
+  },
+  "media_hover": {
+    "name": "Media on Hover",
+    "widget_name": "rkit-media-hover",
+    "icon": "eicon-video-camera",
+    "class_name": "Rkit_Media_Hover",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "link official cooming soon",
+    "is_new": true,
+    "scripts": {
+      "css": "media_hover.css",
+      "js": "media_hover.js"
+    }
+  },
+  "advanced_hero_slider": {
+    "name": "Advanced Hero Slider",
+    "widget_name": "rkit-hero-slider",
+    "icon": "rtmicon rtmicon-advanced-hero-slider",
+    "class_name": "Rkit_Advanced_Hero_Slider",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "7 hero slider styles in one widget",
+    "is_new": true,
+    "scripts": {
+      "css": "advanced_hero_slider.css",
+      "js": "advanced_hero_slider.js"
+    }
+  },
+  "audio_player": {
+    "name": "Audio Player",
+    "widget_name": "rkit-audio-player",
+    "icon": "rtmicon rtmicon-audio-box",
+    "class_name": "Rkit_Audio_Player",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "Disc, minimal, playlist, podcast and episode card players",
+    "is_new": true,
+    "scripts": {
+      "css": "audio_player.css",
+      "js": "audio_player.js"
+    }
+  },
+  "advanced_button": {
+    "name": "Advanced Button",
+    "widget_name": "rkit_advanced_button",
+    "icon": "rtmicon rtmicon-advanced-button",
+    "class_name": "Rkit_Advanced_Button",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "9 hover button styles: arrow box, aura, circle expand, magnet, jet, premium glow, shimmer, staggered and text scroll",
+    "is_new": true,
+    "scripts": {
+      "css": "advanced_button.css",
+      "js": "advanced_button.js"
+    }
+  },
+  "advanced_timeline": {
+    "name": "Advanced Timeline",
+    "widget_name": "rkit-advanced-timeline",
+    "icon": "rtmicon rtmicon-timeline",
+    "class_name": "Rkit_Advanced_Timeline",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "Scroll-driven timeline: horizontal, vertical (left, right, alternating, sticky counter) and graphic line",
+    "is_new": true,
+    "scripts": {
+      "css": "advanced_timeline.css",
+      "js": "advanced_timeline.js"
+    }
   }
 }

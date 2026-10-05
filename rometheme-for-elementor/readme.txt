@@ -4,7 +4,7 @@ Tags: elementor, elementor addons, elementor widgets, elementor templates, eleme
 Requires at least: 6.8
 Tested up to: 7.0.4
 Requires PHP: 8.3
-Stable tag: 2.1.9
+Stable tag: 2.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -219,6 +219,11 @@ Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on ad
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
 
 == Changelog ==
+Version 2.2.0 - October 05, 2026
+- Update : Multisite support activation for RTMHub
+- RTMKit Form Pro Support
+- Minor Fixes
+
 Version 2.1.9 - September 17, 2026
 - New : Telemetry implementation
 - Minor Fixes

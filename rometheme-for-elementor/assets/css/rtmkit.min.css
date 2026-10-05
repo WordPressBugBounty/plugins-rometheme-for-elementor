@@ -8,7 +8,7 @@
   --primary-color: #040910;
   --secondary-color: #0d131b;
   --accent-color: #00cea6;
-  --border-color: #3c4146;
+  --border-color: #171D26;
   --text-muted: #888888;
   --text-color: #b0b0b0;
   --hover-color: #2b2e32;
@@ -548,7 +548,7 @@ html {
 #rtmkit-root .rtmkit-app .card {
   max-width: unset;
   background-color: var(--secondary-color);
-  border: 1px solid rgba(0, 0, 0, 0);
+  border: 1px solid var(--border-color);
   border-radius: 24px;
   margin: 0;
   padding: 1.75rem 1.5rem;
@@ -573,7 +573,7 @@ html {
 }
 #rtmkit-root .rtmkit-app .card.widgets:hover,
 #rtmkit-root .rtmkit-app .card .modules:hover {
-  border-color: var(--border-color-hover);
+  border-color: #25272b;
 }
 #rtmkit-root .rtmkit-app .card.widgets:hover .widget-icon,
 #rtmkit-root .rtmkit-app .card.widgets:hover .module-icon,

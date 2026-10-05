@@ -102,7 +102,7 @@ class TelemetryState
 
     public function domain(): string
     {
-        return strtolower((string) wp_parse_url(home_url(), PHP_URL_HOST));
+        return strtolower((string) wp_parse_url(home_url()));
     }
 
     /**

@@ -176,10 +176,10 @@ class WidgetStorage
         if (\RTMKit\Core\Plugin::instance()->has_rtmform()) {
             $formWidgetOption = get_option('rform-widget-options');
             if ($formWidgetOption == false) {
-                update_option('rform-widget-options', $this->get_widget_by_type('form'));
+                update_option('rform-widget-options', $this->get_widget_by_category('form'));
             } else {
-                if (count($formWidgetOption) !== count($this->get_widget_by_type('form'))) {
-                    update_option('rform-widget-options', $this->get_widget_by_type('form'));
+                if (count($formWidgetOption) !== count($this->get_widget_by_category('form'))) {
+                    update_option('rform-widget-options', $this->get_widget_by_category('form'));
                 }
             }
         }
@@ -194,15 +194,19 @@ class WidgetStorage
         $widgetsFree = file_exists($widgetsFreeFileJson) ? json_decode(file_get_contents($widgetsFreeFileJson), true) : [];
         $widgetsPro = file_exists($widgetsProFileJson) ? json_decode(file_get_contents($widgetsProFileJson), true) : [];
 
+        $allWidgetFree =  apply_filters('rtmkit_widget_data_free', $widgetsFree);
+        $allWidgetPro = apply_filters('rtmkit_widget_data_pro', $widgetsPro);
+        $allWidgetForm = apply_filters('rtmkit_widget_data_form', $formWidgets);
+
         if ($type === 'free') {
-            return apply_filters('rtmkit_widget_data_free', $widgetsFree);
+            return $allWidgetFree;
         } elseif ($type === 'pro') {
-            return apply_filters('rtmkit_widget_data_pro', $widgetsPro);
+            return $allWidgetPro;
         } elseif ($type === 'form') {
-            return apply_filters('rtmkit_widget_data_form', $formWidgets);
+            return $allWidgetForm;
         }
 
-        $all_widgets = array_merge($widgetsFree, $widgetsPro ?? [], $formWidgets ?? []);
+        $all_widgets = array_merge($allWidgetFree, $allWidgetPro ?? [], $allWidgetForm ?? []);
 
         return apply_filters('rtmkit_widget_data', $all_widgets, $type);
     }

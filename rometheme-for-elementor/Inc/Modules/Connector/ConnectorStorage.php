@@ -47,7 +47,7 @@ class ConnectorStorage
 
     public function sync()
     {
-        $host = wp_parse_url(home_url(), PHP_URL_HOST);
+        $host = self::siteDomain();
         $domain = strtolower((string) $host);
         $data = ApiHandler::instance()->remote('connector/v1/licenses/sync?domain=' . $domain);
         if (is_wp_error($data)) {
@@ -83,5 +83,19 @@ class ConnectorStorage
         }
 
         delete_transient('rtmkit_connector_last_sync');
+    }
+
+    public static function siteDomain(): string
+    {
+        $parts = wp_parse_url(home_url());
+        $host = strtolower($parts['host'] ?? '');
+
+        if ($host === '') {
+            return '';
+        }
+
+        $path = trim($parts['path'] ?? '', '/');
+
+        return $path === '' ? $host : $host . '/' . $path;
     }
 }

@@ -61,7 +61,7 @@ if ('granted' === $rtmkit_consent && is_array($rtmkit_payload) && ! empty($rtmki
                 'Authorization' => 'Bearer ' . $rtmkit_token,
             ],
             'body'        => wp_json_encode([
-                'domain'            => strtolower((string) wp_parse_url(home_url(), PHP_URL_HOST)),
+                'domain'            => strtolower((string) wp_parse_url(home_url())),
                 'wp_version'        => get_bloginfo('version'),
                 'elementor_version' => defined('ELEMENTOR_VERSION') ? ELEMENTOR_VERSION : null,
                 'events'            => array_slice($rtmkit_queue, -50),
