@@ -76,13 +76,26 @@ class PluginApi
         }
 
         $menu = \RTMKit\Modules\Menu::instance()->get_menu_by_path($path);
+
+        // Menu addon yang terkunci (lihat 'locked' di sidebar): dibuka lewat URL
+        // langsung, tampilkan layar terkunci alih-alih halaman addon.
+        if (is_array($menu) && !empty($menu['locked'])) {
+            $locked_menu = $menu;
+            ob_start();
+            require RTM_KIT_DIR . 'views/locked-feature.php';
+            wp_send_json_success(ob_get_clean());
+            wp_die();
+        }
+
         if (!is_array($menu) || empty($menu['render_view'])) {
             wp_send_json_error('View file not found for the specified path.');
             wp_die();
         }
 
-        $file = $menu['render_view'];
-        if (!file_exists($file)) {
+        $render_view = $menu['render_view'];
+        $is_callback = is_callable($render_view);
+
+        if (!$is_callback && (!is_string($render_view) || !is_file($render_view))) {
             wp_send_json_error('View file not found for the specified path.');
             wp_die();
         }
@@ -96,17 +109,19 @@ class PluginApi
         //     }
         // }
 
+        // Item menu yang sedang dibuka, untuk view yang dipakai beberapa menu
+        // sekaligus (mis. themebuilder.php dengan 'themebuilder_scope').
+        $rtmkit_menu = $menu;
         ob_start();
-        require $file;
-        $content = ob_get_clean();
-
-        if ($cache_path) {
-            $cache_dir = dirname($cache_path);
-            if (!is_dir($cache_dir)) {
-                wp_mkdir_p($cache_dir);
+        if ($is_callback) {
+            $rendered_content = call_user_func($render_view);
+            if (is_string($rendered_content)) {
+                echo $rendered_content;
             }
-            file_put_contents($cache_path, $content, LOCK_EX);
+        } else {
+            require $render_view;
         }
+        $content = ob_get_clean();
 
         wp_send_json_success($content);
     }

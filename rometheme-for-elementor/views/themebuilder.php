@@ -62,15 +62,77 @@ $button_placeholder = [
     ],
 ];
 
+/**
+ * Filter daftar tab Themebuilder yang tampil terkunci (ikon gembok + modal
+ * upgrade) selama modulnya belum aktif.
+ *
+ * Memungkinkan addon menampilkan tab-nya dalam keadaan terkunci untuk
+ * pengguna yang belum berlisensi, alih-alih menyembunyikannya.
+ *
+ * @param array $button_placeholder [key => ['name' => string, 'type' => 'pro']]
+ */
+$button_placeholder = apply_filters('rtmkit_themebuilder_locked', $button_placeholder);
+
+/*
+ * Halaman builder: item menu (filter rtmkit_menus) dengan 'themebuilder_scope'
+ * merender view ini untuk sekumpulan tipe saja, mis. Cart Page Builder di grup
+ * "Builders". Tipe-tipe itu tidak lagi tampil sebagai tab di Theme Builder utama.
+ * $rtmkit_menu disediakan PluginApi::get_content().
+ */
+$builder_scope = isset($rtmkit_menu['themebuilder_scope']) ? array_values((array) $rtmkit_menu['themebuilder_scope']) : [];
+$scoped_types = [];
+
+foreach (\RTMKit\Modules\Menu::instance()->get_menus() as $menu_group) {
+    foreach ($menu_group as $menu_item) {
+        if (!empty($menu_item['themebuilder_scope'])) {
+            $scoped_types = array_merge($scoped_types, (array) $menu_item['themebuilder_scope']);
+        }
+    }
+}
+
+if ($builder_scope) {
+    // Urutan tab mengikuti urutan scope.
+    $active_themebuilder_key = array_intersect_key(array_replace(array_flip($builder_scope), $active_themebuilder_key), $active_themebuilder_key, array_flip($builder_scope));
+    $button_placeholder = array_intersect_key($button_placeholder, array_flip($builder_scope));
+
+    if (!isset($active_themebuilder_key[$active_tabs])) {
+        $active_tabs = (string) array_key_first($active_themebuilder_key);
+    }
+} else {
+    $active_themebuilder_key = array_diff_key($active_themebuilder_key, array_flip($scoped_types));
+    $button_placeholder = array_diff_key($button_placeholder, array_flip($scoped_types));
+}
+
+$page_title = $builder_scope ? ($rtmkit_menu['title'] ?? __('Theme Builder', 'rometheme-for-elementor')) : __('Theme Builder', 'rometheme-for-elementor');
+
+/**
+ * Field tambahan per tipe (filter rtmkit_themebuilder_fields) di modal Add / Edit.
+ * Hanya tampil saat Type yang dipilih termasuk 'types' field tersebut (diatur scripts.js).
+ */
+$render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
+    foreach ($themeBuilderStorage->get_extra_fields() as $key => $field) {
+        $input_id = $id_prefix . '-extra-' . $key;
+        ?>
+        <div class="mb-3 rtm-tb-extra-field" data-types="<?php echo esc_attr(implode(',', (array) $field['types'])); ?>" hidden>
+            <label for="<?php echo esc_attr($input_id); ?>" class="form-label"><?php echo esc_html($field['label'] ?? $key); ?></label>
+            <input type="<?php echo ($field['type'] ?? 'text') === 'url' ? 'url' : 'text'; ?>" name="meta[<?php echo esc_attr($key); ?>]" id="<?php echo esc_attr($input_id); ?>" class="form-control" placeholder="<?php echo esc_attr($field['placeholder'] ?? ''); ?>">
+            <?php if (!empty($field['description'])) : ?>
+                <p class="m-0 mt-1 fst-italic text-secondary"><small><?php echo esc_html($field['description']); ?></small></p>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
+};
+
 ?>
 
-<div class="px-4 mb-5 scroll-behavior-smooth">
+<div class="px-4 mb-5 scroll-behavior-smooth"<?php echo $builder_scope ? ' data-themebuilder-scope="' . esc_attr(implode(',', array_keys($active_themebuilder_key))) . '"' : ''; ?>>
     <div class="d-flex flex-column gap-3">
         <div class="d-flex justify-content-between align-items-start">
             <div class="d-flex flex-column gap-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex flex-column">
-                        <h1>Theme Builder</h1>
+                        <h1><?php echo esc_html($page_title); ?></h1>
                     </div>
                 </div>
                 <div class="d-flex align-items-center gap-3">
@@ -103,7 +165,12 @@ $button_placeholder = [
         <div class="divider"></div>
         <div class="position-sticky d-flex flex-column gap-3"
             style="top: 0rem;z-index: 1;background: var(--primary-color);">
-            <div class="d-flex bg-secondary sticky-top justify-content-between border rounded-4 py-2 px-2">
+            <?php
+            // Halaman builder dengan satu tipe tidak butuh bar tab; markup tetap ada
+            // karena JS Theme Builder memakainya untuk menandai tab aktif.
+            $hide_tabs = $builder_scope && count($active_themebuilder_key) + count($button_placeholder) <= 1;
+            ?>
+            <div class="<?php echo $hide_tabs ? 'd-none' : 'd-flex'; ?> bg-secondary sticky-top justify-content-between border rounded-4 py-2 px-2">
                 <div class="themebuilder tabs">
                     <nav class="tab-nav gap-2">
                         <?php foreach ($active_themebuilder_key as $key => $item):
@@ -189,6 +256,7 @@ $button_placeholder = [
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                            <?php $render_extra_fields('add'); ?>
                             <div class="d-flex flex-column gap-3 option">
                                 <div class="d-flex flex-row align-items-center justify-content-between gap-3">
                                     <label class="fw-semibold form-label">Status
@@ -278,31 +346,22 @@ $button_placeholder = [
                             <div class="mb-3">
                                 <label for="inputType" class="form-label">Type</label>
                                 <select name="type" class="form-select select-type" id="inputType">
-                                    <option value="header"><?php esc_html_e('Header', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <option value="footer"><?php esc_html_e('Footer', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <option value="error_404"><?php esc_html_e('404 Page', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <option value="single_post">
-                                        <?php esc_html_e('Single Post', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <option value="archive_post">
-                                        <?php esc_html_e('Archive Post', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <option value="search">
-                                        <?php esc_html_e('Search Result', 'rometheme-for-elementor') ?>
-                                    </option>
-                                    <?php if ($has_woocommerce && $isLicenseActive): ?>
-                                        <option value="archive_product">
-                                            <?php esc_html_e('Archive Product', 'rometheme-for-elementor') ?>
+                                    <?php
+                                    // Semua tipe terdaftar (filter rtmkit_themebuilder), bukan daftar tetap:
+                                    // edit_themebuilder menyimpan ulang tipe dari select ini, jadi tipe
+                                    // yang tidak tercantum akan berubah menjadi tipe lain saat disimpan.
+                                    foreach ($rtm_themebuilder as $themebuilder_type):
+                                        if (empty($themebuilder_type['name'])) {
+                                            continue;
+                                        }
+                                        ?>
+                                        <option value="<?php echo esc_attr($themebuilder_type['name']); ?>">
+                                            <?php echo esc_html($themebuilder_type['title'] ?? $themebuilder_type['name']); ?>
                                         </option>
-                                        <option value="single_product">
-                                            <?php esc_html_e('Single Product', 'rometheme-for-elementor') ?>
-                                        </option>
-                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
+                            <?php $render_extra_fields('edit'); ?>
                             <div class="d-flex flex-column gap-3 option">
                                 <div class="d-flex flex-row align-items-center justify-content-between gap-3">
                                     <label class="fw-semibold form-label">Status

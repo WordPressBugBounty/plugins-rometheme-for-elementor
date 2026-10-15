@@ -1221,6 +1221,7 @@ html {
   max-width: unset;
   padding: 12px 24px;
   font-size: 14px;
+  line-height: unset;
 }
 #rtmkit-root .form-control:focus {
   box-shadow: none;
@@ -1234,6 +1235,7 @@ html {
   max-width: unset;
   padding: 12px 24px;
   font-size: 14px;
+  line-height: unset;
   background-position-x: 97%;
   background-position-y: center;
   background-size: 8px;

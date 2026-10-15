@@ -22,6 +22,45 @@ class ThemebuilderStorage
         }
     }
 
+    /**
+     * Field tambahan per tipe template, tampil di modal Add / Edit Theme Builder
+     * dan disimpan sebagai post meta template.
+     *
+     * Format: key => [
+     *   'label'       => string,
+     *   'type'        => 'text' | 'url',
+     *   'meta_key'    => string,
+     *   'types'       => string[]  tipe template yang memakai field ini,
+     *   'placeholder' => string (opsional),
+     *   'description' => string (opsional),
+     *   'column'      => bool     tampilkan sebagai kolom di tabel template,
+     * ]
+     */
+    public function get_extra_fields(): array
+    {
+        $fields = apply_filters('rtmkit_themebuilder_fields', []);
+
+        return array_filter(is_array($fields) ? $fields : [], function ($field) {
+            return is_array($field) && !empty($field['meta_key']) && !empty($field['types']);
+        });
+    }
+
+    /** Field tambahan yang berlaku untuk satu tipe template. */
+    public function get_extra_fields_for_type($type): array
+    {
+        return array_filter($this->get_extra_fields(), function ($field) use ($type) {
+            return in_array($type, (array) $field['types'], true);
+        });
+    }
+
+    /** Sanitasi nilai field tambahan sesuai jenisnya. */
+    public function sanitize_extra_field(array $field, $value): string
+    {
+        $value = is_string($value) ? wp_unslash($value) : '';
+
+        return ($field['type'] ?? 'text') === 'url' ? esc_url_raw(trim($value)) : sanitize_text_field($value);
+    }
+
     public function get_themebuilder()
     {
         if (!isset($this->themebuilder)) {

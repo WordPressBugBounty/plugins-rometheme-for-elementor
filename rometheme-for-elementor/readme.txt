@@ -1,224 +1,351 @@
-=== RTMKit ===
-Contributors: dickoandrean 
+=== RTMKit for Elementor – Modular Addons, Widgets, Templates, Icon Library, GSAP Animations, MCP & Store Ready ===
+Contributors: dickoandrean, pranayuma01 
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.8
 Tested up to: 7.0.4
 Requires PHP: 8.3
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 All-in-one toolkit for Elementor: advanced addons, theme builder, forms, icons & templates to build stunning sites fast and easy.
 
 == Description ==
-Unlock your Elementor page building experience with 75+ powerful and growing widgets and extensions, designed to help you create interactive, visually stunning, and performance-optimized WordPress websites—without writing a single line of code. Instantly access free professionally designed template kits, a ready-to-use and growing icon library with over 2,000 icons, plus a full theme builder to complete your WordPress site—all in one lightweight toolkit.
+# RTMKit for Elementor – Modular Addons, Widgets, Templates, Icon Library, GSAP Animations, MCP & Store Ready
 
-Unlike relying on multiple WordPress plugins, RTMKit provides an all-in-one solution to enhance your workflow. Whether you’re building blogs, online stores, or full business websites, RTMKit equips you with the tools to design faster, smarter, and prettier than ever before.
+**Build Professional WordPress Websites Faster**
 
-### 🚀 Why Choose RTMKit ?
-✅ All-in-One Solution – Avoid plugin overload. RTMKit replaces multiple Elementor addons with a single, optimized package.
-✅ Free Elementor Form Builder – Build custom forms easily, no extra plugin needed.
-✅ Trusted by 40,000+ Active Websites – Growing steadily with global users.
-✅ 75+ Advanced Widgets – Add interactive functionality with ease.
-✅ 50+ Ready-Made Template Kits – Covering a wide range of niche business categories.
-✅ 1.500+ Ready-to-use icon library – Pre-made icons for instant visual impact.
-✅ Fully Customizable – Adjust every element, template, and widget to suit your brand.
-✅ Seamless Integrations – Compatible with WooCommerce and essential WordPress tools.
-✅ Lightweight & Fast – Engineered for speed without plugin bloat.
-✅ Top Ratings – Rated 4.8 out of 5 stars on WordPress.org.
-✅ Dedicated Support Team – Get help fast, whenever you need it.
+Create beautiful, interactive WordPress websites with Elementor using **115 widgets and elements**, **2,400+ ready-to-use icons**, advanced design tools, and flexible customization options—all without writing code.
 
-<iframe width="720" height="400" src="https://www.youtube.com/embed/j4AC-g6CPxg?si=lCC6m8X5iFK7ZnUU&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+From landing pages and business websites to blogs, portfolios, and online stores, RTMKit gives you the tools to create engaging layouts, dynamic content, and memorable website experiences with less effort.
+
+Explore a growing collection of creative widgets, ready-made template kits, form-building capabilities, and interactive design tools. Start with the free plugin and unlock more advanced capabilities with RTMKit PRO as your projects grow.
 
 ### Useful Links
 [Docs](https://support.rometheme.net/) | [Video Tutorials](https://www.youtube.com/playlist?list=PLiDcdRZHQZ66vm5sZ6maMY-CZiZuweCRo) | [Join Community](https://www.facebook.com/groups/rometheme) | [What's New?](https://rometheme.net/roadmap/) | [Upgrade To Pro](https://store.rometheme.net/pricing/) | [Share Review](https://wordpress.org/support/plugin/rometheme-for-elementor/reviews/#new-post)
 
-Elementor Website Builder is required for this plugin.
 
-### 🌟 75+ Elementor Widgets and Counting — Built to Enhance Your Workflow
+## 🚀 Why Choose RTMKit?
 
-1. [Header Info](https://rometheme.net/plugins/rtmkit/widgets/header-info/) – Highlight address, phone, or email in the header.  
-2. [Header Offcanvas](https://rometheme.net/plugins/rtmkit/widgets/offcanvas/) – Add a toggleable offcanvas area for demos, forms, or sidebar content.  
-3. [Nav Menu](https://rometheme.net/plugins/rtmkit/widgets/nav-menu/) – Create clean dropdown menus for smooth navigation.  
-4. [Search](https://rometheme.net/plugins/rtmkit/widgets/search/) – Interactive search with classic or modal options.  
-5. [Site Logo](https://rometheme.net/plugins/rtmkit/widgets/site-logo/) – Display your brand logo easily.  
-6. [Accordion](https://rometheme.net/plugins/rtmkit/widgets/accordion/) – Collapsible sections for FAQs and content organization.  
-7. [Advanced Heading](https://rometheme.net/plugins/rtmkit/widgets/advanced-heading/) – Extended typography and style options for headings.  
-8. [Advanced Tabs](https://rometheme.net/plugins/rtmkit/widgets/advanced-tabs/) – Organize content into horizontal or vertical tabs.  
-9. [Animated Heading](https://rometheme.net/plugins/rtmkit/widgets/animated-heading/) – Dynamic text effects to make headlines stand out.  
-10. [Back to Top](https://rometheme.net/plugins/rtmkit/widgets/back-to-top/) – Customizable scroll-to-top button.  
-11. [Bar Chart](https://rometheme.net/plugins/rtmkit/widgets/bar-chart/) – Vertical or horizontal bar charts for comparisons.  
-12. [Blockquote](https://rometheme.net/plugins/rtmkit/widgets/blockquote/) – Highlight quotes, testimonials, or statements.  
-13. [Call To Action](https://rometheme.net/plugins/rtmkit/widgets/call-to-action/) – Compelling CTA blocks with headline, text, and button.  
-14. [Card Carousel](https://rometheme.net/plugins/rtmkit/widgets/card-carousel/) – Responsive, swipeable card slider for featured content.  
-15. [Client Grid](https://rometheme.net/plugins/rtmkit/widgets/client-grid/) – Display client logos in a clean grid.  
-16. [Countdown](https://rometheme.net/plugins/rtmkit/widgets/countdown/) – Real-time countdown timers for urgency.  
-17. [Counter](https://rometheme.net/plugins/rtmkit/widgets/counter/) – Animated number counters for stats and milestones.  
-18. [Hero Slider](https://rometheme.net/plugins/rtmkit/widgets/hero-slider/) – Full-width sliders with image or video backgrounds.  
-19. [Image Accordion](https://rometheme.net/plugins/rtmkit/widgets/image-accordion/) – Interactive horizontal or vertical image accordions.  
-20. [Image Box](https://rometheme.net/plugins/rtmkit/widgets/image-box/) – Combine image, icon, and text in a clean layout.  
-21. [Image Comparison](https://rometheme.net/plugins/rtmkit/widgets/image-comparison/) – Before-and-after image comparison slider.  
-22. [Image Gallery](https://rometheme.net/plugins/rtmkit/widgets/image-gallery/) – Responsive gallery grid or masonry with lightbox.  
-23. [Line Chart](https://rometheme.net/plugins/rtmkit/widgets/line-chart/) – Smooth line graphs to show data trends.  
-24. [Pie & Doughnut Chart](https://rometheme.net/plugins/rtmkit/widgets/pie-doughnut-chart/) – Circular animated charts for data visualization.  
-25. [Post Block](https://rometheme.net/plugins/rtmkit/widgets/post-block/) – Highlight posts in bold block-style cards.  
-26. [Post Grid](https://rometheme.net/plugins/rtmkit/widgets/post-grid/) – Present blog posts in a modern grid layout.  
-27. [Post List](https://rometheme.net/plugins/rtmkit/widgets/post-list/) – Display posts in a clean vertical list.  
-28. [Pricing Table](https://rometheme.net/plugins/rtmkit/widgets/pricing-table/) – Showcase pricing plans with features and CTAs.  
-29. [Progress Bar](https://rometheme.net/plugins/rtmkit/widgets/progress-bar/) – Display completion percentages visually.  
-30. [Social Icons](https://rometheme.net/plugins/rtmkit/widgets/social-icons/) – Customizable social media profile icons.  
-31. [Social Share](https://rometheme.net/plugins/rtmkit/widgets/social-share/) – Styled buttons to share content across platforms.  
-32. [Team Member](https://rometheme.net/plugins/rtmkit/widgets/team-member/) – Showcase team with photo, role, and social links.  
-33. [Testimonials Carousel](https://rometheme.net/plugins/rtmkit/widgets/testimonials-carousel/) – Rotating customer testimonials with ratings.  
-34. [Text Marquee](https://rometheme.net/plugins/rtmkit/widgets/text-marquee/) – Continuously scrolling text for announcements or offers.  
-35. [Video Button](https://rometheme.net/plugins/rtmkit/widgets/video-button/) – Sleek video play button with popup or lightbox.  
-36. [Woo Product Grid](https://rometheme.net/plugins/rtmkit/widgets/woo-product-grid/) – Display WooCommerce products in a customizable grid.  
-37. [RTMForm](https://rometheme.net/plugins/rtmform/) – Most User-Friendly Form Builder.  
+- **115 Widgets & Elements** – Build professional layouts with a broad collection of content, media, navigation, WooCommerce, form, and interactive elements.
+- **2,400+ Ready-to-Use Icons** – Enhance your designs with an extensive icon library.
+- **GSAP-Powered Animation** – Explore powerful motion and animation capabilities through RTM Motion.
+- **50+ Ready-Made Template Kits** – Speed up website creation with professionally designed layouts.
+- **Flexible Design Controls** – Customize typography, colors, spacing, layouts, and visual effects.
+- **Form Building for Elementor** – Create contact, feedback, and newsletter forms with RTMForm Builder.
+- **WooCommerce Integration** – Design product displays and enhance online store experiences.
+- **Advanced Blog Layouts** – Create attractive post grids, lists, carousels, and custom content layouts.
+- **Interactive Design Effects** – Add image hotspots, hover interactions, animations, glass effects, and more.
+- **Modular Product Ecosystem** – Explore specialized tools for elements, templates, WooCommerce, blogs, motion, navigation, and popups.
+- **MCP & AI-Ready** – Designed to support emerging AI-powered workflows and MCP integrations, helping developers explore new ways to connect tools and streamline website-building tasks.
+- **A More Efficient Workflow** – Reduce repetitive work and create websites with greater flexibility.
 
-### 🌟 50+ Advanced Widget in the Premium upgrade — and continuously growing.
+## ✨ What's New in the RTMKit Ecosystem?
 
-1. [Advanced Toggle](https://rometheme.net/plugins/rtmkit/widgets/advanced-toggle/) – Toggle elements with custom styling and animations.  
-2. [Animated Circle Button](https://rometheme.net/plugins/rtmkit/widgets/animated-circle-button/) – Stylish circular buttons with hover effects for modern call-to-actions.  
-3. [Breadcrumbs](https://rometheme.net/plugins/rtmkit/widgets/breadcrumbs/) – Customizable navigation trail for better UX and SEO.  
-4. [Image Hotspot](https://rometheme.net/plugins/rtmkit/widgets/image-hotspot/) – Add interactive markers on images with tooltips, supporting dynamic content like posts or products.  
-5. [Image Stack Info](https://rometheme.net/plugins/rtmkit/widgets/image-stack-info/) – Showcase grouped images with ratings and key details.  
-6. [Interactive Link](https://rometheme.net/plugins/rtmkit/widgets/interactive-link/) – Add hover effects with images, text, buttons, and creative reveal animations.  
-7. [Pricing List](https://rometheme.net/plugins/rtmkit/widgets/pricing-list/) – Clean service or restaurant-style pricing menus.  
-8. [Client Carousel](https://rometheme.net/plugins/rtmkit/widgets/client-carousel/) – Interactive slider for multiple client logos.  
-9. [Image Marquee](https://rometheme.net/plugins/rtmkit/widgets/image-marquee/) – Smooth scrolling image strips, perfect for logos or portfolios.  
-10. [Pricing Image Box](https://rometheme.net/plugins/rtmkit/widgets/pricing-image-box/) – Pricing layouts combined with product images.  
-11. [Textual Showcase](https://rometheme.net/plugins/rtmkit/widgets/textual-showcase/) – Highlight information with animated or scroll-revealed text blocks.  
-12. [Post Carousel](https://rometheme.net/plugins/rtmkit/widgets/post-carousel/) – Add an interactive carousel to feature posts in limited space.  
+**RTMKit is getting bigger. And better.**
 
-We’re constantly adding new features and improvements with every update. Take your design to the next level by upgrading to the Pro version.
+We're evolving beyond a collection of widgets into a growing, modular ecosystem designed to give Elementor users more creative freedom and specialized tools for building modern websites.
 
-### 🌟 Advanced Extensions Toolkit:
+Following the introduction of RTM Elements, RTM Woo, RTM Blog, and RTM Templates, we're expanding the ecosystem with three additions.
 
-1. [Glass Effect (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Add modern frosted glass or blur-style backgrounds to sections, columns, or widgets.  
-2. [Duplicator (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Instantly duplicate any post or page for faster design workflow.  
-3. [Tooltips (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Show helpful hover tips or extra info on icons, buttons, and text.  
-4. [Wrapper Link (Free)](https://rometheme.net/plugins/rtmkit/elements/) – Turn any section, column, or container into a clickable link area.  
-5. [Advanced Sticky (Pro)](https://rometheme.net/plugins/rtmkit/elements/) – Keep nav bars, headers, or columns fixed while scrolling with smart positioning controls.  
-6. [Custom Cursor Effect (Pro)](https://rometheme.net/plugins/rtmkit/elements/) – Replace the default cursor with creative, interactive cursor styles.  
+### RTM Motion — Bring Your Designs to Life
 
+Create more engaging website experiences with motion and animation capabilities powered by GSAP. Explore new possibilities for interactive designs, visual effects, and dynamic website experiences.
 
-### 🌟Free Form Builder for Elementor:
+### RTM Mega Menu — Rethink Website Navigation
 
-Note: RTMForm Builder is required for this plugin.
+Build advanced navigation experiences with a drag-and-drop builder, custom badges, conditional visibility, dynamic content, hover effects, animations, and responsive controls.
 
-Style contact, feedback, and newsletter forms directly within Elementor. With full control over every form field—including text, radio buttons, checkboxes, and GDPR consent—you can build branded, responsive forms without writing a line of CSS. Optimized for both usability and conversions.
+### RTM Popup — Make Every Interaction Count
 
-1. [Checkbox](https://rometheme.net/plugins/rtmform/) – Multi-option fields with custom styles and alignment.  
-2. [Date](https://rometheme.net/plugins/rtmform/) – Calendar input for selecting dates.  
-3. [Email](https://rometheme.net/plugins/rtmform/) – Collect user email addresses with customizable fields.  
-4. [Number](https://rometheme.net/plugins/rtmform/) – Number input fields with validation.  
-5. [Radio Button](https://rometheme.net/plugins/rtmform/) – Single-option selections with styled buttons.  
-6. [Select](https://rometheme.net/plugins/rtmform/) – Dropdown input with full styling control.  
-7. [Submit Button](https://rometheme.net/plugins/rtmform/) – Customizable call-to-action with hover effects and icons.  
-8. [Telephone](https://rometheme.net/plugins/rtmform/) – Phone number field with country code and masking.  
-9. [Text](https://rometheme.net/plugins/rtmform/) – Standard input fields for short content.  
-10. [Text Area](https://rometheme.net/plugins/rtmform/) – Long-form input for messages or feedback.  
-11. [Time](https://rometheme.net/plugins/rtmform/) – Input field for selecting times.  
-12. [GDPR Consent](https://rometheme.net/plugins/rtmform/) – Required checkbox for privacy or terms compliance.  
+Create popup experiences for announcements, promotions, and lead generation with flexible placement and animation options.
 
-### 🌟 Single & Archive Post Builder for Elementor:
+These products extend the wider RTM ecosystem. Their availability and requirements depend on the individual product.
 
-Note: RTMKit PRO is required for this plugin.
+## 🌟 Explore 115 Widgets and Elements
 
-Design your blog and archive pages with complete layout flexibility. Use post grids, carousels, block styles, author bios, navigation links, and more—all styled visually inside Elementor. Deliver a seamless content experience that keeps readers engaged across your site
+Discover a growing collection of tools for building professional websites with Elementor. Each item is organized by its primary function to help you find the right tool for your project.
 
-13. [Post Author](https://rometheme.net/plugins/rtmkit/elements/) – Showcase author details like name, avatar, and bio.  
-14. [Post Content](https://rometheme.net/plugins/rtmkit/elements/) – Display the main content of a post with styling options.  
-15. [Post Comment](https://rometheme.net/plugins/rtmkit/elements/) – Integrate a comment section to boost engagement.  
-16. [Post Excerpt](https://rometheme.net/plugins/rtmkit/elements/) – Show a short preview or summary of a post.  
-17. [Featured Image](https://rometheme.net/plugins/rtmkit/elements/) – Display featured images with adjustable size and layout.  
-18. [Post Info](https://rometheme.net/plugins/rtmkit/elements/) – Show meta details like date, categories, tags, or reading time.  
-19. [Post Navigation](https://rometheme.net/plugins/rtmkit/elements/) – Add previous/next navigation links between posts.  
-20. [Post Title](https://rometheme.net/plugins/rtmkit/elements/) – Display post titles dynamically with full typography control.  
-21. [Archive Title](https://rometheme.net/plugins/rtmkit/elements/) – Display archive page titles dynamically (category, tag, author, or date).  
-22. [Archive Posts](https://rometheme.net/plugins/rtmkit/elements/) – Show posts filtered by archive types with layout control.  
+**Availability guide:** [Free] Included in the free version · [PRO] Requires RTMKit PRO.
 
-### 🧭 Need Help Getting Started?
-Check out our Getting Started Guide and Documentation for step-by-step tutorials to help you make the most of RTMKit Addons.
+### 1. Navigation, Headers & Menus
 
-### 🙋 Have a Question?
-Visit our Support Forum on WordPress.org. Our team is ready to assist you with any issues or questions you might have.
+Build intuitive navigation experiences that help visitors explore your website.
 
-### 🚀 Want to Unlock More Power?
-Explore the RTMKit PRO version to access exclusive widgets, advanced features, and premium design tools—all crafted to supercharge your Elementor workflow.
+- [**Back to Top** [Free]](https://rometheme.net/plugins/elements/back-to-top/) – Add a customizable button that lets visitors quickly return to the top of a page.
+- [**Breadcrumb** [PRO]](https://rometheme.net/plugins/elements/breadcrumb/) – Display navigational trails to help visitors understand their location within your website.
+- [**Header Info** [Free]](https://rometheme.net/plugins/elements/header-info/) – Display contact details such as your address, phone number, and email in your header.
+- [**Header Offcanvas** [Free]](https://rometheme.net/plugins/elements/offcanvas/) – Create toggleable panels for additional navigation, forms, or supplementary content.
+- [**Mega Menu** [PRO]](https://rometheme.net/plugins/elements/mega-menu/) – Build advanced navigation layouts with custom content, badges, conditional visibility, and responsive controls.
+- [**Nav Menu** [Free]](https://rometheme.net/plugins/elements/nav-menu/) – Create dropdown navigation menus for clear and accessible website navigation.
+- [**Search** [Free]](https://rometheme.net/plugins/elements/search/) – Add classic or modal search interfaces to help visitors find content.
+- [**Site Logo** [Free]](https://rometheme.net/plugins/elements/site-logo/) – Display your website logo with customizable styling.
+- [**Sub Menu** [PRO]](https://rometheme.net/plugins/elements/sub-menu/) – Create and customize submenu layouts for more structured navigation.
 
-### 🎥 Prefer Visual Learning?
-Watch our video tutorials and walkthroughs on YouTube and learn how to build stunning websites with RTMKit.
+### 2. Headings, Text & Content
 
-### ⭐ Found RTMKit Helpful?
-We’d love to hear your thoughts! Leave us a review on WordPress.org and help others discover RTMKit Addons.
+Present information clearly with flexible typography and content widgets.
 
-### 🔒 Privacy and Usage Data
-RTMKit can send usage data to RTMHub, a service operated by Rometheme (https://rometheme.net/), so we know which widgets, template kits, and add-ons are worth improving. **It is off until you turn it on.** Nothing leaves your site before you give consent, and that is true of every site — whether or not it is connected to an RTMHub account.
+- [**Accordion** [Free]](https://rometheme.net/plugins/elements/accordion/) – Organize FAQs and other content into expandable sections.
+- [**Advanced Categories** [PRO]](https://rometheme.net/plugins/elements/advanced-categories/) – Display content categories in a customizable layout to help visitors explore related topics.
+- [**Advanced Heading** [Free]](https://rometheme.net/plugins/elements/advanced-heading/) – Create distinctive headings with extended typography and styling controls.
+- [**Animated Heading** [Free]](https://rometheme.net/plugins/elements/animated-heading/) – Add animated text effects to emphasize important words and headlines.
+- [**Advanced Posts** [PRO]](https://rometheme.net/plugins/elements/advanced-posts/) – Display and customize post listings with advanced layout and content presentation options.
+- [**Advanced Tabs** [Free]](https://rometheme.net/plugins/elements/advanced-tabs/) – Organize related information into horizontal or vertical tabs.
+- [**Advanced Toggle** [PRO]](https://rometheme.net/plugins/elements/advanced-toggle/) – Create interactive toggle elements with custom styling and animations.
+- [**Blockquote** [Free]](https://rometheme.net/plugins/elements/blockquote/) – Highlight quotations, testimonials, or important statements.
+- [**Call to Action** [Free]](https://rometheme.net/plugins/elements/call-to-action/) – Combine headlines, descriptions, and buttons to encourage visitors to take action.
+- [**Dual Button** [Free]](https://rometheme.net/plugins/elements/dual-button/) – Display two buttons together to present alternative actions, destinations, or offers.
+- [**Dynamic Field** [PRO]](https://rometheme.net/plugins/elements/dynamic-field/) – Display dynamic field values from supported content sources using customizable styling.
+- [**Text Marquee** [Free]](https://rometheme.net/plugins/elements/text-marquee/) – Create continuously scrolling text for announcements, promotions, or visual effects.
+- [**Textual Showcase** [PRO]](https://rometheme.net/plugins/elements/textual-showcase/) – Present key information through animated or scroll-revealed text blocks.
 
-RTMKit asks once, on the RTMKit → Widgets page. The full details sit behind a "What exactly is collected?" panel next to the consent switch, so you can read them before you decide. You can change or withdraw your consent at any time on the RTMKit → Account page, under Usage Analytics. Withdrawing consent stops the reports immediately and discards anything still queued. It never disconnects your account, and it never affects your license, add-ons, updates, or any RTMKit feature.
+### 3. Buttons, Timelines & Visual Interactions
 
-**While usage analytics is on, RTMKit sends a usage report a few minutes after your published pages change, and at least once a week:**
+Create engaging interactions and present information through distinctive visual elements.
 
-* Which RTMKit widgets your published pages use, and how many times — names and counts only.
-* Your WordPress version, Elementor version, and RTMKit version, and whether a Pro license is active.
+- [**Advanced Button** [PRO]](https://rometheme.net/plugins/elements/advanced-button/) – Design buttons with advanced styling, hover effects, and interactive behavior.
+- [**Advanced Timeline** [PRO]](https://rometheme.net/plugins/elements/advanced-timeline/) – Present milestones, processes, events, or project histories in a structured timeline.
+- [**Animated Circle Button** [PRO]](https://rometheme.net/plugins/elements/animated-circle-button/) – Create circular buttons with animated hover effects for distinctive calls to action.
+- [**Background Switcher** [PRO]](https://rometheme.net/plugins/elements/background-switcher/) – Let visitors switch between predefined background options through interactive controls.
 
-**If the site is also connected to an RTMHub account** (RTMKit → Account), the report additionally carries your site address so it can be matched to your account, and RTMKit also reports, a few minutes after they happen, the template kits you download through the plugin, when an RTM add-on is installed or removed, and when RTMKit or the RTM Templates add-on is activated, deactivated, or uninstalled.
+### 4. Image Galleries & Interactive Showcases
 
-**If the site is not connected**, the report carries a random identifier generated on your site instead. Your site address is not sent, and the report is not tied to any account.
+Showcase your work, products, and visual content with engaging layouts.
 
-**Never sent, in any case:** page or post content, media, form submissions, order or payment information, user accounts, email addresses, passwords, or anything about your visitors.
+- [**Image Accordion** [Free]](https://rometheme.net/plugins/elements/image-accordion/) – Present images in interactive horizontal or vertical accordion layouts.
+- [**Image Box** [Free]](https://rometheme.net/plugins/elements/image-box/) – Combine an image, icon, heading, and description in a single content element.
+- [**Image Comparison** [Free]](https://rometheme.net/plugins/elements/image-comparison/) – Let visitors compare two images using an interactive before-and-after slider.
+- [**Image Gallery** [Free]](https://rometheme.net/plugins/elements/image-gallery/) – Display images in responsive grid or masonry layouts.
+- [**Image Hotspot** [PRO]](https://rometheme.net/plugins/elements/image-hotspot/) – Add interactive markers and tooltips to images, including support for dynamic post or product content.
+- [**Image Marquee** [PRO]](https://rometheme.net/plugins/elements/image-marquee/) – Create continuously scrolling image strips for logos, portfolios, and visual content.
+- [**Image Stack Info** [PRO]](https://rometheme.net/plugins/elements/image-stack-info/) – Showcase grouped images alongside ratings and key details.
+- [**Interactive Link** [PRO]](https://rometheme.net/plugins/elements/interactive-link/) – Create engaging hover interactions that reveal images, text, buttons, and other content.
+- [**Interactive Showcase** [PRO]](https://rometheme.net/plugins/elements/interactive-showcase/) – Present images and visual content with interactive motion and hover effects.
+- [**Filterable Gallery** [PRO]](https://rometheme.net/plugins/elements/filterable-gallery/) – Organize portfolio images into categories visitors can filter to find relevant work.
 
-Links in the plugin that point to our pricing pages go through https://api.rometheme.net/go/upgrade, which counts the click and forwards you on. If the site is connected, that link carries the identifier of your RTMHub site; this happens only at the moment you click such a link, and it is not affected by the usage analytics setting. Usage data is kept for 12 months.
+### 5. Video, Audio & Animation
 
-Privacy policy: https://rometheme.net/privacy-policy/
+Add media, motion graphics, and interactive effects to your website.
 
-== Installation ==
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the \'Plugins\' screen in WordPress
-3. All Settings will be found in the Admin sidebar -> Rometheme 
-4. (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
+- [**Audio Player** [PRO]](https://rometheme.net/plugins/elements/audio-player/) – Embed audio content with a dedicated player interface for listening to music, recordings, or other audio.
+- [**Lottie** [PRO]](https://rometheme.net/plugins/elements/lottie/) – Display Lottie animations to bring lightweight motion graphics into your layouts.
+- [**Media on Hover** [PRO]](https://rometheme.net/plugins/elements/media-on-hover/) – Create hover-triggered media experiences, such as video previews, for supported content.
+- [**Video Button** [Free]](https://rometheme.net/plugins/elements/video-button/) – Display a video play button that opens video content in a popup or lightbox.
 
-==Screenshots==
-1. Dashboard
-2. Widgets
-3. Template
-4. Settings
-5. Icon Packs
-6. Line Chart Widget
-7. Bar Chart Widget
+### 6. Cards, Carousels & Hero Sliders
 
-== Frequently Asked Questions ==
+Organize content into engaging layouts and create impactful visual presentations.
 
-= How to use RTMKit Addons for Elementor? =
+- [**Advanced Card** [PRO]](https://rometheme.net/plugins/elements/advanced-card/) – Create flexible card layouts with customizable content, styling, and interactive effects.
+- [**Advanced Hero Slider** [PRO]](https://rometheme.net/plugins/elements/advanced-hero-slider/) – Build advanced hero presentations with richer visual effects and interactive transitions.
+- [**Card Carousel** [Free]](https://rometheme.net/plugins/elements/card-carousel/) – Display cards in a responsive, swipeable carousel.
+- [**Client Carousel** [PRO]](https://rometheme.net/plugins/elements/client-carousel/) – Showcase client logos in an interactive slider.
+- [**Client Grid** [Free]](https://rometheme.net/plugins/elements/client-grid/) – Present client logos in a clean, organized grid.
+- [**Hero Slider** [Free]](https://rometheme.net/plugins/elements/hero-slider/) – Create full-width sliders with image or video backgrounds.
+- [**Team Member** [Free]](https://rometheme.net/plugins/elements/team-member/) – Showcase team members with photos, roles, and social links.
+- [**Team Carousel** [PRO]](https://rometheme.net/plugins/elements/team-carousel/) – Present team profiles in a carousel that visitors can navigate through.
+- [**Testimonials Carousel** [Free]](https://rometheme.net/plugins/elements/testimonials-carousel/) – Display customer testimonials in a rotating layout.
 
-Login your WordPress dashboard,  From the left menu click the Rometheme icon.
+### 7. Pricing & Conversion
 
-= Can I use the plugin without Elementor Page Builder? =
+Present offers, compare plans, and guide visitors toward purchasing decisions.
 
-No. You cannot use without Elementor since it’s an addon for Elementor.
+- [**Pricing Image Box** [PRO]](https://rometheme.net/plugins/elements/pricing-image-box/) – Combine pricing information with product imagery to create visually engaging offers.
+- [**Pricing List** [PRO]](https://rometheme.net/plugins/elements/pricing-list/) – Present service, product, or restaurant-style pricing menus.
+- [**Pricing Table** [Free]](https://rometheme.net/plugins/elements/pricing-table/) – Compare pricing plans, features, and calls to action in a structured layout.
 
-= Are this plugin work with Elementor Pro? =
+### 8. Social Media & Sharing
 
-Yes it is, this plugin work with regular and pro version.
+Connect your website with social platforms and encourage content sharing.
 
-= Does it work with any themes? =
+- [**Social Share** [Free]](https://rometheme.net/plugins/elements/social-share/) – Add styled buttons that let visitors share website content across supported platforms.
+- [**Social Icons** [Free]](https://rometheme.net/plugins/elements/social-icons/) – Display links to your social media profiles with customizable icons and styling.
 
-Yes, you can. This plugin works with any themes as long you use Elementor and the theme compatible with Elementor.
+### 9. Charts, Statistics & Progress
 
-= My Elementor editor isn’t loading. What should I do? =
+Visualize data, highlight achievements, and communicate progress.
 
-Please make sure the WP Memory Limit on your site has set to 128 MB or greater. You can check your site status on Elementor > System Info. Please read this article for further reading <a href="https://elementor.com/help/requirements/">https://elementor.com/help/requirements/</a> 
+- [**Bar Chart** [Free]](https://rometheme.net/plugins/elements/bar-chart/) – Display comparisons using horizontal or vertical bars.
+- [**Countdown** [Free]](https://rometheme.net/plugins/elements/countdown/) – Display countdown timers for launches, events, and promotions.
+- [**Counter** [Free]](https://rometheme.net/plugins/elements/counter/) – Highlight statistics, milestones, and important numbers.
+- [**Line Chart** [Free]](https://rometheme.net/plugins/elements/line-chart/) – Visualize trends and changes using line graphs.
+- [**Pie Chart** [Free]](https://rometheme.net/plugins/elements/pie-chart/) – Show proportions and data distribution in a circular chart.
+- [**Progress Bar** [Free]](https://rometheme.net/plugins/elements/progress-bar/) – Display completion percentages or progress toward a goal.
 
-= It appears there’s something wrong after plugin update, how do I solve this? =
+### 10. WooCommerce & Online Stores
 
-Please try to regenerate CSS via Elementor > Tools > Regenerate CSS option on admin dashboard.
+Build and customize online shopping experiences with dedicated WooCommerce elements.
 
-= How can I report security bugs? =
+- [**Add to Cart** [PRO]](https://rometheme.net/plugins/elements/add-to-cart/) – Display an add-to-cart control so customers can add products to their shopping cart.
+- [**Cart Page Builder** [PRO]](https://rometheme.net/plugins/elements/cart-page-builder/) – Customize the layout and presentation of the WooCommerce cart page.
+- [**Checkout Page Builder** [PRO]](https://rometheme.net/plugins/elements/checkout-page-builder/) – Customize the checkout layout to create a more consistent purchasing experience.
+- [**My Account Page Builder** [PRO]](https://rometheme.net/plugins/elements/my-account-page-builder/) – Design the WooCommerce account area where customers manage their accounts and orders.
+- [**Product Collections** [PRO]](https://rometheme.net/plugins/elements/product-collections/) – Showcase curated groups of products in a customizable layout.
+- [**Product Data Tabs** [PRO]](https://rometheme.net/plugins/elements/product-data-tabs/) – Display product information in organized tabs, such as descriptions and additional details.
+- [**Product Description** [PRO]](https://rometheme.net/plugins/elements/product-description/) – Display and style the product description on product pages.
+- [**Product Filter** [PRO]](https://rometheme.net/plugins/elements/product-filter/) – Help shoppers narrow product listings using supported filtering options.
+- [**Product Image** [PRO]](https://rometheme.net/plugins/elements/product-image/) – Display product images with customizable presentation and layout controls.
+- [**Product Meta** [PRO]](https://rometheme.net/plugins/elements/product-meta/) – Display product metadata such as SKU, categories, and tags where available.
+- [**Product Price** [PRO]](https://rometheme.net/plugins/elements/product-price/) – Display product prices with customizable styling.
+- [**Product Title** [PRO]](https://rometheme.net/plugins/elements/product-title/) – Display and style product titles.
+- [**Product Variations** [PRO]](https://rometheme.net/plugins/elements/product-variations/) – Present product variation options for supported variable products.
+- [**Thank You Page Builder** [PRO]](https://rometheme.net/plugins/elements/thank-you-page-builder/) – Customize the order confirmation page shown after checkout.
+- [**Woo Product Carousel** [PRO]](https://rometheme.net/plugins/elements/woo-product-carousel/) – Showcase WooCommerce products in a navigable carousel.
+- [**Woo Product Grid** [Free]](https://rometheme.net/plugins/elements/woo-product-grid/) – Display WooCommerce products in a customizable grid.
 
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/wordpress/plugin/rometheme-for-elementor/vdp)
+### 11. Blog Posts & Dynamic Content
+
+Create engaging content layouts for blogs and content-driven websites.
+
+- [**Archive Posts** [PRO]](https://rometheme.net/plugins/elements/archive-posts/) – Customize post listings on archive pages, including category and other supported archives.
+- [**Archive Title** [PRO]](https://rometheme.net/plugins/elements/archive-title/) – Display dynamic titles for archive pages.
+- [**Featured Image** [PRO]](https://rometheme.net/plugins/elements/featured-image/) – Display and style the featured image of a post.
+- [**Post Author** [PRO]](https://rometheme.net/plugins/elements/post-author/) – Display author names, avatars, and biography information.
+- [**Post Comment** [PRO]](https://rometheme.net/plugins/elements/post-comment/) – Add comment sections to single-post layouts.
+- [**Post Content** [PRO]](https://rometheme.net/plugins/elements/post-content/) – Display and customize the main content of a post.
+- [**Post Excerpt** [PRO]](https://rometheme.net/plugins/elements/post-excerpt/) – Display short previews of posts.
+- [**Post Info** [PRO]](https://rometheme.net/plugins/elements/post-info/) – Display post metadata such as dates, categories, tags, and other supported information.
+- [**Post Navigation** [PRO]](https://rometheme.net/plugins/elements/post-navigation/) – Add previous and next post links to help readers navigate between articles.
+- [**Post Title** [PRO]](https://rometheme.net/plugins/elements/post-title/) – Display and style dynamic post titles.
+- [**Post Block** [Free]](https://rometheme.net/plugins/elements/post-block/) – Highlight blog posts in block-style layouts.
+- [**Post Carousel** [PRO]](https://rometheme.net/plugins/elements/post-carousel/) – Feature blog content in a navigable carousel.
+- [**Post Grid** [Free]](https://rometheme.net/plugins/elements/post-grid/) – Display blog posts in a responsive grid.
+- [**Post List** [Free]](https://rometheme.net/plugins/elements/post-list/) – Present posts in a vertical list for a compact content layout.
+
+### 12. Extensions & Website Productivity
+
+Simplify repetitive tasks and enhance your website's visual presentation.
+
+- [**Custom Cursor Effect** [PRO]](https://rometheme.net/plugins/elements/custom-cursor-effect/) – Create distinctive cursor styles for interactive website designs.
+- [**Duplicator** [Free]](https://rometheme.net/plugins/elements/duplicator/) – Duplicate posts and pages to speed up repetitive website-building tasks.
+- [**Glass Effect** [Free]](https://rometheme.net/plugins/elements/glass-effect/) – Add frosted-glass or blur-style backgrounds to supported elements.
+- [**Sticky Content** [PRO]](https://rometheme.net/plugins/elements/sticky-content/) – Keep supported elements visible while scrolling to improve content accessibility.
+- [**Tooltips** [Free]](https://rometheme.net/plugins/elements/tooltips/) – Display supplementary information when visitors hover over supported elements.
+- [**Wrapper Link** [Free]](https://rometheme.net/plugins/elements/wrapper-link/) – Make supported sections, columns, or containers clickable.
+
+### 13. GSAP Motion Elements
+
+Explore specialized motion capabilities through the RTM Motion ecosystem.
+
+- [**Text Motion** [PRO]](https://rometheme.net/plugins/elements/text-motion/) – Animate text to create more engaging headings, messages, and content presentations.
+- [**Layout Motion** [PRO]](https://rometheme.net/plugins/elements/layout-motion/) – Animate layout elements to create smoother transitions and more dynamic visual compositions.
+- [**Element Motion** [PRO]](https://rometheme.net/plugins/elements/element-motion/) – Add motion effects to supported elements to draw attention to important content.
+- [**Image Motion** [PRO]](https://rometheme.net/plugins/elements/image-motion/) – Animate images to create more engaging visual experiences.
+
+*These motion elements depend on the relevant RTM Motion functionality. Confirm whether they are included in the current RTMKit PRO release or require a separate addon.*
+
+### 14. RTMForm Builder
+
+Create contact forms, feedback forms, newsletter forms, and other custom forms with configurable fields and styling.
+
+**Available form elements:**
+
+- [**Checkbox** [Free]](https://rometheme.net/plugins/elements/checkbox/) – Let visitors select one or more options from a list.
+- [**ReCAPTCHA+** [Free]](https://rometheme.net/plugins/elements/recaptcha/) – Add supported CAPTCHA verification to help protect forms against automated submissions.
+- [**Date** [Free]](https://rometheme.net/plugins/elements/date/) – Let visitors select a date using a date input.
+- [**Email Field** [Free]](https://rometheme.net/plugins/elements/email-field/) – Collect email addresses using an email input.
+- [**GDPR Consent** [Free]](https://rometheme.net/plugins/elements/gdpr-consent/) – Request consent for privacy policies or other required terms.
+- [**Number** [Free]](https://rometheme.net/plugins/elements/number/) – Collect numeric values with a number input.
+- [**Radio Button** [Free]](https://rometheme.net/plugins/elements/radio-button/) – Let visitors choose one option from a group.
+- [**Select** [Free]](https://rometheme.net/plugins/elements/select/) – Provide a dropdown list of available options.
+- [**Submit Button** [Free]](https://rometheme.net/plugins/elements/submit-button/) – Let visitors submit completed forms with a customizable button.
+- [**Telephone** [Free]](https://rometheme.net/plugins/elements/telephone/) – Collect telephone numbers using a phone input.
+- [**Text** [Free]](https://rometheme.net/plugins/elements/text/) – Collect short text responses.
+- [**Text Area** [Free]](https://rometheme.net/plugins/elements/text-area/) – Collect longer messages or written feedback.
+- [**Time** [Free]](https://rometheme.net/plugins/elements/time/) – Let visitors select a time.
+- [**Login** [PRO]](https://rometheme.net/plugins/elements/login/) – Provide a form element for user login workflows.
+- [**Register** [PRO]](https://rometheme.net/plugins/elements/register/) – Provide a form element for user registration workflows.
+
+RTMForm Builder offers flexible field styling and layout controls to help you create forms that match your website's design.
+
+**Requirement:** RTMForm Builder must be installed for the form-building functionality described above. Check the current feature and licensing requirements before use.
+
+Get RTMForm Builder: https://wordpress.org/plugins/romethemeform/
+
+## 🚀 Unlock More with RTMKit PRO
+
+Need more creative freedom? RTMKit PRO unlocks additional widgets and advanced capabilities for building more distinctive website experiences.
+
+Explore premium image interactions, advanced navigation, interactive galleries, creative hover effects, timelines, dynamic content, and specialized WooCommerce layouts.
+
+Keep using the free widgets that work for your workflow and upgrade when your projects need more advanced capabilities.
+
+Explore upgrade options: https://rometheme.net/plugins/
+
+## 🧩 One Growing Ecosystem
+
+RTMKit is part of a growing ecosystem of specialized tools for WordPress and Elementor.
+
+- **RTM Elements** – Creative widgets and interactive design tools.
+- **RTMForm** – Form-building capabilities with customizable fields and styling.
+- **RTM Templates** – Reusable website templates.
+- **RTM Woo** – WooCommerce design capabilities.
+- **RTM Blog** – Flexible blog and content layouts.
+- **RTM Motion** – GSAP-powered motion and animation.
+- **RTM Mega Menu** – Advanced navigation experiences.
+- **RTM Popup** – Flexible popup placement and animation options.
+
+Each product serves a specialized purpose, giving you more flexibility to choose the tools that fit your workflow.
+
+Explore the ecosystem: https://rometheme.net/plugins/
+
+## 🤖 MCP & AI-Ready
+
+AI is changing how websites are designed, developed, and managed. RTMKit's AI-ready direction focuses on helping developers explore more connected workflows through MCP (Model Context Protocol) and AI-assisted tools.
+
+Our goal is to make website-building workflows more efficient as AI integrations evolve.
+
+*Specific MCP capabilities depend on the integrations available in the current release.*
+
+## 🧭 Getting Started
+
+1. Install and activate Elementor Website Builder.
+2. Install and activate RTMKit.
+3. Open Elementor and explore the available widgets.
+4. Add widgets to your page and customize their settings.
+5. Preview your design and publish your website.
+
+Some features require additional RTM plugins or RTMKit PRO. Check each feature's requirements before use.
+
+## 📚 Documentation and Support
+
+- **Documentation** – Learn how to configure RTMKit and use its features.
+- **Video Tutorials** – Follow practical website-building walkthroughs.
+- **Support Forum** – Get assistance with RTMKit on WordPress.org.
+- **What's New** – Discover product updates and improvements.
+- **Explore RTMKit** – https://rometheme.net/plugins/
+
+## ⭐ Enjoying RTMKit?
+
+Your feedback helps us improve RTMKit and build better tools for the Elementor community.
+
+If RTMKit helps you create better websites, please consider leaving a review on WordPress.org.
+
+Thank you for being part of our growing community.
+
+## 🔒 Privacy and Usage Analytics
+
+RTMKit offers optional usage analytics to help Rometheme improve its products. Analytics is disabled by default and only starts after you give consent.
+
+You can review collected data and withdraw consent anytime via RTMKit → Account → Usage Analytics. Reports may include widget usage counts, software versions, license status, and, for connected RTMHub sites, your site address and addon activity.
+
+RTMKit does not collect page content, media, form submissions, payment details, passwords, or visitor information through usage analytics.
+
+Pricing links may track clicks separately. Usage data is retained for 12 months.
+
+---
+
+**Build smarter. Create more. Use what you need.**
+
+Start with RTMKit and discover more possibilities for building WordPress websites with Elementor.
 
 == Changelog ==
+Version 2.2.1 - October 15, 2026
+- Update : New addon builder support
+- MCP Ready (Early development)
+- Minor Fixes
+
 Version 2.2.0 - October 05, 2026
 - Update : Multisite support activation for RTMHub
 - RTMKit Form Pro Support

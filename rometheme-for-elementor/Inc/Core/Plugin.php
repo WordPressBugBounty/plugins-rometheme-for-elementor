@@ -215,7 +215,8 @@ class Plugin
             'editor_canvas' => \RTMKit\Modules\Helper\EditorCanvas::class,
             'connector' => \RTMKit\Modules\Connector\ConnectorModule::class,
             'addons' => \RTMKit\Modules\Addons\AddonsModule::class,
-            'telemetry' => \RTMKit\Modules\Telemetry\TelemetryModule::class
+            'telemetry' => \RTMKit\Modules\Telemetry\TelemetryModule::class,
+            'mcp' => \RTMKit\MCP\RtmkitMcp::class,
         ];
 
         // Register WP-CLI cache commands if available

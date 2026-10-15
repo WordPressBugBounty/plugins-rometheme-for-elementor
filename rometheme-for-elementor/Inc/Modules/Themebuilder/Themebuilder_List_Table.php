@@ -205,12 +205,46 @@ class Themebuilder_List_Table extends \WP_List_Table
                 'title' => __('Title', 'rometheme-for-elementor'),
                 'type' => __('Type', 'rometheme-for-elementor'),
                 'display' => __('Display', 'rometheme-for-elementor'),
+            ];
+
+            // Kolom dari field tambahan (rtmkit_themebuilder_fields) milik tipe di tab ini.
+            $fields += $this->get_extra_columns();
+
+            $fields += [
                 'author' => __('Author', 'rometheme-for-elementor'),
                 'date' => __('Date', 'rometheme-for-elementor'),
             ];
         }
 
         return $fields;
+    }
+
+    /** Field tambahan yang tampil sebagai kolom untuk tab (tipe) yang sedang dibuka. */
+    private function get_extra_column_fields(): array
+    {
+        $type = isset($_POST['themebuilder']) ? sanitize_text_field(wp_unslash($_POST['themebuilder'])) : 'all';
+
+        if ($type === 'all') {
+            return [];
+        }
+
+        return array_filter(
+            \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_extra_fields_for_type($type),
+            function ($field) {
+                return !empty($field['column']);
+            }
+        );
+    }
+
+    private function get_extra_columns(): array
+    {
+        $columns = [];
+
+        foreach ($this->get_extra_column_fields() as $key => $field) {
+            $columns['extra_' . $key] = $field['label'] ?? $key;
+        }
+
+        return $columns;
     }
 
     protected function get_table_classes()
@@ -263,6 +297,12 @@ class Themebuilder_List_Table extends \WP_List_Table
                 $data['type'] = $item['type'];
                 $data['active'] = $item['active'];
                 $data['conditions'] = $item['display'];
+
+                // Nilai field tambahan, untuk mengisi modal Edit.
+                $data['meta'] = [];
+                foreach (\RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_extra_fields_for_type($item['type']) as $key => $field) {
+                    $data['meta'][$key] = (string) get_post_meta($id_post, $field['meta_key'], true);
+                }
             }
 
             $actions = [
@@ -305,6 +345,19 @@ class Themebuilder_List_Table extends \WP_List_Table
 
     protected function column_default($item, $column_name)
     {
+        if (strpos($column_name, 'extra_') === 0) {
+            $field = $this->get_extra_column_fields()[substr($column_name, 6)] ?? null;
+            $value = $field ? (string) get_post_meta($item['ID'], $field['meta_key'], true) : '';
+
+            if ($value === '') {
+                return '<span class="text-secondary">&mdash;</span>';
+            }
+
+            return ($field['type'] ?? 'text') === 'url'
+                ? sprintf('<a href="%1$s" target="_blank" rel="noopener noreferrer" class="link text-break">%2$s</a>', esc_url($value), esc_html($value))
+                : esc_html($value);
+        }
+
         switch ($column_name) {
             case 'no':
                 return $item['no'];

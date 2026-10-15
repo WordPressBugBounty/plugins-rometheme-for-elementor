@@ -937,6 +937,13 @@ function editThemebuilder() {
             thisModal.querySelector('input[name="active"]').checked =
               data.active === "true" || data.active === true;
 
+            // Field tambahan per tipe (filter rtmkit_themebuilder_fields).
+            thisModal.querySelectorAll(".rtm-tb-extra-field input").forEach((input) => {
+              const key = input.name.slice(5, -1);
+              input.value = (data.meta && data.meta[key]) || "";
+            });
+            syncThemebuilderExtraFields(thisModal);
+
             // Render condition hanya jika ada data
             if (data.conditions) {
               addCondition(data.conditions, editModalEl);
@@ -1217,6 +1224,11 @@ function submitThemebuilder() {
         };
 
         data = { ...data, conditions: JSON.stringify(condition) };
+
+        // Field tambahan per tipe (filter rtmkit_themebuilder_fields), dikirim sebagai meta[key].
+        for (const [name, value] of formData.entries()) {
+          if (name.startsWith("meta[")) data[name] = value;
+        }
         console.log(data);
         if (formData.has("themebuilder_id")) {
           data = { ...data, themebuilder_id: formData.get("themebuilder_id") };
@@ -1504,46 +1516,56 @@ function setupCategoryFilter() {
 }
 
 function downloadTemplate() {
-  const downloadBtns = document.querySelectorAll(".btn-install-template");
-  if (downloadBtns.length) {
-    downloadBtns.forEach((btn) => {
-      btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        let currentHTMLBtn = btn.innerHTML;
-        btn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  const templateContainer = document.getElementById("template_container");
+  if (!templateContainer || templateContainer.dataset.installBound === "true") return;
+
+  templateContainer.dataset.installBound = "true";
+  templateContainer.addEventListener("click", function (e) {
+    if (!(e.target instanceof Element)) return;
+
+    const btn = e.target.closest(".btn-install-template");
+    if (!btn || !templateContainer.contains(btn)) return;
+
+    e.preventDefault();
+    btn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
         <span role="status">Installing...</span>`;
-        btn.disabled = true;
-        let templateID = btn.getAttribute("data-template");
-        fetch(
-          `${rtmkit_ajax.ajax_url}?action=download_template&template=${templateID}&nonce=${rtmkit_ajax.nonce}`,
-          {
-            method: "GET",
-            headers: {},
-          },
-        )
-          .then((res) => res.json())
-          .then((response) => {
-            if (!response.success) {
-              window.reactToast.error(response.data.message, {
-                position: "bottom-right",
-                autoClose: 5000,
-                className: "rtmkit-toast",
-                theme: "dark",
-              });
-            } else {
-              window.reactToast.success("Install Template Successfully", {
-                position: "bottom-right",
-                autoClose: 5000,
-                className: "rtmkit-toast",
-                theme: "dark",
-              });
-              renderTemplates("templatekits");
-            }
-          })
-          .finally(() => { });
-      });
-    });
-  }
+    btn.disabled = true;
+    const templateID = btn.getAttribute("data-template");
+    fetch(
+      `${rtmkit_ajax.ajax_url}?action=download_template&template=${templateID}&nonce=${rtmkit_ajax.nonce}`,
+      {
+        method: "GET",
+        headers: {},
+      },
+    )
+      .then((res) => res.json())
+      .then((response) => {
+        if (!response.success) {
+          window.reactToast.error(response.data.message, {
+            position: "bottom-right",
+            autoClose: 5000,
+            className: "rtmkit-toast",
+            theme: "dark",
+          });
+        } else {
+          window.reactToast.success("Install Template Successfully", {
+            position: "bottom-right",
+            autoClose: 5000,
+            className: "rtmkit-toast",
+            theme: "dark",
+          });
+          const installedTab = document.querySelector(
+            '.template-tab .menu-switcher .menu-switch[data-templates="installed"]',
+          );
+          if (installedTab) {
+            installedTab.click();
+          } else {
+            renderTemplates("installed");
+          }
+        }
+      })
+      .finally(() => { });
+  });
 }
 
 function uploadTemplate() {
@@ -2813,3 +2835,80 @@ function update_addons_plugin() {
     };
   }
 }
+
+/**
+ * Halaman builder (item menu dengan 'themebuilder_scope', mis. Cart Page
+ * Builder) memakai view Theme Builder yang sama, tetapi aplikasi panel hanya
+ * menginisialisasi view itu untuk path "themebuilder". Di sini halaman builder
+ * dikenali dari atribut data-themebuilder-scope lalu diinisialisasi sendiri.
+ */
+(function () {
+  const initScopedThemebuilder = () => {
+    const page = document.querySelector("[data-themebuilder-scope]");
+    if (!page || page.dataset.scopeInitialized) return;
+
+    const types = page.dataset.themebuilderScope.split(",").filter(Boolean);
+    if (!types.length) return;
+
+    page.dataset.scopeInitialized = "1";
+
+    // Tabel template dimuat berdasarkan ?themebuilder= di URL; default ke tab pertama.
+    const url = new URL(window.location);
+    if (!types.includes(url.searchParams.get("themebuilder"))) {
+      url.searchParams.set("themebuilder", types[0]);
+      window.history.replaceState({}, "", url);
+    }
+
+    ThemebuilderTabs();
+    addThemebuilder();
+  };
+
+  const watch = () => {
+    const root = document.getElementById("rtmkit-root");
+    if (!root) return;
+
+    new MutationObserver(initScopedThemebuilder).observe(root, { childList: true, subtree: true });
+    initScopedThemebuilder();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", watch);
+  } else {
+    watch();
+  }
+})();
+
+/**
+ * Field tambahan per tipe template (filter rtmkit_themebuilder_fields) di modal
+ * Add / Edit Theme Builder: hanya tampil saat Type yang dipilih termasuk
+ * data-types field tersebut.
+ */
+function syncThemebuilderExtraFields(container) {
+  if (!container) return;
+
+  const select = container.querySelector(".select-type");
+  const type = select ? select.value : "";
+
+  container.querySelectorAll(".rtm-tb-extra-field").forEach((field) => {
+    const types = (field.dataset.types || "").split(",");
+    field.hidden = !types.includes(type);
+  });
+}
+
+document.addEventListener("change", (e) => {
+  if (e.target.matches(".themebuilder-forms .select-type")) {
+    syncThemebuilderExtraFields(e.target.closest(".modal") || e.target.closest("form"));
+  }
+});
+
+// Handler "shown" milik modal (yang mengisi Type) berjalan lebih dulu; event ini
+// menggelembung ke document setelahnya.
+document.addEventListener("shown.bs.modal", (e) => {
+  syncThemebuilderExtraFields(e.target);
+});
+
+document.addEventListener("hidden.bs.modal", (e) => {
+  e.target.querySelectorAll(".rtm-tb-extra-field input").forEach((input) => {
+    input.value = "";
+  });
+});

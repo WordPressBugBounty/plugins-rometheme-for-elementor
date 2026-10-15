@@ -77,6 +77,8 @@ class ThemebuilderAPI
                 add_post_meta($post_id, '_elementor_template_type', $_POST['type']);
             }
 
+            $this->save_extra_fields($post_id, sanitize_text_field($_POST['type']));
+
             // Menambahkan respon JSON jika penyisipan posting berhasil
             wp_send_json_success('success');
         } else {
@@ -134,11 +136,34 @@ class ThemebuilderAPI
                 update_post_meta($post_id, '_elementor_template_type', $_POST['type']);
             }
 
+            $this->save_extra_fields($post_id, sanitize_text_field($_POST['type']));
+
             // Menambahkan respon JSON jika penyisipan posting berhasil
             wp_send_json_success('success');
         } else {
             // Menambahkan respon JSON jika penyisipan posting gagal
             wp_send_json_error('Failed Save Template');
+        }
+    }
+
+    /**
+     * Simpan field tambahan (filter rtmkit_themebuilder_fields) milik tipe
+     * template ini. Nilai dikirim sebagai meta[key]; kosong = meta dihapus.
+     */
+    private function save_extra_fields($post_id, $type)
+    {
+        $storage = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance();
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce sudah dicek pemanggil.
+        $posted = isset($_POST['meta']) && is_array($_POST['meta']) ? $_POST['meta'] : [];
+
+        foreach ($storage->get_extra_fields_for_type($type) as $key => $field) {
+            $value = $storage->sanitize_extra_field($field, $posted[$key] ?? '');
+
+            if ($value === '') {
+                delete_post_meta($post_id, $field['meta_key']);
+            } else {
+                update_post_meta($post_id, $field['meta_key'], $value);
+            }
         }
     }
 

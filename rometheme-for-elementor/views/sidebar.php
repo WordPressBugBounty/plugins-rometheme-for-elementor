@@ -57,9 +57,21 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         <ul class="menu-list">
                             <?php foreach ($items as $key => $item): ?>
                                 <li class="menu-item">
+                                    <?php if (!empty($item['locked'])) :
+                                        // Menu addon yang belum berlisensi: tetap tampil, tetapi
+                                        // membuka modal upgrade alih-alih halamannya. href="#"
+                                        // membuat router JS panel tidak mencegat kliknya.
+                                        $has_locked_menu = true;
+                                        ?>
+                                        <a href="#" class="menu-link is-locked" data-bs-toggle="modal" data-bs-target="#rtmkitLockedMenuModal">
+                                            <?php echo esc_html($item['title']); ?>
+                                            <i class="ms-1 text-muted fa-solid fa-lock"></i>
+                                        </a>
+                                    <?php else : ?>
                                     <a <?php echo isset($item['target']) ? 'target="' . esc_attr($item['target']) . '"' : ''; ?> href="<?php echo (isset($item['target'])) ? esc_url($item['menu_slug']) : esc_url('admin.php?page=' . $item['menu_slug']); ?>" class="menu-link <?php echo $path === str_replace('_', '-', $key) ? 'current' : ''; ?>">
                                         <?php echo esc_html($item['title']); ?>
                                     </a>
+                                    <?php endif; ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -69,6 +81,14 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
             <?php endforeach; ?>
         </div>
     </div>
+    <?php
+    // Modal milik sidebar sendiri: #moduleLockedModal hanya ada di beberapa
+    // halaman (Widgets, Modules, Themebuilder), sedangkan sidebar tampil di semua.
+    if (!empty($has_locked_menu)) {
+        require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
+        rtmkit_render_pro_upgrade_modal('rtmkitLockedMenuModal');
+    }
+    ?>
     <div class="sidebar-footer">
         <?php if (! $isProActive) : ?>
             <a href="<?php echo esc_url(rtmkit_upgrade_url('sidebar.button')); ?>" target="_blank" class="btn btn-accent">

@@ -259,6 +259,25 @@
       "js": "background_switcher.js"
     }
   },
+  "lottie": {
+    "name": "Lottie",
+    "widget_name": "rkit-lottie",
+    "icon": "rtmicon rtmicon-lottie-animation",
+    "class_name": "Rkit_Lottie",
+    "category": "creative",
+    "status": true,
+    "type": "pro",
+    "plugin_required": "rtm-elements",
+    "docsURL": "",
+    "previewURL": "",
+    "videoURL": "",
+    "notes": "link official cooming soon",
+    "is_new": true,
+    "scripts": {
+      "css": "lottie.css",
+      "js": "lottie.js"
+    }
+  },
   "advanced_category": {
     "name": "Advanced Categories",
     "widget_name": "rkit-advanced_category",

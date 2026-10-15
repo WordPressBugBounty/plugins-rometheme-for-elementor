@@ -8,6 +8,13 @@ if (!defined('ABSPATH'))
 class Menu
 {
     /**
+     * Item menu mendukung 'themebuilder_scope' => [tipe, ...]: halaman builder
+     * yang merender views/themebuilder.php hanya untuk tipe-tipe tersebut.
+     * Addon memeriksa konstanta ini sebelum memindahkan tipenya ke halaman sendiri.
+     */
+    const SUPPORTS_THEMEBUILDER_SCOPE = true;
+
+    /**
      * Initialize the menu module.
      */
 
@@ -135,7 +142,7 @@ class Menu
     public function register_menu()
     {
         $this->menus = $this->get_menus();
-        $sidebar_menu = ['dashboard', 'widgets', 'themebuilder', 'templates', 'license', 'submission'];
+        $sidebar_menu = ['dashboard', 'widgets', 'themebuilder', 'addons', 'templates', 'account', 'submission'];
         add_menu_page(
             __('RTMKit Dashboard', 'rometheme-for-elementor'),
             __('RTMKit', 'rometheme-for-elementor'),
