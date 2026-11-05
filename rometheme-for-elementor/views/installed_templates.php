@@ -109,6 +109,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                 <span class="slider round">
 
                                 </span>
+                                <span class="switch-text" data-on="Yes" data-off="No"></span>
                             </label>
                         <?php else : ?>
                             <a href="<?php echo esc_url(rtmkit_upgrade_url('templatekit.import_single')); ?>" class="btn btn-accent fw-bold" target="_blank">
@@ -120,16 +121,17 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                         <?php endif; ?>
                     </div>
                     <div class="rounded-3 p-3 d-flex flex-row gap-2 align-items-center justify-content-between" style="background-color: var(--hover-color);">
-                        <h6 class="m-0">Import Without Image</h6>
+                        <h6 class="m-0">Import With Image</h6>
                         <label class="switch gap-3">
-                            <input name="without-image"
-                                id="import-without-images"
+                            <input name="with-image"
+                                id="import-with-images"
                                 class="switch-input switch-status"
                                 type="checkbox" value="true"
-                                hidden checked>
+                                hidden>
                             <span class="slider round">
 
                             </span>
+                            <span class="switch-text" data-on="Yes" data-off="No"></span>
                         </label>
                     </div>
                 </div>
@@ -187,6 +189,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                 <span class="slider round">
 
                                 </span>
+                                <span class="switch-text" data-on="Yes" data-off="No"></span>
                             </label>
                         <?php else : ?>
                             <a href="<?php echo esc_url(rtmkit_upgrade_url('templatekit.import_all')); ?>" class="btn btn-accent fw-bold" target="_blank">
@@ -200,14 +203,15 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                     <div class="rounded-3 p-3 d-flex flex-row gap-2 align-items-center justify-content-between" style="background-color: var(--hover-color);">
                         <h6 class="m-0">Import With Image</h6>
                         <label class="switch gap-3">
-                            <input name="without-image"
-                                id="import-without-images"
+                            <input name="with-image"
+                                id="import-with-images"
                                 class="switch-input switch-status"
                                 type="checkbox" value="true"
-                                hidden checked>
+                                hidden>
                             <span class="slider round">
 
                             </span>
+                            <span class="switch-text" data-on="Yes" data-off="No"></span>
                         </label>
                     </div>
                 </div>

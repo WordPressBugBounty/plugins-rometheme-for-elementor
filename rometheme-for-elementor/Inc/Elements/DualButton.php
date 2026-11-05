@@ -634,7 +634,8 @@ class DualButton extends \Elementor\Widget_Base
             [
                 'name' => 'button_border_left',
                 'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .left_button',
+                // Kotak tombolnya, bukan span teks di dalamnya (border dulu jatuh di dalam tombol).
+                'selector' => '{{WRAPPER}} .dual-left',
             ]
         );
 
@@ -714,7 +715,7 @@ class DualButton extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}   .dual-left:hover .left_button' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .dual-left:hover' => 'border-color: {{VALUE}}',
                 ],
                 'condition' => [
                     'button_border_left_border!' => ''
@@ -728,6 +729,15 @@ class DualButton extends \Elementor\Widget_Base
                 'name' => 'btn_box_shadow_hover',
                 'selector' => '{{WRAPPER}} .dual-left:hover',
             ]
+        );
+
+        $this->add_control(
+            'button_1_transition_duration',
+            $this->get_transition_control_args([
+                '{{WRAPPER}} .dual-left',
+                '{{WRAPPER}} .dual-left .dual-text',
+                '{{WRAPPER}} .dual-left .rkit-icon-left-button',
+            ])
         );
 
         $this->end_controls_tab();
@@ -934,7 +944,8 @@ class DualButton extends \Elementor\Widget_Base
             [
                 'name' => 'button_border_right',
                 'label' => esc_html__('Border Button', 'rometheme-for-elementor'),
-                'selector' => '  {{WRAPPER}} .right_button',
+                // Kotak tombolnya, bukan span teks di dalamnya (border dulu jatuh di dalam tombol).
+                'selector' => '{{WRAPPER}} .dual-right',
             ]
         );
 
@@ -1005,7 +1016,7 @@ class DualButton extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Color', 'rometheme-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}   .dual-right:hover .right_button' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .dual-right:hover' => 'border-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'button_border_right_border!' => ''
@@ -1019,6 +1030,15 @@ class DualButton extends \Elementor\Widget_Base
                 'name' => 'btn_box_shadow_hover_right',
                 'selector' => '{{WRAPPER}} .dual-right:hover',
             ]
+        );
+
+        $this->add_control(
+            'button_2_transition_duration',
+            $this->get_transition_control_args([
+                '{{WRAPPER}} .dual-right',
+                '{{WRAPPER}} .dual-right .dual-text',
+                '{{WRAPPER}} .dual-right .rkit-icon-right-button',
+            ])
         );
 
         $this->end_controls_tab();
@@ -1278,8 +1298,36 @@ class DualButton extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-
-
+    /**
+     * Kontrol Transition Duration untuk efek hover tombol: $targets mendapat
+     * transition dengan durasi yang dipilih.
+     */
+    private function get_transition_control_args(array $targets)
+    {
+        return [
+            'label' => esc_html__('Transition Duration', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['s', 'ms'],
+            'range' => [
+                's' => [
+                    'min' => 0,
+                    'max' => 5,
+                    'step' => 0.1,
+                ],
+                'ms' => [
+                    'min' => 0,
+                    'max' => 5000,
+                    'step' => 50,
+                ],
+            ],
+            'default' => [
+                'unit' => 's',
+                'size' => 0.3,
+            ],
+            'separator' => 'before',
+            'selectors' => array_fill_keys($targets, 'transition: all {{SIZE}}{{UNIT}} ease-in-out;'),
+        ];
+    }
 
     protected function render()
     {

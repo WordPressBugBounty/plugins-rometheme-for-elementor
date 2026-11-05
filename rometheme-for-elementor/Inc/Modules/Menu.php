@@ -15,6 +15,21 @@ class Menu
     const SUPPORTS_THEMEBUILDER_SCOPE = true;
 
     /**
+     * Semua builder tinggal di satu grup sidebar 'builders' ("Theme Builder"), dengan
+     * slot tetap untuk tiap builder (BUILDER_ORDER). Addon mengisi slotnya dengan
+     * key yang sama; slot yang tidak diisi tetap tampil terkunci sebagai upsell.
+     * Item dengan 'hidden' => true tetap bisa dibuka lewat path, tapi tidak
+     * tampil di sidebar.
+     */
+    const SUPPORTS_BUILDER_GROUP = true;
+
+    const BUILDER_ORDER = ['themebuilder', 'form-builder', 'woo-builder', 'mega-menu', 'popup-builder'];
+
+    // Tipe blog (rtm-blog) ikut Site Builder; tanpa Pro tampil terkunci lewat $button_placeholder.
+    const SITE_BUILDER_TYPES = ['header', 'footer', 'single_post', 'archive_post', 'search', 'error_404'];
+    const WOO_BUILDER_TYPES = ['single_product', 'archive_product', 'cart_page', 'checkout_page', 'thankyou_page', 'my_account_page', 'my_account_login', 'product_loop_item'];
+
+    /**
      * Initialize the menu module.
      */
 
@@ -75,13 +90,6 @@ class Menu
                     'function' => [$this, 'rtmkit_root_page'],
                     'render_view' => RTM_KIT_DIR . 'views/modules.php',
                 ],
-                'themebuilder' => [
-                    'title' => __('Theme Builder', 'rometheme-for-elementor'),
-                    'capability' => 'manage_options',
-                    'menu_slug' => 'rtmkit&path=themebuilder',
-                    'function' => [$this, 'rtmkit_root_page'],
-                    'render_view' => RTM_KIT_DIR . 'views/themebuilder.php',
-                ],
                 'templates' => [
                     'title' => __('Template Kits', 'rometheme-for-elementor'),
                     'capability' => 'manage_options',
@@ -90,6 +98,8 @@ class Menu
                     'render_view' => RTM_KIT_DIR . 'views/templates.php',
                 ],
             ],
+
+            'builders' => $this->default_builder_menus(),
 
             'settings' => [
                 'global-kit-setup' => [
@@ -136,6 +146,97 @@ class Menu
         return $menus;
     }
 
+    protected function default_builder_menus(): array
+    {
+        $themebuilder_view = RTM_KIT_DIR . 'views/themebuilder.php';
+
+        // Path 'themebuilder' dipertahankan untuk Site Builder supaya bookmark,
+        // admin bar dan link dashboard yang lama tetap jalan.
+        $builders = [
+            'themebuilder' => [
+                'title' => __('Site Builder', 'rometheme-for-elementor'),
+                'capability' => 'manage_options',
+                'menu_slug' => 'rtmkit&path=themebuilder',
+                'function' => [$this, 'rtmkit_root_page'],
+                'render_view' => $themebuilder_view,
+                'themebuilder_scope' => array_merge(['all'], self::SITE_BUILDER_TYPES),
+            ],
+            'woo-builder' => [
+                'title' => __('Woo Builder', 'rometheme-for-elementor'),
+                'capability' => 'manage_options',
+                'menu_slug' => 'rtmkit&path=woo-builder',
+                'themebuilder_scope' => array_merge(['all'], self::WOO_BUILDER_TYPES),
+                'locked' => true,
+                'locked_description' => __('Design your WooCommerce shop, product, cart, checkout and account pages with Elementor. Upgrade your plan to unlock Woo Builder.', 'rometheme-for-elementor'),
+                // Diganti rtm-woo dengan item miliknya sendiri.
+                'placeholder' => true,
+            ],
+            'form-builder' => [
+                'title' => __('Form Builder', 'rometheme-for-elementor'),
+                'capability' => 'manage_options',
+                'menu_slug' => 'rtmkit&path=form-builder',
+                'render_view' => $themebuilder_view,
+                'themebuilder_scope' => ['form'],
+            ],
+            'mega-menu' => [
+                'title' => __('Mega Menu Builder', 'rometheme-for-elementor'),
+                'capability' => 'manage_options',
+                'menu_slug' => 'rtmkit&path=mega-menu',
+                'locked' => true,
+                'locked_description' => __('Build Elementor-powered mega menus for any WordPress menu. Upgrade your plan to unlock Mega Menu Builder.', 'rometheme-for-elementor'),
+                'placeholder' => true,
+            ],
+            'popup-builder' => [
+                'title' => __('Popup Builder', 'rometheme-for-elementor'),
+                'capability' => 'manage_options',
+                'menu_slug' => 'rtmkit&path=popup-builder',
+                'locked' => true,
+                'locked_description' => __('Design popups in Elementor and show them with triggers and display rules. Upgrade your plan to unlock Popup Builder.', 'rometheme-for-elementor'),
+                'placeholder' => true,
+            ],
+        ];
+
+        return $builders;
+    }
+
+    /**
+     * Rapikan grup Builder setelah filter rtmkit_menus: urutan slot tetap, dan
+     * halaman builder Woo lama (rtm-woo <= 1.0.2, satu halaman per tipe) dilebur
+     * ke WooBuilder.
+     */
+    protected function normalize_builder_menus(array $menus): array
+    {
+        if (empty($menus['builders']) || !is_array($menus['builders'])) {
+            return $menus;
+        }
+
+        $builders = $menus['builders'];
+
+        if (!empty($builders['woo-builder']['placeholder'])) {
+            $legacy_unlocked = false;
+
+            foreach ($builders as $key => $item) {
+                $scope = (array) ($item['themebuilder_scope'] ?? []);
+                if ('woo-builder' === $key || !$scope || array_diff($scope, self::WOO_BUILDER_TYPES)) {
+                    continue;
+                }
+
+                $builders[$key]['hidden'] = true;
+                $legacy_unlocked = $legacy_unlocked || empty($item['locked']);
+            }
+
+            if ($legacy_unlocked) {
+                unset($builders['woo-builder']['locked'], $builders['woo-builder']['locked_description'], $builders['woo-builder']['placeholder']);
+                $builders['woo-builder']['render_view'] = RTM_KIT_DIR . 'views/themebuilder.php';
+            }
+        }
+
+        $ordered = array_intersect_key(array_flip(self::BUILDER_ORDER), $builders);
+        $menus['builders'] = array_replace($ordered, $builders);
+
+        return $menus;
+    }
+
     /**
      * Register the plugin menu in the WordPress admin.
      */
@@ -156,10 +257,14 @@ class Menu
             foreach ($menu as $sub_key => $sub_menu) {
                 if (!isset($sub_menu['target']) || $sub_menu['target'] !== '_blank') {
                     if (in_array($sub_key, $sidebar_menu)) {
+                        // Di sidebar RTMKit item ini "Site Builder" di dalam grup Theme
+                        // Builder; di menu WordPress ia mewakili seluruh grup itu.
+                        $title = 'themebuilder' === $sub_key ? __('Theme Builder', 'rometheme-for-elementor') : $sub_menu['title'];
+
                         add_submenu_page(
                             'rtmkit',
-                            esc_html($sub_menu['title']),
-                            esc_html($sub_menu['title']),
+                            esc_html($title),
+                            esc_html($title),
                             $sub_menu['capability'] ?? 'manage_options',
                             $sub_menu['menu_slug'],
                             $sub_menu['function'] ?? [$this, 'rtmkit_root_page'],
@@ -259,10 +364,27 @@ class Menu
     public function get_menus()
     {
         if (!isset($this->menus)) {
-            $this->menus = apply_filters('rtmkit_menus', $this->default_menus());
+            $this->menus = $this->hide_addon_pages($this->normalize_builder_menus(apply_filters('rtmkit_menus', $this->default_menus())));
         }
 
         return $this->menus;
+    }
+
+    /**
+     * Halaman pengaturan addon (mis. Smooth Scroll) dibuka dari gear kartu addon
+     * di halaman Addons, jadi tidak tampil di sidebar. Path-nya tetap bisa dibuka.
+     */
+    protected function hide_addon_pages(array $menus): array
+    {
+        $pages = array_merge([], ...array_values(\RTMKit\Modules\Addons\AddonsModule::ADDON_PAGES));
+
+        foreach ($menus as $group => $items) {
+            foreach (array_intersect_key((array) $items, array_flip($pages)) as $key => $item) {
+                $menus[$group][$key]['hidden'] = true;
+            }
+        }
+
+        return $menus;
     }
 
     protected function get_menus_by_path()
@@ -300,7 +422,7 @@ class Menu
         $wp_admin_bar->add_node([
             'id' => 'rtmkit_themebuilder',
             'parent' => 'rtmkit_menu_bar',
-            'title' => esc_html__('Theme Builder', 'rometheme-for-elementor'),
+            'title' => esc_html__('Site Builder', 'rometheme-for-elementor'),
             'href' => admin_url('admin.php?page=rtmkit&path=themebuilder'),
         ]);
 

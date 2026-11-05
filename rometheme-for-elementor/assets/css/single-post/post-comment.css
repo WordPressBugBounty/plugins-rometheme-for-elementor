@@ -1,0 +1,49 @@
+.rkit-post-comment .rkit-post-comment__submit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+
+.rkit-post-comment .rkit-post-comment__submit {
+    background-color: rgb(54, 63, 222);
+    color: white;
+    transition: all 0.5s;
+}
+
+.rkit-post-comment .rkit-post-comment__submit:hover {
+    background-color: rgb(22, 22, 142);
+}
+
+
+.rkit-post-comment .children:before {
+    content: none !important;
+}
+
+.rkit-post-comment .form-submit {
+    display: flex;
+}
+
+.rkit-post-comment .comment-form-cookies-consent {
+    display: flex;
+    align-items: center;
+}
+
+/* #comments.comments-area .rkit-post-comment .comment-body {
+    --image-size:50px;
+    --padding-inline-start:0;
+    padding-inline-start: calc(var(--image-size) + var(--padding-inline-start) );
+} */
+
+.rkit-post-comment label {
+    margin: 0px 0px 16px 0px;
+}
+
+.comment-form-comment textarea,
+.rkit-post-comment input {
+    outline: none;
+}
+
+p.comment-form-comment {
+    margin: 0;
+}

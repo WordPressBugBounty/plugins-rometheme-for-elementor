@@ -79,6 +79,11 @@ class ThemebuilderStorage
             'footer' => [
                 'name' => 'footer',
                 'title' => 'Footer'
+            ],
+            // Single Post termasuk versi free (widgetnya ada di Inc/Elements/SinglePost).
+            'single_post' => [
+                'name' => 'single_post',
+                'title' => 'Single Post'
             ]
         ];
     }
@@ -96,7 +101,19 @@ class ThemebuilderStorage
             'posts_per_page' => -1,
         ];
 
-        if (isset($arg['themebuilder'])) {
+        if (isset($arg['themebuilder']) && is_array($arg['themebuilder'])) {
+            // Tab "All" di halaman builder. 'archive' adalah nama lama archive_post.
+            $types = $arg['themebuilder'];
+            if (in_array('archive_post', $types, true)) {
+                $types[] = 'archive';
+            }
+
+            $args['meta_query']['meta_value'] = [
+                'key' => 'rometheme_template_type',
+                'value' => $types,
+                'compare' => 'IN'
+            ];
+        } else if (isset($arg['themebuilder'])) {
 
             if ($arg['themebuilder'] == 'form') {
                 $args['post_type'] = 'romethemeform_form';
@@ -136,7 +153,7 @@ class ThemebuilderStorage
             $base_args['meta_query'][] = [
                 'key'     => 'rometheme_template_type',
                 'value'   => $args['themebuilder'],
-                'compare' => '=',
+                'compare' => is_array($args['themebuilder']) ? 'IN' : '=',
             ];
         }
 

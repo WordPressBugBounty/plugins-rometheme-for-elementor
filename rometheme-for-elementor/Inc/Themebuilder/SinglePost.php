@@ -15,10 +15,40 @@ class SinglePost
         return $instance;
     }
 
+    /**
+     * Widget Single Post versi free. Urutannya sesuai alur halaman artikel.
+     */
+    const WIDGETS = [
+        \RTMKit\Elements\SinglePost\PostTitle::class,
+        \RTMKit\Elements\SinglePost\PostImage::class,
+        \RTMKit\Elements\SinglePost\PostContent::class,
+        \RTMKit\Elements\SinglePost\PostInfo::class,
+        \RTMKit\Elements\SinglePost\PostComment::class,
+        \RTMKit\Elements\SinglePost\PostNavigation::class,
+    ];
+
     public function init()
     {
         add_filter('template_include', [$this, 'single_post_template']);
         add_action('rmtkit/render_single_template', [$this, 'render_single_template']);
+        add_action('elementor/elements/categories_registered', [$this, 'register_category']);
+        // Prioritas 5: rtm-blog (prioritas default) meregistrasi ulang nama yang
+        // sama sesudahnya, jadi versi Pro-nya yang dipakai saat rtm-blog aktif.
+        add_action('elementor/widgets/register', [$this, 'register_widgets'], 5);
+    }
+
+    public function register_category($elements_manager)
+    {
+        $elements_manager->add_category(\RTMKit\Elements\SinglePost\SinglePostWidget::CATEGORY, [
+            'title' => esc_html__('RTM Single Post', 'rometheme-for-elementor'),
+        ]);
+    }
+
+    public function register_widgets($widgets_manager)
+    {
+        foreach (self::WIDGETS as $class) {
+            $widgets_manager->register(new $class());
+        }
     }
 
     public function single_post_template($template)

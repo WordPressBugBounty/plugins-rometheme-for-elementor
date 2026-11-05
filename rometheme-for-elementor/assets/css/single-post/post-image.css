@@ -1,0 +1,13 @@
+.post-image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-image-container .rkit-post-image {
+  display: flex;
+  overflow: hidden;
+}
+
+.post-image-container .rkit-post-image img {
+  display: block;
+}

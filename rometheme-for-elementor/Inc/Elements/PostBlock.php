@@ -1824,6 +1824,50 @@ class PostBlock extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'floating_date_alignment',
+            [
+                'label' => esc_html__('Text Alignment', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => esc_html__('Left', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => esc_html__('Right', 'rometheme-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-float-metawrapper-date' => 'justify-content: {{VALUE}};',
+                    '{{WRAPPER}} .rkit-float-metawrapper-date > span' => 'align-items: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'floating_date_day_typography',
+                'label' => esc_html__('Day Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date .rkit-float-date-day',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'floating_date_month_typography',
+                'label' => esc_html__('Month Typography', 'rometheme-for-elementor'),
+                'selector' => '{{WRAPPER}} .rkit-float-metawrapper-date .rkit-float-date-month',
+            ]
+        );
+
         $this->add_control(
             'floating_top_bottom_position',
             [
@@ -2302,7 +2346,7 @@ class PostBlock extends \Elementor\Widget_Base
                             </a>
                             <?php if ('yes' === $settings['show-floating-date']) : ?>
                                 <div class="rkit-float-metawrapper-date">
-                                    <span><?php echo '<strong>' . get_the_date('d') . '</strong>' . get_the_date('M'); ?></span>
+                                    <span><strong class="rkit-float-date-day"><?php echo esc_html(get_the_date('d')); ?></strong><span class="rkit-float-date-month"><?php echo esc_html(get_the_date('M')); ?></span></span>
                                 </div>
                             <?php endif; ?>
                         </div>

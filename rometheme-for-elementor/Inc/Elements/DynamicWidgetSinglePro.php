@@ -13,7 +13,6 @@ class DynamicWidgetSinglePro extends Pro_Widget_Base
 
     private $widget_key;
     private $widget_data;
-    private static $registered_widgets = [];
 
     public function __construct(array $data = [], array $args = null)
     {
@@ -22,24 +21,13 @@ class DynamicWidgetSinglePro extends Pro_Widget_Base
         if (isset($args['widget_key']) && isset($args['widget_data'])) {
             $this->widget_key  = $args['widget_key'];
             $this->widget_data = $args['widget_data'];
-
-            self::$registered_widgets[$this->get_name()] = true;
         }
     }
 
     public function show_in_panel()
     {
-        if ($this->is_pro_active()) {
-            return false;
-        }
-
-        $widget_name = $this->get_name();
-
-        if (isset(self::$registered_widgets[$widget_name])) {
-            return false;
-        }
-
-        self::$registered_widgets[$widget_name] = true;
+        // Hanya didaftarkan selama addon-nya mati, dan tetap tampil walau lisensi
+        // aktif supaya pengguna tahu widget apa saja yang dimiliki RTMKit.
         return true;
     }
 
@@ -60,7 +48,8 @@ class DynamicWidgetSinglePro extends Pro_Widget_Base
     public function get_icon()
     {
         $icon = isset($this->widget_data['icon']) ? $this->widget_data['icon'] : 'eicon-pro-icon';
-        return 'rkit-widget-icon ' . $icon;
+        // rkit-widget-locked: penanda gembok di panel editor (panel.css).
+        return 'rkit-widget-icon rkit-widget-locked ' . $icon;
     }
 
     public function get_categories()

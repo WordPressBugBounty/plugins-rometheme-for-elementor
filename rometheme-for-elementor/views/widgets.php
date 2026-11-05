@@ -9,20 +9,32 @@ $widgetCategory = [
     'infographic' => 'Infographic',
     'post' => 'Post',
     'woocommerce' => 'Woo',
+    // Tetap tampil tanpa RTMForm; widget-nya terkunci (lihat get_widget_lock()).
+    'form' => 'Form',
 ];
-
-if (class_exists('RomethemeForm')) {
-    $widgetCategory['form'] = 'Form';
-}
 
 $widgetStorage = \RTMKit\Modules\Widgets\WidgetStorage::instance();
 $widgetOptions = $widgetStorage->get_widget_options();
-$totalWidgets = count($widgetStorage->get_widget_data());
-$activeWidgets = count(array_filter($widgetOptions, function ($widget) {
-    return $widget['status'] === true;
-}));
+$widgetData = $widgetStorage->get_widget_data();
+$totalWidgets = count($widgetData);
 
-$isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
+// Widget addon yang mati tetap didaftar tapi terkunci, dan tidak ikut dihitung aktif.
+$widgetLocks = [];
+$activeWidgets = 0;
+foreach ($widgetData as $key => $widget) {
+    $widgetLocks[$key] = $widgetStorage->get_widget_lock($widget);
+
+    // Belum ada status tersimpan = aktif, sesuai perilaku registrasi di editor.
+    if (!$widgetLocks[$key] && ($widgetOptions[$key]['status'] ?? true)) {
+        $activeWidgets++;
+    }
+}
+
+$lockModals = [
+    'upgrade' => '#moduleLockedModal',
+    'addon' => '#addonLockedModal',
+    'rtmform' => '#rtmformLockedModal',
+];
 
 ?>
 
@@ -51,17 +63,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     License :
-                    <span class="license-status">
-                        <?php
-                         if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
-                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
-                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
-                        } else {
-                            echo 'Free';
-                        }
-                        ?>
-                    </span>
+                    <span class="license-status"><?php echo esc_html(rtmkit_license_label()); ?></span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.widgets')); ?>" target="_blank">Upgrade Now</a></p>
@@ -125,39 +127,20 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                     <div class="row row-cols-3 g-3">
                         <?php
                         $widgets = $widgetStorage->get_widget_by_category($k);
+                        // A–Z per kategori.
+                        uasort($widgets, function ($a, $b) {
+                            return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
+                        });
                         foreach ($widgets as $key => $widget) :
-                            $disabled = false;
-                            $status = $widgetOptions[$key]['status'] ? 'checked' : '';
-
-                            if ($widget['type'] == 'pro' && !$isProActive) {
-                                $disabled = true;
-                                $status = '';
+                            $lock = $widgetLocks[$key] ?? $widgetStorage->get_widget_lock($widget);
+                            $disabled = (bool) $lock;
+                            $status = (!$disabled && ($widgetOptions[$key]['status'] ?? true)) ? 'checked' : '';
+                            $isPro = ($widget['type'] ?? '') === 'pro' && !$widgetStorage->is_free_single_post($key);
+                            // Widget Form Pro diarahkan ke RTMHub, widget Form free ke unduhan RTMForm.
+                            $lockModal = $lock ? $lockModals[$lock] : '';
+                            if ($lock && $k === 'form' && ($widget['type'] ?? '') === 'pro') {
+                                $lockModal = '#formProLockedModal';
                             }
-
-                            // Normalisasi: widget pro dengan plugin_required wajib semua plugin-nya aktif
-                            if ($widget['type'] === 'pro' && !empty($widget['plugin_required'])) {
-                                $requiredPlugins = (array) $widget['plugin_required'];
-
-                                foreach ($requiredPlugins as $requiredPlugin) {
-                                    $pluginFile = $requiredPlugin . '/' . $requiredPlugin . '.php';
-
-                                    if (!is_plugin_active($pluginFile)) {
-                                        $disabled = true;
-                                        $status = '';
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if ($k === 'woocommerce' && (
-                                !$isProActive
-                                || !is_plugin_active('woocommerce/woocommerce.php')
-                                || !is_plugin_active('rtm-woo/rtm-woo.php')
-                            )) {
-                                $disabled = true;
-                                $status = '';
-                            }
-                            
                         ?>
                             <div class="col">
                                 <div class="card widgets p-3" data-widget-type="<?php echo esc_attr($widget['type']) ?>">
@@ -168,7 +151,7 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                                 <h5 class="m-0 d-flex align-items-center lh-1 gap-2 position-relative">
                                                     <?php echo esc_attr($widget['name']) ?>
                                                     <div class="position-absolute d-flex gap-2" style="left: 110%;">
-                                                        <?php if (isset($widget['type']) && $widget['type'] === 'pro'): ?>
+                                                        <?php if ($isPro): ?>
                                                             <span class="badge pro">
                                                                 <i class="fa-solid fa-crown"></i>
                                                                 Pro</span>
@@ -185,12 +168,12 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                                                 </h5>
                                                 <div class="d-flex gap-2">
                                                     <a href="<?php echo esc_url($widget['docsURL']) ?>" target="_blank" class="link">Docs</a>
-                                                    <a href="<?php echo esc_url($widget['previewURL']) ?>" target="_blank" class="link">Demo</a>
+                                                    <a href="<?php echo esc_url($widgetStorage->get_demo_url($key, $widget)) ?>" target="_blank" class="link">Demo</a>
                                                     <a href="<?php echo esc_url($widget['videoURL']) ?>" target="_blank" class="link">Video</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $module['name'])) ?>" data-bs-toggle="<?php echo $disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo $disabled ? '#moduleLockedModal' : ''; ?>">
+                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $widget['name'])) ?>" data-bs-toggle="<?php echo $disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo esc_attr($lockModal); ?>">
                                             <input name="<?php echo esc_attr($key) ?>"
                                                 class="switch-input switch-status"
                                                 type="checkbox" value="true"
@@ -217,4 +200,19 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 <?php
 require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
 rtmkit_render_pro_upgrade_modal();
+rtmkit_render_addon_locked_modal();
+rtmkit_render_pro_upgrade_modal(
+    'rtmformLockedModal',
+    'Download RTMForm<br>to Use Form Widgets',
+    'Form widgets come from the free RTMForm plugin. Download, install and activate it to build forms with Elementor.',
+    'Download RTMForm',
+    'https://wordpress.org/plugins/romethemeform/'
+);
+rtmkit_render_pro_upgrade_modal(
+    'formProLockedModal',
+    'Get RTM Form Pro<br>from RTMHub',
+    'This form widget is part of RTM Form Pro. Get it from RTMHub to unlock it on this site.',
+    'Open RTMHub',
+    'https://my.rometheme.net'
+);
 ?>

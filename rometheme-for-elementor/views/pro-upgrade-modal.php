@@ -48,3 +48,46 @@ if (! function_exists('rtmkit_render_pro_upgrade_modal')) {
         <?php
     }
 }
+
+if (! function_exists('rtmkit_render_addon_locked_modal')) {
+    /**
+     * Modal untuk fitur addon saat lisensi sudah aktif tapi addon-nya belum:
+     * yang dibutuhkan mengaktifkan addon, bukan upgrade.
+     */
+    function rtmkit_render_addon_locked_modal($id = 'addonLockedModal')
+    {
+        rtmkit_render_pro_upgrade_modal(
+            $id,
+            'Activate the Addon<br>to Unlock This Feature',
+            'This feature comes from an RTMKit addon that is not active on this site yet. Install and activate it from the Addons page.',
+            'Open Addons',
+            admin_url('admin.php?page=rtmkit&path=addons')
+        );
+        ?>
+        <script>
+            // Pemicu yang membawa data-addon-name (mis. kartu modul) mengganti
+            // teks umum modal dengan nama addon yang harus diaktifkan.
+            (function () {
+                var modal = document.getElementById(<?php echo wp_json_encode($id); ?>);
+                if (!modal) return;
+                var heading = modal.querySelector('h3');
+                var desc = modal.querySelector('h3 + p');
+                var defaults = { heading: heading.innerHTML, desc: desc.textContent };
+
+                modal.addEventListener('show.bs.modal', function (e) {
+                    var trigger = e.relatedTarget;
+                    var addon = trigger && trigger.dataset ? trigger.dataset.addonName : '';
+                    if (!addon) {
+                        heading.innerHTML = defaults.heading;
+                        desc.textContent = defaults.desc;
+                        return;
+                    }
+                    var feature = trigger.dataset.featureName || 'This feature';
+                    heading.textContent = 'Activate ' + addon + ' to Unlock ' + feature;
+                    desc.textContent = feature + ' is part of the ' + addon + ' addon. Open RTMKit → Addons, then install & activate ' + addon + ' to use it.';
+                });
+            })();
+        </script>
+        <?php
+    }
+}

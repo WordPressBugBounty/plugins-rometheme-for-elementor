@@ -424,6 +424,57 @@ class ImageComparison extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_responsive_control(
+            'image_width',
+            [
+                'label' => esc_html__('Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'vw'],
+                'range' => [
+                    'px' => ['min' => 50, 'max' => 2000],
+                    '%' => ['min' => 1, 'max' => 100],
+                    'vw' => ['min' => 1, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-imgcomp-sizer' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_max_width',
+            [
+                'label' => esc_html__('Max Width', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'vw'],
+                'range' => [
+                    'px' => ['min' => 50, 'max' => 2000],
+                    '%' => ['min' => 1, 'max' => 100],
+                    'vw' => ['min' => 1, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-imgcomp-sizer' => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'image_height',
+            [
+                'label' => esc_html__('Height', 'rometheme-for-elementor'),
+                'description' => esc_html__('Leave empty to follow the image aspect ratio.', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'vh'],
+                'range' => [
+                    'px' => ['min' => 50, 'max' => 1500],
+                    'vh' => ['min' => 1, 'max' => 100],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .rkit-imgcomp-sizer' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
@@ -497,7 +548,8 @@ class ImageComparison extends \Elementor\Widget_Base
         $image_after = $settings['image_after'];
 ?>
 
-        <!--  -->
+        <!-- Width / Max Width / Height (Image Style) dipasang di sini; JS mengukur dari elemen ini. -->
+        <div class="rkit-imgcomp-sizer">
         <div class="con-wrap rkit-s-image">
             <div class="img-comp-container rkit-s-image" data-slider-mode="<?php echo esc_html($settings['position_slider']) ?>" data-show-icon="<?php echo esc_html($settings['show_icon']); ?>">
 
@@ -516,6 +568,7 @@ class ImageComparison extends \Elementor\Widget_Base
                 </div>
 
             </div>
+        </div>
         </div>
 
 <?php

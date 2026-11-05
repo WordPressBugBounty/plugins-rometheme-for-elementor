@@ -26,12 +26,12 @@
     "class": "RTMKit\\Modules\\RTMIcons\\RTMIconsModule"
   },
   "single_post": {
-    "type": "pro",
+    "type": "free",
     "icon": "rtmicon rtmicon-single-post",
     "name": "Single Post",
     "status": true,
     "category": "themebuilder",
-    "class": "RTMBlog\\Themebuilder\\SinglePost"
+    "class": "RTMKit\\Themebuilder\\SinglePost"
   },
   "error_404": {
     "type": "pro",

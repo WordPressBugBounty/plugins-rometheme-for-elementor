@@ -14,6 +14,33 @@ usort($addon_list, function ($a, $b) {
 
     return $aComingSoon ? 1 : -1;
 });
+
+// Isi popup gear: modul addon (dipindah dari halaman Modules) dan halaman
+// pengaturannya (mis. Smooth Scroll), hanya untuk addon yang aktif.
+$isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
+$module_options = \RTMKit\Modules\Storage::instance()->get_module_option();
+$menu_items = array_merge([], ...array_values(\RTMKit\Modules\Menu::instance()->get_menus()));
+$addon_settings = [];
+
+foreach ($addon_list as $addon) {
+    $slug = $addon['slug'] ?? '';
+
+    if ('' === $slug || !is_plugin_active($slug . '/' . $slug . '.php')) {
+        continue;
+    }
+
+    $pages = [];
+    foreach (\RTMKit\Modules\Addons\AddonsModule::ADDON_PAGES[$slug] ?? [] as $key) {
+        if (isset($menu_items[$key]['menu_slug'])) {
+            $pages[$key] = $menu_items[$key];
+        }
+    }
+
+    $addon_settings[$slug] = [
+        'modules' => $addonModule->get_addon_modules($slug),
+        'pages' => $pages,
+    ];
+}
 ?>
 <div class="px-4 mb-5 scroll-behavior-smooth scrollspy" data-scrollspy="#widget-category"
     data-rootMargin="-30% 0px -70% 0px" tabindex="0">
@@ -23,17 +50,7 @@ usort($addon_list, function ($a, $b) {
                 <h1>RTMKit Addons</h1>
                 <div class="d-flex align-items-center gap-3">
                     License :
-                    <span class="license-status">
-                        <?php
-                        if (class_exists('RTMKitPro\Modules\Licenses\LicenseStorage') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
-                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
-                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
-                        } else {
-                            echo 'Free';
-                        }
-                        ?>
-                    </span>
+                    <span class="license-status"><?php echo esc_html(rtmkit_license_label()); ?></span>
                     <?php if (\RTMKit\Core\Plugin::instance()->pro_is_active()): ?>
                         <a href="<?php echo esc_url(admin_url('admin.php?page=rtmkit&path=updates')); ?>"
                             class="btn btn-outline-accent rounded-2 px-4 py-2 gap-2"
@@ -107,11 +124,37 @@ usort($addon_list, function ($a, $b) {
                         </p>
                     </div>
                 <?php endif; ?>
-                <div class="row row-cols-xl-4 row-cols-2 g-3">
+                <div class="row row-cols-xl-3 row-cols-2 g-3">
                     <?php foreach ($addon_list as $addon):
                         $name = $addon['name'] ?? '';
                         $slug = $addon['slug'] ?? '';
-                        $description = $addon['description'] ?? '';
+                        // Warna dari editor RTMHub ditulis sebagai rgb(...), yang dibuang
+                        // wp_kses_post(); diubah ke hex supaya warnanya tetap terbawa.
+                        $description = preg_replace_callback(
+                            '/rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/i',
+                            static function ($rgb) {
+                                return sprintf('#%02x%02x%02x', min(255, (int) $rgb[1]), min(255, (int) $rgb[2]), min(255, (int) $rgb[3]));
+                            },
+                            (string) ($addon['description'] ?? '')
+                        );
+
+                        // Paragraf deskripsi yang diawali "*" adalah catatan kebutuhan
+                        // (mis. "*Requires the WooCommerce plugin."). Ditampilkan terpisah:
+                        // di dalam deskripsi yang dipotong 3 baris, catatan itu tidak terlihat.
+                        $notes = [];
+                        if (preg_match_all('#<p\b[^>]*>.*?</p>#is', $description, $paragraphs)) {
+                            $description = '';
+                            foreach ($paragraphs[0] as $paragraph) {
+                                $text = trim(html_entity_decode(wp_strip_all_tags($paragraph), ENT_QUOTES, 'UTF-8'));
+                                if (0 === strpos($text, '*')) {
+                                    // HTML aslinya dipakai, supaya format dari RTMHub (merah, tebal, miring) tetap.
+                                    $notes[] = $paragraph;
+                                } elseif ('' !== $text) {
+                                    $description .= $paragraph;
+                                }
+                            }
+                        }
+
                         $image = $addon['media']['url'] ?? '';
                         $coming_soon = !empty($addon['is_coming_soon']);
                         $is_available = in_array($slug, $available_addons, true);
@@ -119,75 +162,64 @@ usort($addon_list, function ($a, $b) {
                         $is_active = $is_installed && is_plugin_active($slug . '/' . $slug . '.php');
                         ?>
                         <div class="cols">
-                            <div class="card modules addon-card h-100 p-0 overflow-hidden">
+                            <div class="card modules addon-card h-100 p-0 overflow-hidden<?php echo $is_active ? ' is-active' : ''; ?>">
                                 <div class="d-flex flex-column h-100">
                                     <div class="position-relative addon-card__media">
                                         <img class="img-fluid" src="<?php echo esc_url($image); ?>"
-                                            alt="<?php echo esc_attr($name); ?>">
+                                            alt="<?php echo esc_attr($name); ?>" loading="lazy">
                                         <?php if ($coming_soon): ?>
-                                            <div
-                                                class="position-absolute top-0 end-0 me-3 mt-3 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
-                                                <span class="badge bg-accent rounded-2 p-2 text-black">
-                                                    Coming Soon
-                                                </span>
-                                            </div>
+                                            <span class="addon-card__status is-soon">Coming Soon</span>
+                                        <?php elseif (!$is_available): ?>
+                                            <span class="addon-card__status is-locked"><i class="fa-solid fa-lock"></i> Pro</span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="d-flex p-3 flex-column gap-2 addon-card__body">
-                                        <div class="d-flex flex-column gap-1 addon-card__text">
-                                            <h5 class="m-0 fw-semibold addon-card__title">
-                                                <?php echo esc_html($name); ?>
-                                            </h5>
-                                            <p class="addon-card__desc">
-                                                <?php echo $description; ?>
-                                            </p>
+                                        <h5 class="m-0 fw-semibold addon-card__title">
+                                            <?php echo esc_html($name); ?>
+                                        </h5>
+                                        <div class="addon-card__desc">
+                                            <?php echo wp_kses_post($description); ?>
                                         </div>
-                                        <div class="addon-card__action mt-auto">
+                                        <?php foreach ($notes as $note) : ?>
+                                            <div class="addon-card__note">
+                                                <?php echo wp_kses_post($note); ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        <div class="addon-card__action d-flex gap-2 mt-auto">
                                             <?php if (!$is_available || $coming_soon): ?>
                                                 <a href="<?php echo esc_url(rtmkit_upgrade_url('addons.card', 'store')); ?>"
-                                                    target="_blank" class="btn btn-secondary rounded-2 px-4 py-2 gap-2">
-                                                    <i class="fa-solid fa-lock"></i>
+                                                    target="_blank" class="btn btn-secondary flex-grow-1 py-2 gap-2">
+                                                    <i class="fa-solid fa-crown"></i>
                                                     Upgrade Plan
                                                 </a>
                                             <?php elseif (!$is_installed): ?>
                                                 <button data-addon="<?php echo esc_attr($slug); ?>"
-                                                    class="btn btn-accent rounded-2 px-4 py-2 gap-2 install-addon">
+                                                    class="btn btn-accent flex-grow-1 py-2 gap-2 install-addon">
                                                     <i class="fa-solid fa-download"></i>
                                                     Install
                                                 </button>
-                                            <?php elseif ($is_active): ?>
-                                                <div class="d-flex justify-content-between align-items-center gap-2">
-                                                    <button class="btn btn-outline-accent rounded-2 px-4 py-2 gap-2"
-                                                        style="border:1px solid var(--accent-color);color:var(--accent-color)!important;"
-                                                        disabled>
-                                                        <i class="fa-solid fa-check"></i>
-                                                        Activated
-                                                    </button>
-                                                    <button data-addon="<?php echo esc_attr($slug); ?>"
-                                                        title="Delete <?php echo esc_attr($name); ?>"
-                                                        class="btn btn-accent rounded-2 p-2 delete-addon text-dark">
-                                                        <svg width="14px" height="14px" viewBox="0 0 24 24" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg" color="#000000">
-                                                            <path
-                                                                d="M20 9L18.005 20.3463C17.8369 21.3026 17.0062 22 16.0353 22H7.96474C6.99379 22 6.1631 21.3026 5.99496 20.3463L4 9"
-                                                                stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round"></path>
-                                                            <path
-                                                                d="M21 6L15.375 6M3 6L8.625 6M8.625 6V4C8.625 2.89543 9.52043 2 10.625 2H13.375C14.4796 2 15.375 2.89543 15.375 4V6M8.625 6L15.375 6"
-                                                                stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round"></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
                                             <?php else: ?>
-                                                <div class="d-flex justify-content-between align-items-center gap-2">
-                                                    <button data-addon="<?php echo esc_attr($slug); ?>"
-                                                        class="btn btn-accent rounded-2 px-4 py-2 gap-2 activate-addon">
-                                                        <i class="fa-solid fa-check"></i>
-                                                        Activate Now
+                                                <label class="switch addon-card__toggle gap-2">
+                                                    <input type="checkbox" class="switch-input addon-toggle" data-addon="<?php echo esc_attr($slug); ?>" hidden <?php checked($is_active); ?>>
+                                                    <span class="slider round"></span>
+                                                    <span class="addon-card__toggle-label"><?php echo $is_active ? 'Active' : 'Inactive'; ?></span>
+                                                </label>
+                                                <div class="d-flex gap-2 ms-auto">
+                                                    <?php // Gear hanya untuk addon yang punya modul / halaman pengaturan. ?>
+                                                    <?php if ($addonModule->addon_has_settings($slug)) : ?>
+                                                    <button type="button" data-addon="<?php echo esc_attr($slug); ?>"
+                                                        data-addon-name="<?php echo esc_attr($name); ?>"
+                                                        title="<?php echo esc_attr($is_active ? $name . ' settings' : 'Activate ' . $name . ' to manage its modules'); ?>"
+                                                        aria-label="<?php echo esc_attr($name); ?> settings"
+                                                        class="btn btn-secondary addon-card__icon-btn addon-settings" <?php disabled(!$is_active); ?>>
+                                                        <i class="fa-solid fa-gear"></i>
                                                     </button>
-                                                    <button data-addon="<?php echo esc_attr($slug); ?>"
-                                                        class="btn btn-outline-accent rounded-2 p-2 delete-addon text-danger">
+                                                    <?php endif; ?>
+                                                    <button type="button" data-addon="<?php echo esc_attr($slug); ?>"
+                                                        data-addon-name="<?php echo esc_attr($name); ?>"
+                                                        title="Delete <?php echo esc_attr($name); ?>"
+                                                        aria-label="Delete <?php echo esc_attr($name); ?>"
+                                                        class="btn btn-secondary addon-card__icon-btn addon-card__delete delete-addon">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -199,6 +231,65 @@ usort($addon_list, function ($a, $b) {
                         </div>
                     <?php endforeach; ?>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addonSettingsModal" tabindex="-1" aria-labelledby="addonSettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content rounded-4 shadow p-0">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="addonSettingsModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1) grayscale(1);"></button>
+            </div>
+            <div class="modal-body p-4">
+                <?php foreach ($addon_settings as $slug => $settings) : ?>
+                    <div class="addon-settings-panel d-flex flex-column gap-3" data-addon="<?php echo esc_attr($slug); ?>" hidden>
+                        <?php if ($settings['modules']) : ?>
+                            <div class="d-flex flex-column gap-2">
+                                <h6 class="m-0 addon-settings-panel__heading">Modules</h6>
+                                <?php foreach ($settings['modules'] as $key => $module) :
+                                    $locked = ($module['type'] ?? '') === 'pro' && !$isProActive;
+                                    $checked = !$locked && !empty($module_options[$key]['status']);
+                                    ?>
+                                    <div class="addon-settings-row" data-module-type="<?php echo esc_attr($module['type'] ?? 'free'); ?>">
+                                        <i class="<?php echo esc_attr($module['icon'] ?? ''); ?> addon-settings-row__icon"></i>
+                                        <span class="flex-grow-1"><?php echo esc_html($module['name'] ?? $key); ?></span>
+                                        <label class="switch">
+                                            <input name="<?php echo esc_attr($key); ?>" class="switch-input switch-status" type="checkbox" value="true" hidden <?php checked($checked); ?> <?php disabled($locked); ?>>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php foreach ($settings['pages'] as $page) : ?>
+                            <div class="d-flex flex-column gap-2">
+                                <h6 class="m-0 addon-settings-panel__heading"><?php echo esc_html($page['title']); ?></h6>
+                                <?php if (!empty($page['render_view']) && is_file($page['render_view'])) : ?>
+                                    <?php // Form pengaturan addon langsung di popup; scope terpisah supaya variabel view tidak bentrok. ?>
+                                    <div class="addon-settings-page">
+                                        <?php (static function ($file) { include $file; })($page['render_view']); ?>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="addon-settings-row">
+                                        <i class="fa-solid fa-sliders addon-settings-row__icon"></i>
+                                        <span class="flex-grow-1"><?php echo esc_html($page['title']); ?></span>
+                                        <a href="<?php echo esc_url(admin_url('admin.php?page=' . $page['menu_slug'])); ?>" class="btn btn-secondary btn-sm px-3">Open</a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php if (!$settings['modules'] && !$settings['pages']) : ?>
+                            <p class="m-0 text-center addon-settings-panel__empty">This addon has no modules to configure.</p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="save-addon-modules" class="btn btn-accent px-4">Save Changes</button>
             </div>
         </div>
     </div>

@@ -231,9 +231,73 @@ class ConnectorModule
 
         check_ajax_referer('rtmkit_nonce', 'nonce');
 
+        // Hapus domain situs ini dari akun di RTMHub dulu, selagi token-nya
+        // masih ada. Data lokal tetap dihapus walau hub gagal dihubungi, supaya
+        // pengguna tidak terjebak dalam keadaan connected.
+        $remote = $this->remove_site_from_hub();
+
         ConnectorStorage::instance()->clear();
 
+        if (is_wp_error($remote)) {
+            wp_send_json_success([
+                'warning' => sprintf(
+                    /* translators: %s: error message from RTMHub. */
+                    __('This site was disconnected, but its domain could not be removed from your RTMHub account: %s', 'rometheme-for-elementor'),
+                    $remote->get_error_message()
+                ),
+            ]);
+        }
+
         wp_send_json_success();
+    }
+
+    /**
+     * Minta RTMHub menghapus domain situs ini dari akun yang terhubung.
+     * Di hub: LicenseActivationController::deactivation, yang menghapus baris
+     * site_domains milik pemilik token beserta user_plan_pillars-nya.
+     *
+     * @return true|\WP_Error
+     */
+    private function remove_site_from_hub()
+    {
+        $token = ConnectorStorage::instance()->get_access_token();
+
+        if ('' === $token) {
+            return true;
+        }
+
+        $endpoint = apply_filters('rtmkit_connector_disconnect_endpoint', 'connector/v1/licenses/client/deactivation');
+        $url = untrailingslashit(RTMHUB_API_URL) . '/' . ltrim($endpoint, '/');
+
+        $response = wp_remote_post($url, [
+            'timeout' => 15,
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'body' => wp_json_encode([
+                'domain' => $this->get_current_domain(),
+            ]),
+        ]);
+
+        if (is_wp_error($response)) {
+            return $response;
+        }
+
+        $code = (int) wp_remote_retrieve_response_code($response);
+
+        // 404: domain sudah tidak ada di hub, hasil akhirnya sama.
+        if (($code >= 200 && $code < 300) || 404 === $code) {
+            return true;
+        }
+
+        $decoded = json_decode(wp_remote_retrieve_body($response), true);
+        $message = is_array($decoded) && !empty($decoded['message'])
+            ? (string) $decoded['message']
+            : sprintf('HTTP %d', $code);
+
+        return new \WP_Error('rtmhub_disconnect_failed', $message);
     }
 
     public function rtmhub_request_sso_login_url()

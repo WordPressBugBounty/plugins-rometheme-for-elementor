@@ -38,7 +38,7 @@ class SocialIcon extends \Elementor\Widget_Base
 
     public function get_categories()
     {
-        return ['romethemekit_widgets'];
+        return ['romethemekit_header_footer'];
     }
 
     public function get_style_depends()

@@ -23,6 +23,63 @@ class ThemebuilderAPI
             add_action('wp_ajax_add_themebuilder', [$this, 'add_themebuilder']);
             add_action('wp_ajax_edit_themebuilder', [$this, 'edit_themebuilder']);
             add_action('wp_ajax_install_requirements', [$this, 'install_requirements']);
+            add_action('wp_ajax_rtm_thembuilder_bulk_action', [$this, 'rtm_thembuilder_bulk_action']);
+        }
+    }
+
+    public function rtm_thembuilder_bulk_action()
+    {
+        // 1. Verifikasi Nonce untuk keamanan
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        // 2. Cek kapabilitas user
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('Access Denied');
+        }
+
+        // 3. Tangkap data
+        $action = isset($_POST['bulk_action']) ? sanitize_text_field($_POST['bulk_action']) : '';
+        $item_ids = isset($_POST['themebuilder_ids']) ? array_map('intval', $_POST['themebuilder_ids']) : array();
+
+        // 4. Validasi apakah ada data yang dikirim
+        if (empty($action) || empty($item_ids)) {
+            wp_send_json_error('Data tidak lengkap atau tidak ada baris yang dipilih.');
+        }
+
+        // 5. Eksekusi logika berdasarkan action
+        switch ($action) {
+            case 'publish':
+            case 'draft':
+                foreach ($item_ids as $id) {
+                    wp_update_post(array(
+                        'ID'          => $id,
+                        'post_status' => $action
+                    ));
+                }
+                $status_text = ($action === 'publish') ? 'published' : 'saved as draft';
+                wp_send_json_success(sprintf('%d item(s) successfully %s.', count($item_ids), $status_text));
+                break;
+
+            case 'trash':
+                foreach ($item_ids as $id) {
+                    wp_trash_post($id);
+                }
+                wp_send_json_success(sprintf('%d item(s) moved to trash.', count($item_ids)));
+                break;
+
+            case 'restore':
+                foreach ($item_ids as $id) {
+                    wp_untrash_post($id);
+                }
+                wp_send_json_success(sprintf('%d item(s) successfully restored.', count($item_ids)));
+                break;
+
+            case 'delete':
+                foreach ($item_ids as $id) {
+                    wp_delete_post($id, true);
+                }
+                wp_send_json_success(sprintf('%d item(s) permanently deleted.', count($item_ids)));
+                break;
         }
     }
 

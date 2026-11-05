@@ -1,0 +1,195 @@
+.rkit-post-info {
+  --space-between: 0.5em;
+  --alignment: start;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.rkit-post-info-divider {
+  --divider-style: solid;
+  --divider-width: 1px;
+  --divider-color: black;
+}
+
+.rkit-post-info {
+  gap: var(--space-between);
+}
+
+.rkit-post-info li {
+  display: flex;
+}
+
+.rkit-post-info .rkit-post-info__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.rkit-post-info .rkit-post-info__item img {
+  border-radius: 50%;
+}
+
+/* === DEFAULT (Desktop) === */
+@media (min-width: 1025px) {
+  .rkit-post-info--list .rkit-post-info {
+    flex-direction: column;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--inline .rkit-post-info {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: var(--alignment);
+  }
+  .rkit-post-info--inline .rkit-post-info li {
+    flex-direction: row;
+    align-items: center;
+  }
+  .rkit-post-info--list .rkit-post-info li {
+    flex-direction: column;
+    width: 100%;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--inline
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-right-width: var(--divider-width);
+    border-right-color: var(--divider-color);
+    width: auto;
+    border-right-style: var(--divider-style);
+    height: 1rem;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    right: calc(var(--space-between) / 2 * -1);
+  }
+  .rkit-post-info--list
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-bottom-width: var(--divider-width);
+    border-bottom-color: var(--divider-color);
+    border-bottom-style: var(--divider-style);
+    width: 100%;
+    display: block;
+    position: relative;
+    bottom: calc(var(--space-between) / 2 * -1);
+  }
+}
+
+/* === Tablet === */
+@media (min-width:768px) and (max-width: 1024px) {
+  .rkit-post-info--tablet-inline .rkit-post-info {
+    flex-direction: row;
+    align-items: center;
+    justify-content: var(--alignment);
+  }
+  .rkit-post-info--tablet-list .rkit-post-info {
+    flex-direction: column;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--tablet-inline .rkit-post-info {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: var(--alignment);
+  }
+  .rkit-post-info--tablet-inline .rkit-post-info li {
+    flex-direction: row;
+    align-items: center;
+  }
+  .rkit-post-info--tablet-list .rkit-post-info li {
+    flex-direction: column;
+    width: 100%;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--tablet-inline
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-right-width: var(--divider-width);
+    border-right-color: var(--divider-color);
+    width: auto;
+    border-right-style: var(--divider-style);
+    height: 1rem;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    right: calc(var(--space-between) / 2 * -1);
+  }
+  .rkit-post-info--tablet-list
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-bottom-width: var(--divider-width);
+    border-bottom-color: var(--divider-color);
+    border-bottom-style: var(--divider-style);
+    width: 100%;
+    display: block;
+    position: relative;
+    bottom: calc(var(--space-between) / 2 * -1);
+  }
+}
+
+/* === Mobile === */
+@media (max-width: 767px) {
+  .rkit-post-info--mobile-inline .rkit-post-info {
+    flex-direction: row;
+    align-items: center;
+    justify-content: var(--alignment);
+  }
+  .rkit-post-info--mobile-list .rkit-post-info {
+    flex-direction: column;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--mobile-inline .rkit-post-info {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: var(--alignment);
+  }
+  .rkit-post-info--mobile-inline .rkit-post-info li {
+    flex-direction: row;
+    align-items: center;
+  }
+  .rkit-post-info--mobile-list .rkit-post-info li {
+    flex-direction: column;
+    width: 100%;
+    align-items: var(--alignment);
+  }
+
+  .rkit-post-info--mobile-inline
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-right-width: var(--divider-width);
+    border-right-color: var(--divider-color);
+    width: auto;
+    border-right-style: var(--divider-style);
+    height: 1rem;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    right: calc(var(--space-between) / 2 * -1);
+  }
+  .rkit-post-info--mobile-list
+    .rkit-post-info.rkit-post-info-divider
+    li:not(:last-child)::after {
+    content: "";
+    border-bottom-width: var(--divider-width);
+    border-bottom-color: var(--divider-color);
+    border-bottom-style: var(--divider-style);
+    width: 100%;
+    display: block;
+    position: relative;
+    bottom: calc(var(--space-between) / 2 * -1);
+  }
+}

@@ -29,7 +29,7 @@ class RtmkitMcp
     {
         \WP\MCP\Core\McpAdapter::instance();
         Settings::init();
-        // Ability hanya didaftarkan jika Abilities API tersedia.
+        add_filter('mcp_adapter_default_server_config', [Abilities::class, 'expose_as_tools']);        // Ability hanya didaftarkan jika Abilities API tersedia.
         if (function_exists('wp_register_ability')) {
             add_action('wp_abilities_api_categories_init', [Abilities::class, 'register_category']);
             add_action('wp_abilities_api_init', static function () {

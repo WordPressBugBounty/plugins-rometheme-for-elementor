@@ -35,11 +35,8 @@ if (!$has_woocommerce) {
     unset($active_themebuilder_key['rtm_shop'], $active_themebuilder_key['archive_product'], $active_themebuilder_key['single_product']);
 }
 
+// Single Post sudah free, jadi tidak ikut dikunci di sini.
 $button_placeholder = [
-    'single_post' => [
-        'name' => 'Single Post',
-        'type' => 'pro'
-    ],
     'archive_post' => [
         'name' => 'Archive Post',
         'type' => 'pro'
@@ -105,6 +102,11 @@ if ($builder_scope) {
 
 $page_title = $builder_scope ? ($rtmkit_menu['title'] ?? __('Theme Builder', 'rometheme-for-elementor')) : __('Theme Builder', 'rometheme-for-elementor');
 
+// Form Builder: tanpa RTMForm tabelnya berisi ajakan memasang plugin, dan modal
+// form-nya tidak dirender, jadi tombol Add tidak punya tujuan.
+$is_form_builder = $builder_scope === ['form'];
+$show_add_button = !$is_form_builder || class_exists('RomethemeForm');
+
 /**
  * Field tambahan per tipe (filter rtmkit_themebuilder_fields) di modal Add / Edit.
  * Hanya tampil saat Type yang dipilih termasuk 'types' field tersebut (diatur scripts.js).
@@ -137,17 +139,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     License :
-                    <span class="license-status">
-                        <?php
-                        if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
-                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
-                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
-                        } else {
-                            echo 'Free';
-                        }
-                        ?>
-                    </span>
+                    <span class="license-status"><?php echo esc_html(rtmkit_license_label()); ?></span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()): ?>
                     <p class="m-0">Upgrade premium to unlock all features <a
@@ -155,12 +147,14 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                             Now</a></p>
                 <?php endif; ?>
             </div>
+            <?php if ($show_add_button): ?>
             <div class="mb-4">
                 <button id="add-themebuilder" class="btn btn-accent fw-bold px-4 py-3 gap-2">
                     <i class="rtmicon rtmicon-plus fs-5"></i>
-                    Add New Template
+                    <?php echo $is_form_builder ? esc_html__('Add New Form', 'rometheme-for-elementor') : esc_html__('Add New Template', 'rometheme-for-elementor'); ?>
                 </button>
             </div>
+            <?php endif; ?>
         </div>
         <div class="divider"></div>
         <div class="position-sticky d-flex flex-column gap-3"
@@ -174,7 +168,10 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                 <div class="themebuilder tabs">
                     <nav class="tab-nav gap-2">
                         <?php foreach ($active_themebuilder_key as $key => $item):
-                            if (!in_array($key, array_column($rtm_themebuilder, 'name'))) {
+                            // 'all' bukan tipe terdaftar; di halaman builder ia memfilter
+                            // ke tipe-tipe halaman itu saja (lihat Themebuilder_List_Table).
+                            $is_scoped_all = $builder_scope && $key === 'all';
+                            if (!$is_scoped_all && !in_array($key, array_column($rtm_themebuilder, 'name'))) {
                                 continue;
                             }
                             ?>
@@ -187,9 +184,15 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                             endif;
                         endforeach;
 
+                        // Modul tipe addon (mis. Archive Post) bisa masih tercatat aktif dari
+                        // saat addon-nya menyala, padahal tipenya sudah tidak terdaftar dan
+                        // tab aslinya dilewati di atas. Tab terkunci tetap harus tampil.
+                        $registered_types = array_column($rtm_themebuilder, 'name');
+                        $locked_modal = $isLicenseActive ? '#addonLockedModal' : '#moduleLockedModal';
+
                         foreach ($button_placeholder as $key => $item) {
-                            if (!isset($active_themebuilder_key[$key])) {
-                                echo '<button class="nav-link rounded-3 is-pro" data-bs-toggle="modal" data-bs-target="#moduleLockedModal">' . esc_html($item['name']) . ' <i class="ms-1 text-muted fa-solid fa-lock"></i></button>';
+                            if (!isset($active_themebuilder_key[$key]) || !in_array($key, $registered_types, true)) {
+                                echo '<button class="nav-link rounded-3 is-pro" data-bs-toggle="modal" data-bs-target="' . esc_attr($locked_modal) . '">' . esc_html($item['name']) . ' <i class="ms-1 text-muted fa-solid fa-lock"></i></button>';
                             }
                         }
 
@@ -219,7 +222,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                                 alt="RTMKit Logo">
                         </div>
                         <div class="px-4">
-                            <h4 class="m-0">Theme Builder</h4>
+                            <h4 class="m-0"><?php echo esc_html($page_title); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -240,7 +243,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                         <div class="tab-pane fade show active" id="general" role="tabpanel"
                             aria-labelledby="general-tab" tabindex="0">
                             <div class="mb-3">
-                                <label for="inputTitle" class="form-label">Theme Builder Title</label>
+                                <label for="inputTitle" class="form-label"><?php esc_html_e('Template Title', 'rometheme-for-elementor'); ?></label>
                                 <input name="title" type="text" class="form-control" id="inputTitle">
                             </div>
                             <div class="mb-3">
@@ -319,7 +322,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                                 alt="RTMKit Logo">
                         </div>
                         <div class="px-4">
-                            <h4 class="m-0">Theme Builder</h4>
+                            <h4 class="m-0"><?php echo esc_html($page_title); ?></h4>
                         </div>
                     </div>
                 </div>
@@ -340,7 +343,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                         <div class="tab-pane fade show active" id="edit-general" role="tabpanel"
                             aria-labelledby="general-tab" tabindex="0">
                             <div class="mb-3">
-                                <label for="inputTitle" class="form-label">Theme Builder Title</label>
+                                <label for="inputTitle" class="form-label"><?php esc_html_e('Template Title', 'rometheme-for-elementor'); ?></label>
                                 <input name="title" type="text" class="form-control" id="inputTitle">
                             </div>
                             <div class="mb-3">
@@ -423,7 +426,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                                     alt="RTMKit Logo">
                             </div>
                             <div class="px-4">
-                                <h4 class="m-0">Theme Builder</h4>
+                                <h4 class="m-0"><?php echo esc_html($page_title); ?></h4>
                             </div>
                         </div>
                     </div>
@@ -583,7 +586,7 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
                                     alt="RTMKit Logo">
                             </div>
                             <div class="px-4">
-                                <h4 class="m-0">Theme Builder</h4>
+                                <h4 class="m-0"><?php echo esc_html($page_title); ?></h4>
                             </div>
                         </div>
                     </div>
@@ -890,4 +893,5 @@ $render_extra_fields = function ($id_prefix) use ($themeBuilderStorage) {
 <?php
 require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
 rtmkit_render_pro_upgrade_modal();
+rtmkit_render_addon_locked_modal();
 ?>

@@ -254,6 +254,115 @@ class ImageGallery extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
+        /*
+         * Lightbox Elementor dirender di <body>, di luar {{WRAPPER}}. Dialognya
+         * ber-id elementor-lightbox-slideshow-<slideshow>, dan slideshow-nya unik
+         * per widget (lihat render()), jadi style hanya berlaku untuk gallery ini.
+         */
+        $lightbox = '#elementor-lightbox-slideshow-rkit-gallery-{{ID}}';
+
+        $this->start_controls_section('lightbox_style_section', [
+            'label' => esc_html__('Lightbox', 'rometheme-for-elementor'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'lightbox' => 'yes',
+            ],
+        ]);
+
+        $this->add_control(
+            'lightbox_background',
+            [
+                'label' => esc_html__('Background Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    $lightbox => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lightbox_ui_color',
+            [
+                'label' => esc_html__('UI Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    $lightbox => '--lightbox-ui-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lightbox_ui_color_hover',
+            [
+                'label' => esc_html__('UI Hover Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    $lightbox => '--lightbox-ui-color-hover: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lightbox_text_color',
+            [
+                'label' => esc_html__('Counter Color', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    $lightbox => '--lightbox-text-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lightbox_navigation_icons_size',
+            [
+                'label' => esc_html__('Navigation Icons Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 80,
+                    ],
+                ],
+                'selectors' => [
+                    $lightbox => '--lightbox-navigation-icons-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lightbox_toolbar_icons_size',
+            [
+                'label' => esc_html__('Toolbar Icons Size', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 60,
+                    ],
+                ],
+                'selectors' => [
+                    $lightbox => '--lightbox-header-icons-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lightbox_image_radius',
+            [
+                'label' => esc_html__('Image Border Radius', 'rometheme-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    $lightbox . ' .elementor-lightbox-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
     }
     protected function render()
     {
@@ -275,7 +384,8 @@ class ImageGallery extends \Elementor\Widget_Base
                     <div class="brick">
                         <div class="<?php echo esc_attr($lazy); ?>"></div>
                         <?php if ($settings['lightbox'] === 'default' || $settings['lightbox'] === 'yes') : ?>
-                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="gallery" href="<?php echo esc_attr($image['url']); ?>">
+                            <?php // Slideshow unik per widget: dulu semua gallery di halaman tergabung jadi satu ("gallery"). ?>
+                            <a data-elementor-open-lightbox="yes" data-elementor-lightbox-slideshow="rkit-gallery-<?php echo esc_attr($this->get_id()); ?>" href="<?php echo esc_attr($image['url']); ?>">
                             <?php endif; ?>
                             <img src="<?php echo esc_attr($image['url']); ?>"
                                 class="gallery_image <?php echo esc_attr($hover_animation_ig_class); ?>"

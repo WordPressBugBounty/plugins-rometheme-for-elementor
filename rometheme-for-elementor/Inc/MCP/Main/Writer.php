@@ -15,22 +15,26 @@ final class Writer
         $can = static fn($in) => current_user_can('edit_post', (int) ($in['post_id'] ?? 0));
         // $meta = static fn(array $a) => ['annotations' => $a, 'show_in_rest' => true, 'mcp' => ['public' => true]];
         $meta = static fn( array $a ) => [ 'annotations' => $a, 'show_in_rest' => false, 'mcp' => [ 'public' => true ] ];
-        $pid = ['type' => 'integer'];
-        $dry = ['type' => 'boolean', 'default' => false, 'description' => 'true = pratinjau saja, tidak menyimpan.'];
+        $dry = ['type' => 'boolean', 'default' => false, 'description' => 'true = preview only, nothing is saved.'];
+        // Disebut sebagai string JSON, bukan object bebas: beberapa klien (mis.
+        // Gemini) menolak schema object tanpa properties. Object "settings" tetap
+        // diterima oleh settings_input().
+        $settings = ['type' => 'string', 'description' => 'Widget settings as a JSON object string, e.g. {"title":"Hello"}. Keys come from rtmkit-get-widget-schema.'];
+        $pid = ['type' => 'integer', 'description' => 'WordPress page or post ID (the page must be edited with Elementor).'];
 
         wp_register_ability('rtmkit/add-widget', [
             'label' => 'Tambah widget RTMKit',
             'category' => 'rtmkit',
-            'description' => 'Menambah widget RTMKit. Setting divalidasi per tipe control. Tanpa parent_id, widget dibungkus container baru.',
+            'description' => 'Add an RTMKit widget to an Elementor page (post_id) and save it. "widget" is a slug from rtmkit-list-widgets; "settings" uses keys from rtmkit-get-widget-schema and is validated. Without parent_id the widget is placed in a new container at the end of the page (or at "position"); with parent_id (a container ID from rtmkit-get-page-structure) it is added inside that container. Set dry_run to preview without saving.',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['post_id', 'widget'],
                 'properties' => [
                     'post_id' => $pid,
-                    'widget' => ['type' => 'string'],
-                    'settings' => ['type' => 'object'],
-                    'parent_id' => ['type' => 'string'],
-                    'position' => ['type' => 'integer'],
+                    'widget' => ['type' => 'string', 'description' => 'Widget slug from rtmkit-list-widgets.'],
+                    'settings_json' => $settings,
+                    'parent_id' => ['type' => 'string', 'description' => 'Optional container element ID to add the widget into.'],
+                    'position' => ['type' => 'integer', 'description' => 'Optional zero-based position.'],
                     'dry_run' => $dry,
                 ]
             ],
@@ -42,14 +46,14 @@ final class Writer
         wp_register_ability('rtmkit/update-widget-settings', [
             'label' => 'Ubah setting widget RTMKit',
             'category' => 'rtmkit',
-            'description' => 'Menggabungkan setting baru ke widget RTMKit yang sudah ada (key lain tidak berubah).',
+            'description' => 'Change settings of an existing RTMKit widget on an Elementor page (texts, colors, links, etc.). Only the given keys change; others stay as they are. element_id comes from rtmkit-get-page-structure; keys come from rtmkit-get-widget-schema.',
             'input_schema' => [
                 'type' => 'object',
-                'required' => ['post_id', 'element_id', 'settings'],
+                'required' => ['post_id', 'element_id', 'settings_json'],
                 'properties' => [
                     'post_id' => $pid,
-                    'element_id' => ['type' => 'string'],
-                    'settings' => ['type' => 'object'],
+                    'element_id' => ['type' => 'string', 'description' => 'Widget element ID from rtmkit-get-page-structure.'],
+                    'settings_json' => $settings,
                     'dry_run' => $dry,
                 ]
             ],
@@ -61,7 +65,7 @@ final class Writer
         wp_register_ability('rtmkit/move-widget', [
             'label' => 'Pindahkan widget RTMKit',
             'category' => 'rtmkit',
-            'description' => 'Memindahkan widget RTMKit ke container lain atau posisi lain.',
+            'description' => 'Move an RTMKit widget on an Elementor page into another container (parent_id) and/or to another position inside it.',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['post_id', 'element_id', 'parent_id'],
@@ -81,7 +85,7 @@ final class Writer
         wp_register_ability('rtmkit/remove-widget', [
             'label' => 'Hapus widget RTMKit',
             'category' => 'rtmkit',
-            'description' => 'Menghapus satu widget RTMKit (bukan container). Snapshot dibuat otomatis.',
+            'description' => 'Remove one RTMKit widget (not a container) from an Elementor page. A snapshot is created first, so it can be undone with rtmkit-restore-snapshot.',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['post_id', 'element_id'],
@@ -99,9 +103,9 @@ final class Writer
         wp_register_ability('rtmkit/list-snapshots', [
             'label' => 'Daftar snapshot',
             'category' => 'rtmkit',
-            'description' => 'Snapshot yang tersedia untuk dipulihkan pada satu halaman.',
+            'description' => 'List the undo snapshots of an Elementor page, newest first. Every change made with RTMKit tools creates one.',
             'input_schema' => ['type' => 'object', 'required' => ['post_id'], 'properties' => ['post_id' => $pid]],
-            'execute_callback' => static fn($in) => self::index((int) $in['post_id']),
+            'execute_callback' => static fn($in) => Abilities::for_mcp(self::index((int) $in['post_id']), 'snapshots'),
             'permission_callback' => $can,
             'meta' => $meta(['readonly' => true]),
         ]);
@@ -109,7 +113,7 @@ final class Writer
         wp_register_ability('rtmkit/restore-snapshot', [
             'label' => 'Pulihkan snapshot',
             'category' => 'rtmkit',
-            'description' => 'Mengembalikan halaman ke snapshot (default: yang terbaru). Keadaan saat ini juga disnapshot.',
+            'description' => 'Undo: restore an Elementor page to a snapshot (default: the latest one). The current state is snapshotted first, so a restore can be undone too.',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['post_id'],
@@ -127,7 +131,7 @@ final class Writer
         wp_register_ability('rtmkit/validate-settings', [
             'label' => 'Validasi setting widget',
             'category' => 'rtmkit',
-            'description' => 'Memvalidasi dan membersihkan setting widget RTMKit tanpa menyimpan. settings_json = objek setting sebagai string JSON.',
+            'description' => 'Check RTMKit widget settings without saving anything. settings_json is the settings object encoded as a JSON string; returns the cleaned settings or the validation errors.',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['widget', 'settings_json'],
@@ -138,7 +142,7 @@ final class Writer
             ],
             'execute_callback' => [Writer::class, 'validate_for'],
             'permission_callback' => fn() => current_user_can('edit_posts'),
-            'meta' => $meta,
+            'meta' => $meta(['readonly' => true]),
         ]);
     }
 
@@ -154,7 +158,11 @@ final class Writer
         if (is_wp_error($controls)) {
             return $controls;
         }
-        $clean = self::validate($controls, (array) ($in['settings'] ?? []));
+        $incoming = self::settings_input($in);
+        if (is_wp_error($incoming)) {
+            return $incoming;
+        }
+        $clean = self::validate($controls, $incoming);
         if (is_wp_error($clean)) {
             return $clean;
         }
@@ -191,7 +199,10 @@ final class Writer
     public static function update_settings($in)
     {
         $id = sanitize_text_field($in['element_id']);
-        $incoming = (array) $in['settings'];
+        $incoming = self::settings_input($in);
+        if (is_wp_error($incoming)) {
+            return $incoming;
+        }
 
         return self::mutate((int) $in['post_id'], static function (array &$tree) use ($id, $incoming) {
             $node = self::own_widget($tree, $id);
@@ -596,6 +607,20 @@ final class Writer
         $log = is_array($log) ? $log : [];
         $log[] = ['t' => time(), 'user' => get_current_user_id(), 'post' => $post_id, 'op' => $op, 'ctx' => $ctx];
         update_option('rtmkit_mcp_audit', array_slice($log, -200), false);
+    }
+
+    /**
+     * Setting dari input tool: settings_json (string JSON) atau settings (object,
+     * untuk klien yang memakai schema lama).
+     */
+    private static function settings_input($in)
+    {
+        if (isset($in['settings_json']) && '' !== trim((string) $in['settings_json'])) {
+            $raw = json_decode((string) $in['settings_json'], true);
+            return is_array($raw) ? $raw : new WP_Error('rtmkit_bad_json', 'settings_json is not a valid JSON object.');
+        }
+
+        return (array) ($in['settings'] ?? []);
     }
 
     public static function validate_for($in)

@@ -149,6 +149,8 @@ class UpdateModule
             }
 
             set_transient($cache_key, $cached, 12 * HOUR_IN_SECONDS);
+            // Untuk teks "Last checked" di halaman Version Control.
+            update_option('rtmkit_addon_releases_checked_at', time(), false);
         }
 
         if (is_string($cached)) {

@@ -2,9 +2,9 @@
 Contributors: dickoandrean, pranayuma01 
 Tags: elementor, elementor addons, elementor widgets, elementor templates, elementor woocommerce
 Requires at least: 6.8
-Tested up to: 7.0.4
+Tested up to: 7.1.0
 Requires PHP: 8.3
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -341,6 +341,31 @@ Pricing links may track clicks separately. Usage data is retained for 12 months.
 Start with RTMKit and discover more possibilities for building WordPress websites with Elementor.
 
 == Changelog ==
+Version 2.2.2 - October 23, 2026
+- New : Redesigned Addons page: toggle to activate / deactivate, and a settings popup per addon with its modules
+- New : Locked widgets from inactive addons are listed in the Widgets page and in the editor, grouped like the addon
+- New : Redesigned Version Control page with search, status filter and tabs
+- New : Image Gallery Lightbox style controls
+- New : Video Button popup style controls (background, video player, close button)
+- New : Image Comparison width, max width and height controls
+- New : Post Grid and Post Block floating date alignment and separate day / month typography
+- New : Woo Product Grid image resolution control
+- New : Tooltip arrow with color and size controls
+- New : "Theme Builder" menu group with Site Builder, WooBuilder, Form Builder, Mega Menu Builder and Popup Builder
+- Update : Back To Top and Social Icons moved to the RTM Header & Footer widget category
+- Update : All upgrade buttons link to the pricing page
+- Update : Unified button, input and select sizes in the dashboard
+- Update : Single Post, Archive Post and Search Result templates moved into Site Builder
+- Update : "All" tab on each builder page only lists templates of that builder
+- Update : Header & Footer widget category shown first when editing header or footer templates
+- Update : Support Bulk Action on ThemeBuilder
+- Fix : Advanced Heading background text wrapping when offset or rotated
+- Fix : Call to Action image border radius showing a line at the corners
+- Fix : Dual Button border drawn inside the button
+- Fix : Locked Archive Post, Search and 404 tabs missing from Site Builder
+- Fix : "Add New" button hidden on Form Builder when RTMForm is not installed
+- Fix : Nav Menu language switcher displaying raw HTML tags
+
 Version 2.2.1 - October 15, 2026
 - Update : New addon builder support
 - MCP Ready (Early development)

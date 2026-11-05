@@ -608,6 +608,139 @@ class VideoButton extends \Elementor\Widget_Base
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+
+        /*
+         * Popup GLightbox dirender di <body>, di luar {{WRAPPER}}. video_button.js
+         * memberi kontainernya class rkit-vb-lightbox-<id widget> saat dibuka,
+         * jadi style di bawah hanya berlaku untuk popup tombol ini.
+         */
+        $popup = '.glightbox-container.rkit-vb-lightbox-{{ID}}';
+
+        $this->start_controls_section('section_style_popup', [
+            'label' => esc_html__('Popup', 'rometheme-for-elementor'),
+            'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+        ]);
+
+        $this->add_control('popup_background_color', [
+            'label' => esc_html__('Background Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup . ' .goverlay' => 'background: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_control('popup_video_heading', [
+            'label' => esc_html__('Video Player', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::HEADING,
+            'separator' => 'before',
+        ]);
+
+        $this->add_control('popup_player_accent_color', [
+            'label' => esc_html__('Accent Color', 'rometheme-for-elementor'),
+            'description' => esc_html__('Progress bar, volume and active buttons.', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup => '--plyr-color-main: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_control('popup_player_control_color', [
+            'label' => esc_html__('Controls Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup => '--plyr-video-control-color: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_control('popup_player_controls_background', [
+            'label' => esc_html__('Controls Background', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup => '--plyr-video-controls-background: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_responsive_control('popup_video_radius', [
+            'label' => esc_html__('Video Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%'],
+            'selectors' => [
+                $popup . ' .gvideo-wrapper, ' . $popup . ' .plyr' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+            ],
+        ]);
+
+        $this->add_control('popup_close_heading', [
+            'label' => esc_html__('Close Button', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::HEADING,
+            'separator' => 'before',
+        ]);
+
+        $this->add_control('popup_close_color', [
+            'label' => esc_html__('Icon Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup . ' .gclose svg, ' . $popup . ' .gclose path' => 'fill: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_control('popup_close_background', [
+            'label' => esc_html__('Background Color', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup . ' .gclose' => 'background-color: {{VALUE}}; opacity: 1;',
+            ],
+        ]);
+
+        $this->add_control('popup_close_color_hover', [
+            'label' => esc_html__('Icon Color Hover', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup . ' .gclose:hover svg, ' . $popup . ' .gclose:hover path' => 'fill: {{VALUE}};',
+            ],
+        ]);
+
+        $this->add_control('popup_close_background_hover', [
+            'label' => esc_html__('Background Color Hover', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'selectors' => [
+                $popup . ' .gclose:hover' => 'background-color: {{VALUE}}; opacity: 1;',
+            ],
+        ]);
+
+        $this->add_responsive_control('popup_close_size', [
+            'label' => esc_html__('Size', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'range' => [
+                'px' => ['min' => 20, 'max' => 100],
+            ],
+            'selectors' => [
+                $popup . ' .gclose' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->add_responsive_control('popup_close_icon_size', [
+            'label' => esc_html__('Icon Size', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => ['px'],
+            'range' => [
+                'px' => ['min' => 8, 'max' => 60],
+            ],
+            'selectors' => [
+                $popup . ' .gclose svg' => 'width: {{SIZE}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->add_responsive_control('popup_close_radius', [
+            'label' => esc_html__('Border Radius', 'rometheme-for-elementor'),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => ['px', '%'],
+            'selectors' => [
+                $popup . ' .gclose' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+        ]);
+
+        $this->end_controls_section();
     }
 
     protected function render()

@@ -154,6 +154,26 @@ class NavMenu extends \Elementor\Widget_Base
     }
 
 
+    /**
+     * Escape menu item title while keeping safe inline markup.
+     * Language switchers (e.g. Polylang 3.9+) inject <span> labels and <img> flags (data: SVG) into the title.
+     */
+    function render_menu_title($title)
+    {
+        $allowed_html = [
+            'span' => ['class' => true, 'style' => true, 'lang' => true],
+            'img' => ['src' => true, 'alt' => true, 'width' => true, 'height' => true, 'class' => true, 'style' => true],
+            'i' => ['class' => true],
+            'b' => [],
+            'strong' => [],
+            'em' => [],
+            'br' => [],
+        ];
+
+        return wp_kses($title, $allowed_html, array_merge(wp_allowed_protocols(), ['data']));
+    }
+
+
 
     protected function register_controls()
     {
@@ -1263,7 +1283,7 @@ class NavMenu extends \Elementor\Widget_Base
                     foreach ($menu_parent as $mn) : ?>
                         <li class="rkit-menu-item <?php echo esc_attr($this->check_active_menu($mn, 'rkit-menu')) ?> <?php echo ($this->hasChildren($mn['children'])) ? esc_attr($drClass) : '' ?> <?php echo esc_attr($settings['pointer_select']) ?>">
                             <a class="rkit-nav-link" href="<?php echo esc_url($mn['url']) ?>">
-                                <?php echo esc_html($mn['title']) ?>
+                                <?php echo $this->render_menu_title($mn['title']) ?>
                                 <?php if ($this->hasChildren($mn['children'])) :
                                     \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
                                 endif;
@@ -1274,7 +1294,7 @@ class NavMenu extends \Elementor\Widget_Base
                                     <?php foreach ($mn['children'] as $m) : ?>
                                         <li class="rkit-submenu-item <?php echo esc_attr($this->check_active_menu($m, 'rkit-submenu')) ?> <?php echo ($this->hasChildren($m['children'])) ? esc_attr($drClass) : '' ?>">
                                             <a href="<?php echo esc_url($m['url']) ?>" class="rkit-nav-link">
-                                                <?php echo esc_html($m['title']) ?>
+                                                <?php echo $this->render_menu_title($m['title']) ?>
                                                 <?php if ($this->hasChildren($m['children'])) :
                                                     \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
                                                 endif;
@@ -1285,7 +1305,7 @@ class NavMenu extends \Elementor\Widget_Base
                                                     <?php foreach ($m['children'] as $sm) : ?>
                                                         <li class="rkit-submenu-item <?php echo esc_attr($this->check_active_menu($sm, 'rkit-submenu')) ?> <?php echo ($this->hasChildren($sm['children'])) ? esc_attr($drClass) : '' ?>">
                                                             <a href="<?php echo esc_url($sm['url']) ?>" class="rkit-nav-link">
-                                                                <?php echo esc_html($sm['title']) ?>
+                                                                <?php echo $this->render_menu_title($sm['title']) ?>
                                                                 <?php if ($this->hasChildren($sm['children'])) :
                                                                     \Elementor\Icons_Manager::render_icon($settings['submenu-icon'], ['aria-hidden' => 'true', 'class' => 'rkit-submenu-icon']);
                                                                 endif;
@@ -1295,7 +1315,7 @@ class NavMenu extends \Elementor\Widget_Base
                                                                 <ul class="rkit-navmenu-dropdown">
                                                                     <?php foreach ($sm['children'] as $ms) : ?>
                                                                         <li class="rkit-submenu-item">
-                                                                            <a href="<?php echo esc_url($ms['url']) ?>" class="rkit-nav-link"><?php echo esc_html($ms['title']) ?></a>
+                                                                            <a href="<?php echo esc_url($ms['url']) ?>" class="rkit-nav-link"><?php echo $this->render_menu_title($ms['title']) ?></a>
                                                                         </li>
                                                                     <?php endforeach; ?>
                                                                 </ul>

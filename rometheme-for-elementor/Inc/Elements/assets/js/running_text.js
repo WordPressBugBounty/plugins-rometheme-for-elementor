@@ -1,15 +1,1 @@
-jQuery(window).on("elementor/frontend/init", function () {
-  elementorFrontend.hooks.addAction(
-    "frontend/element_ready/rkit-running_text.default",
-    function ($scope, $) {
-        const cont = $scope.find('.rkit-marquee-container');
-        const content = cont.find('.rkit-marquee-content');
-        const clone = content.clone();
-        const clone2 = clone.clone();
-        cont.append(clone);
-        cont.append(clone2);
-        
-        $scope.find('.rkit-marquee-content').addClass('rkit-marquee');
-    }
-  );
-});
+jQuery(window).on("elementor/frontend/init",function(){elementorFrontend.hooks.addAction("frontend/element_ready/rkit-running_text.default",function(e,r){const n=e.find(".rkit-marquee-container"),t=n.find(".rkit-marquee-content").clone(),o=t.clone();n.append(t),n.append(o),e.find(".rkit-marquee-content").addClass("rkit-marquee")})});

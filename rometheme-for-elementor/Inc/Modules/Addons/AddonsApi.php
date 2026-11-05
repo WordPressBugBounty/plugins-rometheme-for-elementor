@@ -20,6 +20,7 @@ class AddonsApi
             add_action('wp_ajax_rtmkit_addons_install', [$this, 'install_addon']);
             add_action('wp_ajax_rtmkit_addon_delete', [$this, 'delete_addon']);
             add_action('wp_ajax_rtmkit_addon_activate', [$this, 'activate_addon']);
+            add_action('wp_ajax_rtmkit_addon_deactivate', [$this, 'deactivate_addon']);
             add_action('wp_ajax_rtmkit_addon_update', [$this, 'update_addon']);
             add_action('wp_ajax_rtmkit_addon_rollback', [$this, 'rollback_addon']);
             add_action('wp_ajax_sync_addons', [$this, 'sync_addons']);
@@ -190,6 +191,32 @@ class AddonsApi
         }
     }
 
+
+    /**
+     * Toggle kartu addon dalam posisi mati. Hanya addon dari katalog RTMHub.
+     */
+    public function deactivate_addon()
+    {
+        if (!current_user_can('activate_plugins')) {
+            wp_send_json_error([
+                'message' => __('You do not have permission to deactivate plugins.', 'rometheme-for-elementor'),
+            ], 403);
+        }
+
+        check_ajax_referer('rtmkit_nonce', 'nonce');
+
+        $addon = sanitize_key($_POST['addon'] ?? '');
+        $slugs = array_column(\RTMKit\Modules\Addons\AddonsModule::instance()->cached_addons_list(), 'slug');
+
+        if ('' === $addon || !in_array($addon, $slugs, true)) {
+            wp_send_json_error(['message' => __('Unknown addon.', 'rometheme-for-elementor')], 400);
+        }
+
+        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+        deactivate_plugins($addon . '/' . $addon . '.php');
+        wp_send_json_success();
+    }
 
     public function delete_addon()
     {

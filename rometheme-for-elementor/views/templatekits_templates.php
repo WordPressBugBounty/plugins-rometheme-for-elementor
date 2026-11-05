@@ -44,7 +44,7 @@ $has_more = $current_page < $total_pages;
                                 </button>
                             <?php else: ?>
                                 <?php if ($data['type'] === 'pro'):
-                                    $upgrade_button_html = '<a href="https://store.rometheme.net/pricing/" target="_blank" class="btn btn-secondary rounded-2 text-white">
+                                    $upgrade_button_html = '<a href="' . esc_url(rtmkit_upgrade_url('templatekit.free_card')) . '" target="_blank" class="btn btn-secondary rounded-2 text-white">
                                         <i class="fa-solid fa-crown"></i>
                                         Upgrade to Pro
                                     </a>';

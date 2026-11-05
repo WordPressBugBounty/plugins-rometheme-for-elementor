@@ -7,6 +7,44 @@ if (!defined('ABSPATH'))
 
 class WidgetStorage
 {
+    const DEMO_URL_ELEMENTS = 'https://rometheme.net/plugins/elements/';
+    const DEMO_URL_WOO = 'https://rometheme.net/plugins/rtm-woo/';
+    const DEMO_URL_FORM = 'https://rometheme.net/plugins/rtm-form/';
+
+    /**
+     * Halaman demo yang ada di rometheme.net/plugins/elements/. Widget lain
+     * diarahkan ke halaman daftarnya.
+     */
+    const DEMO_SLUGS = [
+        'accordion', 'advanced-button', 'advanced-cards', 'advanced-categories', 'advanced-heading',
+        'advanced-hero-slider', 'advanced-tabs', 'advanced-timeline', 'advanced-toggle', 'animated-circle-button',
+        'animated-heading', 'audio-player', 'back-to-top', 'background-switcher', 'bar-chart', 'blockquote',
+        'breadcrumb', 'call-to-action', 'card-carousel', 'client-carousel', 'client-grid', 'countdown', 'counter',
+        'dual-button', 'filterable-gallery', 'header-info', 'hero-slider', 'image-accordion', 'image-box',
+        'image-comparison', 'image-gallery', 'image-hotspot', 'image-marquee', 'image-stack-info',
+        'interactive-link', 'interactive-showcase', 'line-chart', 'lottie', 'media-on-hover', 'mega-menu',
+        'modal-box', 'nav-menu', 'offcanvas', 'pie-chart', 'post-block', 'post-carousel', 'post-grid', 'post-list',
+        'price-list', 'pricing-image-box', 'pricing-table', 'progress-bar', 'search', 'site-logo', 'social-icons',
+        'social-share', 'sub-menu', 'team', 'team-carousel', 'testimonial-carousel', 'text-marquee',
+        'video-button', 'woo-product-carousel', 'woo-product-grid',
+    ];
+
+    /**
+     * Widget yang nama tampilannya beda dengan slug halaman demonya.
+     */
+    const DEMO_SLUG_ALIASES = [
+        'offcanvas' => 'offcanvas',
+        'pricelist' => 'price-list',
+        'interactivelinks' => 'interactive-link',
+        'advanced_card' => 'advanced-cards',
+    ];
+
+    /**
+     * Widget Single Post yang punya versi free di RTMKit (Inc/Elements/SinglePost).
+     * Saat rtm-blog aktif, rtm-blog mendaftarkan ulang key yang sama sebagai Pro.
+     */
+    const FREE_SINGLE_POST_KEYS = ['posttitle', 'postfeaturedimage', 'postcontent', 'postinfo', 'postcomment', 'postnavigation'];
+
     private static $instance;
 
     public static function instance()
@@ -24,7 +62,45 @@ class WidgetStorage
             add_action('wp_ajax_reset_all_widgets', [$this, 'reset_all_widgets']);
         }
         add_action('elementor/widgets/register', [$this, 'register_widget']);
+        // Setelah companion (rtm-woo di prioritas 20) selesai meregistrasi widget-nya.
+        add_action('elementor/widgets/register', [$this, 'unregister_disabled_pro_widgets'], 100);
+        // Paling akhir: panel Elementor mengurutkan widget sesuai urutan registrasi,
+        // jadi widget terkunci tampil di bawah widget yang bisa dipakai di kategorinya.
+        add_action('elementor/widgets/register', [$this, 'register_locked_widgets'], 1000);
         $this->update_widgets_options();
+    }
+
+    /**
+     * Companion seperti rtm-woo meregistrasi semua widget-nya tanpa membaca
+     * status Widget Switcher, jadi widget yang dimatikan di sana tetap muncul
+     * di editor. Di sini widget pro yang statusnya eksplisit false dicabut lagi.
+     * Widget tanpa status tersimpan dianggap aktif, sama seperti rtm-elements.
+     *
+     * @param \Elementor\Widgets_Manager $widgets_manager
+     */
+    public function unregister_disabled_pro_widgets($widgets_manager)
+    {
+        if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            return;
+        }
+
+        $options = get_option('rkit-widget-pro-options', []);
+
+        foreach ($this->get_widget_data('pro') as $key => $widget) {
+            if (empty($widget['widget_name']) || !isset($options[$key]['status']) || $options[$key]['status']) {
+                continue;
+            }
+
+            // Addon-nya mati: yang terdaftar adalah versi terkunci, dan itu harus
+            // tetap tampil sebagai promosi meski toggle-nya pernah dimatikan.
+            if (!$this->is_pro_with_companion_active($widget['plugin_required'] ?? null)) {
+                continue;
+            }
+
+            if ($widgets_manager->get_widget_types($widget['widget_name'])) {
+                $widgets_manager->unregister($widget['widget_name']);
+            }
+        }
     }
 
     public function get_active_widgets($type = null)
@@ -58,7 +134,10 @@ class WidgetStorage
         $active_widgets = $this->get_active_widgets();
         $widget_data = $this->get_widget_data();
 
-        ksort($active_widgets);
+        // Panel Elementor mengurutkan widget sesuai urutan registrasi: A–Z menurut nama.
+        uksort($active_widgets, function ($a, $b) use ($widget_data) {
+            return strcasecmp($widget_data[$a]['name'] ?? $a, $widget_data[$b]['name'] ?? $b);
+        });
 
         foreach ($active_widgets as $key => $widget) {
 
@@ -98,15 +177,15 @@ class WidgetStorage
          * @param \Elementor\Widgets_Manager $widgets_manager Widget manager Elementor.
          */
         do_action('rtmkit_after_register_widgets', $widgets_manager);
+    }
 
-        // Kalau Pro aktif DAN salah satu companion aktif, tidak perlu load
-        // widget locked sama sekali di sini — tiap companion meregistrasi
-        // widget aslinya sendiri.
-        if (\RTMKit\Core\Plugin::instance()->pro_is_active() && $this->is_pro_with_companion_active()) {
-            // Tetap lanjut ke bawah untuk menangani widget yang companion-nya
-            // BELUM aktif (mixed state: salah satu companion aktif, satu lagi belum).
-        }
-
+    /**
+     * Versi terkunci widget addon yang addon-nya belum aktif.
+     *
+     * @param \Elementor\Widgets_Manager $widgets_manager
+     */
+    public function register_locked_widgets($widgets_manager)
+    {
         $json_path = RTM_KIT_DIR . 'metadata/rtmwp.json';
         if (file_exists($json_path)) {
             $pro_widgets = json_decode(file_get_contents($json_path), true);
@@ -119,10 +198,23 @@ class WidgetStorage
 
                     $companion = isset($data['plugin_required']) ? $data['plugin_required'] : null;
 
+                    // Widget Form Pro terkunci hanya sebagai promosi selama RTMForm
+                    // belum aktif; setelah RTMForm aktif widget-nya sudah tampil dari
+                    // sana, jadi versi terkunci di sini membuatnya dobel.
+                    if ('rtm-form-pro' === $companion && \RTMKit\Core\Plugin::instance()->has_rtmform()) {
+                        continue;
+                    }
+
                     // Skip: kalau Pro aktif DAN companion widget ini spesifik sudah aktif,
                     // widget aslinya akan diregistrasi oleh companion plugin itu sendiri,
                     // jadi jangan daftarkan versi locked-nya di sini.
                     if ($this->is_pro_with_companion_active($companion)) {
+                        continue;
+                    }
+
+                    // Jangan timpa widget asli yang sudah terdaftar dengan nama yang sama,
+                    // mis. widget Single Post versi free (prioritas 5).
+                    if (!empty($data['widget_name']) && $widgets_manager->get_widget_types($data['widget_name'])) {
                         continue;
                     }
 
@@ -133,6 +225,23 @@ class WidgetStorage
                     ]));
                 }
             }
+        }
+
+        // Widget RTMForm terkunci selama plugin RTMForm (free) belum terpasang /
+        // aktif, supaya pengguna tahu widget form itu ada.
+        if (!\RTMKit\Core\Plugin::instance()->has_rtmform() && !$widgets_manager->get_widget_types('rform')) {
+            $widgets_manager->register(new \RTMKit\Elements\DynamicWidgetPro([], [
+                'widget_key' => 'rform',
+                'widget_data' => [
+                    'name' => 'RTMForm',
+                    'widget_name' => 'rform',
+                    'icon' => 'rtmicon rtmicon-form',
+                    'elementor_category' => 'romethemeform_form_fields',
+                    'lock' => 'rtmform',
+                    'docsURL' => self::DEMO_URL_FORM,
+                ],
+                'is_pro_active' => false
+            ]));
         }
 
         $json_path = RTM_KIT_DIR . 'metadata/post_widget_pro.json';
@@ -148,6 +257,12 @@ class WidgetStorage
                     $companion = isset($data['plugin_required']) ? $data['plugin_required'] : null;
 
                     if ($this->is_pro_with_companion_active($companion)) {
+                        continue;
+                    }
+
+                    // Jangan timpa widget asli yang sudah terdaftar dengan nama yang sama,
+                    // mis. widget Single Post versi free (prioritas 5).
+                    if (!empty($data['widget_name']) && $widgets_manager->get_widget_types($data['widget_name'])) {
                         continue;
                     }
 
@@ -382,8 +497,9 @@ class WidgetStorage
     /**
      * Cek apakah Pro aktif DAN companion plugin terkait aktif.
      *
-     * @param string|null $companion 'rtm-elements' | 'rtm-blog' | null.
-     *                                 null = cek generik (salah satu companion aktif).
+     * @param string|array|null $companion Isi plugin_required widget, mis. 'rtm-elements'
+     *                                     atau ['rtm-woo', 'woocommerce'] (semua wajib aktif).
+     *                                     null = cek generik (salah satu companion aktif).
      */
     public function is_pro_with_companion_active($companion = null)
     {
@@ -393,27 +509,74 @@ class WidgetStorage
             return false;
         }
 
+        if ($companion !== null) {
+            return $this->is_required_plugins_active($companion);
+        }
+
         if (!function_exists('is_plugin_active')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
 
-        if ($companion === 'rtm-elements') {
-            return is_plugin_active('rtm-elements/rtm-elements.php');
-        }
-
-        if ($companion === 'rtm-blog') {
-            return is_plugin_active('rtm-blog/rtm-blog.php');
-        }
-
-        // Companion 'woocommerce' bukan bagian dari pengecekan ini —
-        // widget woocommerce sudah digating terpisah lewat class_exists('WooCommerce').
-        if ($companion !== null) {
-            // Companion tidak dikenal / tidak butuh companion khusus
-            return false;
-        }
-
         return is_plugin_active('rtm-elements/rtm-elements.php')
             || is_plugin_active('rtm-blog/rtm-blog.php');
+    }
+
+    /**
+     * Alasan widget terkunci di Widget Switcher, atau null kalau bisa dipakai.
+     * Widget addon tetap didaftar walau addon-nya mati, supaya pengguna tahu
+     * widget apa saja yang dimiliki RTMKit.
+     *
+     * @return string|null 'upgrade' (widget Pro tanpa lisensi), 'rtmform' (widget
+     *                     form tanpa RTMForm) atau 'addon' (addon / plugin yang
+     *                     dibutuhkan belum aktif).
+     */
+    public function get_widget_lock(array $widget)
+    {
+        $type = $widget['type'] ?? 'free';
+
+        if ($type === 'pro' && !\RTMKit\Core\Plugin::instance()->pro_is_active()) {
+            return 'upgrade';
+        }
+
+        if (($widget['category'] ?? '') === 'form' && !class_exists('RomethemeForm')) {
+            return 'rtmform';
+        }
+
+        if ($type === 'pro' && !empty($widget['plugin_required']) && !$this->is_required_plugins_active($widget['plugin_required'])) {
+            return 'addon';
+        }
+
+        return null;
+    }
+
+    /**
+     * Link Demo widget di Widget Switcher: widget Woo dan Form ke halaman
+     * pluginnya, sisanya ke halaman widget di rometheme.net/plugins/elements/.
+     */
+    public function get_demo_url(string $key, array $widget): string
+    {
+        $category = $widget['category'] ?? '';
+
+        if ($category === 'woocommerce') {
+            return self::DEMO_URL_WOO;
+        }
+
+        if ($category === 'form') {
+            return self::DEMO_URL_FORM;
+        }
+
+        $slug = self::DEMO_SLUG_ALIASES[$key] ?? sanitize_title($widget['name'] ?? '');
+
+        return in_array($slug, self::DEMO_SLUGS, true) ? self::DEMO_URL_ELEMENTS . $slug . '/' : self::DEMO_URL_ELEMENTS;
+    }
+
+    /**
+     * Widget Single Post bawaan RTMKit tetap free walau rtm-blog (yang
+     * menandainya Pro) aktif, jadi tidak diberi label Pro.
+     */
+    public function is_free_single_post(string $key): bool
+    {
+        return in_array($key, self::FREE_SINGLE_POST_KEYS, true) && $this->is_required_plugins_active('rtm-blog');
     }
 
     private function get_plugin_name($plugin)
@@ -485,6 +648,10 @@ class WidgetStorage
             'woocommerce' => 'woocommerce/woocommerce.php',
             'rtm-elements' => 'rtm-elements/rtm-elements.php',
             'rtm-blog' => 'rtm-blog/rtm-blog.php',
+            'rtm-woo' => 'rtm-woo/rtm-woo.php',
+            'rtm-form-pro' => 'rtm-form-pro/rtm-form-pro.php',
+            'rtm-mega-menu' => 'rtm-mega-menu/rtm-mega-menu.php',
+            'rtm-font-showcase-pro' => 'rtm-font-showcase-pro/rtm-font-showcase-pro.php',
         ];
 
         /**

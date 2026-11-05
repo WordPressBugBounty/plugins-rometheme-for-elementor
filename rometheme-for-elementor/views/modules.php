@@ -5,18 +5,82 @@ if (! defined('ABSPATH')) exit;
 $extensionStorage = \RTMKit\Modules\Extensions\ExtensionStorage::instance();
 $moduleManager = \RTMKit\Modules\Manager::instance();
 $moduleWithExtension = \RTMKit\Modules\Storage::instance()->get_all_modules();
-$category = ["themebuilder", "extension", "gsap", "other"];
+
+// Semua modul tampil, termasuk Pro dan milik addon (juga bisa diatur dari gear
+// kartu addon). Yang belum bisa dipakai tampil terkunci seperti di Widgets.
+$addonsModule = \RTMKit\Modules\Addons\AddonsModule::instance();
+$moduleWithExtension = array_filter($moduleWithExtension, 'is_array');
+$category = [
+    "themebuilder" => "Theme Builder",
+    "woocommerce" => "WooCommerce",
+    "extension" => "Extensions",
+    "gsap" => "GSAP Motion",
+    "other" => "Others",
+];
+
+// Modul yang butuh WooCommerce dikumpulkan di section WooCommerce sendiri,
+// bukan tercampur di Theme Builder / Others.
+$is_woo_module = function ($module) {
+    return isset($module["required"]) && str_starts_with($module["required"], "woocommerce/");
+};
 $options = \RTMKit\Modules\Storage::instance()->get_module_option();
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
-$totalmodules = count($moduleWithExtension);
-$activemodules = count(array_filter($options, function ($module) {
-    return $module['status'] === true;
-}));
 $available_extensions = \RTMKit\Modules\Extensions\ExtensionStorage::instance()->get_available_extensions();
 $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->get_themebuilder();
+
+/**
+ * Alasan modul terkunci (sama seperti WidgetStorage::get_widget_lock()), atau
+ * null kalau bisa dipakai: 'upgrade' (Pro tanpa lisensi), 'addon' (addon
+ * pemiliknya belum aktif) atau 'unavailable' (belum terdaftar di situs ini).
+ */
+$get_module_lock = function ($key, $module) use ($isProActive, $addonsModule, $available_extensions, $themebuilder) {
+    if (($module['type'] ?? '') === 'pro' && !$isProActive) {
+        return 'upgrade';
+    }
+
+    $addon = $addonsModule->get_module_addon((string) $key, $module);
+    if ('' !== $addon && !is_plugin_active($addon . '/' . $addon . '.php')) {
+        return 'addon';
+    }
+
+    // Modul header_footer terdaftar di Theme Builder sebagai tipe 'header' / 'footer'.
+    $themebuilder_key = 'header_footer' === $key ? 'header' : $key;
+
+    if (($module['category'] == 'extension' && !in_array($key, array_column($available_extensions, 'name'))) || ($module['category'] == "themebuilder" && !in_array($themebuilder_key, array_column($themebuilder, 'name')))) {
+        return 'unavailable';
+    }
+
+    return null;
+};
+
+$moduleLocks = [];
+foreach ($moduleWithExtension as $key => $module) {
+    $moduleLocks[$key] = $get_module_lock($key, $module);
+}
+
+$lockModals = [
+    'upgrade' => '#moduleLockedModal',
+    'addon' => '#addonLockedModal',
+    'unavailable' => '#moduleLockedModal',
+];
+
+$totalmodules = count($moduleWithExtension);
+$activemodules = count(array_filter(array_intersect_key($options, $moduleWithExtension), function ($module, $key) use ($moduleLocks) {
+    return $module['status'] === true && !$moduleLocks[$key];
+}, ARRAY_FILTER_USE_BOTH));
+
+// Kategori yang modulnya semua milik addon (GSAP Motion, WooCommerce) tidak tampil.
+$category = array_filter($category, function ($c) use ($moduleWithExtension, $is_woo_module) {
+    foreach ($moduleWithExtension as $module) {
+        if ($c === 'woocommerce' ? $is_woo_module($module) : ($module['category'] === $c && !$is_woo_module($module))) {
+            return true;
+        }
+    }
+    return false;
+}, ARRAY_FILTER_USE_KEY);
 ?>
 
-<div class="px-4 mb-5 scroll-behavior-smooth scrollspy" tabindex="0">
+<div class="px-4 mb-5 scroll-behavior-smooth scrollspy" data-scrollspy="#module-category" data-rootMargin="-30% 0px -70% 0px" tabindex="0">
     <div class="d-flex flex-column gap-3">
         <div class="d-flex justify-content-between align-items-start">
             <div class="d-flex flex-column gap-3">
@@ -41,17 +105,7 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     License :
-                    <span class="license-status">
-                        <?php
-                        if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                            echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
-                        } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
-                            echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
-                        } else {
-                            echo 'Free';
-                        }
-                        ?>
-                    </span>
+                    <span class="license-status"><?php echo esc_html(rtmkit_license_label()); ?></span>
                 </div>
                 <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
                     <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.modules')); ?>" target="_blank">Upgrade Now</a></p>
@@ -93,19 +147,36 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                     </div>
                 </div>
             </div>
+            <ul id="module-category" class="nav scrollspy">
+                <?php foreach ($category as $c => $label) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#<?php echo esc_attr($c) ?>"><?php echo esc_html($label) ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
         <div class="scrollspy-content gap-3" style="margin-bottom: 9rem;">
-            <?php foreach ($category as $c) : ?>
+            <?php foreach ($category as $c => $label) :
+                $modules = array_filter($moduleWithExtension, function ($v) use ($c, $is_woo_module) {
+                    return $c === 'woocommerce' ? $is_woo_module($v) : ($v['category'] === $c && !$is_woo_module($v));
+                });
+
+                if (empty($modules)) {
+                    continue;
+                }
+
+                // Free dulu, lalu Pro; masing-masing urut nama.
+                uasort($modules, function ($a, $b) {
+                    return [$a['type'] === 'pro', $a['name']] <=> [$b['type'] === 'pro', $b['name']];
+                });
+            ?>
                 <div id="<?php echo esc_attr($c) ?>" class="card rounded-4  flex-column gap-3">
                     <div class="pb-4 pt-1 border-bottom d-flex align-items-center gap-3">
                         <i class="fa-solid fa-circle" style="font-size: 10px;"></i>
-                        <h4 class="m-0"><?php echo ($c == 'gsap') ? 'GSAP' : esc_html(ucwords($c == 'themebuilder' ? 'Theme Builder' : $c)) ?></h4>
+                        <h4 class="m-0"><?php echo esc_html($label) ?></h4>
                     </div>
                     <div class="row row-cols-3 g-3">
                         <?php
-                        $modules = array_filter($moduleWithExtension, function ($v, $k) use ($c) {
-                            return $v['category'] === $c;
-                        }, ARRAY_FILTER_USE_BOTH);
                         foreach ($modules as $key => $module) :
                             // $active = ($options[$key]['status'] == true && ($module['type'] != 'pro' || $isProActive)) ? 'checked' : '';
                             // $active = (($module['type'] == 'pro' && $isProActive) && $options[$key]['status'] == true || $module['type'] != 'pro' && $options[$key]['status'] == true) ? 'checked' : '';
@@ -118,25 +189,11 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                                 );
                             }
 
-                            $is_disabled = false;
-
-                            // if ($module['type'] === 'pro') {
-                            //     if (! $isProActive) {
-                            //         $is_disabled = true;
-                            //     } elseif (! $required_another) {
-                            //         $is_disabled = true;
-                            //     }
-                            // }
-
-                            if (($c == 'extension' && !in_array($key, array_column($available_extensions, 'name'))) || ($c == "themebuilder" && !in_array($key, array_column($themebuilder, 'name')))) {
-                                $is_disabled = true;
-                            }
-
-                            if ($module['type'] == 'pro') {
-                                $active = ($options[$key]['status'] == true && $isProActive && !$is_disabled) ? 'checked' : '';
-                            } else {
-                                $active = ($options[$key]['status'] == true) ? 'checked' : '';
-                            }
+                            $lock = $moduleLocks[$key] ?? null;
+                            $is_disabled = (bool) $lock;
+                            $module_addon = $addonsModule->get_module_addon((string) $key, $module);
+                            $module_addon_name = '' !== $module_addon ? \RTMKit\Modules\Addons\AddonsModule::get_addon_name($module_addon) : '';
+                            $active = (!$is_disabled && !empty($options[$key]['status'])) ? 'checked' : '';
                         ?>
                             <div class="col">
                                 <div class="card modules p-3" data-module-type="<?php echo esc_attr($module['type']) ?>">
@@ -167,9 +224,15 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
                                                             <?php echo esc_html(ucfirst($required)) ?></span>
                                                     <?php endif ?>
                                                 </h5>
+                                                <?php if ('' !== $module_addon_name && 'woocommerce' !== $c) : ?>
+                                                    <small class="module-requires d-flex align-items-center gap-1 lh-1<?php echo 'addon' === $lock ? ' is-locked' : ''; ?>">
+                                                        <i class="fa-solid <?php echo 'addon' === $lock ? 'fa-plug-circle-exclamation' : 'fa-plug'; ?>"></i>
+                                                        <?php echo esc_html(sprintf('Requires %s', $module_addon_name)); ?>
+                                                    </small>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
-                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $is_disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $module['name'])) ?>" data-bs-toggle="<?php echo $is_disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo $is_disabled ? '#moduleLockedModal' : ''; ?>">
+                                        <label id="<?php echo esc_attr($key) ?>" class="switch gap-3<?php echo $is_disabled ? ' is-disabled' : ''; ?>" data-disabled-message="<?php echo esc_attr(sprintf('%s terkunci.', $module['name'])) ?>" data-bs-toggle="<?php echo $is_disabled ? 'modal' : ''; ?>" data-bs-target="<?php echo $is_disabled ? esc_attr($lockModals[$lock]) : ''; ?>" data-feature-name="<?php echo esc_attr($module['name']) ?>" data-addon-name="<?php echo esc_attr($module_addon_name) ?>">
                                             <input name="<?php echo esc_attr($key) ?>"
                                                 class="switch-input switch-status"
                                                 type="checkbox" value="true"
@@ -196,4 +259,5 @@ $themebuilder = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()->ge
 <?php
 require_once RTM_KIT_DIR . 'views/pro-upgrade-modal.php';
 rtmkit_render_pro_upgrade_modal();
+rtmkit_render_addon_locked_modal();
 ?>

@@ -198,6 +198,16 @@ class WooProductGrid extends \Elementor\Widget_Base
             ]
         );
 
+        // Ukuran gambar produk; default sama dengan sebelumnya (thumbnail WooCommerce).
+        $this->add_group_control(
+            \Elementor\Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'product_image',
+                'label' => esc_html__('Image Resolution', 'rometheme-for-elementor'),
+                'default' => 'woocommerce_thumbnail',
+            ]
+        );
+
         $this->end_controls_section();
 
 
@@ -1976,6 +1986,14 @@ class WooProductGrid extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
+        // Image Resolution: nama ukuran terdaftar, atau [lebar, tinggi] untuk Custom.
+        $image_size = $settings['product_image_size'] ?? 'woocommerce_thumbnail';
+        if ('custom' === $image_size) {
+            $dimension = $settings['product_image_custom_dimension'] ?? [];
+            $image_size = [absint($dimension['width'] ?? 0), absint($dimension['height'] ?? 0)];
+        }
+
         $direction = $settings['titlle_direction'] ?? 'row';
         $direction_tablet = $settings['titlle_direction_tablet'] ?? $direction;
         $direction_mobile = $settings['titlle_direction_mobile'] ?? $direction;
@@ -2049,7 +2067,7 @@ class WooProductGrid extends \Elementor\Widget_Base
                             <?php }
                             } ?>
                             <div class="rkit-product-image-container">
-                                <?php echo wp_kses_post(woocommerce_get_product_thumbnail()); ?>
+                                <?php echo wp_kses_post(woocommerce_get_product_thumbnail($image_size)); ?>
                             </div>
                             <?php if ($settings['option_style'] == '') { ?>
                                 <div class="rkit-addcart-wrap-button-wpg">

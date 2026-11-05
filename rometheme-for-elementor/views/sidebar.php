@@ -17,6 +17,11 @@ $icons = [
 <path d="M7.67289 18.005L8.60956 11.5858H4.83789L11.4212 2.09912L10.5079 9.33829H14.9121L7.67289 18.005Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 ',
+    'builders' => '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="3.33301" y="3.33334" width="13.3333" height="13.3333" rx="0.833333" stroke="currentColor"/>
+<path d="M3.33301 7.08334H16.6663M8.33301 7.08334V16.6667" stroke="currentColor" stroke-linecap="round"/>
+</svg>
+',
     'settings' => '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.66685 17.25L8.37518 14.9166C8.08352 14.8333 7.76018 14.6941 7.40602 14.5C7.05185 14.3058 6.75685 14.0975 6.52018 13.875L4.37435 14.7916L3.04102 12.4583L4.89518 11.0625C4.86768 10.8958 4.84268 10.7225 4.82185 10.5416C4.80102 10.3608 4.79018 10.1875 4.79018 10.0208C4.79018 9.86829 4.80102 9.70496 4.82185 9.53079C4.84268 9.35662 4.86685 9.15912 4.89518 8.93662L3.04102 7.54079L4.37435 5.24912L6.49935 6.14496C6.77685 5.90912 7.07935 5.69662 7.40602 5.50912C7.73268 5.32162 8.04852 5.17912 8.35435 5.08162L8.66685 2.74829H11.3335L11.6252 5.10246C11.986 5.22746 12.3027 5.36996 12.5735 5.52996C12.8443 5.68996 13.126 5.89496 13.4177 6.14496L15.626 5.24912L16.9593 7.54079L15.0218 8.99912C15.0777 9.19329 15.1085 9.37079 15.116 9.53079C15.1235 9.69079 15.1268 9.84662 15.1268 9.99996C15.1268 10.1391 15.1202 10.2883 15.106 10.4483C15.0918 10.6083 15.0643 10.8058 15.0227 11.0425L16.9185 12.4591L15.5852 14.7925L13.4185 13.855C13.1268 14.105 12.8352 14.3166 12.5435 14.4908C12.2518 14.665 11.946 14.8 11.6268 14.8975L11.3352 17.2516H8.66852L8.66685 17.25ZM9.95852 12.5158C10.6635 12.5158 11.2593 12.2725 11.7452 11.7866C12.231 11.3008 12.4743 10.705 12.4743 9.99996C12.4743 9.29496 12.231 8.69912 11.7452 8.21329C11.2593 7.72746 10.6635 7.48412 9.95852 7.48412C9.25352 7.48412 8.65768 7.72746 8.17185 8.21329C7.68602 8.69912 7.44268 9.29496 7.44268 9.99996C7.44268 10.705 7.68602 11.3008 8.17185 11.7866C8.65768 12.2725 9.25352 12.5158 9.95852 12.5158Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
@@ -28,6 +33,12 @@ $icons = [
 </svg>
 '
 ];
+
+$section_titles = [
+    'builders' => __('Theme Builder', 'rometheme-for-elementor'),
+];
+
+$open_sections = ['get_started', 'features', 'builders'];
 
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 ?>
@@ -51,11 +62,16 @@ $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo ($icons[$section] ?? '')
                             ?>
-                            <?php echo esc_html(ucfirst(str_replace('_', ' ', $section))); ?></h3>
+                            <?php echo esc_html($section_titles[$section] ?? ucfirst(str_replace('_', ' ', $section))); ?></h3>
                     </button>
-                    <div class="collapse <?php echo ($section == 'get_started' || $section == 'features') ? esc_attr("show") : "" ?>" id="<?php echo esc_attr($section) ?>">
+                    <div class="collapse <?php echo in_array($section, $open_sections, true) ? esc_attr("show") : "" ?>" id="<?php echo esc_attr($section) ?>">
                         <ul class="menu-list">
-                            <?php foreach ($items as $key => $item): ?>
+                            <?php foreach ($items as $key => $item):
+                                // Bisa dibuka lewat path, tapi tidak didaftarkan di sidebar.
+                                if (!empty($item['hidden'])) {
+                                    continue;
+                                }
+                                ?>
                                 <li class="menu-item">
                                     <?php if (!empty($item['locked'])) :
                                         // Menu addon yang belum berlisensi: tetap tampil, tetapi

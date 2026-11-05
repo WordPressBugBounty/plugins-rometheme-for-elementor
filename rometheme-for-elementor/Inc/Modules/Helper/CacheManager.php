@@ -28,6 +28,16 @@ class CacheManager
     const TTL_BANNER = 1 * HOUR_IN_SECONDS;           // 1 hour
     const TTL_ASSETS = 12 * HOUR_IN_SECONDS;          // 12 hours
 
+    /** Folder aset yang daftarnya di-cache (WidgetModule::enqueue_widget_style()). */
+    const ASSET_DIRS = [
+        'Inc/Widgets/assets/css',
+        'Inc/Widgets/assets/js',
+        'Inc/Elements/assets/css',
+        'Inc/Elements/assets/js',
+        'Inc/Elements/assets/js/lib',
+        'Inc/Elements/assets/css/lib',
+    ];
+
     public static function instance()
     {
         if (null === self::$instance) {
@@ -131,16 +141,42 @@ class CacheManager
         delete_transient(self::CACHE_PRO_MODULES);
         delete_transient(self::CACHE_EXTENSIONS);
         delete_transient(self::CACHE_BANNER);
-        delete_transient(self::CACHE_ASSET_MANIFEST);
-        
-        // Clear all widget data caches
+
+        // Daftar aset disimpan per folder (CACHE_ASSET_MANIFEST_<md5 folder>),
+        // jadi key dasarnya saja tidak pernah menghapus apa pun.
+        foreach (self::ASSET_DIRS as $dir) {
+            delete_transient(self::CACHE_ASSET_MANIFEST . '_' . md5(RTM_KIT_DIR . $dir));
+        }
+        foreach (['free', 'pro'] as $type) {
+            delete_transient(self::CACHE_WIDGET_DATA . $type);
+        }
+
+        // Sisa key rtm_cache_* lain yang tersimpan di tabel options (tanpa object cache persisten).
         global $wpdb;
         $wpdb->query(
             $wpdb->prepare(
-                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-                '%' . self::CACHE_WIDGET_DATA . '%'
+                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+                $wpdb->esc_like('_transient_rtm_cache_') . '%',
+                $wpdb->esc_like('_transient_timeout_rtm_cache_') . '%'
             )
         );
+    }
+
+    /**
+     * Bangun ulang cache yang dipakai setiap request admin & editor, supaya
+     * request pertama setelah Clear Cache tidak menanggung semuanya.
+     */
+    public function warm()
+    {
+        $this->get_modules_cached();
+        $this->get_extensions_cached();
+        $this->get_pro_modules_cached();
+        $this->get_widget_data_cached('free');
+        $this->get_widget_data_cached('pro');
+
+        foreach (self::ASSET_DIRS as $dir) {
+            $this->get_asset_manifest_cached(RTM_KIT_DIR . $dir);
+        }
     }
 
     /**

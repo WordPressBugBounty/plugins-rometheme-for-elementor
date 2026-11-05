@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       RTMKit Addons for Elementor
  * Description:      The best toolkit solution for Elementor. Enjoy advanced addons, theme builders, forms, icons, and ready-made templates to create stunning websites quickly and effortlessly.
- * Version:           2.2.1
+ * Version:           2.2.2
  * Author:            Rometheme
  * Author URI: 	  	  https://rometheme.net/
  * License: 		   GPLv2 or later
@@ -17,7 +17,7 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly 
 }
-defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.2.1');
+defined('RTM_KIT_VERSION') || define('RTM_KIT_VERSION', '2.2.2');
 defined('RTM_KIT_DIR') || define('RTM_KIT_DIR', plugin_dir_path(__FILE__));
 defined('RTM_KIT_URL') || define('RTM_KIT_URL', plugin_dir_url(__FILE__));
 defined('RTM_KIT_FILE') || define('RTM_KIT_FILE', __FILE__);
@@ -34,6 +34,10 @@ if (!file_exists(RTM_KIT_DIR . 'vendor/autoload.php')) {
     wp_die('Please run <code>composer install</code> in the plugin directory to install dependencies.');
 }
 require_once RTM_KIT_DIR . 'vendor/autoload.php';
+
+// Login OAuth untuk endpoint MCP harus terpasang sebelum WordPress menentukan
+// user saat ini, jadi tidak bisa menunggu modul dimuat di hook init.
+\RTMKit\MCP\Main\OAuth::init();
 
 /**
  * Initialize the plugin.
@@ -65,6 +69,27 @@ if (!function_exists('rtmkit_upgrade_url')) {
     function rtmkit_upgrade_url(string $placement, string $to = 'rtmkit'): string
     {
         return \RTMKit\Modules\Telemetry\UpgradeLink::url($placement, $to);
+    }
+}
+
+if (!function_exists('rtmkit_license_label')) {
+    /**
+     * Label lisensi untuk baris "License :" di halaman admin: nama produk dari
+     * RTMKit Pro lama, plan akun RTMHub yang terhubung, atau "Free".
+     * Dipakai juga oleh plugin pendamping (mis. Form Settings di RTMForm).
+     */
+    function rtmkit_license_label(): string
+    {
+        if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
+            return (string) \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name();
+        }
+
+        if (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
+            $plan = \RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan');
+            return is_string($plan) && $plan !== '' ? $plan : 'Pro';
+        }
+
+        return 'Free';
     }
 }
 // \RTMKit\Core\Plugin::instance()->before_plugin_load();

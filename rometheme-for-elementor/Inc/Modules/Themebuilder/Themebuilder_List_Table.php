@@ -2,7 +2,7 @@
 
 namespace RTMKit\Modules\Themebuilder;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) exit;
 
 if (!class_exists('WP_List_Table')) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -22,12 +22,36 @@ class Themebuilder_List_Table extends \WP_List_Table
         ]);
     }
 
+    /**
+     * Tipe yang ditampilkan: tab yang dipilih, atau untuk tab "All" di halaman
+     * builder (mis. Blog Builder) hanya tipe-tipe halaman itu, yang dikirim JS
+     * sebagai themebuilder_scope. Null berarti semua tipe.
+     *
+     * @return string|string[]|null
+     */
+    private function requested_types()
+    {
+        $type = isset($_POST['themebuilder']) ? sanitize_text_field(wp_unslash($_POST['themebuilder'])) : 'all';
+
+        if ($type !== 'all') {
+            return $type;
+        }
+
+        $scope = isset($_POST['themebuilder_scope'])
+            ? array_map('sanitize_key', explode(',', wp_unslash($_POST['themebuilder_scope'])))
+            : [];
+        $scope = array_values(array_diff(array_filter($scope), ['all', 'form']));
+
+        return $scope ?: null;
+    }
+
     public function get_views()
     {
         $args = [];
 
-        if (isset($_POST['themebuilder']) && $_POST['themebuilder'] !== 'all') {
-            $args['themebuilder'] = sanitize_text_field($_POST['themebuilder']);
+        $types = $this->requested_types();
+        if ($types !== null) {
+            $args['themebuilder'] = $types;
         }
 
         if (isset($_POST['status'])) {
@@ -69,7 +93,8 @@ class Themebuilder_List_Table extends \WP_List_Table
     {
         $singular = $this->_args['singular'];
         $this->screen->render_screen_reader_content('heading_list');
-        ?>
+        $this->display_tablenav('top');
+?>
         <table class="wp-list-table <?php echo esc_attr(implode(' ', $this->get_table_classes())); ?>">
             <?php $this->print_table_description(); ?>
             <thead>
@@ -79,11 +104,11 @@ class Themebuilder_List_Table extends \WP_List_Table
             </thead>
 
             <tbody id="the-list" <?php
-            if ($singular) {
-                // echo " data-wp-lists='list:$singular'";
-                 echo ' data-wp-lists="list:' . esc_attr( $singular ) . '"';
-            }
-            ?>>
+                                    if ($singular) {
+                                        // echo " data-wp-lists='list:$singular'";
+                                        echo ' data-wp-lists="list:' . esc_attr($singular) . '"';
+                                    }
+                                    ?>>
                 <?php $this->display_rows_or_placeholder(); ?>
             </tbody>
 
@@ -94,16 +119,20 @@ class Themebuilder_List_Table extends \WP_List_Table
             </tfoot>
 
         </table>
-        <?php
+
+        <?php $this->display_tablenav('bottom'); ?>
+<?php
     }
 
     public function prepare_items()
     {
+        $this->process_bulk_action();
+
         $args = [];
         $woo_types = ['single_product', 'archive_product'];
         $has_woocommerce = is_plugin_active('woocommerce/woocommerce.php');
 
-        $pro_types = ['error_404', 'archive_post', 'search' , 'archive' , 'single_post' , 'search_results'];
+        $pro_types = ['error_404', 'archive_post', 'search', 'archive', 'search_results'];
 
         if (isset($_POST['status']) && $_POST['status'] !== 'all') {
             $args['status'] = sanitize_text_field($_POST['status']);
@@ -112,8 +141,9 @@ class Themebuilder_List_Table extends \WP_List_Table
         $this->datas = \RTMKit\Modules\Themebuilder\ThemebuilderStorage::instance()
             ->get_themebuilder_data($args);
 
-        if (isset($_POST['themebuilder']) && $_POST['themebuilder'] !== 'all') {
-            $args['themebuilder'] = sanitize_text_field($_POST['themebuilder']);
+        $types = $this->requested_types();
+        if ($types !== null) {
+            $args['themebuilder'] = $types;
         }
 
         if (isset($_POST['status'])) {
@@ -153,7 +183,7 @@ class Themebuilder_List_Table extends \WP_List_Table
                     $shortcode = get_post_meta($id_post, 'rtform_shortcode', true);
                     $status = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
                     $posts[] = [
-                        'no' => $no,
+                        // 'no' => $no,
                         'ID' => $id_post,
                         'title' => get_the_title(),
                         'author' => get_the_author(),
@@ -167,7 +197,7 @@ class Themebuilder_List_Table extends \WP_List_Table
                     $condition = get_post_meta($id_post, 'rometheme_template_condition', true);
                     $status = (get_post_status($id_post) === 'publish') ? 'published' : get_post_status($id_post);
                     $posts[] = [
-                        'no' => $no,
+                        // 'no' => $no,
                         'ID' => $id_post,
                         'title' => get_the_title(),
                         'author' => get_the_author(),
@@ -192,7 +222,8 @@ class Themebuilder_List_Table extends \WP_List_Table
     {
         if ($_POST['themebuilder'] === 'form') {
             $fields = [
-                'no' => __('No', 'rometheme-for-elementor'),
+                'cb' => '<input type="checkbox" />',
+                // 'no' => __('No', 'rometheme-for-elementor'),
                 'title' => __('Title', 'rometheme-for-elementor'),
                 'shortcode' => __('Shortcode', 'rometheme-for-elementor'),
                 'entries' => __('Entries', 'rometheme-for-elementor'),
@@ -201,7 +232,8 @@ class Themebuilder_List_Table extends \WP_List_Table
             ];
         } else {
             $fields = [
-                'no' => __('No', 'rometheme-for-elementor'),
+                'cb' => '<input type="checkbox" />',
+                // 'no' => __('No', 'rometheme-for-elementor'),
                 'title' => __('Title', 'rometheme-for-elementor'),
                 'type' => __('Type', 'rometheme-for-elementor'),
                 'display' => __('Display', 'rometheme-for-elementor'),
@@ -246,6 +278,183 @@ class Themebuilder_List_Table extends \WP_List_Table
 
         return $columns;
     }
+
+
+    /**
+     * Get available bulk actions.
+     *
+     * @return array<string, string>
+     */
+    protected function get_bulk_actions()
+    {
+        $status = isset($_POST['status'])
+            ? sanitize_key(wp_unslash($_POST['status']))
+            : 'all';
+
+        if ($status === 'trash') {
+            return [
+                'restore' => __('Restore', 'rometheme-for-elementor'),
+                'delete'  => __('Delete Permanently', 'rometheme-for-elementor'),
+            ];
+        }
+
+        return [
+            'publish' => __('Publish', 'rometheme-for-elementor'),
+            'draft'   => __('Move to Draft', 'rometheme-for-elementor'),
+            'trash'   => __('Move to Trash', 'rometheme-for-elementor'),
+        ];
+    }
+
+    /**
+     * Render checkbox for selecting a template.
+     *
+     * @param array $item Current row item.
+     * @return string
+     */
+    protected function column_cb($item)
+    {
+        $post_id = absint($item['ID']);
+
+        return sprintf(
+            '<input type="checkbox" name="themebuilder_ids[]" value="%d" />',
+            $post_id
+        );
+    }
+
+
+    /**
+     * Process selected template bulk actions.
+     *
+     * @return void
+     */
+    public function process_bulk_action()
+    {
+        error_log('initialize');
+
+        // if (
+        //     'POST' !== strtoupper($_SERVER['REQUEST_METHOD'] ?? '')
+        //     || empty($_POST['themebuilder_ids'])
+        // ) {
+        //     return;
+        // }
+
+        error_log('[RTMForm Pro] after : check request Method');
+
+        $action = $this->current_action();
+
+        error_log('[RTMForm Pro] action : ' . $action);
+
+        $allowed_actions = [
+            'publish',
+            'draft',
+            'trash',
+            'restore',
+            'delete',
+        ];
+
+        if (!in_array($action, $allowed_actions, true)) {
+            return;
+        }
+
+        error_log('[RTMForm Pro] before : check nonce');
+
+        check_admin_referer('_wpnonce');
+
+        error_log('[RTMForm Pro] after : check nonce');
+
+
+        $ids = array_unique(array_filter(array_map(
+            'absint',
+            (array) wp_unslash($_POST['themebuilder_ids'])
+        )));
+
+        $processed = 0;
+
+        foreach ($ids as $post_id) {
+            $post = get_post($post_id);
+
+            error_log('action : ' . $action . ' for ' . $post_id);
+
+            if (!$post || $post->post_type !== 'rometheme_template' || $post->post_type !==  'romethemeform_form') {
+                continue;
+            }
+
+            switch ($action) {
+                case 'publish':
+                case 'draft':
+                    if (
+                        $post->post_status === 'trash'
+                        || !current_user_can('edit_post', $post_id)
+                    ) {
+                        continue 2;
+                    }
+
+                    $result = wp_update_post([
+                        'ID'          => $post_id,
+                        'post_status' => $action === 'publish'
+                            ? 'publish'
+                            : 'draft',
+                    ], true);
+
+                    if (!is_wp_error($result) && $result) {
+                        $processed++;
+                    }
+                    break;
+
+                case 'trash':
+                    if (
+                        $post->post_status === 'trash'
+                        || !current_user_can('delete_post', $post_id)
+                    ) {
+                        continue 2;
+                    }
+
+                    if (wp_trash_post($post_id)) {
+                        $processed++;
+                    }
+                    break;
+
+                case 'restore':
+                    if (
+                        $post->post_status !== 'trash'
+                        || !current_user_can('delete_post', $post_id)
+                    ) {
+                        continue 2;
+                    }
+
+                    if (wp_untrash_post($post_id)) {
+                        $processed++;
+                    }
+                    break;
+
+                case 'delete':
+                    if (
+                        $post->post_status !== 'trash'
+                        || !current_user_can('delete_post', $post_id)
+                    ) {
+                        continue 2;
+                    }
+
+                    if (wp_delete_post($post_id, true)) {
+                        $processed++;
+                    }
+                    break;
+            }
+        }
+
+        $redirect_url = remove_query_arg([
+            'bulk_action',
+            'bulk_count',
+        ]);
+
+        wp_safe_redirect(add_query_arg([
+            'bulk_action' => $action,
+            'bulk_count'  => $processed,
+        ], $redirect_url));
+
+        exit;
+    }
+
 
     protected function get_table_classes()
     {

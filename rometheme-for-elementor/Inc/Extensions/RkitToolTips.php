@@ -95,7 +95,7 @@ class RkitToolTips
         'px' => ['min' => -1000, 'max' => 1000],
       ],
       'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--x: {{SIZE}}{{UNIT}};',
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tt-x: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -109,7 +109,7 @@ class RkitToolTips
         'px' => ['min' => -1000, 'max' => 1000],
       ],
       'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--y: {{SIZE}}{{UNIT}};',
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tt-y: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -137,6 +137,8 @@ class RkitToolTips
       ]
     );
 
+    $container->add_control('rtm_tooltip_position', $this->get_position_control_args());
+
     $container->add_control(
       'tooltip_text_alignment',
       [
@@ -158,6 +160,9 @@ class RkitToolTips
         ],
         'default' => 'center',
         'toggle' => true,
+        // Selain perataan teks, class ini menggeser kotak tooltip (dan panahnya)
+        // ke kiri / tengah / kanan elemen (atas / tengah / bawah untuk Left & Right).
+        'prefix_class' => 'rtm-tooltip-align-',
         'selectors' => [
           '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'text-align: {{VALUE}};',
         ],
@@ -239,9 +244,63 @@ class RkitToolTips
       ]
     );
 
+    // Panah (kerucut) di bawah tooltip, digambar dengan ::before.
+    // Container: default mati, karena ::before juga dipakai Elementor untuk background overlay container.
+    $container->add_control('rtm_tooltip_arrow', [
+      'label' => esc_html__('Show Arrow', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SWITCHER,
+      'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+      'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+      'return_value' => 'yes',
+      'default' => '',
+      'prefix_class' => 'rtm-tooltip-arrow-',
+      'description' => esc_html__('Do not combine with a container Background Overlay: both use the same layer.', 'rometheme-for-elementor'),
+    ]);
+
+    $container->add_control('rtm_tooltip_arrow_color', [
+      'label' => esc_html__('Arrow Color', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::COLOR,
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tooltip-arrow-color: {{VALUE}};',
+      ],
+      'condition' => ['rtm_tooltip_arrow' => 'yes'],
+    ]);
+
+    $container->add_responsive_control('rtm_tooltip_arrow_size', [
+      'label' => esc_html__('Arrow Size', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SLIDER,
+      'size_units' => ['px'],
+      'range' => [
+        'px' => ['min' => 4, 'max' => 30],
+      ],
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tooltip-arrow-size: {{SIZE}}{{UNIT}};',
+      ],
+      'condition' => ['rtm_tooltip_arrow' => 'yes'],
+    ]);
+
     $container->end_controls_tab();
     $container->end_controls_tabs();
     $container->end_controls_section();
+  }
+
+  /**
+   * Sisi elemen tempat tooltip muncul, seperti tooltip tombol RTM Woo.
+   */
+  private function get_position_control_args()
+  {
+    return [
+      'label' => esc_html__('Position', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SELECT,
+      'options' => [
+        'top' => esc_html__('Top', 'rometheme-for-elementor'),
+        'bottom' => esc_html__('Bottom', 'rometheme-for-elementor'),
+        'left' => esc_html__('Left', 'rometheme-for-elementor'),
+        'right' => esc_html__('Right', 'rometheme-for-elementor'),
+      ],
+      'default' => 'top',
+      'prefix_class' => 'rtm-tooltip-pos-',
+    ];
   }
 
   public function add_widget_options($widget)
@@ -296,7 +355,7 @@ class RkitToolTips
         'px' => ['min' => -1000, 'max' => 1000],
       ],
       'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--x: {{SIZE}}{{UNIT}};',
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tt-x: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -310,7 +369,7 @@ class RkitToolTips
         'px' => ['min' => -1000, 'max' => 1000],
       ],
       'selectors' => [
-        '{{WRAPPER}}.rtm-tooltip-enabled::after' => '--y: {{SIZE}}{{UNIT}};',
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tt-y: {{SIZE}}{{UNIT}};',
       ],
       'condition' => ['rtm_tooltip_text_switch' => 'enabled'],
     ]);
@@ -337,6 +396,8 @@ class RkitToolTips
       ]
     );
 
+    $widget->add_control('rtm_tooltip_position', $this->get_position_control_args());
+
     $widget->add_control(
       'tooltip_text_alignment',
       [
@@ -358,6 +419,9 @@ class RkitToolTips
         ],
         'default' => 'center',
         'toggle' => true,
+        // Selain perataan teks, class ini menggeser kotak tooltip (dan panahnya)
+        // ke kiri / tengah / kanan elemen (atas / tengah / bawah untuk Left & Right).
+        'prefix_class' => 'rtm-tooltip-align-',
         'selectors' => [
           '{{WRAPPER}}.rtm-tooltip-enabled::after' => 'text-align: {{VALUE}};',
         ],
@@ -438,6 +502,39 @@ class RkitToolTips
         'selector' => '{{WRAPPER}}.rtm-tooltip-enabled::after',
       ]
     );
+
+    // Panah (kerucut) di bawah tooltip, digambar dengan ::before.
+    $widget->add_control('rtm_tooltip_arrow', [
+      'label' => esc_html__('Show Arrow', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SWITCHER,
+      'label_on' => esc_html__('Yes', 'rometheme-for-elementor'),
+      'label_off' => esc_html__('No', 'rometheme-for-elementor'),
+      'return_value' => 'yes',
+      'default' => 'yes',
+      'prefix_class' => 'rtm-tooltip-arrow-',
+    ]);
+
+    $widget->add_control('rtm_tooltip_arrow_color', [
+      'label' => esc_html__('Arrow Color', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::COLOR,
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tooltip-arrow-color: {{VALUE}};',
+      ],
+      'condition' => ['rtm_tooltip_arrow' => 'yes'],
+    ]);
+
+    $widget->add_responsive_control('rtm_tooltip_arrow_size', [
+      'label' => esc_html__('Arrow Size', 'rometheme-for-elementor'),
+      'type' => \Elementor\Controls_Manager::SLIDER,
+      'size_units' => ['px'],
+      'range' => [
+        'px' => ['min' => 4, 'max' => 30],
+      ],
+      'selectors' => [
+        '{{WRAPPER}}.rtm-tooltip-enabled' => '--rtm-tooltip-arrow-size: {{SIZE}}{{UNIT}};',
+      ],
+      'condition' => ['rtm_tooltip_arrow' => 'yes'],
+    ]);
 
     $widget->end_controls_tab();
     $widget->end_controls_tabs();

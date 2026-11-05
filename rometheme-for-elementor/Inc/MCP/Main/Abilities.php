@@ -12,49 +12,90 @@ final class Abilities
         ]);
     }
 
+    /**
+     * Ability RTMKit didaftarkan sebagai tool MCP langsung (rtmkit-add-widget,
+     * dst.). Tanpa ini klien hanya melihat tool generik discover/execute-ability,
+     * dan banyak model (mis. Gemini) tidak memakainya sama sekali.
+     */
+    public static function expose_as_tools($config)
+    {
+        if (!function_exists('wp_get_abilities')) {
+            return $config;
+        }
+
+        $names = [];
+        foreach (wp_get_abilities() as $ability) {
+            if (0 === strpos($ability->get_name(), 'rtmkit/')) {
+                $names[] = $ability->get_name();
+            }
+        }
+
+        $config['server_name'] = 'RTMKit for Elementor';
+        $config['server_description'] = 'Build and edit Elementor pages on this WordPress site with RTMKit widgets. Workflow: rtmkit-list-widgets, then rtmkit-get-widget-schema for each widget you use, then rtmkit-get-page-structure on the target page, then add or update widgets. Every change creates a snapshot that rtmkit-restore-snapshot can undo.';
+        $config['tools'] = array_values(array_unique(array_merge((array) ($config['tools'] ?? []), $names)));
+
+        return $config;
+    }
+
+    /**
+     * structuredContent MCP harus berupa object, tetapi adapter MCP (termasuk
+     * salinan lama bawaan WooCommerce yang bisa termuat lebih dulu) mengirim hasil
+     * ability apa adanya; klien seperti Claude lalu menandai tool sebagai gagal.
+     * Daftar dibungkus {key: [...]} hanya untuk request MCP, sehingga REST
+     * Abilities (dipakai build/angie.js) tetap menerima array.
+     */
+    public static function for_mcp(array $list, string $key)
+    {
+        return OAuth::is_mcp_request() ? [$key => $list] : $list;
+    }
+
     public static function register_read(): void
     {
         $meta = ['annotations' => ['readonly' => true], 'show_in_rest' => true, 'mcp' => ['public' => true]];
 
         wp_register_ability('rtmkit/list-widgets', [
             'label' => 'Daftar widget RTMKit',
-            'description' => 'Widget RTMKit yang tersedia (lisensi valid dan aktif).',
+            'description' => 'List the RTMKit Elementor widgets available on this WordPress site (slug, title, category). Call this first when the user wants to build or edit a page, then use the slug with rtmkit-get-widget-schema and rtmkit-add-widget. Optional "category" filters the list.',
             'category' => 'rtmkit',
             'input_schema' => [
                 'type' => 'object',
-                'default' => [],
-                'properties' => ['category' => ['type' => 'string']],
+                'properties' => ['category' => ['type' => 'string', 'description' => 'Optional widget category to filter by.']],
             ],
-            'output_schema' => ['type' => 'array'],
-            'execute_callback' => [self::class, 'list_widgets'],
+            'execute_callback' => fn($in = []) => self::for_mcp(self::list_widgets((array) $in), 'widgets'),
             'permission_callback' => fn() => current_user_can('edit_posts'),
             'meta' => $meta,
         ]);
 
         wp_register_ability('rtmkit/get-widget-schema', [
             'label' => 'Skema setting widget',
-            'description' => 'Control yang valid untuk satu widget, diambil dari Elementor.',
+            'description' => 'Get the valid settings (Elementor controls: key, type, options, default) of one RTMKit widget by its slug. Always call this before rtmkit-add-widget or rtmkit-update-widget-settings and only use keys returned here.',
             'category' => 'rtmkit',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['widget'],
-                'properties' => ['widget' => ['type' => 'string']],
+                'properties' => ['widget' => ['type' => 'string', 'description' => 'Widget slug from rtmkit-list-widgets.']],
             ],
-            'execute_callback' => fn($in) => self::controls(sanitize_key($in['widget'])),
+            'execute_callback' => static function ($in) {
+                $controls = self::controls(sanitize_key($in['widget']));
+                return is_wp_error($controls) || $controls ? $controls : self::for_mcp([], 'controls');
+            },
             'permission_callback' => fn() => current_user_can('edit_posts'),
             'meta' => $meta,
         ]);
 
         wp_register_ability('rtmkit/get-page-structure', [
             'label' => 'Struktur halaman Elementor',
-            'description' => 'Pohon elemen halaman (tanpa setting, hemat token).',
+            'description' => 'Get the element tree (containers and widgets with their element IDs, without settings) of an Elementor page or post by post_id. Use the returned IDs as parent_id or element_id in other RTMKit tools. The page must already be edited with Elementor.',
             'category' => 'rtmkit',
             'input_schema' => [
                 'type' => 'object',
                 'required' => ['post_id'],
-                'properties' => ['post_id' => ['type' => 'integer']],
+                'properties' => ['post_id' => ['type' => 'integer', 'description' => 'WordPress page or post ID.']],
             ],
-            'execute_callback' => [self::class, 'page_structure'],
+            'execute_callback' => static function ($in) {
+                $tree = self::page_structure($in);
+                return is_wp_error($tree) ? $tree : self::for_mcp($tree, 'elements');
+            },
             'permission_callback' => fn($in) => current_user_can('edit_post', (int) ($in['post_id'] ?? 0)),
             'meta' => $meta,
         ]);

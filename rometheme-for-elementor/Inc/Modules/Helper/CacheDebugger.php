@@ -172,14 +172,30 @@ class CacheDebugger
     }
 
     /**
-     * Clear all RTM cache
+     * Clear and optimize cache (tombol Clear Cache di Welcome & WP-CLI):
+     * hapus cache RTMKit, buang transient kedaluwarsa, minta Elementor membuat
+     * ulang file CSS-nya, lalu bangun ulang cache RTMKit.
      */
     public function clear_all_cache()
     {
-        CacheManager::instance()->clear_all();
+        $cache = CacheManager::instance();
+        $cache->clear_all();
+
+        // Transient kedaluwarsa tidak dihapus WordPress sampai dibaca lagi.
+        if (function_exists('delete_expired_transients')) {
+            delete_expired_transients(true);
+        }
+
+        // File CSS Elementor (per halaman & global) dibuat ulang saat dibuka berikutnya.
+        if (class_exists('\Elementor\Plugin') && isset(\Elementor\Plugin::$instance->files_manager)) {
+            \Elementor\Plugin::$instance->files_manager->clear_cache();
+        }
+
+        $cache->warm();
+
         return [
             'status' => 'SUCCESS',
-            'message' => 'All RTMKit cache cleared',
+            'message' => __('Cache cleared and optimized.', 'rometheme-for-elementor'),
             'timestamp' => current_time('mysql')
         ];
     }

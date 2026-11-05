@@ -1,5 +1,10 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+if (! function_exists('get_plugin_data')) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
 $updateModule = \RTMKit\Modules\Update\UpdateModule::instance();
 $plugins = $updateModule->get_plugins();
 $addons = \RTMKit\Modules\Addons\AddonsModule::instance()->get_addons_list();
@@ -7,256 +12,288 @@ $addonAvailable = \RTMKit\Modules\Addons\AddonsModule::instance()->get_addons_av
 $isProActive = \RTMKit\Core\Plugin::instance()->pro_is_active();
 
 $isRTMEssential = defined('RTM_ESSENTIAL') ? RTM_ESSENTIAL : null;
-?>
-<style>
-    #rtmkit-root select {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+
+$status_labels = [
+    'update' => __('Update Available', 'rometheme-for-elementor'),
+    'active' => __('Active', 'rometheme-for-elementor'),
+    'inactive' => __('Inactive', 'rometheme-for-elementor'),
+    'not-installed' => __('Not Installed', 'rometheme-for-elementor'),
+];
+
+$normalize_version = static function ($value) {
+    return ltrim(trim((string) $value), 'vV');
+};
+
+/*
+ * Plugin RTMKit (free / Pro lama): update ke versi terbaru, atau rollback ke
+ * versi yang dipilih.
+ */
+$core_cards = [];
+foreach ($plugins as $plugin => $data) {
+    $plugin_info = $updateModule->get_plugin_info($plugin);
+    $versions = isset($plugin_info->versions) ? (array) $plugin_info->versions : [];
+
+    if ($plugin === 'rtmkitpro') {
+        if (!$isProActive || $isRTMEssential !== null) {
+            continue;
+        }
+
+        $plugin_name = 'RTMKit Pro';
+        $current_version = RTMPRO_PLUGIN_VERSION;
+    } else {
+        // Nama di wordpress.org memuat tagline ("RTMKit for Elementor – Modular ..."),
+        // di kartu cukup nama produknya.
+        $plugin_name = trim(preg_split('/\s+[–—-]\s+/u', html_entity_decode($plugin_info->name, ENT_QUOTES, 'UTF-8'))[0]);
+        $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $data['file']);
+        $current_version = $plugin_data['Version'] ?? null;
+        unset($versions['trunk']);
     }
-</style>
+
+    $core_cards[] = [
+        'plugin' => $plugin,
+        'name' => $plugin_name,
+        'current' => $current_version,
+        'latest' => $plugin_info->version,
+        'versions' => array_keys($versions),
+        'min_version' => $data['min_version'],
+        'update' => version_compare($current_version, $plugin_info->version, '<'),
+    ];
+}
+
+/*
+ * Addon sesuai plan: install, update ke rilis terbaru, atau rollback.
+ */
+$addon_cards = [];
+if ($isProActive) {
+    foreach ($addons as $addon) {
+        $slug = $addon['slug'] ?? '';
+
+        if (empty($slug) || !in_array($slug, $addonAvailable, true)) {
+            continue;
+        }
+
+        $installed = is_dir(WP_PLUGIN_DIR . '/' . $slug);
+        $current_version = '';
+        if ($installed) {
+            $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $slug . '/' . $slug . '.php', false, false);
+            $current_version = $plugin_data['Version'] ?? '';
+        }
+
+        // Daftar versi dari semua rilis; rilis pertama adalah yang terbaru.
+        $release_versions = [];
+        foreach ((array) $updateModule->get_addon_releases($slug) as $release) {
+            if (!is_array($release)) {
+                continue;
+            }
+
+            $versions = $release['version_available'] ?? [];
+            if (empty($versions)) {
+                $versions = [$release['tag_name'] ?? $release['name'] ?? $release['version'] ?? $release['title'] ?? ''];
+            }
+
+            foreach ((array) $versions as $version) {
+                if ('' !== $version) {
+                    $release_versions[] = $version;
+                }
+            }
+        }
+
+        $latest_version = $release_versions[0] ?? '';
+        $update = '' !== $normalize_version($latest_version)
+            && ('' === $normalize_version($current_version) || version_compare($normalize_version($current_version), $normalize_version($latest_version), '<'));
+
+        if (!$installed) {
+            $status = 'not-installed';
+        } elseif ($update) {
+            $status = 'update';
+        } else {
+            $status = is_plugin_active($slug . '/' . $slug . '.php') ? 'active' : 'inactive';
+        }
+
+        $addon_cards[] = [
+            'slug' => $slug,
+            'name' => $addon['name'] ?? $slug,
+            'current' => $current_version,
+            'latest' => $latest_version,
+            'versions' => $release_versions,
+            'installed' => $installed,
+            'update' => $update,
+            'status' => $status,
+        ];
+    }
+}
+
+$addon_counts = [
+    'all' => count($addon_cards),
+    'update' => count(array_filter($addon_cards, fn($card) => $card['update'] && $card['installed'])),
+    'installed' => count(array_filter($addon_cards, fn($card) => $card['installed'])),
+    'not-installed' => count(array_filter($addon_cards, fn($card) => !$card['installed'])),
+];
+
+// Kosong sampai rilis addon pernah diambil sejak waktunya mulai dicatat.
+$checked_at = (int) get_option('rtmkit_addon_releases_checked_at', 0);
+$last_checked = '';
+if ($checked_at && time() - $checked_at < MINUTE_IN_SECONDS) {
+    $last_checked = __('just now', 'rometheme-for-elementor');
+} elseif ($checked_at) {
+    /* translators: %s: human-readable time difference. */
+    $last_checked = sprintf(__('%s ago', 'rometheme-for-elementor'), human_time_diff($checked_at));
+}
+
+$render_versions = static function ($current, $latest) {
+    ?>
+    <div class="vc-card__versions">
+        <span><?php esc_html_e('Current', 'rometheme-for-elementor'); ?> <strong><?php echo esc_html($current ?: '-'); ?></strong></span>
+        <span><?php esc_html_e('Latest', 'rometheme-for-elementor'); ?> <strong><?php echo esc_html($latest ?: '-'); ?></strong></span>
+    </div>
+    <?php
+};
+?>
 <div class="card rounded-4 flex-column gap-3">
-    <div class="pb-3 pt-1 border-bottom d-flex flex-column gap-3">
-        <div class="d-flex align-items-center gap-3">
-            <h4 class="m-0">Update to New Version or Rollback to Previous Version</h4>
+    <div class="vc-section-head">
+        <div class="d-flex flex-column gap-1">
+            <h5 class="m-0">RTMKit</h5>
+            <span class="vc-muted">
+                <?php
+                /* translators: %s: RTMKit version. */
+                printf(esc_html__('Experiencing an issue with RTMKit %s? Rollback to a previous version before the issue appeared.', 'rometheme-for-elementor'), esc_html(RTM_KIT_VERSION));
+                ?>
+            </span>
         </div>
-        <span>
-            Experiencing an issue with RTMkit version <?php echo esc_html(RTM_KIT_VERSION) ?> ? Rollback to a previous version before the issue appeared.
-        </span>
     </div>
 
-    <div class="d-flex gap-3 flex-column">
-        <ul class="list-group list-group-flush w-100">
-            <?php foreach ($plugins as $plugin => $data) :
-                $file = $data['file'];
-                $plugin_info = \RTMKit\Modules\Update\UpdateModule::instance()->get_plugin_info($plugin);
-                $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $file);
-                $versions = isset($plugin_info->versions) ? $plugin_info->versions : [];
-                if ($plugin === 'rtmkitpro') {
-                    if (!$isProActive) {
-                        continue;
-                    }
-
-                    if($isRTMEssential !== null) {
-                        continue;
-                    }
-
-                    $plugin_name = 'RTMKit Pro';
-                    $plugin_current_version = RTMPRO_PLUGIN_VERSION;
-                } else {
-                    $plugin_name = $plugin_info->name;
-
-                    if (! function_exists('get_plugin_data')) {
-                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
-                    }
-                    $plugin_current_version = $plugin_data['Version'] ?? null;
-                    unset($versions['trunk']);
-                }
-                $updateAvailable = version_compare($plugin_current_version, $plugin_info->version, '<');
-                $length = count($versions);
+    <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 g-3">
+        <?php foreach ($core_cards as $card) :
+            $status = $card['update'] ? 'update' : 'active';
             ?>
-                <li class="list-group-item">
-                    <div class="d-flex flex-column gap-3">
-                        <div class="d-flex flex-row gap-3">
-                            <div class="col w-auto d-flex flex-row align-items-center bg-hover-color rounded-3 p-3">
-                                <div class="col-6">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div class="col-6">
-                                            <h6 class="m-0"><?php echo esc_html($plugin_name) ?></h6>
-                                        </div>
-                                        <div class="col-6">
-                                            <span>
-                                                Version <?php echo esc_html($plugin_current_version) ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="d-flex flex-row justify-content-end align-items-center w-100">
-                                        <?php if ($updateAvailable) : ?>
-                                            <span class="accent-color">Version <?php echo esc_html($plugin_info->version) ?> is available</span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn <?php echo ($updateAvailable) ? esc_attr('btn-accent btn-update-plugin') : esc_attr('btn-disabled') ?> text-nowrap col-2" <?php echo ($updateAvailable) ? '' : 'disabled' ?>
-                                data-plugin="<?php echo esc_attr($plugin) ?>"
-                                data-plugin-name="<?php echo esc_attr($plugin_name) ?>"
-                                data-plugin-version="<?php echo esc_attr($plugin_info->version) ?>">
-                                <?php if ($updateAvailable) : ?>
-                                    <svg class="icon" width="20" height="20" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_1696_11964)">
-                                            <path d="M18.6321 1.20117V6.11315L13.4512 6.1131" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M3.68262 22.7988V17.8869H8.86359" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M20.4634 9.6886C20.6631 10.4482 20.7693 11.2445 20.7693 12.0649C20.7693 17.3308 16.3954 21.5997 10.9999 21.5997C8.08203 21.5997 5.46292 20.3511 3.67285 18.3716" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M1.51966 14.3769C1.33076 13.6367 1.23047 12.8622 1.23047 12.0649C1.23047 6.79905 5.60433 2.53021 10.9998 2.53021C14.0768 2.53021 16.8217 3.91869 18.6124 6.08869" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_1696_11964">
-                                                <rect width="22" height="24" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <span class="text-black">Update</span>
-                                <?php else : ?>
-                                    <i class="fa-solid fa-check fs-5"></i>Up to Date
-                                <?php endif; ?>
-                            </button>
-                        </div>
-                        <div class="d-flex flex-row gap-3" data-rollback-plugin="<?php echo esc_attr($plugin) ?>" data-plugin-name="<?php echo esc_attr($plugin_name) ?>">
-                            <div class="col w-auto d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0">Rollback to Previous Version</h6>
-                                <select name="versions" class="form-select w-auto ps-4 pe-5">
-                                    <?php $index = 0;
-                                    foreach ($versions as $version => $url) : $index++; ?>
-                                        <option value="<?php echo esc_attr($version) ?>"
-                                            <?php echo ($index === $length) ? esc_attr('selected') : '' ?>
-                                            <?php echo (version_compare($version, $data['min_version'], '<')) ? esc_attr('disabled') : '' ?>>Version <?php echo esc_html($version) ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <button class="btn btn-secondary btn-reinstall-plugin text-nowrap col-2">
-                                <svg class="icon" width="20" height="20" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1696_11964)">
-                                        <path d="M18.6321 1.20117V6.11315L13.4512 6.1131" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M3.68262 22.7988V17.8869H8.86359" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M20.4634 9.6886C20.6631 10.4482 20.7693 11.2445 20.7693 12.0649C20.7693 17.3308 16.3954 21.5997 10.9999 21.5997C8.08203 21.5997 5.46292 20.3511 3.67285 18.3716" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1.51966 14.3769C1.33076 13.6367 1.23047 12.8622 1.23047 12.0649C1.23047 6.79905 5.60433 2.53021 10.9998 2.53021C14.0768 2.53021 16.8217 3.91869 18.6124 6.08869" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_1696_11964">
-                                            <rect width="22" height="24" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <span style="color: currentColor;">Reinstall</span>
-                            </button>
-                        </div>
+            <div class="col vc-item" data-name="<?php echo esc_attr(strtolower($card['name'])); ?>" data-status="<?php echo esc_attr($status); ?>">
+                <div class="card vc-card h-100" data-rollback-plugin="<?php echo esc_attr($card['plugin']); ?>" data-plugin-name="<?php echo esc_attr($card['name']); ?>">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <h6 class="m-0"><?php echo esc_html($card['name']); ?></h6>
+                        <span class="vc-badge is-<?php echo esc_attr($status); ?>"><?php echo esc_html($status_labels[$status]); ?></span>
                     </div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-      
-    </div>
-</div>
-<?php if(\RTMKit\Core\Plugin::instance()->pro_is_active()) :?>                            
-    <div class="pt-4 card d-flex flex-column gap-3">
-        <div class="d-flex align-items-center justify-content-between gap-3">
-            <div>
-                <h4 class="m-0">Addon Updates</h4>
-                <span>Latest update list for addons according to your plan.</span>
+                    <?php $render_versions($card['current'], $card['latest']); ?>
+                    <div class="vc-card__actions">
+                        <select name="versions" class="form-select">
+                            <?php foreach ($card['versions'] as $version) : ?>
+                                <option value="<?php echo esc_attr($version); ?>"
+                                    <?php selected($version, $card['current']); ?>
+                                    <?php disabled(version_compare($version, $card['min_version'], '<')); ?>><?php echo esc_html($version); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?php if ($card['update']) : ?>
+                            <button class="btn btn-accent btn-update-plugin"
+                                data-plugin="<?php echo esc_attr($card['plugin']); ?>"
+                                data-plugin-name="<?php echo esc_attr($card['name']); ?>"
+                                data-plugin-version="<?php echo esc_attr($card['latest']); ?>">
+                                <i class="fa-solid fa-arrow-up icon"></i>
+                                <span><?php esc_html_e('Update', 'rometheme-for-elementor'); ?></span>
+                            </button>
+                        <?php else : ?>
+                            <button class="btn btn-secondary btn-reinstall-plugin">
+                                <i class="fa-solid fa-rotate-left icon"></i>
+                                <span><?php esc_html_e('Rollback', 'rometheme-for-elementor'); ?></span>
+                            </button>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-accent btn-sync-addon-releases">Check Update</button>
+        <?php endforeach; ?>
+    </div>
+    <p class="vc-empty m-0" hidden><?php esc_html_e('No plugins match your filter.', 'rometheme-for-elementor'); ?></p>
+</div>
+
+<?php if ($isProActive) : ?>
+    <div class="card rounded-4 flex-column gap-3">
+        <div class="vc-section-head">
+            <div class="d-flex flex-column gap-1">
+                <h5 class="m-0"><?php esc_html_e('Addon Updates', 'rometheme-for-elementor'); ?></h5>
+                <span class="vc-muted"><?php esc_html_e('Latest update list for addons according to your plan.', 'rometheme-for-elementor'); ?></span>
+            </div>
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <?php if ($last_checked) : ?>
+                    <span class="vc-muted text-nowrap">
+                        <i class="fa-solid fa-rotate me-1"></i>
+                        <?php
+                        /* translators: %s: time since the last check, e.g. "5 mins ago". */
+                        printf(esc_html__('Last checked: %s', 'rometheme-for-elementor'), esc_html($last_checked));
+                        ?>
+                    </span>
+                <?php endif; ?>
+                <?php if ($addon_counts['update']) : ?>
+                    <span class="vc-badge is-update">
+                        <?php
+                        /* translators: %d: number of addons with an update. */
+                        printf(esc_html(_n('%d Update Available', '%d Updates Available', $addon_counts['update'], 'rometheme-for-elementor')), (int) $addon_counts['update']);
+                        ?>
+                    </span>
+                <?php endif; ?>
+                <button type="button" class="btn btn-accent btn-sync-addon-releases"><?php esc_html_e('Check Update', 'rometheme-for-elementor'); ?></button>
+            </div>
         </div>
 
-        <div class="row row-cols-xl-3 row-cols-1 g-3">
-            <?php foreach ($addons as $addon) :
-                $slug = $addon['slug'] ?? '';
-                $name = $addon['name'] ?? $slug;
+        <nav class="vc-tabs">
+            <?php
+            $tabs = [
+                'all' => __('All Plugins', 'rometheme-for-elementor'),
+                'update' => __('Updates Available', 'rometheme-for-elementor'),
+                'installed' => __('Installed', 'rometheme-for-elementor'),
+                'not-installed' => __('Not Installed', 'rometheme-for-elementor'),
+            ];
+            foreach ($tabs as $tab => $label) : ?>
+                <button type="button" class="vc-tab<?php echo 'all' === $tab ? ' active' : ''; ?>" data-vc-tab="<?php echo esc_attr($tab); ?>">
+                    <?php echo esc_html($label); ?> <span class="vc-tab__count"><?php echo (int) $addon_counts[$tab]; ?></span>
+                </button>
+            <?php endforeach; ?>
+        </nav>
 
-                if (empty($slug) || !in_array($slug, $addonAvailable, true)) {
-                    continue;
-                }
-
-                $installed = is_dir(WP_PLUGIN_DIR . '/' . $slug);
-                $active = $installed && is_plugin_active($slug . '/' . $slug . '.php');
-                $currentVersion = '';
-                if ($installed) {
-                    if (! function_exists('get_plugin_data')) {
-                        require_once ABSPATH . 'wp-admin/includes/plugin.php';
-                    }
-                    $pluginData = get_plugin_data(WP_PLUGIN_DIR . '/' . $slug . '/' . $slug . '.php', false, false);
-                    $currentVersion = $pluginData['Version'] ?? '';
-                }
-                $releases = $updateModule->get_addon_releases($slug);
-                $latest = is_array($releases) ? ($releases[0] ?? null) : null;
-                $latestVersion = is_array($latest)
-                    ? ($latest['version_available'][0] ?? $latest['tag_name'] ?? $latest['name'] ?? $latest['version'] ?? $latest['title'] ?? '')
-                    : '';
-                $normalizeVersion = static function ($value) {
-                    $value = trim((string) $value);
-                    $value = ltrim($value, "vV");
-                    return $value;
-                };
-                $currentVersionNormalized = $normalizeVersion($currentVersion);
-                $latestVersionNormalized = $normalizeVersion($latestVersion);
-                $showAddonUpdate = '' !== $latestVersionNormalized && ('' === $currentVersionNormalized || version_compare($currentVersionNormalized, $latestVersionNormalized, '<'));
-            ?>
-                <div class="col">
-                    <div class="card modules h-100 p-3 gap-3 justify-content-between h-100">
-                        <div class="d-flex flex-column gap-2">
-                            <h5 class="m-0 align-items-center d-flex w-100 justify-content-between"><?php echo esc_html($name); ?>
-                                <?php if ($showAddonUpdate) : ?>
-                                    <span class="badge accent-color">Update available</span>
-                                <?php endif; ?>
-                            </h5>
-                            <span>Slug: <?php echo esc_html($slug); ?></span>
-                            <?php if ($installed) : ?>
-                                <div class="d-flex justify-content-between align-items-center gap-2">
-                                    <span>Current: <?php echo esc_html($currentVersion ?: '-'); ?></span>
-                                    <span>Latest: <?php echo esc_html($latestVersion ?: '-'); ?></span>
-                                    <span><?php echo $active ? esc_html__('Active', 'rometheme-for-elementor') : esc_html__('Inactive', 'rometheme-for-elementor'); ?></span>
-                                </div>
-                            <?php endif; ?>
+        <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 g-3">
+            <?php foreach ($addon_cards as $card) : ?>
+                <div class="col vc-item" data-name="<?php echo esc_attr(strtolower($card['name'])); ?>" data-status="<?php echo esc_attr($card['status']); ?>" data-installed="<?php echo $card['installed'] ? '1' : '0'; ?>">
+                    <div class="card vc-card h-100">
+                        <div class="d-flex justify-content-between align-items-start gap-2">
+                            <h6 class="m-0"><?php echo esc_html($card['name']); ?></h6>
+                            <span class="vc-badge is-<?php echo esc_attr($card['status']); ?>"><?php echo esc_html($status_labels[$card['status']]); ?></span>
                         </div>
+                        <?php $render_versions($card['current'], $card['latest']); ?>
 
-                        <?php if (!$installed) : ?>
-                            <button class="btn btn-accent install-addon" data-addon="<?php echo esc_attr($slug); ?>">Install</button>
+                        <?php if (!$card['installed']) : ?>
+                            <button class="btn btn-accent w-100 install-addon" data-addon="<?php echo esc_attr($card['slug']); ?>">
+                                <i class="fa-solid fa-download"></i>
+                                <?php esc_html_e('Install', 'rometheme-for-elementor'); ?>
+                            </button>
                         <?php else : ?>
-                            <div class="d-flex flex-column gap-2">                                    
-                                <select class="form-select addon-release-select" data-addon="<?php echo esc_attr($slug); ?>" >
-                                    <?php
-                                    $releaseItems = [];
-                                    if (is_string($releases)) {
-                                        $decoded = json_decode($releases, true);
-                                        $releaseItems = is_array($decoded) ? $decoded : [];
-                                    } elseif (is_object($releases)) {
-                                        $releaseItems = (array) $releases;
-                                    } elseif (is_array($releases)) {
-                                        $releaseItems = $releases;
-                                    }
-
-                                    $options = [];
-                                    if (!empty($releaseItems)) :
-                                        foreach ($releaseItems as $release) :
-                                            $versions = [];
-                                            if (is_array($release)) {
-                                                $versions = $release['version_available'] ?? [];
-                                                if (empty($versions)) {
-                                                    $versions = [
-                                                        $release['tag_name'] ?? $release['name'] ?? $release['version'] ?? $release['title'] ?? ''
-                                                    ];
-                                                }
-                                            }
-
-                                            foreach ((array) $versions as $version) :
-                                                if ('' === $version) {
-                                                    continue;
-                                                }
-                                                $options[] = $version;
-                                    ?>
-                                        <option value="<?php echo esc_attr($version); ?>"<?php echo ($version === $currentVersion) ? ' selected' : ''; ?>><?php echo esc_html($version); ?></option>
-                                    <?php
-                                            endforeach;
-                                        endforeach;
-                                    endif;
-
-                                    if (empty($options)) :
-                                    ?>
-                                        <option value="">No releases found</option>
+                            <div class="vc-card__actions">
+                                <select class="form-select addon-release-select" data-addon="<?php echo esc_attr($card['slug']); ?>">
+                                    <?php if ($card['versions']) : ?>
+                                        <?php foreach ($card['versions'] as $version) : ?>
+                                            <?php
+                                            // Update: default ke versi terbaru; rollback: ke versi terpasang.
+                                            $is_selected = $card['update'] ? $version === $card['latest'] : $version === $card['current'];
+                                            ?>
+                                            <option value="<?php echo esc_attr($version); ?>" <?php selected($is_selected); ?>><?php echo esc_html($version); ?></option>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <option value=""><?php esc_html_e('No releases found', 'rometheme-for-elementor'); ?></option>
                                     <?php endif; ?>
                                 </select>
-
-                                <?php if ($showAddonUpdate) : ?>
-                                    <button class="btn btn-accent btn-addon-update" data-addon="<?php echo esc_attr($slug); ?>" data-addon-name="<?php echo esc_attr($name); ?>" data-addon-version="<?php echo esc_attr($latestVersion); ?>">Update</button>
+                                <?php if ($card['update']) : ?>
+                                    <button class="btn btn-accent btn-addon-update" data-addon="<?php echo esc_attr($card['slug']); ?>" data-addon-name="<?php echo esc_attr($card['name']); ?>" data-addon-version="<?php echo esc_attr($card['latest']); ?>">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        <?php esc_html_e('Update', 'rometheme-for-elementor'); ?>
+                                    </button>
                                 <?php else : ?>
-                                    <button class="btn btn-secondary btn-addon-rollback" data-addon="<?php echo esc_attr($slug); ?>" data-addon-name="<?php echo esc_attr($name); ?>">Rollback</button>
+                                    <button class="btn btn-secondary btn-addon-rollback" data-addon="<?php echo esc_attr($card['slug']); ?>" data-addon-name="<?php echo esc_attr($card['name']); ?>">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                        <?php esc_html_e('Rollback', 'rometheme-for-elementor'); ?>
+                                    </button>
                                 <?php endif; ?>
-
                             </div>
                         <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
+        <p class="vc-empty m-0" hidden><?php esc_html_e('No addons match your filter.', 'rometheme-for-elementor'); ?></p>
     </div>
 <?php endif; ?>

@@ -2,20 +2,43 @@
 
 if (! defined('ABSPATH')) exit;
 
-$whats_new = [
-    'interface' => [
-        'title' => 'RTM Mega Menu Builder',
-        'description' => 'Design mega menu panels with Elementor and attach them to any navigation menu — on classic themes and in Elementor headers alike.',
-    ],
-    'themebuilder' => [
-        'title' => 'RTM Popup Builder',
-        'description' => 'Popup Builder for the RTM ecosystem. Design popups with Elementor, then control what opens them, which pages they appear on, who sees them and how often.',
-    ],
-    'features' => [
-        'title' => 'RTM Core',
-        'description' => 'Get full feature access to Post Type, Metabox, Taxonomy Builder and Preloader for the RTM ecosystem. Create custom post types, taxonomies, and meta boxes with a simple interface.',
-    ]
-];
+$dashboard_feed = \RTMKit\Modules\Helper\DashboardFeed::instance();
+
+$whats_new = $dashboard_feed->get_whats_new();
+
+// Dipakai selama RSS changelog belum bisa diambil.
+if (empty($whats_new)) {
+    $whats_new = [
+        [
+            'title' => 'RTM Mega Menu Builder',
+            'description' => 'Design mega menu panels with Elementor and attach them to any navigation menu — on classic themes and in Elementor headers alike.',
+            'link' => '',
+        ],
+        [
+            'title' => 'RTM Popup Builder',
+            'description' => 'Popup Builder for the RTM ecosystem. Design popups with Elementor, then control what opens them, which pages they appear on, who sees them and how often.',
+            'link' => '',
+        ],
+        [
+            'title' => 'RTM Core',
+            'description' => 'Get full feature access to Post Type, Metabox, Taxonomy Builder and Preloader for the RTM ecosystem. Create custom post types, taxonomies, and meta boxes with a simple interface.',
+            'link' => '',
+        ],
+    ];
+}
+
+$themes = $dashboard_feed->get_themes();
+
+if (empty($themes)) {
+    $themes = [
+        [
+            'name' => 'Luminex',
+            'subtitle' => 'Multipurpose IT Business & Tech Startup WordPress Theme',
+            'link' => 'https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551',
+            'image' => 'https://themes.rometheme.net/luminex/wp-content/uploads/sites/23/2026/01/luminex.png',
+        ],
+    ];
+}
 
 $sysInfo = \RTMKit\Modules\SystemInfo::instance()->get_system_info();
 
@@ -59,20 +82,17 @@ $current_user = wp_get_current_user();
                 <h1>Hello , <strong class="fw-bold"><?php echo esc_html($current_user->display_name); ?></strong></h1>
                 <h1>Welcome to RTMKit Dashboard</h1>
             </div>
+            <?php if (current_user_can('manage_options')) : ?>
+                <button type="button" id="rtmkit-clear-cache" class="btn btn-accent text-nowrap"
+                    title="<?php echo esc_attr__('Clear RTMKit and Elementor cache, then rebuild it.', 'rometheme-for-elementor'); ?>">
+                    <i class="fa-solid fa-broom"></i>
+                    <span><?php esc_html_e('Clear Cache', 'rometheme-for-elementor'); ?></span>
+                </button>
+            <?php endif; ?>
         </div>
         <div class="d-flex align-items-center gap-3">
             License :
-            <span class="license-status">
-                <?php
-                if (class_exists('RTMKitPro\Core\Plugin') && \RTMKitPro\Modules\Licenses\LicenseStorage::instance()->isLicenseActive()) {
-                    echo esc_html(\RTMKitPro\Modules\Licenses\LicenseStorage::instance()->get_product_name());
-                } elseif (\RTMKit\Core\Plugin::instance()->is_linked_account()) {
-                    echo esc_html(\RTMKit\Core\Plugin::instance()->get_linked_account_info('payload.plan'));
-                } else {
-                    echo 'Free';
-                }
-                ?>
-            </span>
+            <span class="license-status"><?php echo esc_html(rtmkit_license_label()); ?></span>
         </div>
         <?php if (!\RTMKit\Core\Plugin::instance()->pro_is_active()) : ?>
             <p class="m-0">Upgrade premium to unlock all features <a href="<?php echo esc_url(rtmkit_upgrade_url('banner.dashboard')); ?>" target="_blank">Upgrade Now</a></p>
@@ -109,7 +129,7 @@ $current_user = wp_get_current_user();
                         <h4 class="accent-color fs-6">UPGRADE TO PRO</h4>
                         <h1 class="m-0 fw-light fs-2 text-center lh-1">Unlock Now<br /><span class="fw-bold fs-2 lh-1 text-white">Hi-End Power</span></h1>
                         <span class="text-white px-2">
-                            Unlock the full power of your workflow. Access 70+ widgets, 25+ templates, 9 theme builder features, 1200+ icons, extensions, and priority support. Only in RTMkit Pro.
+                            Unlock the full power of your workflow with RTM Woo Builder, GSAP Animation, MCP Integration, Mega Menu Builder and Popup Builder. Only in RTMKit One.
                         </span>
                         <a href="<?php echo esc_url(rtmkit_upgrade_url('dashboard.card')); ?>" target="_blank" class="btn btn-accent fw-bold align-items-center gap-2">
                             <svg width="30" height="30" viewBox="0 0 24 29" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -126,18 +146,19 @@ $current_user = wp_get_current_user();
                         <h4 class="fw-bold">What's New</h4>
                         <div class="overflow-y-auto h-100">
                             <ul class="list-group list-group-flush">
-                                <?php foreach ($whats_new as $key => $item): ?>
+                                <?php foreach ($whats_new as $item): ?>
                                     <li class="list-group-item">
-                                        <div class="d-flex gap-2 ">
-                                            <div class="list-icon">
-                                                <i class="rtmicon rtmicon-check"></i>
-                                            </div>
-                                            <div class="d-flex flex-column gap-2">
-                                                <h5 class="m-0 fw-bold"><?php echo esc_html($item['title']) ?></h5>
-                                                <span>
-                                                    <?php echo esc_html($item['description']) ?>
-                                                </span>
-                                            </div>
+                                        <div class="d-flex flex-column gap-2">
+                                            <h5 class="m-0 fw-bold text-truncate" title="<?php echo esc_attr($item['title']) ?>">
+                                                <?php if ($item['link']) : ?>
+                                                    <a href="<?php echo esc_url($item['link']) ?>" target="_blank" class="whats-new-link"><?php echo esc_html($item['title']) ?></a>
+                                                <?php else : ?>
+                                                    <?php echo esc_html($item['title']) ?>
+                                                <?php endif; ?>
+                                            </h5>
+                                            <span>
+                                                <?php echo esc_html($item['description']) ?>
+                                            </span>
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
@@ -148,7 +169,7 @@ $current_user = wp_get_current_user();
                             </i>
                             Check Our New Addons
                         </a>
-                        <a href="https://rometheme.net/plugins/rtmkit/releases/" target="_blank" class="btn btn-secondary px-4 py-3">
+                        <a href="<?php echo esc_url(\RTMKit\Modules\Helper\DashboardFeed::CHANGELOG_URL) ?>" target="_blank" class="btn btn-secondary px-4 py-3">
                             <i class="rtmicon rtmicon-arrow-up-right"></i>
                             </i>
                             Changelog
@@ -225,7 +246,7 @@ $current_user = wp_get_current_user();
                                     <h4 class="fw-bold">Request Feature</h4>
                                     <p>Please feel free to give any suggestions to include any features about RTMKit Addons for Elementor.</p>
                                     <div class="d-flex flex-column gap-3">
-                                        <a href="https://rometheme.net/plugins/rtmkit/roadmap/" target="_blank" class="btn btn-secondary px-4 py-3">
+                                        <a href="https://rometheme.net/roadmap/" target="_blank" class="btn btn-secondary px-4 py-3">
                                             <i class="rtmicon rtmicon-plus"></i>
                                             Check Our Roadmap
                                         </a>
@@ -242,17 +263,35 @@ $current_user = wp_get_current_user();
             </div>
             <div class="row row-cols-3 g-3">
                 <div class="col">
-                    <div class="card rounded-4 flex-column justify-content-between gap-3  h-100">
-                        <h4 class="fw-bold">Recommended WP Themes</h4>
-                        <a class="btn p-0" href="https://themeforest.net/item/luminex-multipurpose-it-business-tech-startup-wordpress-theme/61247551" target="_blank">
-                            <?php // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion 
-                            ?>
-                            <img src="<?php echo esc_url('https://themes.rometheme.net/luminex/wp-content/uploads/sites/23/2026/01/luminex.png')?>" alt="" class="img-fluid">
-                        </a>
-                        <a href="https://rometheme.net/wordpress-themes/" target="_blank" class="btn btn-secondary px-4 py-3">
-                            <i class="rtmicon rtmicon-image-accordion fs-3"></i>
-                            Browse WP Themes
-                        </a>
+                    <div class="card rounded-4 flex-column gap-3 h-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-bold m-0">Recommended WP Themes</h4>
+                            <?php if (count($themes) > 1) : ?>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="theme-carousel-nav" data-direction="-1" aria-label="Previous theme">
+                                        <i class="rtmicon rtmicon-chevron-left"></i>
+                                    </button>
+                                    <button type="button" class="theme-carousel-nav" data-direction="1" aria-label="Next theme">
+                                        <i class="rtmicon rtmicon-chevron-right"></i>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="theme-carousel">
+                            <div class="theme-carousel__track">
+                                <?php foreach ($themes as $theme) : ?>
+                                    <a href="<?php echo esc_url($theme['link']) ?>" target="_blank" class="theme-carousel__item" draggable="false">
+                                        <?php if ($theme['image']) : ?>
+                                            <img src="<?php echo esc_url($theme['image']) ?>" alt="<?php echo esc_attr($theme['name']) ?>" class="img-fluid" loading="lazy">
+                                        <?php endif; ?>
+                                        <span class="theme-carousel__name"><?php echo esc_html($theme['name']) ?></span>
+                                        <?php if ($theme['subtitle']) : ?>
+                                            <span class="theme-carousel__subtitle"><?php echo esc_html($theme['subtitle']) ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col">
